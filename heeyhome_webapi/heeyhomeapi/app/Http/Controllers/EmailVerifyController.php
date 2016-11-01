@@ -47,7 +47,7 @@ class EmailVerifyController extends Controller
             return $email->emailsend();
         }
         else{
-            $arr = array("code" => "125",
+            $arr = array("code" => "126",
                 "msg" => "邮箱和用户不匹配"
             );
             return $callback . "(" . HHJson($arr) . ")";
@@ -96,7 +96,7 @@ class EmailVerifyController extends Controller
             }
         }
         else{
-            $arr = array("code" => "124",
+            $arr = array("code" => "126",
                 "msg" => "邮箱和用户不匹配"
             );
             return $callback . "(" . HHJson($arr) . ")";

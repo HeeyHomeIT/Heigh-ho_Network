@@ -40,7 +40,7 @@ class PhoneVerifyController extends Controller
             return $phone->sms_send();
         }
         else{
-            $arr = array("code" => "124",
+            $arr = array("code" => "126",
                 "msg" => "手机号和用户不匹配"
             );
             return $callback . "(" . HHJson($arr) . ")";
@@ -89,7 +89,7 @@ class PhoneVerifyController extends Controller
             }
         }
         else{
-            $arr = array("code" => "124",
+            $arr = array("code" => "126",
                 "msg" => "手机和用户不匹配"
             );
             return $callback . "(" . HHJson($arr) . ")";
