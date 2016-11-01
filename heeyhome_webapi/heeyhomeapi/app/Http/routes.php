@@ -25,6 +25,10 @@ Route::get('/', function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
+Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
+Route::any('jzbk/info', 'HomeEncyclopediaController@info');
+
 Route::any('login/user_login', 'LoginController@user_login');
 
 Route::any('login/gz_login', 'LoginController@gz_login');
