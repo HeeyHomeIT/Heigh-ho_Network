@@ -17,34 +17,34 @@ class PortraitController extends Controller
 {
     public function index()
     {
-//        $callback=rq('callback');
-//        $user_id=rq('user_id');
-//        if(!$user_id){
-//            $arr = array("code" => "112",
-//                "msg" => "用户id不能为空"
-//            );
-//            return $callback . "(" . HHJson($arr) . ")";
-//        }
-//        /*检查用户是否存在*/
-//        $personal =DB::select('select userinfo_userid from hh_userinfo where userinfo_userid=?',[$user_id]);
-//        if (!$personal) {
-//            $arr = array("code" => "114",
-//                "msg" => "用户不存在"
-//            );
-//            return $callback . "(" . HHJson($arr) . ")";
-//        }else{
-//            $userinfo_img='/app/storage/uploads/'.substr($personal[0]->userinfo_img,0,4).'-'.substr($personal[0]->userinfo_img,4,2).'-'.substr($personal[0]->userinfo_img,6,2).'/'.$personal[0]->userinfo_img;
-//            $arr = array("code" => "000",
-//                "data"=> array(
-//                    "user_id"=>$user_id,
-//                    "user_img"=>$userinfo_img
-//
-//                )
-//            );
-//            return $callback . "(" . HHJson($arr) . ")";
-//        }
+        $callback=rq('callback');
+        $user_id=rq('user_id');
+        if(!$user_id){
+            $arr = array("code" => "112",
+                "msg" => "用户id不能为空"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        /*检查用户是否存在*/
+        $personal =DB::select('select userinfo_userid from hh_userinfo where userinfo_userid=?',[$user_id]);
+        if (!$personal) {
+            $arr = array("code" => "114",
+                "msg" => "用户不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }else{
+            $userinfo_img='/app/storage/uploads/'.substr($personal[0]->userinfo_img,0,4).'-'.substr($personal[0]->userinfo_img,4,2).'-'.substr($personal[0]->userinfo_img,6,2).'/'.$personal[0]->userinfo_img;
+            $arr = array("code" => "000",
+                "data"=> array(
+                    "user_id"=>$user_id,
+                    "user_img"=>$userinfo_img
 
-        return view('img');
+                )
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+
+        //return view('img');
 
     }
 //    public function upload(){
