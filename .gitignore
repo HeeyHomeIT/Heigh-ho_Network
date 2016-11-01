@@ -1,5 +1,5 @@
 # file_url
-/heeyhome_webapi/heeyhomeapi/.idea/
+/heeyhome_webapi/heeyhomeapi/.idea/*
 /.idea/
 # file
 !.gitignore
