@@ -27,49 +27,51 @@ Route::get('/', function () {
 */
 Route::group(['middleware'=>['web']],function (){
 
+    Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
+    Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
+    Route::any('jzbk/info', 'HomeEncyclopediaController@info');
+
+    Route::any('login/user_login', 'LoginController@user_login');
+
+    Route::any('login/gz_login', 'LoginController@gz_login');
+
+    Route::any('register', 'RegisterController@user_register');
+
+    Route::any('sendsms', 'SmsController@sms_send');
+
+    Route::any('editpassword', 'PasswordController@edit_password');
 
 
-Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
-Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
-Route::any('jzbk/info', 'HomeEncyclopediaController@info');
-
-Route::any('login/user_login', 'LoginController@user_login');
-
-Route::any('login/gz_login', 'LoginController@gz_login');
-
-Route::any('register', 'RegisterController@user_register');
-
-Route::any('sendsms', 'SmsController@sms_send');
-
-Route::any('editpassword', 'PasswordController@edit_password');
+    Route::any('resetpassword', 'ResetPasswordController@reset_password');
 
 
-Route::any('resetpassword', 'ResetPasswordController@reset_password');
+    Route::any('personal/userinfo', 'UserinfoController@index');
+    Route::any('personal/userinfo/change', 'UserinfoController@edit');
+
+    Route::any('getbackpassword/phoneverify', 'PhoneVerifyController@index');
+    Route::any('getbackpassword/phoneverify/send', 'PhoneVerifyController@send');
+    Route::any('getbackpassword/phoneverify/verify', 'PhoneVerifyController@verify');
+    Route::any('getbackpassword/emailverify', 'EmailVerifyController@index');
+    Route::any('getbackpassword/emailverify/send', 'EmailVerifyController@send');
+    Route::any('getbackpassword/emailverify/verify', 'EmailVerifyController@verify');
+
+    Route::any('loginhistory', 'GetloginrecordController@index');
+
+    Route::any('personal/portrait', 'PortraitController@index');
+    Route::any('personal/portrait/change', 'PortraitController@fileupload');
 
 
-Route::any('personal/userinfo', 'UserinfoController@index');
-Route::any('personal/userinfo/change', 'UserinfoController@edit');
+    Route::any('address/get_province', 'GetaddressController@get_province');
+    Route::any('address/get_city', 'GetaddressController@get_city');
+    Route::any('address/get_area', 'GetaddressController@get_area');
 
-Route::any('getbackpassword/phoneverify', 'PhoneVerifyController@index');
-Route::any('getbackpassword/phoneverify/send', 'PhoneVerifyController@send');
-Route::any('getbackpassword/phoneverify/verify', 'PhoneVerifyController@verify');
-Route::any('getbackpassword/emailverify', 'EmailVerifyController@index');
-Route::any('getbackpassword/emailverify/send', 'EmailVerifyController@send');
-Route::any('getbackpassword/emailverify/verify', 'EmailVerifyController@verify');
+    Route::any('personal/drive_address', 'DriveaddressController@index');
+    Route::any('personal/drive_address/add', 'DriveaddressController@add');
+    Route::any('personal/drive_address/change', 'DriveaddressController@edit');
+    Route::any('personal/drive_address/del', 'DriveaddressController@del');
 
-Route::any('personal/portrait', 'PortraitController@index');
-Route::any('personal/portrait/change', 'PortraitController@fileupload');
-
-
-Route::any('address/get_province', 'GetaddressController@get_province');
-Route::any('address/get_city', 'GetaddressController@get_city');
-Route::any('address/get_area', 'GetaddressController@get_area');
-
-Route::any('personal/drive_address', 'DriveaddressController@index');
-Route::any('personal/drive_address/add', 'DriveaddressController@add');
-Route::any('personal/drive_address/change', 'DriveaddressController@edit');
-Route::any('personal/drive_address/del', 'DriveaddressController@del');
 });
+
 //Get access_token
 Route::post('oauth/access_token', function() {
     return Response::json(Authorizer::issueAccessToken());
