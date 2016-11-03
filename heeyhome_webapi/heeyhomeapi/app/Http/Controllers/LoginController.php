@@ -44,8 +44,8 @@ class LoginController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }else{
             /*登录成功返回用户信息*/
-            session()->put('user_account', $pwd[0]->user_account);
-            session()->put('user_id', $pwd[0]->user_id);
+//            session(['user_account'=>$pwd[0]->user_account]);
+//            session(['user_id'=>$pwd[0]->user_id]);
             $arr=array("code"=>"000",
                 "msg"=>"登录成功",
                 "data"=>$pwd[0]

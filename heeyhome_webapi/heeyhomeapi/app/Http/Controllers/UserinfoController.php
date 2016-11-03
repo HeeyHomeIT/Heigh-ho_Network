@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 class UserinfoController extends Controller
 {
     public function index(){
+        //dd(session('user_id'));
         $callback=rq('callback');
             $user_id=rq('user_id');
             if(!$user_id){

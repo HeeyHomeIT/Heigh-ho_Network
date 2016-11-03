@@ -25,6 +25,10 @@ Route::get('/', function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+Route::group(['middleware'=>['web']],function (){
+
+
+
 Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
 Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
 Route::any('jzbk/info', 'HomeEncyclopediaController@info');
@@ -65,7 +69,7 @@ Route::any('personal/drive_address', 'DriveaddressController@index');
 Route::any('personal/drive_address/add', 'DriveaddressController@add');
 Route::any('personal/drive_address/change', 'DriveaddressController@edit');
 Route::any('personal/drive_address/del', 'DriveaddressController@del');
-
+});
 //Get access_token
 Route::post('oauth/access_token', function() {
     return Response::json(Authorizer::issueAccessToken());

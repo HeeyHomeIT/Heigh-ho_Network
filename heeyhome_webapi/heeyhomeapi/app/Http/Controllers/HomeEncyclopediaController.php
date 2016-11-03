@@ -34,7 +34,13 @@ class HomeEncyclopediaController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $articles = DB::select('select id,article_title from hh_jzbkarticle where cate_id=? order by id desc ',[$cate_id]);
+        $total=DB::select('select count(id) as total from hh_jzbkarticle where cate_id=?',[$cate_id]);
+        $total=$total[0]->total;
+        $newpage=new PageController();
+        $offset=$newpage->page($total);
+        //dd($offset);
+        $articles = DB::select('select id,article_title from hh_jzbkarticle where cate_id=? order by id desc limit ?,?',[$cate_id,$offset[0],$offset[1]]);
+        //print_r($articles);
         if($articles){
             $arr=array(
                 "code"=>"000",
@@ -61,5 +67,4 @@ class HomeEncyclopediaController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
-
 }
