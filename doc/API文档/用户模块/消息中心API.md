@@ -25,7 +25,11 @@
 ###### Json数据格式
 ```
 data
+必选参数
 user_id             user_id
+可选参数 
+page              page         //当前页
+limit             limit        //每页显示数目
 
 callback            callback
 ```

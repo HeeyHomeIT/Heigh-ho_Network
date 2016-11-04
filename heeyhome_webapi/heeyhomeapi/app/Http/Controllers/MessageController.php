@@ -22,8 +22,12 @@ class MessageController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        $total=DB::select('select count(id) as total from hh_message where receiveuserid=?',[$receiveuserid]);
+        $total=$total[0]->total;
+        $newpage=new PageController();
+        $offset=$newpage->page($total);
         $messages=DB::select('select hh_userinfo.userinfo_nickname,hh_message.msgcontent,hh_message.msgtype,hh_message.sendtime,hh_message.isread,hh_message.isdel from hh_userinfo,hh_message 
-                      where hh_userinfo.userinfo_userid=hh_message.senduserid and hh_message.receiveuserid=?',[$receiveuserid]);
+                      where hh_userinfo.userinfo_userid=hh_message.senduserid and hh_message.receiveuserid=? order by id desc limit ?,?',[$receiveuserid,$offset[0],$offset[1]]);
 
         if($messages){
             $arr=array(
