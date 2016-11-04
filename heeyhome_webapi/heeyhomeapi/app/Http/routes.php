@@ -27,48 +27,51 @@ Route::get('/', function () {
 */
 Route::group(['middleware'=>['web']],function (){
 
+    /*家装百科*/
     Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
     Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
     Route::any('jzbk/info', 'HomeEncyclopediaController@info');
 
+    /*用户登录*/
     Route::any('login/user_login', 'LoginController@user_login');
-
+    /*工长登录*/
     Route::any('login/gz_login', 'LoginController@gz_login');
-
+    /*用户注册*/
     Route::any('register', 'RegisterController@user_register');
-
+    /*发送短信*/
     Route::any('sendsms', 'SmsController@sms_send');
-
+    /*修改密码*/
     Route::any('editpassword', 'PasswordController@edit_password');
 
-
-    Route::any('resetpassword', 'ResetPasswordController@reset_password');
-
-
+    /*strat用户个人中心*/
+    /*用户个人资料*/
     Route::any('personal/userinfo', 'UserinfoController@index');
     Route::any('personal/userinfo/change', 'UserinfoController@edit');
-
+    /*用户头像*/
+    Route::any('personal/portrait', 'PortraitController@index');
+    Route::any('personal/portrait/change', 'PortraitController@fileupload');
+    /*登录历史*/
+    Route::any('personal/loginhistory', 'GetloginrecordController@index');
+    /*手机验证*/
     Route::any('getbackpassword/phoneverify', 'PhoneVerifyController@index');
     Route::any('getbackpassword/phoneverify/send', 'PhoneVerifyController@send');
     Route::any('getbackpassword/phoneverify/verify', 'PhoneVerifyController@verify');
+    /*邮箱验证*/
     Route::any('getbackpassword/emailverify', 'EmailVerifyController@index');
     Route::any('getbackpassword/emailverify/send', 'EmailVerifyController@send');
     Route::any('getbackpassword/emailverify/verify', 'EmailVerifyController@verify');
-
-    Route::any('loginhistory', 'GetloginrecordController@index');
-
-    Route::any('personal/portrait', 'PortraitController@index');
-    Route::any('personal/portrait/change', 'PortraitController@fileupload');
-
-
+    /*重置密码*/
+    Route::any('resetpassword', 'ResetPasswordController@reset_password');
+    /*获取地址列表*/
     Route::any('address/get_province', 'GetaddressController@get_province');
     Route::any('address/get_city', 'GetaddressController@get_city');
     Route::any('address/get_area', 'GetaddressController@get_area');
-
+    /*收货地址*/
     Route::any('personal/drive_address', 'DriveaddressController@index');
     Route::any('personal/drive_address/add', 'DriveaddressController@add');
     Route::any('personal/drive_address/change', 'DriveaddressController@edit');
     Route::any('personal/drive_address/del', 'DriveaddressController@del');
+    /*end用户个人中心*/
 
 });
 
