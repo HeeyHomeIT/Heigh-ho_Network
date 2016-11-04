@@ -62,7 +62,7 @@ Route::group(['middleware'=>['web']],function (){
     Route::any('getbackpassword/emailverify/verify', 'EmailVerifyController@verify');
     /*重置密码*/
     Route::any('resetpassword', 'ResetPasswordController@reset_password');
-    /*获取地址列表*/
+    /*获取地址下拉列表*/
     Route::any('address/get_province', 'GetaddressController@get_province');
     Route::any('address/get_city', 'GetaddressController@get_city');
     Route::any('address/get_area', 'GetaddressController@get_area');
@@ -71,6 +71,9 @@ Route::group(['middleware'=>['web']],function (){
     Route::any('personal/drive_address/add', 'DriveaddressController@add');
     Route::any('personal/drive_address/change', 'DriveaddressController@edit');
     Route::any('personal/drive_address/del', 'DriveaddressController@del');
+    /*消息中心*/
+    Route::any('personal/message', 'MessageController@index');
+    Route::any('personal/message/del', 'MessageController@del');
     /*end用户个人中心*/
 
 });
