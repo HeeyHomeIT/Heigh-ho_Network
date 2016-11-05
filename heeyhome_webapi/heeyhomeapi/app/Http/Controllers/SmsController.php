@@ -28,6 +28,7 @@ class SmsController extends Controller
         }
         if(yzsmsbom($mobile)){
             $ch = curl_init();
+
             $mobileCode = null;
             $arr = array();
             /* 设置验证方式 */

@@ -1,12 +1,12 @@
 # Login #
-## 工长登录接口
+## 用户登录接口
 
 
 ### 接口地址
 
 
 ```
-.../public/login/gz_login
+.../public/login/user_login
 ```
 
 ### 接口格式
@@ -18,7 +18,7 @@
 ```
 
 ```
-.../public/login/gz_login
+.../public/login/user_login
 ```
 
 ###### Json数据格式
@@ -26,6 +26,10 @@
 data
 user_account        user_account
 user_password       user_password
+login_ip            login_ip
+login_browser       login_browser
+login_way           login_way
+login_device        login_device
 
 callback            callback
 ```
@@ -38,8 +42,8 @@ callback            callback
 callback(
 code         000
 data         {
-                    user_id        user_id     //ID
-                    user_account   user_account   //账户
+                    user_id         user_id         //ID
+                    user_account    user_account    //账号
              }
 msg          登录成功
 )

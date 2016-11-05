@@ -43,9 +43,16 @@ class LoginController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{
+
+//            session(['user_account'=>$pwd[0]->user_account]);
+//            session(['user_id'=>$pwd[0]->user_id]);
+            $login_ip=rq('login_ip');
+            $login_browser=rq('login_browser');
+            $login_way=rq('login_way');
+            $login_device=rq('login_device');
+            $login_time=date('Y-m-d H:i:s', time());
+            $record= DB::insert('insert into hh_loginrecord(user_id,login_time,login_ip,login_browser,login_way,login_device) values(?,?,?,?,?,?)',[$pwd[0]->user_id,$login_time,$login_ip,$login_browser,$login_way,$login_device]);
             /*登录成功返回用户信息*/
-            session()->put('user_account', $pwd[0]->user_account);
-            session()->put('user_id', $pwd[0]->user_id);
             $arr=array("code"=>"000",
                 "msg"=>"登录成功",
                 "data"=>$pwd[0]
@@ -83,6 +90,12 @@ class LoginController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{
+            $login_ip=rq('login_ip');
+            $login_browser=rq('login_browser');
+            $login_way=rq('login_way');
+            $login_device=rq('login_device');
+            $login_time=date('Y-m-d H:i:s', time());
+            $record= DB::insert('insert into hh_loginrecord(user_id,login_time,login_ip,login_browser,login_way,login_device) values(?,?,?,?,?,?)',[$pwd[0]->user_id,$login_time,$login_ip,$login_browser,$login_way,$login_device]);
             /*登录成功返回用户信息*/
             $arr=array("code"=>"000",
                 "msg"=>"登录成功",
