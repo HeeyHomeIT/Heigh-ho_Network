@@ -40,15 +40,18 @@ code         000
 data         {
                     id                     id
                     receiver               receiver           //收货人
-                    province               province           //省份
-                    city                   city               //城市
-                    district               district           //区
+                    province               province           //省份序号
+                    city                   city               //城市序号
+                    district               district           //区序号
                     street                 street             //街道
                     address                address            //详细地址
                     zipcode                zipcode            //邮政编码
                     mobile                 mobile             //联系电话
                     address_userid         address_userid     //用户id
                     is_default             is_default         //是否默认地址
+                    cprovince              cprovince          //省份名
+                    ccity                  ccity              //城市名
+                    cdistrict              cdistrict          //区名
              }
 msg          ""
 )

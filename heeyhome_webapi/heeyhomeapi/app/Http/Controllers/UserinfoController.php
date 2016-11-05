@@ -26,7 +26,15 @@ class UserinfoController extends Controller
                 return $callback . "(" . HHJson($arr) . ")";
             }
             /*检查用户是否存在*/
-            $personal =DB::select('select * from hh_userinfo where userinfo_userid=?',[$user_id]);
+//            $personal =DB::select('select * from hh_userinfo where userinfo_userid=?',[$user_id]);
+        $personal=DB::select('select hh_userinfo.*,A.content as cloc_province,B.content as cloc_city,C.content as cloc_district,D.content as chome_province,E.content as chome_city,F.content as chome_district from hh_userinfo 
+                            left join hh_dictionary A on hh_userinfo.loc_province = A.dic_id
+                            left join hh_dictionary B on hh_userinfo.loc_city = B.dic_id
+                            left join hh_dictionary C on hh_userinfo.loc_district = C.dic_id 
+                            left join hh_dictionary D on hh_userinfo.home_province = D.dic_id 
+                            left join hh_dictionary E on hh_userinfo.home_city = E.dic_id 
+                            left join hh_dictionary F on hh_userinfo.home_district = F.dic_id 
+                            where userinfo_userid=?',[$user_id]);
             if (!$personal) {
                 $arr = array("code" => "114",
                     "msg" => "用户不存在"

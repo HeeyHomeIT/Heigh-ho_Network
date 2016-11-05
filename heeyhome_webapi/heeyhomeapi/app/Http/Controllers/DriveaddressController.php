@@ -23,7 +23,12 @@ class DriveaddressController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $address=DB::select('select * from hh_driveaddress where address_userid=?',[$user_id]);
+//        $address=DB::select('select * from hh_driveaddress where address_userid=?',[$user_id]);
+        $address=DB::select('select hh_driveaddress.*,A.content as cprovince,B.content as ccity,C.content as cdistrict from hh_driveaddress 
+                        left join hh_dictionary A on hh_driveaddress.province = A.dic_id
+                        left join hh_dictionary B on hh_driveaddress.city = B.dic_id
+                        left join hh_dictionary C on hh_driveaddress.district = C.dic_id 
+                        where address_userid=?',[$user_id]);
         if($address){
             $arr = array("code" => "000",
                 "data"=> $address
