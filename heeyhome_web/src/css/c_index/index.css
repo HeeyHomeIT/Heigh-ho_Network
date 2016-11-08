@@ -1,0 +1,410 @@
+body {
+    font-family: 'Microsoft YaHei',Arial,sans-serif
+}
+
+.commonhead,#Head1,#header,#footer {
+    font: normal normal normal 12px/20px 'Microsoft YaHei',Arial,sans-serif
+}
+
+#header {
+    background: #fff
+}
+
+#topNavWrapper,#headerWrapper,#menuNavOuter {
+    min-width: 1190px
+}
+
+#topNavPanel,#pageheader,#menuNavPanel {
+    width: 1190px
+}
+
+#topNavWrapper {
+    background: #fafafa;
+    border-bottom: 1px solid #f1f1f1;
+    position: relative;
+    z-index: 9999
+}
+
+#topNavPanel {
+    height: 28px;
+    margin: 0 auto;
+    line-height: 28px
+}
+
+#topNavPanel a {
+    color: #666
+}
+
+#topLogin {
+    width: 705px;
+    float: left;
+    height: 28px;
+    overflow: hidden
+}
+
+#topLogin a,#topLogin>span {
+    float: left;
+    color: #999
+}
+
+#topNav {
+    float: right
+}
+
+#topNav span {
+    color: #737373
+}
+
+#topNav li {
+    float: left;
+    border-style: solid;
+    border-width: 0 1px;
+    position: relative;
+    border-color: transparent
+}
+
+#topNav li>span {
+    display: block;
+    padding: 0 9px;
+    position: relative;
+    z-index: 2;
+    height: 28px
+}
+
+#topNav li>a {
+    display: block;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+    height: 28px;
+    color: #eec988
+}
+
+#c_news>a em {
+    display: inline-block;
+    width: 19px;
+    height: 13px;
+    margin: -3px 8px 0 0;
+    background: url(../img/icon-news.png) no-repeat;
+    background-position: 0 0;
+    vertical-align: middle
+}
+
+#pageheader {
+    margin: 0 auto;
+    line-height: 0
+}
+
+#pageheader .logo_style {
+    height: 90px;
+    float: left;
+    position: relative
+}
+
+.clearfix:after {
+    content: '.';
+    display: block;
+    clear: both;
+    line-height: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.logo {
+    display: block;
+    height: 100%
+}
+
+.logo a {
+    text-align: center;
+    display: block;
+    height: 90px
+}
+
+.logo a img {
+    margin-top: 19px
+}
+
+#pageheader .logo {
+    float: left
+}
+
+#nowCity {
+    line-height: 24px;
+    position: relative;
+    margin: 46px 0 0;
+    float: left
+}
+
+#nowCity>div {
+    font-size: 14px;
+    color: #333;
+    display: block;
+    z-index: 1002;
+    position: relative;
+    padding: 0 60px
+}
+
+#nowCity>div em {
+    display: inline-block;
+    width: 14px;
+    height: 19px;
+    margin-right: 5px;
+    background: url(../img/icon-location.png) no-repeat;
+    background-position: 0 0;
+    vertical-align: sub
+}
+
+#nowCity>div label {
+	color: #767676
+}
+
+#nowCity>div a:hover {
+	color: #eec988
+}
+
+.s_box_outer {
+    float: right
+}
+
+#headerWrapper .searchcon {
+    font-family: Microsoft YaHei,Simsun,serif;
+    padding-top: 43px;
+    float: left;
+    position: relative;
+    margin-right: 35px
+}
+
+#headerWrapper .searchcon input {
+	width: 400px;
+    display: inline-block;
+    border: 1px solid #eec988;
+    height: 32px;
+    line-height: 30px;
+    text-indent: 12px;
+    color: #666;
+    font-size: 14px;
+    border-radius: 4px;
+    float: left
+}
+
+#headerWrapper .searchcon .search-btn {
+    width: 32px;
+    display: inline-block;
+    height: 32px;
+    text-align: center;
+    background: #ffffff;
+    vertical-align: middle;
+    border: 0;
+    padding-left: 10px;
+    cursor: pointer
+}
+
+.c_searchpop {
+    width: 400px;
+    position: absolute;
+    left: 0;
+    top: 75px;
+    padding: 10px 10px 0;
+    background: #fff;
+    z-index: 1000;
+    border: 1px solid #dfdfdf;
+    box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.1);
+    font-size: 14px
+}
+
+.c_searchpop .c_searchpoptit {
+    color: #666
+}
+
+.c_searchpoptit {
+    width: 100%;
+    float: left
+}
+
+.c_searchpop .c_searchpoptit h3 {
+    font-weight: 700;
+    color: #666
+}
+
+.c_searchpop .c_pop_city {
+    float: left;
+    padding: 7px 0 14px;
+    width: 100%;
+    line-height: 24px
+}
+
+.c_searchpop .c_pop_dlcity {
+    padding-top: 0
+}
+
+.c_pop_dlcity dl {
+    padding: 0 20px;
+    overflow: hidden
+}
+
+.c_pop_dlcity dd {
+    width: 330px;
+    float: right;
+    height: 35px;
+    padding: 5px;
+    border-bottom: dotted 1px #ccc;
+    overflow: hidden
+}
+
+.c_pop_dlcity dd span {
+    display: inline-block;
+    background: #ff6815;
+    border-radius: 6px;
+    font-size: 12px;
+    -webkit-text-size-adjust: none;
+    color: #fff;
+    padding: 1px 0px;
+    line-height: 13px;
+    width: 20px;
+    text-align: center
+}
+
+.c_searchpop .c_pop_city a {
+	margin-left: 10px;
+    line-height: 24px;
+    color: #666;
+    cursor: pointer
+}
+
+.c_searchpop a.col_ff6815 {
+    color: #ff6815
+}
+
+.c_pop_dlcity dd span.bgcol_005bb5 {
+    background: #005bb5
+}
+
+#pageheader .rightLogin {
+	margin: 36px 0px 0 28px;
+    position: relative
+}
+
+#pageheader .rightLogin>a {
+	display: block;
+	float: left;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    color: #eecf88;
+    margin: 0 5px;
+    padding: 19px 25px;
+    border: 1px solid #eecf88;
+    border-radius: 4px
+}
+
+#pageheader .rightLogin>a.register {
+	background: #eecf88;
+	color:#fff
+}
+
+#menuNavOuter {
+    position: relative;
+    z-index: 999
+}
+
+#menuNavWrapper {
+    padding-top: 10px
+}
+
+#menuNavPanel {
+    margin: 0 auto;
+    position: relative
+}
+
+#menuNav {
+	height: 46px;
+    padding-left: 110px
+}
+
+#menuNav li {
+    padding: 10px 56px 6px;
+    float: left;
+    position: relative
+}
+
+#menuNav li>a {
+    display: block;
+    color: #4B4948;
+    height: 30px;
+    padding: 0 12px;
+    line-height: 30px;
+    font-size: 18px;
+    vertical-align: middle;
+    position: relative
+}
+
+#menuNav .current {
+    color: #eecf88
+}
+
+#footer {
+    background: #000;
+    opacity: 0.9
+}
+
+#footer>ul {
+    width: 1190px;
+    margin: 10px auto 0;
+    padding: 200px 0 150px 0
+}
+
+#footer>ul>li {
+    float: left
+}
+
+#footer li>a {
+    display: block;
+    color: #EEC988;
+    height: 30px;
+    padding: 0px 75px;
+    line-height: 30px;
+    font-size: 16px;
+    vertical-align: middle;
+    position: relative
+}
+
+#footer li>a>img {
+    margin-top: -75px
+}
+
+#footer>div {
+	padding-bottom: 60px;
+	position: relative
+}
+
+#footer>div>ul {
+    width: 440px;
+    margin: 10px auto 0
+}
+
+#footer>div>ul>li {
+    padding:8px
+}
+
+#footer>div>ul>li>em {
+    display: inline-block;
+    width: 19px;
+    height: 21px;
+    margin: -3px 12px 0 0;
+    background-position: 0 0;
+    vertical-align: middle
+}
+
+#footer>div>ul>li>em.icon-home {
+    background: url(../img/icon-home.png) no-repeat
+}
+
+#footer>div>ul>li>em.icon-iphone {
+    background: url(../img/icon-iphone.png) no-repeat
+}
+
+#footer>div>ul>li>span {
+	color:#EEC988;
+	font-size: 16px
+}
