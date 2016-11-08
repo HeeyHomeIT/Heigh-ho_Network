@@ -52,16 +52,24 @@ Route::group(['middleware'=>['web']],function (){
     Route::any('personal/portrait/change', 'PortraitController@fileupload');
     /*登录历史*/
     Route::any('personal/loginhistory', 'GetloginrecordController@index');
+    /*确认账号*/
+    Route::any('verification/confirm', 'AccountconfirmController@account');
     /*手机验证*/
-    Route::any('getbackpassword/phoneverify', 'PhoneVerifyController@index');
-    Route::any('getbackpassword/phoneverify/send', 'PhoneVerifyController@send');
-    Route::any('getbackpassword/phoneverify/verify', 'PhoneVerifyController@verify');
+    Route::any('verification/phoneverify', 'PhoneVerifyController@index');
+    Route::any('verification/phoneverify/send', 'PhoneVerifyController@send');
+    Route::any('verification/phoneverify/verify', 'PhoneVerifyController@verify');
     /*邮箱验证*/
-    Route::any('getbackpassword/emailverify', 'EmailVerifyController@index');
-    Route::any('getbackpassword/emailverify/send', 'EmailVerifyController@send');
-    Route::any('getbackpassword/emailverify/verify', 'EmailVerifyController@verify');
+    Route::any('verification/emailverify', 'EmailVerifyController@index');
+    Route::any('verification/emailverify/send', 'EmailVerifyController@send');
+    Route::any('verification/emailverify/verify', 'EmailVerifyController@verify');
+    /*密保问题验证*/
+    Route::any('verification/securityverify', 'SecurityVerifyController@index');
+    Route::any('verification/securityverify/verify', 'SecurityVerifyController@verify');
     /*重置密码*/
-    Route::any('resetpassword', 'ResetPasswordController@reset_password');
+    /*通过手机邮箱验证重置密码*/
+    Route::any('smsresetpassword', 'ResetPasswordController@smsreset');
+    /*通过密保问题验证重置密码*/
+    Route::any('mbresetpassword', 'ResetPasswordController@mbreset');
     /*获取地址下拉列表*/
     Route::any('address/get_province', 'GetaddressController@get_province');
     Route::any('address/get_city', 'GetaddressController@get_city');
@@ -74,6 +82,9 @@ Route::group(['middleware'=>['web']],function (){
     /*消息中心*/
     Route::any('personal/message', 'MessageController@index');
     Route::any('personal/message/del', 'MessageController@del');
+    /*密保问题*/
+    Route::any('personal/securitylist', 'SecurityController@questionlist');
+    Route::any('personal/security/add', 'SecurityController@addsecurity');
     /*end用户个人中心*/
 
 });

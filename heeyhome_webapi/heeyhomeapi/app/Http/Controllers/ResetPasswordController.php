@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class ResetPasswordController extends Controller
 {
-    public function  reset_password(){
+    public function  smsreset(){
         $callback=rq('callback');
         $user_id=rq('user_id');
         $flag=rq('flag');
@@ -57,6 +57,23 @@ class ResetPasswordController extends Controller
                 "msg" => "信息不匹配"
             );
             return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+    public function mbreset(){
+        $callback=rq('callback');
+        $user_id=rq('user_id');
+        $new_password=HHEncryption(rq('new_password'));
+        $update=DB::update('update hh_user set user_password=? where user_id=?',[$new_password, $user_id]);
+        if($update){
+            $arr = array("code" => "000",
+                "msg" => "密码重置成功",
+            );
+            return $callback."(".HHJson($arr).")";
+        }else{
+            $arr=array("code"=>"114",
+                "msg"=>"重置失败,用户不存在"
+            );
+            return $callback."(".HHJson($arr).")";
         }
     }
 }
