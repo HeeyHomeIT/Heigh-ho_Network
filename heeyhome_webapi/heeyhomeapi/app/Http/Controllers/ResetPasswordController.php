@@ -62,6 +62,13 @@ class ResetPasswordController extends Controller
     public function mbreset(){
         $callback=rq('callback');
         $user_id=rq('user_id');
+        /*检查参数不能为空*/
+        if (!(rq('new_password')  && $user_id)){
+            $arr=array("code"=>"112",
+                "msg"=>"参数不能为空"
+            );
+            return $callback."(".HHJson($arr).")";
+        }
         $new_password=HHEncryption(rq('new_password'));
         $update=DB::update('update hh_user set user_password=? where user_id=?',[$new_password, $user_id]);
         if($update){

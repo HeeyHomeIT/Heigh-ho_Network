@@ -43,7 +43,7 @@ Route::group(['middleware'=>['web']],function (){
     /*修改密码*/
     Route::any('editpassword', 'PasswordController@edit_password');
 
-    /*strat用户个人中心*/
+
     /*用户个人资料*/
     Route::any('personal/userinfo', 'UserinfoController@index');
     Route::any('personal/userinfo/change', 'UserinfoController@edit');
@@ -85,7 +85,13 @@ Route::group(['middleware'=>['web']],function (){
     /*密保问题*/
     Route::any('personal/securitylist', 'SecurityController@questionlist');
     Route::any('personal/security/add', 'SecurityController@addsecurity');
-    /*end用户个人中心*/
+    /*收藏效果图*/
+    Route::any('imgcollection/add', 'CollectController@addimg');
+    /*收藏成本结果*/
+
+
+
+
 
 });
 
