@@ -26,6 +26,13 @@ class SmsController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        /*检查手机格式*/
+        if(!preg_match("/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$|17[0-9]{1}[0-9]{8}$/",$mobile)){
+            $arr = array("code" => "129",
+                "msg" => "手机格式不正确"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
         if(yzsmsbom($mobile)){
             $ch = curl_init();
 
@@ -59,9 +66,8 @@ class SmsController extends Controller
             //echo '<pre>';
             if ($array['code'] == '0') {
                 $yzmsj = date("Y-m-d H:i:s", time());
-                $flag=create_pid();
                 $arr = array('code' => '000',  'msg' => '验证码发送成功','data' => array('phone' => $array['mobile'], "yzmsj" => $yzmsj));
-                $sql=DB::insert('insert into hh_sms (sms_userid,record_key,record_type,sms,smstime,flag) values(?,?,?,?,?,?)',[$user_id,$array['mobile'],'phone_verify',$mobileCode,$yzmsj,$flag]);
+                $sql=DB::insert('insert into hh_sms (sms_userid,record_key,record_type,sms,smstime) values(?,?,?,?,?)',[$user_id,$array['mobile'],'phone_verify',$mobileCode,$yzmsj]);
                 return $callback . "(" . HHJson($arr) . ")";
             }
             else {

@@ -34,12 +34,6 @@ class EmailVerifyController extends Controller
         $callback=rq('callback');
         $user_id=rq('user_id');
         $email = rq('email');
-        if(!strpos($email,'@')){
-            $arr = array("code" => "128",
-                "msg" => "邮箱格式不正确"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
         /*检查用户和邮箱是否匹配*/
         if(match($user_id,$email))
         {
@@ -58,12 +52,6 @@ class EmailVerifyController extends Controller
         $captcha=rq('captcha');
         $user_id=rq('user_id');
         $email = rq('email');
-        if(!strpos($email,'@')){
-            $arr = array("code" => "128",
-                "msg" => "邮箱格式不正确"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
         /*检查用户和邮箱是否匹配*/
         if (match($user_id, $email)) {
             /*检查验证码*/
@@ -76,15 +64,17 @@ class EmailVerifyController extends Controller
                 $yxyzmsj = smsverify($email, $captcha);
             }
             if ((strtotime($yxyzmsj) + 1200) > time()) {
-                $sel = DB::select('select flag from hh_sms where sms_userid=? and record_key=? and sms=?',[$user_id,$email,$captcha]);
-                if($sel){
+                $flag = create_pid();
+                $insert = DB::insert('insert into hh_token(userid,flag) values(?,?)', [$user_id, $flag]);
+                if ($insert) {
                     $arr = array("code" => "000",
-                        "data" =>$sel[0]
+                        "msg" => "验证成功",
+                        "data" => array("flag" => $flag),
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }else{
                     $arr = array("code" => "111",
-                        "msg" => "验证失败"
+                        "msg" => "验证失败",
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }

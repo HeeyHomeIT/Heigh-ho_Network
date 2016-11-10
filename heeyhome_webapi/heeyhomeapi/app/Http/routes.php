@@ -82,14 +82,14 @@ Route::group(['middleware'=>['web']],function (){
     /*消息中心*/
     Route::any('personal/message', 'MessageController@index');
     Route::any('personal/message/del', 'MessageController@del');
+    Route::any('personal/message/isnew', 'MessageController@isnew');
+    Route::any('personal/message/read', 'MessageController@read');
     /*密保问题*/
     Route::any('personal/securitylist', 'SecurityController@questionlist');
     Route::any('personal/security/add', 'SecurityController@addsecurity');
     /*收藏效果图*/
     Route::any('imgcollection/add', 'CollectController@addimg');
     /*收藏成本结果*/
-
-
 
 
 

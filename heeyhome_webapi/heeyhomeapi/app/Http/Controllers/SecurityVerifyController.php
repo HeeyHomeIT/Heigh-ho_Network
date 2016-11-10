@@ -47,10 +47,20 @@ class SecurityVerifyController extends Controller
         $answer3=rq('answer3');
         $sql=DB::select('select userid from hh_security where userid=? and answer1=? and answer2=? and answer3=?',[$user_id,$answer1,$answer2,$answer3]);
         if($sql){
-            $arr = array("code" => "000",
-                "msg" => "验证成功"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
+            $flag=create_pid();
+            $insert=DB::insert('insert into hh_token(userid,flag) values(?,?)',[$user_id,$flag]);
+            if ($insert) {
+                $arr = array("code" => "000",
+                    "msg" => "验证成功",
+                    "data" => array("flag" => $flag),
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }else{
+                $arr = array("code" => "111",
+                    "msg" => "验证失败",
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
         }else{
             $arr = array("code" => "111",
                 "msg" => "验证失败"

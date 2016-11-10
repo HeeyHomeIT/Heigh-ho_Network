@@ -27,12 +27,6 @@ class PhoneVerifyController extends Controller
         $callback=rq('callback');
         $user_id=rq('user_id');
         $mobile = rq('phone');
-        if(!preg_match("/1[3458]{1}\d{9}$/",$mobile)){
-            $arr = array("code" => "129",
-                "msg" => "手机格式不正确"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
         /*检查用户和手机号是否匹配*/
         if(match($user_id,$mobile))
         {
@@ -51,12 +45,6 @@ class PhoneVerifyController extends Controller
         $captcha=rq('captcha');
         $user_id=rq('user_id');
         $mobile = rq('phone');
-        if(!preg_match("/1[3458]{1}\d{9}$/",$mobile)){
-                $arr = array("code" => "129",
-                    "msg" => "手机格式不正确"
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-        }
         /*检查用户和手机号是否匹配*/
         if (match($user_id, $mobile)) {
             /*检查短信验证码*/
@@ -69,15 +57,17 @@ class PhoneVerifyController extends Controller
                 $dxyzmsj = smsverify($mobile, $captcha);
             }
             if ((strtotime($dxyzmsj) + 1200) > time()) {
-                $sql = DB::select('select flag from hh_sms where sms_userid=? and record_key=? and sms=?',[$user_id,$mobile,$captcha]);
-                if($sql){
+                $flag=create_pid();
+                $insert=DB::insert('insert into hh_token(userid,flag) values(?,?)',[$user_id,$flag]);
+                if ($insert) {
                     $arr = array("code" => "000",
-                        "data" =>$sql[0]
+                        "msg" => "验证成功",
+                        "data" => array("flag" => $flag),
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }else{
                     $arr = array("code" => "111",
-                        "msg" => "验证失败"
+                        "msg" => "验证失败",
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }

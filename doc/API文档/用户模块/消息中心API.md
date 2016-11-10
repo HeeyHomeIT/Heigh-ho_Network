@@ -28,8 +28,8 @@ data
 必选参数
 user_id             user_id
 可选参数 
-page              page         //当前页
-limit             limit        //每页显示数目
+page                page         //当前页
+limit               limit        //每页显示数目
 
 callback            callback
 ```
@@ -44,10 +44,12 @@ code         000
 data         {
                     id                     id
                     userinfo_nickname      userinfo_nickname
+                    msgtitle               msgtitle
                     msgcontent             msgcontent
                     msgtype                msgtype
                     sendtime               sendtime
                     isread                 isread
+                    isdel                  isdel
              }
 msg          ""
 )
@@ -126,4 +128,115 @@ msg           失败
 000            删除成功
 112            id不能为空
 111            删除失败
+```
+# isnew() #
+## 新消息接口
+
+
+### 接口地址
+
+
+```
+.../public/personal/message/isnew
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../public/personal/message/isnew
+```
+
+###### Json数据格式
+```
+data
+user_id             user_id
+
+callback            callback
+```
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                    newmsgtotal     newmsgtotal     //新消息数
+             }
+msg          成功
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
+000            有新的消息
+111            没有新的消息
+
+```
+# read() #
+## 消息已读标记接口
+
+
+### 接口地址
+
+
+```
+.../public/personal/message/read
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../public/personal/message/read
+```
+
+###### Json数据格式
+```
+data
+user_id             user_id
+msgid               msgid
+
+callback            callback
+```
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         ""
+msg          成功
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
 ```

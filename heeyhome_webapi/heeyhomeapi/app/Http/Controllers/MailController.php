@@ -19,6 +19,13 @@ class MailController extends Controller
         $callback=rq('callback');
         $email=rq('email');
         $user_id=rq('user_id');
+        /*检查邮箱格式*/
+        if(!preg_match("/^([a-z0-9+_]|\\-|\\.)+@(([a-z0-9_]|\\-)+\\.)+[a-z]{2,6}\$/i",$email)){
+            $arr = array("code" => "128",
+                "msg" => "邮箱格式不正确"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
         $sql=DB::select('select max(smstime) as smstime from hh_sms where sms_userid=? and record_key=?',[$user_id,$email]);
         //dd($sql);
         if($sql){
@@ -38,8 +45,7 @@ class MailController extends Controller
             });
             if($send){
                 $yzmsj = date("Y-m-d H:i:s", time());
-                $flag=create_pid();
-                $sql=DB::insert('insert into hh_sms (sms_userid,record_key,record_type,sms,smstime,flag) values(?,?,?,?,?,?)',[$user_id,$email,'email_verify',$code,$yzmsj,$flag]);
+                $sql=DB::insert('insert into hh_sms (sms_userid,record_key,record_type,sms,smstime) values(?,?,?,?,?)',[$user_id,$email,'email_verify',$code,$yzmsj]);
                 $arr = array('code' => '000',  'msg' => '邮件发送成功，请查收','data' => array('email' =>$email , "yzmsj" => $yzmsj));
                 return $callback . "(" . HHJson($arr) . ")";
             }else{

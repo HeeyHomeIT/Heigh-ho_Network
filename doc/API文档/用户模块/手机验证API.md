@@ -76,7 +76,7 @@ msg           失败
 ```
 data
 user_id           user_id
-user_phone        user_phone  //手机号
+phone             phone  //手机号
 
 callback          callback
 ```
