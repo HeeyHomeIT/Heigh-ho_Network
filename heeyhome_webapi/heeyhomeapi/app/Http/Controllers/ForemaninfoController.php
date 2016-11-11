@@ -10,30 +10,31 @@
 namespace App\Http\Controllers;
 
 
+use App\Foreman;
 use App\Personal;
 use Illuminate\Support\Facades\DB;
 
-class UserinfoController extends Controller
+class ForemaninfoController extends Controller
 {
     public function index(){
         //dd(session('user_id'));
         $callback=rq('callback');
-            $user_id=rq('user_id');
-            if(!$user_id){
+            $foreman_id=rq('foreman_id');
+            if(!$foreman_id){
                 $arr = array("code" => "112",
                     "msg" => "用户id不能为空"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
         /*检查用户是否存在*/
-        $personal=DB::select('select hh_userinfo.*,A.content as cloc_province,B.content as cloc_city,C.content as cloc_district,D.content as chome_province,E.content as chome_city,F.content as chome_district from hh_userinfo 
-                            left join hh_dictionary A on hh_userinfo.loc_province = A.dic_id
-                            left join hh_dictionary B on hh_userinfo.loc_city = B.dic_id
-                            left join hh_dictionary C on hh_userinfo.loc_district = C.dic_id 
-                            left join hh_dictionary D on hh_userinfo.home_province = D.dic_id 
-                            left join hh_dictionary E on hh_userinfo.home_city = E.dic_id 
-                            left join hh_dictionary F on hh_userinfo.home_district = F.dic_id 
-                            where userinfo_userid=?',[$user_id]);
+        $personal=DB::select('select hh_foremaninfo.*,A.content as cloc_province,B.content as cloc_city,C.content as cloc_district,D.content as chome_province,E.content as chome_city,F.content as chome_district from hh_foremaninfo 
+                            left join hh_dictionary A on hh_foremaninfo.loc_province = A.dic_id
+                            left join hh_dictionary B on hh_foremaninfo.loc_city = B.dic_id
+                            left join hh_dictionary C on hh_foremaninfo.loc_district = C.dic_id 
+                            left join hh_dictionary D on hh_foremaninfo.home_province = D.dic_id 
+                            left join hh_dictionary E on hh_foremaninfo.home_city = E.dic_id 
+                            left join hh_dictionary F on hh_foremaninfo.home_district = F.dic_id 
+                            where foremaninfo_userid=?',[$foreman_id]);
             if (!$personal) {
                 $arr = array("code" => "114",
                     "msg" => "用户不存在"
@@ -41,7 +42,7 @@ class UserinfoController extends Controller
                 return $callback . "(" . HHJson($arr) . ")";
             }else{
                 /*拼接头像图片地址*/
-                $personal[0]->userinfo_img='/app/storage/uploads/'.substr($personal[0]->userinfo_img,0,4).'-'.substr($personal[0]->userinfo_img,4,2).'-'.substr($personal[0]->userinfo_img,6,2).'/'.$personal[0]->userinfo_img;
+                $personal[0]-> foremaninfo_img='/app/storage/uploads/'.substr($personal[0]->foremaninfo_img,0,4).'-'.substr($personal[0]->foremaninfo_img,4,2).'-'.substr($personal[0]->foremaninfo_img,6,2).'/'.$personal[0]->foremaninfo_img;
                 $arr = array("code" => "000",
                     "data"=> $personal[0]
                 );
@@ -51,15 +52,15 @@ class UserinfoController extends Controller
     public function edit()
     {
         $callback = rq('callback');
-        $user_id = rq('user_id');
-        if (!$user_id) {
+        $foreman_id=rq('foreman_id');
+        if (!$foreman_id) {
             $arr = array("code" => "112",
                 "msg" => "用户id不能为空"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $personal=new Personal();
-        $personal=$personal->find($user_id);
+        $foremaninfo = new Foreman();
+        $personal=$foremaninfo->find($foreman_id);
         if(!$personal){
             $arr = array("code" => "114",
                 "msg" => "用户不存在",
@@ -71,6 +72,8 @@ class UserinfoController extends Controller
         $userinfo_age=rq('age');
         $userinfo_email=rq('email');
         $userinfo_tel=rq('tel');
+        $userinfo_worktime=rq('worktime');
+        $userinfo_servicearea=rq('servicearea');
         $loc_province=rq('loc_province');
         $loc_city=rq('loc_city');
         $loc_district=rq('loc_district');
@@ -78,11 +81,13 @@ class UserinfoController extends Controller
         $home_province=rq('home_province');
         $home_city=rq('home_city');
         $home_district=rq('home_district');
-        if($userinfo_nickname) $personal->userinfo_nickname=$userinfo_nickname;
-        if($usrinfo_sex) $personal->userinfo_sex=$usrinfo_sex;
-        if($userinfo_age) $personal->userinfo_age=$userinfo_age;
-        if($userinfo_email) $personal->userinfo_email=$userinfo_email;
-        if($userinfo_tel) $personal->userinfo_tel=$userinfo_tel;
+        if($userinfo_nickname) $personal->foremaninfo_nickname=$userinfo_nickname;
+        if($usrinfo_sex) $personal->foremaninfo_sex=$usrinfo_sex;
+        if($userinfo_age) $personal->foremaninfo_age=$userinfo_age;
+        if($userinfo_email) $personal->foremaninfo_email=$userinfo_email;
+        if($userinfo_tel) $personal->foremaninfo_tel=$userinfo_tel;
+        if($userinfo_worktime) $personal->foremaninfo_worktime=$userinfo_worktime;
+        if($userinfo_servicearea) $personal->foremaninfo_servicearea=$userinfo_servicearea;
         if($loc_province) $personal->loc_province=$loc_province;
         if($loc_city) $personal->loc_city=$loc_city;
         if($loc_district) $personal->loc_district=$loc_district;

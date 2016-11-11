@@ -36,7 +36,7 @@ callback            callback
 ```
 成功
 callback(
-code         00
+code         000
 data         {
                     userinfo_userid        userinfo_userid
                     userinfo_nickname      userinfo_nickname      //用户昵称
@@ -52,7 +52,7 @@ data         {
                     home_province          home_province          //家乡序号
                     home_city              home_city
                     home_district          home_district
-                    cloc_province          cloc_province           //所在地名称
+                    cloc_province          cloc_province          //所在地名称
                     cloc_city              cloc_city
                     cloc_district          cloc_district
                     cloc_address           cloc_address

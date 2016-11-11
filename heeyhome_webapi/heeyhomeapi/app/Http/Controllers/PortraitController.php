@@ -26,14 +26,14 @@ class PortraitController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         /*检查用户是否存在*/
-        $personal =DB::select('select userinfo_userid from hh_userinfo where userinfo_userid=?',[$user_id]);
+        $personal =DB::select('select portrait_img from hh_portrait where portrait_userid=?',[$user_id]);
         if (!$personal) {
             $arr = array("code" => "114",
                 "msg" => "用户不存在"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{
-            $userinfo_img='/app/storage/uploads/'.substr($personal[0]->userinfo_img,0,4).'-'.substr($personal[0]->userinfo_img,4,2).'-'.substr($personal[0]->userinfo_img,6,2).'/'.$personal[0]->userinfo_img;
+            $userinfo_img='/app/storage/uploads/'.substr($personal[0]->portrait_img,0,4).'-'.substr($personal[0]->portrait_img,4,2).'-'.substr($personal[0]->portrait_img,6,2).'/'.$personal[0]->portrait_img;
             $arr = array("code" => "000",
                 "data"=> array(
                     "user_id"=>$user_id,
@@ -108,7 +108,7 @@ class PortraitController extends Controller
             }
             $is = $file -> move(app_path().'/storage/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
             if($is){
-                $update=DB::update('update hh_userinfo set userinfo_img=? where userinfo_userid=?',[$filename,$user_id]);
+                $update=DB::update('update hh_portrait set portrait_img=? where portrait_userid=?',[$filename,$user_id]);
                 $path='/app/storage/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
                 $arr = array("code" => "000",
                     "msg" => "上传成功",
