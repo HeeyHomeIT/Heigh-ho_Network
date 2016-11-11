@@ -1,0 +1,64 @@
+# Register #
+## 注册接口
+
+
+### 接口地址
+
+
+```
+.../public/register/gz_register
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../public/register/gz_register
+```
+
+###### Json数据格式
+```
+data
+account             account
+password            password
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                    foreman_id          foreman_id        //ID
+                    foreman_account     foreman_account   //账号
+                    foreman_nickname    foreman_nickname
+             }
+msg          注册成功
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           注册失败
+)
+```
+
+###### Code值含义
+
+```
+000           注册成功
+112           注册失败，用户名、密码不能为空
+113           注册失败，用户已存在
+```

@@ -37,12 +37,13 @@ Route::group(['middleware'=>['web']],function (){
     /*工长登录*/
     Route::any('login/gz_login', 'LoginController@gz_login');
     /*用户注册*/
-    Route::any('register', 'RegisterController@user_register');
+    Route::any('register/user_register', 'RegisterController@user_register');
+    /*工长注册*/
+    Route::any('register/gz_register', 'RegisterController@gz_register');
     /*发送短信*/
     Route::any('sendsms', 'SmsController@sms_send');
     /*修改密码*/
-    Route::any('editpassword', 'PasswordController@edit_password');
-
+    Route::any('editpassword', 'EditpasswordController@editpassword');
 
     /*用户个人资料*/
     Route::any('personal/userinfo', 'UserinfoController@index');
@@ -90,7 +91,10 @@ Route::group(['middleware'=>['web']],function (){
     /*收藏效果图*/
     Route::any('imgcollection/add', 'CollectController@addimg');
     /*收藏成本结果*/
-
+    /*我的店铺*/
+    Route::any('personal/myshop', 'ShopController@index');
+    Route::any('personal/myshop/add', 'ShopController@add');
+    Route::any('personal/myshop/edit', 'ShopController@edit');
 
 
 });

@@ -6,7 +6,7 @@
 
 
 ```
-.../public/register
+.../public/register/user_register
 ```
 
 ### 接口格式
@@ -18,7 +18,7 @@
 ```
 
 ```
-.../public/register
+.../public/register/user_register
 ```
 
 ###### Json数据格式
@@ -38,8 +38,9 @@ callback            callback
 callback(
 code         000
 data         {
-                    user_id        user_id     //ID
-                    user_account   user_account   //手机号
+                    user_id         user_id        //ID
+                    user_account    user_account   //手机号
+                    user_nickname   user_nickname  
              }
 msg          注册成功
 )

@@ -21,97 +21,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <file leaf-file-name="RegisterController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RegisterController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="59" column="47" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="47" />
+            <state relative-caret-position="1312">
+              <caret line="101" column="35" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="35" />
+              <folding>
+                <marker date="1478832772929" expanded="true" signature="1055:1103" ph="select user_... hh_user" />
+                <marker date="1478832772929" expanded="true" signature="1471:1540" ph="insert into hh_user... " />
+                <marker date="1478832772929" expanded="true" signature="1747:1800" ph="insert into hh_time... " />
+                <marker date="1478832772929" expanded="true" signature="1862:1949" ph="insert into hh_userinfo... " />
+                <marker date="1478832772929" expanded="true" signature="3477:3534" ph="select forem... hh_foreman" />
+                <marker date="1478832772929" expanded="true" signature="3873:3954" ph="insert into hh_foreman... " />
+                <marker date="1478832772929" expanded="true" signature="4141:4194" ph="insert into hh_time... " />
+                <marker date="1478832772929" expanded="true" signature="4282:4361" ph="insert into hh_foremaninfo... " />
+                <marker date="1478832772929" expanded="true" signature="4489:4551" ph="insert into hh_shop... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MailController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MailController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-              <folding>
-                <marker date="1478748642893" expanded="true" signature="680:758" ph="select max(s... hh_sms" />
-                <marker date="1478748642893" expanded="true" signature="1494:1578" ph="insert into hh_sms... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmailVerifyController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmailVerifyController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="77" column="22" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
-              <folding>
-                <marker date="1478754307999" expanded="true" signature="342:404" ph="select useri... hh_userinfo" />
-                <marker date="1478754307999" expanded="true" signature="1905:1950" ph="insert into hh_token... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PhoneVerifyController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PhoneVerifyController.php">
+      <file leaf-file-name="AccountconfirmController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AccountconfirmController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="550">
-              <caret line="64" column="57" selection-start-line="64" selection-start-column="57" selection-end-line="64" selection-end-column="57" />
+              <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
               <folding>
-                <marker date="1478754341949" expanded="true" signature="341:403" ph="select useri... hh_userinfo" />
-                <marker date="1478754341949" expanded="true" signature="1704:1749" ph="insert into hh_token... " />
+                <marker date="1478573839209" expanded="true" signature="368:416" ph="select hh_dr... where" />
+                <marker date="1478573839209" expanded="true" signature="368:435" ph="select user_... hh_user" />
+                <marker date="1478573839209" expanded="true" signature="513:621" ph="select useri... hh_userinfo" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="heeyHomeSmsverify.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Common/heeyHomeSmsverify.php">
+      <file leaf-file-name="heeyHomeEncryption.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Common/heeyHomeEncryption.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="heeyHomeOperation.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Common/heeyHomeOperation.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserinfoController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserinfoController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
               <folding>
-                <marker date="1477633215922" expanded="true" signature="198:257" ph="select sms,s... hh_sms" />
+                <marker date="1478824787483" expanded="true" signature="626:1430" ph="select hh_us... hh_userinfo" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SecurityVerifyController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SecurityVerifyController.php">
+      <file leaf-file-name="EditPasswordController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EditPasswordController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="947">
-              <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+            <state relative-caret-position="102">
+              <caret line="44" column="54" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
               <folding>
-                <marker date="1478754425326" expanded="true" signature="522:982" ph="select hh_se... hh_security" />
-                <marker date="1478754425326" expanded="true" signature="1565:1652" ph="select useri... hh_security" />
-                <marker date="1478754425326" expanded="true" signature="1776:1821" ph="insert into hh_token... " />
+                <marker date="1478827498053" expanded="true" signature="1026:1080" ph="select user_... hh_user" />
+                <marker date="1478827498053" expanded="true" signature="1477:1530" ph="update hh_us... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
+      <file leaf-file-name="ShopController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ShopController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="110" column="33" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
-              <folding>
-                <marker date="1478753360045" expanded="true" signature="525:588" ph="select count... hh_message" />
-                <marker date="1478753360045" expanded="true" signature="751:1041" ph="select hh_us... hh_userinfo" />
-                <marker date="1478753360045" expanded="true" signature="751:1091" ph="select hh_us... hh_userinfo" />
-                <marker date="1478753360045" expanded="true" signature="1215:1263" ph="select conte... hh_dictionary" />
-                <marker date="1478753360045" expanded="true" signature="2022:2029" ph="update isdel... " />
-                <marker date="1478753360045" expanded="true" signature="2022:2062" ph="update hh_me... " />
-                <marker date="1478753360045" expanded="true" signature="2611:2703" ph="insert into hh_message... " />
-                <marker date="1478753360045" expanded="true" signature="3235:3311" ph="select count... hh_message" />
-                <marker date="1478753360045" expanded="true" signature="3907:3937" ph="update hh_me... " />
-              </folding>
+            <state relative-caret-position="352">
+              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -119,8 +123,8 @@
       <file leaf-file-name="ResetPasswordController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResetPasswordController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+            <state relative-caret-position="704">
+              <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
               <folding>
                 <element signature="e#6#85#0#PHP" expanded="true" />
                 <marker date="1478755051457" expanded="true" signature="602:651" ph="select id fr... hh_token" />
@@ -130,28 +134,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="heeyHomeIsmatched.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Common/heeyHomeIsmatched.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-              <folding>
-                <marker date="1477715817959" expanded="true" signature="202:301" ph="select useri... hh_userinfo" />
-                <marker date="1477715817959" expanded="true" signature="434:518" ph="select useri... hh_userinfo" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SmsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SmsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-              <folding>
-                <marker date="1478748663430" expanded="true" signature="2660:2734" ph="insert into hh_sms... " />
-                <marker date="1478748663430" expanded="true" signature="2660:2744" ph="insert into hh_sms... " />
-              </folding>
+            <state relative-caret-position="704">
+              <caret line="41" column="36" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -161,12 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ChangeUserinfoController.php" />
-        <option value="$PROJECT_DIR$/app/Common/heeyHomeRequestget.php" />
-        <option value="$PROJECT_DIR$/resources/views/img.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/EditPasswordController.php" />
-        <option value="$PROJECT_DIR$/vendor/composer/autoload_static.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SmsVerifyController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/AddressController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/IDCardController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AddressController.php" />
@@ -176,11 +158,9 @@
         <option value="$PROJECT_DIR$/app/Common/heeyHomeBlacklist.php" />
         <option value="$PROJECT_DIR$/app/Common/heeyHomeSmsbom.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/GetaddressController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PasswordController.php" />
         <option value="$PROJECT_DIR$/resources/views/activemail.blade.php" />
         <option value="$PROJECT_DIR$/config/mail.php" />
         <option value="$PROJECT_DIR$/app/Common/heeyHomeEmail.php" />
-        <option value="$PROJECT_DIR$/app/Common/heeyHomeOperation.php" />
         <option value="$PROJECT_DIR$/resources/views/email/template.blade.php" />
         <option value="$PROJECT_DIR$/app/Common/heeyHomeSmsverify.php" />
         <option value="$PROJECT_DIR$/app/Common/heeyHomeIsregistered.php" />
@@ -191,7 +171,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeEncyclopediaController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/GetloginrecordController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/LoginController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserinfoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DriveaddressController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SecurityController.php" />
         <option value="$PROJECT_DIR$/composer.json" />
@@ -203,8 +182,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/CollectController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MyCollectionController.php" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MailController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SmsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" />
@@ -212,6 +189,17 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/PhoneVerifyController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SecurityVerifyController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ResetPasswordController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ServiceareaController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ServiceAreaController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UserinfoController.php" />
+        <option value="$PROJECT_DIR$/app/Store.php" />
+        <option value="$PROJECT_DIR$/app/Shop.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PasswordController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/EditPasswordController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Common/heeyHomeOperation.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" />
       </list>
     </option>
   </component>
@@ -223,10 +211,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-70" />
+    <option name="y" value="71" />
+    <option name="width" value="1940" />
+    <option name="height" value="1074" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -422,6 +410,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\xampp\htdocs\heeyhome2.0\heeyhome_webapi\heeyhomeapi\app" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
@@ -510,24 +503,26 @@
       <workItem from="1478478728917" duration="13894000" />
       <workItem from="1478565186338" duration="20591000" />
       <workItem from="1478650593840" duration="4585000" />
-      <workItem from="1478738152888" duration="14625000" />
+      <workItem from="1478738152888" duration="18704000" />
+      <workItem from="1478824633517" duration="8494000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="429963000" />
+    <option name="totallyTimeSpent" value="442536000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-70" y="71" width="1940" height="1074" extended-state="1" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20628998" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20744681" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.65367967" sideWeight="0.5111702" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1507431" sideWeight="0.4936034" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12878788" sideWeight="0.4888298" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12554112" sideWeight="0.4888298" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -536,7 +531,6 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.504329" sideWeight="0.4936034" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -579,48 +573,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../housheng/App/Home/Controller/EjlistController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../housheng/ThinkPHP/Library/Think/Page.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1892">
-          <caret line="106" column="14" selection-start-line="106" selection-start-column="14" selection-end-line="106" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://G:/高级/oop06/Model/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://G:/project/admin/order/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="36" column="12" selection-start-line="36" selection-start-column="3" selection-end-line="36" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../Project/app/Question.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="60" column="54" selection-start-line="60" selection-start-column="54" selection-end-line="60" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://G:/高级/oop06/Model/Page.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/session.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-990">
@@ -676,37 +628,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AccountconfirmController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-          <folding>
-            <marker date="1478573839209" expanded="true" signature="368:416" ph="select hh_dr... where" />
-            <marker date="1478573839209" expanded="true" signature="368:435" ph="select user_... hh_user" />
-            <marker date="1478573839209" expanded="true" signature="513:621" ph="select useri... hh_userinfo" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PageController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SecurityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="55" column="60" selection-start-line="51" selection-start-column="13" selection-end-line="55" selection-end-column="60" />
-          <folding>
-            <marker date="1478335428146" expanded="true" signature="307:360" ph="select dic_i... hh_dictionary" />
-            <marker date="1478335428146" expanded="true" signature="1092:1132" ph="select * fro... hh_security" />
-            <marker date="1478335428146" expanded="true" signature="1197:1300" ph="update hh_se... " />
-            <marker date="1478335428146" expanded="true" signature="1834:1942" ph="insert into hh_security... " />
-            <marker date="1478335428146" expanded="true" signature="1834:2015" ph="insert into hh_s... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -726,22 +652,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserinfoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="26" column="13" selection-start-line="21" selection-start-column="11" selection-end-line="26" selection-end-column="13" />
-          <folding>
-            <marker date="1478313390595" expanded="true" signature="637:686" ph="select useri... hh_userinfo" />
-            <marker date="1478313390595" expanded="true" signature="731:1535" ph="select hh_us... hh_userinfo" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/ecmall230-0918-scutf8/ecmall230-0918-scutf8/sc-utf-8/upload/app/message.app.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -749,12 +663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="374" column="5" selection-start-line="374" selection-start-column="5" selection-end-line="374" selection-end-column="5" />
-          <folding>
-            <marker date="1347938628000" expanded="true" signature="881:887" ph=" " />
-            <marker date="1347938628000" expanded="true" signature="887:893" ph=" " />
-            <marker date="1347938628000" expanded="true" signature="924:930" ph=" " />
-            <marker date="1347938628000" expanded="true" signature="930:936" ph=" " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -762,7 +670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -770,14 +677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -796,31 +695,6 @@
           <caret line="26" column="132" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="132" />
           <folding>
             <marker date="1478594713750" expanded="true" signature="593:665" ph="insert into hh_imgcollection... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DriveaddressController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1657">
-          <caret line="35" column="56" selection-start-line="32" selection-start-column="11" selection-end-line="35" selection-end-column="56" />
-          <folding>
-            <marker date="1478313421751" expanded="true" signature="543:595" ph="select * fro... hh_driveaddress" />
-            <marker date="1478313421751" expanded="true" signature="639:1061" ph="select hh_dr... hh_driveaddress" />
-            <marker date="1478313421751" expanded="true" signature="2079:2215" ph="insert into hh_driveaddress... " />
-            <marker date="1478313421751" expanded="true" signature="4474:4512" ph="delete from " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GetaddressController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-          <folding>
-            <marker date="1477533227099" expanded="true" signature="320:373" ph="select dic_i... hh_dictionary" />
-            <marker date="1477533227099" expanded="true" signature="734:805" ph="select dic_i... hh_dictionary" />
-            <marker date="1477533227099" expanded="true" signature="1175:1246" ph="select dic_i... hh_dictionary" />
           </folding>
         </state>
       </provider>
@@ -857,45 +731,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LoginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-154">
-          <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
-          <folding>
-            <marker date="1478221918896" expanded="true" signature="697:750" ph="select user_... hh_user" />
-            <marker date="1478221918896" expanded="true" signature="697:766" ph="select user_... hh_user" />
-            <marker date="1478221918896" expanded="true" signature="697:768" ph="select user_... hh_user" />
-            <marker date="1478221918896" expanded="true" signature="1048:1108" ph="select user_... hh_user" />
-            <marker date="1478221918896" expanded="true" signature="1048:1129" ph="select user_... hh_user" />
-            <marker date="1478221918896" expanded="true" signature="1048:1162" ph="select user_... hh_user" />
-            <marker date="1478221918896" expanded="true" signature="1723:1835" ph="insert into hh_loginrecord... " />
-            <marker date="1478221918896" expanded="true" signature="2588:2646" ph="select woker... hh_woker" />
-            <marker date="1478221918896" expanded="true" signature="2588:2647" ph="select worke... hh_worker" />
-            <marker date="1478221918896" expanded="true" signature="2588:2665" ph="select worke... hh_worker" />
-            <marker date="1478221918896" expanded="true" signature="2953:3044" ph="select worke... hh_worker" />
-            <marker date="1478221918896" expanded="true" signature="3523:3635" ph="insert into hh_loginrecord... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyCollectionController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RegisterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-          <folding>
-            <marker date="1477718757795" expanded="true" signature="1055:1103" ph="select user_... hh_user" />
-            <marker date="1477718757795" expanded="true" signature="1471:1540" ph="insert into hh_user... " />
-            <marker date="1477718757795" expanded="true" signature="1747:1800" ph="insert into hh_time... " />
-            <marker date="1477718757795" expanded="true" signature="1862:1949" ph="insert into hh_userinfo... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -943,30 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PasswordController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-73">
-          <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
-          <folding>
-            <marker date="1477968924297" expanded="true" signature="1023:1075" ph="select user_... hh_user" />
-            <marker date="1477968924297" expanded="true" signature="1472:1525" ph="update hh_us... " />
-            <marker date="1477968924297" expanded="true" signature="2579:2635" ph="select user_... hh_sms" />
-            <marker date="1477968924297" expanded="true" signature="2778:2828" ph="update hh_us... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmailVerifyController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="77" column="22" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
-          <folding>
-            <marker date="1478754307999" expanded="true" signature="342:404" ph="select useri... hh_userinfo" />
-            <marker date="1478754307999" expanded="true" signature="1905:1950" ph="insert into hh_token... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Common/heeyHomeSmsverify.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -988,42 +804,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResetPasswordController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmailVerifyController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+        <state relative-caret-position="1562">
+          <caret line="77" column="22" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
           <folding>
-            <element signature="e#6#85#0#PHP" expanded="true" />
-            <marker date="1478755051457" expanded="true" signature="602:651" ph="select id fr... hh_token" />
-            <marker date="1478755051457" expanded="true" signature="787:837" ph="update hh_us... " />
+            <marker date="1478754307999" expanded="true" signature="342:404" ph="select useri... hh_userinfo" />
+            <marker date="1478754307999" expanded="true" signature="1905:1950" ph="insert into hh_token... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SecurityVerifyController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GetaddressController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="947">
-          <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+        <state relative-caret-position="726">
+          <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
           <folding>
-            <marker date="1478754425326" expanded="true" signature="522:982" ph="select hh_se... hh_security" />
-            <marker date="1478754425326" expanded="true" signature="1565:1652" ph="select useri... hh_security" />
-            <marker date="1478754425326" expanded="true" signature="1776:1821" ph="insert into hh_token... " />
+            <marker date="1477533227099" expanded="true" signature="320:373" ph="select dic_i... hh_dictionary" />
+            <marker date="1477533227099" expanded="true" signature="734:805" ph="select dic_i... hh_dictionary" />
+            <marker date="1477533227099" expanded="true" signature="1175:1246" ph="select dic_i... hh_dictionary" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LoginController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="59" column="47" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="47" />
-          <folding />
+        <state relative-caret-position="1100">
+          <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
+          <folding>
+            <marker date="1478221918896" expanded="true" signature="697:750" ph="select user_... hh_user" />
+            <marker date="1478221918896" expanded="true" signature="697:766" ph="select user_... hh_user" />
+            <marker date="1478221918896" expanded="true" signature="697:768" ph="select user_... hh_user" />
+            <marker date="1478221918896" expanded="true" signature="1048:1108" ph="select user_... hh_user" />
+            <marker date="1478221918896" expanded="true" signature="1048:1129" ph="select user_... hh_user" />
+            <marker date="1478221918896" expanded="true" signature="1048:1162" ph="select user_... hh_user" />
+            <marker date="1478221918896" expanded="true" signature="1723:1835" ph="insert into hh_loginrecord... " />
+            <marker date="1478221918896" expanded="true" signature="2588:2646" ph="select woker... hh_woker" />
+            <marker date="1478221918896" expanded="true" signature="2588:2647" ph="select worke... hh_worker" />
+            <marker date="1478221918896" expanded="true" signature="2588:2665" ph="select worke... hh_worker" />
+            <marker date="1478221918896" expanded="true" signature="2953:3044" ph="select worke... hh_worker" />
+            <marker date="1478221918896" expanded="true" signature="3523:3635" ph="insert into hh_loginrecord... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="110" column="33" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
+        <state relative-caret-position="660">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
           <folding>
             <marker date="1478753360045" expanded="true" signature="525:588" ph="select count... hh_message" />
             <marker date="1478753360045" expanded="true" signature="751:1041" ph="select hh_us... hh_userinfo" />
@@ -1034,6 +862,162 @@
             <marker date="1478753360045" expanded="true" signature="2611:2703" ph="insert into hh_message... " />
             <marker date="1478753360045" expanded="true" signature="3235:3311" ph="select count... hh_message" />
             <marker date="1478753360045" expanded="true" signature="3907:3937" ph="update hh_me... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Store.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Shop.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ServiceAreaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DriveaddressController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="35" column="56" selection-start-line="35" selection-start-column="56" selection-end-line="35" selection-end-column="56" />
+          <folding>
+            <marker date="1478313421751" expanded="true" signature="543:595" ph="select * fro... hh_driveaddress" />
+            <marker date="1478313421751" expanded="true" signature="639:1061" ph="select hh_dr... hh_driveaddress" />
+            <marker date="1478313421751" expanded="true" signature="2079:2215" ph="insert into hh_driveaddress... " />
+            <marker date="1478313421751" expanded="true" signature="4474:4512" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1100">
+          <caret line="55" column="60" selection-start-line="51" selection-start-column="13" selection-end-line="55" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SecurityVerifyController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="851">
+          <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserinfoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+          <folding>
+            <marker date="1478824787483" expanded="true" signature="626:1430" ph="select hh_us... hh_userinfo" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ShopController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Common/heeyHomeEncryption.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Common/heeyHomeOperation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="41" column="36" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResetPasswordController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
+          <folding>
+            <element signature="e#6#85#0#PHP" expanded="true" />
+            <marker date="1478755051457" expanded="true" signature="602:651" ph="select id fr... hh_token" />
+            <marker date="1478755051457" expanded="true" signature="787:837" ph="update hh_us... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RegisterController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1312">
+          <caret line="101" column="35" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="35" />
+          <folding>
+            <marker date="1478832772929" expanded="true" signature="1055:1103" ph="select user_... hh_user" />
+            <marker date="1478832772929" expanded="true" signature="1471:1540" ph="insert into hh_user... " />
+            <marker date="1478832772929" expanded="true" signature="1747:1800" ph="insert into hh_time... " />
+            <marker date="1478832772929" expanded="true" signature="1862:1949" ph="insert into hh_userinfo... " />
+            <marker date="1478832772929" expanded="true" signature="3477:3534" ph="select forem... hh_foreman" />
+            <marker date="1478832772929" expanded="true" signature="3873:3954" ph="insert into hh_foreman... " />
+            <marker date="1478832772929" expanded="true" signature="4141:4194" ph="insert into hh_time... " />
+            <marker date="1478832772929" expanded="true" signature="4282:4361" ph="insert into hh_foremaninfo... " />
+            <marker date="1478832772929" expanded="true" signature="4489:4551" ph="insert into hh_shop... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AccountconfirmController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+          <folding>
+            <marker date="1478573839209" expanded="true" signature="368:416" ph="select hh_dr... where" />
+            <marker date="1478573839209" expanded="true" signature="368:435" ph="select user_... hh_user" />
+            <marker date="1478573839209" expanded="true" signature="513:621" ph="select useri... hh_userinfo" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EditPasswordController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="44" column="54" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
+          <folding>
+            <marker date="1478827498053" expanded="true" signature="1026:1080" ph="select user_... hh_user" />
+            <marker date="1478827498053" expanded="true" signature="1477:1530" ph="update hh_us... " />
           </folding>
         </state>
       </provider>

@@ -84,5 +84,60 @@ class RegisterController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
-
+    public function gz_register(){
+        $callback=rq('callback');
+        $foreman_account =rq('account');
+        $foreman_password = rq('password');
+        /*检查用户名和密码是否为空*/
+        if (!($foreman_account && $foreman_password)) {
+            $arr = array("code" => "112",
+                "msg" => "用户名、密码不能为空"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        /*检查账户是否已存在*/
+        $sql=DB::select('select foreman_id from hh_foreman where foreman_account=?',[$foreman_account]);
+        if($sql){
+            $arr=array("code"=>"113",
+                "msg"=>"注册失败，用户已存在"
+            );
+            return $callback."(".HHJson($arr).")";
+        }
+        $foreman_id = create_pid();
+        $foreman_password = HHEncryption($foreman_password);
+        /*向工长表插入数据*/
+        $insert = DB::insert('insert into hh_foreman(foreman_id,foreman_account,foreman_password) values(?,?,?)', [$foreman_id, $foreman_account, $foreman_password]);
+        if ($insert) {
+            /*向时间表插入数据*/
+            $reg_time=date('Y-m-d H:i:s', time());
+            $time = DB::insert('insert into hh_time(time_userid,reg_time) values(?,?)', [$foreman_id, $reg_time]);
+            /*向工长信息表插入数据*/
+            $sql = DB::insert('insert into hh_foremaninfo(foremaninfo_userid,foremaninfo_nickname) values(?,?)',[$foreman_id,$foreman_account]);
+            /*向店铺表插入*/
+            $shop_id=rand_number(10);
+            $shop = DB::insert('insert into hh_shop(shop_id,shopper_id,opentime) values(?,?,?)',[$shop_id,$foreman_id,$reg_time]);
+            if($shop){
+                $arr=array(
+                    "code"=>"000",
+                    "msg"=>"注册成功",
+                    "data"=>array(
+                        "foreman_id"=>$foreman_id,
+                        "foreman_account"=>$foreman_account,
+                        "foreman_nickname"=>$foreman_account
+                    )
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }else{
+                $arr=array("code"=>"111",
+                    "msg"=>"注册失败"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        }else{
+            $arr=array("code"=>"111",
+                "msg"=>"注册失败"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
 }
