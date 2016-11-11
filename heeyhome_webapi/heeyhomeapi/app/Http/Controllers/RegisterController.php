@@ -53,6 +53,7 @@ class RegisterController extends Controller
                 /*向时间表插入数据，同时向用户信息表插入数据*/
                 $reg_time=date('Y-m-d H:i:s', time());
                 $time = DB::insert('insert into hh_time(time_userid,reg_time) values(?,?)', [$user_id, $reg_time]);
+                $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$user_id,'default.jpg']);
                 $sql = DB::insert('insert into hh_userinfo(userinfo_userid,userinfo_nickname,userinfo_phone) values(?,?,?)',[$user_id,$user_account,$user_account]);
                 if($sql){
                     $arr=array(
@@ -112,6 +113,7 @@ class RegisterController extends Controller
             $reg_time=date('Y-m-d H:i:s', time());
             $time = DB::insert('insert into hh_time(time_userid,reg_time) values(?,?)', [$foreman_id, $reg_time]);
             /*向工长信息表插入数据*/
+            $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$foreman_id,'default.jpg']);
             $sql = DB::insert('insert into hh_foremaninfo(foremaninfo_userid,foremaninfo_nickname) values(?,?)',[$foreman_id,$foreman_account]);
             /*向店铺表插入*/
             $shop_id=rand_number(10);

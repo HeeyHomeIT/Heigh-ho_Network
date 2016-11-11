@@ -71,7 +71,6 @@ class ForemaninfoController extends Controller
         $usrinfo_sex=rq('sex');
         $userinfo_age=rq('age');
         $userinfo_email=rq('email');
-        $userinfo_tel=rq('tel');
         $userinfo_worktime=rq('worktime');
         $userinfo_servicearea=rq('servicearea');
         $loc_province=rq('loc_province');
@@ -85,7 +84,6 @@ class ForemaninfoController extends Controller
         if($usrinfo_sex) $personal->foremaninfo_sex=$usrinfo_sex;
         if($userinfo_age) $personal->foremaninfo_age=$userinfo_age;
         if($userinfo_email) $personal->foremaninfo_email=$userinfo_email;
-        if($userinfo_tel) $personal->foremaninfo_tel=$userinfo_tel;
         if($userinfo_worktime) $personal->foremaninfo_worktime=$userinfo_worktime;
         if($userinfo_servicearea) $personal->foremaninfo_servicearea=$userinfo_servicearea;
         if($loc_province) $personal->loc_province=$loc_province;

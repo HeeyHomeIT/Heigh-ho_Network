@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shop extends Model
 {
-    protected $table = 'hh_userinfo';
+    protected $table = 'hh_shop';
 
     public $timestamps = false;
 
-    protected $primaryKey = 'userinfo_userid';
+    protected $primaryKey = 'shop_id';
 }

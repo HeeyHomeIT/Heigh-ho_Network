@@ -116,7 +116,6 @@ foremaninfo_nickname      foremaninfo_nickname      //用户昵称
 foremaninfo_sex           foremaninfo_sex           //性别
 foremaninfo_age           foremaninfo_age           //年龄
 foremaninfo_email         foremaninfo_email         //邮箱
-foremaninfo_tel           foremaninfo_tel           //联系电话
 foremaninfo_worktime      foremaninfo_worktime      //从业时间
 foremaninfo_servicearea   foremaninfo_servicearea   //服务区域
 loc_province              loc_province              //所在地

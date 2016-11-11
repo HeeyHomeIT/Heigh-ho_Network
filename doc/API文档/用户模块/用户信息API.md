@@ -114,7 +114,6 @@ userinfo_nickname      userinfo_nickname      //用户昵称
 userinfo_sex           userinfo_sex           //性别
 userinfo_age           userinfo_age           //年龄
 userinfo_email         userinfo_email         //邮箱
-userinfo_tel           userinfo_tel           //联系电话
 userinfo_img           userinfo_img           //用户头像
 loc_province           loc_province           //所在地
 loc_city               loc_city

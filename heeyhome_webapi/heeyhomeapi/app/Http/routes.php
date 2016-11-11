@@ -96,8 +96,7 @@ Route::group(['middleware'=>['web']],function (){
     /*收藏成本结果*/
     /*我的店铺*/
     Route::any('personal/myshop', 'ShopController@index');
-    Route::any('personal/myshop/add', 'ShopController@add');
-    Route::any('personal/myshop/edit', 'ShopController@edit');
+    Route::any('personal/myshop/change', 'ShopController@edit');
 
 
 });
