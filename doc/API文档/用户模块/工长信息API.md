@@ -109,22 +109,21 @@ msg           失败
 ```
 data
 必选参数
-foreman_id                foreman_id
+foreman_id             foreman_id
 可选参数
-foremaninfo_userid        foremaninfo_userid
-foremaninfo_nickname      foremaninfo_nickname      //用户昵称
-foremaninfo_sex           foremaninfo_sex           //性别
-foremaninfo_age           foremaninfo_age           //年龄
-foremaninfo_email         foremaninfo_email         //邮箱
-foremaninfo_worktime      foremaninfo_worktime      //从业时间
-foremaninfo_servicearea   foremaninfo_servicearea   //服务区域
-loc_province              loc_province              //所在地
-loc_city                  loc_city
-loc_district              loc_district
-loc_address               loc_address
-home_province             home_province             //家乡
-home_city                 home_city
-home_district             home_district
+userinfo_nickname      userinfo_nickname      //用户昵称
+userinfo_sex           userinfo_sex           //性别
+userinfo_age           userinfo_age           //年龄
+loc_province           loc_province           //所在地
+loc_city               loc_city
+loc_district           loc_district
+loc_address            loc_address
+home_province          home_province          //家乡
+home_city              home_city
+home_district          home_district
+worktime               worktime      //从业时间
+servicearea            servicearea   //服务区域
+
 
 callback             callback
 ```

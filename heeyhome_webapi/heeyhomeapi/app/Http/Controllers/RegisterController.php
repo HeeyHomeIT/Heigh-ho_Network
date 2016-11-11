@@ -54,7 +54,7 @@ class RegisterController extends Controller
                 $reg_time=date('Y-m-d H:i:s', time());
                 $time = DB::insert('insert into hh_time(time_userid,reg_time) values(?,?)', [$user_id, $reg_time]);
                 $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$user_id,'default.jpg']);
-                $sql = DB::insert('insert into hh_userinfo(userinfo_userid,userinfo_nickname,userinfo_phone) values(?,?,?)',[$user_id,$user_account,$user_account]);
+                $sql = DB::insert('insert into hh_userinfo(userinfo_userid,userinfo_nickname,userinfo_phone,type) values(?,?,?,?)',[$user_id,$user_account,$user_account,1]);
                 if($sql){
                     $arr=array(
                         "code"=>"000",
@@ -114,7 +114,7 @@ class RegisterController extends Controller
             $time = DB::insert('insert into hh_time(time_userid,reg_time) values(?,?)', [$foreman_id, $reg_time]);
             /*向工长信息表插入数据*/
             $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$foreman_id,'default.jpg']);
-            $sql = DB::insert('insert into hh_foremaninfo(foremaninfo_userid,foremaninfo_nickname) values(?,?)',[$foreman_id,$foreman_account]);
+            $sql = DB::insert('insert into hh_userinfo(userinfo_userid,userinfo_nickname,type) values(?,?,?)',[$foreman_id,$foreman_account,2]);
             /*向店铺表插入*/
             $shop_id=rand_number(10);
             $shop = DB::insert('insert into hh_shop(shop_id,shopper_id,opentime) values(?,?,?)',[$shop_id,$foreman_id,$reg_time]);

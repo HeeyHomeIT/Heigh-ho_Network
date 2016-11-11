@@ -59,8 +59,8 @@ class ForemaninfoController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $foremaninfo = new Foreman();
-        $personal=$foremaninfo->find($foreman_id);
+        $personal=new Personal();
+        $personal=$personal->find($foreman_id);
         if(!$personal){
             $arr = array("code" => "114",
                 "msg" => "用户不存在",
@@ -70,7 +70,6 @@ class ForemaninfoController extends Controller
         $userinfo_nickname=rq('nickname');
         $usrinfo_sex=rq('sex');
         $userinfo_age=rq('age');
-        $userinfo_email=rq('email');
         $userinfo_worktime=rq('worktime');
         $userinfo_servicearea=rq('servicearea');
         $loc_province=rq('loc_province');
@@ -80,12 +79,11 @@ class ForemaninfoController extends Controller
         $home_province=rq('home_province');
         $home_city=rq('home_city');
         $home_district=rq('home_district');
-        if($userinfo_nickname) $personal->foremaninfo_nickname=$userinfo_nickname;
-        if($usrinfo_sex) $personal->foremaninfo_sex=$usrinfo_sex;
-        if($userinfo_age) $personal->foremaninfo_age=$userinfo_age;
-        if($userinfo_email) $personal->foremaninfo_email=$userinfo_email;
-        if($userinfo_worktime) $personal->foremaninfo_worktime=$userinfo_worktime;
-        if($userinfo_servicearea) $personal->foremaninfo_servicearea=$userinfo_servicearea;
+        if($userinfo_nickname) $personal->userinfo_nickname=$userinfo_nickname;
+        if($usrinfo_sex) $personal->usrinfo_sex=$usrinfo_sex;
+        if($userinfo_age) $personal->userinfo_age=$userinfo_age;
+        if($userinfo_worktime) $personal->worktime=$userinfo_worktime;
+        if($userinfo_servicearea) $personal->servicearea=$userinfo_servicearea;
         if($loc_province) $personal->loc_province=$loc_province;
         if($loc_city) $personal->loc_city=$loc_city;
         if($loc_district) $personal->loc_district=$loc_district;
