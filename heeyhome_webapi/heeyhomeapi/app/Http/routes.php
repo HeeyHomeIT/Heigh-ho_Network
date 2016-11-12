@@ -50,9 +50,6 @@ Route::group(['middleware'=>['web']],function (){
     /*用户个人资料*/
     Route::any('personal/userinfo', 'UserinfoController@index');
     Route::any('personal/userinfo/change', 'UserinfoController@edit');
-    /*工长个人资料*/
-    Route::any('personal/foremaninfo', 'ForemaninfoController@index');
-    Route::any('personal/foremaninfo/change', 'ForemaninfoController@edit');
     /*用户头像*/
     Route::any('personal/portrait', 'PortraitController@index');
     Route::any('personal/portrait/change', 'PortraitController@fileupload');
