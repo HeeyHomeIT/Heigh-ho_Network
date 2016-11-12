@@ -19,7 +19,7 @@ class EditPhoneController extends Controller
         $oldphone=rq('oldphone');
         $captcha=rq('captcha');
         /*检查手机号码匹不匹配*/
-        $phone=DB::select('select userinfo_phone from hh_userinfo where userinfo_userid=? and userinfo_phone=?',[$user_id,$oldphone]);
+        $phone=DB::select('select user_phone from hh_user where user_id=? and user_phone=?',[$user_id,$oldphone]);
         if($phone){
             /*检查短信验证码*/
             if (!smsverify($oldphone, $captcha)) {
@@ -78,7 +78,7 @@ class EditPhoneController extends Controller
                 $dxyzmsj = smsverify($newphone, $captcha);
             }
             if ((strtotime($dxyzmsj) + 1200) > time()) {
-                $update = DB::update('update hh_userinfo set userinfo_phone=? where userinfo_userid=?', [$newphone, $user_id]);
+                $update = DB::update('update hh_user set user_phone=? where user_id=?', [$newphone, $user_id]);
                 if ($update) {
                     $arr = array("code" => "000",
                         "msg" => "绑定成功",

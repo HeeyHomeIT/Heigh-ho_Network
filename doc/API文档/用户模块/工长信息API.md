@@ -112,6 +112,7 @@ data
 foreman_id             foreman_id
 可选参数
 userinfo_nickname      userinfo_nickname      //用户昵称
+userinfo_realname      userinfo_realname      //真实姓名
 userinfo_sex           userinfo_sex           //性别
 userinfo_age           userinfo_age           //年龄
 loc_province           loc_province           //所在地
@@ -121,9 +122,8 @@ loc_address            loc_address
 home_province          home_province          //家乡
 home_city              home_city
 home_district          home_district
-worktime               worktime      //从业时间
-servicearea            servicearea   //服务区域
-
+worktime               worktime               //从业时间
+servicearea            servicearea            //服务区域
 
 callback             callback
 ```

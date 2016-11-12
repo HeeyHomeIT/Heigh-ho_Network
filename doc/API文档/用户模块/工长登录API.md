@@ -1,4 +1,5 @@
-# Login #
+# LoginController #
+# gz_login
 ## 工长登录接口
 
 
@@ -24,8 +25,8 @@
 ###### Json数据格式
 ```
 data
-user_account        user_account
-user_password       user_password
+account             account
+password            password
 login_ip            login_ip
 login_browser       login_browser
 login_way           login_way
@@ -43,7 +44,7 @@ callback(
 code         000
 data         {
                     user_id        user_id     //ID
-                    user_account   user_account   //账户
+                    user_name      user_name   //用户名
              }
 msg          登录成功
 )

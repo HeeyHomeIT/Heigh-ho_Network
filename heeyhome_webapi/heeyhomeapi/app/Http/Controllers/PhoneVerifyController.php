@@ -17,7 +17,7 @@ class PhoneVerifyController extends Controller
     public function index(){
         $callback=rq('callback');
         $user_id=rq('user_id');
-        $sql=DB::select('select userinfo_phone from hh_userinfo where userinfo_userid=?',[$user_id]);
+        $sql=DB::select('select user_phone from hh_user where user_id=?',[$user_id]);
         $arr = array("code" => "000",
             "data" => $sql[0]
         );

@@ -67,6 +67,7 @@ class UserinfoController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         $userinfo_nickname=rq('nickname');
+        $userinfo_realname=rq('realname');
         $usrinfo_sex=rq('sex');
         $userinfo_age=rq('age');
         $loc_province=rq('loc_province');
@@ -77,6 +78,7 @@ class UserinfoController extends Controller
         $home_city=rq('home_city');
         $home_district=rq('home_district');
         if($userinfo_nickname) $personal->userinfo_nickname=$userinfo_nickname;
+        if($userinfo_realname) $personal->userinfo_realname=$userinfo_realname;
         if($usrinfo_sex) $personal->userinfo_sex=$usrinfo_sex;
         if($userinfo_age) $personal->userinfo_age=$userinfo_age;
         if($loc_province) $personal->loc_province=$loc_province;

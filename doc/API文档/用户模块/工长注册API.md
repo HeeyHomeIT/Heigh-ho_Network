@@ -1,4 +1,5 @@
-# Register #
+# RegisterController #
+# gz_register
 ## 注册接口
 
 
@@ -26,6 +27,7 @@
 data
 account             account
 password            password
+captcha             captcha
 
 callback            callback
 ```
@@ -39,8 +41,7 @@ callback(
 code         000
 data         {
                     foreman_id          foreman_id        //ID
-                    foreman_account     foreman_account   //账号
-                    foreman_nickname    foreman_nickname
+                    foreman_name        foreman_name      //用户名
              }
 msg          注册成功
 )
@@ -60,5 +61,5 @@ msg           注册失败
 ```
 000           注册成功
 112           注册失败，用户名、密码不能为空
-113           注册失败，用户已存在
+113           注册失败，账号已存在
 ```

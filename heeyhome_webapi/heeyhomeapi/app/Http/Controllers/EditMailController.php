@@ -19,7 +19,7 @@ class EditMailController extends Controller
         $oldemail=rq('oldemail');
         $captcha=rq('captcha');
         /*检查邮箱匹不匹配*/
-        $phone=DB::select('select userinfo_email from hh_userinfo where userinfo_userid=? and userinfo_email=?',[$user_id,$oldemail]);
+        $phone=DB::select('select user_email from hh_user where user_id=? and user_email=?',[$user_id,$oldemail]);
         if($phone){
             /*检查短信验证码*/
             if (!smsverify($oldemail, $captcha)) {
@@ -78,7 +78,7 @@ class EditMailController extends Controller
                 $dxyzmsj = smsverify($newemail, $captcha);
             }
             if ((strtotime($dxyzmsj) + 1200) > time()) {
-                $update = DB::update('update hh_userinfo set userinfo_email=? where userinfo_userid=?', [$newemail, $user_id]);
+                $update = DB::update('update hh_user set user_email=? where user_id=?', [$newemail, $user_id]);
                 if ($update) {
                     $arr = array("code" => "000",
                         "msg" => "绑定成功",

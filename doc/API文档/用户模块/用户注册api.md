@@ -1,9 +1,8 @@
-# Register #
+# RegisterController #
+# user_register
 ## 注册接口
 
-
 ### 接口地址
-
 
 ```
 .../public/register/user_register
@@ -25,7 +24,8 @@
 ```
 data
 phone               phone
-user_password       user_password
+password            password
+captcha             captcha
 
 callback            callback
 ```
@@ -39,8 +39,7 @@ callback(
 code         000
 data         {
                     user_id         user_id        //ID
-                    user_account    user_account   //手机号
-                    user_nickname   user_nickname  
+                    user_name       user_name      //用户名
              }
 msg          注册成功
 )
@@ -61,6 +60,6 @@ msg           注册失败
 000           注册成功
 112           注册失败，用户名、密码、验证码不能为空
 118           注册失败，短信验证码不正确
-113           注册失败，用户已存在
+113           注册失败，账号已存在
 119           注册失败，短信验证码超时
 ```

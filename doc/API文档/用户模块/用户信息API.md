@@ -108,9 +108,10 @@ msg           失败
 ```
 data
 必选参数
-user_id              user_id
+user_id                user_id
 可选参数
 userinfo_nickname      userinfo_nickname      //用户昵称
+userinfo_realname      userinfo_realname      //真实姓名
 userinfo_sex           userinfo_sex           //性别
 userinfo_age           userinfo_age           //年龄
 loc_province           loc_province           //所在地

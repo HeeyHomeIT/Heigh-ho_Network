@@ -36,7 +36,7 @@ class EditPasswordController extends Controller
         }
         if ((strtotime($dxyzmsj) + 1200) > time()) {
             /*检查原始密码*/
-            $user=DB::select('select user_password from hh_user where user_account=?',[$user_phone]);
+            $user=DB::select('select user_password from hh_user where user_phone=?',[$user_phone]);
             $old_password=HHEncryption(rq('old_password'));
             if(!($old_password==$user[0]->user_password)){
                 $arr=array("code"=>"115",
