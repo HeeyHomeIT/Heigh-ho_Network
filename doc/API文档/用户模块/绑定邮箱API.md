@@ -1,10 +1,10 @@
-# PhoneVerifyController #
-# index()
-## 获取手机号接口
+# EditMailController #
+# verify()
+## 绑定邮箱身份验证接口
 ### 接口地址
 
 ```
-.../public/verification/phoneverify
+.../public/personal/safe/emailverify
 ```
 
 ### 接口格式
@@ -16,13 +16,15 @@
 ```
 
 ```
-.../public/verification/phoneverify
+.../public/personal/safe/emailverify
 ```
 
 ###### Json数据格式
 ```
 data
 user_id           user_id
+oldemail          oldemail
+captcha           captcha
 
 callback          callback
 ```
@@ -35,7 +37,7 @@ callback          callback
 callback(
 code         000
 data         {
-                    userinfo_phone      userinfo_phone
+                    flag      flag
              }
 msg          成功
 )
@@ -49,13 +51,21 @@ data          ""
 msg           失败
 )
 ```
-# verify() #
-## 手机验证验证接口 ## 
+###### Code值含义
+
+```
+000           验证成功
+118           验证码不正确
+119           验证码超时
+126           邮箱不匹配
+```
+# edit() #
+## 修改邮箱接口 ## 
 ### 接口地址
 
 
 ```
-.../public/verification/phoneverify/verify
+.../public/personal/safe/emailchange
 ```
 
 ### 接口格式
@@ -67,15 +77,16 @@ msg           失败
 ```
 
 ```
-.../public/verification/phoneverify/verify
+.../public/personal/safe/emailchange
 ```
 
 ###### Json数据格式
 ```
 data
 user_id           user_id
-phone             phone       //手机号
-captcha           captcha     //验证码
+flag              flag
+newemail          newemail       //邮箱
+captcha           captcha        //验证码
 
 callback          callback
 ```
@@ -88,7 +99,7 @@ callback          callback
 callback(
 code         000
 data         {
-                    flag    flag     //唯一标识符
+                    newemail    newemail
              }
 msg          成功
 )
@@ -109,5 +120,5 @@ msg           失败
 000           成功
 118           验证码不正确
 119           验证码超时
-126           用户和手机号不匹配
+126           信息不匹配
 ```

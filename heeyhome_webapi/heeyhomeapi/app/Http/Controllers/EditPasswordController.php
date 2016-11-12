@@ -49,7 +49,7 @@ class EditPasswordController extends Controller
             $update=DB::update('update hh_user set user_password=? where user_phone=?',[$new_password,$user_phone]);
             if($update){
                 $arr = array("code" => "000",
-                    "msg" => "密码修改成功",
+                    "msg" => "密码修改成功"
                 );
                 return $callback."(".HHJson($arr).")";
             }else{

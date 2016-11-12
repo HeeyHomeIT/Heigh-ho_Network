@@ -30,23 +30,6 @@ class EmailVerifyController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
-    public function send(){
-        $callback=rq('callback');
-        $user_id=rq('user_id');
-        $email = rq('email');
-        /*检查用户和邮箱是否匹配*/
-        if(match($user_id,$email))
-        {
-            $email=new MailController();
-            return $email->emailsend();
-        }
-        else{
-            $arr = array("code" => "126",
-                "msg" => "邮箱和用户不匹配"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
-    }
     public function verify(){
         $callback=rq('callback');
         $captcha=rq('captcha');
@@ -65,16 +48,17 @@ class EmailVerifyController extends Controller
             }
             if ((strtotime($yxyzmsj) + 1200) > time()) {
                 $flag = create_pid();
-                $insert = DB::insert('insert into hh_token(userid,flag) values(?,?)', [$user_id, $flag]);
+                $time=date("Y-m-d H:i:s", time());
+                $insert=DB::insert('insert into hh_token(userid,flag,time) values(?,?,?)',[$user_id,$flag,$time]);
                 if ($insert) {
                     $arr = array("code" => "000",
                         "msg" => "验证成功",
-                        "data" => array("flag" => $flag),
+                        "data" => array("flag" => $flag)
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }else{
                     $arr = array("code" => "111",
-                        "msg" => "验证失败",
+                        "msg" => "验证失败"
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }

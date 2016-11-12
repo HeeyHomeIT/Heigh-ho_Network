@@ -1,0 +1,64 @@
+# MailController
+# emailsend() #
+## 发送邮箱验证码接口 ## 
+
+
+### 接口地址
+
+
+```
+.../public/sendmail
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../public/sendmail
+```
+
+###### Json数据格式
+```
+data
+user_id           user_id
+emial             email
+
+callback          callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                    email    email     //手机号
+                    yzmsj    yzmsj     //短信发送时间
+             }
+msg          发送成功
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           发送失败
+)
+```
+
+###### Code值含义
+
+```
+000           发送成功
+128           邮箱格式不正确
+127           每60秒内只能发送一次邮箱验证码，请稍后重试
+```

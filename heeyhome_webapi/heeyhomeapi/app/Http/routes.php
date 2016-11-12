@@ -42,6 +42,8 @@ Route::group(['middleware'=>['web']],function (){
     Route::any('register/gz_register', 'RegisterController@gz_register');
     /*发送短信*/
     Route::any('sendsms', 'SmsController@sms_send');
+    /*发送邮箱*/
+    Route::any('sendmail', 'MailController@emailsend');
     /*修改密码*/
     Route::any('editpassword', 'EditpasswordController@editpassword');
 
@@ -72,8 +74,6 @@ Route::group(['middleware'=>['web']],function (){
     /*重置密码*/
     /*通过手机邮箱验证重置密码*/
     Route::any('smsresetpassword', 'ResetPasswordController@smsreset');
-    /*通过密保问题验证重置密码*/
-    Route::any('mbresetpassword', 'ResetPasswordController@mbreset');
     /*获取地址下拉列表*/
     Route::any('address/get_province', 'GetaddressController@get_province');
     Route::any('address/get_city', 'GetaddressController@get_city');
@@ -97,6 +97,12 @@ Route::group(['middleware'=>['web']],function (){
     /*我的店铺*/
     Route::any('personal/myshop', 'ShopController@index');
     Route::any('personal/myshop/change', 'ShopController@edit');
+    /*绑定手机*/
+    Route::any('personal/safe/phoneverify', 'EditPhoneController@verify');
+    Route::any('personal/safe/phonechange', 'EditPhoneController@edit');
+    /*绑定邮箱*/
+    Route::any('personal/safe/emailverify', 'EditMailController@verify');
+    Route::any('personal/safe/emailchange', 'EditMailController@edit');
 
 
 });

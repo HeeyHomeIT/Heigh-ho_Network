@@ -30,7 +30,7 @@ class ShopController extends Controller
         $shop=$shop->find($shop_id);
         if(!$shop){
             $arr = array("code" => "114",
-                "msg" => "店铺不存在",
+                "msg" => "店铺不存在"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }

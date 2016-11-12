@@ -62,7 +62,7 @@ class UserinfoController extends Controller
         $personal=$personal->find($user_id);
         if(!$personal){
             $arr = array("code" => "114",
-                "msg" => "用户不存在",
+                "msg" => "用户不存在"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }

@@ -31,7 +31,7 @@ class ResetPasswordController extends Controller
             $update = DB::update('update hh_user set user_password=? where user_id=?', [$new_password, $user_id]);
             if ($update) {
                 $arr = array("code" => "000",
-                    "msg" => "密码重置成功",
+                    "msg" => "密码重置成功"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             } else {
@@ -47,5 +47,4 @@ class ResetPasswordController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
-
 }

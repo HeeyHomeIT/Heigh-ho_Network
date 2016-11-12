@@ -96,7 +96,7 @@ class MessageController extends Controller
             $arr=array(
                 "code"=>"000",
                 "msg"=>"有新的消息",
-                "data"=>array("newmsgtotal"=>$sel[0]->total),
+                "data"=>array("newmsgtotal"=>$sel[0]->total)
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{
