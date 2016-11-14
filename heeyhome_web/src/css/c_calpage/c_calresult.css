@@ -1,0 +1,198 @@
+body #crcontainer {
+    /*background-color: rgba(231,231,231,0.5)*/
+   background-color: rgba(0,0,0,0.83)
+}
+
+#crcontent {
+    color: #636363;
+    width: 1190px;
+    margin: 0 auto 
+}
+
+#crcontent h3 {
+    font-size: 24px;
+    padding: 130px 0 69px 0; 
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    position: relative
+}
+
+#crcontent p {
+    font-size: 16px;
+ 	padding-left: 65px;
+    height: 32px;
+    line-height: 32px;
+    position: relative
+}
+
+#crcontent>div {
+	padding-top: 20px;
+	padding-bottom: 80px;
+    position: relative
+}
+
+#crcontent .cr_condiv>div.cr_content {
+    margin: 10px auto;
+    margin-top: 5px;
+    padding: 20px 0 27px;
+    position: relative
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_title {
+	float: left;
+    width: 132px;
+    height: 132px;
+    margin: 100px 30px 100px 50px;
+    background: #EEC988;
+    border: 1px solid #EEC988;
+    border-radius: 50%
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_title>a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: relative
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_title>a>em {
+	display: inline-block;
+    margin-top: 20px;
+    width: 45px;
+    height: 58px;
+    text-indent: -999px;
+    /* background: url(../img/icon_cal.png) no-repeat; */
+   	background: #fff
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_title>a>dl {
+    height: 32px;
+    font-size: 16px;
+    color: #1c1c1c;
+    overflow: hidden;
+    line-height: 32px
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_con {
+	float: left;
+    width: 900px;
+    color: #EEC988;
+    font-size: 16px;
+    margin-bottom: 20px;
+    position: relative
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_con .plan_one {
+	position: relative;
+    margin: 10px;
+    padding: 10px
+}
+
+.plan_one>span,.plan_one>i {
+	display: inline-block
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_con .plan_one>span {
+    width: 160px;
+    height: 20px;
+    line-height: 20px;
+    text-align: right;
+    margin: 0 3px
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_con .plan_one>i {
+    width: 12px;
+    height: 12px;
+    background: url(../img/tc_newDetail.png) no-repeat;
+    background-position: -8px -448px;
+    margin: 0 7px -1px 20px;
+    position: relative;
+    z-index: 999
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_con .wages {
+    padding-bottom: 8px;
+    margin: -31px 23px 0 215px;
+    border-left: 1px dashed #EEC988;
+    position: relative
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_con .wages dl {
+	height: 25px;
+    margin: 10px auto;
+    margin-top: 10px;
+    margin-left: 20px
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_con .wages dl dd {
+    float: left;
+    width: 170px;
+    margin: -9px 15px
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_con .wages_tip,#crcontent .cr_condiv>div.specialreminder {
+    margin: 5px 0 24px 68px
+}
+
+#crcontent .cr_condiv>div.cr_content>div.cr_con .wages_tip span {
+	display: inline-block;
+    font-size: 14px;
+    margin-left: 15px;
+    color: #ff7449;
+    line-height: 25px
+}
+
+.cr_dl_margintop {
+	margin-top: 30px !important
+}
+
+#crcontent .cr_condiv>div.specialreminder h5 {
+    font-size: 18px;
+    color: #ff7449;
+    margin-left: 40px
+}
+
+#crcontent .cr_condiv>div.specialreminder span {
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 40px;
+    color: #ff7449;
+    line-height: 25px;
+    padding: 15px 0
+}
+
+#crcontent .cr_condiv>div.cr_btn {
+	margin-top: 100px;
+}
+
+#crcontent .cr_condiv>div.cr_btn span {
+    display: inline-block;
+    font-family: Arial,sans-serif;
+ 	width: 170px;
+    height: 55px;
+    text-align: center;
+    margin-left: 90px;
+    line-height: 55px;
+    font-size: 16px
+}
+
+#crcontent .cr_condiv>div.cr_btn span.total {
+	background: #e69628;
+    border: 1px solid #e69628;
+	color: #fff
+}
+
+#crcontent .cr_condiv>div.cr_btn span.cr_collection {
+    border: 1px solid #e69628;
+    border-radius: 2px;
+    margin-left: 20px;
+    color: #e69628
+}
+
+#crcontent .cr_condiv>div.cr_btn span.cr_back {
+    float: right;
+    line-height: 95px;
+    color: #fff
+}
