@@ -1,0 +1,247 @@
+body #shopdetaildiv {
+    /*background-color: rgba(231,231,231,0.5)*/
+}
+
+#sdcontent {
+    color: #636363;
+    width: 1190px;
+    padding: 20px 0;
+    margin: 0 auto 
+}
+
+#sdcontent h3 {
+    border-left: 3px solid #EEC988;
+    padding-left: 12px;
+    font-size: 20px;
+    color: #4B4948;
+    line-height: 22px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-bottom: 16px
+}
+
+#sdcontent h3>span {
+    font-size: 14px;
+    display: inline-block;
+    margin-left: 5px
+}
+
+#sdcontent h3>span.s_more {
+	float: right;
+	margin-right: 10px
+}
+
+#sdcontent .sd_swith {
+    text-align: center;
+    margin: 35px
+}
+
+#sdcontent .sd_swith .select {
+    font-size: 16px;
+    color: #666;
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    text-shadow: 0 0 1px #999;
+    box-sizing: border-box;
+}
+
+#sdcontent .sd_swith .sd_completed {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    position: relative;
+    left: 4px
+}
+
+#sdcontent .sd_swith .sd_unfinished {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    position: relative
+}
+
+#sdcontent .sd_swith .selected {
+    border: 0;
+    background-color: #525252;
+    color: #fff;
+    position: relative;
+    z-index: 100;
+    top: -1px;
+}
+
+#sdcontent .sdcon {
+	margin: 0 auto
+}
+
+#sd_hexgrid {
+	overflow: hidden;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0.866% 0;
+    font-family: Arial;
+    font-size: 15px
+}
+
+#sd_hexgrid:after {
+	content: "";
+    display: block;
+    clear: both
+}
+#sd_hexgrid .sd_hexli {
+	position: relative;
+    list-style-type: none;
+    float: left;
+    overflow: hidden;
+    visibility: hidden;
+    outline: 1px solid transparent;
+    width: 19.2%;
+    font-family: initial;
+    padding-bottom: 22.170%;
+    margin-right: 10px;
+    -webkit-transform: rotate(-60deg) skewY(30deg) translatez(-1px);
+    -ms-transform: rotate(-60deg) skewY(30deg) translatez(-1px);
+    transform: rotate(-60deg) skewY(30deg) translatez(-1px)
+}
+
+#sd_hexgrid .sd_hexli * {
+    position: absolute;
+    visibility: visible;
+    outline:1px solid transparent
+}
+
+#sd_hexgrid .sd_hexli>a {
+	display:block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    -webkit-transform: skewY(-30deg) rotate(60deg);
+	-ms-transform: skewY(-30deg) rotate(60deg);
+    transform: skewY(-30deg) rotate(60deg)
+}
+
+#sd_hexgrid .sd_hexli>a>img {
+	left: -100%;
+    right: -100%;
+    width: auto;
+    height: 100%;
+    margin: 0 auto
+}
+
+#sd_hexgrid .sd_hexli>a>div {
+ 	width: 102%;
+    left:-1%; 
+    padding: 5%;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.6);
+    font-weight: 300;
+    -webkit-transition:  -webkit-transform .2s ease-out, opacity .3s ease-out;
+    transition: transform .2s ease-out, opacity .3s ease-out
+}
+
+#sd_hexgrid .sd_hexli>a>div.sd_title {
+    bottom: 50%;
+	padding-top: 40%;
+    padding-bottom: 15px;
+    z-index: 1;
+    -webkit-transform:translateY(-100%) translatez(-1px);
+    -ms-transform:translateY(-100%) translatez(-1px);
+    transform:translateY(-100%) translatez(-1px)
+}
+
+#sd_hexgrid .sd_hexli>a>div span {
+    position: relative;
+        display: block;
+    font-size: 14px
+}
+
+#sd_hexgrid .sd_hexli>a>div em {
+	position: relative;
+    display: inline-block;
+    font-size: 0;
+    overflow: hidden;
+    background-size: cover;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    vertical-align: middle
+}
+
+#sd_hexgrid .sd_hexli>a>div.sd_title>span.sd_area {
+    font-size: 26px;
+ 	padding-bottom: 10px
+}
+
+#sd_hexgrid .sd_hexli>a>div.sd_title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 45%;
+    width: 10%;
+    text-align: center;
+    border-bottom: 1px solid #fff
+}
+
+#sd_hexgrid .sd_hexli>a>div.sd_stips {
+    top: 50%;
+    padding-bottom:50%;
+    -webkit-transform:translateY(100%) translatez(-1px);
+    -ms-transform:translateY(100%) translatez(-1px);
+    transform:translateY(100%) translatez(-1px)
+}
+
+#sd_hexgrid .sd_hexli>a>div.sd_stips>span {
+    padding: 2px 0
+}
+
+#sd_hexgrid .sd_hexli>a>div.sd_stips>span>em.cr_icon_location {
+	background-image: url(../img/icon-location.png)
+}
+
+#sd_hexgrid .sd_hexli>a>div.sd_stips>div {
+	position: relative;
+    width: 100%
+}
+
+#sd_hexgrid .sd_hexli>a>div.sd_stips>div>span {
+    display: inline-block;
+    margin-right: 10px
+}
+
+
+#sd_hexgrid .sd_hexli>a>div.sd_stips>div>em.cr_icon_look {
+	background-image: url(../img/icon_look.png)
+}
+
+#sd_hexgrid .sd_hexli>a>div.sd_stips>div>em.cr_icon_love {
+	background-image: url(../img/icon_love.png)
+}
+
+#sd_hexgrid .sd_hexli:hover div.sd_title, #sd_hexgrid .sd_hexli:focus div.sd_title,
+#sd_hexgrid .sd_hexli:hover div.sd_stips, #sd_hexgrid .sd_hexli:focus div.sd_stips  {
+    -webkit-transform:translateY(0%) translatez(-1px);
+    -ms-transform:translateY(0%) translatez(-1px);
+    transform:translateY(0%) translatez(-1px)
+}
+
+#sd_hexgrid .sd_hexli:nth-child(1) {
+    margin-left: 90px
+}
+
+#sd_hexgrid .sd_hexli:nth-child(5) {
+    margin-left: 197px
+}
+
+#sd_hexgrid .sd_hexli:nth-child(5),#sd_hexgrid .sd_hexli:nth-child(6),#sd_hexgrid .sd_hexli:nth-child(7) {
+    margin-top: -51px
+}
+
+
+
+
+
+ 
+ 
+
