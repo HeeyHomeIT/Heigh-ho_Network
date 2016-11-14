@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>计算器页面模块</title>
+		<link rel="stylesheet" href="../../css/common/common.css" />
+		<link rel="stylesheet" href="../../css/c_index/c_calculator.css" />
+	</head>
+	<body>
+		<div id="calculatordiv" style="background: url(../../css/img/bj-header.png);background-attachment: fixed;">
+			<div id="calcontainer">
+				<div id="calcontent">
+					<h3 class="col_eec988">无需注册立即计算</h3>
+					<p class="col_eec988">*精确的成本计算！让您随时把控自己的成本支出！请收藏。</p>
+					<!-- 计算器过程 start -->
+					<div>
+						<div class="cal_icon"></div>
+						<!-- 第一步 start -->
+						<div class="cal1 col_eec988">
+							<p>请输入您的户型面积</p>
+							<!-- 建筑面积 start -->
+							<div class="areadiv border_eec988">
+								<input class="c_area" type="text" value="请输入面积" />
+								<em>M<sup>2</sup></em>
+								<span>建筑面积</span>
+							</div>
+							<!-- 户型 start -->
+							<div class="housediv">
+								<div class="border_eec988 after_eec988">
+									<span>1</span>
+									<ul class="display border_eec988 col_eec988">
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+										<li>5</li>
+									</ul>
+								</div>
+								<span>室</span>
+								<div class="border_eec988 after_eec988">
+									<span>1</span>
+									<ul class="display border_eec988">
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+										<li>5</li>
+									</ul>
+								</div>
+								<span>厅</span>
+								<div class="border_eec988 after_eec988">
+									<span>1</span>
+									<ul class="display border_eec988">
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+										<li>5</li>
+									</ul>
+								</div>
+								<span>卫</span>
+								<div class="border_eec988 after_eec988">
+									<span>1</span>
+									<ul class="display border_eec988">
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+										<li>5</li>
+									</ul>
+								</div>
+								<span>阳台</span>
+							</div>
+							<!-- 户型 end -->
+							<p class="notes">*本次计算的建筑面积以房产证面积（不含赠送面积和自建面积）作为计价依据，实际以量房后实际面积为准</p>
+							<!-- 建筑面积 end -->
+						</div>
+						<!-- 第一步 end -->
+						<!-- 第二步 start -->
+						<div class="cal2">
+							<p>除了主卧以外其余<em>N</em>个房间怎么安排</p>
+							<div class="roomsdiv">
+								<div class="s1">
+									<span>次卧&nbsp;×&nbsp;<em>0</em>&nbsp;</span>
+									<ul class="display">
+										<li>0</li>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+									</ul>
+								</div>
+								<div class="s1">
+									<span>儿童房&nbsp;×&nbsp;<em>0</em>&nbsp;</span>
+									<ul class="display">
+										<li>0</li>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+									</ul>
+								</div>
+								<div class="s1">
+									<span>父母房&nbsp;×&nbsp;<em>0</em>&nbsp;</span>
+									<ul class="display">
+										<li>0</li>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+									</ul>
+								</div>
+								<div>
+									<span>衣帽间</span>
+								</div>
+								<div>
+									<span>书房</span>
+								</div>
+							</div>
+						</div>
+						<!-- 第二步 end -->
+						<!-- 第三步 start -->
+						<div class="cal3">
+							<p>主要位置的选择</p>
+							<div class="mainareadiv">
+								<ul class="mainarea_list">
+									<!-- 主卧 start -->
+									<li class="room0">
+										<a class="item0">
+											<em></em>
+											<dl>主卧</dl>
+										</a>
+										<div class="filter_nav display">
+											<div class="filter_mod">
+												<div class="filter_item">
+													<label class="item_title">地面处理方式：</label>
+													<div class="item_mod">
+														<span>实木地板</span>
+														<a rel="nofollow">强化复合地板</a>
+														<a rel="nofollow">铺设瓷砖</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">衣柜制作方式：</label>
+													<div class="item_mod">
+														<span>木工制作衣柜</span>
+														<a rel="nofollow">自行购买衣柜</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">木工制作吊顶：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">墙面铺贴墙纸：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">有无飘窗结构：</label>
+													<div class="item_mod">
+														<span>有飘窗</span>
+														<a rel="nofollow">没有飘窗</a>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- 主卧 end -->
+									<!-- 次卧 start -->
+									<li class="room1">
+										<a class="item1">
+											<em></em>
+											<dl>次卧</dl>
+										</a>
+										<div class="filter_nav display">
+											<div class="filter_mod">
+												<div class="filter_item">
+													<label class="item_title">地面处理方式：</label>
+													<div class="item_mod">
+														<span>实木地板</span>
+														<a rel="nofollow">强化复合地板</a>
+														<a rel="nofollow">铺设瓷砖</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">衣柜制作方式：</label>
+													<div class="item_mod">
+														<span>木工制作衣柜</span>
+														<a rel="nofollow">自行购买衣柜</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">木工制作吊顶：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">墙面铺贴墙纸：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">有无飘窗结构：</label>
+													<div class="item_mod">
+														<span>有飘窗</span>
+														<a rel="nofollow">没有飘窗</a>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- 次卧 end -->
+									<!-- 父母房 start -->
+									<li class="room2">
+										<a class="item2">
+											<em></em>
+											<dl>父母房</dl>
+										</a>
+										<div class="filter_nav display">
+											<div class="filter_mod">
+												<div class="filter_item">
+													<label class="item_title">地面处理方式：</label>
+													<div class="item_mod">
+														<span>实木地板</span>
+														<a rel="nofollow">强化复合地板</a>
+														<a rel="nofollow">铺设瓷砖</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">衣柜制作方式：</label>
+													<div class="item_mod">
+														<span>木工制作衣柜</span>
+														<a rel="nofollow">自行购买衣柜</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">木工制作吊顶：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">墙面铺贴墙纸：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">有无飘窗结构：</label>
+													<div class="item_mod">
+														<span>有飘窗</span>
+														<a rel="nofollow">没有飘窗</a>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- 父母房 end -->
+									<!-- 儿童房 start -->
+									<li class="room3">
+										<a class="item3">
+											<em></em>
+											<dl>儿童房</dl>
+										</a>
+										<div class="filter_nav after_childrenroom display ">
+											<div class="filter_mod">
+												<div class="filter_item">
+													<label class="item_title">地面处理方式：</label>
+													<div class="item_mod">
+														<span>实木地板</span>
+														<a rel="nofollow">强化复合地板</a>
+														<a rel="nofollow">铺设瓷砖</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">衣柜制作方式：</label>
+													<div class="item_mod">
+														<span>木工制作衣柜</span>
+														<a rel="nofollow">自行购买衣柜</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">木工制作吊顶：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">墙面铺贴墙纸：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">有无飘窗结构：</label>
+													<div class="item_mod">
+														<span>有飘窗</span>
+														<a rel="nofollow">没有飘窗</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">榻榻米的制作：</label>
+													<div class="item_mod">
+														<span>木工制作榻榻米</span>
+														<a rel="nofollow">自行购买榻榻米</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">书桌书架选择：</label>
+													<div class="item_mod">
+														<span>木工制作简易书桌书架</span>
+														<a rel="nofollow">购买成品书桌书架</a>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- 儿童房 end -->
+									<!-- 书房 start -->
+									<li class="room4">
+										<a class="item4">
+											<em></em>
+											<dl>书房</dl>
+										</a>
+										<div class="filter_nav after_bookroom display">
+											<div class="filter_mod">
+												<div class="filter_item">
+													<label class="item_title">地面处理方式：</label>
+													<div class="item_mod">
+														<span>实木地板</span>
+														<a rel="nofollow">强化复合地板</a>
+														<a rel="nofollow">铺设瓷砖</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">木工制作吊顶：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">墙面铺贴墙纸：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">有无飘窗结构：</label>
+													<div class="item_mod">
+														<span>有飘窗</span>
+														<a rel="nofollow">没有飘窗</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">榻榻米的制作：</label>
+													<div class="item_mod">
+														<span>木工制作榻榻米</span>
+														<a rel="nofollow">自行购买榻榻米</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">书桌书柜选择：</label>
+													<div class="item_mod">
+														<span>木工制作简易书桌书柜</span>
+														<a rel="nofollow">购买成品书桌书柜</a>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- 书房 end -->
+									<!-- 衣帽间 start -->
+									<li class="room5">
+										<a class="item5">
+											<em></em>
+											<dl>衣帽间</dl>
+										</a>
+										<div class="filter_nav display">
+											<div class="filter_mod">
+												<div class="filter_item">
+													<label class="item_title">地面处理方式：</label>
+													<div class="item_mod">
+														<span>实木地板</span>
+														<a rel="nofollow">强化复合地板</a>
+														<a rel="nofollow">铺设瓷砖</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">衣柜制作方式：</label>
+													<div class="item_mod">
+														<span>木工制作衣柜</span>
+														<a rel="nofollow">自行购买衣柜</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">木工制作吊顶：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">墙面铺贴墙纸：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">有无飘窗结构：</label>
+													<div class="item_mod">
+														<span>有飘窗</span>
+														<a rel="nofollow">没有飘窗</a>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- 衣帽间 end -->
+								</ul>
+							</div>
+						</div>
+						<!-- 第三步 end -->
+						<!-- 第四步 start -->
+						<div class="cal4">
+							<p>次要位置的选择</p>
+							<div class="otherroomsdiv">
+								<ul class="otherroom_list">
+									<!-- 客餐厅 start -->
+									<li class="room0">
+										<a class="item0">
+											<em></em>
+											<dl>客餐厅</dl>
+										</a>
+										<div class="filter_nav display">
+											<div class="filter_mod">
+												<div class="filter_item">
+													<label class="item_title">地面处理方式：</label>
+													<div class="item_mod">
+														<span>实木地板</span>
+														<a rel="nofollow">强化复合地板</a>
+														<a rel="nofollow">铺设瓷砖</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">木工制作吊顶：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">鞋柜制作方式：</label>
+													<div class="item_mod">
+														<span>木工制作衣柜</span>
+														<a rel="nofollow">自行购买衣柜</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">酒柜制作方式：</label>
+													<div class="item_mod">
+														<span>木工制作酒柜</span>
+														<a rel="nofollow">自行购买酒柜</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">墙面铺贴墙纸：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- 客餐厅 end -->
+									<!-- 阳台 start -->
+									<li class="room1">
+										<a class="item1">
+											<em></em>
+											<dl>阳台</dl>
+										</a>
+										<div class="filter_nav after_balconyroom display">
+											<div class="filter_mod">
+												<div class="filter_item">
+													<label class="item_title">地面处理方式：</label>
+													<div class="item_mod">
+														<span>实木地板</span>
+														<a rel="nofollow">强化复合地板</a>
+														<a rel="nofollow">铺设瓷砖</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">木工制作吊柜：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- 阳台 end -->
+									<!-- 厨房 start -->
+									<li class="room2">
+										<a class="item2">
+											<em></em>
+											<dl>厨房</dl>
+										</a>
+										<div class="filter_nav after_kitchenroom display">
+											<div class="filter_mod">
+												<div class="filter_item">
+													<label class="item_title">地面处理方式：</label>
+													<div class="item_mod">
+														<span>实木地板</span>
+														<a rel="nofollow">强化复合地板</a>
+														<a rel="nofollow">铺设瓷砖</a>
+													</div>	
+												</div>
+												<div class="filter_item">
+													<label class="item_title">木工制作橱柜：</label>
+													<div class="item_mod">
+														<span>需要</span>
+														<a rel="nofollow">不需要</a>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- 厨房 end -->
+								</ul>
+							</div>
+						</div>
+						<!-- 第四步 end -->
+						<!-- 第五步 strat -->
+						<div class="cal5">
+							<p>房屋特性</p>
+							<div class="othersdiv">
+								<ul class="other_list">
+									<!-- 无电梯 start -->
+									<li class="other0">
+										<a class="item0">
+											<em></em>
+											<dl>多层无电梯</dl>
+										</a>
+										<div class="filter_nav after_elevator display ">
+											<div class="filter_mod">
+												<div class="filter_item">
+													<label class="item_title">楼层：</label>
+													<div class="item_mod">
+														<span>1楼</span>
+														<a rel="nofollow">2楼</a>
+														<a rel="nofollow">3楼</a>
+														<a rel="nofollow">4楼</a>
+														<a rel="nofollow">5楼</a>
+														<a rel="nofollow">6楼</a>
+														<a rel="nofollow">6楼以上</a>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- 无电梯 end -->
+									<!-- 有电梯 start -->
+									<li class="other1">
+										<a class="item1">
+											<em></em>
+											<dl>高层有电梯</dl>
+										</a>
+									</li>
+									<!-- 有电梯 end -->
+									<!-- 墙体拆除改造 start -->
+									<li class="other2">
+										<a class="item2">
+											<em></em>
+											<dl>墙体拆除改造</dl>
+										</a>
+									</li>
+									<!-- 墙体拆除改造 end -->
+									<!-- 卫生间地面下沉 start -->
+									<li class="other3">
+										<a class="item3">
+											<em></em>
+											<dl>卫生间地面下沉</dl>
+										</a>
+									</li>
+									<!-- 卫生间地面下沉 end -->
+								</ul>
+							</div>
+						</div>
+						<!-- 第五步 end -->
+						<!-- 第六步 strat -->
+						<div class="cal6">
+							<input class="nowcal" type="button" value="立即计算">
+						</div>
+						<!-- 第六步 end -->
+					</div>
+					<!-- 计算器过程 end -->
+					
+				</div>	
+			</div>
+		</div>
+	</body>
+</html>
