@@ -1,0 +1,349 @@
+body #calcontainer {
+    /*background-color: rgba(231,231,231,0.5)*/
+   background-color: rgba(0,0,0,0.83)
+}
+
+#calcontent {
+    color: #636363;
+    width: 1190px;
+    margin: 0 auto 
+}
+
+#calcontent h3 {
+    font-size: 24px;
+    padding: 130px 0 69px 0; 
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    position: relative
+}
+
+#calcontent p {
+    font-size: 16px;
+ 	padding-left: 65px;
+    height: 32px;
+    line-height: 32px;
+    position: relative
+}
+
+#calcontent .cal_icon {
+    position: absolute;
+    margin-top: 20px;
+    width: 40px;
+    height: 100%;
+    background: url(../img/icon-step.png) no-repeat
+}
+
+#calcontent .cal1 {
+	padding: 20px 45px
+}
+
+#calcontent .cal1>p,#calcontent .cal2>p,#calcontent .cal3>p,#calcontent .cal4>p,#calcontent .cal5>p {
+    font-size: 16px;
+    padding-left: 20px
+}
+
+#calcontent .cal1>div.areadiv {
+	width: 132px;
+    height: 37px;
+    position: relative;
+   	margin-left: 20px;
+   	margin-top: 20px;
+    border: 1px solid #636363
+}
+
+#calcontent .cal1>div.areadiv>input {
+    width: 130px;
+    position: absolute;
+    border: 0;
+    background: transparent;
+    outline: medium;
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    text-indent: 13px;
+    letter-spacing: 1px
+}
+
+
+#calcontent .cal1>div.areadiv>em {
+    margin-top: 7px;
+    margin-right: 7px;
+    width: 21px;
+    height: 21px;
+    float: right
+}
+
+#calcontent .cal1>div.areadiv>span {
+    width: 60px;
+    height: 21px;
+    right: -75px;
+    font-size: 14px;
+    vertical-align: middle;
+    position: absolute;
+    top: 7px
+}
+
+#calcontent .cal1>ul li {
+   	float:left
+}
+
+#calcontent .cal1>div.housediv,#calcontent .cal2>div.roomsdiv,#calcontent .cal3>div.mainareadiv,#calcontent .cal4>div.otherroomsdiv,#calcontent .cal5>div.othersdiv {
+    width: 100%;
+    font-size: 14px;
+    padding: 20px 0
+}
+
+#calcontent .cal1>div.housediv div,#calcontent .cal2>div.roomsdiv div {
+    display: inline-block;
+    width: 110px;
+    height: 35px;
+    border: 1px solid #636363;
+    /*color: #bbbbbb;*/
+    line-height: 35px;
+    margin-right: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    position: relative;
+    text-align: center
+}
+
+#calcontent .cal1>div.housediv div::after,#calcontent .cal2>div.roomsdiv div.s1::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #636363;
+    float: left;
+    position: absolute;
+    right: 7px;
+    top: 14px
+}
+
+#calcontent .cal1>div.housediv ul,#calcontent .cal2>div.roomsdiv ul {
+    position: absolute;
+    width: 100%;
+    line-height: 30px;
+    border: 1px solid #636363;
+    /*background: #f9f9f9;*/
+    /*color: #333;*/
+    z-index: 1;
+    left: -1px;
+    box-sizing: content-box;
+    top: 33px
+}
+
+#calcontent .cal1>div.housediv ul li:hover,#calcontent .cal2>div.roomsdiv ul li:hover {
+    background-color: rgba(99, 99, 99,0.6);
+    color: #fff
+}
+
+#calcontent .cal1>p.notes {
+    font-size: 14px;
+    padding-left: 20px;
+    height: 21px;
+    line-height: 21px
+}
+
+#calcontent .cal2 {
+	padding: 48px 45px 10px 45px
+    /*background: red*/
+}
+
+#calcontent .cal3 {
+	padding: 48px 45px 10px 45px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list,#calcontent .cal4>div.otherroomsdiv .otherroom_list {
+	height: 150px;
+    margin: 10px auto;
+    margin-top: 5px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li,#calcontent .cal4>div.otherroomsdiv .otherroom_list li {
+    float: left;
+    width: 120px;
+    height: 120px;
+    margin: 0 20px;
+    border: 1px solid
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a,#calcontent .cal5>div.othersdiv .other_list li>a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: relative
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a>em,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a>em {
+    display: inline-block;
+    margin-top: 3px;
+    width: 90px;
+    height: 85px;
+    text-indent: -999px;
+    background: url(../img/icon_cal.png) no-repeat
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a.item0>em,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a.item0>em {
+	background-position: -65px -3px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a>dl,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a>dl,#calcontent .cal5>div.othersdiv .other_list li>a>dl {
+    height: 25px;
+    font-size: 1em;
+    color: #636363;
+    overflow: hidden;
+    line-height: 15px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a>dl:after,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a>dl:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #636363;
+    float: left;
+    position: absolute;
+    right: 20px;
+    bottom: 13px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>div.filter_nav,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>div.filter_nav,#calcontent .cal5>div.othersdiv .other_list li>div.filter_nav {
+	position: relative;
+	background: #f9f9f9;
+	box-shadow: 0 0 12px 1px rgba(0,0,0,.2);
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    padding: 8px 0 4px 20px;
+    width: 560px;
+    z-index: 999
+}
+
+.filter_nav .filter_item {
+    width: 520px;
+    border-top: 1px dashed #ddd;
+    line-height: 44px
+}
+.filter_nav .filter_item:first-child {
+    border-top: none
+}
+
+.filter_nav .filter_item>div {
+    padding-left: 115px
+}
+
+.filter_nav .filter_item .item_title {
+    float: left;
+    margin-bottom: 0;
+    color: #333;
+    font-weight: 100
+}
+
+.filter_nav .filter_item .item_mod>span,.filter_nav .filter_item .item_mod>a {
+    display: inline-block;
+    margin-right: 15px
+}
+
+.filter_nav .filter_item .item_mod>span {
+    color: #f60;
+    font-weight: 700
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>div:after,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>div:after,#calcontent .cal5>div.othersdiv .other_list li>div:after {
+	content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-bottom: 14px solid #f9f9f9;
+    float: left;
+    position: absolute;
+    margin-top: -246px;
+    margin-left: 28px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>div.after_childrenroom:after {
+	margin-top: -336px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>div.after_bookroom:after {
+	margin-top: -291px
+}
+
+#calcontent .cal4>div.otherroomsdiv .otherroom_list li>div.after_balconyroom:after, #calcontent .cal4>div.otherroomsdiv .otherroom_list li>div.after_kitchenroom:after {
+	margin-top: -111px
+}
+
+#calcontent .cal5>div.othersdiv .other_list li>div.after_elevator:after {
+	margin-top: -66px;
+    margin-left: 47px
+}
+  
+#calcontent .cal4 {
+	padding: 48px 45px 10px 45px
+}
+
+#calcontent .cal5 {
+	padding: 48px 45px 10px 45px
+}
+
+#calcontent .cal5>div.othersdiv .other_list {
+	height: 150px;
+    margin: 10px auto;
+    margin-top: 5px
+}
+
+#calcontent .cal5>div.othersdiv .other_list li{
+    float: left;
+    width: 160px;
+    height: 140px;
+    margin: 0 20px;
+    border: 1px solid
+}
+
+#calcontent .cal5>div.othersdiv .other_list li>a>em {
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    width: 90px;
+    height: 85px;
+    text-indent: -999px;
+    background: url(../img/icon_cal.png) no-repeat
+}
+
+#calcontent .cal5>div.othersdiv .other_list li>a.item0>em {
+	background-position: -65px -3px
+}
+
+#calcontent .cal5>div.othersdiv .filter_nav .filter_item>div {
+    padding-left: 55px
+}
+
+#calcontent .cal6 {
+	padding: 48px 45px 10px 45px
+}
+
+#calcontent .cal6>input.nowcal {
+    height: 40px;
+    padding: 0 45px;
+    font-size: 1.25em;
+    line-height: 30px;
+    text-align: center;
+    overflow: visible;
+    cursor: pointer;
+    outline: 0;
+    border-radius: 2px;
+    color: #636363;
+    border: 1px solid #636363;
+    background: transparent;
+    letter-spacing: 5px;
+    margin-left: 780px;
+}
+
+
