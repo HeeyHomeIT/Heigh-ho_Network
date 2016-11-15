@@ -14,22 +14,6 @@ use Illuminate\Support\Facades\DB;
 
 class EmailVerifyController extends Controller
 {
-    public function index(){
-        $callback=rq('callback');
-        $user_id=rq('user_id');
-        $sql=DB::select('select user_email from hh_user where user_id=?',[$user_id]);
-        if($sql){
-            $arr = array("code" => "000",
-                "data" => $sql[0]
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }else{
-            $arr = array("code" => "111",
-                "msg" => "查询失败"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
-    }
     public function verify(){
         $callback=rq('callback');
         $captcha=rq('captcha');

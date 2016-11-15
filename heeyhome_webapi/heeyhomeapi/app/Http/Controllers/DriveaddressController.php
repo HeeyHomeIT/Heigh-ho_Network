@@ -91,6 +91,7 @@ class DriveaddressController extends Controller
         $address=rq('address');
         $zipcode=rq('zipcode');
         $mobile=rq('mobile');
+        $is_default=rq('is_default');
         if($receiver) $driveaddress->receiver=$receiver;
         if($province) $driveaddress->province=$province;
         if($city) $driveaddress->city=$city;
@@ -98,6 +99,7 @@ class DriveaddressController extends Controller
         if($address) $driveaddress->address=$address;
         if($zipcode) $driveaddress->zipcode=$zipcode;
         if($mobile) $driveaddress->mobile=$mobile;
+        if($is_default) $driveaddress->is_default=$is_default;
         if($driveaddress->save()){
             $arr = array("code" => "000",
                 "msg" => "修改成功"
@@ -128,6 +130,34 @@ class DriveaddressController extends Controller
         }else{
             $arr = array("code" => "117",
                 "msg" => "删除失败，地址不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+    public function setdefault(){
+        $callback=rq('callback');
+        $address_id=rq('id');
+        $user_id=rq('user_id');
+        if (!$address_id) {
+            $arr = array("code" => "112",
+                "msg" => "id不能为空"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        /*将该用户id下的所有收货地址的is_default字段设置为2*/
+        $update=DB::update('update hh_driveaddress set is_default=2 where address_userid=?',[$user_id]);
+        /*将传递过来的地址id的is_default字段设置为1*/
+        $set=DB::update('update hh_driveaddress set is_default=1 where id=?',[$address_id]);
+        if($set){
+            $arr = array("code" => "000",
+                "data" => array(
+                    "address_id"=>$address_id
+                )
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }else{
+            $arr = array("code" => "111",
+                "msg" => "失败"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }

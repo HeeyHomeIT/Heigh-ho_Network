@@ -32,10 +32,8 @@ Route::group(['middleware'=>['web']],function (){
     Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
     Route::any('jzbk/info', 'HomeEncyclopediaController@info');
 
-    /*用户登录*/
-    Route::any('login/user_login', 'LoginController@user_login');
-    /*工长登录*/
-    Route::any('login/gz_login', 'LoginController@gz_login');
+    /*登录*/
+    Route::any('login/login', 'LoginController@login');
     /*用户注册*/
     Route::any('register/user_register', 'RegisterController@user_register');
     /*工长注册*/
@@ -59,45 +57,37 @@ Route::group(['middleware'=>['web']],function (){
     /*登录历史*/
     Route::any('personal/loginhistory', 'GetloginrecordController@index');
     /*确认账号*/
-    Route::any('verification/confirm', 'AccountconfirmController@account');
+    Route::any('verification/confirm', 'AccountconfirmController@confirm');
     /*手机验证*/
-    Route::any('verification/phoneverify', 'PhoneVerifyController@index');
-    Route::any('verification/phoneverify/send', 'PhoneVerifyController@send');
     Route::any('verification/phoneverify/verify', 'PhoneVerifyController@verify');
     /*邮箱验证*/
-    Route::any('verification/emailverify', 'EmailVerifyController@index');
-    Route::any('verification/emailverify/send', 'EmailVerifyController@send');
     Route::any('verification/emailverify/verify', 'EmailVerifyController@verify');
-    /*密保问题验证*/
-    Route::any('verification/securityverify', 'SecurityVerifyController@index');
-    Route::any('verification/securityverify/verify', 'SecurityVerifyController@verify');
     /*重置密码*/
-    /*通过手机邮箱验证重置密码*/
-    Route::any('smsresetpassword', 'ResetPasswordController@smsreset');
-    /*获取地址下拉列表*/
-    Route::any('address/get_province', 'GetaddressController@get_province');
-    Route::any('address/get_city', 'GetaddressController@get_city');
-    Route::any('address/get_area', 'GetaddressController@get_area');
+    Route::any('resetpassword', 'ResetPasswordController@resetpassword');
     /*收货地址*/
     Route::any('personal/drive_address', 'DriveaddressController@index');
     Route::any('personal/drive_address/add', 'DriveaddressController@add');
     Route::any('personal/drive_address/change', 'DriveaddressController@edit');
     Route::any('personal/drive_address/del', 'DriveaddressController@del');
+    Route::any('personal/drive_address/setdefault', 'DriveaddressController@setdefault');
     /*消息中心*/
     Route::any('personal/message', 'MessageController@index');
     Route::any('personal/message/del', 'MessageController@del');
     Route::any('personal/message/isnew', 'MessageController@isnew');
     Route::any('personal/message/read', 'MessageController@read');
-    /*密保问题*/
-    Route::any('personal/securitylist', 'SecurityController@questionlist');
-    Route::any('personal/security/add', 'SecurityController@addsecurity');
-    /*收藏效果图*/
-    Route::any('imgcollection/add', 'CollectController@addimg');
+    /*收藏全景图*/
+    Route::any('panorama/collect', 'CollectimgController@collect');
     /*收藏成本结果*/
 
+    /*收藏店铺*/
+    Route::any('shop/collect', 'CollectshopController@collect');
     /*我的店铺*/
     Route::any('personal/myshop', 'ShopController@index');
     Route::any('personal/myshop/change', 'ShopController@edit');
+    /*上传店铺图片*/
+    Route::any('personal/myshop/uploadimg', 'ShopimgController@upload');
+    Route::any('personal/myshop/imgsetface', 'ShopimgController@setface');
+    Route::any('personal/myshop/del', 'ShopimgController@del');
     /*绑定手机*/
     Route::any('personal/safe/phoneverify', 'EditPhoneController@verify');
     Route::any('personal/safe/phonechange', 'EditPhoneController@edit');
@@ -109,8 +99,10 @@ Route::group(['middleware'=>['web']],function (){
     Route::any('personal/myworkers/add', 'MyworkersController@add');
     Route::any('personal/myworkers/change', 'MyworkersController@edit');
     Route::any('personal/myworkers/del', 'MyworkersController@del');
-
-
+    /*我的收藏-全景图*/
+    Route::any('personal/collection/panorama', 'CollectimgController@index');
+    /*我的收藏-店铺*/
+    Route::any('personal/collection/shop', 'CollectshopController@index');
 
 
 });

@@ -174,7 +174,6 @@ street                 street             //街道
 address                address            //详细地址
 zipcode                zipcode            //邮政编码
 mobile                 mobile             //联系电话
-address_userid         address_userid     //用户id
 is_default             is_default         //是否默认地址
 
 callback               callback
@@ -266,4 +265,63 @@ msg           失败
 112            id不能为空
 117            地址不存在
 111            删除失败
+```
+# setdefault() #
+## 设置默认收货地址接口
+
+
+### 接口地址
+
+
+```
+.../public/personal/drive_address/setdefault
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../public/personal/drive_address/setdefault
+```
+
+###### Json数据格式
+```
+data
+id                     id           //地址id
+user_id                user_id      //用户id
+
+callback               callback
+```
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         ""
+msg          成功
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
+000            修改成功
+112            id不能为空
+111            修改失败
 ```

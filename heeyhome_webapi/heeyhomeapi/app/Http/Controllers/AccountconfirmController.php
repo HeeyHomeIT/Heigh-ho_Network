@@ -13,27 +13,19 @@ use Illuminate\Support\Facades\DB;
 
 class AccountconfirmController extends Controller
 {
-    public function account(){
+    public function confirm(){
         $callback=rq('callback');
         $user_id=rq('user_id');
         $account=rq('account');
-        $user=DB::select('select user_account from hh_user where user_id=? and user_account=?',[$user_id,$account]);
-        if(!$user){
-            $userinfo=DB::select('select userinfo_nickname from hh_userinfo where userinfo_userid=? and (userinfo_phone=? or userinfo_email=?)',[$user_id,$account,$account]);
-            if($userinfo){
-                $arr = array("code" => "000",
-                    "data"=> ""
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-            }else{
-                $arr = array("code" => "111",
-                    "data"=> ""
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-            }
-        }else{
+        $user =DB::select('select user_name,user_phone,user_email from hh_user where (user_name=? or user_phone=? or user_email=?) and user_id=?',[$account,$account,$account,$user_id]);
+        if($user){
             $arr = array("code" => "000",
-                "data"=> ""
+                "data"=> $user[0]
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }else{
+            $arr = array("code" => "117",
+                "msg"=> "账号不存在"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }

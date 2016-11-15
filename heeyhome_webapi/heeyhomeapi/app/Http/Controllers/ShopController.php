@@ -10,14 +10,35 @@ namespace App\Http\Controllers;
 
 
 use App\Shop;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
     public function index(){
-
+        $callback=rq('callback');
+        $shop_id=rq('shop_id');
+        if (!$shop_id) {
+            $arr = array("code" => "112",
+                "msg" => "店铺id不能为空"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        $select=DB::select('select * from hh_shop where shop_id=?',[$shop_id]);
+        if($select){
+            $img=DB::select('select id,shop_img,is_face from hh_shopimg where shop_id=?',[$shop_id]);
+            $select[0]->shop_imgs=$img;
+            $arr = array("code" => "000",
+                "data" => $select[0]
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }else{
+            $arr = array("code" => "114",
+                "msg" => "店铺不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
     }
     public function edit(){
-
         $callback = rq('callback');
         $shop_id = rq('shop_id');
         if (!$shop_id) {

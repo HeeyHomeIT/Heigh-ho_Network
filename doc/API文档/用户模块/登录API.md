@@ -1,13 +1,11 @@
 # LoginController #
-# gz_login
-## 工长登录接口
-
+# login
+## 用户登录接口
 
 ### 接口地址
 
-
 ```
-.../public/login/gz_login
+.../public/login/login
 ```
 
 ### 接口格式
@@ -19,7 +17,7 @@
 ```
 
 ```
-.../public/login/gz_login
+.../public/login/login
 ```
 
 ###### Json数据格式
@@ -43,8 +41,11 @@ callback            callback
 callback(
 code         000
 data         {
-                    user_id        user_id     //ID
-                    user_name      user_name   //用户名
+                    user_id         user_id         //ID
+                    user_name       user_name       //用户名
+                    user_phone      user_phone       
+                    user_email      user_email
+                    user_type       user_type       //用户类型
              }
 msg          登录成功
 )

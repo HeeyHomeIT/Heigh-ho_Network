@@ -44,17 +44,16 @@ class RegisterController extends Controller
                 );
                 return $callback."(".HHJson($arr).")";
             }
-
             $user_id = create_pid();
             $user_password = HHEncryption($user_password);
             /*向用户表插入数据*/
-            $insert = DB::insert('insert into hh_user(user_id,user_name,user_phone,user_password,user_typeway) values(?,?,?,?,?)', [$user_id,$user_phone,$user_phone,$user_password,'phone']);
+            $insert = DB::insert('insert into hh_user(user_id,user_name,user_phone,user_password,user_typeway,user_type) values(?,?,?,?,?,?)', [$user_id,$user_phone,$user_phone,$user_password,'phone',1]);
             if ($insert) {
                 /*向时间表插入数据，同时向用户信息表插入数据*/
                 $reg_time=date('Y-m-d H:i:s', time());
                 $time = DB::insert('insert into hh_time(time_userid,reg_time) values(?,?)', [$user_id, $reg_time]);
                 $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$user_id,'default.jpg']);
-                $sql = DB::insert('insert into hh_userinfo(userinfo_userid,type) values(?,?)',[$user_id,1]);
+                $sql = DB::insert('insert into hh_userinfo(userinfo_userid) values(?)',[$user_id]);
                 if($sql){
                     $arr=array(
                         "code"=>"000",
@@ -96,7 +95,7 @@ class RegisterController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         /*检查账户是否已存在*/
-        $sql=DB::select('select foreman_id from hh_foreman where foreman_phone=?',[$foreman_phone]);
+        $sql=DB::select('select user_id from hh_user where user_phone=?',[$foreman_phone]);
         if($sql){
             $arr=array("code"=>"113",
                 "msg"=>"注册失败，用户已存在"
@@ -105,15 +104,15 @@ class RegisterController extends Controller
         }
         $foreman_id = create_pid();
         $foreman_password = HHEncryption($foreman_password);
-        /*向工长表插入数据*/
-        $insert = DB::insert('insert into hh_foreman(foreman_id,foreman_name,foreman_phone,foreman_password,foreman_typeway) values(?,?,?,?,?)', [$foreman_id,$foreman_phone,$foreman_phone,$foreman_password,'phone']);
+        /*向用户表插入数据*/
+        $insert = DB::insert('insert into hh_user(user_id,user_name,user_phone,user_password,user_typeway,user_type) values(?,?,?,?,?,?)', [$foreman_id,$foreman_phone,$foreman_phone,$foreman_password,'phone',2]);
         if ($insert) {
             /*向时间表插入数据*/
             $reg_time=date('Y-m-d H:i:s', time());
             $time = DB::insert('insert into hh_time(time_userid,reg_time) values(?,?)', [$foreman_id, $reg_time]);
             /*向工长信息表插入数据*/
             $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$foreman_id,'default.jpg']);
-            $sql = DB::insert('insert into hh_userinfo(userinfo_userid,type) values(?,?)',[$foreman_id,2]);
+            $sql = DB::insert('insert into hh_foremaninfo(foremaninfo_userid) values(?)',[$foreman_id]);
             /*向店铺表插入*/
             $shop_id=rand_number(10);
             $shop = DB::insert('insert into hh_shop(shop_id,shopper_id,opentime) values(?,?,?)',[$shop_id,$foreman_id,$reg_time]);

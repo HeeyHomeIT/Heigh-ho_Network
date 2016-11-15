@@ -14,15 +14,6 @@ use Illuminate\Support\Facades\DB;
 
 class PhoneVerifyController extends Controller
 {
-    public function index(){
-        $callback=rq('callback');
-        $user_id=rq('user_id');
-        $sql=DB::select('select user_phone from hh_user where user_id=?',[$user_id]);
-        $arr = array("code" => "000",
-            "data" => $sql[0]
-        );
-        return $callback . "(" . HHJson($arr) . ")";
-    }
     public function verify(){
         $callback=rq('callback');
         $captcha=rq('captcha');

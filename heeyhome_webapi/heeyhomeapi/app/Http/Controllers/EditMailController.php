@@ -16,19 +16,19 @@ class EditMailController extends Controller
     public function verify(){
         $callback=rq('callback');
         $user_id=rq('user_id');
-        $oldemail=rq('oldemail');
+        $user_phone=rq('phone');
         $captcha=rq('captcha');
-        /*检查邮箱匹不匹配*/
-        $phone=DB::select('select user_email from hh_user where user_id=? and user_email=?',[$user_id,$oldemail]);
+        /*检查手机匹不匹配*/
+        $phone=DB::select('select user_phone from hh_user where user_id=? and user_phone=?',[$user_id,$user_phone]);
         if($phone){
             /*检查短信验证码*/
-            if (!smsverify($oldemail, $captcha)) {
+            if (!smsverify($user_phone, $captcha)) {
                 $arr = array("code" => "118",
                     "msg" => "验证码不正确"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             } else {
-                $dxyzmsj = smsverify($oldemail, $captcha);
+                $dxyzmsj = smsverify($user_phone, $captcha);
             }
             if ((strtotime($dxyzmsj) + 1200) > time()) {
                 $flag=create_pid();
@@ -54,7 +54,7 @@ class EditMailController extends Controller
             }
         }else{
             $arr = array("code" => "126",
-                "msg" => "邮箱不匹配"
+                "msg" => "手机不匹配"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
