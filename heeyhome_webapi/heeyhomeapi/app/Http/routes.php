@@ -94,6 +94,7 @@ Route::group(['middleware'=>['web']],function (){
     /*收藏效果图*/
     Route::any('imgcollection/add', 'CollectController@addimg');
     /*收藏成本结果*/
+
     /*我的店铺*/
     Route::any('personal/myshop', 'ShopController@index');
     Route::any('personal/myshop/change', 'ShopController@edit');
@@ -103,6 +104,13 @@ Route::group(['middleware'=>['web']],function (){
     /*绑定邮箱*/
     Route::any('personal/safe/emailverify', 'EditMailController@verify');
     Route::any('personal/safe/emailchange', 'EditMailController@edit');
+    /*我的员工*/
+    Route::any('personal/myworkers', 'MyworkersController@index');
+    Route::any('personal/myworkers/add', 'MyworkersController@add');
+    Route::any('personal/myworkers/change', 'MyworkersController@edit');
+    Route::any('personal/myworkers/del', 'MyworkersController@del');
+
+
 
 
 });

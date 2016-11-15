@@ -26,27 +26,28 @@ class UserinfoController extends Controller
                 return $callback . "(" . HHJson($arr) . ")";
             }
         /*检查用户是否存在*/
-        $personal=DB::select('select hh_userinfo.*,A.content as cloc_province,B.content as cloc_city,C.content as cloc_district,D.content as chome_province,E.content as chome_city,F.content as chome_district from hh_userinfo 
-                            left join hh_dictionary A on hh_userinfo.loc_province = A.dic_id
-                            left join hh_dictionary B on hh_userinfo.loc_city = B.dic_id
-                            left join hh_dictionary C on hh_userinfo.loc_district = C.dic_id 
-                            left join hh_dictionary D on hh_userinfo.home_province = D.dic_id 
-                            left join hh_dictionary E on hh_userinfo.home_city = E.dic_id 
-                            left join hh_dictionary F on hh_userinfo.home_district = F.dic_id 
-                            where userinfo_userid=?',[$user_id]);
-            if (!$personal) {
+        $userinfo=DB::select('select * from hh_userinfo where userinfo_userid=?',[$user_id]);
+        if (!$userinfo) {
+            $arr = array("code" => "114",
+                "msg" => "用户不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }else{
+            $user=DB::select('select user_phone,user_email from hh_user where user_id=?',[$user_id]);
+            if($user){
+                $userinfo[0]->user_phone=$user[0]->user_phone;
+                $userinfo[0]->user_email=$user[0]->user_email;
+                $arr = array("code" => "000",
+                    "data"=> $userinfo[0]
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }else{
                 $arr = array("code" => "114",
                     "msg" => "用户不存在"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
-            }else{
-                /*拼接头像图片地址*/
-                $personal[0]->userinfo_img='/app/storage/uploads/'.substr($personal[0]->userinfo_img,0,4).'-'.substr($personal[0]->userinfo_img,4,2).'-'.substr($personal[0]->userinfo_img,6,2).'/'.$personal[0]->userinfo_img;
-                $arr = array("code" => "000",
-                    "data"=> $personal[0]
-                );
-                return $callback . "(" . HHJson($arr) . ")";
             }
+        }
     }
     public function edit()
     {

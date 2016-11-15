@@ -42,24 +42,15 @@ data         {
                     userinfo_nickname      userinfo_nickname      //用户昵称
                     userinfo_sex           userinfo_sex           //性别
                     userinfo_age           userinfo_age           //年龄
-                    userinfo_email         userinfo_email         //邮箱
-                    userinfo_tel           userinfo_tel           //联系电话
-                    userinfo_img           userinfo_img           //用户头像
-                    loc_province           loc_province           //所在地序号
+                    loc_province           loc_province           
                     loc_city               loc_city
                     loc_district           loc_district
                     loc_address            loc_address
-                    home_province          home_province          //家乡序号
+                    home_province          home_province          
                     home_city              home_city
                     home_district          home_district
-                    cloc_province          cloc_province          //所在地名称
-                    cloc_city              cloc_city
-                    cloc_district          cloc_district
-                    cloc_address           cloc_address
-                    chome_province         chome_province         //家乡名称
-                    chome_city             chome_city
-                    chome_district         chome_district
-                                           
+                    userinfo_email         userinfo_email         //邮箱
+                    userinfo_tel           userinfo_tel           //联系电话
              }
 msg          ""
 )

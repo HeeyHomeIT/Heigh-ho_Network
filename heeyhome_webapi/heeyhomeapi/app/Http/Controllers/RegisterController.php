@@ -123,7 +123,8 @@ class RegisterController extends Controller
                     "msg"=>"注册成功",
                     "data"=>array(
                         "foreman_id"=>$foreman_id,
-                        "foreman_name"=>$foreman_phone
+                        "foreman_name"=>$foreman_phone,
+                        "shop_id"=>$shop_id
                     )
                 );
                 return $callback . "(" . HHJson($arr) . ")";

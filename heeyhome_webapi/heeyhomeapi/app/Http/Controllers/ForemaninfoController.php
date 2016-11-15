@@ -1,6 +1,6 @@
 <?php
 /**
- * TODO 用户信息接口
+ * TODO 工长信息接口
  * Created by PhpStorm.
  * User: pjw
  * Date: 2016/10/19
@@ -19,35 +19,36 @@ class ForemaninfoController extends Controller
     public function index(){
         //dd(session('user_id'));
         $callback=rq('callback');
-            $foreman_id=rq('foreman_id');
-            if(!$foreman_id){
-                $arr = array("code" => "112",
-                    "msg" => "用户id不能为空"
+        $foreman_id=rq('foreman_id');
+        if(!$foreman_id){
+            $arr = array("code" => "112",
+                "msg" => "用户id不能为空"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        /*检查用户是否存在*/
+        $userinfo=DB::select('select * from hh_userinfo where userinfo_userid=?',[$foreman_id]);
+        if (!$userinfo) {
+            $arr = array("code" => "114",
+                "msg" => "用户不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }else{
+            $user=DB::select('select foreman_phone,foreman_email from hh_foreman where foreman_id=?',[$foreman_id]);
+            if($user){
+                $userinfo[0]->user_phone=$user[0]->foreman_phone;
+                $userinfo[0]->user_email=$user[0]->foreman_email;
+                $arr = array("code" => "000",
+                    "data"=> $userinfo[0]
                 );
                 return $callback . "(" . HHJson($arr) . ")";
-            }
-        /*检查用户是否存在*/
-        $personal=DB::select('select hh_foremaninfo.*,A.content as cloc_province,B.content as cloc_city,C.content as cloc_district,D.content as chome_province,E.content as chome_city,F.content as chome_district from hh_foremaninfo 
-                            left join hh_dictionary A on hh_foremaninfo.loc_province = A.dic_id
-                            left join hh_dictionary B on hh_foremaninfo.loc_city = B.dic_id
-                            left join hh_dictionary C on hh_foremaninfo.loc_district = C.dic_id 
-                            left join hh_dictionary D on hh_foremaninfo.home_province = D.dic_id 
-                            left join hh_dictionary E on hh_foremaninfo.home_city = E.dic_id 
-                            left join hh_dictionary F on hh_foremaninfo.home_district = F.dic_id 
-                            where foremaninfo_userid=?',[$foreman_id]);
-            if (!$personal) {
+            }else{
                 $arr = array("code" => "114",
                     "msg" => "用户不存在"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
-            }else{
-                /*拼接头像图片地址*/
-                $personal[0]-> foremaninfo_img='/app/storage/uploads/'.substr($personal[0]->foremaninfo_img,0,4).'-'.substr($personal[0]->foremaninfo_img,4,2).'-'.substr($personal[0]->foremaninfo_img,6,2).'/'.$personal[0]->foremaninfo_img;
-                $arr = array("code" => "000",
-                    "data"=> $personal[0]
-                );
-                return $callback . "(" . HHJson($arr) . ")";
             }
+        }
     }
     public function edit()
     {
