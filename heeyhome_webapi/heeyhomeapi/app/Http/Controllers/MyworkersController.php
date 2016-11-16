@@ -39,10 +39,8 @@ class MyworkersController extends Controller
     }
     public function add(){
         $callback=rq('callback');
-        $user_id=rq('user_id');
         $cate=rq('category');
-        $shops=DB::select('select shop_id from hh_shop where shopper_id=?',[$user_id]);
-        $shop_id=$shops[0]->shop_id;
+        $shop_id=rq('shop_id');
         $userid=create_pid();
         $name=rq('name');
         $sex=rq('sex');
@@ -50,7 +48,6 @@ class MyworkersController extends Controller
         $birthplace=rq('birthplace');
         $worktime=rq('worktime');
         $wages=rq('wages');
-        $shopid=$shop_id;
         if(!$cate){
             $arr=array("code"=>"112",
                 "msg"=>"工种类别不能为空"
@@ -60,8 +57,9 @@ class MyworkersController extends Controller
         /*按工种分类插入员工信息 1：木工 2：水电工 3：瓦工 4：油漆工*/
         switch ($cate){
             case 1:
-                $insert=DB::insert('insert into hh_woodworker(wood_userid,wood_name,wood_sex,wood_age,wood_birthplace,wood_worktime,wood_wages,wood_shopid) values (?,?,?,?,?,?,?,?)',[$userid,$name,$sex,$age,$birthplace,$worktime,$wages,$shopid]);
+                $insert=DB::insert('insert into hh_woodworker(wood_userid,wood_name,wood_sex,wood_age,wood_birthplace,wood_worktime,wood_wages,wood_shopid) values (?,?,?,?,?,?,?,?)',[$userid,$name,$sex,$age,$birthplace,$worktime,$wages,$shop_id]);
                 if($insert){
+                    $update=DB::update('update hh_shop set shop_workernum=shop_workernum+1 where shop_id=?',[$shop_id]);
                     $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$userid,'default.jpg']);
                     $arr=array("code"=>"000",
                         "msg"=>"添加成功",
@@ -84,8 +82,9 @@ class MyworkersController extends Controller
                 }
                 break;
             case 2:
-                $insert=DB::insert('insert into hh_eleworker(ele_userid,ele_name,ele_sex,ele_age,ele_birthplace,ele_worktime,ele_wages,ele_shopid) values (?,?,?,?,?,?,?,?)',[$userid,$name,$sex,$age,$birthplace,$worktime,$wages,$shopid]);
+                $insert=DB::insert('insert into hh_eleworker(ele_userid,ele_name,ele_sex,ele_age,ele_birthplace,ele_worktime,ele_wages,ele_shopid) values (?,?,?,?,?,?,?,?)',[$userid,$name,$sex,$age,$birthplace,$worktime,$wages,$shop_id]);
                 if($insert){
+                    $update=DB::update('update hh_shop set shop_workernum=shop_workernum+1 where shop_id=?',[$shop_id]);
                     $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$userid,'default.jpg']);
                     $arr=array("code"=>"000",
                         "msg"=>"添加成功",
@@ -108,8 +107,9 @@ class MyworkersController extends Controller
                 }
                 break;
             case 3:
-                $insert=DB::insert('insert into hh_brickworker(brick_userid,brick_name,brick_sex,brick_age,brick_birthplace,brick_worktime,brick_wages,brick_shopid) values (?,?,?,?,?,?,?,?)',[$userid,$name,$sex,$age,$birthplace,$worktime,$wages,$shopid]);
+                $insert=DB::insert('insert into hh_brickworker(brick_userid,brick_name,brick_sex,brick_age,brick_birthplace,brick_worktime,brick_wages,brick_shopid) values (?,?,?,?,?,?,?,?)',[$userid,$name,$sex,$age,$birthplace,$worktime,$wages,$shop_id]);
                 if($insert){
+                    $update=DB::update('update hh_shop set shop_workernum=shop_workernum+1 where shop_id=?',[$shop_id]);
                     $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$userid,'default.jpg']);
                     $arr=array("code"=>"000",
                         "msg"=>"添加成功",
@@ -132,8 +132,9 @@ class MyworkersController extends Controller
                 }
                 break;
             case 4:
-                $insert=DB::insert('insert into hh_paintworker(paint_userid,paint_name,paint_sex,paint_age,paint_birthplace,paint_worktime,paint_wages,paint_shopid) values (?,?,?,?,?,?,?,?)',[$userid,$name,$sex,$age,$birthplace,$worktime,$wages,$shopid]);
+                $insert=DB::insert('insert into hh_paintworker(paint_userid,paint_name,paint_sex,paint_age,paint_birthplace,paint_worktime,paint_wages,paint_shopid) values (?,?,?,?,?,?,?,?)',[$userid,$name,$sex,$age,$birthplace,$worktime,$wages,$shop_id]);
                 if($insert){
+                    $update=DB::update('update hh_shop set shop_workernum=shop_workernum+1 where shop_id=?',[$shop_id]);
                     $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$userid,'default.jpg']);
                     $arr=array("code"=>"000",
                         "msg"=>"添加成功",
@@ -286,6 +287,7 @@ class MyworkersController extends Controller
     public function del(){
         $callback=rq('callback');
         $cate=rq('category');
+        $shop_id=rq('shop_id');
         $worker_id=rq('worker_id');
         if(!$cate){
             $arr=array("code"=>"112",
@@ -298,6 +300,8 @@ class MyworkersController extends Controller
             case 1:
                 $delete=DB::delete('delete from hh_woodworker where wood_userid=? ',[$worker_id]);
                 if($delete){
+                    $update=DB::update('update hh_shop set shop_workernum=shop_workernum-1 where shop_id=?',[$shop_id]);
+                    $portrait=DB::delete('delete from hh_portrait where portrait_userid=?',[$worker_id]);
                     $arr=array("code"=>"000",
                         "msg"=>"删除成功"
                     );
@@ -312,6 +316,8 @@ class MyworkersController extends Controller
             case 2:
                 $delete=DB::delete('delete from hh_eleworker where ele_userid=? ',[$worker_id]);
                 if($delete){
+                    $update=DB::update('update hh_shop set shop_workernum=shop_workernum-1 where shop_id=?',[$shop_id]);
+                    $portrait=DB::delete('delete from hh_portrait where portrait_userid=?',[$worker_id]);
                     $arr=array("code"=>"000",
                         "msg"=>"删除成功"
                     );
@@ -326,6 +332,8 @@ class MyworkersController extends Controller
             case 3:
                 $delete=DB::delete('delete from hh_brickworker where brick_userid=? ',[$worker_id]);
                 if($delete){
+                    $update=DB::update('update hh_shop set shop_workernum=shop_workernum-1 where shop_id=?',[$shop_id]);
+                    $portrait=DB::delete('delete from hh_portrait where portrait_userid=?',[$worker_id]);
                     $arr=array("code"=>"000",
                         "msg"=>"删除成功"
                     );
@@ -340,6 +348,8 @@ class MyworkersController extends Controller
             case 4:
                 $delete=DB::delete('delete from hh_paintworker where paint_userid=? ',[$worker_id]);
                 if($delete){
+                    $update=DB::update('update hh_shop set shop_workernum=shop_workernum-1 where shop_id=?',[$shop_id]);
+                    $portrait=DB::delete('delete from hh_portrait where portrait_userid=?',[$worker_id]);
                     $arr=array("code"=>"000",
                         "msg"=>"删除成功"
                     );

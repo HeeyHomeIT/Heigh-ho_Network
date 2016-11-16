@@ -109,7 +109,7 @@ msg           失败
 ###### Json数据格式
 ```
 data
-user_id             user_id        //工长id
+shop_id             shop_id        //店铺id
 category            category       //类别
 name                name           //工人姓名
 sex                 sex            //工人性别
@@ -235,6 +235,7 @@ msg           失败
 data
 worker_id           worker_id        //工人id
 category            category         //类别
+shop_id             shop_id          //店铺id
 
 callback            callback
 ```

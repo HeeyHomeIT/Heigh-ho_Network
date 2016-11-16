@@ -1,4 +1,4 @@
-# ShopimgController #
+# MyshopimgController #
 # upload()
 ## 上传店铺图片接口
 

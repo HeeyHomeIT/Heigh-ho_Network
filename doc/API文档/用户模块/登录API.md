@@ -46,6 +46,7 @@ data         {
                     user_phone      user_phone       
                     user_email      user_email
                     user_type       user_type       //用户类型
+                    nickname        nickname
              }
 msg          登录成功
 )

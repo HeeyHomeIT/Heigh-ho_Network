@@ -1,4 +1,4 @@
-# ShopController #
+# MyshopController #
 # index() #
 ## 读取我的店铺信息接口
 
@@ -43,8 +43,8 @@ data         {
                     shop_name            shop_name
                     authentication       authentication
                     opentime             opentime
-                    servicetag           servicetag
-                    servicearea          servicearea
+                    servicetag           servicetag 数组
+                    servicearea          servicearea 数组
                     shop_address         shop_address
                     shop_describe        shop_describe
                     shop_imgs            {
@@ -103,8 +103,8 @@ data
 shop_id                shop_id
 可选参数
 shop_name              shop_name              //店铺名称
-servicetag             servicetag             //服务标签风格
-servicearea            servicearea            //服务区域
+servicetag             servicetag 数组        //服务标签风格
+servicearea            servicearea 数组       //服务区域
 shop_address           shop_address           //店铺地址
 shop_describe          shop_describe          //店铺描述
 

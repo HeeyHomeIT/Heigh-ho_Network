@@ -38,6 +38,7 @@ class ForemaninfoController extends Controller
             if($user){
                 $userinfo[0]->foremaninfo_phone=$user[0]->user_phone;
                 $userinfo[0]->foremaninfo_email=$user[0]->user_email;
+                $userinfo[0]->servicearea=explode(',',$userinfo[0]->servicearea);
                 $arr = array("code" => "000",
                     "data"=> $userinfo[0]
                 );
@@ -86,7 +87,7 @@ class ForemaninfoController extends Controller
         if($foremaninfo_sex) $personal->foremaninfo_sex=$foremaninfo_sex;
         if($foremaninfo_age) $personal->foremaninfo_age=$foremaninfo_age;
         if($foremaninfo_worktime) $personal->worktime=$foremaninfo_worktime;
-        if($foremaninfo_servicearea) $personal->servicearea=$foremaninfo_servicearea;
+        if($foremaninfo_servicearea) $personal->servicearea=implode(',',$foremaninfo_servicearea);
         if($loc_province) $personal->loc_province=$loc_province;
         if($loc_city) $personal->loc_city=$loc_city;
         if($loc_district) $personal->loc_district=$loc_district;

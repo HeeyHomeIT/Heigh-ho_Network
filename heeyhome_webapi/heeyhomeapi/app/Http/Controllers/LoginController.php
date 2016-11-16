@@ -52,6 +52,17 @@ class LoginController extends Controller
             $login_time=date('Y-m-d H:i:s', time());
             $record= DB::insert('insert into hh_loginrecord(user_id,login_time,login_ip,login_browser,login_way,login_device) values(?,?,?,?,?,?)',[$pwd[0]->user_id,$login_time,$login_ip,$login_browser,$login_way,$login_device]);
             /*登录成功返回用户信息*/
+            if($pwd[0]->user_type==1){
+                $nickname=DB::select('select userinfo_nickname from hh_userinfo where userinfo_userid=?',[$pwd[0]->user_id]);
+                $pwd[0]->nickname=$nickname[0]->userinfo_nickname;
+            }else{
+                $nickname=DB::select('select foremaninfo_nickname from hh_foremaninfo where foremaninfo_userid=?',[$pwd[0]->user_id]);
+                if($nickname){
+                    $pwd[0]->nickname=$nickname[0]->foremaninfo_nickname;
+                }else{
+                    $pwd[0]->nickname=null;
+                }
+            }
             $arr=array("code"=>"000",
                 "msg"=>"登录成功",
                 "data"=>$pwd[0]

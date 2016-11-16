@@ -82,8 +82,9 @@ Route::group(['middleware'=>['web']],function (){
     /*收藏店铺*/
     Route::any('shop/collect', 'CollectshopController@collect');
     /*我的店铺*/
-    Route::any('personal/myshop', 'ShopController@index');
-    Route::any('personal/myshop/change', 'ShopController@edit');
+    Route::any('personal/myshop/stylelist', 'MyshopController@stylelist');
+    Route::any('personal/myshop', 'MyshopController@index');
+    Route::any('personal/myshop/change', 'MyshopController@edit');
     /*上传店铺图片*/
     Route::any('personal/myshop/uploadimg', 'ShopimgController@upload');
     Route::any('personal/myshop/imgsetface', 'ShopimgController@setface');
@@ -103,8 +104,8 @@ Route::group(['middleware'=>['web']],function (){
     Route::any('personal/collection/panorama', 'CollectimgController@index');
     /*我的收藏-店铺*/
     Route::any('personal/collection/shop', 'CollectshopController@index');
-
-
+    /*店铺列表*/
+    Route::any('shoplist', 'ShoplistController@index');
 });
 
 //Get access_token

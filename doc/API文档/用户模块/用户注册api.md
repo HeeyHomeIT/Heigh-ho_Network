@@ -40,6 +40,7 @@ code         000
 data         {
                     user_id         user_id        //ID
                     user_name       user_name      //用户名
+                    nickname        nickname       //昵称
              }
 msg          注册成功
 )

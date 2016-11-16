@@ -50,7 +50,7 @@ data         {
                     home_city                 home_city
                     home_district             home_district
                     worktime                  worktime                  //从业时间
-                    servicearea               servicearea               //服务区域
+                    servicearea               servicearea 数组          //服务区域
                     foremaninfo_email         foremaninfo_email         //邮箱
                     foremaninfo_phone         foremaninfo_phone         //联系电话
                     
@@ -117,7 +117,7 @@ home_province          home_province          //家乡
 home_city              home_city
 home_district          home_district
 worktime               worktime               //从业时间
-servicearea            servicearea            //服务区域
+servicearea            servicearea 数组       //服务区域
 
 callback               callback
 ```

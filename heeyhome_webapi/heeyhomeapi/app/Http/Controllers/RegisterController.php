@@ -53,14 +53,16 @@ class RegisterController extends Controller
                 $reg_time=date('Y-m-d H:i:s', time());
                 $time = DB::insert('insert into hh_time(time_userid,reg_time) values(?,?)', [$user_id, $reg_time]);
                 $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$user_id,'default.jpg']);
-                $sql = DB::insert('insert into hh_userinfo(userinfo_userid) values(?)',[$user_id]);
+                $nickname='heeyhome会员_'.substr($user_id,0,6);
+                $sql = DB::insert('insert into hh_userinfo(userinfo_userid,userinfo_nickname) values(?,?)',[$user_id,$nickname]);
                 if($sql){
                     $arr=array(
                         "code"=>"000",
                         "msg"=>"注册成功",
                         "data"=>array(
                             "user_id"=>$user_id,
-                            "user_name"=>$user_phone
+                            "user_name"=>$user_phone,
+                            "nickname"=>$nickname
                         )
                     );
                     return $callback . "(" . HHJson($arr) . ")";

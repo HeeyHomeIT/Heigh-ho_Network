@@ -11,7 +11,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 
-class ShopimgController extends Controller
+class MyshopimgController extends Controller
 {
     public function upload(){
         $callback=rq('callback');
@@ -47,7 +47,7 @@ class ShopimgController extends Controller
             }
             $is = $file -> move(app_path().'/storage/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
             if($is){
-                $insert=DB::insert('insert into hh_shopimg($shop_id,$shop_img) values (?,?)',[$shop_id,$filename]);
+                $insert=DB::insert('insert into hh_shop_img($shop_id,$shop_img) values (?,?)',[$shop_id,$filename]);
                 $path='/app/storage/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
                 $arr = array("code" => "000",
                     "msg" => "上传成功",
@@ -81,11 +81,11 @@ class ShopimgController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         /*将该店铺id下的所有图片的is_face字段设置为2*/
-        $update=DB::update('update hh_shopimg set is_face=2 where shop_id=?',[$shop_id]);
+        $update=DB::update('update hh_shop_img set is_face=2 where shop_id=?',[$shop_id]);
         /*将传递过来的图片id的is_face字段设置为1*/
-        $set=DB::update('update hh_shopimg set is_face=1 where id=?',[$img_id]);
+        $set=DB::update('update hh_shop_img set is_face=1 where id=?',[$img_id]);
         if($set){
-            $img=DB::select('select shop_img from hh_shopimg where id=?',[$img_id]);
+            $img=DB::select('select shop_img from hh_shop_img where id=?',[$img_id]);
             $img_path=$img[0]->shop_img;
             $path='/app/storage/uploads/'.substr( $img_path,0,4).'-'.substr( $img_path,4,2).'-'.substr( $img_path,6,2).'/'. $img_path;
             $arr = array("code" => "000",
@@ -111,7 +111,7 @@ class ShopimgController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $address=DB::delete('delete from hh_shopimg where id=?',[$img_id]);
+        $address=DB::delete('delete from hh_shop_img where id=?',[$img_id]);
         if($address){
             $arr = array("code" => "000",
                 "msg" => "删除成功"
