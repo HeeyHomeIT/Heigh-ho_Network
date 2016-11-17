@@ -2,9 +2,13 @@
 	position: relative
 }
 
+.improvement_content {
+	width: 1190px;
+	margin: 0 auto
+}
+
 .improvement_process h3 {
     border-left: 3px solid #EEC988;
-    margin-left: 360px;
     padding-left: 12px;
     font-size: 20px;
     color: #4B4948;
@@ -20,7 +24,7 @@
 }
 
 .process_picture {
-	margin: 70px 398px 0 405px;
+	margin-left: 70px;
 	width: 1117px;
 	height: 487px
 }

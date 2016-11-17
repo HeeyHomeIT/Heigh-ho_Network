@@ -2,8 +2,13 @@
 	position: relative
 }
 
+.appointment_content {
+	width: 1190px;
+	margin: 0 auto
+}
+
 .appointment_decoration .button_decoration {
-	margin: 124px 757px 88px 758px
+	margin: 124px 392px 88px 392px
 }
 
 .appointment_decoration .button_decoration .btn_decoration {
@@ -27,6 +32,7 @@
 
 .appointment_decoration .title {
 	background: url(../img/bg-decoration.png) no-repeat;
+	position: relative;
 	margin: 0 auto
 }
 
@@ -34,7 +40,8 @@
 	width: 320px;
 	height: 14px;
 	position: absolute;
-	left: 500px;
+	left: 170px;
+	top: 5px;
 	background: url(../img/line-left.png) no-repeat
 }
 
@@ -42,8 +49,8 @@
 	width: 320px;
 	height: 14px;
 	position: absolute;
-	right: 500px;
-	margin-top: -22px;
+	right: 170px;
+	top: 5px;
 	background: url(../img/line-right.png) no-repeat
 }
 
