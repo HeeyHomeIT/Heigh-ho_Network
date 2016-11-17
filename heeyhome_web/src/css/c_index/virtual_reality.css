@@ -7,7 +7,7 @@
 }
 
 .virtual_content {
-	width: 1190px;
+	width: 1205px;
 	margin: 0 auto
 }
 
@@ -85,11 +85,11 @@
 }
 
 .box_picture_1 .pic_icon {
-	margin: 130px 165px 30px 164px
+	margin: 130px 165px 0px 164px
 }
 
 .box_picture_2 .pic_icon {
-	margin: 225px 165px 130px 164px
+	margin: 225px 165px 0px 164px
 }
 
 .pic_content .pic_icon img {
@@ -98,7 +98,8 @@
 }
 
 .box_picture:hover .pic_content {
-	opacity: 0.6
+	opacity: 0.6;
+	transition: all .3s
 }
 
 .box_picture .pic_content .pic_title h3{
@@ -112,20 +113,18 @@
 	border: 0;
 	border-radius: 3px;
 	width: 60px;
-	height: 8px;
+	height: 2px;
 	margin-left: 165px;
 	background-color: #EEC988
 }
 
 .box_picture .pic_content .pic_name {
 	width: 80px;
-	margin: 30px 0 0 160px;
+	margin: 20px 0 0 160px;
 	font-family: FZLTHJW;
 	text-align: center;
 	font-size: 20px;
 	color: #FFFFFF
 }
 
-.vr_picture .box_picture_1 .pic_content .pic_name {
-	margin-top: 20px;
-}
+
