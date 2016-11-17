@@ -29,21 +29,37 @@
 }
 
 .vr_picture .box_picture_1 {
+	overflow: hidden;
 	width: 389px;
 	height: 306px
 }
 
-.vr_picture .box_picture_1>img {
+.vr_picture .box_picture_1 a  {
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	height: 100%
+}
+
+.vr_picture .box_picture_1 a>img  {
 	width: 100%;
 	height: 100%
 }
 
 .vr_picture .box_picture_2 {
+	overflow: hidden;
 	width: 389px;
 	height: 513px
 }
 
-.vr_picture .box_picture_2>img {
+.vr_picture .box_picture_2 a  {
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	height: 100%
+}
+
+.vr_picture .box_picture_2 a>img  {
 	width: 100%;
 	height: 100%
 }
@@ -59,6 +75,7 @@
 
 .box_picture {
 	position: relative;
+	overflow: hidden;
 	text-align: center;
 	margin-bottom: 18px
 }
@@ -66,6 +83,7 @@
 .pic_content {
 	position: absolute;
 	top: 0;
+	z-index: -1;
 	left: 0;
 	width: 100%;
 	height: 100%;
@@ -93,7 +111,22 @@
 	height: 100%
 }
 
-.box_picture:hover .pic_content {
+.box_picture a>img {
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
+}
+
+.box_picture:hover a>img {
+	-webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1)
+}
+
+.box_picture a:hover .pic_content {
 	opacity: 0.6;
     -webkit-transition: -webkit-transform .3s ease-out,opacity .3s ease-out;
     transition: transform .3s ease-out,opacity .3s ease-out;
