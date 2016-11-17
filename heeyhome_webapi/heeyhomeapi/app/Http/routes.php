@@ -105,6 +105,7 @@ Route::group(['middleware'=>['web']],function (){
     /*我的收藏-店铺*/
     Route::any('personal/collection/shop', 'CollectshopController@index');
     /*店铺列表*/
+    Route::any('shoplist/gettags', 'ShoplistController@gettags');
     Route::any('shoplist', 'ShoplistController@index');
 });
 

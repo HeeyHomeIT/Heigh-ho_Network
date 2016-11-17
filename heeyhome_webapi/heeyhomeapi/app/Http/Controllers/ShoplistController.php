@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\DB;
 
 class ShoplistController extends Controller
 {
+    public function gettags(){
+        $callback=rq('callback');
+        $serviceareas=DB::select('select servicearea from hh_servicearea');
+        $workernum=DB::select('select workernum from hh_shop_workernum');
+        $servicetags=DB::select('select stylename from hh_shop_style');
+        $shoptime=DB::select('select shop_time from hh_shop_time');
+        $arr = array("code" => "000",
+            "data" => array(
+                "servicearea"=>$serviceareas,
+                "workernum"=>$workernum,
+                "servicetag"=>$servicetags,
+                "shoptime"=>$shoptime
+            )
+        );
+        return $callback . "(" . HHJson($arr) . ")";
+    }
     public function index(){
         $callback=rq('callback');
         $select=DB::select('select * from hh_shop');
