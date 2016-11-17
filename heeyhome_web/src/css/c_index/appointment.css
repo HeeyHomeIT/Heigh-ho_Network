@@ -20,9 +20,10 @@
 	background-color: #EEC988;
 	opacity: 100%;
 	border-radius: 4px;
-	-webkit-box-shadow: 0px 10px 15px #939393;
-	-moz-box-shadow: 0px 10px 15px #939393;
-	box-shadow: 0px 10px 15px #939393;
+	-webkit-box-shadow: 3px 5px 20px #939393;
+    -moz-box-shadow: 3px 5px 20px #939393;
+    box-shadow: 3px 5px 20px #939393;
+	text-shadow: #000 4px 4px 5px;
 	font-family: FZLTZHK;
 	font-size: 40px;
 	color: #FFFFFF;
@@ -32,7 +33,11 @@
 }
 
 .appointment_decoration .button_decoration .btn_decoration:hover {
-	opacity: 0.8
+	transition: all 0.3s;
+	-webkit-box-shadow: 3px 5px 20px #666;
+    -moz-box-shadow: 3px 5px 20px #666;
+    box-shadow: 3px 5px 20px #666
+	
 }
 
 .appointment_decoration .title {
