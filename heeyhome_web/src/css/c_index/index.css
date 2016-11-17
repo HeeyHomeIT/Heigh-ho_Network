@@ -47,6 +47,19 @@ body {
     color: #999
 }
 
+#topLogin .login, #topLogin .register {
+    padding: 0 5px
+}
+
+#topLogin .login {
+    /*margin-left: 5px;*/
+    color: #EEC988
+}
+
+#topLogin .register:hover {
+    color: #EEC988
+}
+
 #topNav {
     float: right
 }
@@ -80,6 +93,133 @@ body {
     color: #eec988
 }
 
+#topNav li>div {
+    position: absolute;
+    top: 28px;
+    height: 112px;
+    right: -1px;
+    overflow: hidden;
+    -moz-transition: .2s height ease-in-out;
+    -webkit-transition: .2s height ease-in-out;
+    -o-transition: .2s height ease-in-out;
+    transition: .2s height ease-in-out
+}
+
+#c_myhh>div {
+	left: -1px;
+    border: 1px solid #ddd;
+    line-height: 20px;
+    background: #fff;
+    z-index: 1;
+    width: 162px;
+    padding: 0 15px
+}
+
+#topNav #c_myhh>a {
+    color: #999
+}
+
+#topNav #c_myhh>a:after {
+	content: "";
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid #999;
+    display: inline-block;
+    top: 12px;
+    right: 8px;
+    position: absolute
+}
+
+#topNav #c_myhh>a:hover {
+	transition: all .3s;
+	color: #EEC988
+}
+
+#topNav #c_myhh>a:hover:after {
+    transform: rotate(180deg);
+    transition: transform 0.3s
+}
+
+.userinfo {
+	padding: 15px 0 8px
+}
+
+.userinfo>div, .userinfo p {
+    float: left
+}
+
+.userinfo p {
+	margin-top: 8px
+}
+
+.mypic {
+    background: url(../img/BfCGPi.png) no-repeat 0 -175px
+}
+
+.myno {
+    background-position: 0 -248px
+}
+
+#c_myhh .mypic, #c_myhh .myno {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px
+}
+
+#c_myhh p a {
+    color: #0185c6
+}
+
+#topNavPanel #c_myhh p a:hover {
+    color: #EEC988;
+}
+
+.myinfo {
+	position: relative
+}
+
+.myinfo:before {
+    content: "";
+    background-color: #fff;
+    position: absolute;
+    left: 67px;
+    top: 0;
+    height: 5px;
+    width: 3px
+}
+
+.myinfo span {
+    float: left;
+    display: block;
+    width: 65px;
+    text-align: right
+}
+
+.myinfo span:first-child {
+    border-right: 1px solid #ddd;
+    text-align: left
+}
+
+.myinfo span:first-child:before {
+    position: absolute;
+    content: "";
+    background-color: #fff;
+    left: 68px;
+    height: 5px;
+    width: 2px;
+    top: 37px
+}
+
+.myinfo a {
+    line-height: 20px;
+    display: block
+}
+#topNavPanel .myinfo span>a:hover {
+    color: #EEC988;
+}
+
 #c_news>a em {
     display: inline-block;
     width: 19px;
@@ -107,7 +247,7 @@ body {
     clear: both;
     line-height: 0;
     height: 0;
-    visibility: hidden;
+    visibility: hidden
 }
 
 .logo {
@@ -280,7 +420,7 @@ body {
     background: #005bb5
 }
 
-#pageheader .rightLogin {
+/*#pageheader .rightLogin {
 	margin: 36px 0px 0 28px;
     position: relative
 }
@@ -301,6 +441,26 @@ body {
 #pageheader .rightLogin>a.register {
 	background: #eecf88;
 	color:#fff
+}*/
+
+#pageheader .rightPicture {
+    margin: 12px 0px 0 28px;
+    position: relative
+}
+
+#pageheader .rightPicture>a {
+	height: 103px;
+    cursor: default
+}
+
+#pageheader .rightPicture>a>span {
+	position: absolute;
+    font-size: 16px;
+    color: #EEC988;
+    bottom: 20px;
+    left: 14px;
+    font-weight: 700;
+    text-shadow: #fff 1px 0 0,#fff 0 1px 0,#fff -1px 0 0,#fff 0 -1px 0
 }
 
 #menuNavOuter {
