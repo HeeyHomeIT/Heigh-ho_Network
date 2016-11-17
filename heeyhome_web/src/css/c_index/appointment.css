@@ -23,7 +23,7 @@
 	-webkit-box-shadow: 3px 5px 20px #939393;
     -moz-box-shadow: 3px 5px 20px #939393;
     box-shadow: 3px 5px 20px #939393;
-	text-shadow: #000 4px 4px 5px;
+	text-shadow: #666 4px 4px 5px;
 	font-family: FZLTZHK;
 	font-size: 40px;
 	color: #FFFFFF;
@@ -34,6 +34,7 @@
 
 .appointment_decoration .button_decoration .btn_decoration:hover {
 	transition: all 0.3s;
+	text-shadow: #000 4px 4px 5px;
 	-webkit-box-shadow: 3px 5px 20px #666;
     -moz-box-shadow: 3px 5px 20px #666;
     box-shadow: 3px 5px 20px #666
