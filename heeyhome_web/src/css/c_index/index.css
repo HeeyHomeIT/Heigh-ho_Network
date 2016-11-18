@@ -496,7 +496,12 @@ body {
     line-height: 30px;
     font-size: 18px;
     vertical-align: middle;
+    text-decoration:none;
     position: relative
+}
+
+#menuNav li>a:hover {
+    color: #eecf88
 }
 
 #menuNav .current {
