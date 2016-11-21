@@ -111,3 +111,29 @@ a:hover {
 .after_eec988:after {
 	border-top: 8px solid #EEC988 !important;
 }
+
+label.error{
+    position: absolute;
+    padding: 0 8px;
+    line-height: 30px;
+    color: #c33;
+    cursor: text;
+ 	visibility: hidden; 
+    opacity: 0;
+    font-size: 14px;
+    -ms-filter: "alpha(Opacity=0)";
+    -webkit-transform: translate(20px,0);
+    -ms-transform: translate(20px,0);
+    transform: translate(20px,0);
+    -webkit-transition: .4s ease-out;
+    transition: .4s ease-out;
+}
+
+label.error.whether{
+    visibility: visible;
+    opacity: 1;
+    -ms-filter: "alpha(Opacity=100)";
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    transform: translate(0,0);
+}

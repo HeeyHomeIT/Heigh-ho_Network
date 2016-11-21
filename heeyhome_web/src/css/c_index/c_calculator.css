@@ -44,30 +44,28 @@ body #calcontainer {
 }
 
 #calcontent .cal1>div.areadiv {
-	width: 132px;
+	width: 135px;
     height: 37px;
     position: relative;
-   	margin-left: 20px;
-   	margin-top: 20px;
+    margin: 20px 0 10px 20px;
     border: 1px solid #636363
 }
 
 #calcontent .cal1>div.areadiv>input {
-    width: 130px;
-    position: absolute;
-    border: 0;
-    background: transparent;
-    outline: medium;
+  	display: inline-block;
+    width: 110px;
     height: 35px;
+    border: 0;
+   	font-size: 14px;
     line-height: 35px;
-    font-size: 14px;
-    text-indent: 13px;
-    letter-spacing: 1px
+    background: transparent;
+    position: relative;
+    text-indent: 30px
 }
 
 
 #calcontent .cal1>div.areadiv>em {
-    margin-top: 7px;
+    margin-top: -32px;
     margin-right: 7px;
     width: 21px;
     height: 21px;
@@ -75,13 +73,27 @@ body #calcontainer {
 }
 
 #calcontent .cal1>div.areadiv>span {
-    width: 60px;
+    width: 210px;
     height: 21px;
-    right: -75px;
+    right: -225px;
     font-size: 14px;
     vertical-align: middle;
     position: absolute;
     top: 7px
+}
+
+.itemClickError {
+    border-color: #ff3f13!important;
+    transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
+}
+
+#calcontent .cal1>div.areadiv>label.error {
+    top: 2px;
+    right: -500px;
 }
 
 #calcontent .cal1>ul li {
@@ -122,6 +134,16 @@ body #calcontainer {
     top: 14px
 }
 
+.item_hover_0:after {
+	transform: rotate(0deg);
+    transition: transform 0.3s
+}
+
+.item_hover_180:after {
+	transform: rotate(180deg);
+    transition: transform 0.3s
+}
+
 #calcontent .cal1>div.housediv ul,#calcontent .cal2>div.roomsdiv ul {
     position: absolute;
     width: 100%;
@@ -132,7 +154,14 @@ body #calcontainer {
     z-index: 1;
     left: -1px;
     box-sizing: content-box;
-    top: 33px
+    top: 35px
+}
+
+#calcontent .cal1>div.housediv ul li,#calcontent .cal2>div.roomsdiv ul li{
+    transition: all .5s ease 0s;
+    -webkit-transition: all .5s ease 0s;
+    -moz-transition: all .5s ease 0s;
+    -ms-transition: all .5s ease 0s
 }
 
 #calcontent .cal1>div.housediv ul li:hover,#calcontent .cal2>div.roomsdiv ul li:hover {
@@ -144,6 +173,7 @@ body #calcontainer {
     font-size: 14px;
     padding-left: 20px;
     height: 21px;
+    padding-bottom: 10px;
     line-height: 21px
 }
 
