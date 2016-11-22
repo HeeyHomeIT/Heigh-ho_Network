@@ -69,7 +69,7 @@ class UserinfoController extends Controller
         }
         $userinfo_nickname=rq('nickname');
         $userinfo_realname=rq('realname');
-        $usrinfo_sex=rq('sex');
+        $userinfo_sex=rq('sex');
         $userinfo_age=rq('age');
         $loc_province=rq('loc_province');
         $loc_city=rq('loc_city');
@@ -80,12 +80,12 @@ class UserinfoController extends Controller
         $home_district=rq('home_district');
         if($userinfo_nickname) $personal->userinfo_nickname=$userinfo_nickname;
         if($userinfo_realname) $personal->userinfo_realname=$userinfo_realname;
-        if($usrinfo_sex) $personal->userinfo_sex=$usrinfo_sex;
+        if($userinfo_sex) $personal->userinfo_sex=$userinfo_sex;
         if($userinfo_age) $personal->userinfo_age=$userinfo_age;
         if($loc_province) $personal->loc_province=$loc_province;
         if($loc_city) $personal->loc_city=$loc_city;
         if($loc_district) $personal->loc_district=$loc_district;
-        if($loc_address) $personal->loc_province=$loc_address;
+        if($loc_address) $personal->loc_address=$loc_address;
         if($home_province) $personal->home_province=$home_province;
         if($home_city) $personal->home_city=$home_city;
         if($home_district) $personal->home_district=$home_district;

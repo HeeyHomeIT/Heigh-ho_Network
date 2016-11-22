@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 class IDCardController extends Controller
@@ -21,7 +22,15 @@ class IDCardController extends Controller
         $bankcard=rq('bankcard');    //银行卡号
         $phone=rq('phone');
         $key='a055f564286545fd8b2735c63c2f70de';
-        $captcha=rq('callback');
+        $captcha=rq('captcha');
+        $host = "http://jisubank4.market.alicloudapi.com";
+        $path = "/bankcardverify4/verify";
+        $method = "GET";
+        $appcode = "e52017c3b93f46588f93c5745141249d";
+        $headers = array();
+        array_push($headers, "Authorization:APPCODE " . $appcode);
+        $querys = "bankcard=".$bankcard."&idcard=".$idcard."&mobile=".$phone."&realname=".$name;
+        $url = $host . $path . "?" . $querys;
         /*检查短信验证码*/
         if (!smsverify($phone, $captcha)) {
             $arr = array("code" => "118",
@@ -33,28 +42,34 @@ class IDCardController extends Controller
         }
         if ((strtotime($dxyzmsj) + 1200) > time()) {
             $curl = curl_init();
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => "http://apis.haoservice.com/creditop/BankCardQuery/QryBankCardBy4Element?accountNo=".$bankcard."&name=".$name."&idCardCode=".$idcard."&bankPreMobile=".$phone."&key=".$key,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "GET",
-            ));
-
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-            curl_close($curl);
-
-            if ($err) {
-                return "cURL Error #:" . $err;
-            } else {
-                $array = json_decode($response, true);
-                $arr = array('code' => $array['error_code'], 'msg' => $array['result']);
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_FAILONERROR, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+//            curl_setopt($curl, CURLOPT_HEADER, true);
+            if (1 == strpos("$".$host, "https://"))
+            {
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+            }
+            $json_data =curl_exec($curl);
+            $array = json_decode($json_data, true);
+            //var_dump($json_data);
+            if ($array['status'] == '0') {
+                if($array['result']['verifystatus']==0) {
+                    $sql=DB::insert('insert into hh_verify (verify_userid,verify_name,verify_idcard,verify_bankcard,verify_phone) values(?,?,?,?,?)',[$user_id,$name,$idcard,$bankcard,$phone]);
+                    $arr = array('code' => '000', 'msg' => '信息校验成功', 'data' => array("bankcard" => $bankcard, "realname" => $name,"idcard"=>$idcard,"mobile"=>$phone));
+                    return $callback . "(" . HHJson($arr) . ")";
+                }else{
+                    $arr = array('code' => '111', 'msg' => $array['result']['verifymsg'], 'data' => array("bankcard" => $bankcard, "realname" => $name,"idcard"=>$idcard,"mobile"=>$phone));
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+            }
+            else {
+                $arr = array('code' => $array['status'], 'msg' => $array['msg']);
                 return $callback . "(" . HHJson($arr) . ")";
             }
-
         } else {
             $arr = array("code" => "119",
                 "msg" => "验证码超时"

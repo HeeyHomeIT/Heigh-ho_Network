@@ -37,6 +37,8 @@ class MyshopController extends Controller
             $select[0]->shop_imgs=$img;
             $select[0]->servicetag=explode(',',$select[0]->servicetag);
             $select[0]->servicearea=explode(',',$select[0]->servicearea);
+            $shopcount=DB::select('select count(id) as num from hh_collection where iscollected_id=? and collect_type=?',[$shop_id,'shop']);
+            $select[0]->collectnum=$shopcount[0]->num;
             $arr = array("code" => "000",
                 "data" => $select[0]
             );
@@ -77,7 +79,8 @@ class MyshopController extends Controller
         if($shop_describe) $shop->shop_describe=$shop_describe;
         if($shop->save()){
             $arr = array("code" => "000",
-                "msg" => "保存成功"
+                "msg" => "保存成功",
+                "data"=>$shop
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{

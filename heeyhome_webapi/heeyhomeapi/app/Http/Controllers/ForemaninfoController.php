@@ -91,13 +91,14 @@ class ForemaninfoController extends Controller
         if($loc_province) $personal->loc_province=$loc_province;
         if($loc_city) $personal->loc_city=$loc_city;
         if($loc_district) $personal->loc_district=$loc_district;
-        if($loc_address) $personal->loc_province=$loc_address;
+        if($loc_address) $personal->loc_address=$loc_address;
         if($home_province) $personal->home_province=$home_province;
         if($home_city) $personal->home_city=$home_city;
         if($home_district) $personal->home_district=$home_district;
         if($personal->save()){
             $arr = array("code" => "000",
-                "msg" => "保存成功"
+                "msg" => "保存成功",
+                "data"=>$personal
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{

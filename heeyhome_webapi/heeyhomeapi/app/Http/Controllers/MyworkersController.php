@@ -48,6 +48,12 @@ class MyworkersController extends Controller
         $birthplace=rq('birthplace');
         $worktime=rq('worktime');
         $wages=rq('wages');
+        if(!$shop_id){
+            $arr=array("code"=>"112",
+                "msg"=>"店铺id不能为空"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
         if(!$cate){
             $arr=array("code"=>"112",
                 "msg"=>"工种类别不能为空"
