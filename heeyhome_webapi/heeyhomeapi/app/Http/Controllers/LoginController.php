@@ -55,12 +55,15 @@ class LoginController extends Controller
             if($pwd[0]->user_type==1){
                 $nickname=DB::select('select userinfo_nickname from hh_userinfo where userinfo_userid=?',[$pwd[0]->user_id]);
                 $pwd[0]->nickname=$nickname[0]->userinfo_nickname;
-            }else{
+            }
+            if($pwd[0]->user_type==2){
+                $shop_id=DB::select('select shop_id from hh_shop where shopper_id=?',[$pwd[0]->user_id]);
+                $pwd[0]->shop_id=$shop_id[0]->shop_id;
                 $nickname=DB::select('select foremaninfo_nickname from hh_foremaninfo where foremaninfo_userid=?',[$pwd[0]->user_id]);
                 if($nickname){
                     $pwd[0]->nickname=$nickname[0]->foremaninfo_nickname;
-                }else{
-                    $pwd[0]->nickname=null;
+                }else {
+                    $pwd[0]->nickname = null;
                 }
             }
             $arr=array("code"=>"000",
