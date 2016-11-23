@@ -1,7 +1,0 @@
-# file_url
-/heeyhome_webapi/heeyhomeapi/.idea/*
-/.idea/*
-!/heeyhome_webapi/heeyhomeapi/vendor/phpunit/*
-!/heeyhome_webapi/heeyhomeapi/vendor/*
-# file
-!.gitignore
