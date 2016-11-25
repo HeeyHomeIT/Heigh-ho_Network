@@ -100,14 +100,14 @@ class PortraitController extends Controller
             $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
             /*上传图片大小不能超过2M*/
             if($size>2*1024*1024) {
-                $arr = array("code" => "122",
+                $arr = array("code" => "123",
                     "msg" => "图片上传出错,不能大于2M"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
-            $is = $file -> move(app_path().'/storage/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
+            $is = $file -> move('/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
             if($is){
-                $path='/app/storage/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                $path='/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
                 $update=DB::update('update hh_portrait set portrait_img=? where portrait_userid=?',[$path,$user_id]);
                 $arr = array("code" => "000",
                     "msg" => "上传成功",

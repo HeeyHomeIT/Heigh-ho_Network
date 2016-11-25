@@ -18,7 +18,6 @@ class SmsController extends Controller
         $callback=rq('callback');
         $apikey = "b3f36a2994f1a2abda18ab1bda66cf8e"; //apikey(https://www.yunpian.com)登陆官网后获取
         $mobile = rq('phone'); //手机号
-        $user_id=rq('user_id');
         $text = "【嘿吼网】您的验证码为#code#,请不要告诉别人~";
         if(!$mobile){
             $arr = array("code" => "101",
@@ -67,7 +66,7 @@ class SmsController extends Controller
             if ($array['code'] == '0') {
                 $yzmsj = date("Y-m-d H:i:s", time());
                 $arr = array('code' => '000',  'msg' => '验证码发送成功','data' => array('phone' => $array['mobile'], "yzmsj" => $yzmsj));
-                $sql=DB::insert('insert into hh_sms (sms_userid,record_key,record_type,sms,smstime) values(?,?,?,?,?)',[$user_id,$array['mobile'],'phone_verify',$mobileCode,$yzmsj]);
+                $sql=DB::insert('insert into hh_sms (record_key,record_type,sms,smstime) values(?,?,?,?)',[$array['mobile'],'phone_verify',$mobileCode,$yzmsj]);
                 return $callback . "(" . HHJson($arr) . ")";
             }
             else {

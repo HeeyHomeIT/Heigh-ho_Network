@@ -59,9 +59,9 @@ Route::group(['middleware' => ['web']], function () {
     /*确认账号*/
     Route::any('verification/confirm', 'AccountconfirmController@confirm');
     /*手机验证*/
-    Route::any('verification/phoneverify/verify', 'PhoneVerifyController@verify');
+    Route::any('verification/phoneverify', 'PhoneVerifyController@verify');
     /*邮箱验证*/
-    Route::any('verification/emailverify/verify', 'EmailVerifyController@verify');
+    Route::any('verification/emailverify', 'EmailVerifyController@verify');
     /*重置密码*/
     Route::any('resetpassword', 'ResetPasswordController@resetpassword');
     /*收货地址*/
@@ -109,4 +109,7 @@ Route::group(['middleware' => ['web']], function () {
     /*店铺列表*/
     Route::any('shoplist/gettags', 'ShoplistController@gettags');
     Route::any('shoplist', 'ShoplistController@index');
+    /*材料商申请价格变动*/
+    Route::any('material/category', 'MaterialController@category');
+
 });

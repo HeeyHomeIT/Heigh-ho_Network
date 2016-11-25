@@ -45,10 +45,11 @@ class MyshopimgController extends Controller
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
-            $is = $file -> move(app_path().'/storage/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
+            $is = $file -> move(app_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
             if($is){
-                $insert=DB::insert('insert into hh_shop_img($shop_id,$shop_img) values (?,?)',[$shop_id,$filename]);
-                $path='/app/storage/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                $path='/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                $insert=DB::insert('insert into hh_shop_img($shop_id,$shop_img) values (?,?)',[$shop_id,$path]);
+
                 $arr = array("code" => "000",
                     "msg" => "上传成功",
                     "data"=>array(
@@ -87,11 +88,10 @@ class MyshopimgController extends Controller
         if($set){
             $img=DB::select('select shop_img from hh_shop_img where id=?',[$img_id]);
             $img_path=$img[0]->shop_img;
-            $path='/app/storage/uploads/'.substr( $img_path,0,4).'-'.substr( $img_path,4,2).'-'.substr( $img_path,6,2).'/'. $img_path;
             $arr = array("code" => "000",
                 "data" => array(
                     "img_id"=>$img_id,
-                    "img_path"=>$path
+                    "img_path"=>$img_path
                 )
             );
             return $callback . "(" . HHJson($arr) . ")";

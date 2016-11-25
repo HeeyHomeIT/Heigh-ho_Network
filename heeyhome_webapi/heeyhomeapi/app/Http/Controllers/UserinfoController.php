@@ -35,8 +35,8 @@ class UserinfoController extends Controller
         }else{
             $user=DB::select('select user_phone,user_email from hh_user where user_id=?',[$user_id]);
             if($user){
-                $userinfo[0]->user_phone=$user[0]->user_phone;
-                $userinfo[0]->user_email=$user[0]->user_email;
+                $userinfo[0]->userinfo_phone=$user[0]->user_phone;
+                $userinfo[0]->userinfo_email=$user[0]->user_email;
                 $arr = array("code" => "000",
                     "data"=> $userinfo[0]
                 );

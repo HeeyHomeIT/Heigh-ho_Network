@@ -18,7 +18,6 @@ class MailController extends Controller
     public function emailsend(){
         $callback=rq('callback');
         $email=rq('email');
-        $user_id=rq('user_id');
         /*检查邮箱格式*/
         if(!preg_match("/^([a-z0-9+_]|\\-|\\.)+@(([a-z0-9_]|\\-)+\\.)+[a-z]{2,6}\$/i",$email)){
             $arr = array("code" => "128",
@@ -26,13 +25,8 @@ class MailController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        if(!$user_id){
-            $arr = array("code" => "112",
-                "msg" => "用户id不能为空"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
-        $sql=DB::select('select max(smstime) as smstime from hh_sms where sms_userid=? and record_key=?',[$user_id,$email]);
+
+        $sql=DB::select('select max(smstime) as smstime from hh_sms where record_key=?',[$email]);
         //dd($sql);
         if($sql){
             $lastsendtime=$sql[0]->smstime;
