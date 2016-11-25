@@ -1,13 +1,13 @@
-# CollectshopController #
-# collect()
-## 收藏店铺接口
+# AccountconfirmController #
+# account() #
+## 确认账号接口
 
 
 ### 接口地址
 
 
 ```
-.../public/shop/collect
+.../verification/confirm
 ```
 
 ### 接口格式
@@ -19,16 +19,16 @@
 ```
 
 ```
-.../public/shop/collect
+.../verification/confirm
 ```
 
 ###### Json数据格式
 ```
 data
-user_id           user_id        //用户id
-shop_id           shop_id        //店铺id
+user_id             user_id
+account             account
 
-callback          callback
+callback            callback
 ```
 
 ### 回调
@@ -51,9 +51,8 @@ data          ""
 msg           失败
 )
 ```
+
 ###### Code值含义
 
 ```
-000           收藏成功
-111           收藏失败
 ```

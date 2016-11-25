@@ -7,7 +7,7 @@
 
 
 ```
-.../public/personal/myshop
+.../personal/myshop
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/personal/myshop
+.../personal/myshop
 ```
 
 ###### Json数据格式
@@ -81,7 +81,7 @@ msg           失败
 
 
 ```
-.../public/personal/myshop/change
+.../personal/myshop/change
 ```
 
 ### 接口格式
@@ -93,7 +93,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/myshop/change
+.../personal/myshop/change
 ```
 
 ###### Json数据格式

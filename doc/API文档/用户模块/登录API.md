@@ -5,7 +5,7 @@
 ### 接口地址
 
 ```
-.../public/login/login
+.../login/login
 ```
 
 ### 接口格式
@@ -17,14 +17,16 @@
 ```
 
 ```
-.../public/login/login
+.../login/login
 ```
 
 ###### Json数据格式
 ```
 data
+必选参数
 account             account
 password            password
+可选参数
 login_ip            login_ip
 login_browser       login_browser
 login_way           login_way
@@ -47,7 +49,7 @@ data         {
                     user_email      user_email
                     user_type       user_type       //用户类型
                     nickname        nickname
-                    shop_id         shop_id
+                    shop_id         shop_id         //店铺id
              }
 msg          登录成功
 )

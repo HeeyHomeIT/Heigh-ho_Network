@@ -7,7 +7,7 @@
 
 
 ```
-.../public/sendsms
+.../sendsms
 ```
 
 ### 接口格式
@@ -19,14 +19,14 @@
 ```
 
 ```
-.../public/sendsms
+.../sendsms
 ```
 
 ###### Json数据格式
 ```
 data
-user_id           user_id
-phone             phone  //手机号
+必选参数
+phone             phone               //手机号
 
 callback          callback
 ```

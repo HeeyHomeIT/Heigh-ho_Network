@@ -4,7 +4,7 @@
 ### 接口地址
 
 ```
-.../public/personal/safe/emailverify
+.../personal/safe/emailverify
 ```
 
 ### 接口格式
@@ -16,7 +16,7 @@
 ```
 
 ```
-.../public/personal/safe/emailverify
+.../personal/safe/emailverify
 ```
 
 ###### Json数据格式
@@ -65,7 +65,7 @@ msg           失败
 
 
 ```
-.../public/personal/safe/emailchange
+.../personal/safe/emailchange
 ```
 
 ### 接口格式
@@ -77,7 +77,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/safe/emailchange
+.../personal/safe/emailchange
 ```
 
 ###### Json数据格式

@@ -7,7 +7,7 @@
 
 
 ```
-.../public/personal/safe/cardverify
+.../personal/safe/cardverify
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/personal/safe/cardverify
+.../personal/safe/cardverify
 ```
 
 ###### Json数据格式

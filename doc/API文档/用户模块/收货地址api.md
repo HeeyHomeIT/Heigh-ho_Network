@@ -7,7 +7,7 @@
 
 
 ```
-.../public/personal/drive_address
+.../personal/drive_address
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/personal/drive_address
+.../personal/drive_address
 ```
 
 ###### Json数据格式
@@ -77,7 +77,7 @@ msg           失败
 
 
 ```
-.../public/personal/drive_address/add
+.../personal/drive_address/add
 ```
 
 ### 接口格式
@@ -89,7 +89,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/drive_address/add
+.../personal/drive_address/add
 ```
 
 ###### Json数据格式
@@ -145,7 +145,7 @@ msg           失败
 
 
 ```
-.../public/personal/drive_address/change
+.../personal/drive_address/change
 ```
 
 ### 接口格式
@@ -157,7 +157,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/drive_address/change
+.../personal/drive_address/change
 ```
 
 ###### Json数据格式
@@ -215,7 +215,7 @@ msg           失败
 
 
 ```
-.../public/personal/drive_address/del
+.../personal/drive_address/del
 ```
 
 ### 接口格式
@@ -227,7 +227,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/drive_address/del
+.../personal/drive_address/del
 ```
 
 ###### Json数据格式
@@ -274,7 +274,7 @@ msg           失败
 
 
 ```
-.../public/personal/drive_address/setdefault
+.../personal/drive_address/setdefault
 ```
 
 ### 接口格式
@@ -286,7 +286,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/drive_address/setdefault
+.../personal/drive_address/setdefault
 ```
 
 ###### Json数据格式

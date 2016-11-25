@@ -7,7 +7,7 @@
 
 
 ```
-.../public/personal/loginhistory
+.../personal/loginhistory
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/personal/loginhistory
+.../personal/loginhistory
 ```
 
 ###### Json数据格式

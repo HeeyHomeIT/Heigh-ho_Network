@@ -7,7 +7,7 @@
 
 
 ```
-.../public/personal/collection/panorama
+.../personal/collection/panorama
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/personal/collection/panorama
+.../personal/collection/panorama
 ```
 
 ###### Json数据格式

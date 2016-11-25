@@ -7,7 +7,7 @@
 
 
 ```
-.../public/personal/myworkers
+.../personal/myworkers
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/personal/myworkers
+.../personal/myworkers
 ```
 
 ###### Json数据格式
@@ -92,7 +92,7 @@ msg           失败
 ### 接口地址
 
 ```
-.../public/personal/myworkers/add
+.../personal/myworkers/add
 ```
 ### 接口格式
 
@@ -103,7 +103,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/myworkers/add
+.../personal/myworkers/add
 ```
 
 ###### Json数据格式
@@ -154,7 +154,7 @@ msg           失败
 ### 接口地址
 
 ```
-.../public/personal/myworkers/change
+.../personal/myworkers/change
 ```
 ### 接口格式
 
@@ -165,7 +165,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/myworkers/change
+.../personal/myworkers/change
 ```
 
 ###### Json数据格式
@@ -216,7 +216,7 @@ msg           失败
 ### 接口地址
 
 ```
-.../public/personal/myworkers/del
+.../personal/myworkers/del
 ```
 ### 接口格式
 
@@ -227,7 +227,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/myworkers/del
+.../personal/myworkers/del
 ```
 
 ###### Json数据格式

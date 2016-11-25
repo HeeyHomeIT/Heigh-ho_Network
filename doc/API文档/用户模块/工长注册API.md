@@ -7,7 +7,7 @@
 
 
 ```
-.../public/register/gz_register
+.../register/gz_register
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/register/gz_register
+.../register/gz_register
 ```
 
 ###### Json数据格式
@@ -27,7 +27,6 @@
 data
 phone               phone
 password            password
-captcha             captcha
 
 callback            callback
 ```
@@ -41,7 +40,8 @@ callback(
 code         000
 data         {
                     foreman_id          foreman_id        //ID
-                    foreman_name        foreman_name      //用户名
+                    foreman_name        foreman_name      //用户名 
+                    shop_id             shop_id           //店铺id
              }
 msg          注册成功
 )

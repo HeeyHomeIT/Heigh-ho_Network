@@ -7,7 +7,7 @@
 
 
 ```
-.../public/jzbk/cate
+.../jzbk/cate
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/jzbk/cate
+.../jzbk/cate
 ```
 
 ###### Json数据格式
@@ -61,7 +61,7 @@ msg           失败
 
 
 ```
-.../public/jzbk/article
+.../jzbk/article
 ```
 
 ### 接口格式
@@ -73,7 +73,7 @@ msg           失败
 ```
 
 ```
-.../public/jzbk/article
+.../jzbk/article
 ```
 
 ###### Json数据格式
@@ -125,7 +125,7 @@ msg           失败
 
 
 ```
-.../public/jzbk/info
+.../jzbk/info
 ```
 
 ### 接口格式
@@ -137,7 +137,7 @@ msg           失败
 ```
 
 ```
-.../public/jzbk/info
+.../jzbk/info
 ```
 
 ###### Json数据格式

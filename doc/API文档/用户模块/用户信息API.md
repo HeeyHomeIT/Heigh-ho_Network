@@ -7,7 +7,7 @@
 
 
 ```
-.../public/personal/userinfo
+.../personal/userinfo
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/personal/userinfo
+.../personal/userinfo
 ```
 
 ###### Json数据格式
@@ -80,7 +80,7 @@ msg           失败
 
 
 ```
-.../public/personal/userinfo/change
+.../personal/userinfo/change
 ```
 
 ### 接口格式
@@ -92,7 +92,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/userinfo/change
+.../personal/userinfo/change
 ```
 
 ###### Json数据格式

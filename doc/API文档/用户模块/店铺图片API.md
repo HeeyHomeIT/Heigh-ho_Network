@@ -7,7 +7,7 @@
 
 
 ```
-.../public/personal/myshop/uploadimg
+.../personal/myshop/uploadimg
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/personal/myshop/uploadimg
+.../personal/myshop/uploadimg
 ```
 
 ###### Json数据格式
@@ -40,7 +40,7 @@ callback(
 code         000
 data         {
                     shop_id    shop_id  
-                    path       path     //用户头像路径
+                    path       path     //图片路径
              }
 msg          上传成功
 )
@@ -72,7 +72,7 @@ msg           失败
 
 
 ```
-.../public/personal/myshop/imgsetface
+.../personal/myshop/imgsetface
 ```
 
 ### 接口格式
@@ -84,7 +84,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/myshop/imgsetface
+.../personal/myshop/imgsetface
 ```
 
 ###### Json数据格式
@@ -134,7 +134,7 @@ msg           失败
 
 
 ```
-.../public/personal/myshop/del
+.../personal/myshop/del
 ```
 
 ### 接口格式
@@ -146,7 +146,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/myshop/del
+.../personal/myshop/del
 ```
 
 ###### Json数据格式

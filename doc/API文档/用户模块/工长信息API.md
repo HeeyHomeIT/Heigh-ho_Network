@@ -7,7 +7,7 @@
 
 
 ```
-.../public/personal/foremaninfo
+.../personal/foremaninfo
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/personal/foremaninfo
+.../personal/foremaninfo
 ```
 
 ###### Json数据格式
@@ -84,7 +84,7 @@ msg           失败
 
 
 ```
-.../public/personal/foremaninfo/change
+.../personal/foremaninfo/change
 ```
 
 ### 接口格式
@@ -96,7 +96,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/foremaninfo/change
+.../personal/foremaninfo/change
 ```
 
 ###### Json数据格式

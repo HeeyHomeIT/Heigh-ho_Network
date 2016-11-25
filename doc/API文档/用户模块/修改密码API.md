@@ -7,7 +7,7 @@
 
 
 ```
-.../public/editpassword
+.../editpassword
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/editpassword
+.../editpassword
 ```
 
 ###### Json数据格式

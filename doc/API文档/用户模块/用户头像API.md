@@ -7,7 +7,7 @@
 
 
 ```
-.../public/personal/portrait
+.../personal/portrait
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/personal/portrait
+.../personal/portrait
 ```
 
 ###### Json数据格式
@@ -69,7 +69,7 @@ msg           失败
 
 
 ```
-.../public/personal/portrait/change
+.../personal/portrait/change
 ```
 
 ### 接口格式
@@ -81,7 +81,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/portrait/change
+.../personal/portrait/change
 ```
 
 ###### Json数据格式
@@ -125,4 +125,5 @@ msg           失败
 121           没有图片被上传
 111           上传失败
 122           图片上传出错
+123           图片上传出错,不能大于2M
 ```

@@ -4,7 +4,7 @@
 ### 接口地址
 
 ```
-.../public/personal/safe/phoneverify
+.../personal/safe/phoneverify
 ```
 
 ### 接口格式
@@ -16,7 +16,7 @@
 ```
 
 ```
-.../public/personal/safe/phoneverify
+.../personal/safe/phoneverify
 ```
 
 ###### Json数据格式
@@ -65,7 +65,7 @@ msg           失败
 
 
 ```
-.../public/personal/safe/phonechange
+.../personal/safe/phonechange
 ```
 
 ### 接口格式
@@ -77,7 +77,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/safe/phonechange
+.../personal/safe/phonechange
 ```
 
 ###### Json数据格式

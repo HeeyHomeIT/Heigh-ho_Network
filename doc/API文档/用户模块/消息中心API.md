@@ -7,7 +7,7 @@
 
 
 ```
-.../public/personal/message
+.../personal/message
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/personal/message
+.../personal/message
 ```
 
 ###### Json数据格式
@@ -79,7 +79,7 @@ msg           失败
 
 
 ```
-.../public/personal/message/del
+.../personal/message/del
 ```
 
 ### 接口格式
@@ -91,7 +91,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/message/del
+.../personal/message/del
 ```
 
 ###### Json数据格式
@@ -137,7 +137,7 @@ msg           失败
 
 
 ```
-.../public/personal/message/isnew
+.../personal/message/isnew
 ```
 
 ### 接口格式
@@ -149,7 +149,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/message/isnew
+.../personal/message/isnew
 ```
 
 ###### Json数据格式
@@ -197,7 +197,7 @@ msg           失败
 
 
 ```
-.../public/personal/message/read
+.../personal/message/read
 ```
 
 ### 接口格式
@@ -209,7 +209,7 @@ msg           失败
 ```
 
 ```
-.../public/personal/message/read
+.../personal/message/read
 ```
 
 ###### Json数据格式

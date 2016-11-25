@@ -1,13 +1,13 @@
-# CollectimgController #
-# collect()
-## 收藏全景图接口
+# ResetPasswordController #
+# resetpassword() #
+## 重置密码接口
 
 
 ### 接口地址
 
 
 ```
-.../public/panorama/collect
+.../resetpassword
 ```
 
 ### 接口格式
@@ -19,16 +19,17 @@
 ```
 
 ```
-.../public/panorama/collect
+.../resetpassword
 ```
 
 ###### Json数据格式
 ```
 data
-user_id           user_id        //用户id
-panorama_id       panorama_id    //全景图id
+user_id             user_id
+new_password        new_password
+flag                flag
 
-callback          callback
+callback            callback
 ```
 
 ### 回调
@@ -51,9 +52,12 @@ data          ""
 msg           失败
 )
 ```
+
 ###### Code值含义
 
 ```
-000           收藏成功
-111           收藏失败
+000            成功
+112            新密码不能为空
+114            用户不存在
+126            信息不匹配
 ```

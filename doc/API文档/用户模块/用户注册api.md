@@ -5,7 +5,7 @@
 ### 接口地址
 
 ```
-.../public/register/user_register
+.../register/user_register
 ```
 
 ### 接口格式
@@ -17,7 +17,7 @@
 ```
 
 ```
-.../public/register/user_register
+.../register/user_register
 ```
 
 ###### Json数据格式
