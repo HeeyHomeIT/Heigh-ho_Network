@@ -48,7 +48,12 @@ body #calcontainer {
     height: 37px;
     position: relative;
     margin: 20px 0 10px 20px;
-    border: 1px solid #636363
+    border: 1px solid #636363;
+    transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
 }
 
 #calcontent .cal1>div.areadiv>input {
@@ -73,9 +78,9 @@ body #calcontainer {
 }
 
 #calcontent .cal1>div.areadiv>span {
-    width: 210px;
+    width: 260px;
     height: 21px;
-    right: -225px;
+    right: -275px;
     font-size: 14px;
     vertical-align: middle;
     position: absolute;
@@ -83,12 +88,7 @@ body #calcontainer {
 }
 
 .itemClickError {
-    border-color: #ff3f13!important;
-    transition: all .3s linear;
-    -ms-transition: all .3s linear;
-    -o-transition: all .3s linear;
-    -webkit-transition: all .3s linear;
-    -moz-transition: all .3s linear
+    border-color: #ff5704 !important
 }
 
 #calcontent .cal1>div.areadiv>label.error {
@@ -115,12 +115,30 @@ body #calcontainer {
     line-height: 35px;
     margin-right: 20px;
     margin-left: 20px;
-    cursor: pointer;
+    cursor: not-allowed;
     position: relative;
-    text-align: center
+    text-align: center;
+    transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
 }
 
-#calcontent .cal1>div.housediv div::after,#calcontent .cal2>div.roomsdiv div.s1::after {
+#calcontent .cal2>div.roomsdiv div.okhover:hover{
+	border: 1px solid #EEC988;
+	color: #EEC988
+}
+#calcontent .cal2>div.roomsdiv div.okhover:hover:after {
+    border-top: 8px solid #EEC988;
+    transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
+}
+
+#calcontent .cal1>div.housediv div::after,#calcontent .cal2>div.roomsdiv div.s1::after,#calcontent .cal2>div.roomsdiv div.s2::after,#calcontent .cal2>div.roomsdiv div.s3::after {
     content: "";
     display: block;
     width: 0;
@@ -189,7 +207,13 @@ body #calcontainer {
 #calcontent .cal3>div.mainareadiv .mainarea_list,#calcontent .cal4>div.otherroomsdiv .otherroom_list {
 	height: 150px;
     margin: 10px auto;
-    margin-top: 5px
+    margin-top: 5px;
+    cursor: no-drop;
+    transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
 }
 
 #calcontent .cal3>div.mainareadiv .mainarea_list li,#calcontent .cal4>div.otherroomsdiv .otherroom_list li {
@@ -205,6 +229,7 @@ body #calcontainer {
     width: 100%;
     height: 100%;
     text-align: center;
+    /*cursor: no-drop;*/
     position: relative
 }
 
@@ -226,7 +251,12 @@ body #calcontainer {
     font-size: 1em;
     color: #636363;
     overflow: hidden;
-    line-height: 15px
+    line-height: 15px;
+    transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
 }
 
 #calcontent .cal3>div.mainareadiv .mainarea_list li>a>dl:after,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a>dl:after {
@@ -243,10 +273,25 @@ body #calcontainer {
     bottom: 13px
 }
 
+#calcontent .cal5>div.othersdiv .other_list li>a>dl.elevator:after{
+	content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #636363;
+    float: left;
+    position: absolute;
+    right: 20px;
+    bottom: 16px
+}
+
 #calcontent .cal3>div.mainareadiv .mainarea_list li>div.filter_nav,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>div.filter_nav,#calcontent .cal5>div.othersdiv .other_list li>div.filter_nav {
 	position: relative;
 	background: #f9f9f9;
-	box-shadow: 0 0 12px 1px rgba(0,0,0,.2);
+	/*box-shadow: 0 0 12px 1px rgba(0,0,0,.2);*/
+	box-shadow: 0 0 12px 1px rgba(255,255,255,0.5);
     border: 1px solid #ddd;
     margin-top: 20px;
     padding: 8px 0 4px 20px;
@@ -276,12 +321,50 @@ body #calcontainer {
 
 .filter_nav .filter_item .item_mod>span,.filter_nav .filter_item .item_mod>a {
     display: inline-block;
+    cursor: pointer;
     margin-right: 15px
 }
 
-.filter_nav .filter_item .item_mod>span {
+.filter_nav .filter_item .item_mod>a.cit {
     color: #f60;
+    cursor: auto;
     font-weight: 700
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>div>i,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>div>i {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    outline: 0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    opacity: .5;
+    background: url(../img/icon_close.png) no-repeat 50% 50%;
+    -webkit-transition: -webkit-transform .5s ease-out;
+    -moz-transition: -moz-transform .5s ease-out;
+    -o-transition: -o-transform .5s ease-out;
+    -ms-transition: -ms-transform .5s ease-out;
+    transition: transform .5s ease-out;
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>div>i:hover,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>div>i:hover {
+	opacity: 1;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    outline: 0;
+    height: 40px;
+    width: 40px;
+    transform: rotate(180deg);
+    -webkit-transform: rotateZ(180deg);
+    -moz-transform: rotateZ(180deg);
+    -o-transform: rotateZ(180deg);
+    -ms-transform: rotateZ(180deg);
 }
 
 #calcontent .cal3>div.mainareadiv .mainarea_list li>div:after,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>div:after,#calcontent .cal5>div.othersdiv .other_list li>div:after {
@@ -326,6 +409,7 @@ body #calcontainer {
 #calcontent .cal5>div.othersdiv .other_list {
 	height: 150px;
     margin: 10px auto;
+    cursor: no-drop;
     margin-top: 5px
 }
 
@@ -366,7 +450,7 @@ body #calcontainer {
     line-height: 30px;
     text-align: center;
     overflow: visible;
-    cursor: pointer;
+    cursor: no-drop;
     outline: 0;
     border-radius: 2px;
     color: #636363;
@@ -375,5 +459,23 @@ body #calcontainer {
     letter-spacing: 5px;
     margin-left: 780px;
 }
+
+.clickselect {
+    color: #fff;
+    background: #e6501e
+}
+
+.clearli {
+	height: 0px;
+	border: 0 !important;
+}
+
+/*#calcontent .cal2>div.roomsdiv div:hover {
+	border: 1px solid #EEC988 !important;
+	color: #EEC988 !important;
+}
+#calcontent .cal2>div.roomsdiv div:hover:after {
+	border-top: 8px solid #EEC988 !important;
+}*/
 
 

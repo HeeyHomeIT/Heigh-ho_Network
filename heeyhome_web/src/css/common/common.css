@@ -97,7 +97,7 @@ a:hover {
 }
 
 .col_eec988 {
-	color: #EEC988
+	color: #EEC988 !important
 }
 
 .col_686868 {
@@ -109,14 +109,14 @@ a:hover {
 }
 
 .after_eec988:after {
-	border-top: 8px solid #EEC988 !important;
+	border-top: 8px solid #EEC988 !important
 }
 
 label.error{
     position: absolute;
     padding: 0 8px;
     line-height: 30px;
-    color: #c33;
+    color: #ff5704;
     cursor: text;
  	visibility: hidden; 
     opacity: 0;
@@ -127,6 +127,7 @@ label.error{
     transform: translate(20px,0);
     -webkit-transition: .4s ease-out;
     transition: .4s ease-out;
+    
 }
 
 label.error.whether{
@@ -136,4 +137,23 @@ label.error.whether{
     -webkit-transform: translate(0,0);
     -ms-transform: translate(0,0);
     transform: translate(0,0);
+    /*animation: fadeOut 5s linear forwards;*/
+}
+
+label.error.roomerror{
+    visibility: visible;
+    opacity: 1;
+    -ms-filter: "alpha(Opacity=100)";
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    transform: translate(0,0);
+    animation: fadeOut 3s linear forwards;
+}
+
+@keyframes fadeOut {
+    0%  { opacity: 0; transform: translate(20px,0);}
+    10% { opacity: 1; transform: translate(0,0);}
+    90% { opacity: 1; transform: translate(0,0);}
+    99% { opacity: 0; transform: translate(20px,0);}
+    100% { opacity: 0; }
 }
