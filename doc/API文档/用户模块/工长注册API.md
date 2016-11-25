@@ -25,7 +25,7 @@
 ###### Json数据格式
 ```
 data
-account             account
+phone               phone
 password            password
 captcha             captcha
 
