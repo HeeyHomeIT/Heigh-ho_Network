@@ -1,0 +1,329 @@
+body {
+	width: 100%;
+	height: 100%;
+	background-color: #303030;
+	opacity: 100%;
+	background: url(../img/vRegisterbg.jpg) ;
+	background-size: cover;
+	overflow: hidden
+}
+
+.hide {
+	display: none
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background: rgba(0,0,0,0.6);
+	display: block
+}
+
+.container .main {
+	width: 549px;
+	height: 595px;
+	background-color: #3B3B3B;
+	opacity: 0.7;
+	position: absolute;
+	margin: auto;
+	left: 50%;
+	top: 50%;
+	margin-top: -315px;
+	margin-left: -210px
+}
+
+.container .main .tab {
+	position: absolute;
+	width: 73px;
+	margin-left: -73px
+}
+
+.container .main .tab li {
+	height: 298px;
+	line-height: 298px;
+	text-align: center;
+	cursor: pointer
+}
+
+.container .main .tab .hover:hover {
+	background-color: #EEC988
+}
+
+.container .main .tab .tab_click_login {
+	background-color: #EEC988;
+	opacity: 100%;
+	color: #420404;
+	font-size: 24px;
+	font-family: FZLTHJW
+}
+
+.container .main .tab .tab_click_register {
+	background-color: #1C1C1C;
+	opacity: 100%;
+	color: #363636;
+	font-family: FZLTHJW;
+	font-size: 24px
+}
+
+.container .main .tab li div {
+	width: 25px;
+	line-height: 42px;
+	padding-top: 110px;
+	padding-left: 24px
+}
+
+.container .main .main_header {
+	text-align: center;
+	margin-top: 43px;
+	margin-bottom: 20px
+}
+
+.main_header .logo {
+	background: url(../img/logo1.png) no-repeat;
+	width: 114px;
+	height: 74px;
+	background-size: contain;
+	margin: 0 auto
+}
+
+.main_header .logo_text {
+	font-family: FZLTHJW;
+	font-size: 14px;
+	color: #E88226;
+	margin-top: 20px
+}
+
+.container .main .logo_title {
+	text-align: center;	
+	margin: 0 auto;
+	margin-bottom: 26px
+}
+
+.container .main .register,.login {
+	
+	margin-top: 26px
+	
+}
+
+.container .main .register .registerItem,.login .registerItem {
+	height: 45px;
+	width: 406px;
+	background-color: #FFFFFF;
+	opacity: 100%;
+	border-radius: 4px;
+	margin-bottom: 13px;
+	position: relative;
+	margin-left: 70px;
+	border: 1px solid #FFFFFF
+}
+
+.container .main .register .registerItem:hover,.login .registerItem:hover {
+	border: 1px solid #EEC988
+}
+
+.container .main .register .registerLeft {
+	width: 163px;
+	float: left
+}
+
+.container .main .register .registerRight {
+	width: 102px;
+	float: left
+}
+
+.container .main .register .registerItem img,.login .registerItem img {
+	width: 20px;
+	height: 24px;
+	margin-left: 13px;
+	margin-top: 11px;
+	margin-right: 7px
+}
+
+.container .main .register .registerItem span,.login .registerItem span {
+	position: absolute;
+	font-size: 18px;
+	color: #CCCCCC;
+	top: 12px
+}
+
+.container .main .register .registerItem input,.login .registerItem input {
+	width: 340px;
+	height: 30px;
+	line-height: 30px;
+	position: absolute;
+	left: 60px;
+	top: 8px;
+	border: 0;
+	letter-spacing: 1px;
+	outline: 0;
+	font-family: FZLTHJW;
+	font-size: 14px;
+	color: #CECECE
+}
+
+.container .main .register .registerItem input.zc_codes {
+	width: 100px
+	
+}
+
+.container .main .register .registerRight input.zc_btnSendCode {
+	width: 102px;
+	height: 44px;
+	margin-left: 29px;
+	border-radius: 4px;
+	opacity: 100%;
+	background-color: #E88226;
+	color: #FFFFFF;
+	font-family: FZLTHJW;
+	font-size: 14px;
+	border: 0;
+	outline: 0;
+	cursor: pointer
+}
+
+.container .main .login .do_password {
+	margin-top: 18px;
+	position: relative;
+	color: #EEC988;
+	font-family: FZLTHJW;
+	font-size: 12px;
+	margin-left: 84px;
+	height: 25px
+}
+
+.container .main .login .do_password div {
+	float: left
+}
+
+.container .main .login .do_password .remerber_password {
+	display: table-cell;
+	position: relative
+}
+
+.container .main .login .do_password .remerber_password input {
+	position: absolute;
+	margin-top: 0
+}
+
+.container .main .login .do_password .remerber_password span {
+	float: left;
+	margin-left: 25px;
+	color: #EEC988;
+	font-family: FZLTHJW;
+	font-size: 13px
+}
+
+.container .main .login .do_password .forget_password a {
+	margin-left: 244px;
+	width: 66px;
+	height: 13px;
+	color: #EEC988;
+	font-family: FZLTHJW;
+	font-size: 12px
+}
+
+.container .main .login .do_password .forget_password a:hover {
+	color: #AC2925
+}
+
+.container .main .promptly {
+	margin-left: 70px
+}
+
+.container .main .promptly .promptly_do {
+	width: 405px;
+	height: 68px;
+	border-radius: 4px;
+	opacity: 100%;
+	background-color: #EEC988;
+	color: #420404;
+	font-family: FZLTHJW;
+	font-size: 24px;
+	text-align: center;
+	border: 0;
+	margin-top: 20px;
+	cursor: pointer;
+	outline: 0
+}
+
+.container .main .promptly .promptly_do:hover {
+	opacity: 0.8
+}
+
+.container .main .third_login {
+	text-align: center;
+	margin-top: 41px;
+	height: 52px;
+	position: relative
+}
+
+.container .main .third_login div {
+	position: absolute;
+	height: 52px;
+	cursor: pointer
+}
+
+.container .main .third_login .qq {
+	float: left;
+	margin-left: 186px;
+	width: 52px;
+	height: 52px;
+	-webkit-transition:.3s ease-out;
+	-moz-transition:.3s ease-out;
+	-o-transition:.3s ease-out;
+	transition:.3s ease-out
+}
+
+.container .main .third_login .wechat {
+	margin-left: 301px;
+	width: 52px;
+	height: 52px;
+	-webkit-transition:.3s ease-out;
+	-moz-transition:.3s ease-out;
+	-o-transition:.3s ease-out;
+	transition:.3s ease-out
+}
+
+.container .main .third_login .qq:hover {
+	-webkit-transform: rotateZ(360deg);
+	-moz-transform: rotateZ(360deg);
+	-o-transform: rotateZ(360deg);
+	-ms-transform: rotateZ(360deg);
+	transform: rotateZ(360deg)
+}
+
+.container .main .third_login .wechat:hover {
+	-webkit-transform: rotateZ(360deg);
+	-moz-transform: rotateZ(360deg);
+	-o-transform: rotateZ(360deg);
+	-ms-transform: rotateZ(360deg);
+	transform: rotateZ(360deg)
+}
+
+.container .footer {
+	font-size: 12px;
+	line-height: 42px;
+	text-align: center;
+	position: absolute;
+	bottom: 0px;
+	width: 650px;
+	left: 50%;
+	margin-left: -325px
+}
+
+.container .footer span,
+.container .footer a {
+	color: #fff
+}
+
+.container .footer .footer_split {
+	margin: 0 10px
+}
+
+.container .footer a:hover {
+	color: #e6501e;
+	border-bottom: 1px solid #e6501e
+}
