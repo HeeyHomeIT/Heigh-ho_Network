@@ -1,0 +1,7 @@
+diff a/heeyhome_webapi/heeyhomeapi/vendor/sebastian/comparator/.gitignore b/heeyhome_webapi/heeyhomeapi/vendor/sebastian/comparator/.gitignore	(rejected hunks)
+@@ -0,4 +0,5 @@
+ /composer.lock
+ /composer.phar
+ /phpunit.xml
++/.idea
+ /vendor
