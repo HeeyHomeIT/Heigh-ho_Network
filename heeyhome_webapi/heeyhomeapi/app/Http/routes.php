@@ -89,6 +89,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('personal/myshop/uploadimg', 'ShopimgController@upload');
     Route::any('personal/myshop/imgsetface', 'ShopimgController@setface');
     Route::any('personal/myshop/del', 'ShopimgController@del');
+    /*添加店铺工艺*/
+    Route::any('personal/myshop/technics', 'MyshoptechnicsController@add');
     /*身份认证*/
     Route::any('personal/safe/cardverify', 'IDCardController@cardverify');
     /*绑定手机*/

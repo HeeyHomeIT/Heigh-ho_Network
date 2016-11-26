@@ -105,9 +105,9 @@ class PortraitController extends Controller
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
-            $is = $file -> move('/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
+            $is = $file -> move(base_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
             if($is){
-                $path='/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                $path=base_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
                 $update=DB::update('update hh_portrait set portrait_img=? where portrait_userid=?',[$path,$user_id]);
                 $arr = array("code" => "000",
                     "msg" => "上传成功",

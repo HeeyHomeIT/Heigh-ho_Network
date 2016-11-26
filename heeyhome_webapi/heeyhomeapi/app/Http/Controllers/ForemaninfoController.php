@@ -73,6 +73,8 @@ class ForemaninfoController extends Controller
         $foremaninfo_realname=rq('realname');
         $foremaninfo_sex=rq('sex');
         $foremaninfo_age=rq('age');
+        $foremaninfo_experience=rq('experience');
+        $foremaninfo_decoratedareas=rq('decoratedareas');
         $foremaninfo_worktime=rq('worktime');
         $foremaninfo_servicearea=rq('servicearea');
         $loc_province=rq('loc_province');
@@ -86,6 +88,8 @@ class ForemaninfoController extends Controller
         if($foremaninfo_realname) $personal->foremaninfo_realname=$foremaninfo_realname;
         if($foremaninfo_sex) $personal->foremaninfo_sex=$foremaninfo_sex;
         if($foremaninfo_age) $personal->foremaninfo_age=$foremaninfo_age;
+        if($foremaninfo_experience) $personal->experience=$foremaninfo_experience;
+        if($foremaninfo_decoratedareas) $personal->decoratedareas=$foremaninfo_decoratedareas;
         if($foremaninfo_worktime) $personal->worktime=$foremaninfo_worktime;
         if($foremaninfo_servicearea) $personal->servicearea=implode(',',$foremaninfo_servicearea);
         if($loc_province) $personal->loc_province=$loc_province;
@@ -96,12 +100,17 @@ class ForemaninfoController extends Controller
         if($home_city) $personal->home_city=$home_city;
         if($home_district) $personal->home_district=$home_district;
         if($personal->save()){
+            $userinfo=DB::select('select * from hh_foremaninfo where foremaninfo_userid=?',[$foreman_id]);
+            $user=DB::select('select user_phone,user_email from hh_user where user_id=?',[$foreman_id]);
+            $userinfo[0]->foremaninfo_phone=$user[0]->user_phone;
+            $userinfo[0]->foremaninfo_email=$user[0]->user_email;
+            $userinfo[0]->servicearea=explode(',',$userinfo[0]->servicearea);
             $arr = array("code" => "000",
                 "msg" => "保存成功",
-                "data"=>$personal
+                "data"=>$userinfo[0]
             );
             return $callback . "(" . HHJson($arr) . ")";
-        }else{
+        } else{
             $arr = array("code" => "111",
                 "msg" => "保存失败"
             );

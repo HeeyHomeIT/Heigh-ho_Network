@@ -39,8 +39,12 @@ callback            callback
 callback(
 code         000
 data         {
-                    shop_id    shop_id  
-                    path       path     //图片路径
+                    shop_id       shop_id  
+                    shop_imgs     {
+                                        id           id
+                                        shop_img     shop_img
+                                        is_face      is_face
+                                  }
              }
 msg          上传成功
 )
@@ -104,8 +108,8 @@ callback            callback
 callback(
 code         000
 data         {
-                    img_id      img_id         //图片id
-                    img_path    img_path       //图片路径
+                    img_id        img_id         //图片id
+                    img_path      img_path       //图片路径
              }
 msg          成功
 )

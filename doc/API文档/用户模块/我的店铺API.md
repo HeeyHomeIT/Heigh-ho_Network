@@ -42,15 +42,20 @@ data         {
                     shopper_id           shopper_id
                     shop_name            shop_name
                     authentication       authentication
-                    opentime             opentime
+                    opentime             opentime                  
                     servicetag           servicetag 数组
                     servicearea          servicearea 数组
                     shop_address         shop_address
                     shop_describe        shop_describe
                     shop_imgs            {
-                                               id           id
-                                               shop_img     shop_img
-                                               is_face      is_face
+                                               id               id
+                                               shop_img         shop_img
+                                               is_face          is_face
+                                         }
+                    shop_technics        {
+                                               id                id
+                                               technics_text     technics_text
+                                               technics_img      technics_img
                                          }
              }
 msg          ""
@@ -117,7 +122,27 @@ callback               callback
 成功
 callback(
 code         000
-data         ""
+data         {
+                    shop_id              shop_id
+                    shopper_id           shopper_id
+                    shop_name            shop_name
+                    authentication       authentication
+                    opentime             opentime                  
+                    servicetag           servicetag 数组
+                    servicearea          servicearea 数组
+                    shop_address         shop_address
+                    shop_describe        shop_describe
+                    shop_imgs            {
+                                               id               id
+                                               shop_img         shop_img
+                                               is_face          is_face
+                                         }
+                    shop_technics        {
+                                               id                id
+                                               technics_text     technics_text
+                                               technics_img      technics_img
+                                         }
+             }
 msg          成功
 )
 ```

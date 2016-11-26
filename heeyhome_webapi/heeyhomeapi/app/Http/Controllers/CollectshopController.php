@@ -39,8 +39,17 @@ class CollectshopController extends Controller
         $newpage=new PageController();
         $offset=$newpage->page($total);
         /*收藏表和店铺表两表联查*/
-        $select=DB::select('select hh_collection.*,hh_shop.* from hh_collection 
+        $select=DB::select('select hh_collection.id as collect_id,hh_shop.* from hh_collection 
                     left join hh_shop on hh_collection.iscollected_id=hh_shop.shop_id where collect_userid=? and collect_type=? order by collect_time desc limit ?,?',[$user_id,'shop',$offset[0],$offset[1]]);
+        foreach($select as $key=>$val){
+            $img=DB::select('select shop_img from hh_shop_img where shop_id=? and is_face=?',[$val->shop_id,1]);
+            if($img){
+                $select[$key]->img=$img[0]->shop_img;
+            }else{
+                $select[$key]->img=null;
+            }
+            $select[$key]->servicearea=explode(',',$val->servicearea);
+        }
         if($select){
             $arr = array("code" => "000",
                 "data" => $select

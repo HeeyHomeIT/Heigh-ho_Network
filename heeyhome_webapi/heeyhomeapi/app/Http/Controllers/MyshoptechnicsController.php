@@ -2,20 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: heeyhome
- * Date: 2016/11/15
- * Time: 14:51
+ * Date: 2016/11/25
+ * Time: 16:54
  */
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
 
-class MyshopimgController extends Controller
+class MyshoptechnicsController extends  Controller
 {
-    public function upload(){
+    public function add(){
         $callback=rq('callback');
         $shop_id=rq('shop_id');
+        $technics_text=rq('describe');
         $file=Request::file('myfile');
         if(!$shop_id){
             $arr = array("code" => "112",
@@ -48,20 +47,20 @@ class MyshopimgController extends Controller
             $is = $file -> move(base_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
             if($is){
                 $path=base_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
-                $insert=DB::insert('insert into hh_shop_img(shop_id,shop_img) values (?,?)',[$shop_id,$path]);
+                $insert=DB::insert('insert into hh_shop_technics(shop_id,technics_text,technics_img) values (?,?,?)',[$shop_id,$technics_text,$path]);
                 if($insert){
-                    $shop_imgs=DB::select('select shop_img from hh_shop_img where shop_id=?',$shop_id);
+                    $shop_technics=DB::select('select technics_text,technics_img from hh_shop_technics where shop_id=?',$shop_id);
                     $arr = array("code" => "000",
-                        "msg" => "上传成功",
+                        "msg" => "添加成功",
                         "data"=>array(
                             "shop_id"=>$shop_id,
-                            "shop_imgs"=>$shop_imgs
+                            "shop_technics"=>$shop_technics
                         )
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }else{
                     $arr = array("code" => "111",
-                        "msg" => "上传失败"
+                        "msg" => "添加失败",
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }
@@ -74,59 +73,6 @@ class MyshopimgController extends Controller
         }else{
             $arr = array("code" => "122",
                 "msg" => "图片上传出错"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
-    }
-    public function setface(){
-        $callback=rq('callback');
-        $img_id=rq('img_id');
-        $shop_id=rq('shop_id');
-        if (!$shop_id) {
-            $arr = array("code" => "112",
-                "msg" => "id不能为空"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
-        /*将该店铺id下的所有图片的is_face字段设置为2*/
-        $update=DB::update('update hh_shop_img set is_face=2 where shop_id=?',[$shop_id]);
-        /*将传递过来的图片id的is_face字段设置为1*/
-        $set=DB::update('update hh_shop_img set is_face=1 where id=?',[$img_id]);
-        if($set){
-            $img=DB::select('select shop_img from hh_shop_img where id=?',[$img_id]);
-            $img_path=$img[0]->shop_img;
-            $arr = array("code" => "000",
-                "data" => array(
-                    "img_id"=>$img_id,
-                    "img_path"=>$img_path
-                )
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }else{
-            $arr = array("code" => "111",
-                "msg" => "失败"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
-    }
-    public function del(){
-        $callback=rq('callback');
-        $img_id=rq('img_id');
-        if (!$img_id) {
-            $arr = array("code" => "112",
-                "msg" => "id不能为空"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
-        $address=DB::delete('delete from hh_shop_img where id=?',[$img_id]);
-        if($address){
-            $arr = array("code" => "000",
-                "msg" => "删除成功"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }else{
-            $arr = array("code" => "117",
-                "msg" => "删除失败"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }

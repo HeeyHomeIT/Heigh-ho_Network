@@ -90,8 +90,13 @@ class UserinfoController extends Controller
         if($home_city) $personal->home_city=$home_city;
         if($home_district) $personal->home_district=$home_district;
         if($personal->save()){
+            $userinfo=DB::select('select * from hh_userinfo where userinfo_userid=?',[$user_id]);
+            $user=DB::select('select user_phone,user_email from hh_user where user_id=?',[$user_id]);
+            $userinfo[0]->userinfo_phone=$user[0]->user_phone;
+            $userinfo[0]->userinfo_email=$user[0]->user_email;
             $arr = array("code" => "000",
-                "msg" => "保存成功"
+                "msg" => "保存成功",
+                "data"=>$userinfo[0]
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{
