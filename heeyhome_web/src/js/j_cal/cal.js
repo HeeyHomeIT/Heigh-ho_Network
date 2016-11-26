@@ -38,9 +38,9 @@ var heeyhomeCal = {
     				// 数据正确，几室几厅几卫div置为亮
     				self.styleAddOrRemoveEvent($(".housediv"),1);
 					// 移除绑定事件click
-					$(".housediv div").unbind("click");
+					$(".housediv div").off("click");
 					// 移除 delegate绑定
-					$(".housediv ul").undelegate();
+					$(".housediv ul").off();
 					// 户型选择事件
 					self.houseSelectEvent();
     			}
@@ -78,10 +78,10 @@ var heeyhomeCal = {
 					// 设置状态
     				self.flowStatusEvent($(".cal2").data("type"),1);
 					// 移除绑定事件click
-					$(".roomsdiv div").unbind("click");
+					$(".roomsdiv div").off("click");
 					// 移除绑定事件delegate
-					$(".roomsdiv ul").undelegate();
-					$(".mainarea_list li a").unbind("click");
+					$(".roomsdiv ul").off();
+					$(".mainarea_list li a").off("click");
 					// 主要位置的选择模块点亮
 					self.styleAddOrRemoveEvent($(".cal3"),2);
 					// 设置状态
@@ -95,9 +95,9 @@ var heeyhomeCal = {
     				self.flowStatusEvent($(".cal2").data("type"),0);
     				self.flowStatusEvent($(".cal3").data("type"),0);
 					// 移除绑定事件click
-					$(".roomsdiv div").unbind("click");
+					$(".roomsdiv div").off("click");
 					// 移除绑定事件delegate
-					$(".roomsdiv ul").undelegate();
+					$(".roomsdiv ul").off();
 					// 房间安排计划事件
 					self.roomPlanEvent(parseInt(num)-1);
 				}
@@ -413,9 +413,17 @@ var heeyhomeCal = {
 		self.styleAddOrRemoveEvent($(".cal4"),5);
 		self.styleAddOrRemoveEvent($(".cal5"),7);
 		$(".roomsdiv").children("label").removeClass("whether").text("");
-		$(".mainarea_list li a").unbind("click");
-		$(".otherroom_list li a").unbind("click");
-		$(".other_list li a").unbind("click");
+		$(".mainarea_list li a").off("click");
+		$(".otherroom_list li a").off("click");
+		$(".other_list li a").off("click");
+		// 还原下拉箭头
+		$(".mainarea_list li a").find("dl").removeClass("item_hover_180");
+		$(".otherroom_list li a").find("dl").removeClass("item_hover_180");
+		$(".other_list li a").find("dl").removeClass("item_hover_180");
+		$(".other_list li a").removeClass("clickselect")
+		$(".mainarea_list li").find("div.filter_nav").hide();
+		$(".otherroom_list li").find("div.filter_nav").hide();
+		$(".other_list li").find("div.filter_nav").hide();
 		$(".cal6 input").removeClass("col_eec988").removeClass("border_eec988").css("cursor","not-allowed");
 		$(".roomsdiv div").removeClass("okhover");
 		// 全局变量清空
@@ -510,7 +518,7 @@ var heeyhomeCal = {
 				$(".mainarea_list").append(strLi);
 			}
 		});
-		$(".mainarea_list li a").unbind("click");
+		$(".mainarea_list li a").off("click");
 		self.roommainlyEvent();
 	},
 	/**
@@ -524,7 +532,7 @@ var heeyhomeCal = {
     		self.triangleArrowChangeEvent($(this).find("dl"),1);
     		// 次要位置模块点亮
 			self.styleAddOrRemoveEvent($(".cal4"),3);
-			$(".otherroom_list li a").unbind("click")
+			$(".otherroom_list li a").off("click")
 			self.otherSelectEvent();
 		});
        	self.roomConfigureSelectEvent();
@@ -542,7 +550,7 @@ var heeyhomeCal = {
     		self.triangleArrowChangeEvent($(this).find("dl"),1);
     		
     		self.styleAddOrRemoveEvent($(".cal5"),6);
-    		$(".other_list li a").unbind("click");
+    		$(".other_list li a").off("click");
     		self.houseCharacteristicEvent();
     	});
     	self.roomConfigureSelectEvent();

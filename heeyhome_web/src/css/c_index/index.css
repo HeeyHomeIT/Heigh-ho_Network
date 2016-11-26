@@ -76,6 +76,12 @@ body {
     border-color: transparent
 }
 
+#topNav li.open {
+    border-color: #ddd;
+    background: #fff;
+    box-shadow: 0 0 8px 0 #ccc
+}
+
 #topNav li>span {
     display: block;
     padding: 0 9px;
@@ -93,10 +99,14 @@ body {
     color: #eec988
 }
 
+#topNav li.open>a {
+    background: #fff
+}
+
 #topNav li>div {
     position: absolute;
     top: 28px;
-    height: 112px;
+    height: 0px;
     right: -1px;
     overflow: hidden;
     -moz-transition: .2s height ease-in-out;
@@ -107,12 +117,18 @@ body {
 
 #c_myhh>div {
 	left: -1px;
-    border: 1px solid #ddd;
     line-height: 20px;
     background: #fff;
     z-index: 1;
     width: 162px;
-    padding: 0 15px
+    padding: 0 15px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd
+}
+
+#c_myhh.open>div {
+	border-bottom: 1px solid #ddd;
+ 	box-shadow: 0 0 8px 0 #ccc
 }
 
 #topNav #c_myhh>a {
@@ -138,8 +154,9 @@ body {
 }
 
 #topNav #c_myhh>a:hover:after {
-    transform: rotate(180deg);
-    transition: transform 0.3s
+	border-top: 4px solid #eec988;
+    /*transform: rotate(180deg);
+    transition: transform 0.3s*/
 }
 
 .userinfo {

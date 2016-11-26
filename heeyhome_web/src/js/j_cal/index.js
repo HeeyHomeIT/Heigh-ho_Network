@@ -27,6 +27,6 @@ define(['app','jquery'], function (app) {
 //          }
         };
     });
-    require(['js/j_cal/cal'],function(){
+    require(['js/j_common/common','js/j_cal/cal'],function(){
 	})
 });
