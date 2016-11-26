@@ -1,20 +1,18 @@
 body {
 	width: 100%;
 	height: 100%;
+	font-family: FZLTHJW;
 	background-color: #303030;
-	opacity: 100%;
+	opacity: 1;
 	background: url(../img/vRegisterbg.jpg) ;
 	background-size: cover;
 	overflow: hidden
 }
 
-.hide {
-	display: none
-}
-
 .container {
 	width: 100%;
 	height: 100%;
+	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: 999;
@@ -23,8 +21,8 @@ body {
 }
 
 .container .main {
-	width: 549px;
-	height: 595px;
+	width: 550px;
+	height: 596px;
 	background-color: #3B3B3B;
 	opacity: 0.7;
 	position: absolute;
@@ -32,40 +30,45 @@ body {
 	left: 50%;
 	top: 50%;
 	margin-top: -315px;
-	margin-left: -210px
+	margin-left: -275px
 }
 
 .container .main .tab {
 	position: absolute;
+	border: 0;
 	width: 73px;
-	margin-left: -73px
+	left: -73px
 }
 
 .container .main .tab li {
+	background-color: #1C1C1C;
+	display: block;
 	height: 298px;
+	font-size: 24px;
 	line-height: 298px;
 	text-align: center;
 	cursor: pointer
 }
 
-.container .main .tab .hover:hover {
-	background-color: #EEC988
+.container .main .tab li.active {
+	background-color: #EEC988!important
+}
+
+.container .main .tab li:hover {
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+	background-color: #F7ECB5
 }
 
 .container .main .tab .tab_click_login {
-	background-color: #EEC988;
-	opacity: 100%;
-	color: #420404;
-	font-size: 24px;
-	font-family: FZLTHJW
+	color: #420404
 }
 
-.container .main .tab .tab_click_register {
-	background-color: #1C1C1C;
-	opacity: 100%;
-	color: #363636;
-	font-family: FZLTHJW;
-	font-size: 24px
+.container .main .tab .tab_click_register {	
+	color: #363636
 }
 
 .container .main .tab li div {
@@ -89,8 +92,7 @@ body {
 	margin: 0 auto
 }
 
-.main_header .logo_text {
-	font-family: FZLTHJW;
+.main_header .logo_text {	
 	font-size: 14px;
 	color: #E88226;
 	margin-top: 20px
@@ -102,8 +104,7 @@ body {
 	margin-bottom: 26px
 }
 
-.container .main .register,.login {
-	
+.container .main .register,.login {	
 	margin-top: 26px
 	
 }
@@ -112,15 +113,36 @@ body {
 	height: 45px;
 	width: 406px;
 	background-color: #FFFFFF;
-	opacity: 100%;
+	opacity: 1;
 	border-radius: 4px;
 	margin-bottom: 13px;
 	position: relative;
 	margin-left: 70px;
-	border: 1px solid #FFFFFF
+	border: 1px solid #939393
 }
 
+.registerItem input::-webkit-input-placeholder { /* WebKit browsers */ 
+	color: #999
+} 
+
+.registerItem input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+	color: #999
+} 
+
+.registerItem input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+	color: #999 
+} 
+
+.registerItem input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+	color: #999 
+} 
+
 .container .main .register .registerItem:hover,.login .registerItem:hover {
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
 	border: 1px solid #EEC988
 }
 
@@ -158,15 +180,13 @@ body {
 	top: 8px;
 	border: 0;
 	letter-spacing: 1px;
-	outline: 0;
-	font-family: FZLTHJW;
+	outline: 0;	
 	font-size: 14px;
 	color: #CECECE
 }
 
 .container .main .register .registerItem input.zc_codes {
-	width: 100px
-	
+	width: 100px	
 }
 
 .container .main .register .registerRight input.zc_btnSendCode {
@@ -174,10 +194,9 @@ body {
 	height: 44px;
 	margin-left: 29px;
 	border-radius: 4px;
-	opacity: 100%;
+	opacity: 1;
 	background-color: #E88226;
 	color: #FFFFFF;
-	font-family: FZLTHJW;
 	font-size: 14px;
 	border: 0;
 	outline: 0;
@@ -187,8 +206,7 @@ body {
 .container .main .login .do_password {
 	margin-top: 18px;
 	position: relative;
-	color: #EEC988;
-	font-family: FZLTHJW;
+	color: #EEC988;	
 	font-size: 12px;
 	margin-left: 84px;
 	height: 25px
@@ -205,14 +223,14 @@ body {
 
 .container .main .login .do_password .remerber_password input {
 	position: absolute;
-	margin-top: 0
+	left: 0;
+	top: 4px
 }
 
 .container .main .login .do_password .remerber_password span {
 	float: left;
 	margin-left: 25px;
 	color: #EEC988;
-	font-family: FZLTHJW;
 	font-size: 13px
 }
 
@@ -221,7 +239,6 @@ body {
 	width: 66px;
 	height: 13px;
 	color: #EEC988;
-	font-family: FZLTHJW;
 	font-size: 12px
 }
 
@@ -237,10 +254,9 @@ body {
 	width: 405px;
 	height: 68px;
 	border-radius: 4px;
-	opacity: 100%;
+	opacity: 1;
 	background-color: #EEC988;
 	color: #420404;
-	font-family: FZLTHJW;
 	font-size: 24px;
 	text-align: center;
 	border: 0;
@@ -250,7 +266,12 @@ body {
 }
 
 .container .main .promptly .promptly_do:hover {
-	opacity: 0.8
+	background-color: #EECF88;
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
 }
 
 .container .main .third_login {
@@ -263,28 +284,25 @@ body {
 .container .main .third_login div {
 	position: absolute;
 	height: 52px;
+	transition: transform .3s ease-out;
+	-webkit-transition: -webkit-transform 0.3s ease-out;
+	-moz-transition: -moz-transform 0.3s ease-out;
+	-o-transition: -o-transform 0.3s ease-out;
+	-ms-transition: -ms-transform 0.3s ease-out;
 	cursor: pointer
 }
 
 .container .main .third_login .qq {
 	float: left;
 	margin-left: 186px;
-	width: 52px;
-	height: 52px;
-	-webkit-transition:.3s ease-out;
-	-moz-transition:.3s ease-out;
-	-o-transition:.3s ease-out;
-	transition:.3s ease-out
+	width: 50px;
+	height: 50px
 }
 
 .container .main .third_login .wechat {
 	margin-left: 301px;
-	width: 52px;
-	height: 52px;
-	-webkit-transition:.3s ease-out;
-	-moz-transition:.3s ease-out;
-	-o-transition:.3s ease-out;
-	transition:.3s ease-out
+	width: 50px;
+	height: 50px
 }
 
 .container .main .third_login .qq:hover {
