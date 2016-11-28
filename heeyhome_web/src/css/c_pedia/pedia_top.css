@@ -1,0 +1,14 @@
+#pedia_top .now_location {
+	width: 1215px;
+	height: 15px;
+	color: #656565;
+	font-family: FZLTHJW;
+	font-size: 14px;
+	margin: 20px auto
+}
+
+#pedia_top .pedia_pic {
+	width: 100%;
+	height: 500px;
+	background: url(../img/pedia.png)
+}
