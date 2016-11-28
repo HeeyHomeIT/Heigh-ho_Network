@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>工长个人店铺-轮播图</title>
+		<link rel="stylesheet" href="../../css/common/common.css" />
+		<link rel="stylesheet" href="../../css/c_shopdetails/c_shopdetail_main.css" />
+		<!--<script type="text/javascript" src="../../lib/jquery/jquery-3.1.1.min.js" ></script>-->
+		<script type="text/javascript" src="../../lib/jquery/jquery-1.7.1.js" ></script>
+		<script type="text/javascript" src="../../lib/jquery/jquery-ui.min.js" ></script>
+		<!--<script type="text/javascript" src="../../js/j_selfshop/selfshop.js" ></script>-->
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".pic_smallshop ul").tabs({fx:{opacity: "toggle"}}).tabs("rotate", 5000, true);
+			});
+		</script>
+	</head>
+	<body>
+		<!-- 工长个人店铺顶部start -->
+		<div id="selfshop_top">
+			<div class="selfshop_content clearfix">
+				<!-- 左侧轮播图start -->
+				<div class="pic_bigshop">
+					<img src="../../css/img/bigshop-1.png" id="bigshop-1" >
+					<img src="../../css/img/bigshop-2.jpg" id="bigshop-2" class="ui-tabs-hide">
+					<img src="../../css/img/bigshop-3.jpg" id="bigshop-3" class="ui-tabs-hide">
+					<img src="../../css/img/bigshop-4.jpg" id="bigshop-4" class="ui-tabs-hide">
+				</div>
+				<div class="pic_smallshop">
+					<ul >
+						<li class="ui-tabs-selected"><a href="#bigshop-1"><img src="../../css/img/smallshop-1.png"></a></li>
+						<li><a href="#bigshop-2"><img src="../../css/img/smallshop-2.png"></a></li>
+						<li><a href="#bigshop-3"><img src="../../css/img/smallshop-3.png"></a></li>
+						<li><a href="#bigshop-4"><img src="../../css/img/smallshop-4.png"></a></li>
+					</ul>
+				</div>
+				<!-- 左侧轮播图end -->
+				<!-- 右侧店铺信息start -->
+				<div class="shop_information">
+					<div class="shop_name">
+						<h2>怡馨苑项目经理店铺</h2>
+						<img src="../../css/img/icon-certification.png">
+						<img src="../../css/img/icon-accreditation.png">
+					</div>
+					<div class="signature">
+						<h3>个人签名： 没有最好，只有更好</h3>
+					</div>
+					<div class="shop_introduce">
+						<p><img src="../../css/img/icon-location.png">江苏省苏州市吴中区</p>
+						<p class="service_area">服务范围: 苏州市姑苏区附近<input type="button" value="查看地图"></p>
+						<div class="good_form clearfix">
+							<p class="good_style">擅长风格:</p>
+							<span>现代简约</span>
+							<span>|</span>
+							<span>新中式风格</span>
+						</div>
+					</div>
+					<div class="shop_assess clearfix">
+						<div>
+							<p>工程质量</p>
+							<p><span>8.5</span>分</p>
+						</div>
+						<div>
+							<p>服务态度</p>
+							<p><span>7.0</span>分</p>
+						</div>
+						<div>
+							<p>综合评价</p>
+							<p><span>9.0</span>分</p>
+						</div>
+					</div>
+					<div class="shop_button">
+						<div class="shop_order">
+							<input type="button" value="立即预约">
+						</div>
+						<div class="shop_like clearfix">
+							<a href="#nogo" class="collect_shop"><span></span>收藏</a>
+							<a href="#nogo" class="share_shop"><span></span>分享</a>
+						</div>
+					</div>
+				</div>
+				<!-- 右侧店铺信息end -->
+			</div>
+		</div>
+		<!-- 工长个人店铺顶部end -->
+		<!-- 店长信息start -->
+		<div id="manager_information">
+			<!-- 店长信息标题start -->
+			<h3>店长信息 <span>MANAGER INFORMATION</span></h3>
+			<!-- 店长信息标题end -->
+			<!-- 店长信息内容start -->
+			<div class="manager_content clearfix">
+				<!-- 店长简介start -->
+				<div class="manager_introduce">
+					<div class="icon_head"></div>
+					<div class="manager_detail">
+						<div><span >姓名</span><span>杨春平</span></div>
+						<div><span >籍贯</span><span>江苏苏州</span></div>
+						<div><span>施工团队</span><span>30人</span></div>
+						<div><span >工龄</span><span>3年</span></div>
+						<div><span>开店时间</span><span>2015.11.10</span></div>
+						<div><span >接单数</span><span>120</span></div>
+					</div>
+					<div class="border_line"></div>
+				</div>
+				<!-- 店长简介end -->
+				<!-- 从业经历start -->
+				<div class="work_experience">
+					<div class="icon_experience">
+						<img src="../../css/img/icon-experience.png">
+						<span>从业经历</span>
+					</div>
+					<ul>
+						<li>2000-2004 苏州金螳螂装饰公司</li>
+						<li>2005-2008 苏州水晶石装饰公司</li>
+						<li>2009-2014 苏州红蚂蚁装饰公司</li>
+						<li>2015至今 苏州嗨吼网络科技有限公司</li>
+					</ul>
+					<div class="border_line"></div>
+				</div>
+				<!-- 从业经历end -->
+				<!-- 装修小区start -->
+				<div class="decoration_history">
+					<div class="icon_decoration">
+						<img src="../../css/img/icon-decoration.png">
+						<span>装修小区</span>
+					</div>
+					<ul>
+						<li>园区 湖山新意</li>
+						<li>园区 湖山新意</li>
+						<li>园区 湖山新意</li>
+					</ul>
+				</div>
+				<!-- 装修小区end -->
+			</div>
+			<!-- 店长信息内容end -->
+		</div>
+		<!-- 店长信息end -->
+		<!-- 本店工艺start -->
+		<div id="our_process">
+			<!-- 本店工艺标题start -->
+			<h3>本店工艺 <span>OUR PROCESS</span></h3>
+			<!-- 本店工艺标题end -->
+			<!-- 具体工艺start -->
+			<div class="process_content clearfix">
+				<div class="process_box">
+					<div class="process_pic"></div>
+					<div class="background_pic_1"></div>
+					<div class="background_pic_2"></div>
+					<div class="process_explain">
+						<p>采用最先进的粉刷技术，无任何添加，更环保</p>
+					</div>
+				</div>
+				<div class="process_box">
+					<div class="process_pic"></div>
+					<div class="background_pic_1"></div>
+					<div class="background_pic_2"></div>
+					<div class="process_explain">
+						<p>采用最先进的粉刷技术，无任何添加，更环保</p>
+					</div>
+				</div>
+				<div class="process_box">
+					<div class="process_pic"></div>
+					<div class="background_pic_1"></div>
+					<div class="background_pic_2"></div>
+					<div class="process_explain">
+						<p>采用最先进的粉刷技术，无任何添加，更环保</p>
+					</div>
+				</div>
+				<div class="process_box">
+					<div class="process_pic"></div>
+					<div class="background_pic_1"></div>
+					<div class="background_pic_2"></div>
+					<div class="process_explain">
+						<p>采用最先进的粉刷技术，无任何添加，更环保</p>
+					</div>
+				</div>
+				<div class="process_box">
+					<div class="process_pic"></div>
+					<div class="background_pic_1"></div>
+					<div class="background_pic_2"></div>
+					<div class="process_explain">
+						<p>采用最先进的粉刷技术，无任何添加，更环保</p>
+					</div>
+				</div>
+			</div>
+			<!-- 具体工艺end -->
+		</div>			
+		<!-- 本店工艺end -->
+	</body>
+</html>
