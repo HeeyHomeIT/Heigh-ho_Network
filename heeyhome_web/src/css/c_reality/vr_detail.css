@@ -197,9 +197,13 @@
 	margin-left: 24px
 }
 
+#virtual_reality .virtual_content .pic_box .pic_detail p:first-child {
+	margin-bottom: 5px
+}
+
 #virtual_reality .virtual_content .pic_box .pic_icon {
 	cursor: pointer;
-	margin-left: 150px;
+	margin: 10px 0 0 150px;
 	height: 15px
 }
 
