@@ -1,0 +1,18 @@
+define(['app','jquery'],function(app){
+	app.directive('myHeader',function(){
+		return{
+			templateUrl:"view/common/_header.html"
+		};
+	});
+	app.directive('myOrderdetail',function(){
+		return{
+			templateUrl:"view/v_orderdetails/v_orderdetail.html"
+		};
+	});
+	app.directive('myFooter',function(){
+		return{
+			templateUrl:"view/common/_footer.html"
+		};
+	});
+	require(['js/j_orderdetail/orderdetail'],function(){});
+});
