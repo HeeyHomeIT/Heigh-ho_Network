@@ -21,7 +21,7 @@ define(['app','jquery'],function(app){
 //	});
 	app.directive('myPagenumber',function(){
 		return{
-			templateUrl:"view/v_reality/v_pagenumber.html"
+			templateUrl:"view/common/_pagenumber.html"
 		};
 	});
 	app.directive('myFooter',function(){

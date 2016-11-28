@@ -168,16 +168,12 @@
 
 #virtual_reality .virtual_content .pic_box .pic_style h2 {
 	font-size: 18px;
+	float: left;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #939393;
 	font-family: FZLTZHK;
 	font-weight: bold;
 	color: #4B4948
-}
-
-#virtual_reality .virtual_content .pic_box .pic_style .pic_line {
-	width: 53px;
-	height: 4px;
-	margin-top: 8px;
-	border-top: 2px dashed #E88226
 }
 
 #virtual_reality .virtual_content .pic_box .pic_badge {

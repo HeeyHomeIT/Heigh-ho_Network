@@ -19,9 +19,18 @@ define(['app','jquery'], function (app) {
         };
     });
     
+    app.directive('myFliter', function () {
+        return {
+        	templateUrl: "view/common/_fliter.html",
+//          link: function (scope, element, attrs) {
+//              scope.creator.createLayout();
+//          }
+        };
+    });
+    
     app.directive('myPagenumber', function () {
         return {
-        	templateUrl: "view/v_reality/v_pagenumber.html",
+        	templateUrl: "view/common/_pagenumber.html",
 //          link: function (scope, element, attrs) {
 //              scope.creator.createLayout();
 //          }
