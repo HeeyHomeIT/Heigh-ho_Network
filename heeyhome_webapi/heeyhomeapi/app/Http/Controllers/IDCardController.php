@@ -14,6 +14,22 @@ use Illuminate\Support\Facades\Response;
 
 class IDCardController extends Controller
 {
+    public function index(){
+        $callback=rq('callback');
+        $user_id=rq('user_id');
+        $sel=DB::select('select * from hh_verify where verify_userid=?',[$user_id]);
+        if($sel){
+            $arr = array("code" => "000",
+                "data" => $sel[0]
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }else{
+            $arr = array("code" => "111",
+                "msg" => "身份尚未认证"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
     public function cardverify(){
         $callback=rq('callback');
         $user_id=rq('user_id');

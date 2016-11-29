@@ -1,4 +1,68 @@
 # IDCardController #
+# index() #
+## 银行卡身份证实名信息接口
+
+
+### 接口地址
+
+
+```
+.../personal/safe/index
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../personal/safe/index
+```
+
+###### Json数据格式
+```
+data
+user_id             user_id        
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                    bankcard        bankcard
+                    realname        realname
+                    idcard          idcard
+                    mobile          mobile
+             }
+msg          ""
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
+000           成功
+111           身份尚未验证
+
+```
 # cardverify() #
 ## 银行卡身份证实名认证接口
 
