@@ -25,7 +25,6 @@ class ComposerStaticInit67db7509c61e60a4f92e012c704d3566
         '10d2aec5b2e610ac93742a40d2389b63' => __DIR__ . '/../..' . '/app/Common/heeyHomeIsloged.php',
         '6ff576331ffd80076359ae6d733c71df' => __DIR__ . '/../..' . '/app/Common/heeyHomeSmsverify.php',
         'e7505d7ca8dda1d7cc3e3dac0a3e02a8' => __DIR__ . '/../..' . '/app/Common/heeyHomeIsmatched.php',
-        '9b8504e1e6d7ae2a2d180487afc85703' => __DIR__ . '/../..' . '/app/API/class/QC.class.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -263,14 +262,15 @@ class ComposerStaticInit67db7509c61e60a4f92e012c704d3566
     );
 
     public static $classMap = array (
-        'App\\API\\ErrorCase' => __DIR__ . '/../..' . '/App/API/class/ErrorCase.class.php',
-        'App\\API\\Oauth' => __DIR__ . '/../..' . '/App/API/class/Oauth.class.php',
-        'App\\API\\QC' => __DIR__ . '/../..' . '/App/API/class/QC.class.php',
-        'App\\API\\Recorder' => __DIR__ . '/../..' . '/App/API/class/Recorder.class.php',
-        'App\\API\\URL' => __DIR__ . '/../..' . '/App/API/class/URL.class.php',
+        'App\\API\\ErrorCase' => __DIR__ . '/../..' . '/app/API/class/ErrorCase.class.php',
+        'App\\API\\Oauth' => __DIR__ . '/../..' . '/app/API/class/Oauth.class.php',
+        'App\\API\\QC' => __DIR__ . '/../..' . '/app/API/class/QC.class.php',
+        'App\\API\\Recorder' => __DIR__ . '/../..' . '/app/API/class/Recorder.class.php',
+        'App\\API\\URL' => __DIR__ . '/../..' . '/app/API/class/URL.class.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
+        'EasyPeasyICS' => __DIR__ . '/../..' . '/app/libs/PHPMailer/extras/EasyPeasyICS.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
@@ -342,7 +342,11 @@ class ComposerStaticInit67db7509c61e60a4f92e012c704d3566
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'Html2Text' => __DIR__ . '/../..' . '/app/libs/PHPMailer/extras/class.html2text.php',
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
+        'PHPMailer' => __DIR__ . '/../..' . '/app/libs/PHPMailer/class.phpmailer.php',
+        'PHPMailerLangTest' => __DIR__ . '/../..' . '/app/libs/PHPMailer/test/phpmailerLangTest.php',
+        'PHPMailerTest' => __DIR__ . '/../..' . '/app/libs/PHPMailer/test/phpmailerTest.php',
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
         'PHPUnit_Extensions_PhptTestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -738,6 +742,7 @@ class ComposerStaticInit67db7509c61e60a4f92e012c704d3566
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'SMTP' => __DIR__ . '/../..' . '/app/libs/PHPMailer/class.smtp.php',
         'SebastianBergmann\\Comparator\\ArrayComparator' => __DIR__ . '/..' . '/sebastian/comparator/src/ArrayComparator.php',
         'SebastianBergmann\\Comparator\\Comparator' => __DIR__ . '/..' . '/sebastian/comparator/src/Comparator.php',
         'SebastianBergmann\\Comparator\\ComparisonFailure' => __DIR__ . '/..' . '/sebastian/comparator/src/ComparisonFailure.php',
@@ -776,6 +781,8 @@ class ComposerStaticInit67db7509c61e60a4f92e012c704d3566
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'ntlm_sasl_client_class' => __DIR__ . '/../..' . '/app/libs/PHPMailer/extras/ntlm_sasl_client.php',
+        'phpmailerException' => __DIR__ . '/../..' . '/app/libs/PHPMailer/class.phpmailer.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

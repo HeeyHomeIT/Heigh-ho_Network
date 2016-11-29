@@ -15,19 +15,17 @@ class MyworkersController extends Controller
 {
     public function index(){
         $callback=rq('callback');
-        $user_id=rq('user_id');
-        if(!$user_id){
+        $shop_id=rq('shop_id');
+        if(!$shop_id){
             $arr=array("code"=>"112",
-                "msg"=>"工长id不能为空"
+                "msg"=>"店铺id不能为空"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $shops=DB::select('select shop_id from hh_shop where shopper_id=?',[$user_id]);
-        $shop_id=$shops[0]->shop_id;
-        $woodworker=DB::select('select * from hh_woodworker where wood_shopid=?',[$shop_id]);
-        $eleworker=DB::select('select * from hh_eleworker where ele_shopid=?',[$shop_id]);
-        $brickworker=DB::select('select * from hh_brickworker where brick_shopid=?',[$shop_id]);
-        $paintworker=DB::select('select * from hh_paintworker where paint_shopid=?',[$shop_id]);
+        $woodworker=DB::select('select hh_woodworker.*,hh_portrait.portrait_img as portrait_img from hh_woodworker left join hh_portrait on hh_portrait.portrait_userid=hh_woodworker.wood_userid where wood_shopid=?',[$shop_id]);
+        $eleworker=DB::select('select hh_eleworker.*,hh_portrait.portrait_img as portrait_img from hh_eleworker left join hh_portrait on hh_portrait.portrait_userid=hh_eleworker.ele_userid where ele_shopid=?',[$shop_id]);
+        $brickworker=DB::select('select hh_brickworker.*,hh_portrait.portrait_img as portrait_img from hh_brickworker left join hh_portrait on hh_portrait.portrait_userid=hh_brickworker.brick_userid where brick_shopid=?',[$shop_id]);
+        $paintworker=DB::select('select hh_paintworker.*,hh_portrait.portrait_img as portrait_img from hh_paintworker left join hh_portrait on hh_portrait.portrait_userid=hh_paintworker.paint_userid where paint_shopid=?',[$shop_id]);
         $arr=array("code"=>"000",
             "data"=>array("woodworker"=>$woodworker,
                 "eleworker"=>$eleworker,

@@ -18,7 +18,9 @@
     "autoload": {
         "classmap": [
             "database",
-            "App/API"
+            "app/API",
+            "app/libs/PHPMailer"
+
         ],
         "files":[
             "app/Common/heeyHomeRequestget.php",
@@ -29,8 +31,7 @@
             "app/Common/heeyHomeOperation.php",
             "app/Common/heeyHomeIsloged.php",
             "app/Common/heeyHomeSmsverify.php",
-            "app/Common/heeyHomeIsmatched.php",
-            "app/API/class/QC.class.php"
+            "app/Common/heeyHomeIsmatched.php"
         ],
         "psr-4": {
             "App\\": "app/"

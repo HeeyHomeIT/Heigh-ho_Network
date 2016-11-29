@@ -25,7 +25,7 @@
 ###### Json数据格式
 ```
 data
-user_id             user_id        //工长id
+shop_id             shop_id        //店铺id
 
 callback            callback
 ```
@@ -43,28 +43,36 @@ data         {
                                                             wood_name           wood_nane
                                                             wood_sex            wood_sex
                                                             wood_age            wood_age
-                                                            wood_birthplace     wood_birthplace
+                                                            wood_birthplace     wood_birthplace  //籍贯
+                                                            wood_worktime       wood_worktime    //从业时间
+                                                            portrait_img        portrait_img     //头像
                                                     }
                     eleworker       eleworker       {
                                                             ele_userid          ele_userid
                                                             ele_name            ele_nane
                                                             ele_sex             ele_sex
                                                             ele_age             ele_age
-                                                            ele_birthplace      ele_birthplace
+                                                            ele_birthplace      ele_birthplace   //籍贯
+                                                            ele_worktime        ele_worktime     //从业时间
+                                                            portrait_img        portrait_img     //头像
                                                     }
                     brickworker     brickworker     {
                                                             brick_userid        brick_userid
                                                             brick_name          brick_nane
                                                             brick_sex           brick_sex
                                                             brick_age           brick_age
-                                                            brick_birthplace    brick_birthplace
+                                                            brick_birthplace    brick_birthplace  //籍贯
+                                                            brick_worktime      brick_worktime    //从业时间
+                                                            portrait_img        portrait_img      //头像       
                                                     }    
                     paintworker     paintworker     {
                                                             paint_userid        paint_userid
                                                             paint_name          paint_nane
                                                             paint_sex           paint_sex
                                                             paint_age           paint_age
-                                                            paint_birthplace    paint_birthplace
+                                                            paint_birthplace    paint_birthplace  //籍贯
+                                                            paint_worktime      paint_worktime    //从业时间
+                                                            portrait_img        portrait_img      //头像
                                                     }    
              }
 msg          ""
@@ -84,7 +92,7 @@ msg           失败
 
 ```
 000           成功
-112           工长id不能为空
+112           店铺id不能为空
 ```
 # add() #
 ## 按类添加工人信息接口
@@ -129,7 +137,7 @@ callback            callback
 callback(
 code         000
 data         ""
-msg          "成功"
+msg          成功
 )
 ```
 
@@ -191,7 +199,7 @@ callback            callback
 callback(
 code         000
 data         ""
-msg          "成功"
+msg          成功
 )
 ```
 
@@ -248,7 +256,7 @@ callback            callback
 callback(
 code         000
 data         ""
-msg          "成功"
+msg          成功
 )
 ```
 
