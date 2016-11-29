@@ -45,6 +45,5 @@ define(['app','jquery'], function (app) {
 //          }
         };
     });
-    require(['js/j_reality/vr_detail'],function(){
-	})
+    require(['js/j_reality/vr_detail','js/j_common/fliter'],function(){});
 });
