@@ -42,7 +42,7 @@ var heeyhomeOrderdetail = {
 				var m = $(this); //定义变量，获取当前类
 				var itemsTop = m.offset().top; //定义变量，获取当前类的top偏移量
 				if(scrollTop > itemsTop - 100) {
-					curId = "&" + m.attr("class");
+					curId = "&" + m.attr("class").split(" ")[0];
 				} else {
 					return false;
 				}
