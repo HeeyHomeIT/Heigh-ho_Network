@@ -1,0 +1,140 @@
+.address_wrap {
+    width: 754px;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 31px;
+}
+
+.address_list {
+    height: 118px;
+    margin-top: 16px;
+}
+
+.address_list_title {
+    height: 35px;
+    line-height: 35px;
+    background-color: #efefef;
+}
+
+.address_list_title span {
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    color: #4b4948;
+}
+
+.address_list_content span {
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    color: #4b4948;
+}
+
+.address_list_content .recipient, .address_list_content .address_code, .address_list_content .address_tel {
+    vertical-align: top;
+    margin-top: 35px;
+}
+
+.address_list_content .in_area, .address_list_content .detailed_address {
+    text-align: left;
+    padding: 26px 10px;
+    box-sizing: border-box;
+}
+
+.recipient {
+    width: 100px;
+}
+
+.in_area {
+    width: 110px;
+}
+
+.detailed_address {
+    width: 214px;
+}
+
+.address_code {
+    width: 97px;
+}
+
+.address_tel {
+    width: 93px;
+}
+
+.editor_del {
+    display: inline-block;
+    width: 115px;
+    text-align: right;
+}
+
+.address_editor, .address_del {
+    width: 20px;
+    height: 35px;
+    display: inline-block;
+    text-align: center;
+    line-height: 35px;
+    vertical-align: middle;
+}
+
+.address_editor img, .address_del img {
+    margin-top: 7px;
+}
+
+.address_editor {
+    margin-right: 15px;
+}
+
+.address_del {
+    margin-right: 15px;
+}
+
+.address_list_content {
+    width: 752px;
+    height: 83px;
+    border: 1px solid #d3d3d3;
+    border-top: none;
+}
+
+.default_address {
+    width: 83px;
+    height: 30px;
+    line-height: 32px;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid #eec988;
+    color: #eec988;
+    border-radius: 4px;
+    margin-left: 25px;
+    vertical-align: top;
+    margin-top: 25px;
+}
+
+.default_address:hover {
+    background-color: #eec988;
+    color: white;
+}
+
+.address_add a {
+    width: 114px;
+    height: 32px;
+    line-height: 32px;
+    display: block;
+    background-color: #eec988;
+    color: white;
+    font-size: 14px;
+    border-radius: 2px;
+    margin-top: 16px;
+}
+
+.address_add a img {
+    vertical-align: middle;
+    margin-right: 9px;
+    margin-left: 8px;
+}
+
+.address_add a:hover {
+    -webkit-box-shadow: 3px 3px 5px #939393;
+    -moz-box-shadow: 3px 3px 5px #939393;
+    box-shadow: 3px 3px 5px #939393;
+
+}
