@@ -13,9 +13,9 @@ define(['app', 'jquery'], function (app) {
         };
     });
 
-    app.directive('vMasterUser', function () {
+    app.directive('vShopdetailMain', function () {
         return {
-            templateUrl: "view/v_master_user/v_master_user.html"
+            templateUrl: "view/v_shopdetails/v_shopdetail_main.html"
 //          link: function (scope, element, attrs) {
 //              scope.creator.createLayout();
 //          }
@@ -30,6 +30,6 @@ define(['app', 'jquery'], function (app) {
 //          }
         };
     });
-    require(['js/j_customer/left_common'], function () {
+    require(['js/j_master_personal_shops/personal_shops'], function () {
     })
 });

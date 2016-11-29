@@ -1,155 +1,241 @@
+#tabUl {
+    width: 1190px;
+    height: 56px;
+    margin: 0 auto;
+    margin-top: 42px;
+}
+
+.tabUl {
+    width: 1190px;
+    height: 56px;
+    position: static;
+    z-index: 999;
+    display: block;
+    top: 0;
+    margin-top: 0 !important;
+}
+
+.tabUl li {
+    float: left;
+    width: 160px;
+    height: 56px;
+    line-height: 56px;
+    text-align: center;
+    background: url("../../css/img/tab_li_bd.png") no-repeat top right;
+    background-color: #525252;
+}
+
+.tabUl li:hover {
+    cursor: pointer;
+}
+
+.tabUl li:last-child {
+    background-image: none;
+}
+
+.tabUl li a {
+    color: white;
+    font-size: 18px;
+}
+
+.tabUl .tab_active {
+    background-color: #666;
+}
+
+.tabUl .tab_active a {
+    color: #4b4948;
+}
+
+.tabUl .tab_active a:hover {
+    text-decoration: none;
+}
+
+.tabUl .first_tab, .tabUl .last_tab {
+    width: 193px;
+}
+
+.tabUl .first_tab {
+    border-radius: 4px 0 0 4px;
+}
+
+.tabUl .last_tab {
+    border-radius: 0 4px 4px 0;
+}
+
+.tab_content .tab_56 {
+    height: 56px;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.same_class {
+    padding-top: 56px;
+    margin-top: -56px;
+}
+
 #selfshop_top {
-	position: relative
+    position: relative
 }
 
 #selfshop_top .selfshop_content {
-	width: 1190px;
-	margin: 0 auto
+    width: 1190px;
+    margin: 0 auto
 }
 
 #selfshop_top .now_location {
-	height: 17px;
-	margin: 30px 0 16px 0;
-	color: #656565;
-	font-family: FZLTHJW;
-	font-size: 14px
+    height: 17px;
+    margin: 30px 0 16px 0;
+    color: #656565;
+    font-family: FZLTHJW;
+    font-size: 14px
 }
 
 #selfshop_top .pic_bigshop {
-	width: 630px;
-	height: 393px;
-	float: left;
-	position: relative
+    width: 630px;
+    height: 393px;
+    float: left;
+    position: relative
 }
 
 .ui-tabs-hide {
-	display: none
+    display: none
 }
 
 #selfshop_top .pic_smallshop li.ui-tabs-selected a:after {
-	background: rgba(0,0,0,0)!important
+    background: rgba(0, 0, 0, 0) !important
 }
 
 #selfshop_top .pic_bigshop img {
-	width: 100%;
-	height: 100%
+    width: 100%;
+    height: 100%
 }
 
 #selfshop_top .pic_smallshop {
-	float: left;
-	width: 165px;
-	height: 393px;
-	margin: 0 40px 0 3px
+    float: left;
+    width: 165px;
+    height: 393px;
+    margin: 0 40px 0 3px
 }
 
 #selfshop_top .pic_smallshop li {
-	cursor: pointer;
-	position: relative;
-	display: block;
-	width: 170px;
-	height: 95px;
-	margin-bottom: 4px
+    cursor: pointer;
+    position: relative;
+    display: block;
+    width: 170px;
+    height: 95px;
+    margin-bottom: 4px
 }
 
 #selfshop_top .pic_smallshop li a {
-	width: 100%;
-	height: 100%;
-	display: block
+    width: 100%;
+    height: 100%;
+    display: block
 }
 
 #selfshop_top .pic_smallshop li a:after {
-	content: "";
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background: rgba(0,0,0,0.6);
-	display: block
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: block
 }
 
 #selfshop_top .pic_smallshop li a:hover:after {
-	background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
 }
 
 #selfshop_top .pic_smallshop li:last-child {
-	margin-bottom: 0
+    margin-bottom: 0
 }
 
 #selfshop_top .pic_smallshop li img {
-	position: relative;
-	width: 100%;
-	height: 100%
+    position: relative;
+    width: 100%;
+    height: 100%
 }
 
 #selfshop_top .shop_information {
-	float: left;
-	position: relative
+    float: left;
+    position: relative
 }
 
 #selfshop_top .shop_information .shop_name {
-	font-family: FZLTHJW;
-	color: #E88226;
-	font-size: 22px;
-	height: 23px;
-	margin-bottom: 16px
+    font-family: FZLTHJW;
+    color: #E88226;
+    font-size: 22px;
+    height: 23px;
+    margin-bottom: 16px
 }
 
 #selfshop_top .shop_information .shop_name h2 {
-	float: left;
-	font-size: 22px;
-	margin-right: 21px
+    float: left;
+    font-size: 22px;
+    margin-right: 21px;
+    margin-top: 0;
+    margin-bottom: 0
 }
 
 #selfshop_top .shop_information .shop_name img {
-	height: 18px
+    height: 18px
 }
 
 #selfshop_top .shop_information .signature {
-	color: #A5A5A5;
-	font-family: FZLTHJW;
-	font-size: 14px;
-	margin-bottom: 13px
+    color: #A5A5A5;
+    font-family: FZLTHJW;
+    font-size: 14px;
+    margin-bottom: 13px
+}
+
+#selfshop_top .shop_information .signature h3 {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    margin: 0
+
 }
 
 #selfshop_top .shop_information .shop_introduce {
-	padding: 10px 0
+    padding: 10px 0
 }
 
 #selfshop_top .shop_information .shop_introduce p img {
-	margin-right: 5px;
-	width: 12px;
-	height: 17px
+    margin-right: 5px;
+    width: 12px;
+    height: 17px
 }
 
 #selfshop_top .shop_information .shop_introduce p {
-	color: #656565;
-	font-family: FZLTHJW;
-	font-size: 14px
+    color: #656565;
+    font-family: FZLTHJW;
+    font-size: 14px;
+    margin: 0 0 0!important;
 }
 
 #selfshop_top .shop_information .shop_introduce .service_area {
-	margin: 14px 0 18px 0
+    padding: 14px 0 18px 0
 }
 
 #selfshop_top .shop_information .shop_introduce p input {
-	border: 0;
-	cursor: pointer;
-	border-radius: 2px;
-	font-family: FZLTHJW;
-	font-size: 12px;
-	color: #FFFFFF;
-	background-color: #525252;
-	text-align: center;
-	width: 78px;
-	height: 23px;
-	margin-left: 11px
+    border: 0;
+    cursor: pointer;
+    border-radius: 2px;
+    font-family: FZLTHJW;
+    font-size: 12px;
+    color: #FFFFFF;
+    background-color: #525252;
+    text-align: center;
+    width: 78px;
+    height: 23px;
+    margin-left: 11px
 }
 
 #selfshop_top .shop_information .shop_introduce p input:hover {
-	color: #EEC988;
-	background-color: #363636;
-	transition: all .3s linear;
+    color: #EEC988;
+    background-color: #363636;
+    transition: all .3s linear;
     -ms-transition: all .3s linear;
     -o-transition: all .3s linear;
     -webkit-transition: all .3s linear;
@@ -157,73 +243,73 @@
 }
 
 #selfshop_top .shop_information .shop_introduce .good_style {
-	position: relative;
-	color: #656565;
-	font-family: FZLTHJW;
-	font-size: 14px;
-	margin-right: 13px;
-	float: left
+    position: relative;
+    color: #656565;
+    font-family: FZLTHJW;
+    font-size: 14px;
+    margin-right: 13px;
+    float: left
 }
 
 #selfshop_top .shop_information .shop_introduce span {
-	color: #656565;
-	font-family: FZLTHJW;
-	font-size: 12px
+    color: #656565;
+    font-family: FZLTHJW;
+    font-size: 14px
 }
 
 #selfshop_top .shop_information .shop_assess {
-	margin: 21px 0 22px 0
+    margin: 21px 0 22px 0
 }
 
 #selfshop_top .shop_information .shop_assess div {
-	float: left;
-	padding: 0 32px 0 32px;
-	color: #656565;
-	font-family: FZLTHJW;
-	font-size: 14px;
-	border-right: 1px solid #656565
+    float: left;
+    padding: 0 32px 0 32px;
+    color: #656565;
+    font-family: FZLTHJW;
+    font-size: 14px;
+    border-right: 1px solid #656565
 }
 
 #selfshop_top .shop_information .shop_assess div:first-child {
-	padding-left: 0
+    padding-left: 0
 }
 
 #selfshop_top .shop_information .shop_assess div:last-child {
-	border: 0
+    border: 0
 }
 
 #selfshop_top .shop_information .shop_assess div p:first-child {
-	margin-bottom: 12px
+    margin-bottom: 12px
 }
 
 #selfshop_top .shop_information .shop_assess div span {
-	font-family: FZLTDHK;
-	font-size: 18px;
-	color: #E88226;
-	padding: 0 2px 0 3px
+    font-family: FZLTDHK;
+    font-size: 18px;
+    color: #E88226;
+    padding: 0 2px 0 3px
 }
 
 #selfshop_top .shop_information .shop_button {
-	position: relative;
-	padding-top: 7px;
-	margin-left: -20px
+    position: relative;
+    padding-top: 7px;
+    margin-left: -20px
 }
 
 #selfshop_top .shop_information .shop_order input {
-	width: 345px;
-	height: 43px;
-	color: #FFFFFF;
-	background-color: #525252;
-	border-radius: 4px;
-	border: 0;
-	cursor: pointer;
-	text-align: center;
-	font-family: FZLTHJW;
-	font-size: 18px
+    width: 345px;
+    height: 43px;
+    color: #FFFFFF;
+    background-color: #525252;
+    border-radius: 4px;
+    border: 0;
+    cursor: pointer;
+    text-align: center;
+    font-family: FZLTHJW;
+    font-size: 18px
 }
 
 #selfshop_top .shop_information .shop_order input:hover {
-	transition: all .3s linear;
+    transition: all .3s linear;
     -ms-transition: all .3s linear;
     -o-transition: all .3s linear;
     -webkit-transition: all .3s linear;
@@ -232,25 +318,26 @@
 }
 
 #selfshop_top .shop_information .shop_like {
-	margin-top: 15px;
-	position: relative
+    margin-top: 15px;
+    position: relative
 }
 
 #selfshop_top .shop_information .shop_like .collect_shop {
-	float: left;
-	background-color: #525252;
-	color: #FFFFFF;
-	font-family: FZLTHJW;
-	font-size: 16px;
-	width: 162px;
-	height: 39px;
-	border: 0;
-	cursor: pointer;
-	border-radius: 4px
+    float: left;
+    background-color: #525252;
+    color: #FFFFFF;
+    font-family: FZLTHJW;
+    font-size: 16px;
+    width: 162px;
+    height: 37px;
+    line-height: 37px;
+    border: 0;
+    cursor: pointer;
+    border-radius: 4px
 }
 
 #selfshop_top .shop_information .shop_like .collect_shop:hover {
-	transition: all .3s linear;
+    transition: all .3s linear;
     -ms-transition: all .3s linear;
     -o-transition: all .3s linear;
     -webkit-transition: all .3s linear;
@@ -259,29 +346,31 @@
 }
 
 #selfshop_top .shop_information .shop_like .collect_shop span {
-	background: url(../img/icon-collect.png) no-repeat;
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	margin: 10px 17px 0 46px
+    background: url(../img/icon-collect.png) no-repeat;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 10px 17px 0 46px;
+    vertical-align: top
 }
 
 #selfshop_top .shop_information .shop_like .share_shop {
-	float: left;
-	background-color: #FFFFFF;
-	color: #4B4948;
-	font-family: FZLTHJW;
-	font-size: 16px;
-	width: 162px;
-	height: 37px;
-	margin-left: 21px;
-	border: 1px solid #656565;
-	cursor: pointer;
-	border-radius: 4px
+    float: left;
+    background-color: #FFFFFF;
+    color: #4B4948;
+    font-family: FZLTHJW;
+    font-size: 16px;
+    width: 162px;
+    height: 37px;
+    line-height: 37px;
+    margin-left: 21px;
+    border: 1px solid #656565;
+    cursor: pointer;
+    border-radius: 4px
 }
 
 #selfshop_top .shop_information .shop_like .share_shop:hover {
-	transition: all .3s linear;
+    transition: all .3s linear;
     -ms-transition: all .3s linear;
     -o-transition: all .3s linear;
     -webkit-transition: all .3s linear;
@@ -290,201 +379,203 @@
 }
 
 #selfshop_top .shop_information .shop_like .share_shop span {
-	background: url(../img/icon-share.png) no-repeat;
-	display: inline-block;
-	width: 18px;
-	height: 18px;
-	margin: 8px 15px 0 46px
+    background: url(../img/icon-share.png) no-repeat;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin: 8px 15px 0 46px;
+    vertical-align: top
 }
 
 #manager_information {
-	position: relative;
-	width: 1190px;
-	margin: 50px auto;
-	clear: both
+    position: relative;
+    width: 1190px;
+    margin: 0 auto;
+    clear: both
 }
 
-#manager_information>h3,#our_process>h3 {
+#manager_information > h3, #our_process > h3 {
     border-left: 3px solid #EEC988;
     padding-left: 12px;
     font-size: 20px;
     color: #4B4948;
     line-height: 22px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin-bottom: 49px
+    margin-bottom: 49px;
+    margin-top: 20px
 }
 
-#manager_information h3>span,#our_process>h3>span {
+#manager_information h3 > span, #our_process > h3 > span {
     font-size: 14px;
     display: inline-block;
     margin-left: 5px
 }
 
 #manager_information .manager_content > div {
-	margin: 0 auto;
-	width: 395px;
-	float: left
+    margin: 0 auto;
+    width: 395px;
+    float: left
 }
 
-#manager_information .manager_introduce,.work_experience {
-	position: relative
+#manager_information .manager_introduce, .work_experience {
+    position: relative
 }
 
-#manager_information .manager_introduce .border_line,.work_experience .border_line {
-	position: absolute;
-	width: 1px;
-	height: 261px;
-	background: url(../img/border-line.png);
-	top: 10px;
-	right: 0
+#manager_information .manager_introduce .border_line, .work_experience .border_line {
+    position: absolute;
+    width: 1px;
+    height: 261px;
+    background: url(../img/border-line.png);
+    top: 10px;
+    right: 0
 }
 
 #manager_information .manager_introduce .icon_head {
-	width: 86px;
-	height: 86px;
-	border-radius: 43px;
-	margin: 0 auto;
-	background: url(../img/icon-head.png) -25px -25px;
-	background-color: #FFFFFF
+    width: 86px;
+    height: 86px;
+    border-radius: 43px;
+    margin: 0 auto;
+    background: url(../img/icon-head.png) -25px -25px;
+    background-color: #FFFFFF
 }
 
 #manager_information .manager_introduce .manager_detail {
-	margin: 21px 0 0 120px;
-	color: #4B4948;
-	font-family: FZLTZHK;
-	font-size: 14px
+    margin: 21px 0 0 120px;
+    color: #4B4948;
+    font-family: FZLTZHK;
+    font-size: 14px
 }
 
 #manager_information .manager_introduce .manager_detail div {
-	margin-bottom: 12px
+    margin-bottom: 12px
 }
 
 #manager_information .manager_introduce .manager_detail div:last-child {
-	margin-bottom: 0
+    margin-bottom: 0
 }
 
 #manager_information .manager_introduce .manager_detail div > span {
-	display: inline-block;
-	text-align: left;
-	width: 70px;
-	margin-right: 35px
+    display: inline-block;
+    text-align: left;
+    width: 70px;
+    margin-right: 35px
 }
 
-#manager_information .work_experience .icon_experience,.decoration_history .icon_decoration {
-	width: 86px;
-	height: 86px;
-	position: relative;
-	border-radius: 43px;
-	margin: 0 auto;
-	background-color: #525252
+#manager_information .work_experience .icon_experience, .decoration_history .icon_decoration {
+    width: 86px;
+    height: 86px;
+    position: relative;
+    border-radius: 43px;
+    margin: 0 auto;
+    background-color: #525252
 }
 
 #manager_information .work_experience ul {
-	margin: 21px 0 0 110px;
-	color: #4B4948;
-	font-family: FZLTZHK;
-	font-size: 14px
+    margin: 21px 0 0 110px;
+    color: #4B4948;
+    font-family: FZLTZHK;
+    font-size: 14px
 }
 
 #manager_information .work_experience li {
-	margin-bottom: 12px;
-	list-style-type: disc
+    margin-bottom: 12px;
+    list-style-type: disc
 }
 
 #manager_information .work_experience li:last-child {
-	margin: 0
+    margin: 0
 }
 
 #manager_information .work_experience .icon_experience img {
-	position: absolute;
-	left: 31px;
-	top: 16px
+    position: absolute;
+    left: 31px;
+    top: 16px
 }
 
 #manager_information .work_experience .icon_experience span {
-	color: #FFFFFF;
-	font-family: FZLTHJW;
-	position: absolute;
-	top: 45px;
-	left: 15px;
-	font-size: 14px
+    color: #FFFFFF;
+    font-family: FZLTHJW;
+    position: absolute;
+    top: 45px;
+    left: 15px;
+    font-size: 14px
 }
 
 #manager_information .decoration_history .icon_decoration img {
-	position: absolute;
-	left: 28px;
-	top: 13px
+    position: absolute;
+    left: 28px;
+    top: 13px
 }
 
 #manager_information .decoration_history .icon_decoration span {
-	color: #FFFFFF;
-	font-family: FZLTHJW;
-	position: absolute;
-	top: 48px;
-	left: 16px;
-	font-size: 14px
+    color: #FFFFFF;
+    font-family: FZLTHJW;
+    position: absolute;
+    top: 48px;
+    left: 16px;
+    font-size: 14px
 }
 
 #manager_information .decoration_history ul {
-	margin: 21px 0 0 158px;
-	color: #4B4948;
-	font-family: FZLTZHK;
-	font-size: 14px
+    margin: 21px 0 0 158px;
+    color: #4B4948;
+    font-family: FZLTZHK;
+    font-size: 14px
 }
 
 #manager_information .decoration_history ul li {
-	margin-bottom: 12px
+    margin-bottom: 12px
 }
 
 #manager_information .decoration_history ul li:last-child {
-	margin-bottom: 0
+    margin-bottom: 0
 }
 
 #our_process {
-	position: relative;
-	width: 1190px;
-	margin: 50px auto;
-	clear: both
+    position: relative;
+    width: 1190px;
+    margin: 50px auto;
+    clear: both
 }
 
 #our_process .process_box {
-	position: relative;
-	margin-right: 85px;
-	float: left
+    position: relative;
+    margin-right: 85px;
+    float: left
 }
 
 #our_process .process_box:last-child {
-	margin: 0
+    margin: 0
 }
 
 #our_process .process_box .process_pic {
-	width: 168px;
-	height: 124px;
-	background: url(../img/process-1.png)
+    width: 168px;
+    height: 124px;
+    background: url(../img/process-1.png)
 }
 
 #our_process .process_box .background_pic_1 {
-	background-color: #EEC988;
-	width: 8px;
-	height: 121px;
-	position: absolute;
-	top: 10px;
-	left: 168px
+    background-color: #EEC988;
+    width: 8px;
+    height: 121px;
+    position: absolute;
+    top: 10px;
+    left: 168px
 }
 
 #our_process .process_box .background_pic_2 {
-	background-color: #EEC988;
-	width: 141px;
-	height: 8px;
-	position: absolute;
-	top: 123px;
-	left: 35px
+    background-color: #EEC988;
+    width: 141px;
+    height: 8px;
+    position: absolute;
+    top: 123px;
+    left: 35px
 }
 
 #our_process .process_box .process_explain {
-	width: 168px;
-	margin-top: 26px;
-	color: #4B4948;
-	font-size: 12px;
-	font-family: FZLTHJW
+    width: 168px;
+    margin-top: 26px;
+    color: #4B4948;
+    font-size: 12px;
+    font-family: FZLTHJW
 }
