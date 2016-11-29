@@ -222,6 +222,10 @@
 }
 
 .local_update .update_img:hover, .local_update .spot_shoot:hover {
+    transition: all .5s ease 0s;
+    -webkit-transition: all .5s ease 0s;
+    -moz-transition: all .5s ease 0s;
+    -ms-transition: all .5s ease 0s;
     -webkit-box-shadow: 3px 3px 5px #939393;
     -moz-box-shadow: 3px 3px 5px #939393;
     box-shadow: 3px 3px 5px #939393;

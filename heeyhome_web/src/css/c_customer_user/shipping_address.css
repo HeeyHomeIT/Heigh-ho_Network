@@ -103,7 +103,6 @@
     display: inline-block;
     border: 1px solid #eec988;
     color: #eec988;
-    border-radius: 4px;
     margin-left: 25px;
     vertical-align: top;
     margin-top: 25px;
@@ -133,6 +132,10 @@
 }
 
 .address_add a:hover {
+    transition: all .5s ease 0s;
+    -webkit-transition: all .5s ease 0s;
+    -moz-transition: all .5s ease 0s;
+    -ms-transition: all .5s ease 0s;
     -webkit-box-shadow: 3px 3px 5px #939393;
     -moz-box-shadow: 3px 3px 5px #939393;
     box-shadow: 3px 3px 5px #939393;

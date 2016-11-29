@@ -228,7 +228,22 @@
 
 .collection_shop {
     height: 144px;
-    border-bottom: 1px solid #c3c3c3;
+    border-bottom: 1px solid #eee;
+}
+
+.first_collection_shop {
+    margin-top: 20px;
+}
+
+.collection_shop:hover {
+    transition: all .5s ease 0s;
+    -webkit-transition: all .5s ease 0s;
+    -moz-transition: all .5s ease 0s;
+    -ms-transition: all .5s ease 0s;
+    -webkit-box-shadow: 0 0 10px #939393;
+    -moz-box-shadow: 0 0 10px #939393;
+    box-shadow: 0 0 10px #939393;
+    cursor: pointer;
 }
 
 .collection_shop .left_img {

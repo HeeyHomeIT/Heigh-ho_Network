@@ -5,7 +5,7 @@
  * Created by Administrator on 2016/11/25.
  */
 /* 头部左右切换效果开始 */
-var GoodsDetails = {
+var personalData = {
     details: function () {
         /* details */
         var dtDiv = $("#works_content_title div");
@@ -40,6 +40,6 @@ var GoodsDetails = {
 define(['angular'], function (angular) {
     //将本控制器函数作为结果返回给router.js
     return function personal_data() {
-        GoodsDetails.details();
+        personalData.details();
     };
 });
