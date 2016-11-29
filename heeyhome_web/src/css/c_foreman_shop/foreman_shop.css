@@ -135,6 +135,7 @@
 }
 
 #foreman_shop .shop_content .shop_box .right_summary .shop_name img {
+	margin-top: 2px;
 	height: 18px
 }
 
@@ -148,6 +149,17 @@
 	margin-bottom: 14px;
 	font-family: FZLTHJW;
 	font-size: 14px
+}
+
+#foreman_shop .shop_content .shop_box .right_summary .shop_introduce p:nth-child(3) span {
+	display: inline-block;
+	border: 1px solid #656565;
+	margin-right: 10px;
+	padding: 3px
+}
+
+#foreman_shop .shop_content .shop_box .right_summary .shop_introduce p:nth-child(3) span:last-child {
+	margin: 0
 }
 
 #foreman_shop .shop_content .shop_box .shop_icon div {
@@ -179,10 +191,12 @@
 
 #foreman_shop .shop_content .shop_box .shop_assess span {
 	display: inline-block;
+	width: 30px;
+	text-align: right;
 	margin: 0 8px 0 17px;
 	font-family: HelveticaNeueLTPro HvIt;
 	color: #E88226;
-	font-size: 18px;
+	font-size: 18px
 }
 
 #foreman_shop .shop_content .shop_box .shop_button {
@@ -222,12 +236,20 @@
 }
 
 #foreman_shop .shop_content .shop_box .shop_button .enter_shop:hover {
-	/*background-color: #EEC988;*/
-	box-shadow: 0px 0px 5px #939393;
-	transition: all 0.3s 
+	color: #EEC988;
+	background-color: #363636;
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
 }
 
 #foreman_shop .shop_content .shop_box .shop_button .collect_shop:hover {
-	box-shadow: 0px 0px 5px #EEA236;
-	transition: all 0.3s
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    background-color: #363636
 }
