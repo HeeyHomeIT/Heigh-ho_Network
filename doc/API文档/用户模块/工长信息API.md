@@ -105,6 +105,7 @@ data
 必选参数
 foreman_id             foreman_id
 可选参数
+name                   name                   //登录名
 nickname               nickname               //用户昵称
 realname               realname               //真实姓名
 sex                    sex                    //性别
@@ -146,6 +147,7 @@ data         {
                     home_district             home_district
                     worktime                  worktime                  //从业时间
                     servicearea               servicearea 数组          //服务区域
+                    foremaninfo_name          foremaninfo_name          //登录名
                     foremaninfo_email         foremaninfo_email         //邮箱
                     foremaninfo_phone         foremaninfo_phone         //联系电话
              }

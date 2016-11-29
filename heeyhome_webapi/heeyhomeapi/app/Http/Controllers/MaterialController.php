@@ -23,5 +23,16 @@ class MaterialController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+    public function brand(){
+        $callback=rq('callback');
+        $cate_id=rq('cate_id');
+        $brands=DB::select('select * from hh_materialbrand where cate_id=?',[$cate_id]);
+        if($brands){
+            $arr = array("code" => "000",
+                "data" => $brands
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
 
 }

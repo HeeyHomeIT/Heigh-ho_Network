@@ -67,6 +67,8 @@ class UserinfoController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        $user_name=rq('name');
+        if($user_name) $update=DB::update('update hh_user set user_name=? where user_id=?',[$user_name,$user_id]);
         $userinfo_nickname=rq('nickname');
         $userinfo_realname=rq('realname');
         $userinfo_sex=rq('sex');
@@ -92,6 +94,7 @@ class UserinfoController extends Controller
         if($personal->save()){
             $userinfo=DB::select('select * from hh_userinfo where userinfo_userid=?',[$user_id]);
             $user=DB::select('select user_phone,user_email from hh_user where user_id=?',[$user_id]);
+            $userinfo[0]->userinfo_name=$user[0]->user_name;
             $userinfo[0]->userinfo_phone=$user[0]->user_phone;
             $userinfo[0]->userinfo_email=$user[0]->user_email;
             $arr = array("code" => "000",

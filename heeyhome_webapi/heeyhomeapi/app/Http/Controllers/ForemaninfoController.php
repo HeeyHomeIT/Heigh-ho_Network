@@ -69,6 +69,8 @@ class ForemaninfoController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        $foreman_name=rq('name');
+        if($foreman_name) $update=DB::update('update hh_user set user_name=? where user_id=?',[$foreman_name,$foreman_id]);
         $foremaninfo_nickname=rq('nickname');
         $foremaninfo_realname=rq('realname');
         $foremaninfo_sex=rq('sex');
@@ -101,7 +103,8 @@ class ForemaninfoController extends Controller
         if($home_district) $personal->home_district=$home_district;
         if($personal->save()){
             $userinfo=DB::select('select * from hh_foremaninfo where foremaninfo_userid=?',[$foreman_id]);
-            $user=DB::select('select user_phone,user_email from hh_user where user_id=?',[$foreman_id]);
+            $user=DB::select('select user_name,user_phone,user_email from hh_user where user_id=?',[$foreman_id]);
+            $userinfo[0]->foremaninfo_name=$user[0]->user_name;
             $userinfo[0]->foremaninfo_phone=$user[0]->user_phone;
             $userinfo[0]->foremaninfo_email=$user[0]->user_email;
             $userinfo[0]->servicearea=explode(',',$userinfo[0]->servicearea);

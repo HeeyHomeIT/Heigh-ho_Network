@@ -101,6 +101,7 @@ data
 必选参数
 user_id                user_id
 可选参数
+name                   name                   //登录名
 nickname               nickname               //用户昵称
 realname               realname               //真实姓名
 sex                    sex                    //性别
@@ -134,6 +135,7 @@ data         {
                     home_province          home_province          
                     home_city              home_city
                     home_district          home_district
+                    userinfo_name          userinfo_name          //登录名
                     userinfo_email         userinfo_email         //邮箱
                     userinfo_tel           userinfo_tel           //联系电话
              }
