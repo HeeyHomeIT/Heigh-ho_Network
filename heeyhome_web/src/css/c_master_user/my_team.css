@@ -1,0 +1,117 @@
+.team_title {
+    height: 53px;
+    line-height: 53px;
+    background-color: #525252;
+    border-radius: 5px;
+}
+
+.team_title span {
+    font-size: 16px;
+    color: white;
+    margin-left: 29px;
+}
+
+.team_content_wrap {
+    height: 845px;
+    border: 1px solid #cdcdcd;
+    border-top: none;
+}
+
+.team_content {
+    width: auto;
+    height: auto;
+    border: 1px solid white;
+}
+
+.team_bg_wrap {
+    width: 178px;
+    height: 178px;
+    background: url("../../css/img/team_bg.png") no-repeat;
+    margin-top: 47px;
+    margin-left: 14px;
+    position: relative;
+}
+
+.team_bg_wrap:first-child {
+    margin-left: 60px;
+}
+
+.team_bg_wrap:hover {
+    cursor: pointer;
+}
+
+.team_bg {
+    width: 178px;
+    height: 178px;
+    background-color: #2d2d2d;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+}
+
+.team_img {
+    width: 74px;
+    height: 100px;
+    padding-top: 40px;
+    z-index: 2;
+    position: absolute;
+    margin-left: 52px;
+}
+
+.team_img p {
+    font-size: 14px;
+    color: #eec988;
+    text-align: center;
+}
+
+.team_bg_bottom {
+    width: 178px;
+    height: 30px;
+    line-height: 30px;
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    opacity: 0.5;
+}
+
+.team_bg_bottom .team_delete {
+    width: 34px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+}
+
+.team_bg_bottom .team_delete img {
+    margin-top: 8px;
+}
+
+.team_bg_bottom .team_up {
+    color: white;
+    margin-right: 10px;
+}
+
+.new_album {
+    width: 178px;
+    height: 178px;
+    border: 1px solid #d3d3d3;
+    margin-left: 60px;
+    margin-top: 14px;
+}
+
+.new_album:hover {
+    cursor: pointer;
+}
+
+.new_album img {
+    width: 54px;
+    height: 54px;
+    margin-top: 46px;
+    margin-left: 61px;
+    margin-bottom: 16px;
+}
+
+.new_album p {
+    font-size: 14px;
+    color: #c8c8c8;
+    text-align: center;
+}

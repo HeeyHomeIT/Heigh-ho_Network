@@ -1,0 +1,189 @@
+.wallet_content {
+    width: 799px;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid white;
+}
+
+.wallet_content_top {
+    height: 140px;
+    box-shadow: 0 0 16px #939393;
+    margin-top: 47px;
+    background: url("../../css/img/wallet_bg.png") no-repeat 655px -15px;
+}
+
+.wallet_content_top ul {
+    margin-top: 46px;
+    margin-left: 27px;
+}
+
+.wallet_content_top li {
+    width: 182px;
+    height: 51px;
+    float: left;
+    border-right: 1px solid #bbb;
+    text-align: center;
+}
+
+.wallet_content_top li:last-child {
+    border-right: none;
+}
+
+.wallet_content_top li .wallet_li_top {
+    font-size: 14px;
+    color: #4b4948;
+    margin-top: 5px;
+}
+
+.wallet_content_top li .wallet_money {
+    font-size: 16px;
+    color: #E88226;
+    margin-top: 5px;
+}
+
+.wallet_content_top li .retention {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #999;
+}
+
+.wallet_content_top li .wallet_money span {
+    font-size: 18px;
+}
+
+.wallet_withdrawal {
+    width: 90px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    display: inline-block;
+    background-color: #E88226;
+    color: white;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: 53px;
+    border-radius: 2px;
+}
+
+.wallet_safe {
+    width: 88px;
+    height: 34px;
+    line-height: 36px;
+    text-align: center;
+    display: inline-block;
+    border:1px solid #3d3d3d;
+    color: #3d3d3d;
+    font-size: 14px;
+    margin-top: 53px;
+    border-radius: 2px;
+}
+
+.wallet_bottom_title {
+    height: 29px;
+    margin-top: 30px;
+}
+
+.bottom_title_left {
+    position: relative;
+}
+
+.bottom_title_left .transaction_records, .bottom_title_left .withdrawal_record {
+    width: 99px;
+    height: 29px;
+    line-height: 29px;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    color: #4b4948;
+}
+
+.bottom_title_left .transaction_records:hover, .bottom_title_left .withdrawal_record:hover {
+    cursor: pointer;
+}
+
+.bottom_title_active {
+    width: 99px;
+    height: 3px;
+    background-color: #e98226;
+    position: absolute;
+    bottom: 0;
+}
+
+.bottom_title_right .check_detail {
+    font-size: 14px;
+    color: #4b4948;
+}
+
+.bottom_title_right .check_detail img {
+    width: 14px;
+    height: 14px;
+    margin-left: 8px;
+}
+
+.wallet_bottom_content {
+    margin-top: 3px;
+}
+
+.wallet_dl {
+    height: 18px;
+    line-height: 18px;
+    margin-top: 27px;
+}
+
+.wallet_dd {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #c3c3c3;
+}
+
+.wallet_dd:last-child {
+    border-bottom: none;
+}
+
+.wallet_dl span, .wallet_dd span {
+
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    color: #4b4948;
+}
+
+.wallet_dd .dd_opera {
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    color: #e88226;
+}
+
+.wallet_dd .dd_opera i {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #e88226;
+    margin-left: 8px;
+    vertical-align: middle;
+    height: 8px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.wallet_time {
+    width: 100px;
+}
+
+.wallet_account {
+    width: 270px;
+}
+
+.wallet_coin {
+    width: 127px;
+}
+
+.wallet_cash {
+    width: 207px;
+}
+
+.local_history {
+    margin-top: 70px;
+    font-size: 14px;
+    color: #4b4948;
+}
