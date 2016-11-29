@@ -9,12 +9,20 @@ var heeyhomeOrderdetail = {
 	 * 左侧悬浮菜单
 	 */
 	suspensionMenu: function() {
-		var items = $("#time_axis .axis_content>div");
+		var _head = $(".commonhead");
+		$(_head).addClass("bar");
+		var items = $(".bar");		
 		var _tabs = $("#suspension_menu li ");
 		$(_tabs).click(function(e) {
 			e.stopPropagation();
 			var x = $(this).index();
-			var divTop = items.eq(x + 1).offset().top;
+			var divTop;
+			if(x == 6){
+				divTop = items.eq(0).offset().top;
+			}
+			else{
+				divTop = items.eq(x+1).offset().top;
+			}
 			$("html,body").stop().animate({
 				scrollTop: divTop
 			}, 10);
