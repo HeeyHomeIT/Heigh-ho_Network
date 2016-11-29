@@ -1,11 +1,11 @@
-# QqLoginController #
-# qqlogin()
-## QQ登录接口
+# WxLoginController #
+# wxlogin()
+## 微信登录接口
 
 ### 接口地址
 
 ```
-.../qqlogin
+.../wxlogin
 ```
 
 ### 接口格式
@@ -17,7 +17,7 @@
 ```
 
 ```
-.../qqlogin
+.../wxlogin
 ```
 
 ###### Json数据格式
