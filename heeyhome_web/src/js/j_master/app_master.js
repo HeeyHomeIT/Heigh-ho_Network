@@ -49,7 +49,13 @@ define(['angular', 'require', 'angular-resource', 'angular-route'], function (an
                 })
                 /*我的订单*/
                 .when('/my_order', {
-                    templateUrl: 'view/v_master_user/my_order.html'
+                    templateUrl: 'view/v_master_user/my_order.html',
+                    controller: 'my_order',
+                    resolve: {
+                    	// ctrlRegister为我自己写的一个复用的函数，
+                        // 用于注入控制器。见第三部分
+                        delay: ctrlRegister('my_order', ['js/j_master/my_order'])
+                    }
                 })
                 /*我的作品*/
                 .when('/my_works', {

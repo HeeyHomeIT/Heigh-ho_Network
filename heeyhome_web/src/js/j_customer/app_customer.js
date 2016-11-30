@@ -42,9 +42,15 @@ define(['angular', 'angular-resource', 'angular-route'], function (angular) {
                 }
             })
 
-            .when('/my_order', {
-                templateUrl: 'view/v_customer_user/my_order.html'
-            })
+             .when('/my_order', {
+                    templateUrl: 'view/v_customer_user/my_order.html',
+                    controller: 'my_order',
+                    resolve: {
+                    	// ctrlRegister为我自己写的一个复用的函数，
+                        // 用于注入控制器。见第三部分
+                        delay: ctrlRegister('my_order', ['js/j_customer/my_order'])
+                    }
+                })
 
             .when('/my_collection', {
                 templateUrl: 'view/v_customer_user/my_collection.html',

@@ -96,7 +96,12 @@
 }
 
 .order_title div:nth-child(7) ul li:hover {
-    background-color: #A2A2A2
+   transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    background-color: #EBEBEB
 }
 
 .order_content .order_box {
@@ -184,7 +189,7 @@
 
 .order_box .ordercnt_content .block .area p {
     position: relative;
-    padding: 46px 0 44px 0
+    padding: 51px 0
 }
 
 .order_box .ordercnt_content .block .area p:after {
@@ -246,6 +251,15 @@
     text-align: center
 }
 
+.order_box .ordercnt_content .block .all a:hover {
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    background-color: #E88226
+}
+
 .order_box .ordercnt_content .block .all input {
     width: 96px;
     height: 37px;
@@ -259,8 +273,19 @@
     border: 1px solid #EEC988
 }
 
+.order_box .ordercnt_content .block .all input:hover {
+	color: #363636;
+	background-color: #EEC988;
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
+}
+
 .order_box .ordercnt_content .hide {
     width: 760px;
+    padding: 0 33px;
     margin: 0 auto;
     border: 1px solid #EFEFEF
 }

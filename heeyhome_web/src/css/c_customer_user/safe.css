@@ -188,6 +188,16 @@
     float: right
 }
 
+.security_top ul li a:hover {
+	color: #FFFFFF;
+	background-color: #EEC988;
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
+}
+
 .security_bottom {
     margin-top: 58px
 }
@@ -216,6 +226,15 @@
 .security_bottom .login_history p a {
     margin-left: 15px;
     color: #E88226
+}
+
+.security_bottom .login_history p a:hover {
+	color: #333333;
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
 }
 
 .security_bottom .login_note {
