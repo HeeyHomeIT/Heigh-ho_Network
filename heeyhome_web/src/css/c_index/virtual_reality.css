@@ -68,7 +68,8 @@
 	column-count: 3;
 	-webkit-column-gap: 10px;
 	-moz-column-gap: 10px;
-	column-gap: 10px
+	column-gap: 10px;
+	height: 900px
 }
 
 .box_picture {
