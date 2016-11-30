@@ -106,11 +106,31 @@ Route::group(['middleware' => ['web']], function () {
     /*绑定邮箱*/
     Route::any('personal/safe/emailverify', 'EditMailController@verify');
     Route::any('personal/safe/emailchange', 'EditMailController@edit');
-    /*我的员工*/
-    Route::any('personal/myworkers', 'MyworkersController@index');
-    Route::any('personal/myworkers/add', 'MyworkersController@add');
-    Route::any('personal/myworkers/change', 'MyworkersController@edit');
-    Route::any('personal/myworkers/del', 'MyworkersController@del');
+    /*我的员工-水电工*/
+    Route::any('myworkers/eleworker', 'EleworkerController@index');
+    Route::any('myworkers/addeleworker', 'EleworkerController@add');
+    Route::any('myworkers/changeeleworker', 'EleworkerController@edit');
+    Route::any('myworkers/deleleworker', 'EleworkerController@del');
+    /*我的员工-油漆工*/
+    Route::any('myworkers/paintworker', 'PaintworkerController@index');
+    Route::any('myworkers/addpaintworker', 'PaintworkerController@add');
+    Route::any('myworkers/changepaintworker', 'PaintworkerController@edit');
+    Route::any('myworkers/delpaintworker', 'PaintworkerController@del');
+    /*我的员工-木工*/
+    Route::any('myworkers/woodworker', 'WoodworkerController@index');
+    Route::any('myworkers/addwoodworker', 'WoodworkerController@add');
+    Route::any('myworkers/changewoodworker', 'WoodworkerController@edit');
+    Route::any('myworkers/delwoodworker', 'WoodworkerController@del');
+    /*我的员工-瓦工*/
+    Route::any('myworkers/brickworker', 'BrickworkerController@index');
+    Route::any('myworkers/addbrickworker', 'BrickworkerController@add');
+    Route::any('myworkers/changebrickworker', 'BrickworkerController@edit');
+    Route::any('myworkers/delbrickworker', 'BrickworkerController@del');
+    /*我的员工-杂工*/
+    Route::any('myworkers/mixworker', 'MixworkerController@index');
+    Route::any('myworkers/addmixworker', 'MixworkerController@add');
+    Route::any('myworkers/changemixworker', 'MixworkerController@edit');
+    Route::any('myworkers/delmixworker', 'MixworkerController@del');
     /*我的收藏-全景图*/
     Route::any('personal/collection/panorama', 'CollectimgController@index');
     /*我的收藏-店铺*/
