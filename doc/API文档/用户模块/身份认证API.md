@@ -1,13 +1,13 @@
-# IDCardController #
+# AuthenticationController #
 # index() #
-## 银行卡身份证实名信息接口
+## 身份认证实名信息接口
 
 
 ### 接口地址
 
 
 ```
-.../personal/safe/index
+.../personal/safe/auth
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../personal/safe/index
+.../personal/safe/auth
 ```
 
 ###### Json数据格式
@@ -64,14 +64,14 @@ msg           失败
 
 ```
 # cardverify() #
-## 银行卡身份证实名认证接口
+## 身份认证实名认证接口
 
 
 ### 接口地址
 
 
 ```
-.../personal/safe/cardverify
+.../personal/safe/authverify
 ```
 
 ### 接口格式
@@ -83,7 +83,7 @@ msg           失败
 ```
 
 ```
-.../personal/safe/cardverify
+.../personal/safe/authverify
 ```
 
 ###### Json数据格式

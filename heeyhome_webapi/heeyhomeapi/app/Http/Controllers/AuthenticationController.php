@@ -1,18 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: pjw
- * Date: 2016/10/25
- * Time: 13:40
+ * User: heeyhome
+ * Date: 2016/11/30
+ * Time: 16:59
  */
 
 namespace App\Http\Controllers;
 
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Response;
 
-class IDCardController extends Controller
+class AuthenticationController extends Controller
 {
     public function index(){
         $callback=rq('callback');
