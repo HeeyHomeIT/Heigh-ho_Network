@@ -142,5 +142,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('shoplist', 'ShoplistController@index');
     /*材料商申请价格变动*/
     Route::any('material/category', 'MaterialController@category');
+    /*添加银行卡*/
+    Route::any('bankcard/getname', 'BankCardController@getname');
+    Route::any('bankcard/getcardtype', 'BankCardController@getcardtype');
+    Route::any('bankcard/cardverify', 'BankCardController@cardverify');
 
 });
