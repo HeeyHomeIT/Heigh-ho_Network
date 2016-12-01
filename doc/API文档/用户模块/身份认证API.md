@@ -38,10 +38,10 @@ callback            callback
 callback(
 code         000
 data         {
-                    bankcard        bankcard
-                    realname        realname
-                    idcard          idcard
-                    mobile          mobile
+                    real_name       real_name
+                    idcardno        idcardno
+                    facephoto       facephoto       //正面照
+                    backphoto       backphoto       //反面照
              }
 msg          ""
 )
@@ -60,7 +60,8 @@ msg           失败
 
 ```
 000           成功
-111           身份尚未验证
+131           正在审核中
+132           身份尚未验证
 
 ```
 # cardverify() #
@@ -91,10 +92,9 @@ msg           失败
 data
 user_id             user_id        
 name                name
-idcard              idcard
-bankcard            bankcard
-phone               phone
-captcha             captcha
+idcardno            idcardno
+face                face(file类型)
+back                back(file类型)
 
 callback            callback
 ```
@@ -107,11 +107,10 @@ callback            callback
 callback(
 code         000
 data         {
-                    bankcard        bankcard
-                    realname        realname
-                    idcard          idcard
-                    mobile          mobile
-                    bank            bank            //开户银行
+                    real_name           real_name
+                    idcardno            idcardno
+                    facephoto           facephoto(图片路径)
+                    backphoto           backphoto(图片路径)
              }
 msg          ""
 )
@@ -129,13 +128,6 @@ msg           失败
 ###### Code值含义
 
 ```
-000           信息校验成功
-111           抱歉，银行卡号校验不一致
-201           银行卡号为空
-202           真实姓名为空
-203           银行卡号不正确
-204           真实姓名包含特殊字符
-205           身份证不正确
-210           没有信息
+122           图片上传出错
 
 ```
