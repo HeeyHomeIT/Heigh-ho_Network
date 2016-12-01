@@ -111,6 +111,7 @@ data         {
                     realname        realname
                     idcard          idcard
                     mobile          mobile
+                    bank            bank            //开户银行
              }
 msg          ""
 )
