@@ -1,4 +1,4 @@
-# AuthenticationController #
+# IDCardController #
 # index() #
 ## 身份认证实名信息接口
 

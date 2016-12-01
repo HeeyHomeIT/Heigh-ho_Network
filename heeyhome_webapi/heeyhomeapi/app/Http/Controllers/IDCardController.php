@@ -12,7 +12,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 
-class AuthenticationController extends Controller
+class IDCardController extends Controller
 {
     public function index(){
         $callback=rq('callback');
