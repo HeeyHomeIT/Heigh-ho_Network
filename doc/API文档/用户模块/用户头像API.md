@@ -88,7 +88,7 @@ msg           失败
 ```
 data
 user_id             user_id
-myfile              myfile
+myfile              myfile (file类型)
 
 callback            callback
 ```

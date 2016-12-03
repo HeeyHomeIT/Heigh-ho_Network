@@ -109,8 +109,7 @@ class ForemaninfoController extends Controller
             $userinfo[0]->foremaninfo_email=$user[0]->user_email;
             $userinfo[0]->servicearea=explode(',',$userinfo[0]->servicearea);
             $arr = array("code" => "000",
-                "msg" => "保存成功",
-                "data"=>$userinfo[0]
+                "msg" => "保存成功"
             );
             return $callback . "(" . HHJson($arr) . ")";
         } else{

@@ -11,13 +11,14 @@ namespace App\Http\Controllers;
 
 use App\Shop;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 
 class MyshopController extends Controller
 {
     public function stylelist(){
         $callback=rq('callback');
         $styles=DB::select('select stylename from hh_shop_style');
-        $arr = array("code" => "111",
+        $arr = array("code" => "000",
             "data" => $styles
         );
         return $callback . "(" . HHJson($arr) . ")";
@@ -33,12 +34,14 @@ class MyshopController extends Controller
         }
         $select=DB::select('select * from hh_shop where shop_id=?',[$shop_id]);
         if($select){
-            $img=DB::select('select id,shop_img,is_face from hh_shop_img where shop_id=?',[$shop_id]);
+            $img=DB::select('select id,shop_img,is_face from hh_shop_img where shop_id=? order by id desc',[$shop_id]);
             $select[0]->shop_imgs=$img;
-            $technics=DB::select('select id,technics_text,technics_img from hh_shop_technics where shop_id=?',[$shop_id]);
+            $technics=DB::select('select id,technics_text,technics_img from hh_shop_technics where shop_id=? order by id desc',[$shop_id]);
             $select[0]->shop_technics=$technics;
             $select[0]->servicetag=explode(',',$select[0]->servicetag);
             $select[0]->servicearea=explode(',',$select[0]->servicearea);
+            $gz_img=DB::select('select portrait_img from hh_portrait where portrait_userid=?',[$select[0]->shopper_id]);
+            $select[0]->foremanimg=$gz_img[0]->portrait_img;
             $arr = array("code" => "000",
                 "data" => $select[0]
             );

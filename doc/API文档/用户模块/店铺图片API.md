@@ -1,4 +1,65 @@
 # MyshopimgController #
+# index()
+## 店铺图片显示接口
+
+
+### 接口地址
+
+
+```
+.../personal/myshop/imgs
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../personal/myshop/imgs
+```
+
+###### Json数据格式
+```
+data
+shop_id             shop_id
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                    id           id
+                    shop_img     shop_img      //图片路径
+                    is_face      is_face       //是否为封面    1：封面  2：不是封面
+             }
+msg          ""
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
+117           信息不存在
+```
 # upload()
 ## 上传店铺图片接口
 
@@ -26,7 +87,7 @@
 ```
 data
 shop_id             shop_id
-myfile              myfile
+myfile              myfile(file类型)
 
 callback            callback
 ```
@@ -39,12 +100,8 @@ callback            callback
 callback(
 code         000
 data         {
-                    shop_id       shop_id  
-                    shop_imgs     {
-                                        id           id
-                                        shop_img     shop_img
-                                        is_face      is_face
-                                  }
+                    id           id
+                    shop_img     shop_img
              }
 msg          上传成功
 )

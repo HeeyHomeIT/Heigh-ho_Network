@@ -27,6 +27,8 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
+    /*banner图*/
+    Route::any('banner', 'BannerController@index');
     /*家装百科*/
     Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
     Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
@@ -91,12 +93,17 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('personal/myshop/stylelist', 'MyshopController@stylelist');
     Route::any('personal/myshop', 'MyshopController@index');
     Route::any('personal/myshop/change', 'MyshopController@edit');
-    /*上传店铺图片*/
-    Route::any('personal/myshop/uploadimg', 'ShopimgController@upload');
-    Route::any('personal/myshop/imgsetface', 'ShopimgController@setface');
-    Route::any('personal/myshop/del', 'ShopimgController@del');
+    /*店铺图片*/
+    Route::any('personal/myshop/imgs', 'MyshopimgController@index');
+    Route::any('personal/myshop/uploadimg', 'MyshopimgController@upload');
+    Route::any('personal/myshop/imgsetface', 'MyshopimgController@setface');
+    Route::any('personal/myshop/del', 'MyshopimgController@del');
     /*添加店铺工艺*/
-    Route::any('personal/myshop/technics', 'MyshoptechnicsController@add');
+    Route::any('personal/myshop/addtechnics', 'MyshoptechnicsController@add');
+    /*店铺工艺展示*/
+    Route::any('personal/myshop/technics', 'MyshoptechnicsController@index');
+    /*删除店铺工艺*/
+    Route::any('personal/myshop/deltechnics', 'MyshoptechnicsController@del');
     /*身份认证*/
     Route::any('personal/safe/auth', 'IDCardController@index');
     Route::any('personal/safe/authverify', 'IDCardController@cardverify');
@@ -106,31 +113,14 @@ Route::group(['middleware' => ['web']], function () {
     /*绑定邮箱*/
     Route::any('personal/safe/emailverify', 'EditMailController@verify');
     Route::any('personal/safe/emailchange', 'EditMailController@edit');
-    /*我的员工-水电工*/
-    Route::any('myworkers/eleworker', 'EleworkerController@index');
-    Route::any('myworkers/addeleworker', 'EleworkerController@add');
-    Route::any('myworkers/changeeleworker', 'EleworkerController@edit');
-    Route::any('myworkers/deleleworker', 'EleworkerController@del');
-    /*我的员工-油漆工*/
-    Route::any('myworkers/paintworker', 'PaintworkerController@index');
-    Route::any('myworkers/addpaintworker', 'PaintworkerController@add');
-    Route::any('myworkers/changepaintworker', 'PaintworkerController@edit');
-    Route::any('myworkers/delpaintworker', 'PaintworkerController@del');
-    /*我的员工-木工*/
-    Route::any('myworkers/woodworker', 'WoodworkerController@index');
-    Route::any('myworkers/addwoodworker', 'WoodworkerController@add');
-    Route::any('myworkers/changewoodworker', 'WoodworkerController@edit');
-    Route::any('myworkers/delwoodworker', 'WoodworkerController@del');
-    /*我的员工-瓦工*/
-    Route::any('myworkers/brickworker', 'BrickworkerController@index');
-    Route::any('myworkers/addbrickworker', 'BrickworkerController@add');
-    Route::any('myworkers/changebrickworker', 'BrickworkerController@edit');
-    Route::any('myworkers/delbrickworker', 'BrickworkerController@del');
-    /*我的员工-杂工*/
-    Route::any('myworkers/mixworker', 'MixworkerController@index');
-    Route::any('myworkers/addmixworker', 'MixworkerController@add');
-    Route::any('myworkers/changemixworker', 'MixworkerController@edit');
-    Route::any('myworkers/delmixworker', 'MixworkerController@del');
+    /*我的员工*/
+    Route::any('myworkers/workercate', 'MyworkersController@cate');
+    Route::any('myworkers', 'MyworkersController@workerlist');
+    Route::any('myworkers/workerinfo', 'WorkerController@workerinfo');
+    Route::any('myworkers/pricelist', 'WorkerpricelistController@index');
+    Route::any('myworkers/addworker', 'WorkerController@add');
+    Route::any('myworkers/changeworker', 'WorkerController@edit');
+    Route::any('myworkers/delworker', 'WorkerController@del');
     /*我的收藏-全景图*/
     Route::any('personal/collection/panorama', 'CollectimgController@index');
     /*我的收藏-店铺*/
@@ -146,5 +136,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('bankcard/getname', 'BankCardController@getname');
     Route::any('bankcard/getcardtype', 'BankCardController@getcardtype');
     Route::any('bankcard/cardverify', 'BankCardController@cardverify');
+
 
 });

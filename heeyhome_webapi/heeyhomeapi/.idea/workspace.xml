@@ -21,62 +21,109 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="101" column="40" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="40" />
+            <state relative-caret-position="406">
+              <caret line="96" column="50" selection-start-line="96" selection-start-column="50" selection-end-line="96" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MixworkerController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MixworkerController.php">
+      <file leaf-file-name="ShoplistController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ShoplistController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-282">
-              <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-              <folding>
-                <marker date="1480495250508" expanded="true" signature="280:456" ph="select hh_mi... hh_mixworker" />
-                <marker date="1480495250508" expanded="true" signature="543:588" ph="select * fro... hh_verify" />
-                <marker date="1480495250508" expanded="true" signature="1860:2064" ph="insert into hh_mixworker... " />
-                <marker date="1480495250508" expanded="true" signature="2210:2276" ph="update hh_sh... " />
-                <marker date="1480495250508" expanded="true" signature="2325:2390" ph="insert into hh_portrait... " />
-                <marker date="1480495250508" expanded="true" signature="2448:2572" ph="insert into hh_verify... " />
-                <marker date="1480495250508" expanded="true" signature="4216:4373" ph="update hh_mi... " />
-                <marker date="1480495250508" expanded="true" signature="4502:4621" ph="update hh_ve... " />
-                <marker date="1480495250508" expanded="true" signature="5179:5222" ph="delete from " />
-                <marker date="1480495250508" expanded="true" signature="5293:5359" ph="update hh_sh... " />
-                <marker date="1480495250508" expanded="true" signature="5408:5455" ph="delete from " />
-                <marker date="1480495250508" expanded="true" signature="5504:5547" ph="delete from " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserinfoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserinfoController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="791">
-              <caret line="98" column="59" selection-start-line="98" selection-start-column="59" selection-end-line="98" selection-end-column="59" />
-              <folding>
-                <marker date="1480400369536" expanded="true" signature="626:675" ph="select * fro... hh_userinfo" />
-                <marker date="1480400369536" expanded="true" signature="908:965" ph="select user_... hh_user" />
-                <marker date="1480400369536" expanded="true" signature="2139:2185" ph="update hh_us... " />
-                <marker date="1480400369536" expanded="true" signature="3437:3486" ph="select * fro... hh_userinfo" />
-                <marker date="1480400369536" expanded="true" signature="3531:3588" ph="select user_... hh_user" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SmsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SmsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-1222">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1480059375000" expanded="true" signature="2628:2699" ph="insert into hh_sms... " />
+                <marker date="1479532350000" expanded="true" signature="307:345" ph="select servi... hh_servicearea" />
+                <marker date="1479532350000" expanded="true" signature="380:424" ph="select flag,... hh_shop_workernum" />
+                <marker date="1479532350000" expanded="true" signature="461:496" ph="select style... hh_shop_style" />
+                <marker date="1479532350000" expanded="true" signature="530:564" ph="select shop_... hh_shop_time" />
+                <marker date="1479532350000" expanded="true" signature="2078:2120" ph="select * fro... hh_shop" />
+                <marker date="1479532350000" expanded="true" signature="2389:2451" ph="select shop_... hh_shop_img" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WorkerController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WorkerController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1524">
+              <caret line="218" column="40" selection-start-line="218" selection-start-column="40" selection-end-line="218" selection-end-column="40" />
+              <folding>
+                <marker date="1480740262605" expanded="true" signature="613:781" ph="select hh_mi... hh_mixworker" />
+                <marker date="1480740262605" expanded="true" signature="834:906" ph="select id,se... hh_workerprice_serviceitem" />
+                <marker date="1480740262605" expanded="true" signature="955:1150" ph="select servi... hh_workerprice" />
+                <marker date="1480740262605" expanded="true" signature="1258:1334" ph="select id,se... hh_workerprice_list" />
+                <marker date="1480740262605" expanded="true" signature="2299:2467" ph="select hh_el... hh_eleworker" />
+                <marker date="1480740262605" expanded="true" signature="2520:2592" ph="select id,se... hh_workerprice_serviceitem" />
+                <marker date="1480740262605" expanded="true" signature="2641:2705" ph="select servi... hh_workerprice" />
+                <marker date="1480740262605" expanded="true" signature="2813:2889" ph="select id,se... hh_workerprice_list" />
+                <marker date="1480740262605" expanded="true" signature="3850:4024" ph="select hh_br... hh_brickworker" />
+                <marker date="1480740262605" expanded="true" signature="4077:4149" ph="select id,se... hh_workerprice_serviceitem" />
+                <marker date="1480740262605" expanded="true" signature="4198:4472" ph="select servi... hh_workerprice" />
+                <marker date="1480740262605" expanded="true" signature="4580:4656" ph="select id,se... hh_workerprice_list" />
+                <marker date="1480740262605" expanded="true" signature="5617:5788" ph="select hh_wo... hh_woodworker" />
+                <marker date="1480740262605" expanded="true" signature="5841:5913" ph="select id,se... hh_workerprice_serviceitem" />
+                <marker date="1480740262605" expanded="true" signature="5962:6126" ph="select servi... hh_workerprice" />
+                <marker date="1480740262605" expanded="true" signature="6234:6310" ph="select id,se... hh_workerprice_list" />
+                <marker date="1480740262605" expanded="true" signature="7271:7445" ph="select hh_pa... hh_paintworker" />
+                <marker date="1480740262605" expanded="true" signature="7498:7570" ph="select id,se... hh_workerprice_serviceitem" />
+                <marker date="1480740262605" expanded="true" signature="7619:7763" ph="select servi... hh_workerprice" />
+                <marker date="1480740262605" expanded="true" signature="7871:7947" ph="select id,se... hh_workerprice_list" />
+                <marker date="1480740262605" expanded="true" signature="10601:10764" ph="insert into hh_mixworker... " />
+                <marker date="1480740262605" expanded="true" signature="10909:10975" ph="update hh_sh... " />
+                <marker date="1480740262605" expanded="true" signature="11031:11096" ph="insert into hh_portrait... " />
+                <marker date="1480740262605" expanded="true" signature="11188:11450" ph="insert into hh_workerprice... " />
+                <marker date="1480740262605" expanded="true" signature="12250:12413" ph="insert into hh_eleworker... " />
+                <marker date="1480740262605" expanded="true" signature="12558:12624" ph="update hh_sh... " />
+                <marker date="1480740262605" expanded="true" signature="12680:12745" ph="insert into hh_portrait... " />
+                <marker date="1480740262605" expanded="true" signature="12837:12940" ph="insert into hh_workerprice... " />
+                <marker date="1480740262605" expanded="true" signature="14547:14712" ph="insert into hh_brickworker... " />
+                <marker date="1480740262605" expanded="true" signature="14857:14923" ph="update hh_sh... " />
+                <marker date="1480740262605" expanded="true" signature="14979:15044" ph="insert into hh_portrait... " />
+                <marker date="1480740262605" expanded="true" signature="15136:15491" ph="insert into hh_workerprice... " />
+                <marker date="1480740262605" expanded="true" signature="16841:17005" ph="insert into hh_woodworker... " />
+                <marker date="1480740262605" expanded="true" signature="17150:17216" ph="update hh_sh... " />
+                <marker date="1480740262605" expanded="true" signature="17272:17337" ph="insert into hh_portrait... " />
+                <marker date="1480740262605" expanded="true" signature="17429:17652" ph="insert into hh_workerprice... " />
+                <marker date="1480740262605" expanded="true" signature="18781:18946" ph="insert into hh_paintworker... " />
+                <marker date="1480740262605" expanded="true" signature="19091:19157" ph="update hh_sh... " />
+                <marker date="1480740262605" expanded="true" signature="19213:19278" ph="insert into hh_portrait... " />
+                <marker date="1480740262605" expanded="true" signature="19370:19569" ph="insert into hh_workerprice... " />
+                <marker date="1480740262605" expanded="true" signature="21693:21813" ph="update hh_mi... " />
+                <marker date="1480740262605" expanded="true" signature="21971:22197" ph="update hh_wo... " />
+                <marker date="1480740262605" expanded="true" signature="23033:23153" ph="update hh_el... " />
+                <marker date="1480740262605" expanded="true" signature="23311:23378" ph="update hh_wo... " />
+                <marker date="1480740262605" expanded="true" signature="25021:25143" ph="update hh_br... " />
+                <marker date="1480740262605" expanded="true" signature="25301:25620" ph="update hh_wo... " />
+                <marker date="1480740262605" expanded="true" signature="27009:27130" ph="update hh_wo... " />
+                <marker date="1480740262605" expanded="true" signature="27288:27475" ph="update hh_wo... " />
+                <marker date="1480740262605" expanded="true" signature="28640:28762" ph="update hh_pa... " />
+                <marker date="1480740262605" expanded="true" signature="28920:29083" ph="update hh_wo... " />
+                <marker date="1480740262605" expanded="true" signature="30206:30245" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="30332:30398" ph="update hh_sh... " />
+                <marker date="1480740262605" expanded="true" signature="30455:30502" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="30559:30603" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="31084:31123" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="31210:31276" ph="update hh_sh... " />
+                <marker date="1480740262605" expanded="true" signature="31333:31380" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="31437:31481" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="31962:32003" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="32090:32156" ph="update hh_sh... " />
+                <marker date="1480740262605" expanded="true" signature="32213:32260" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="32317:32361" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="32842:32882" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="32969:33035" ph="update hh_sh... " />
+                <marker date="1480740262605" expanded="true" signature="33092:33139" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="33196:33240" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="33721:33762" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="33849:33915" ph="update hh_sh... " />
+                <marker date="1480740262605" expanded="true" signature="33972:34019" ph="delete from " />
+                <marker date="1480740262605" expanded="true" signature="34076:34120" ph="delete from " />
               </folding>
             </state>
           </provider>
@@ -104,18 +151,29 @@
         <option value="$PROJECT_DIR$/app/libs/PHPMailer/class.smtp.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MailController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/IDCardController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ForemaninfoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserinfoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MaterialController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MyworkersController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PaintworkerController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/EleworkerController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
+        <option value="$PROJECT_DIR$/resources/views/img.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AuthenticationController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BankCardController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/IDCardController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BrickworkerController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/WoodworkerController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PaintworkerController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MixworkerController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/EleworkerController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MyworkerController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PortraitController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MyworkersController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/WorkerpricelistController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/WorkerController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BannerController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ForemaninfoController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MyshoptechnicsController.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AuthenticationController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MyshopimgController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MyshopController.php" />
       </list>
     </option>
   </component>
@@ -132,10 +190,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-92" />
-    <option name="y" value="24" />
+    <option name="x" value="-34" />
+    <option name="y" value="128" />
     <option name="width" value="1940" />
-    <option name="height" value="1089" />
+    <option name="height" value="1029" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -162,6 +220,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -336,21 +396,24 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../housheng" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\xampp\htdocs\heeyhome2.0\heeyhome_webapi\heeyhomeapi\app\Http\Controllers" />
+      <recent name="E:\xampp\htdocs\heeyhome2.0\heeyhome_webapi\heeyhomeapi\resources" />
       <recent name="E:\xampp\htdocs\heeyhome2.0\heeyhome_webapi\heeyhomeapi\app\libs\PHPMailer" />
       <recent name="E:\xampp\htdocs\heeyhome2.0\heeyhome_webapi\heeyhomeapi\app\libs" />
       <recent name="E:\xampp\htdocs\heeyhome2.0\heeyhome_webapi\heeyhomeapi\app\API\class" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\xampp\htdocs\heeyhome2.0\heeyhome_webapi\heeyhomeapi\resources\views" />
+      <recent name="E:\xampp\htdocs\heeyhome2.0\heeyhome_webapi\heeyhomeapi\app\Http\Controllers" />
+      <recent name="E:\xampp\htdocs\heeyhome2.0\heeyhome_webapi\heeyhomeapi\app\Http" />
       <recent name="E:\xampp\htdocs\heeyhome2.0\heeyhome_webapi\heeyhomeapi\app\API\class" />
     </key>
   </component>
@@ -417,24 +480,27 @@
       <workItem from="1480293662693" duration="21352000" />
       <workItem from="1480380899534" duration="22977000" />
       <workItem from="1480480227168" duration="20245000" />
+      <workItem from="1480560011768" duration="21548000" />
+      <workItem from="1480640544830" duration="28889000" />
+      <workItem from="1480727892418" duration="25539000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68055000" />
+    <option name="totallyTimeSpent" value="144031000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-92" y="24" width="1940" height="1089" extended-state="1" />
-    <editor active="false" />
+    <frame x="-34" y="128" width="1940" height="1029" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18244681" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18829787" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.057471264" sideWeight="0.5042553" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06168831" sideWeight="0.50852877" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.057471264" sideWeight="0.49574468" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06354515" sideWeight="0.4914712" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -463,105 +529,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Desktop/heeyhomeapi/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4099">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/PHPMailer-master/PHPMailerAutoload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/PHPMailer-master/class.smtp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/API/class/class.phpmailer.php" />
-    <entry file="file://$PROJECT_DIR$/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMimeEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1672">
-          <caret line="82" column="48" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/API/class/class.phpmailer.php" />
-    <entry file="file://$PROJECT_DIR$/app/API/class/class.smtp.php" />
-    <entry file="file://$PROJECT_DIR$/app/API/class/Oauth.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/API/qqConnectAPI.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/QqLoginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-          <folding>
-            <marker date="1480151230000" expanded="true" signature="694:732" ph="select id fr... hh_user" />
-            <marker date="1480151230000" expanded="true" signature="1116:1194" ph="insert into hh_user... " />
-            <marker date="1480151230000" expanded="true" signature="1387:1440" ph="insert into hh_time... " />
-            <marker date="1480151230000" expanded="true" signature="1505:1570" ph="insert into hh_portrait... " />
-            <marker date="1480151230000" expanded="true" signature="1632:1702" ph="insert into hh_userinfo... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/libs/PHPMailer/docs/faq.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/libs/PHPMailer/class.pop3.php" />
-    <entry file="file://$PROJECT_DIR$/app/libs/PHPMailer/test/phpmailerTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="15" column="3" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/libs/PHPMailer/class.smtp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_classmap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1034">
-          <caret line="11" column="65" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/libs/PHPMailer/composer.json" />
-    <entry file="file://$PROJECT_DIR$/app/libs/PHPMailer/README.md" />
     <entry file="file://$PROJECT_DIR$/../../../heeyhomeapi/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
@@ -573,7 +540,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-108">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -708,17 +674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PortraitController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2266">
-          <caret line="110" column="97" selection-start-line="110" selection-start-column="36" selection-end-line="110" selection-end-column="97" />
-          <folding>
-            <marker date="1480064656000" expanded="true" signature="593:653" ph="select portr... hh_portrait" />
-            <marker date="1480064656000" expanded="true" signature="3841:3902" ph="update hh_po... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MaterialController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -727,83 +682,6 @@
             <marker date="1480403195030" expanded="true" signature="301:330" ph="select * fro... hh_materialcate" />
             <marker date="1480403195030" expanded="true" signature="640:686" ph="select * fro... hh_materialbrand" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeEncyclopediaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1478141841000" expanded="true" signature="305:372" ph="select id,ca... hh_jzbkcate" />
-            <marker date="1478141841000" expanded="true" signature="909:970" ph="select count... hh_jzbkarticle" />
-            <marker date="1478141841000" expanded="true" signature="1152:1238" ph="select id,ar... hh_jzbkarticle" />
-            <marker date="1478141841000" expanded="true" signature="1815:1888" ph="select id,ar... hh_jzbkarticle" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyshopController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="42" column="36" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
-          <folding>
-            <marker date="1480070677000" expanded="true" signature="314:349" ph="select style... hh_shop_style" />
-            <marker date="1480070677000" expanded="true" signature="799:836" ph="select * fro... hh_shop" />
-            <marker date="1480070677000" expanded="true" signature="901:960" ph="select id,sh... hh_shop_img" />
-            <marker date="1480070677000" expanded="true" signature="1049:1123" ph="select id,te... hh_shop_technics" />
-            <marker date="1480070677000" expanded="true" signature="2760:2797" ph="select * fro... hh_shop" />
-            <marker date="1480070677000" expanded="true" signature="2846:2905" ph="select id,sh... hh_shop_img" />
-            <marker date="1480070677000" expanded="true" signature="3002:3076" ph="select id,te... hh_shop_technics" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyshopimgController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1480065776000" expanded="true" signature="1786:1840" ph="insert into hh_shop_img... " />
-            <marker date="1480065776000" expanded="true" signature="1933:1981" ph="select shop_... hh_shop_img" />
-            <marker date="1480065776000" expanded="true" signature="3309:3357" ph="update hh_sh... " />
-            <marker date="1480065776000" expanded="true" signature="3434:3477" ph="update hh_sh... " />
-            <marker date="1480065776000" expanded="true" signature="3538:3581" ph="select shop_... hh_shop_img" />
-            <marker date="1480065776000" expanded="true" signature="4359:4393" ph="delete from " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyshoptechnicsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1480066342000" expanded="true" signature="1753:1832" ph="insert into hh_shop_technics... " />
-            <marker date="1480066342000" expanded="true" signature="1944:2015" ph="select techn... hh_shop_technics" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ForemaninfoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="72" column="71" selection-start-line="72" selection-start-column="71" selection-end-line="72" selection-end-column="71" />
-          <folding>
-            <marker date="1480400175321" expanded="true" signature="627:682" ph="select * fro... hh_foremaninfo" />
-            <marker date="1480400175321" expanded="true" signature="918:975" ph="select user_... hh_user" />
-            <marker date="1480400175321" expanded="true" signature="2255:2301" ph="update hh_us... " />
-            <marker date="1480400175321" expanded="true" signature="4167:4222" ph="select * fro... hh_foremaninfo" />
-            <marker date="1480400175321" expanded="true" signature="4270:4337" ph="select user_... hh_user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyworkersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="471" column="60" selection-start-line="451" selection-start-column="12" selection-end-line="471" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -817,115 +695,120 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EleworkerController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IDCardController.php" />
+    <entry file="file://G:/heeyhomeapi/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2056">
-          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+        <state relative-caret-position="440">
+          <caret line="50" column="33" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/AuthenticationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="100" column="5" selection-start-line="73" selection-start-column="8" selection-end-line="100" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BankCardController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1980">
+          <caret line="95" column="46" selection-start-line="95" selection-start-column="46" selection-end-line="95" selection-end-column="46" />
           <folding>
-            <marker date="1480493015124" expanded="true" signature="299:475" ph="select hh_el... hh_eleworker" />
-            <marker date="1480493015124" expanded="true" signature="562:607" ph="select * fro... hh_verify" />
-            <marker date="1480493015124" expanded="true" signature="1939:2169" ph="insert into hh_eleworker... " />
-            <marker date="1480493015124" expanded="true" signature="2331:2397" ph="update hh_sh... " />
-            <marker date="1480493015124" expanded="true" signature="2446:2511" ph="insert into hh_portrait... " />
-            <marker date="1480493015124" expanded="true" signature="2569:2693" ph="insert into hh_verify... " />
-            <marker date="1480493015124" expanded="true" signature="4385:4568" ph="update hh_el... " />
-            <marker date="1480493015124" expanded="true" signature="4713:4832" ph="update hh_ve... " />
-            <marker date="1480493015124" expanded="true" signature="5390:5433" ph="delete from " />
-            <marker date="1480493015124" expanded="true" signature="5504:5570" ph="update hh_sh... " />
-            <marker date="1480493015124" expanded="true" signature="5619:5666" ph="delete from " />
-            <marker date="1480493015124" expanded="true" signature="5715:5758" ph="delete from " />
+            <marker date="1480579467529" expanded="true" signature="329:391" ph="select real_... hh_realname" />
+            <marker date="1480579467529" expanded="true" signature="4524:4629" ph="insert into hh_bankcard... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/img.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BrickworkerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-616">
-          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
-          <folding>
-            <marker date="1480493478201" expanded="true" signature="284:470" ph="select hh_br... hh_brickworker" />
-            <marker date="1480493478201" expanded="true" signature="559:604" ph="select * fro... hh_verify" />
-            <marker date="1480493478201" expanded="true" signature="2462:2974" ph="insert into hh_brickworker... " />
-            <marker date="1480493478201" expanded="true" signature="3277:3343" ph="update hh_sh... " />
-            <marker date="1480493478201" expanded="true" signature="3392:3457" ph="insert into hh_portrait... " />
-            <marker date="1480493478201" expanded="true" signature="3515:3639" ph="insert into hh_verify... " />
-            <marker date="1480493478201" expanded="true" signature="6007:6469" ph="update hh_br... " />
-            <marker date="1480493478201" expanded="true" signature="6755:6874" ph="update hh_ve... " />
-            <marker date="1480493478201" expanded="true" signature="7432:7479" ph="delete from " />
-            <marker date="1480493478201" expanded="true" signature="7550:7616" ph="update hh_sh... " />
-            <marker date="1480493478201" expanded="true" signature="7665:7712" ph="delete from " />
-            <marker date="1480493478201" expanded="true" signature="7761:7804" ph="delete from " />
-          </folding>
+        <state relative-caret-position="418">
+          <caret line="42" column="87" selection-start-line="42" selection-start-column="87" selection-end-line="42" selection-end-column="87" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WoodworkerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2178">
-          <caret line="104" column="29" selection-start-line="104" selection-start-column="29" selection-end-line="104" selection-end-column="29" />
-          <folding>
-            <marker date="1480494694074" expanded="true" signature="301:482" ph="select hh_wo... hh_woodworker" />
-            <marker date="1480494694074" expanded="true" signature="570:615" ph="select * fro... hh_verify" />
-            <marker date="1480494694074" expanded="true" signature="1987:2245" ph="insert into hh_woodworker... " />
-            <marker date="1480494694074" expanded="true" signature="2415:2481" ph="update hh_sh... " />
-            <marker date="1480494694074" expanded="true" signature="2530:2595" ph="insert into hh_portrait... " />
-            <marker date="1480494694074" expanded="true" signature="2653:2777" ph="insert into hh_verify... " />
-            <marker date="1480494694074" expanded="true" signature="4544:4754" ph="update hh_wo... " />
-            <marker date="1480494694074" expanded="true" signature="4907:5026" ph="update hh_ve... " />
-            <marker date="1480494694074" expanded="true" signature="5584:5629" ph="delete from " />
-            <marker date="1480494694074" expanded="true" signature="5700:5766" ph="update hh_sh... " />
-            <marker date="1480494694074" expanded="true" signature="5815:5862" ph="delete from " />
-            <marker date="1480494694074" expanded="true" signature="5911:5954" ph="delete from " />
-          </folding>
+        <state relative-caret-position="330">
+          <caret line="42" column="87" selection-start-line="42" selection-start-column="87" selection-end-line="42" selection-end-column="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PaintworkerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="101" column="33" selection-start-line="101" selection-start-column="33" selection-end-line="101" selection-end-column="33" />
-          <folding>
-            <marker date="1480486649429" expanded="true" signature="339:525" ph="select hh_pa... hh_paintworker" />
-            <marker date="1480486649429" expanded="true" signature="614:659" ph="select * fro... hh_verify" />
-            <marker date="1480486649429" expanded="true" signature="2133:2452" ph="insert into hh_paintworker... " />
-            <marker date="1480486649429" expanded="true" signature="2647:2713" ph="update hh_sh... " />
-            <marker date="1480486649429" expanded="true" signature="2762:2827" ph="insert into hh_portrait... " />
-            <marker date="1480486649429" expanded="true" signature="2885:3009" ph="insert into hh_verify... " />
-            <marker date="1480486649429" expanded="true" signature="4993:5263" ph="update hh_pa... " />
-            <marker date="1480486649429" expanded="true" signature="5441:5560" ph="update hh_ve... " />
-            <marker date="1480486649429" expanded="true" signature="6118:6165" ph="delete from " />
-            <marker date="1480486649429" expanded="true" signature="6236:6302" ph="update hh_sh... " />
-            <marker date="1480486649429" expanded="true" signature="6351:6398" ph="delete from " />
-            <marker date="1480486649429" expanded="true" signature="6447:6490" ph="delete from " />
-          </folding>
+        <state relative-caret-position="220">
+          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MixworkerController.php">
+    <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-282">
-          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-          <folding>
-            <marker date="1480495250508" expanded="true" signature="280:456" ph="select hh_mi... hh_mixworker" />
-            <marker date="1480495250508" expanded="true" signature="543:588" ph="select * fro... hh_verify" />
-            <marker date="1480495250508" expanded="true" signature="1860:2064" ph="insert into hh_mixworker... " />
-            <marker date="1480495250508" expanded="true" signature="2210:2276" ph="update hh_sh... " />
-            <marker date="1480495250508" expanded="true" signature="2325:2390" ph="insert into hh_portrait... " />
-            <marker date="1480495250508" expanded="true" signature="2448:2572" ph="insert into hh_verify... " />
-            <marker date="1480495250508" expanded="true" signature="4216:4373" ph="update hh_mi... " />
-            <marker date="1480495250508" expanded="true" signature="4502:4621" ph="update hh_ve... " />
-            <marker date="1480495250508" expanded="true" signature="5179:5222" ph="delete from " />
-            <marker date="1480495250508" expanded="true" signature="5293:5359" ph="update hh_sh... " />
-            <marker date="1480495250508" expanded="true" signature="5408:5455" ph="delete from " />
-            <marker date="1480495250508" expanded="true" signature="5504:5547" ph="delete from " />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Shop.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Personal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Foreman.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Driveaddress.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserinfoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="791">
-          <caret line="98" column="59" selection-start-line="98" selection-start-column="59" selection-end-line="98" selection-end-column="59" />
+        <state relative-caret-position="253">
+          <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
           <folding>
             <marker date="1480400369536" expanded="true" signature="626:675" ph="select * fro... hh_userinfo" />
             <marker date="1480400369536" expanded="true" signature="908:965" ph="select user_... hh_user" />
@@ -933,6 +816,30 @@
             <marker date="1480400369536" expanded="true" signature="3437:3486" ph="select * fro... hh_userinfo" />
             <marker date="1480400369536" expanded="true" signature="3531:3588" ph="select user_... hh_user" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyworkerController.php" />
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EleworkerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../heeyhomeapi/app/Http/Controllers/MyworkersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="37" column="52" selection-start-line="16" selection-start-column="7" selection-end-line="37" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MixworkerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="167" column="9" selection-start-line="153" selection-start-column="8" selection-end-line="167" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -948,25 +855,250 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IDCardController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="94" column="5" selection-start-line="32" selection-start-column="3" selection-end-line="94" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="286">
+          <caret line="73" column="35" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="35" />
+          <folding>
+            <marker date="1480581634172" expanded="true" signature="366:457" ph="select * fro... hh_c" />
+            <marker date="1480581634172" expanded="true" signature="3018:3111" ph="insert into hh_realname... " />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthenticationController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyworkersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="85" column="22" selection-start-line="85" selection-start-column="22" selection-end-line="85" selection-end-column="22" />
-          <folding />
+        <state relative-caret-position="792">
+          <caret line="41" column="64" selection-start-line="41" selection-start-column="64" selection-end-line="41" selection-end-column="64" />
+          <folding>
+            <marker date="1480734436595" expanded="true" signature="297:339" ph="select id,ca... workercate" />
+            <marker date="1480734436595" expanded="true" signature="297:341" ph="select id,ca... workercate" />
+            <marker date="1480734436595" expanded="true" signature="911:1079" ph="select hh_mi... hh_mixworker" />
+            <marker date="1480734436595" expanded="true" signature="1612:1780" ph="select hh_el... hh_eleworker" />
+            <marker date="1480734436595" expanded="true" signature="2315:2489" ph="select hh_br... hh_brickworker" />
+            <marker date="1480734436595" expanded="true" signature="3027:3198" ph="select hh_wo... hh_woodworker" />
+            <marker date="1480734436595" expanded="true" signature="3735:3909" ph="select hh_pa... hh_paintworker" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WorkerpricelistController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="28" column="48" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="48" />
+          <folding>
+            <marker date="1480735398621" expanded="true" signature="504:576" ph="select id,se... hh_workerprice_serviceitem" />
+            <marker date="1480735398621" expanded="true" signature="656:732" ph="select id,se... hh_workerprice_list" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BannerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+          <folding>
+            <marker date="1480744932560" expanded="true" signature="297:320" ph="select * fro... hh_banner" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeEncyclopediaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="17" column="96" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="96" />
+          <folding>
+            <marker date="1478141841000" expanded="true" signature="305:372" ph="select id,ca... hh_jzbkcate" />
+            <marker date="1478141841000" expanded="true" signature="909:970" ph="select count... hh_jzbkarticle" />
+            <marker date="1478141841000" expanded="true" signature="1152:1238" ph="select id,ar... hh_jzbkarticle" />
+            <marker date="1478141841000" expanded="true" signature="1815:1888" ph="select id,ar... hh_jzbkarticle" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PortraitController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="28" column="103" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="103" />
+          <folding>
+            <element signature="e#136#170#0#PHP" expanded="true" />
+            <marker date="1480733205377" expanded="true" signature="593:653" ph="select portr... hh_portrait" />
+            <marker date="1480733205377" expanded="true" signature="3813:3874" ph="update hh_po... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyshopController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1022">
+          <caret line="74" column="39" selection-start-line="74" selection-start-column="39" selection-end-line="74" selection-end-column="39" />
+          <folding>
+            <element signature="e#125#138#0#PHP" expanded="true" />
+            <marker date="1480756334234" expanded="true" signature="354:389" ph="select style... hh_shop_style" />
+            <marker date="1480756334234" expanded="true" signature="839:876" ph="select * fro... hh_shop" />
+            <marker date="1480756334234" expanded="true" signature="941:1000" ph="select id,sh... hh_shop_img" />
+            <marker date="1480756334234" expanded="true" signature="941:1017" ph="select id,sh... hh_shop_img" />
+            <marker date="1480756334234" expanded="true" signature="1106:1180" ph="select id,te... hh_shop_technics" />
+            <marker date="1480756334234" expanded="true" signature="1106:1197" ph="select id,te... hh_shop_technics" />
+            <marker date="1480756334234" expanded="true" signature="1439:1499" ph="select portr... hh_portrait" />
+            <marker date="1480756334234" expanded="true" signature="1588:1969" ph="select portr... hh_portrait" />
+            <marker date="1480756334234" expanded="true" signature="3016:3053" ph="select * fro... hh_shop" />
+            <marker date="1480756334234" expanded="true" signature="3102:3161" ph="select id,sh... hh_shop_img" />
+            <marker date="1480756334234" expanded="true" signature="3258:3332" ph="select id,te... hh_shop_technics" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyshopimgController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="18" column="107" selection-start-line="18" selection-start-column="107" selection-end-line="18" selection-end-column="107" />
+          <folding>
+            <element signature="e#125#159#0#PHP" expanded="true" />
+            <marker date="1480755723386" expanded="true" signature="374:450" ph="select id,sh... hh_shop_img" />
+            <marker date="1480755723386" expanded="true" signature="2356:2410" ph="insert into hh_shop_img... " />
+            <marker date="1480755723386" expanded="true" signature="2503:2554" ph="select shop_... hh_shop_img" />
+            <marker date="1480755723386" expanded="true" signature="3759:3807" ph="update hh_sh... " />
+            <marker date="1480755723386" expanded="true" signature="3884:3927" ph="update hh_sh... " />
+            <marker date="1480755723386" expanded="true" signature="3988:4031" ph="select shop_... hh_shop_img" />
+            <marker date="1480755723386" expanded="true" signature="4809:4843" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyshoptechnicsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="20" column="121" selection-start-line="20" selection-start-column="105" selection-end-line="20" selection-end-column="121" />
+          <folding>
+            <element signature="e#126#160#0#PHP" expanded="true" />
+            <marker date="1480752948583" expanded="true" signature="381:472" ph="select id,te... hh_shop_technics" />
+            <marker date="1480752948583" expanded="true" signature="2416:2495" ph="insert into hh_shop_technics... " />
+            <marker date="1480752948583" expanded="true" signature="2607:2678" ph="select techn... hh_shop_technics" />
+            <marker date="1480752948583" expanded="true" signature="3627:3666" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ForemaninfoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2180">
+          <caret line="111" column="31" selection-start-line="111" selection-start-column="31" selection-end-line="111" selection-end-column="31" />
+          <folding>
+            <marker date="1480748486600" expanded="true" signature="627:682" ph="select * fro... hh_foremaninfo" />
+            <marker date="1480748486600" expanded="true" signature="918:975" ph="select user_... hh_user" />
+            <marker date="1480748486600" expanded="true" signature="2255:2301" ph="update hh_us... " />
+            <marker date="1480748486600" expanded="true" signature="4167:4222" ph="select * fro... hh_foremaninfo" />
+            <marker date="1480748486600" expanded="true" signature="4270:4337" ph="select user_... hh_user" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="101" column="40" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="40" />
+        <state relative-caret-position="406">
+          <caret line="96" column="50" selection-start-line="96" selection-start-column="50" selection-end-line="96" selection-end-column="50" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/API/class/Oauth.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1882">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ShoplistController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1222">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1479532350000" expanded="true" signature="307:345" ph="select servi... hh_servicearea" />
+            <marker date="1479532350000" expanded="true" signature="380:424" ph="select flag,... hh_shop_workernum" />
+            <marker date="1479532350000" expanded="true" signature="461:496" ph="select style... hh_shop_style" />
+            <marker date="1479532350000" expanded="true" signature="530:564" ph="select shop_... hh_shop_time" />
+            <marker date="1479532350000" expanded="true" signature="2078:2120" ph="select * fro... hh_shop" />
+            <marker date="1479532350000" expanded="true" signature="2389:2451" ph="select shop_... hh_shop_img" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WorkerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1524">
+          <caret line="218" column="40" selection-start-line="218" selection-start-column="40" selection-end-line="218" selection-end-column="40" />
+          <folding>
+            <marker date="1480740262605" expanded="true" signature="613:781" ph="select hh_mi... hh_mixworker" />
+            <marker date="1480740262605" expanded="true" signature="834:906" ph="select id,se... hh_workerprice_serviceitem" />
+            <marker date="1480740262605" expanded="true" signature="955:1150" ph="select servi... hh_workerprice" />
+            <marker date="1480740262605" expanded="true" signature="1258:1334" ph="select id,se... hh_workerprice_list" />
+            <marker date="1480740262605" expanded="true" signature="2299:2467" ph="select hh_el... hh_eleworker" />
+            <marker date="1480740262605" expanded="true" signature="2520:2592" ph="select id,se... hh_workerprice_serviceitem" />
+            <marker date="1480740262605" expanded="true" signature="2641:2705" ph="select servi... hh_workerprice" />
+            <marker date="1480740262605" expanded="true" signature="2813:2889" ph="select id,se... hh_workerprice_list" />
+            <marker date="1480740262605" expanded="true" signature="3850:4024" ph="select hh_br... hh_brickworker" />
+            <marker date="1480740262605" expanded="true" signature="4077:4149" ph="select id,se... hh_workerprice_serviceitem" />
+            <marker date="1480740262605" expanded="true" signature="4198:4472" ph="select servi... hh_workerprice" />
+            <marker date="1480740262605" expanded="true" signature="4580:4656" ph="select id,se... hh_workerprice_list" />
+            <marker date="1480740262605" expanded="true" signature="5617:5788" ph="select hh_wo... hh_woodworker" />
+            <marker date="1480740262605" expanded="true" signature="5841:5913" ph="select id,se... hh_workerprice_serviceitem" />
+            <marker date="1480740262605" expanded="true" signature="5962:6126" ph="select servi... hh_workerprice" />
+            <marker date="1480740262605" expanded="true" signature="6234:6310" ph="select id,se... hh_workerprice_list" />
+            <marker date="1480740262605" expanded="true" signature="7271:7445" ph="select hh_pa... hh_paintworker" />
+            <marker date="1480740262605" expanded="true" signature="7498:7570" ph="select id,se... hh_workerprice_serviceitem" />
+            <marker date="1480740262605" expanded="true" signature="7619:7763" ph="select servi... hh_workerprice" />
+            <marker date="1480740262605" expanded="true" signature="7871:7947" ph="select id,se... hh_workerprice_list" />
+            <marker date="1480740262605" expanded="true" signature="10601:10764" ph="insert into hh_mixworker... " />
+            <marker date="1480740262605" expanded="true" signature="10909:10975" ph="update hh_sh... " />
+            <marker date="1480740262605" expanded="true" signature="11031:11096" ph="insert into hh_portrait... " />
+            <marker date="1480740262605" expanded="true" signature="11188:11450" ph="insert into hh_workerprice... " />
+            <marker date="1480740262605" expanded="true" signature="12250:12413" ph="insert into hh_eleworker... " />
+            <marker date="1480740262605" expanded="true" signature="12558:12624" ph="update hh_sh... " />
+            <marker date="1480740262605" expanded="true" signature="12680:12745" ph="insert into hh_portrait... " />
+            <marker date="1480740262605" expanded="true" signature="12837:12940" ph="insert into hh_workerprice... " />
+            <marker date="1480740262605" expanded="true" signature="14547:14712" ph="insert into hh_brickworker... " />
+            <marker date="1480740262605" expanded="true" signature="14857:14923" ph="update hh_sh... " />
+            <marker date="1480740262605" expanded="true" signature="14979:15044" ph="insert into hh_portrait... " />
+            <marker date="1480740262605" expanded="true" signature="15136:15491" ph="insert into hh_workerprice... " />
+            <marker date="1480740262605" expanded="true" signature="16841:17005" ph="insert into hh_woodworker... " />
+            <marker date="1480740262605" expanded="true" signature="17150:17216" ph="update hh_sh... " />
+            <marker date="1480740262605" expanded="true" signature="17272:17337" ph="insert into hh_portrait... " />
+            <marker date="1480740262605" expanded="true" signature="17429:17652" ph="insert into hh_workerprice... " />
+            <marker date="1480740262605" expanded="true" signature="18781:18946" ph="insert into hh_paintworker... " />
+            <marker date="1480740262605" expanded="true" signature="19091:19157" ph="update hh_sh... " />
+            <marker date="1480740262605" expanded="true" signature="19213:19278" ph="insert into hh_portrait... " />
+            <marker date="1480740262605" expanded="true" signature="19370:19569" ph="insert into hh_workerprice... " />
+            <marker date="1480740262605" expanded="true" signature="21693:21813" ph="update hh_mi... " />
+            <marker date="1480740262605" expanded="true" signature="21971:22197" ph="update hh_wo... " />
+            <marker date="1480740262605" expanded="true" signature="23033:23153" ph="update hh_el... " />
+            <marker date="1480740262605" expanded="true" signature="23311:23378" ph="update hh_wo... " />
+            <marker date="1480740262605" expanded="true" signature="25021:25143" ph="update hh_br... " />
+            <marker date="1480740262605" expanded="true" signature="25301:25620" ph="update hh_wo... " />
+            <marker date="1480740262605" expanded="true" signature="27009:27130" ph="update hh_wo... " />
+            <marker date="1480740262605" expanded="true" signature="27288:27475" ph="update hh_wo... " />
+            <marker date="1480740262605" expanded="true" signature="28640:28762" ph="update hh_pa... " />
+            <marker date="1480740262605" expanded="true" signature="28920:29083" ph="update hh_wo... " />
+            <marker date="1480740262605" expanded="true" signature="30206:30245" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="30332:30398" ph="update hh_sh... " />
+            <marker date="1480740262605" expanded="true" signature="30455:30502" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="30559:30603" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="31084:31123" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="31210:31276" ph="update hh_sh... " />
+            <marker date="1480740262605" expanded="true" signature="31333:31380" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="31437:31481" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="31962:32003" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="32090:32156" ph="update hh_sh... " />
+            <marker date="1480740262605" expanded="true" signature="32213:32260" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="32317:32361" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="32842:32882" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="32969:33035" ph="update hh_sh... " />
+            <marker date="1480740262605" expanded="true" signature="33092:33139" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="33196:33240" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="33721:33762" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="33849:33915" ph="update hh_sh... " />
+            <marker date="1480740262605" expanded="true" signature="33972:34019" ph="delete from " />
+            <marker date="1480740262605" expanded="true" signature="34076:34120" ph="delete from " />
+          </folding>
         </state>
       </provider>
     </entry>

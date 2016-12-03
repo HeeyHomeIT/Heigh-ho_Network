@@ -40,7 +40,7 @@ code         000
 data         {
                     foremaninfo_userid        foremaninfo_userid
                     foremaninfo_nickname      foremaninfo_nickname      //用户昵称
-                    foremaninfo_sex           foremaninfo_sex           //性别
+                    foremaninfo_sex           foremaninfo_sex           //性别   1：男生 2：女生
                     foremaninfo_age           foremaninfo_age           //年龄
                     experience                experience                //从业经历
                     decoratedareas            decoratedareas            //装修小区

@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Request;
 
 class MyshopimgController extends Controller
 {
+    public function index(){
+        $callback=rq('callback');
+        $shop_id=rq('shop_id');
+        $shop_imgs=DB::select('select id,shop_img,is_face from hh_shop_img where shop_id=? order by id desc',[$shop_id]);
+        if($shop_imgs){
+            $arr = array("code" => "000",
+                "data"=>$shop_imgs
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }else{
+            $arr = array("code" => "117",
+                "msg"=>"信息不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
     public function upload(){
         $callback=rq('callback');
         $shop_id=rq('shop_id');
@@ -45,18 +61,15 @@ class MyshopimgController extends Controller
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
-            $is = $file -> move(base_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
+            $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
             if($is){
-                $path=base_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                $path=public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
                 $insert=DB::insert('insert into hh_shop_img(shop_id,shop_img) values (?,?)',[$shop_id,$path]);
                 if($insert){
-                    $shop_imgs=DB::select('select shop_img from hh_shop_img where shop_id=?',$shop_id);
+                    $shop_imgs=DB::select('select id,shop_img from hh_shop_img where shop_id=?',$shop_id);
                     $arr = array("code" => "000",
                         "msg" => "上传成功",
-                        "data"=>array(
-                            "shop_id"=>$shop_id,
-                            "shop_imgs"=>$shop_imgs
-                        )
+                        "data"=>$shop_imgs
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }else{

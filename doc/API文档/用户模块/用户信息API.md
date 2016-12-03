@@ -40,13 +40,13 @@ code         000
 data         {
                     userinfo_userid        userinfo_userid
                     userinfo_nickname      userinfo_nickname      //用户昵称
-                    userinfo_sex           userinfo_sex           //性别
+                    userinfo_sex           userinfo_sex           //性别   1：男生 2：女生
                     userinfo_age           userinfo_age           //年龄
-                    loc_province           loc_province           
+                    loc_province           loc_province           //所在地
                     loc_city               loc_city
                     loc_district           loc_district
-                    loc_address            loc_address
-                    home_province          home_province          
+                    loc_address            loc_address            //详细地址
+                    home_province          home_province          //家乡
                     home_city              home_city
                     home_district          home_district
                     userinfo_email         userinfo_email         //邮箱
@@ -126,7 +126,7 @@ code         000
 data         {
                     userinfo_userid        userinfo_userid
                     userinfo_nickname      userinfo_nickname      //用户昵称
-                    userinfo_sex           userinfo_sex           //性别
+                    userinfo_sex           userinfo_sex           //性别   1：男生 2：女生
                     userinfo_age           userinfo_age           //年龄
                     loc_province           loc_province           
                     loc_city               loc_city
