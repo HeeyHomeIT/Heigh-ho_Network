@@ -23,7 +23,7 @@ class DriveaddressController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $address=DB::select('select * from hh_driveaddress where address_userid=?',[$user_id]);
+        $address=DB::select('select * from hh_driveaddress where address_userid=? order by id desc',[$user_id]);
         if($address){
             $arr = array("code" => "000",
                 "data"=> $address

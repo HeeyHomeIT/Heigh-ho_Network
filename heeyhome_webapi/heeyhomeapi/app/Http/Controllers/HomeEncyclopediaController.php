@@ -58,7 +58,7 @@ class HomeEncyclopediaController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $articles = DB::select('select id,article_content from hh_jzbkarticle where id=? order by id desc ',[$article_id]);
+        $articles = DB::select('select id,article_content from hh_jzbkarticle where id=?',[$article_id]);
         if($articles){
             $arr=array(
                 "code"=>"000",

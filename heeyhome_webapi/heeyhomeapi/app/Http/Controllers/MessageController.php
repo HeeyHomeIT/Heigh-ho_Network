@@ -70,6 +70,24 @@ class MessageController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+    public function delall(){
+        $callback=rq('callback');
+        $user_id=rq('user_id');
+        $delete=DB::update('update hh_message set isdel=? where receiveuserid=?',[1,$user_id]);
+        if($delete){
+            $arr=array(
+                "code"=>"000",
+                "msg"=>"清空消息"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }else{
+            $arr=array(
+                "code"=>"111",
+                "msg"=>"失败"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
     public function send($title,$content,$type,$touserid){
         $callback=rq('callback');
         $sendtime=date('Y-m-d H:i:s', time());

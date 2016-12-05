@@ -81,6 +81,7 @@ Route::group(['middleware' => ['web']], function () {
     /*消息中心*/
     Route::any('personal/message', 'MessageController@index');
     Route::any('personal/message/del', 'MessageController@del');
+    Route::any('personal/message/empty', 'MessageController@delall');
     Route::any('personal/message/isnew', 'MessageController@isnew');
     Route::any('personal/message/read', 'MessageController@read');
     /*收藏全景图*/
@@ -136,6 +137,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('bankcard/getname', 'BankCardController@getname');
     Route::any('bankcard/getcardtype', 'BankCardController@getcardtype');
     Route::any('bankcard/cardverify', 'BankCardController@cardverify');
+    /*我的作品案例*/
+    Route::any('myworkcase', 'MyworkcaseController@index');
+    Route::any('addmyworkcase', 'MyworkcaseController@add');
 
 
 });
