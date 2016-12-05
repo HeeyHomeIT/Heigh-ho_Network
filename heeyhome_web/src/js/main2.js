@@ -1,11 +1,12 @@
-/**
- * Created by Administrator on 2016/12/2.
- */
+/*入口脚本*/
+'use strict';
+
 !function () {
     //config requirejs
     require.config({
         baseUrl: './',
         paths: {
+        	'jquery': 'lib/jquery/jquery-2.1.1.min',
             'angular': 'lib/angular/angular.min',
             'angular-route': 'lib/angular/angular-route.min',
             'text': 'lib/requirejs/text',
@@ -13,7 +14,6 @@
             'angular-ui-router': 'lib/angular/angular-ui-router',
             'angular-async-loader': 'lib/angular/angular-async-loader.min',
             'oclazyLoad': 'lib/ocLazyLoad/ocLazyLoad.min',
-            'jquery': 'lib/jquery/jquery-2.1.1.min',
             'bootstrap': 'lib/bootstrap/bootstrap',
             'carousel': 'js/j_index/carousel',
             'app': 'js/app2',
@@ -45,25 +45,16 @@
             'oclazyLoad': {
                 deps: ['angular']
             }
-        }
+        },
+        waitSeconds: 15
     });
 
-//  //init main
-//  require(['app','index'],
-//      function (app) {
-//          app.init();
-//      }
-//  );
-
-
-    // 自动导入router.js模块，由于后缀名可以省略，故写作'router',
-    // 并将模块返回的结果赋予到router中。
-    /*require(['angular', 'index', 'bootstrap'], function (angular, index, bootstrap) {
-     // 手动启动angularjs，特别说明此处的bootstrap不是那个ui框架，
-     // 而是angularjs的一个手动启动框架的函数
-     angular.bootstrap(document, ['blogApp']);
-     });*/
+	/**
+	 * init main
+	 * 自动导入app.js,index.js,bootstrap.js模块
+	 */
     require(['app', 'index','bootstrap'], function (app) {
+    	// 手动启动angularjs，特别说明此处的bootstrap不是那个ui框架，而是angularjs的一个手动启动框架的函数
         app.init();
     })
 }();

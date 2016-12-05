@@ -1,12 +1,6 @@
 /**
  * Created by Administrator on 2016/12/2.
  */
-/**
- * Created by Administrator on 2016/11/30.
- */
-/**
- * Created by Administrator on 2016/11/23.
- */
 define(['angular', 'require', 'angular-resource', 'angular-route', 'angular-ui-router', 'oclazyLoad'], function (angular, require) {
 
     var app = angular.module('newApp', ['ngResource', 'ngRoute', 'ui.router', "oc.lazyLoad"]);
