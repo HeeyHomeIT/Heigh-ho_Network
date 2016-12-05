@@ -12,105 +12,25 @@
 			<!-- 左侧导航start -->
 			<div class="left_bar">
 				<ul class="bar_content">
-					<a href="" ui-sref=".pedia_right_1" ui-sref-active="active">
+					<a class="bar_list" ng-repeat="x in names" ng-click="barTab(x.cate_describe,x.id)" id="{{x.id}}" ng-class="$first ? 'active' : ''">
 						<div>
-							<li>开工前准备阶段</li>
+							<li>{{x.cate_name}}</li>
 						</div>
 						<div class="border_line"></div>
-					</a>
-					<a href="" ui-sref=".pedia_right_2" ui-sref-active="active">
-						<div>
-							<li>开工初期</li>
-						</div>
-						<div class="border_line"></div>
-					</a>
-					<a href="" ui-sref=".pedia_right_3" ui-sref-active="active">
-						<div>
-							<li>水电改造阶段</li>
-						</div>
-						<div class="border_line"></div>
-					</a>
-					<a href="" ui-sref=".pedia_right_4" ui-sref-active="active">
-						<div>
-							<li>瓦工阶段</li>
-						</div>
-						<div class="border_line"></div>
-					</a>
-					<a href="" ui-sref=".pedia_right_5" ui-sref-active="active">
-						<div>
-							<li>木工阶段</li>
-						</div>
-						<div class="border_line"></div>
-					</a>
-					<a href="" ui-sref=".pedia_right_6" ui-sref-active="active">
-						<div>
-							<li>油漆阶段</li>
-						</div>
-						<div class="border_line"></div>
-					</a>
-					<a href="" ui-sref=".pedia_right_7" ui-sref-active="active">
-						<div>
-							<li>成品安装阶段</li>
-						</div>
-						<div class="border_line"></div>
-					</a>
-					<a href="" ui-sref=".pedia_right_8" ui-sref-active="active">
-						<div>
-							<li>整体验收阶段</li>
-						</div>
-						<div class="border_line"></div>
-					</a>
-					<a href="" ui-sref=".pedia_right_9" ui-sref-active="active">
-						<div>
-							<li>支付入住阶段</li>
-						</div>
 					</a>
 				</ul>
 			</div>
 			<!-- 左侧导航end -->
 			<!-- 右侧内容start -->
-			<div class="right_content" id="right_content" ui-view="pedia">
-				<!--<div class="right_title">
-					<h2>关于施工材料的那些事</h2>
+			<div class="right_content" id="right_content">
+				<div class="right_title">
+					<h2></h2>
 				</div>
 				<ul class="right_detail">
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
+					<a href="#nogo" ng-repeat="a in lists">
+						<li>{{a.article_title}}</li>
 					</a>
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
-					</a>
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
-					</a>
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
-					</a>
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
-					</a>
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
-					</a>
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
-					</a>
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
-					</a>
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
-					</a>
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
-					</a>
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
-					</a>
-					<a href="#nogo">
-						<li>如何正确辨别瓷砖好坏？</li>
-					</a>
-				</ul>-->
+				</ul>
 			</div>
 			<!-- 右侧内容end -->
 		</div>

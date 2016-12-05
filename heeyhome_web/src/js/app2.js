@@ -7,31 +7,56 @@
 /**
  * Created by Administrator on 2016/11/23.
  */
-define(['angular', 'require', 'angular-resource', 'angular-route', 'angular-ui-router'], function (angular, require) {
+define(['angular', 'require', 'angular-resource', 'angular-route', 'angular-ui-router', 'oclazyLoad'], function (angular, require) {
 
-    var app = angular.module('newApp', ['ngResource', 'ngRoute', 'ui.router']);
+    var app = angular.module('newApp', ['ngResource', 'ngRoute', 'ui.router', "oc.lazyLoad"]);
 
     app.init = function () {
         angular.bootstrap(document, ['newApp']);
     };
 
-    /*app.config(function ($controllerProvider, $provide, $compileProvider, $resourceProvider) {
+    app.config(["$provide", "$compileProvider", "$controllerProvider", "$filterProvider",
+        function ($provide, $compileProvider, $controllerProvider, $filterProvider) {
+            app.controller = $controllerProvider.register;
+            app.directive = $compileProvider.directive;
+            app.filter = $filterProvider.register;
+            app.factory = $provide.factory;
+            app.service = $provide.service;
+            app.constant = $provide.constant;
+        }]);
+    app.config(function ($httpProvider) {
 
-     // 保存旧的引用.
-     app._directive = app.directive;
+        $httpProvider.defaults.transformRequest = function (obj) {
+            var str = [];
+            for (var p in obj) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+            return str.join("&");
+        };
 
-     app.directive = function (name, factory) {
-     $compileProvider.directive(name, factory);
-     return (this);
+        $httpProvider.defaults.headers.post = {
+            'Content-Type': 'application/x-www-form-urlencoded; charser=UTF-8'
+        }
 
-     };
+    });
+    app.constant('Modules_Config', [
+        {
+            name: 'treeControl',
+            serie: true,
+            files: []
+        }
+    ]);
+    app.config(["$ocLazyLoadProvider", "Modules_Config", routeFn]);
+    function routeFn($ocLazyLoadProvider, Modules_Config) {
+        $ocLazyLoadProvider.config({
+            debug: false,
+            events: false,
+            modules: Modules_Config
+        });
+    }
 
-     $resourceProvider.defaults.stripTrailingSlashes = false;
-
-
-     });*/
-    app.config(['$stateProvider', '$urlRouterProvider',
-        function ($stateProvider, $urlRouterProvider) {
+    app.config(['$stateProvider', '$urlRouterProvider','$httpProvider',
+        function ($stateProvider, $urlRouterProvider,$httpProvider) {
             $stateProvider
 
                 .state("home_page", {
@@ -40,6 +65,14 @@ define(['angular', 'require', 'angular-resource', 'angular-route', 'angular-ui-r
                         'content': {
                             templateUrl: 'view/v_wrap/home_page.html'
                         }
+                    },
+                    controller: "mainCtrl",
+                    controllerAs: "home_page",
+                    resolve: {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            console.log($ocLazyLoad);
+                            return $ocLazyLoad.load('js/j_index/carousel.js')
+                        }]
                     }
                 })
                 .state('cal_wrap', {
@@ -73,100 +106,22 @@ define(['angular', 'require', 'angular-resource', 'angular-route', 'angular-ui-r
                     url: '/bk',
                     views: {
                         'content': {
-                            templateUrl: 'view/v_pedia/decoration_pedia.html'
+                            templateUrl: 'view/v_pedia/decoration_pedia.html',
+                            controller: "myCtrl",
+                            controllerAs: "bk"
                         }
 
-                    }
-                })
-                .state('bk.pedia_right_1', {
-                    url: '/pedia_right_1',
-                    views: {
-                        'pedia': {
-                            templateUrl: 'view/v_pedia/pedia_right_1.html'
-                        }
-
-                    }
-                })
-                .state('bk.pedia_right_2', {
-                    url: '/pedia_right_2',
-                    views: {
-                        'pedia': {
-                            templateUrl: 'view/v_pedia/pedia_right_2.html'
-                        }
-
-                    }
-                })
-                .state('bk.pedia_right_3', {
-                    url: '/pedia_right_3',
-                    views: {
-                        'pedia': {
-                            templateUrl: 'view/v_pedia/pedia_right_3.html'
-                        }
-
-                    }
-                })
-                .state('bk.pedia_right_4', {
-                    url: '/pedia_right_4',
-                    views: {
-                        'pedia': {
-                            templateUrl: 'view/v_pedia/pedia_right_4.html'
-                        }
-
-                    }
-                })
-                .state('bk.pedia_right_5', {
-                    url: '/pedia_right_5',
-                    views: {
-                        'pedia': {
-                            templateUrl: 'view/v_pedia/pedia_right_5.html'
-                        }
-
-                    }
-                })
-                .state('bk.pedia_right_6', {
-                    url: '/pedia_right_6',
-                    views: {
-                        'pedia': {
-                            templateUrl: 'view/v_pedia/pedia_right_6.html'
-                        }
-
-                    }
-                })
-                .state('bk.pedia_right_7', {
-                    url: '/pedia_right_7',
-                    views: {
-                        'pedia': {
-                            templateUrl: 'view/v_pedia/pedia_right_7.html'
-                        }
-
-                    }
-                })
-                .state('bk.pedia_right_8', {
-                    url: '/pedia_right_8',
-                    views: {
-                        'pedia': {
-                            templateUrl: 'view/v_pedia/pedia_right_8.html'
-                        }
-
-                    }
-                })
-                .state('bk.pedia_right_9', {
-                    url: '/pedia_right_9',
-                    views: {
-                        'pedia': {
-                            templateUrl: 'view/v_pedia/pedia_right_9.html'
-                        }
-
+                    },
+                    resolve: {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            console.log($ocLazyLoad);
+                            return $ocLazyLoad.load('js/j_pedia/pedia2.js')
+                        }]
                     }
                 });
 
 
-            /*$urlRouterProvider.otherwise("/");*/
-            // $urlRouterProvider.when('/decoration_pedia',{
-            //     redirectTo: '/pedia_right_1'
-            // }).otherwise('/');
-
-            $urlRouterProvider.when('/bk','/bk/pedia_right_1').otherwise("/");
+            $urlRouterProvider.when('','/');
 
         }]);
 

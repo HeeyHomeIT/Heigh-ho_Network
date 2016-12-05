@@ -11,6 +11,8 @@
             'text': 'lib/requirejs/text',
             'angular-resource': 'lib/angular/angular-resource',
             'angular-ui-router': 'lib/angular/angular-ui-router',
+            'angular-async-loader': 'lib/angular/angular-async-loader.min',
+            'oclazyLoad': 'lib/ocLazyLoad/ocLazyLoad.min',
             'jquery': 'lib/jquery/jquery-2.1.1.min',
             'bootstrap': 'lib/bootstrap/bootstrap',
             'carousel': 'js/j_index/carousel',
@@ -39,6 +41,9 @@
             'angular-ui-router': {
                 deps: ['angular'],
                 exports: 'ui.router'
+            },
+            'oclazyLoad': {
+                deps: ['angular']
             }
         }
     });
@@ -58,7 +63,7 @@
      // 而是angularjs的一个手动启动框架的函数
      angular.bootstrap(document, ['blogApp']);
      });*/
-    require(['app', 'index'], function (app) {
+    require(['app', 'index','bootstrap'], function (app) {
         app.init();
     })
 }();

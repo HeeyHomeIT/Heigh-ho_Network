@@ -1,4 +1,4 @@
-$("#myCarousel").carousel();
+
 var heeyhomeCarousel = {
 
     init: function () {
@@ -6,6 +6,7 @@ var heeyhomeCarousel = {
     },
 
     numberControl: function () {
+        $("#myCarousel").carousel();
         var _focus = $(".carousel-indicators li");
         var _number = $(".number_control li");
         var i = 0;
@@ -21,9 +22,9 @@ var heeyhomeCarousel = {
     }
 };
 $(function () {
-
-    heeyhomeCarousel.init();
-
+    $(document).on("mouseover", function () {
+        heeyhomeCarousel.init();
+    })
 });
 
 
