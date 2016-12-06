@@ -99,11 +99,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('personal/myshop/uploadimg', 'MyshopimgController@upload');
     Route::any('personal/myshop/imgsetface', 'MyshopimgController@setface');
     Route::any('personal/myshop/del', 'MyshopimgController@del');
-    /*添加店铺工艺*/
-    Route::any('personal/myshop/addtechnics', 'MyshoptechnicsController@add');
-    /*店铺工艺展示*/
+    /*店铺工艺*/
     Route::any('personal/myshop/technics', 'MyshoptechnicsController@index');
-    /*删除店铺工艺*/
+    Route::any('personal/myshop/addtechnics', 'MyshoptechnicsController@add');
     Route::any('personal/myshop/deltechnics', 'MyshoptechnicsController@del');
     /*身份认证*/
     Route::any('personal/safe/auth', 'IDCardController@index');
@@ -131,8 +129,6 @@ Route::group(['middleware' => ['web']], function () {
     /*店铺列表*/
     Route::any('shoplist/gettags', 'ShoplistController@gettags');
     Route::any('shoplist', 'ShoplistController@index');
-    /*材料商申请价格变动*/
-    Route::any('material/category', 'MaterialController@category');
     /*添加银行卡*/
     Route::any('bankcard/getname', 'BankCardController@getname');
     Route::any('bankcard/getcardtype', 'BankCardController@getcardtype');
@@ -140,6 +136,7 @@ Route::group(['middleware' => ['web']], function () {
     /*我的作品案例*/
     Route::any('myworkcase', 'MyworkcaseController@index');
     Route::any('addmyworkcase', 'MyworkcaseController@add');
-
+    /*材料商申请价格变动*/
+    Route::any('material/category', 'MaterialController@category');
 
 });
