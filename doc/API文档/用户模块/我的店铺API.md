@@ -39,15 +39,15 @@ callback(
 code         000
 data         {
                     shop_id              shop_id
-                    shopper_id           shopper_id            //工长id
-                    shop_name            shop_name             //店铺名
-                    authentication       authentication        //店铺认证
-                    opentime             opentime              //开店时间   
-                    servicetag           servicetag 数组       //擅长风格
-                    servicearea          servicearea 数组      //服务区域
-                    foremanimg           foremanimg            //工长个人头像
-                    shop_address         shop_address          //地址
-                    shop_describe        shop_describe         //店铺理念(签名)
+                    shopper_id           shopper_id             //工长id
+                    shop_name            shop_name              //店铺名
+                    authentication       authentication 数组    //店铺认证  1:保证金 2:团队保险 3:平台实名认证 4:两年质保维修
+                    opentime             opentime               //开店时间   
+                    servicetag           servicetag 数组        //擅长风格
+                    servicearea          servicearea 数组       //服务区域
+                    foremanimg           foremanimg             //工长个人头像
+                    shop_address         shop_address           //地址
+                    shop_describe        shop_describe          //店铺理念(签名)
                     shop_imgs            {
                                                id               id
                                                shop_img         shop_img

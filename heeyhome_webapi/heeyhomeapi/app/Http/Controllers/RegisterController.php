@@ -52,7 +52,7 @@ class RegisterController extends Controller
                 /*向时间表插入数据，同时向用户信息表插入数据*/
                 $reg_time=date('Y-m-d H:i:s', time());
                 $time = DB::insert('insert into hh_time(time_userid,reg_time) values(?,?)', [$user_id, $reg_time]);
-                $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$user_id,'default.jpg']);
+                $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$user_id,public_path().'/default.jpg']);
                 $nickname='heeyhome会员_'.substr($user_id,0,6);
                 $sql = DB::insert('insert into hh_userinfo(userinfo_userid,userinfo_nickname) values(?,?)',[$user_id,$nickname]);
                 if($sql){
@@ -113,11 +113,11 @@ class RegisterController extends Controller
             $reg_time=date('Y-m-d H:i:s', time());
             $time = DB::insert('insert into hh_time(time_userid,reg_time) values(?,?)', [$foreman_id, $reg_time]);
             /*向工长信息表插入数据*/
-            $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$foreman_id,'default.jpg']);
+            $portrait=DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)',[$foreman_id,public_path().'/default.jpg']);
             $sql = DB::insert('insert into hh_foremaninfo(foremaninfo_userid) values(?)',[$foreman_id]);
             /*向店铺表插入*/
             $shop_id=rand_number(10);
-            $shop = DB::insert('insert into hh_shop(shop_id,shopper_id,opentime) values(?,?,?)',[$shop_id,$foreman_id,$reg_time]);
+            $shop = DB::insert('insert into hh_shop(shop_id,shopper_id,opentime) values(?,?,?)',[$shop_id,$foreman_id,date('Y-m-d',time())]);
             if($shop){
                 $arr=array(
                     "code"=>"000",
