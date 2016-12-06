@@ -189,8 +189,39 @@ body {
     color: #0185c6
 }
 
+.please_login {
+    display: inline-block;
+    max-width: 45px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: right
+}
+
+.user_information {
+	margin-left: 10px;
+	max-width: 45px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	color: #0066CC!important
+}
+
+.user_information:hover {
+	color: #E88226!important
+}
+
+.exit {
+	cursor: pointer;
+	margin-left: 20px
+}
+
+.exit:hover {
+	color: #E88226!important
+}
+
 #topNavPanel #c_myhh p a:hover {
-    color: #EEC988;
+    color: #EEC988
 }
 
 .myinfo {

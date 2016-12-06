@@ -6,8 +6,7 @@
 		<link rel="icon" href="../../icon.png" type="image/x-icon">
 		<link rel="stylesheet" href="../../css/common/common.css" />
 		<link rel="stylesheet" href="../../css/c_register/register.css" />
-		<script type="text/javascript" src="../../lib/jquery/jquery-1.11.3.js" ></script>
-		<script type="text/javascript" src="../../js/j_register/j_register.js" ></script>
+		<link rel="stylesheet" href="../../css/c_register/loading.css" />		
 	</head>
 	<body>
 		<div class="container">
@@ -15,8 +14,8 @@
 			<div class="main">
 				<!-- 导航标签start -->
 				<ul class="tab">
-					<li class="tab_click_register"><div>注册</div></li>
-					<li class="tab_click_login active"><div>登录</div></li>
+					<li class="tab_click_register color_2"><div>注册</div></li>
+					<li class="tab_click_login active color_3"><div>登录</div></li>
 				</ul>
 				<!-- 导航标签end -->
 				
@@ -70,13 +69,13 @@
 					<div class="registerItem">
 						<img src="../../css/img/icon-phone.png">
 						<span>|</span>
-						<input class="zc_phone" type="text" name="phone" placeholder="请输入您的手机号" />
+						<input class="dl_phone" type="text" name="phone" placeholder="请输入您的手机号" />
 						<label class="error"></label>
 					</div>
 					<div class="registerItem">
 						<img src="../../css/img/icon-password.png">
 						<span>|</span>
-						<input class="zc_password" type="password" name="password" placeholder="请输入您的密码" />
+						<input class="dl_password" type="password" name="password" placeholder="请输入您的密码" />
 						<label class="error"></label>
 					</div>
 					<div class="do_password">
@@ -93,7 +92,7 @@
 				
 				<!-- 提交按钮start -->
 				<div class="promptly">
-					<input class="promptly_do" type="button" value="立即登录">
+					<input class="promptly_do margin_top_2" type="button" value="立即登录">
 				</div>
 				<!-- 提交按钮end -->
 				
@@ -122,5 +121,46 @@
 			</div>
 			<!-- 底部结束  -->
 		</div>
+		
+		<div id="loading" class="display" style="position:fixed;width:100%;height:100%;top:0px;left:0px;opacity:0.7;background:#000;">
+			<div class="sk-fading-circle">
+			  <div class="sk-circle1 sk-circle"></div>
+			  <div class="sk-circle2 sk-circle"></div>
+			  <div class="sk-circle3 sk-circle"></div>
+			  <div class="sk-circle4 sk-circle"></div>
+			  <div class="sk-circle5 sk-circle"></div>
+			  <div class="sk-circle6 sk-circle"></div>
+			  <div class="sk-circle7 sk-circle"></div>
+			  <div class="sk-circle8 sk-circle"></div>
+			  <div class="sk-circle9 sk-circle"></div>
+			  <div class="sk-circle10 sk-circle"></div>
+			  <div class="sk-circle11 sk-circle"></div>
+			  <div class="sk-circle12 sk-circle"></div>
+			</div>
+		</div>
+		<div id="ReminderBox" class="display" style="position:fixed;width:100%;height:100%;top:0px;left:0px;z-index: 999;background: rgba(0,0,0,0.6);">
+			<div class="remindebox" >
+				<div class="remindemodel">
+					<div class="remindemodel_header">
+						<h1>提示</h1>
+					</div>
+					<div class="remindemodel_content">
+						<div class="remindemodel_info">
+							<div class="info_header">
+								<span></span>
+							</div>
+						</div>
+						<div class="remindemodel_footer">
+							<input class="remindemodel_ok" type="button" data-select = "" value="好的"/>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="../../lib/jquery/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../../lib/jquery/jquery.cookie.js" ></script>
+		<script type="text/javascript" src="../../lib/jquery/jquery.base64.js" ></script>
+		<script type="text/javascript" src="../../js/j_register/j_register.js" ></script>
 	</body>
 </html>

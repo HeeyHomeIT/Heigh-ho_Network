@@ -9,6 +9,34 @@ body {
 	overflow: hidden
 }
 
+.color_1 {
+	color: #5D2300
+}
+
+.color_2 {
+	color: #363636
+}
+
+.color_3 {
+	color: #420404
+}
+
+.margin_top_1 {
+	margin-top: 31px
+}
+
+.margin_top_2 {
+	margin-top: 20px
+}
+
+.itemClick {
+	border: 1px solid #E88226!important
+}
+
+.itemClickError {
+	border: 1px solid #ff3f13!important
+}
+
 .container {
 	width: 100%;
 	height: 100%;
@@ -61,14 +89,6 @@ body {
     -webkit-transition: all .3s linear;
     -moz-transition: all .3s linear;
 	background-color: #F7ECB5
-}
-
-.container .main .tab .tab_click_login {
-	color: #420404
-}
-
-.container .main .tab .tab_click_register {	
-	color: #363636
 }
 
 .container .main .tab li div {
@@ -147,7 +167,7 @@ body {
 }
 
 .container .main .register .registerLeft {
-	width: 163px;
+	width: 275px;
 	float: left
 }
 
@@ -185,8 +205,35 @@ body {
 	color: #CECECE
 }
 
+.container .main .register .registerItem label.error,.login .registerItem label.error {
+	position: absolute;
+	top: 6px;
+	right: 8px;
+	padding: 0 8px;
+	line-height: 32px;
+	color: #c33;
+	cursor: text;
+	visibility: hidden;
+	opacity: 0;
+	-ms-filter: "alpha(Opacity=0)";
+	-webkit-transform: translate(20px, 0);
+	-ms-transform: translate(20px, 0);
+	transform: translate(20px, 0);
+	-webkit-transition: .4s ease-out;
+	transition: .4s ease-out
+}
+
+.container .main .register .registerItem label.whether,.login .registerItem label.whether {
+	visibility: visible;
+	opacity: 1;
+	-ms-filter: "alpha(Opacity=100)";
+	-webkit-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	transform: translate(0, 0)
+}
+
 .container .main .register .registerItem input.zc_codes {
-	width: 100px	
+	width: 200px	
 }
 
 .container .main .register .registerRight input.zc_btnSendCode {
@@ -201,6 +248,15 @@ body {
 	border: 0;
 	outline: 0;
 	cursor: pointer
+}
+
+.container .main .register .registerRight input.zc_btnSendCode:hover {
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+	color: #4B4948
 }
 
 .container .main .login .do_password {
@@ -260,7 +316,6 @@ body {
 	font-size: 24px;
 	text-align: center;
 	border: 0;
-	margin-top: 20px;
 	cursor: pointer;
 	outline: 0
 }
@@ -345,4 +400,110 @@ body {
 .container .footer a:hover {
 	color: #e6501e;
 	border-bottom: 1px solid #e6501e
+}
+
+.remindebox {
+	width: 408px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -204px;
+	margin-top: -40px;
+	opacity: 0;
+}
+
+.remindemodel {
+	background-color: #fff;
+	cursor: default;
+	top: 100%;
+	left: 100%;
+	width: 100%;
+	border-radius: 5px;
+	overflow: hidden;
+	border: 0;
+	box-shadow: 0 0 9px #999;
+	font-size: 13px;
+	line-height: 1.54;
+}
+
+.remindemodel_header {
+	padding: 0 28px!important;
+	margin-top: 15px!important;
+	cursor: move;
+	text-align: left;
+}
+
+.remindemodel_header h1 {
+	padding-top: 0;
+	padding-bottom: 2px;
+	font-size: 16px;
+	color: #666;
+	border-bottom: 1px solid #eae9eb;
+	line-height: 28px;
+	font-weight: bold;
+	margin: 0;
+	text-rendering: optimizelegibility;
+	letter-spacing: 2px;
+}
+
+.remindemodel_content {
+	width: 100%;
+	border: 0;
+	border-radius: 5px;
+	padding: 15px 28px 20px;
+	box-sizing: border-box;
+	margin-bottom: 0;
+	overflow: hidden;
+	text-align: left;
+}
+
+.info_header {
+	padding-left: 20px;
+	height: 18px;
+	line-height: 18px;
+	margin-bottom: 25px;
+}
+
+.info_header span {
+	font-size: 18px;
+	font-weight: 500;
+	color: #666;
+}
+
+.dialogmodel_footer {
+	padding-top: 32px;
+	text-align: left;
+}
+
+.remindemodel_footer input {
+	height: 35px;
+	text-align: center;
+	background-color: #529ce7;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	font-size: 18px;
+	color: #ffffff;
+	cursor: pointer;
+	width: 120px;
+	border: 0;
+	letter-spacing: 2px;
+	transition: all .5s ease 0s;
+	-webkit-transition: all .5s ease 0s;
+	outline: 0;
+	margin: 0 auto;
+	display: block;
+}
+
+.remindemodel_no {
+	background-color: #777 !important;
+}
+
+.remindemodel_no:hover {
+	background-color: #999 !important;
+}
+
+.remindemodel_ok:hover {
+	background-color: #96d2ff;
+	color: #03bbff;
 }
