@@ -80,6 +80,6 @@ define(['app', 'jquery'], function (app) {
             templateUrl: "view/v_pedia/decoration_pedia.html"
         };
     });
-    /*require(['js/j_customer/left_common'], function () {
-     })*/
+    require(['js/j_common/common'], function () {
+     })
 });
