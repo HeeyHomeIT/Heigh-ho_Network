@@ -67,10 +67,10 @@
 }
 
 .left_ul li {
-    height: 40px;
-    line-height: 40px;
+    height: 70px;
+    line-height: 70px;
     text-align: center;
-    padding: 15px 0;
+    /*padding: 15px 0;*/
     /*background:-webkit-radial-gradient(186px 1px at 93px 0.5px, #4b4a48, hsla(0, 0%, 100%, 0)) ;
     background:-moz-radial-gradient(186px 1px at 93px 0.5px, #4b4a48, hsla(0, 0%, 100%, 0)) ;
     background:-ms-radial-gradient(186px 1px at 93px 0.5px, #4b4a48, hsla(0, 0%, 100%, 0)) ;
@@ -116,10 +116,10 @@
     color: #404040;
     font-size: 16px;
     width: 182px;
-    height: 40px;
+    height: 70px;
     display: block;
     text-align: center;
-    line-height: 40px;
+    line-height: 70px;
 }
 
 .left_ul li .a_content span {
