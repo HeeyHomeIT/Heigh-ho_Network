@@ -108,7 +108,6 @@ define(['angular', 'require', 'angular-resource', 'angular-route', 'angular-ui-r
                     },
                     resolve: {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            console.log($ocLazyLoad);
                             return $ocLazyLoad.load('js/j_pedia/pedia2.js')
                         }]
                     }
