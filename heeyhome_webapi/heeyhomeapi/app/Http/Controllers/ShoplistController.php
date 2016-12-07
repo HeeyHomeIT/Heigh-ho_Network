@@ -112,7 +112,7 @@ class ShoplistController extends Controller
                     break;
             }
         }
-        $total=DB::select('select count(id) as total from hh_shop where shop_status=? '.$where.$order,$para);
+        $total=DB::select('select count(id) as total from hh_shop where shop_status=? '.$where,$para);
         $total=$total[0]->total;
         $newpage=new PageController();
         $offset=$newpage->page($total);
