@@ -97,14 +97,14 @@
 		 */
 		pswSaveEvent : function(){
 	        var $remember = $(".remember");
-	        var userVal = $.base64.decode($.cookie("user"));
-	        var userPswVal = $.base64.decode($.cookie("a"));
+	        var userVal = $.cookie("user");
+	        var userPswVal = $.cookie("a");
 	        var checkFlagVal = $.cookie("checked");
 	        if (userVal != null && userVal != "") {
-	            $(".dl_iphone").val(userVal);
+	            $(".dl_iphone").val($.base64.decode(userVal));
 	        }
 	        if (userPswVal != null && userPswVal != "" && PSWREG.test(userPswVal)) {
-	            $(".dl_password").val(userPswVal);
+	            $(".dl_password").val($.base64.decode(userPswVal));
 	        }
 	        if (checkFlagVal == 1) {
 	            $remember.attr("checked", true);
@@ -114,9 +114,9 @@
 	                $.cookie("checked", 1); // 1:记住密码框选择 0：记住密码框不选择
 	            } else {
 	                // 当记住密码不选中是把session中的值删掉
-	                $.cookie("checked", null);
-	                $.cookie("user", null);
-	                $.cookie("a", null);
+	                $.cookie("checked", null, {expires: -1,path: '/'});
+	                $.cookie("user", null, {expires: -1,path: '/'});
+	                $.cookie("a", null, {expires: -1,path: '/'});
 	            }
 	
 	        });
@@ -249,9 +249,9 @@
 					},
 					success:function(data) {
 						if (data != null && data.code == '000') {  //正确
-			                $.cookie("userId",data.data.user_id);
-			                $.cookie("userName",data.data.user_name);
-			                $.cookie("nickName",data.data.nickname);
+//			                $.cookie("userId",data.data.user_id);
+//			                $.cookie("userName",data.data.user_name);
+//			                $.cookie("nickName",data.data.nickname);
 			                //window.location.href = "../../index2.html?userName=" + data.data.user_name; //进行登录
 			                changeTabHendler.swtchTab(1); // 进入登录页面
 			            } else if(data != null && data.code != '000') { //错误
@@ -292,9 +292,9 @@
 			                    $.cookie("checked", 1); // 1:记住密码框选择 0：记住密码框不选择
 			                } else {
 			                    // 如果用户不选择记住密码那么从cookie中去除手机号和密码
-			                    $.cookie("user", null);
-			                    $.cookie("a", null);
-			                    $.cookie("checked", null);
+			                    $.cookie("user", null, {expires: -1,path: '/'});
+			                    $.cookie("a", null, {expires: -1,path: '/'});
+			                    $.cookie("checked", null, {expires: -1,path: '/'});
 			                }
 			            }
 			        },

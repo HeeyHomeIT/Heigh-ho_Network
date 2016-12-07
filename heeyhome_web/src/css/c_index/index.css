@@ -200,24 +200,36 @@ body {
 
 .user_information {
 	margin-left: 10px;
-	max-width: 45px;
+	max-width: 125px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-	color: #0066CC!important
+	color: #333 !important
 }
 
-.user_information:hover {
-	color: #E88226!important
+.user_information:hover,.uinfo>span:hover {
+	color: #E88226 !important
 }
 
 .exit {
 	cursor: pointer;
+	color: #333 !important;
 	margin-left: 20px
 }
 
 .exit:hover {
 	color: #E88226!important
+}
+
+.uinfo {
+	max-width: 125px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.uinfo>span {
+	color: #666 !important
 }
 
 #topNavPanel #c_myhh p a:hover {
