@@ -122,6 +122,7 @@ class ShoplistController extends Controller
             foreach($select as $key=>$value){
                 $select[$key]->servicetag=explode(',',$value->servicetag);
                 $select[$key]->servicearea=explode(',',$value->servicearea);
+                $select[$key]->authentication=explode(',',$value->authentication);
                 $img=DB::select('select shop_img from hh_shop_img where shop_id=? and is_face=?',[$value->shop_id,1]);
                 if($img){
                     $select[$key]->shop_img=$img[0]->shop_img;

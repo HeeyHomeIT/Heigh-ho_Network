@@ -29,6 +29,9 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     /*banner图*/
     Route::any('banner', 'BannerController@index');
+    /*虚拟现实*/
+    Route::any('panorama/gettags', 'PanoramaController@gettags');
+    Route::any('panorama', 'PanoramaController@index');
     /*家装百科*/
     Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
     Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');

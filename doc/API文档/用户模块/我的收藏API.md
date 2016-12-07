@@ -42,12 +42,11 @@ callback          callback
 callback(
 code         000
 data         {
-                    id               id                  //收藏序号
-                    iscollected_id   iscollected_id      //全景图id
-                    collect_time     collect_time        //收藏时间
-                    isdel            isdel               //是否删除
-                    picture          picture             //全景图封面图
-                    url              url                 //全景图链接地址
+                    id                 id                  //收藏序号
+                    iscollected_id     iscollected_id      //全景图id
+                    collect_time       collect_time        //收藏时间
+                    panorama_img       panorama_img        //全景图封面图
+                    url                url                 //全景图链接地址
              }
 msg          ""
 )
@@ -111,15 +110,15 @@ callback          callback
 callback(
 code         000
 data         {
-                   collect_id         collect_id          //收藏序号
-                   shop_id            shop_id             //店铺id
+                   id                 id                      //收藏序号
+                   shop_id            shop_id                 //店铺id
                    shop_name          shop_name
-                   servicearea        servicearea 数组    //服务区域
-                   shop_address       shop_address
-                   authentication     authentication      //认证
-                   shop_scan          shop_scan           //店铺浏览量
-                   shop_volume        shop_volume         //店铺成交量
-                   img                img                 //店铺封面图
+                   servicearea        servicearea 数组        //服务区域
+                   shop_address       shop_address 
+                   authentication     authentication 数组     //认证
+                   shop_scan          shop_scan               //店铺浏览量
+                   shop_volume        shop_volume             //店铺成交量
+                   img                img                     //店铺封面图
              }
 msg          ""
 )
