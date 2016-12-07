@@ -253,7 +253,7 @@
 			                $.cookie("userName",data.data.user_name);
 			                $.cookie("nickName",data.data.nickname);
 			                //window.location.href = "../../index2.html?userName=" + data.data.user_name; //进行登录
-			                 detailTab.fashTab(1); // 进入登录页面
+			                changeTabHendler.swtchTab(1); // 进入登录页面
 			            } else if(data != null && data.code != '000') { //错误
 			            	errorMsgHendler.remindBox(data.msg);
 			            }
