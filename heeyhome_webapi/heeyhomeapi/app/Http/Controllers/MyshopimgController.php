@@ -63,7 +63,7 @@ class MyshopimgController extends Controller
             }
             $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
             if($is){
-                $path=public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
                 $insert=DB::insert('insert into hh_shop_img(shop_id,shop_img) values (?,?)',[$shop_id,$path]);
                 if($insert){
                     $shop_imgs=DB::select('select id,shop_img from hh_shop_img where shop_id=?',$shop_id);

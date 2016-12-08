@@ -66,8 +66,8 @@ class CollectshopController extends Controller
     }
     public function del(){
         $callback=rq('callback');
-        $id=rq('id');     //收藏序号
-        $del=DB::delete('delete from hh_collection where id=?',[$id]);
+        $shop_id=rq('shop_id');     //店铺id
+        $del=DB::delete('delete from hh_collection where iscollected_id=?',[$shop_id]);
         if($del){
             $arr = array("code" => "000",
                 "msg" => "删除成功"

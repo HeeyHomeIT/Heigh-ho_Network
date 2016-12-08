@@ -88,7 +88,7 @@ data
 area                area 建筑面积筛选条件数组的key 
 housetype           housetype 户型筛选条件数组的key
 servicetag          servicetag 装修风格筛选条件数组的key
-order               order 排序 0 1 2
+order               order 排序 0默认 1浏览量 2点赞量 3收藏量
 page                page  第几页
 limit               limit 每页显示几条数据
 

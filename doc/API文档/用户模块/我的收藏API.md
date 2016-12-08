@@ -139,14 +139,14 @@ msg           失败
 117           信息不存在
 ```
 # del()
-## 删除收藏接口
+## 店铺删除收藏接口
 
 
 ### 接口地址
 
 
 ```
-.../personal/collection/del
+.../personal/collection/shopdel
 ```
 
 ### 接口格式
@@ -158,16 +158,74 @@ msg           失败
 ```
 
 ```
-.../personal/collection/del
+.../personal/collection/shopdel
 ```
 
 ###### Json数据格式
 ```
 data
 必选参数
-id                id               //收藏序号
+shop_id           shop_id           //店铺id
 
 callback          callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         ""
+msg          成功
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+###### Code值含义
+
+```
+000           成功
+117           信息不存在
+```
+# del()
+## 全景图删除收藏接口
+
+
+### 接口地址
+
+
+```
+.../personal/collection/panoramadel
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../personal/collection/panoramadel
+```
+
+###### Json数据格式
+```
+data
+必选参数
+panorama_id        panorama_id           //店铺id
+
+callback           callback
 ```
 
 ### 回调

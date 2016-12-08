@@ -69,7 +69,7 @@ class MyworkcaseController extends Controller
                 $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
                 $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
                 if($is){
-                    $path=public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                    $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
                     $insert=DB::insert('insert into hh_workcase_img(case_id,case_img) values (?,?)',[$case_id,$path]);
                     $arr = array("code" => "000",
                         "msg" => "添加成功"

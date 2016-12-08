@@ -66,7 +66,7 @@ class MyshoptechnicsController extends  Controller
             }
             $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
             if($is){
-                $path=public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
                 $insert=DB::insert('insert into hh_shop_technics(shop_id,technics_text,technics_img) values (?,?,?)',[$shop_id,$technics_text,$path]);
                 if($insert){
                     $shop_technics=DB::select('select technics_text,technics_img from hh_shop_technics where shop_id=?',$shop_id);

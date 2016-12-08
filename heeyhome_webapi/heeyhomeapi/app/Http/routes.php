@@ -128,7 +128,8 @@ Route::group(['middleware' => ['web']], function () {
     /*我的收藏-店铺*/
     Route::any('personal/collection/shop', 'CollectshopController@index');
     /*我的收藏-删除*/
-    Route::any('personal/collection/del', 'CollectshopController@del');
+    Route::any('personal/collection/panoramadel', 'CollectimgController@del');
+    Route::any('personal/collection/shopdel', 'CollectshopController@del');
     /*店铺列表*/
     Route::any('shoplist/gettags', 'ShoplistController@gettags');
     Route::any('shoplist', 'ShoplistController@index');
@@ -142,4 +143,10 @@ Route::group(['middleware' => ['web']], function () {
     /*材料商申请价格变动*/
     Route::any('material/category', 'MaterialController@category');
 
+});
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => 'web'], function()
+{
+    Route::get('/', 'LoginController@index');
+    Route::post('login', 'LoginController@login');
+    Route::get('index', 'IndexController@index');
 });

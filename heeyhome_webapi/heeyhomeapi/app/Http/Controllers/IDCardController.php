@@ -71,8 +71,8 @@ class IDCardController extends Controller
             $is2 = $file2 -> move(public_path().'/uploads/'.substr($filename2,0,4).'-'.substr($filename2,4,2).'-'.substr($filename2,6,2),$filename2);
             if($is&&$is2){
                 /*拼接路径将信息写入数据库*/
-                $path=public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
-                $path2=public_path().'/uploads/'.substr($filename2,0,4).'-'.substr($filename2,4,2).'-'.substr($filename2,6,2).'/'.$filename2;
+                $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                $path2='api/public/uploads/'.substr($filename2,0,4).'-'.substr($filename2,4,2).'-'.substr($filename2,6,2).'/'.$filename2;
                 $insert=DB::insert('insert into hh_realname(real_userid,real_name,idcardno,facephoto,backphoto) values(?,?,?,?,?)',[$user_id,$name,$idcard,$path,$path2]);
                 $arr = array("code" => "000",
                     "msg" => "上传成功",

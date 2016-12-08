@@ -80,6 +80,9 @@ class PanoramaController extends Controller
                 case '2':
                     $order=' order by like_num desc';
                     break;
+                case '3':
+                    $order=' order by collect_num desc';
+                    break;
                 default:
                     $order=' order by panorama_id desc';
                     break;

@@ -20,6 +20,7 @@ class CollectimgController extends Controller
         $time=date("Y-m-d H:i:s", time());
         $insert=DB::insert('insert into hh_collection(collect_userid,iscollected_id,collect_time,collect_type) values (?,?,?,?)',[$user_id,$panorama_id,$time,'panorama']);
         if($insert){
+            $update = DB::update('update hh_panorama set collect_num=collect_num+1 where panorama_id=?', [$panorama_id]);
             $arr = array("code" => "000",
                 "msg" => "收藏成功"
             );
@@ -49,6 +50,23 @@ class CollectimgController extends Controller
         }else{
             $arr = array("code" => "117",
                 "msg" => "信息不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+    public function del(){
+        $callback=rq('callback');
+        $panorama_id=rq('panorama_id');
+        $del=DB::delete('delete from hh_collection where iscollected_id=?',[$panorama_id]);
+        if($del){
+            $update = DB::update('update hh_panorama set collect_num=collect_num-1 where panorama_id=?', [$panorama_id]);
+            $arr = array("code" => "000",
+                "msg" => "删除成功"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }else{
+            $arr = array("code" => "117",
+                "msg" => "删除失败"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }

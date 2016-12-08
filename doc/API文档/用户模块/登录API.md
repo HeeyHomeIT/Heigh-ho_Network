@@ -47,7 +47,7 @@ data         {
                     user_name       user_name       //用户名
                     user_phone      user_phone       
                     user_email      user_email
-                    user_type       user_type       //用户类型
+                    user_type       user_type       //用户类型  1:用户 2:工长 3:材料商 
                     nickname        nickname
                     shop_id         shop_id         //店铺id
              }
