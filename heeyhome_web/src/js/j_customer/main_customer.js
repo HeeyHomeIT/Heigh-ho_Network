@@ -26,8 +26,18 @@
             'jquery': 'lib/jquery/jquery-1.11.3.min',
             'text': 'lib/requirejs/text',
             'angular-resource': 'lib/angular/angular-resource',
+            'angular-ui-router': 'lib/angular/angular-ui-router',
+            'angular-async-loader': 'lib/angular/angular-async-loader.min',
+            'oclazyLoad': 'lib/ocLazyLoad/ocLazyLoad.min',
+            'bootstrap': 'lib/bootstrap/bootstrap',
             'app': 'js/j_customer/app_customer',
-            'index': 'js/j_customer/index'
+            'index': 'js/j_customer/index',
+            'cookie': 'lib/jquery/jquery.cookie',
+            'base64': 'lib/jquery/jquery.base64',
+            'ChineseDistricts':'lib/distpicker/ChineseDistricts',
+            'distpicker':'lib/distpicker/distpicker',
+            'cropbox':'lib/cropbox/cropbox',
+            'pagination':'lib/pagination/tm.pagination'
         },
         shim: {
             'angular': {
@@ -41,13 +51,45 @@
             'angular-route': {
                 deps: ['angular'],
                 exports: 'angular-route'
+            },
+            'bootstrap': {
+                deps: ['jquery'],
+                exports: 'bootstrap'
+            },
+            // 'distpicker-data':{
+            //     deps:['jquery'],
+            //     exports:'distpicker-data'
+            // },
+            'ChineseDistricts':{
+                deps:['jquery'],
+                exports:'ChineseDistricts'
+            },
+            'distpicker': {
+                deps: ['jquery'],
+                exports: 'distpicker'
+            },
+            'cookie': {
+                deps: ['jquery'],
+                exports: 'cookie'
+            },
+            'base64': {
+                deps: ['jquery'],
+                exports: 'base64'
+            },
+            'cropbox': {
+                deps: ['jquery'],
+                exports: 'cropbox'
+            },
+            'pagination': {
+                deps: ['angular'],
+                exports: 'pagination'
             }
         },
         waitSeconds: 15
     });
 
     //init main
-    require(['app', 'index'], function (app) {
+    require(['app', 'index','bootstrap','ChineseDistricts','distpicker','cookie','base64','cropbox','pagination'], function (app) {
         app.init();
     })
 }();

@@ -25,9 +25,10 @@
     border-bottom: 1px solid #3d3d3d;
     height: 25px;
     line-height: 25px;
-    padding-left: 4px;
+    padding: 0 4px;
     box-sizing: border-box;
     font-size: 14px;
+    margin-top: 0;
 }
 
 .personal_form_list .personal_user_name, .personal_form_list .personal_user_nickname {
@@ -43,10 +44,12 @@
 
 .personal_form_list label {
     margin-left: 5px;
+    font-weight: normal;
 }
 
 .personal_form_list .personal_user_age {
     width: 67px;
+    text-align: center;
 }
 
 .personal_form_list p {
@@ -133,10 +136,18 @@
 }
 
 .personal_form_list select {
-    margin-left: 15px;
-    width: 71px;
+    margin-left: 10px;
+    /*width: 105px;*/
     height: 30px;
     font-size: 14px;
+}
+
+.personal_form_list .form-control {
+    padding: 4px 12px;
+}
+
+.personal_form_list .form-group {
+    margin-left: 10px;
 }
 
 .personal_form_list em {
@@ -169,7 +180,7 @@
 
 /* 头像照片 */
 .update_head {
-    width: 718px;
+    width: 750px;
     height: auto;
     margin: 0 auto;
     margin-top: 42px;
@@ -179,6 +190,10 @@
     width: 415px;
     height: 594px;
     border-right: 1px solid #909090;
+}
+
+.local_update {
+    margin-bottom: 30px;
 }
 
 .local_update .update_img {
@@ -231,21 +246,21 @@
     box-shadow: 3px 3px 5px #939393;
 }
 
-.only_support {
+.container .only_support {
     color: #737373;
     margin-top: 15px;
     margin-bottom: 23px;
 }
 
-.imgWrap {
+.update_head_left .imgWrap {
     width: 304px;
     height: 207px;
     border: 1px solid #b2b2b2;
     background: url("../../css/img/imgWrap_bg.png") no-repeat 99px 50px;
-    margin-bottom: 34px;
+    margin-bottom: 10px;
 }
 
-.recommend_head {
+.container .recommend_head {
     font-size: 16px;
     color: #5a5a5a;
     margin-bottom: 15px;
@@ -299,6 +314,8 @@
     padding-left: 115px;
     color: #737373;
     margin-top: 14px;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
 }
 
 .result_100 {
@@ -320,7 +337,14 @@
 }
 
 .p_100 {
-    margin-left: 74px;
+    width: 150px;
+    margin-left: 53px;
+    color: #737373;
+    margin-top: 9px;
+}
+.p_50 {
+    width: 150px;
+    margin-left: 46px;
     color: #737373;
     margin-top: 9px;
 }
@@ -349,6 +373,11 @@
     bottom: 0;
     left: 0;
 }
+
 .works_content {
     border: 1px solid white;
+}
+
+.distpickerDiv {
+    margin-top: 10px;
 }

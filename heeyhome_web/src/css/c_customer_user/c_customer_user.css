@@ -34,6 +34,14 @@
     padding-left: 8px
 }
 
+a:visited {
+    text-decoration: none !important;
+}
+
+a:focus {
+    text-decoration: none !important;
+}
+
 /* 私有样式 */
 #selfcenter_top .now_location {
     width: 1190px;
@@ -163,6 +171,8 @@
     margin-top: 25px;
     margin-right: 30px;
     margin-left: 25px;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
 }
 
 .left_img img {

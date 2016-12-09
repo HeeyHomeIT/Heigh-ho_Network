@@ -77,7 +77,8 @@
 }
 
 .address_editor img, .address_del img {
-    margin-top: 7px;
+    margin-top: -5px;
+    vertical-align: inherit;
 }
 
 .address_editor {

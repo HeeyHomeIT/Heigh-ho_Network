@@ -10,7 +10,7 @@
 	margin: 0 auto
 }
 
-.page_number .previous,.next {
+.collection_shop_wrap .page_number .previous,.collection_shop_wrap .page_number .next {
 	float: left;
 	width: 99px;
 	height: 38px;
@@ -20,7 +20,8 @@
 	font-size: 17px;
 	cursor: pointer;
 	background-color: #525252;
-	border-radius: 18px
+	border-radius: 18px;
+	padding: 0 0
 }
 
 .page_number .number {
@@ -28,7 +29,7 @@
 	float: left
 }
 
-.page_number .number .num_page {
+.collection_shop_wrap .page_number .num_page {
 	background-color: #E2E2E2;
 	width: 34px;
 	height: 34px;
@@ -39,7 +40,8 @@
 	font-family: HelveticaNeueLTPro Roman;
 	color: #FFFFFF;
 	font-size: 16px;
-	margin-right: 13px
+	margin-right: 13px;
+	padding: 0 0
 }
 
 .page_number .number .num_page:first-child {
