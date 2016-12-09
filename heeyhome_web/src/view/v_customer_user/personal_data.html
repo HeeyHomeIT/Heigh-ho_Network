@@ -23,9 +23,8 @@
                         </div><!--personal_form_list-->
                         <div class="personal_form_list">
                             <span>性别</span>
-                            <label><input title="" type="radio" name="sex">&nbsp;&nbsp;男</label><label><input title=""
-                                                                                                              type="radio"
-                                                                                                              name="sex">&nbsp;&nbsp;女</label>
+                            <label><input title="" type="radio" name="sex" id="man">&nbsp;&nbsp;男</label>
+                            <label><input title="" type="radio" name="sex" id="women">&nbsp;&nbsp;女</label>
                         </div><!--personal_form_list-->
                         <div class="personal_form_list">
                             <span>年龄</span>
@@ -40,70 +39,67 @@
                             <span class="personal_tel">152****1234</span>
                             <a href="javascript:;">取消绑定</a>
                         </div><!--personal_form_list-->
-                        <div class="personal_form_list">
-                            <span>所在城市</span>
-                            <select title="">
-                                <option>安徽省</option>
-                                <option>江苏省</option>
-                                <option>浙江省</option>
-                            </select>
-                            <em>省</em>
-                            <select title="">
-                                <option>淮南市</option>
-                                <option>苏州市</option>
-                                <option>杭州市</option>
-                            </select>
-                            <em>市</em>
-                            <select title="">
-                                <option>姑苏区</option>
-                                <option>吴中区</option>
-                                <option>园区</option>
-                            </select>
-                            <em>区</em>
+                        <div class="personal_form_list clearfix">
+                            <span class="fl">所在城市</span>
+                            <div data-toggle="distpicker" class="distpickerDiv clearfix fl">
+                                <div class="form-group fl">
+                                    <label class="sr-only" for="province1">Province</label>
+                                    <select class="form-control" id="province1"></select>
+                                </div>
+                                <div class="form-group fl">
+                                    <label class="sr-only" for="city1">City</label>
+                                    <select class="form-control" id="city1"></select>
+                                </div>
+                                <div class="form-group fl">
+                                    <label class="sr-only" for="district1">District</label>
+                                    <select class="form-control" id="district1"></select>
+                                </div>
+                            </div>
                         </div><!--personal_form_list-->
                         <div class="personal_form_list">
                             <span>详细住址</span>
                             <input class="personal_area_detail" title="" type="text" placeholder="请输入您的详细住址">
                         </div><!--personal_form_list-->
-                        <div class="personal_form_list">
-                            <span>家乡</span>
-                            <select title="">
-                                <option>安徽省</option>
-                                <option>江苏省</option>
-                                <option>浙江省</option>
-                            </select>
-                            <em>省</em>
-                            <select title="">
-                                <option>淮南市</option>
-                                <option>苏州市</option>
-                                <option>杭州市</option>
-                            </select>
-                            <em>市</em>
-                            <select title="">
-                                <option>姑苏区</option>
-                                <option>吴中区</option>
-                                <option>园区</option>
-                            </select>
-                            <em>区</em>
+                        <div class="personal_form_list clearfix">
+                            <span class="fl">家乡</span>
+                            <div data-toggle="distpicker" class="distpickerDiv clearfix fl">
+                                <div class="form-group fl">
+                                    <label class="sr-only" for="province2">Province</label>
+                                    <select class="form-control" id="province2"></select>
+                                </div>
+                                <div class="form-group fl">
+                                    <label class="sr-only" for="city2">City</label>
+                                    <select class="form-control" id="city2"></select>
+                                </div>
+                                <div class="form-group fl">
+                                    <label class="sr-only" for="district2">District</label>
+                                    <select class="form-control" id="district2"></select>
+                                </div>
+                            </div>
                         </div><!--personal_form_list-->
                         <a class="personal_submit" href="javascript:;">提交</a>
                     </div><!--personal_form-->
                 </form>
             </div><!--personal_content-->
-            <div class="update_head hide clearfix">
-
+            <div class="update_head clearfix container hide">
                 <div class="update_head_left fl">
                     <form>
-                        <div class="local_update">
-                            <a class="update_img" href="javascript:;">
-                                <img src="css/img/personal_camera.png">本地上传
-                            </a>
-                            <a class="spot_shoot" href="javascript:;">
-                                <img src="css/img/personal_shoot.png">现场拍摄
-                            </a>
-                        </div><!--local_update-->
+                        <div class="imgWrap imageBox">
+                            <div class="thumbBox hide"></div>
+                            <div class="spinner" style="display: none">Loading...</div>
+                        </div><!--imgWrap-->
                         <p class="only_support">仅支持JPG、GIF、PNG、BMP格式，文件小于4M</p>
-                        <div class="imgWrap"></div><!--imgWrap-->
+                        <div class="local_update action">
+                            <div class="new-contentarea tc">
+                                <a class="update_img upload-img" href="javascript:;">
+                                    <img src="css/img/personal_camera.png">本地上传
+                                </a>
+                                <input type="file" class="" name="upload-file" id="upload-file"/>
+                            </div><!--new-contentarea-->
+                            <input type="button" id="btnCrop" class="Btnsty_peyton" value="裁切">
+                            <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+">
+                            <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-">
+                        </div><!--local_update-->
                         <p class="recommend_head">推荐头像</p>
                         <div class="head_wrap clearfix">
                             <a class="fl" href="javascript:;">
@@ -146,10 +142,16 @@
                         <p class="preview_result">效果预览</p>
                         <p class="result_detail">你上传的图片会自动生成2种尺寸，请注意小尺寸的头像是否清晰</p>
                     </div><!--head_right_title-->
-                    <div class="result_100"></div><!--result_100-->
+                    <!--<div class="result_100"></div>&lt;!&ndash;result_100&ndash;&gt;
                     <p class="p_100">100x100像素（px）</p>
-                    <div class="result_50"></div><!--result_50-->
-                    <p class="p_100">50x50像素（px）</p>
+                    <div class="result_50"></div>&lt;!&ndash;result_50&ndash;&gt;
+                    <p class="p_100">50x50像素（px）</p>-->
+                    <div class="cropped">
+                        <div class="result_100"></div>
+                        <p class="p_100">100x100像素（px）</p>
+                        <div class="result_50"></div>
+                        <p class="p_50">50x50像素（px）</p>
+                    </div>
                 </div><!--update_head_right-->
             </div><!--update_head-->
         </div><!--works_content-->

@@ -89,109 +89,23 @@
                         </div><!--check_list_content-->
                     </div><!--check_list-->
                 </div><!--check_list_wrap-->
-                <div class="collection_shop_wrap hide">
-                    <div class="collection_shop first_collection_shop clearfix">
+                <div class="collection_shop_wrap hide" ng-controller="a">
+                    <div class="collection_shop clearfix" ng-repeat="info in infos" shop_id="{{info.shop_id}}">
+                        <!--ng-repeat="info in infos"-->
                         <div class="left_img fl">
-                            <img src="css/img/bigshop-1.png">
+                            <img ng-src="http://hyu2387760001.my3w.com/{{info.img}}">
                         </div><!--left_img-->
                         <div class="left_detail fl">
-                            <p class="manager_shop">怡馨苑项目经理店铺<i class="iconfont first_i">&#xe687;</i><i
+                            <p class="manager_shop">{{info.shop_name}}<i class="iconfont first_i">&#xe687;</i><i
                                     class="iconfont">&#xe603;</i></p>
-                            <p>常驻地址：<span>江苏省苏州市吴中区</span></p>
-                            <p>服务范围：<span>苏州市姑苏区附近</span></p>
+                            <p>常驻地址：<span>{{info.shop_address}}</span></p>
+                            <p>服务范围：<span ng-repeat="service in info.servicearea">{{service}};</span></p>
                             <p class="shop_evaluation">
                                 <a class="eyes" href="javascript:;">
-                                    <i class="iconfont">&#xe69c;</i><span>14689</span>
+                                    <i class="iconfont">&#xe69c;</i><span>{{info.shop_scan}}</span>
                                 </a>
                                 <a class="shake_hands" href="javascript:;">
-                                    <i class="iconfont">&#xe626;</i><span>2547</span>
-                                </a>
-                            </p>
-                        </div><!--left_detail-->
-                        <div class="collection_shop_right fr">
-                            <div class="shop_quality_wrap fl">
-                                <p class="shop_quality">工程质量<span>8.5</span>分</p>
-                                <p>服务态度<span>7</span>分</p>
-                                <p>综合评价<span>9</span>分</p>
-                            </div><!--shop_quality_wrap-->
-                            <a class="collection_shop_del fl" href="javascript:;">
-                                <img src="css/img/collection_shop_del.png">
-                            </a>
-                        </div><!--collection_shop_right-->
-                    </div><!--collection_shop-->
-                    <div class="collection_shop clearfix">
-                        <div class="left_img fl">
-                            <img src="css/img/bigshop-1.png">
-                        </div><!--left_img-->
-                        <div class="left_detail fl">
-                            <p class="manager_shop">怡馨苑项目经理店铺<i class="iconfont first_i">&#xe687;</i><i
-                                    class="iconfont">&#xe603;</i></p>
-                            <p>常驻地址：<span>江苏省苏州市吴中区</span></p>
-                            <p>服务范围：<span>苏州市姑苏区附近</span></p>
-                            <p class="shop_evaluation">
-                                <a class="eyes" href="javascript:;">
-                                    <i class="iconfont">&#xe69c;</i><span>14689</span>
-                                </a>
-                                <a class="shake_hands" href="javascript:;">
-                                    <i class="iconfont">&#xe626;</i><span>2547</span>
-                                </a>
-                            </p>
-                        </div><!--left_detail-->
-                        <div class="collection_shop_right fr">
-                            <div class="shop_quality_wrap fl">
-                                <p class="shop_quality">工程质量<span>8.5</span>分</p>
-                                <p>服务态度<span>7</span>分</p>
-                                <p>综合评价<span>9</span>分</p>
-                            </div><!--shop_quality_wrap-->
-                            <a class="collection_shop_del fl" href="javascript:;">
-                                <img src="css/img/collection_shop_del.png">
-                            </a>
-                        </div><!--collection_shop_right-->
-                    </div><!--collection_shop-->
-                    <div class="collection_shop clearfix">
-                        <div class="left_img fl">
-                            <img src="css/img/bigshop-1.png">
-                        </div><!--left_img-->
-                        <div class="left_detail fl">
-                            <p class="manager_shop">怡馨苑项目经理店铺<i class="iconfont first_i">&#xe687;</i><i
-                                    class="iconfont">&#xe603;</i></p>
-                            <p>常驻地址：<span>江苏省苏州市吴中区</span></p>
-                            <p>服务范围：<span>苏州市姑苏区附近</span></p>
-                            <p class="shop_evaluation">
-                                <a class="eyes" href="javascript:;">
-                                    <i class="iconfont">&#xe69c;</i><span>14689</span>
-                                </a>
-                                <a class="shake_hands" href="javascript:;">
-                                    <i class="iconfont">&#xe626;</i><span>2547</span>
-                                </a>
-                            </p>
-                        </div><!--left_detail-->
-                        <div class="collection_shop_right fr">
-                            <div class="shop_quality_wrap fl">
-                                <p class="shop_quality">工程质量<span>8.5</span>分</p>
-                                <p>服务态度<span>7</span>分</p>
-                                <p>综合评价<span>9</span>分</p>
-                            </div><!--shop_quality_wrap-->
-                            <a class="collection_shop_del fl" href="javascript:;">
-                                <img src="css/img/collection_shop_del.png">
-                            </a>
-                        </div><!--collection_shop_right-->
-                    </div><!--collection_shop-->
-                    <div class="collection_shop clearfix">
-                        <div class="left_img fl">
-                            <img src="css/img/bigshop-1.png">
-                        </div><!--left_img-->
-                        <div class="left_detail fl">
-                            <p class="manager_shop">怡馨苑项目经理店铺<i class="iconfont first_i">&#xe687;</i><i
-                                    class="iconfont">&#xe603;</i></p>
-                            <p>常驻地址：<span>江苏省苏州市吴中区</span></p>
-                            <p>服务范围：<span>苏州市姑苏区附近</span></p>
-                            <p class="shop_evaluation">
-                                <a class="eyes" href="javascript:;">
-                                    <i class="iconfont">&#xe69c;</i><span>14689</span>
-                                </a>
-                                <a class="shake_hands" href="javascript:;">
-                                    <i class="iconfont">&#xe626;</i><span>2547</span>
+                                    <i class="iconfont">&#xe626;</i><span>{{info.shop_volume}}</span>
                                 </a>
                             </p>
                         </div><!--left_detail-->
@@ -211,6 +125,9 @@
                         <span>全选</span>
                         <a href="javascript:;">批量删除</a>
                     </div><!--information_choose-->
+                    <!-- 页码start -->
+                     <tm-pagination conf="paginationConf"></tm-pagination>
+                    <!-- 页码end -->
                 </div><!--collection_shop_wrap-->
             </div><!--works_complete_wrap-->
         </div><!--works_content-->

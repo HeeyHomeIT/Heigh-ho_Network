@@ -70,7 +70,9 @@
 .security_top .security_score .mark {
     position: absolute;
     right: 328px;
-    top: 0
+    top: 0;
+    padding: 0;
+    background-color: white
 }
 
 .security_top ul li {
@@ -79,7 +81,9 @@
     width: 646px;
     padding: 28px 0;
     border-bottom: 1px dashed #D0D0D0;
-    height: 40px
+    height: 40px;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box
 }
 
 .security_top ul li:nth-child(1) em {
@@ -189,9 +193,9 @@
 }
 
 .security_top ul li a:hover {
-	color: #FFFFFF;
-	background-color: #EEC988;
-	transition: all .3s linear;
+    color: #FFFFFF;
+    background-color: #EEC988;
+    transition: all .3s linear;
     -ms-transition: all .3s linear;
     -o-transition: all .3s linear;
     -webkit-transition: all .3s linear;
@@ -229,8 +233,8 @@
 }
 
 .security_bottom .login_history p a:hover {
-	color: #333333;
-	transition: all .3s linear;
+    color: #333333;
+    transition: all .3s linear;
     -ms-transition: all .3s linear;
     -o-transition: all .3s linear;
     -webkit-transition: all .3s linear;
@@ -253,7 +257,6 @@
     line-height: 58px;
     height: 58px
 }
-
 
 .security_bottom .login_note span {
     display: inline-block;
