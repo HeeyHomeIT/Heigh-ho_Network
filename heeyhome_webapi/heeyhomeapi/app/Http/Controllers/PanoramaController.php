@@ -96,6 +96,9 @@ class PanoramaController extends Controller
         $offset=$newpage->page($total);
         $limit=' limit '.$offset[0].','.$offset[1];
         $select=DB::select('select * from hh_panorama where panorama_status=? '.$where.$order.$limit,$para);
+        foreach($select as $key=>$val){
+            $select[$key]->total=$total;
+        }
         if($select){
             $arr = array("code" => "000",
                 "data" => $select

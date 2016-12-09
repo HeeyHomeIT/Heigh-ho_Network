@@ -47,6 +47,7 @@ data         {
                     collect_time       collect_time        //收藏时间
                     panorama_img       panorama_img        //全景图封面图
                     url                url                 //全景图链接地址
+                    total              total               //总数据数
              }
 msg          ""
 )
@@ -119,6 +120,7 @@ data         {
                    shop_scan          shop_scan               //店铺浏览量
                    shop_volume        shop_volume             //店铺成交量
                    img                img                     //店铺封面图
+                   total              total                   //总数据数
              }
 msg          ""
 )

@@ -111,6 +111,7 @@ data         {
                    panorama_url          panorama_url           //链接地址
                    scan_num              scan_num               //浏览量
                    like_num              like_num               //点赞量
+                   total                 total                  //总数据数
              }
 msg          ""
 )

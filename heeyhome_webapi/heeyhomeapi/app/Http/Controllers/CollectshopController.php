@@ -51,6 +51,7 @@ class CollectshopController extends Controller
             $select[$key]->servicearea=explode(',',$val->servicearea);
             $select[$key]->servicetag=explode(',',$val->servicetag);
             $select[$key]->authentication=explode(',',$val->authentication);
+            $select[$key]->total=$total;
         }
         if($select){
             $arr = array("code" => "000",
