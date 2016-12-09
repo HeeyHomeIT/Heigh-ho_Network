@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2016/12/2.
  */
-define(['angular', 'require', 'angular-resource', 'angular-route', 'angular-ui-router', 'oclazyLoad'], function (angular, require) {
+define(['angular', 'require', 'angular-resource', 'angular-route', 'angular-ui-router', 'oclazyLoad','pagination'], function (angular, require) {
 
-    var app = angular.module('newApp', ['ngResource', 'ngRoute', 'ui.router', "oc.lazyLoad"]);
+    var app = angular.module('newApp', ['ngResource', 'ngRoute', 'ui.router', "oc.lazyLoad",'tm.pagination']);
 
     app.init = function () {
         angular.bootstrap(document, ['newApp']);
@@ -64,7 +64,6 @@ define(['angular', 'require', 'angular-resource', 'angular-route', 'angular-ui-r
                     controllerAs: "home_page",
                     resolve: {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            console.log($ocLazyLoad);
                             return $ocLazyLoad.load('js/j_index/carousel.js')
                         }]
                     }
@@ -82,9 +81,15 @@ define(['angular', 'require', 'angular-resource', 'angular-route', 'angular-ui-r
                     url: '/reality_wrap',
                     views: {
                         'content': {
-                            templateUrl: 'view/v_wrap/reality_wrap.html'
+                            templateUrl: 'view/v_wrap/reality_wrap.html',
+                            controller: "vrCtrl",
+                            controllerAs: "reality_wrap"
                         }
-
+                    },
+                    resolve : {
+                    	deps : ['$ocLazyLoad',function ($ocLazyLoad) {
+                    		return $ocLazyLoad.load('js/j_reality/vr_detail.js')
+                    	}]
                     }
                 })
                 .state('shop_wrap', {

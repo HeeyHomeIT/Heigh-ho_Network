@@ -45,6 +45,10 @@
 	color: #4B4948
 }
 
+.fliter div li a:hover {
+	color: #E88226
+}
+
 .fliter div li.active a {
 	font-weight: bold;
 	color: #E88226!important

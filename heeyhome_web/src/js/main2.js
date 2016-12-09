@@ -17,6 +17,7 @@
             'bootstrap': 'lib/bootstrap/bootstrap',
             'carousel': 'js/j_index/carousel',
             'base64': 'lib/jquery/jquery.base64',
+            'pagination': 'lib/angular/tm.pagination',
             'cookie': 'lib/jquery/jquery.cookie',
             'app': 'js/app2',
             'index': 'js/index2'
@@ -54,6 +55,10 @@
             'cookie': {
                 deps: ['jquery'],
                 exports: 'cookie'
+            },
+            'pagination': {
+            	deps: ['angular'],
+            	exports: 'pagination'
             }
         },
         waitSeconds: 15
@@ -63,7 +68,7 @@
 	 * init main
 	 * 自动导入app.js,index.js,bootstrap.js模块
 	 */
-    require(['app', 'index','bootstrap','base64','cookie'], function (app) {
+    require(['app', 'index','bootstrap','base64','cookie','pagination'], function (app) {
     	// 手动启动angularjs，特别说明此处的bootstrap不是那个ui框架，而是angularjs的一个手动启动框架的函数
         app.init();
     })

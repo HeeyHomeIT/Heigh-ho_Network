@@ -1,10 +1,10 @@
 <div class="fliter_area">
 	<span class="fliter_name">建筑面积</span>
 	<ul class="fliter_tab">
-		<li class="active">
-			<a href="#nogo">全部</a>
+		<li ng-repeat="x in areas"  ng-class="$first ? 'active' : ''" ng-click="fliterArea(x)">
+			<a href="javascript:void(0)" >{{x}}</a>
 		</li>
-		<li>
+		<!--<li>
 			<a href="#nogo">100平米以下</a>
 		</li>
 		<li>
@@ -15,30 +15,30 @@
 		</li>
 		<li>
 			<a href="#nogo">150平米以上</a>
-		</li>
+		</li>-->
 	</ul>
 </div>
 <div class="fliter_type">
 	<span class="fliter_name">户型</span>
 	<ul class="fliter_tab">
-		<li>
-			<a href="#nogo">一室一厅</a>
+		<li ng-repeat="y in housetypes"  ng-class="$first ? 'active' : ''" ng-click="fliterType(y)">
+			<a href="javascript:void(0)">{{y}}</a>
 		</li>
-		<li>
+		<!--<li>
 			<a href="#nogo">两室一厅一卫</a>
 		</li>
-		<li class="active">
+		<li>
 			<a href="#nogo">三室两厅两卫</a>
-		</li>
+		</li>-->
 	</ul>
 </div>
 <div class="fliter_style">
 	<span class="fliter_name">装修风格</span>
 	<ul class="fliter_tab">
-		<li>
-			<a href="#nogo">全部</a>
+		<li ng-repeat="z in servicetags track by $index"  ng-class="$first ? 'active' : ''" ng-click="fliterStyle(z)">
+			<a href="javascript:void(0)">{{z}}</a>
 		</li>
-		<li>
+		<!--<li>
 			<a href="#nogo">现代简约</a>
 		</li>
 		<li>
@@ -47,7 +47,7 @@
 		<li>
 			<a href="#nogo">新中式风格</a>
 		</li>
-		<li class="active">
+		<li>
 			<a href="#nogo">地中海风格</a>
 		</li>
 		<li>
@@ -64,6 +64,6 @@
 		</li>
 		<li>
 			<a href="#nogo">东南亚风格</a>
-		</li>
+		</li>-->
 	</ul>
 </div>

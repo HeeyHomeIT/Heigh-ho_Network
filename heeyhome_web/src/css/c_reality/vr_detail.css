@@ -34,6 +34,10 @@
 	margin-bottom: 24px
 }
 
+#virtual_reality .virtual_content .content_title .sort:hover {
+	color: #EEC988
+}
+
 #virtual_reality .virtual_content .content_title .active {
 	font-weight: bold;
 	color: #EEC988!important
@@ -73,7 +77,7 @@
 #virtual_reality .virtual_content .pic_box .vr_pic {
 	position: relative;
 	overflow: hidden;
-	width: 291px;
+	width: 290px;
 	height: 255px
 }
 
@@ -171,4 +175,44 @@
 	height: 15px
 }
 
+.page-list {
+	overflow: hidden;
+	height: 70px	
+}
 
+.page-list .pagination {
+	float:left
+}
+
+.page-list .pagination span {
+	cursor: pointer
+}
+
+.page-list .pagination .separate span{
+	cursor: default;
+	 border-top:none;
+	 border-bottom:none
+}
+
+.page-list .pagination .separate span:hover {
+	background: none
+}
+	
+.page-list .page-total {
+	float:left; 
+	margin: 25px 20px
+}
+
+.page-list .page-total input, .page-list .page-total select{
+	height: 26px; 
+	border: 1px solid #ddd
+}
+	
+.page-list .page-total input {
+	width: 40px;
+	padding-left:3px
+}
+
+.page-list .page-total select {
+	width: 50px
+}

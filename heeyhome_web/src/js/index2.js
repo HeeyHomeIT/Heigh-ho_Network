@@ -53,11 +53,11 @@ define(['app', 'jquery'], function (app) {
         };
     });
 
-    app.directive('myPagenumber', function () {
-        return {
-            templateUrl: "view/common/_pagenumber.html"
-        };
-    });
+//  app.directive('myPagenumber', function () {
+//      return {
+//          templateUrl: "view/common/_pagenumber.html"
+//      };
+//  });
     app.directive('myFliter', function () {
         return {
             templateUrl: "view/common/_fliter.html"
