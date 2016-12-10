@@ -22,12 +22,14 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 					url: '/panorama',
 					views: {
 						'content': {
-							templateUrl: 'view/v_panorama/panorama_wrap.html'
+							templateUrl: 'view/v_panorama/panorama_wrap.html',
+							controller: "panoramaCtrl",
+							controllerAs: "panorama"
 						}
 					},
 					resolve: {
 						deps: ['$ocLazyLoad', function($ocLazyLoad) {
-							return $ocLazyLoad.load(['css/c_common/fliter.css', 'css/c_panorama/panorama.css', 'css/c_common/pagewrap.css'])
+							return $ocLazyLoad.load(['css/c_common/fliter.css', 'css/c_panorama/panorama.css', 'css/c_common/pagewrap.css','js/j_panorama/interactive.js'])
 						}]
 					}
 
@@ -76,7 +78,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 						}]
 					}
 				})
-				.state("center.mhome", {
+				.state("center.mhome", { // 用户个人中心主页
 					url: "/mhome",
 					views: {
 						'user_right': {
@@ -84,7 +86,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 						}
 					},
 				})
-				.state("center.mdata", {
+				.state("center.mdata", { // 用户个人中心-个人资料
 					url: "/mdata",
 					views: {
 						'user_right': {
@@ -94,7 +96,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 						}
 					},
 				})
-				.state("center.morder", {
+				.state("center.morder", { // 用户个人中心-我的订单
 					url: "/morder",
 					views: {
 						'user_right': {
@@ -104,7 +106,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 						}
 					},
 				})
-				.state("center.mcollection", {
+				.state("center.mcollection", { // 用户个人中心-我的收藏
 					url: "/mcollection",
 					views: {
 						'user_right': {
@@ -114,7 +116,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 						}
 					},
 				})
-				.state("center.msgcenter", {
+				.state("center.msgcenter", { // 用户个人中心-消息中心
 					url: "/msgcenter",
 					views: {
 						'user_right': {
@@ -122,7 +124,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 						}
 					},
 				})
-				.state("center.setting", {
+				.state("center.setting", { // 用户个人中心-安全设置
 					url: "/setting",
 					views: {
 						'user_right': {
@@ -130,7 +132,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 						}
 					},
 				})
-				.state("center.maddress", {
+				.state("center.maddress", { // 用户个人中心-收货地址
 					url: "/maddress",
 					views: {
 						'user_right': {

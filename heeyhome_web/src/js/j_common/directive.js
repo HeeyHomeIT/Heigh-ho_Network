@@ -62,7 +62,7 @@ define(['app', 'bootstrap', 'js/j_common/common', 'js/j_index/interactive'], fun
 
 	app.directive('vrFliter', function() {
 		return {
-			templateUrl: "view/v_common/_fliter.html",
+			templateUrl: "view/v_common/_fliter.html"
 		};
 	});
 

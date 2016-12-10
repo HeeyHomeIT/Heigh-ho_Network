@@ -42,7 +42,14 @@
 .fliter div li a {
 	font-family: FZLTHJW;
 	font-size: 14px;
+	cursor: pointer;
 	color: #4B4948
+}
+
+.fliter div li a:hover {
+	font-family: FZLTHJW;
+	font-size: 14px;
+	color: #E88226
 }
 
 .fliter div li.active a {
