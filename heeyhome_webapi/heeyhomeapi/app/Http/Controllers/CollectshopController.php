@@ -17,18 +17,26 @@ class CollectshopController extends Controller
         $callback=rq('callback');
         $user_id=rq('user_id');
         $shop_id=rq('shop_id');
-        $time=date("Y-m-d H:i:s", time());
-        $insert=DB::insert('insert into hh_collection(collect_userid,iscollected_id,collect_time,collect_type) values (?,?,?,?)',[$user_id,$shop_id,$time,'shop']);
-        if($insert){
-            $arr = array("code" => "000",
-                "msg" => "收藏成功"
+        $sel=DB::select('select id from hh_collection where collect_userid=? and iscollected_id=?',[$user_id,$shop_id]);
+        if($sel){
+            $arr = array("code" => "135",
+                "msg" => "已经收藏过"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{
-            $arr = array("code" => "111",
-                "msg" => "收藏失败"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
+            $time=date("Y-m-d H:i:s", time());
+            $insert=DB::insert('insert into hh_collection(collect_userid,iscollected_id,collect_time,collect_type) values (?,?,?,?)',[$user_id,$shop_id,$time,'shop']);
+            if($insert){
+                $arr = array("code" => "000",
+                    "msg" => "收藏成功"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }else{
+                $arr = array("code" => "111",
+                    "msg" => "收藏失败"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
         }
     }
     public function index(){

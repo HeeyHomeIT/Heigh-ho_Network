@@ -16,11 +16,17 @@ class PanoramaController extends Controller
     public function gettags(){
         $callback=rq('callback');
         $tags=DB::select('select * from hh_panorama_selectcondition');
+        $area=explode(',',$tags[0]->sel_area);
+        array_unshift($area,'建筑面积');
+        $housetype=explode(',',$tags[0]->sel_housetype);
+        array_unshift($housetype,'户型');
+        $servicearea=explode(',',$tags[0]->sel_style);
+        array_unshift($servicearea,'装修风格');
         $arr = array("code" => "000",
             "data" => array(
-                "area"=>explode(',',$tags[0]->sel_area),
-                "housetype"=>explode(',',$tags[0]->sel_housetype),
-                "servicetag"=>explode(',',$tags[0]->sel_style)
+                "area"=>$area,
+                "housetype"=>$housetype,
+                "servicetag"=>$servicearea
             )
         );
         return $callback . "(" . HHJson($arr) . ")";
@@ -35,16 +41,16 @@ class PanoramaController extends Controller
         $para=array(1);
         if($area) {
             switch ($area) {
-                case '1':
+                case '2':
                     $where .= ' and panorama_area<?';
                     $para[] = 100;
                     break;
-                case '2':
+                case '3':
                     $where .= ' and panorama_area<=? and panorama_area>=?';
                     $para[] = 120;
                     $para[] = 100;
                     break;
-                case '3':
+                case '4':
                     $where .= ' and panorama_area<=? and panorama_area>=?';
                     $para[] = 150;
                     $para[] = 120;
@@ -54,7 +60,8 @@ class PanoramaController extends Controller
                     break;
             }
         }
-        if($housetype!=0){
+        if(($housetype!=1)&&($housetype!=0)){
+            $housetype=$housetype-1;
             $tags=DB::select('select sel_housetype from hh_panorama_selectcondition ');
             $tags[0]=explode(',',$tags[0]->sel_housetype);
             $panorama_housetype=$tags[0][$housetype];
@@ -62,7 +69,8 @@ class PanoramaController extends Controller
             $where .= ' and find_in_set(?,panorama_housetype)';
             $para[] = $panorama_housetype;
         }
-        if($servicetag!=0){
+        if(($servicetag!=1)&&($servicetag!=0)){
+            $servicetag=$servicetag-1;
             $tags=DB::select('select sel_style from hh_panorama_selectcondition ');
             $tags[0]=explode(',',$tags[0]->sel_style);
             $panorama_style=$tags[0][$servicetag];
@@ -98,6 +106,7 @@ class PanoramaController extends Controller
         $select=DB::select('select * from hh_panorama where panorama_status=? '.$where.$order.$limit,$para);
         foreach($select as $key=>$val){
             $select[$key]->total=$total;
+
         }
         if($select){
             $arr = array("code" => "000",

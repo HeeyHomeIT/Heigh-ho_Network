@@ -85,6 +85,7 @@ msg           失败
 ###### Json数据格式
 ```
 data
+user_id             user_id
 可选参数
 servicearea         servicearea 服务区域筛选条件数组的key   
 workernum           workernum 工人数量筛选条件数组的key
@@ -117,6 +118,8 @@ data         {
                    shop_scan          shop_scan
                    shop_volume        shop_volume
                    shop_img           shop_img
+                   total              total
+                   iscollected        iscollected             //是否收藏 0:未收藏 1:已收藏
              }
 msg          ""
 )

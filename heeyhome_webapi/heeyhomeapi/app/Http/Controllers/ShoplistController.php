@@ -16,18 +16,27 @@ class ShoplistController extends Controller
     public function gettags(){
         $callback=rq('callback');
         $tags=DB::select('select * from hh_shop_selectcondition');
+        $servicearea=explode(',',$tags[0]->sel_area);
+        array_unshift($servicearea,'服务区域');
+        $workernum=explode(',',$tags[0]->sel_worker_num);
+        array_unshift($workernum,'工人数量');
+        $servicetag=explode(',',$tags[0]->sel_style);
+        array_unshift($servicetag,'擅长风格');
+        $shopage=explode(',',$tags[0]->sel_shop_age);
+        array_unshift($shopage,'店铺年限');
         $arr = array("code" => "000",
             "data" => array(
-                "servicearea"=>explode(',',$tags[0]->sel_area),
-                "workernum"=>explode(',',$tags[0]->sel_worker_num),
-                "servicetag"=>explode(',',$tags[0]->sel_style),
-                "shopage"=>explode(',',$tags[0]->sel_shop_age)
+                "servicearea"=>$servicearea,
+                "workernum"=>$workernum,
+                "servicetag"=>$servicetag,
+                "shopage"=>$shopage
             )
         );
         return $callback . "(" . HHJson($arr) . ")";
     }
     public function index(){
         $callback=rq('callback');
+        $user_id=rq('user_id');
         $servicearea=rq('servicearea');
         $workernum=rq('workernum');
         $servicetag=rq('servicetag');
@@ -35,14 +44,16 @@ class ShoplistController extends Controller
         $order=rq('order');
         $where='';
         $para=array(1);
-        if($servicearea!=0) {
+        if(($servicearea!=0)&&($servicearea!=1)) {
+            $servicearea=$servicearea-1;
             $tags=DB::select('select sel_area from hh_shop_selectcondition ');
             $tags[0]=explode(',',$tags[0]->sel_area);
             $servicearea=$tags[0][$servicearea];
             $where.=' and find_in_set(?,servicearea)';
             $para[]=$servicearea;
         }
-        if($servicetag!=0){
+        if(($servicetag!=0)&&($servicetag!=1)){
+            $servicetag=$servicetag-1;
             $tags=DB::select('select sel_style from hh_shop_selectcondition ');
             $tags[0]=explode(',',$tags[0]->sel_style);
             $servicetag=$tags[0][$servicetag];
@@ -52,21 +63,21 @@ class ShoplistController extends Controller
         }
         if($workernum){
             switch ($workernum){
-                case '1':
-                    $where.=' and shop_workernum<?';
-                    $para[]=4;
-                    break;
                 case '2':
-                    $where.=' and shop_workernum<=? and shop_workernum>=?';
-                    $para[]=6;
+                    $where.=' and shop_workernum<?';
                     $para[]=4;
                     break;
                 case '3':
                     $where.=' and shop_workernum<=? and shop_workernum>=?';
+                    $para[]=6;
+                    $para[]=4;
+                    break;
+                case '4':
+                    $where.=' and shop_workernum<=? and shop_workernum>=?';
                     $para[]=10;
                     $para[]=7;
                     break;
-                case '4':
+                case '5':
                     $where=' and shop_workernum>?';
                     $para[]=10;
                     break;
@@ -77,17 +88,17 @@ class ShoplistController extends Controller
         }
         if($shopage){
             switch ($shopage){
-                case '1':
+                case '2':
                     $where.=' and opentime<=? and opentime>=?';
                     $para[]=date("Y-m-d", strtotime("-1 year"));
                     $para[]=date("Y-m-d", strtotime("-2 year"));
                     break;
-                case '2':
+                case '3':
                     $where.=' and opentime<=? and opentime>=?';
                     $para[]=date("Y-m-d", strtotime("-3 year"));
                     $para[]=date("Y-m-d", strtotime("-5 year"));
                     break;
-                case '3':
+                case '4':
                     $where.=' and opentime<?';
                     $para[]=date("Y-m-d", strtotime("-5 year"));
                     break;
@@ -123,11 +134,18 @@ class ShoplistController extends Controller
                 $select[$key]->servicetag=explode(',',$value->servicetag);
                 $select[$key]->servicearea=explode(',',$value->servicearea);
                 $select[$key]->authentication=explode(',',$value->authentication);
+                $select[$key]->total=$total;
                 $img=DB::select('select shop_img from hh_shop_img where shop_id=? and is_face=?',[$value->shop_id,1]);
                 if($img){
                     $select[$key]->shop_img=$img[0]->shop_img;
                 }else{
                     $select[$key]->shop_img=null;
+                }
+                $sel=DB::select('select id from hh_collection where collect_userid=? and iscollected_id=?',[$user_id,$value->shop_id]);
+                if($sel){
+                    $select[$key]->iscollected=1;
+                }else{
+                    $select[$key]->iscollected=0;
                 }
             }
             $arr = array("code" => "000",

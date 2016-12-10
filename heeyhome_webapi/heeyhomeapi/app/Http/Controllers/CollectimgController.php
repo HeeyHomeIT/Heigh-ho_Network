@@ -17,19 +17,27 @@ class CollectimgController extends Controller
         $callback=rq('callback');
         $user_id=rq('user_id');
         $panorama_id=rq('panorama_id');
-        $time=date("Y-m-d H:i:s", time());
-        $insert=DB::insert('insert into hh_collection(collect_userid,iscollected_id,collect_time,collect_type) values (?,?,?,?)',[$user_id,$panorama_id,$time,'panorama']);
-        if($insert){
-            $update = DB::update('update hh_panorama set collect_num=collect_num+1 where panorama_id=?', [$panorama_id]);
-            $arr = array("code" => "000",
-                "msg" => "收藏成功"
+        $sel=DB::select('select id from hh_collection where collect_userid=? and iscollected_id=?',[$user_id,$panorama_id]);
+        if($sel){
+            $arr = array("code" => "135",
+                "msg" => "已经收藏过"
             );
             return $callback . "(" . HHJson($arr) . ")";
-        }else{
-            $arr = array("code" => "111",
-                "msg" => "收藏失败"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
+        }else {
+            $time = date("Y-m-d H:i:s", time());
+            $insert = DB::insert('insert into hh_collection(collect_userid,iscollected_id,collect_time,collect_type) values (?,?,?,?)', [$user_id, $panorama_id, $time, 'panorama']);
+            if ($insert) {
+                $update = DB::update('update hh_panorama set collect_num=collect_num+1 where panorama_id=?', [$panorama_id]);
+                $arr = array("code" => "000",
+                    "msg" => "收藏成功"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            } else {
+                $arr = array("code" => "111",
+                    "msg" => "收藏失败"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
         }
     }
     public function index(){

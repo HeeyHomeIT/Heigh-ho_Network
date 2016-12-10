@@ -140,13 +140,6 @@ Route::group(['middleware' => ['web']], function () {
     /*我的作品案例*/
     Route::any('myworkcase', 'MyworkcaseController@index');
     Route::any('addmyworkcase', 'MyworkcaseController@add');
-    /*材料商申请价格变动*/
-    Route::any('material/category', 'MaterialController@category');
 
-});
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => 'web'], function()
-{
-    Route::get('/', 'LoginController@index');
-    Route::post('login', 'LoginController@login');
-    Route::get('index', 'IndexController@index');
+
 });

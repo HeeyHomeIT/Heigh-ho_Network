@@ -11,5 +11,5 @@ use Illuminate\Support\Facades\Request;
 function rq($key = null, $default = null)
 {
     if (!$key) return Request::all();
-    return Request::get($key, $default);
+    return Request::input($key, $default);
 }
