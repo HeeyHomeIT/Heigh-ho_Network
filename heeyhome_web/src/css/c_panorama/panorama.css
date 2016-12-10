@@ -34,9 +34,13 @@
 	margin-bottom: 24px
 }
 
+#virtual_reality .virtual_content .content_title .sort:hover {
+	color: #E88226!important
+}
+
 #virtual_reality .virtual_content .content_title .active {
 	font-weight: bold;
-	color: #EEC988!important
+	color: #E88226!important
 }
 
 #virtual_reality .virtual_content .content_title .default {
