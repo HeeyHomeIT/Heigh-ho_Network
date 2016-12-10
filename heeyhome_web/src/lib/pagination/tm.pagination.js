@@ -6,21 +6,21 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
     return {
         restrict: 'EA',
         template: '<div class="page-list page_number">' +
-            '<ul class="pagination" ng-show="conf.totalItems > 0">' +
-            '<li ng-class="{disabled: conf.currentPage == 1}" ng-click="prevPage()"><span class="previous">上一页</span></li>' +
-            '<li ng-repeat="item in pageList track by $index" ng-class="{active: item == conf.currentPage, separate: item == \'...\'}" ' +
-            'ng-click="changeCurrentPage(item)">' +
-            '<span class="num_page">{{ item }}</span>' +
-            '</li>' +
-            '<li ng-class="{disabled: conf.currentPage == conf.numberOfPages}" ng-click="nextPage()"><span class="next">下一页</span></li>' +
-            '</ul>' +
-            '<div class="page-total" ng-show="conf.totalItems > 0">',
+        '<ul class="pagination" ng-show="conf.totalItems > 0">' +
+        '<li ng-class="{disabled: conf.currentPage == 1}" ng-click="prevPage()"><span class="previous">上一页</span></li>' +
+        '<li ng-repeat="item in pageList track by $index" ng-class="{active: item == conf.currentPage, separate: item == \'...\'}" ' +
+        'ng-click="changeCurrentPage(item)">' +
+        '<span class="num_page">{{ item }}</span>' +
+        '</li>' +
+        '<li ng-class="{disabled: conf.currentPage == conf.numberOfPages}" ng-click="nextPage()"><span class="next">下一页</span></li>' +
+        '</ul>' +
+        '<div class="page-total" ng-show="conf.totalItems > 0">',
         replace: true,
         scope: {
             conf: '='
         },
         link: function(scope, element, attrs) {
-            
+
             var conf = scope.conf;
 
             // 默认分页长度
@@ -57,7 +57,7 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
 
             // pageList数组
             function getPagination(newValue, oldValue) {
-                
+
                 // conf.currentPage
                 if(conf.currentPage) {
                     conf.currentPage = parseInt(scope.conf.currentPage, 10);
@@ -77,7 +77,7 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
                     conf.totalItems = 0;
                     return;
                 }
-                
+
                 // conf.itemsPerPage 
                 if(conf.itemsPerPage) {
                     conf.itemsPerPage = parseInt(conf.itemsPerPage, 10);
@@ -111,7 +111,7 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
 
                 // 对选项进行sort
                 conf.perPageOptions.sort(function(a, b) {return a - b});
-                
+
 
                 // 页码相关
                 scope.pageList = [];
@@ -183,14 +183,14 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
 
             // 变更当前页
             scope.changeCurrentPage = function(item) {
-                
+
                 if(item == '...'){
                     return;
                 }else{
                     conf.currentPage = item;
                     getPagination();
                     // conf.onChange()函数
-                    if(conf.onChange) {    
+                    if(conf.onChange) {
                         conf.onChange();
                     }
                 }
@@ -204,7 +204,7 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
 
                 getPagination();
                 // conf.onChange()函数
-                if(conf.onChange) {    
+                if(conf.onChange) {
                     conf.onChange();
                 }
             };
@@ -214,7 +214,7 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
                 num = scope.jumpPageNum;
                 if(num.match(/\d+/)) {
                     num = parseInt(num, 10);
-                
+
                     if(num && num != conf.currentPage) {
                         if(num > conf.numberOfPages) {
                             num = conf.numberOfPages;
@@ -224,35 +224,35 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
                         conf.currentPage = num;
                         getPagination();
                         // conf.onChange()函数
-                        if(conf.onChange) {    
+                        if(conf.onChange) {
                             conf.onChange();
                         }
                         scope.jumpPageNum = '';
                     }
                 }
-                
+
             };
 
             scope.jumpPageKeyUp = function(e) {
                 var keycode = window.event ? e.keyCode :e.which;
-                
+
                 if(keycode == 13) {
                     scope.jumpToPage();
                 }
-            }
+            };
 
             scope.$watch('conf.totalItems', function(value, oldValue) {
-                
+
                 // 在无值或值相等的时候，去执行onChange事件
                 if(!value || value == oldValue) {
-                    
-                    if(conf.onChange) {    
+
+                    if(conf.onChange) {
                         conf.onChange();
                     }
                 }
                 getPagination();
             })
-            
+
         }
     };
 }]);

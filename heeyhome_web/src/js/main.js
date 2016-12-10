@@ -18,6 +18,7 @@
             'ChineseDistricts':'lib/distpicker/ChineseDistricts',
             'distpicker':'lib/distpicker/distpicker',
             'cropbox':'lib/cropbox/cropbox',
+            'pagination':'lib/pagination/tm.pagination',
 			'app': 'js/app',
 			'route': 'js/j_common/route',
 			'directive': 'js/j_common/directive'
@@ -66,6 +67,10 @@
             'cropbox': {
                 deps: ['jquery'],
                 exports: 'cropbox'
+            },
+            'pagination': {
+                deps: ['angular'],
+                exports: 'pagination'
             }
 		},
 		waitSeconds: 15
@@ -75,7 +80,7 @@
 	 * init main
 	 * 自动导入app.js,index.js模块
 	 */
-	require(['app', 'route','directive','cropbox'], function(app) {
+	require(['app', 'route','directive','cropbox','pagination'], function(app) {
 		// 手动启动angularjs，特别说明此处的bootstrap不是那个ui框架，而是angularjs的一个手动启动框架的函数
 		app.init();
 	})

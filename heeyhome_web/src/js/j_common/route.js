@@ -99,6 +99,8 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 					views: {
 						'user_right': {
 							templateUrl: 'view/v_center/v_morder.html',
+                            controller: "mMorderCtrl",
+                            controllerAs: "morder"
 						}
 					},
 				})

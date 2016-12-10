@@ -1,6 +1,6 @@
-define(['angular', 'require', 'angular-ui-router', 'oclazyLoad', 'ChineseDistricts', 'distpicker'], function(angular, require) {
+define(['angular', 'require', 'angular-ui-router', 'oclazyLoad', 'ChineseDistricts', 'distpicker', 'pagination'], function(angular, require) {
 
-	var app = angular.module('heeyhomeApp', ['ui.router', "oc.lazyLoad"]);
+	var app = angular.module('heeyhomeApp', ['ui.router', "oc.lazyLoad", 'tm.pagination']);
 
 	app.init = function() {
 		angular.bootstrap(document, ['heeyhomeApp']);
