@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>嘿吼网|我能帮您解决</title>
+		<link rel="icon" href="icon.png" type="image/x-icon">
+		<link rel="stylesheet" href="css/c_common/common.css" />
+		<link rel="stylesheet" href="css/c_register/register.css" />
+		<link rel="stylesheet" href="css/c_register/loading.css" />
+		<link rel="stylesheet" href="css/c_register/reminde.css">
+	</head>
+	<body>
+		<div class="container">
+			<!-- 主体开始  -->
+			<div class="main">
+				<!-- 导航标签start -->
+				<ul class="tab">
+					<li class="tab_click_register"><div>注册</div></li>
+					<li class="tab_click_login active"><div>登录</div></li>
+				</ul>
+				<!-- 导航标签end -->
+				
+				<!-- logo标题start -->
+				<div class="main_header">
+					<a href="index.html"><h1 class="logo"></h1></a>
+					<h2 class="logo_text">欢迎回来!</h2>
+				</div>
+				<!-- logo标题end -->
+				
+				<!-- 文字说明start -->
+				<div class="logo_title">
+					<img src="image/login.png">
+				</div>
+				<!-- 文字说明end -->
+				
+				<!-- 注册start -->
+				<div class="register display">
+					<div class="registerItem">
+						<img src="css/img/icon-phone.png">
+						<span>|</span>
+						<input class="zc_phone" type="text" name="phone" placeholder="请输入您的手机号" />
+						<label class="error"></label>
+					</div>
+					<div class="registerItem">
+						<img src="css/img/icon-psw.png">
+						<span>|</span>
+						<input class="zc_password" type="password" name="password" placeholder="请输入您的密码" />
+						<label class="error"></label>
+					</div>
+					<div class="registerItem">
+						<img src="css/img/icon-password.png">
+						<span>|</span>
+						<input class="zc_sure_password" type="password" name="surepassword" placeholder="请在此输入您的密码" />
+						<label class="error"></label>
+					</div>
+					<div class="registerItem registerLeft">
+						<img src="css/img/icon-code.png">
+						<span>|</span>
+						<input class="zc_codes" type="text" name="codes" placeholder="请输入验证码" />
+						<label class="error"></label>
+					</div>
+					<div class="registerRight">
+						<input class="zc_btnSendCode" type="button" name="btnSendCode" value="获取验证码" />
+					</div>
+				</div>
+				<!-- 注册end -->
+				
+				<!--登录start-->
+				<div class="login">
+					<div class="registerItem">
+						<img src="css/img/icon-phone.png">
+						<span>|</span>
+						<input class="dl_phone" type="text" name="phone" placeholder="请输入您的手机号" />
+						<label class="error"></label>
+					</div>
+					<div class="registerItem">
+						<img src="css/img/icon-password.png">
+						<span>|</span>
+						<input class="dl_password" type="password" name="password" placeholder="请输入您的密码" />
+						<label class="error"></label>
+					</div>
+					<div class="do_password">
+						<div class="remerber_password">
+							<input class="remember" type="checkbox" name="remember">
+							<span>记住密码</span>
+						</div>
+						<div class="forget_password">
+							<a href="#" class="forfet">忘记密码&gt;&gt;</a>
+						</div>
+					</div>
+				</div>
+				<!-- 登录end -->
+				
+				<!-- 提交按钮start -->
+				<div class="promptly">
+					<input class="promptly_do margin_top_2" type="button" value="立即登录">
+				</div>
+				<!-- 提交按钮end -->
+				
+				<!-- 第三方登录start -->
+				<div class="third_login">
+					<div class="qq">
+						<img src="image/icon-qq.png" title="QQ登录">
+					</div>
+					<div class="wechat">
+						<img src="image/icon-weixin.png" title="微信登录">
+					</div>
+				</div>
+				<!-- 第三方登录end-->
+			</div>
+			<!-- 主体结束  -->
+			
+			<!-- 底部开始  -->
+			<div class="footer">
+				<span>&copy;2016  苏州嗨吼网络科技有限公司</span>
+				<span class="footer_split">|</span>
+				<a href="#nogo">联系我们</a>
+				<span class="footer_split">|</span>
+				<a href="#nogo">来嗨吼工作</a>
+				<span class="footer_split">|</span>
+				<span>苏ICP备16006492号</span>
+			</div>
+			<!-- 底部结束  -->
+		</div>
+		
+		<div id="loading" class="display" style="position:fixed;width:100%;height:100%;top:0px;left:0px;opacity:0.7;background:#000;">
+			<div class="sk-fading-circle">
+			  <div class="sk-circle1 sk-circle"></div>
+			  <div class="sk-circle2 sk-circle"></div>
+			  <div class="sk-circle3 sk-circle"></div>
+			  <div class="sk-circle4 sk-circle"></div>
+			  <div class="sk-circle5 sk-circle"></div>
+			  <div class="sk-circle6 sk-circle"></div>
+			  <div class="sk-circle7 sk-circle"></div>
+			  <div class="sk-circle8 sk-circle"></div>
+			  <div class="sk-circle9 sk-circle"></div>
+			  <div class="sk-circle10 sk-circle"></div>
+			  <div class="sk-circle11 sk-circle"></div>
+			  <div class="sk-circle12 sk-circle"></div>
+			</div>
+		</div>
+		<div id="ReminderBox" class="display" style="position:fixed;width:100%;height:100%;top:0px;left:0px;z-index: 999;background: rgba(0,0,0,0.6);">
+			<div class="remindebox" >
+				<div class="remindemodel">
+					<div class="remindemodel_header">
+						<h1>提示</h1>
+					</div>
+					<div class="remindemodel_content">
+						<div class="remindemodel_info">
+							<div class="info_header">
+								<span></span>
+							</div>
+						</div>
+						<div class="remindemodel_footer">
+							<input class="remindemodel_ok" type="button" data-select = "" value="好的"/>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="lib/jquery/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="lib/jquery/jquery.cookie.js" ></script>
+		<script type="text/javascript" src="lib/jquery/jquery.base64.js" ></script>
+		<script type="text/javascript" src="js/j_register/j_register.js" ></script>
+	</body>
+</html>
