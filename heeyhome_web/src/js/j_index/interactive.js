@@ -1,4 +1,8 @@
 define(['app'], function(app) {
+	
+	var BANNERURL = 'http://hyu2387760001.my3w.com/banner'; // banner显示
+	var VRURL = 'http://hyu2387760001.my3w.com/panorama'; // 虚拟现实显示
+	
 	(function() {
 		/*定义一个类*/
 		var indexWrap = {
@@ -12,11 +16,81 @@ define(['app'], function(app) {
 				var self = this;
 				/* 轮播图*/
 				self.initCarouselEvent();
+				/* 虚拟现实 */
+				self.initVrEvent();
 			},
 			/**
 			 * 轮播图
 			 */
 			initCarouselEvent: function() {
+				$.ajax({ //获得轮播图内容
+					type:"get",
+					url:BANNERURL,
+					async:true,
+					dataType: 'jsonp',
+					success: function(data) {
+						if(data != null && data.code == '000' ) {
+							var numberChange = '<ol class="carousel-indicators">';
+							var carouselPic = '<div class="carousel-inner">';
+							$.each(data.data, function(i,n) {
+								if(i == 0) {
+									numberChange += '<li data-target="#myCarousel" data-slide-to="'+i+'" class="active"></li>';
+									carouselPic += '<div class="item active"><a href="'+n.img_path+'" target="_blank"><img src="http://hyu2387760001.my3w.com/'+n.img+'"></a></div>';
+								} else {
+									numberChange += '<li data-target="#myCarousel" data-slide-to="'+i+'"></li>';
+									carouselPic += '<div class="item"><a href="'+n.img_path+'" target="_blank"><img src="http://hyu2387760001.my3w.com/'+n.img+'"></a></div>';
+								}
+							});
+							numberChange += '</ol>';
+							carouselPic += '</div>';
+							$("#myCarousel").append(numberChange).append(carouselPic);
+							onchangeNumber.change();
+						}
+					},
+					error: function(data) {}
+				});				
+			},
+			/*
+			 * 虚拟现实
+			 */
+			initVrEvent : function() {
+				$.ajax({ //获得虚拟现实内容
+					type:"get",
+					url:VRURL,
+					async:true,
+					dataType: 'jsonp',
+					success: function(data) {
+						if(data != null && data.code == '000' ) {
+							var panorama = '<div class="vr_picture">';
+							for(var i = 0; i< 6; i++) {
+								panorama += '<div class="box_picture clearfix"><a href="'+data.data[i].panorama_url+'" target="_blank">';
+								panorama += '<img src="http://hyu2387760001.my3w.com/'+data.data[i].panorama_img+'"><div class="pic_content">';
+								panorama += '<div class="pic_icon"><img src="css/img/icon-tovr.png"></div>';
+								panorama += '<div class="pic_title"><h3>'+data.data[i].panorama_area+'㎡</h3></div>';
+								panorama += ' <div class="pic_name">'+data.data[i].panorama_style+'</div></div></a></div>';
+							}
+//							var sixPic = data.data.slice(0,6);
+//							$.each(sixPic, function(i,n) {
+//								panorama += '<div class="box_picture clearfix"><a href="'+n.panorama_url+'">';
+//								panorama += '<img src="http://hyu2387760001.my3w.com/'+n.panorama_img+'"><div class="pic_content">';
+//								panorama += '<div class="pic_icon"><img src="css/img/icon-tovr.png"></div>';
+//								panorama += '<div class="pic_title"><h3>'+n.panorama_area+'㎡</h3></div>';
+//								panorama += ' <div class="pic_name">'+n.panorama_style+'</div></div></a></div>';
+//							});
+							panorama += '</div>';
+							$(".virtual_content").append(panorama);
+							boxPicture.cssSetting();
+						}
+					},
+					error: function(data) {}
+				});
+			}
+		};
+		/*
+		 * 轮播图右侧数字随之改变
+		 */
+		onchangeNumber = {
+			change : function() {
 				$("#myCarousel").carousel();
 				var _focus = $(".carousel-indicators li");
 				var _number = $(".number_control li");
@@ -31,6 +105,19 @@ define(['app'], function(app) {
 				}, 1);
 			}
 		};
+		/*
+		 * 图片大小调整
+		 */
+		boxPicture = {
+			cssSetting : function() {
+				$(".box_picture").eq(0).addClass("box_picture_1");
+				$(".box_picture").eq(1).addClass("box_picture_2");
+				$(".box_picture").eq(2).addClass("box_picture_2");
+				$(".box_picture").eq(3).addClass("box_picture_1");
+				$(".box_picture").eq(4).addClass("box_picture_1");
+				$(".box_picture").eq(5).addClass("box_picture_2");
+			}
+		}
 		//入口方法调用 代码只能从这里执行
 		app.indexWrapHandler = function() {
 			indexWrap.init();
