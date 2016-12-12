@@ -10,7 +10,7 @@
     margin: 0 auto
 }
 
-.collection_shop_wrap .page_number .previous, .collection_shop_wrap .page_number .next {
+.pageWrap .page_number .previous,.pageWrap .page_number .next {
     float: left;
     width: 99px;
     height: 38px;
@@ -29,7 +29,7 @@
     float: left
 }
 
-.collection_shop_wrap .page_number .num_page {
+.pageWrap .page_number .num_page {
     background-color: #E2E2E2;
     width: 34px;
     height: 34px;
@@ -44,7 +44,7 @@
     padding: 0 0
 }
 
-.collection_shop_wrap .page_number .num_page:hover, .collection_shop_wrap .page_number .num_page:focus {
+.pageWrap .page_number .num_page:hover,.pageWrap .page_number .num_page:focus {
     background-color: #E88226;
     border-color: #E88226
 }
@@ -60,7 +60,49 @@
     margin: 0 11px 0 8px
 }
 
-.collection_shop_wrap .pagination > .active > span, .collection_shop_wrap .pagination > .active > span:hover, .collection_shop_wrap .pagination > .active > span:focus {
+.pageWrap .pagination > .active > span,.pageWrap .pagination > .active > span:hover,.pageWrap .pagination > .active > span:focus {
     background-color: #E88226;
     border-color: #E88226
+}
+
+/* 分页css */
+/*.page-list .pagination {
+    width: 635px;
+    margin: 22px auto;
+}*/
+
+.page-list .pagination span {
+    cursor: pointer;
+}
+
+.pageWrap .page-list .pagination .separate span {
+    cursor: default;
+    border-top: none;
+    border-bottom: none;
+    border-color: white;
+    color: #e88226;
+    background-color: white;
+}
+
+.page-list .pagination .separate span:hover {
+    background: none;
+}
+
+.page-list .page-total {
+    float: left;
+    margin: 25px 20px;
+}
+
+.page-list .page-total input, .page-list .page-total select {
+    height: 26px;
+    border: 1px solid #ddd;
+}
+
+.page-list .page-total input {
+    width: 40px;
+    padding-left: 3px;
+}
+
+.page-list .page-total select {
+    width: 50px;
 }

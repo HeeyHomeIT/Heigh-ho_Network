@@ -38,12 +38,14 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 					url: '/shoplist',
 					views: {
 						'content': {
-							templateUrl: 'view/v_shoplist/shoplist_wrap.html'
+							templateUrl: 'view/v_shoplist/shoplist_wrap.html',
+                            controller: "myShoplist",
+                            controllerAs: "shoplist"
 						}
 					},
 					resolve: {
 						deps: ['$ocLazyLoad', function($ocLazyLoad) {
-							return $ocLazyLoad.load(['css/c_common/fliter.css', 'css/c_shoplist/shoplist.css', 'css/c_common/pagewrap.css'])
+							return $ocLazyLoad.load(['css/c_common/fliter.css', 'css/c_shoplist/shoplist.css', 'css/c_common/pagewrap.css','js/j_shoplist/interactive.js'])
 						}]
 					}
 				})
@@ -129,6 +131,8 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 					views: {
 						'user_right': {
 							templateUrl: 'view/v_center/v_setting.html',
+                            controller: "mSettingCtrl",
+                            controllerAs: "setting"
 						}
 					},
 				})

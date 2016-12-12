@@ -57,15 +57,16 @@
 }
 
 #foreman_shop .shop_content .shop_summary {
-	position: relative
+	position: relative;
+	height: 1060px
 }
 
 #foreman_shop .shop_content .shop_summary .shop_box {
 	position: relative;
 	width: 950px;
-	height: 265px;
+	height: 290px;
 	padding-top: 42px;
-	border-bottom: 1px dashed #D7D7D7
+	border-bottom: 1px solid #eee
 }
 
 #foreman_shop .shop_content .shop_summary .shop_box:first-child {
