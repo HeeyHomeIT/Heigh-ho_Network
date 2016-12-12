@@ -85,8 +85,8 @@ msg           失败
 ###### Json数据格式
 ```
 data
-user_id             user_id
 可选参数
+user_id             user_id
 servicearea         servicearea 服务区域筛选条件数组的key   
 workernum           workernum 工人数量筛选条件数组的key
 servicetag          servicetag 风格标签筛选条件数组的key
