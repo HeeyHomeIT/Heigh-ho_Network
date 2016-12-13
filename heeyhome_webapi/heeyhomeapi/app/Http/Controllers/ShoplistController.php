@@ -110,7 +110,7 @@ class ShoplistController extends Controller
         if($order){
             switch ($order){
                 case '0':
-                    $order='';
+                    $order=' order by id desc';
                     break;
                 case '1':
                     $order=' order by shop_volume desc';
@@ -119,9 +119,11 @@ class ShoplistController extends Controller
                     $order=' order by shop_point desc';
                     break;
                 default:
-                    $order='';
+                    $order=' order by id desc';
                     break;
             }
+        }else{
+                  $order=' order by id desc';
         }
         $total=DB::select('select count(id) as total from hh_shop where shop_status=? '.$where,$para);
         $total=$total[0]->total;
@@ -133,7 +135,22 @@ class ShoplistController extends Controller
             foreach($select as $key=>$value){
                 $select[$key]->servicetag=explode(',',$value->servicetag);
                 $select[$key]->servicearea=explode(',',$value->servicearea);
-                $select[$key]->authentication=explode(',',$value->authentication);
+                $authentication=explode(',',$value->authentication);
+                foreach($authentication as $k=>$v){
+                    switch ($v){
+                        case 1: $authentication[$k]='api/public/smrz.png';
+                            break;
+                        case 2: $authentication[$k]='api/public/bzj.png';
+                            break;
+                        case 3: $authentication[$k]='api/public/tdbx.png';
+                            break;
+                        case 4: $authentication[$k]='api/public/bx.png';
+                            break;
+                        default: $authentication[$k]='';
+                            break;
+                    }
+                }
+                $select[$key]->authentication=$authentication;
                 $select[$key]->total=$total;
                 $img=DB::select('select shop_img from hh_shop_img where shop_id=? and is_face=?',[$value->shop_id,1]);
                 if($img){
@@ -146,6 +163,12 @@ class ShoplistController extends Controller
                     $select[$key]->iscollected=1;
                 }else{
                     $select[$key]->iscollected=0;
+                }
+                $score=DB::select('select projectquality,serviceattitude,overallmerit from hh_score where shop_id=?',[$value->shop_id]);
+                if($score){
+                    $select[$key]->shop_score=$score[0];
+                }else{
+                    $select[$key]->shop_score=null;
                 }
             }
             $arr = array("code" => "000",
