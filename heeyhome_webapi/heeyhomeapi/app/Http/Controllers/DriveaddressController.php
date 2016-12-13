@@ -77,7 +77,7 @@ class DriveaddressController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         $driveaddress=new Driveaddress();
-        $address=$driveaddress->find($address_id);
+        $driveaddress=$driveaddress->find($address_id);
         if(!$driveaddress){
             $arr = array("code" => "117",
                 "msg" => "地址不存在"

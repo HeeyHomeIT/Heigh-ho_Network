@@ -57,19 +57,12 @@ class MyshoptechnicsController extends  Controller
             $size=$file-> getClientSize();
             //dd($size);
             $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
-            /*上传图片大小不能超过4M*/
-            if($size>4*1024*1024) {
-                $arr = array("code" => "122",
-                    "msg" => "图片上传出错,不能大于4M"
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-            }
             $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
             if($is){
                 $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
                 $insert=DB::insert('insert into hh_shop_technics(shop_id,technics_text,technics_img) values (?,?,?)',[$shop_id,$technics_text,$path]);
                 if($insert){
-                    $shop_technics=DB::select('select technics_text,technics_img from hh_shop_technics where shop_id=?',$shop_id);
+                    $shop_technics=DB::select('select technics_text,technics_img from hh_shop_technics where shop_id=?',[$shop_id]);
                     $arr = array("code" => "000",
                         "msg" => "添加成功",
                         "data"=>$shop_technics
