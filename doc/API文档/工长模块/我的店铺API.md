@@ -56,7 +56,9 @@ data         {
                     shop_technics        {
                                                id                id
                                                technics_text     technics_text
-                                               technics_img      technics_img
+                                               technics_img      {
+                                                                    technics_img  technics_img
+                                                                 }
                                          }
                     workcase             {
                                                case_id      case_id

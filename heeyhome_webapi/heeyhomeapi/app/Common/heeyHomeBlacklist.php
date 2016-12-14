@@ -25,7 +25,7 @@ function addBalckMan($phone, $message)
     /**
      * TODO 添加到黑名单中
      */
-    $time = date('y - m - d', time());
+    $time = date('Y-m-d', time());
     $sql=DB::insert('insert into hh_blacklist (phone,begintime,message,status) values(?,?,?,?)',[$phone,$time,$message,'1']);
     if ($sql) {
         return true;

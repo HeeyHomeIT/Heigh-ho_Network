@@ -56,8 +56,9 @@ Route::group(['middleware' => ['web']], function () {
     /*发送邮箱*/
     Route::any('sendmail', 'MailController@emailsend');
     /*修改密码*/
+    Route::any('editpassword/smsedit', 'EditpasswordController@smsedit');
+    Route::any('editpassword/initialpwd', 'EditpasswordController@initialpwd');
     Route::any('editpassword', 'EditpasswordController@editpassword');
-
     /*用户个人资料*/
     Route::any('personal/userinfo', 'UserinfoController@index');
     Route::any('personal/userinfo/change', 'UserinfoController@edit');
@@ -135,6 +136,8 @@ Route::group(['middleware' => ['web']], function () {
     /*店铺列表*/
     Route::any('shoplist/gettags', 'ShoplistController@gettags');
     Route::any('shoplist', 'ShoplistController@index');
+    /*店铺详情*/
+    Route::any('shopinfo', 'ShopdetailController@index');
     /*添加银行卡*/
     Route::any('bankcard/getname', 'BankCardController@getname');
     Route::any('bankcard/getcardtype', 'BankCardController@getcardtype');

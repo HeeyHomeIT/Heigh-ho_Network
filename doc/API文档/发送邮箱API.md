@@ -38,7 +38,7 @@ callback          callback
 callback(
 code         000
 data         {
-                    email    email     //手机号
+                    email    email     //邮箱号
                     yzmsj    yzmsj     //短信发送时间
              }
 msg          发送成功

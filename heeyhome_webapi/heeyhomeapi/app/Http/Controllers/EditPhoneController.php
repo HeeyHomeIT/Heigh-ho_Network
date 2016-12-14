@@ -78,16 +78,25 @@ class EditPhoneController extends Controller
                 $dxyzmsj = smsverify($newphone, $captcha);
             }
             if ((strtotime($dxyzmsj) + 1200) > time()) {
-                $update = DB::update('update hh_user set user_phone=? where user_id=?', [$newphone, $user_id]);
-                if ($update) {
-                    $arr = array("code" => "000",
-                        "msg" => "绑定成功",
-                        "data"=>array("newphone"=>$newphone)
-                    );
-                    return $callback . "(" . HHJson($arr) . ")";
-                } else {
-                    $arr = array("code" => "111",
-                        "msg" => "绑定失败"
+                /*检查要绑定的新手机号是否被注册*/
+                $phone=DB::select('select user_phone from hh_user where user_id=? and user_phone=?',[$user_id,$newphone]);
+                if($phone){
+                    $update = DB::update('update hh_user set user_phone=? where user_id=?', [$newphone, $user_id]);
+                    if ($update) {
+                        $arr = array("code" => "000",
+                            "msg" => "绑定成功",
+                            "data"=>array("newphone"=>$newphone)
+                        );
+                        return $callback . "(" . HHJson($arr) . ")";
+                    } else {
+                        $arr = array("code" => "111",
+                            "msg" => "绑定失败"
+                        );
+                        return $callback . "(" . HHJson($arr) . ")";
+                    }
+                }else{
+                    $arr = array("code" => "131",
+                        "msg" => "该手机号已被注册"
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }
@@ -104,4 +113,5 @@ class EditPhoneController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+
 }
