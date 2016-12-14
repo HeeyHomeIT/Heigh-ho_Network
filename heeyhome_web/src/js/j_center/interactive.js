@@ -47,7 +47,7 @@
         initMDataEvent: function () {
             HHIT_CENTERAPP.controller('mDataCtrl', ['$scope', '$http', function ($scope, $http) {
             	// 加载城市插件
-			 	require(['lib/distpicker/ChineseDistricts.js','lib/distpicker/distpicker.js']);
+				$('[data-toggle="distpicker"]').distpicker();
                 /* details */
                 var $dtDiv = $("#works_content_title div");
                 var iSpeed = 0;

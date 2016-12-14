@@ -141,8 +141,15 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 					views: {
 						'user_right': {
 							templateUrl: 'view/v_center/v_address.html',
+							controller: "mAddressCtrl",
+                            controllerAs: "maddress"
 						}
 					},
+					resolve: {
+						deps: ['$ocLazyLoad', function($ocLazyLoad) {
+							return $ocLazyLoad.load('js/j_center/maddress.js');
+						}]
+					}
 				});
 				
 			$urlRouterProvider.when('', '/').when('/center', '/center/mhome');

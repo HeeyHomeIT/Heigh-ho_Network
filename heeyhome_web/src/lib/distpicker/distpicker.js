@@ -195,7 +195,7 @@
 
   Distpicker.DEFAULTS = {
     autoSelect: true,
-    placeholder: true,
+    placeholder: false,
     province: '—— 省 ——',
     city: '—— 市 ——',
     district: '—— 区 ——'
@@ -243,6 +243,6 @@
   };
 
   $(function () {
-	$('[data-toggle="distpicker"]').distpicker();
+//	$('[data-toggle="distpicker"]').distpicker();
   });
 });
