@@ -36,8 +36,14 @@ class MyshopController extends Controller
         if($select){
             $img=DB::select('select id,shop_img,is_face from hh_shop_img where shop_id=? order by id desc',[$shop_id]);
             $select[0]->shop_imgs=$img;
-            $technics=DB::select('select id,technics_text,technics_img from hh_shop_technics where shop_id=? order by id desc',[$shop_id]);
+            $technics=DB::select('select id,technics_text,technics_img from hh_shop_technics where shop_id=? order by id desc limit ?,?',[$shop_id,0,2]);
             $select[0]->shop_technics=$technics;
+            $workcase=DB::select('select case_id,area,housetype,style,timelong,address from hh_workcase where foreman_id=? order by id desc limit ?,?',[$select[0]->shopper_id,0,2]);
+            foreach($workcase as $k=>$v){
+                 $workcaseimg=DB::select('select case_img from hh_workcase_img where case_id=?',[$v->case_id]);
+                 $workcase[$k]->case_img=$workcaseimg;
+            }
+            $select[0]->workcase=$workcase;
             $select[0]->servicetag=explode(',',$select[0]->servicetag);
             $select[0]->servicearea=explode(',',$select[0]->servicearea);
             $select[0]->authentication=explode(',',$select[0]->authentication);

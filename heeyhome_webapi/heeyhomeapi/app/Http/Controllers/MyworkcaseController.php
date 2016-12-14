@@ -58,7 +58,7 @@ class MyworkcaseController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         if($files->isValid()){
-            $case=DB::insert('insert into hh_workcase(case_id,foreman_id,area,style,timelong,address) values(?,?,?,?,?,?)',[$case_id,$foreman_id,$area,$style,$timelong,$address]);
+            $case=DB::insert('insert into hh_workcase(case_id,foreman_id,housetype,style,timelong,address) values(?,?,?,?,?,?)',[$case_id,$foreman_id,$housetype,$style,$timelong,$address]);
             foreach($files as $file){
                 $clientName = $file -> getClientOriginalName();//文件原名
                 $entension = $file -> getClientOriginalExtension();//扩展名

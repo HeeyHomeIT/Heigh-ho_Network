@@ -58,6 +58,17 @@ data         {
                                                technics_text     technics_text
                                                technics_img      technics_img
                                          }
+                    workcase             {
+                                               case_id      case_id
+                                               area         area              //建筑面积
+                                               housetype    housetype         //户型
+                                               style        style             //装修风格
+                                               timelong     timelong          //工期
+                                               address      address           //地址
+                                               case_img     {                 
+                                                               case_img      case_img
+                                                            }
+                                         }
              }
 msg          ""
 )
