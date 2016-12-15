@@ -44,6 +44,7 @@ data         {
                     opentime             opentime               //开店时间   
                     servicetag           servicetag 数组        //擅长风格
                     servicearea          servicearea 数组       //服务区域
+                    shop_address         shop_address
                     shop_workernum       shop_workernum         //施工团队
                     shop_describe        shop_describe          //店铺理念(签名)
                     shop_imgs            {
@@ -59,6 +60,11 @@ data         {
                                                 decoratedareas          decoratedareas     //装修小区
                                                 portrait_img            portrait_img       //工长头像
                                                 
+                                         }
+                    shop_score           {
+                                                projectquality          projectquality     //工程质量评分
+                                                serviceattitude         serviceattitude    //服务态度评分
+                                                overallmerit            overallmerit       //综合评价
                                          }
                                          
              }
