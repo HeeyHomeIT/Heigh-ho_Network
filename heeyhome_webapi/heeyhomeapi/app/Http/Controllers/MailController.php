@@ -18,13 +18,6 @@ class MailController extends Controller
     public function emailsend(){
         $callback=rq('callback');
         $email=rq('email');
-        /*检查邮箱格式*/
-        if(!preg_match("/^([a-z0-9+_]|\\-|\\.)+@(([a-z0-9_]|\\-)+\\.)+[a-z]{2,6}\$/i",$email)){
-            $arr = array("code" => "128",
-               "msg" => "邮箱格式不正确"
-           );
-           return $callback . "(" . HHJson($arr) . ")";
-        }
         //$to 表示收件人地址 $subject 表示邮件标题 $body表示邮件正文
         $mail             = new \PHPMailer(); //new一个PHPMailer对象出来
         $mail->CharSet ="UTF-8";//设定邮件编码，默认ISO-8859-1，如果发中文此项必须设置，否则乱码

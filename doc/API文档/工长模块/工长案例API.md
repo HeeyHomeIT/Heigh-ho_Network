@@ -139,3 +139,58 @@ msg           失败
 122            图片上传出错
 111            上传失败
 ```
+# del() #
+## 工长删除案例信息接口
+
+
+### 接口地址
+
+
+```
+.../delmyworkcase
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../delmyworkcase
+```
+
+###### Json数据格式
+```
+data
+case_id                case_id       //案例id
+
+callback               callback
+```
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         ""
+msg          成功
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
+```

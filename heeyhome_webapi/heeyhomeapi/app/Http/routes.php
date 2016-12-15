@@ -145,6 +145,14 @@ Route::group(['middleware' => ['web']], function () {
     /*我的作品案例*/
     Route::any('myworkcase', 'MyworkcaseController@index');
     Route::any('addmyworkcase', 'MyworkcaseController@add');
+    Route::any('delmyworkcase', 'MyworkcaseController@del');
 
+    /*订单*/
+    /*订单生成api*/
+    Route::any('order/client/produce', 'OrderController@orderProduce');
+    //用户订单列表
+    Route::any('order/client/list', 'OrderController@orderListUser');
+    //店铺订单列表
+    Route::any('order/shop/list', 'OrderController@orderListFeroman');
 
 });
