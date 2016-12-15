@@ -52,6 +52,12 @@ class IDCardController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        if(!(Request::hasFile('face')&&(Request::hasFile('back')))){
+            $arr = array("code" => "121",
+                "msg" => "没有图片被上传"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
         if($file->isValid()&&$file2->isValid()){
             /*文件是否上成功*/
             $clientName = $file -> getClientOriginalName();//文件原名

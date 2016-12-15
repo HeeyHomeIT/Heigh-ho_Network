@@ -36,7 +36,7 @@ class ResetPasswordController extends Controller
                 return $callback . "(" . HHJson($arr) . ")";
             } else {
                 $arr = array("code" => "114",
-                    "msg" => "重置失败,用户不存在"
+                    "msg" => "重置失败"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }

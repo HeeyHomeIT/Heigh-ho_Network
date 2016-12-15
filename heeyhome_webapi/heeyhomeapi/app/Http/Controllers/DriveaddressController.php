@@ -24,7 +24,7 @@ class DriveaddressController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $address = DB::select('select * from hh_driveaddress where address_userid=? order by id desc', [$user_id]);
+        $address = DB::select('select * from hh_driveaddress where address_userid=? and is_del=? order by id desc', [$user_id,0]);
         if ($address) {
             $arr = array("code" => "000",
                 "data" => $address
@@ -144,7 +144,7 @@ class DriveaddressController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $address = DB::delete('delete from hh_driveaddress where id=?', [$address_id]);
+        $address = DB::update('update hh_driveaddress set is_del=1 where id=?', [$address_id]);
         if ($address) {
             $arr = array("code" => "000",
                 "msg" => "删除成功"

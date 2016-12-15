@@ -25,7 +25,6 @@
 ###### Json数据格式
 ```
 data
-user_id             user_id
 account             account
 
 callback            callback
@@ -38,7 +37,12 @@ callback            callback
 成功
 callback(
 code         000
-data         ""
+data         {
+                 user_id        user_id
+                 user_name      user_name
+                 user_phone     user_phone
+                 user_email     user_email
+             }
 msg          成功
 )
 ```

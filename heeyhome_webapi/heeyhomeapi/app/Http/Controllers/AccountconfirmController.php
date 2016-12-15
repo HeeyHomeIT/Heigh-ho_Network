@@ -15,9 +15,8 @@ class AccountconfirmController extends Controller
 {
     public function confirm(){
         $callback=rq('callback');
-        $user_id=rq('user_id');
         $account=rq('account');
-        $user =DB::select('select user_name,user_phone,user_email from hh_user where (user_name=? or user_phone=? or user_email=?) and user_id=?',[$account,$account,$account,$user_id]);
+        $user =DB::select('select user_id,user_name,user_phone,user_email from hh_user where (user_name=? or user_phone=? or user_email=?)',[$account,$account,$account]);
         if($user){
             $arr = array("code" => "000",
                 "data"=> $user[0]
