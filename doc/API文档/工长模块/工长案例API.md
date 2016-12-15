@@ -49,6 +49,8 @@ data         {
                     style           style                   //装修风格
                     timelong        timelong                //工期
                     address         address                 //房屋地址
+                    scan_num        scan_num
+                    like_num        like_num
                     img             {
                                           img_id         img_id
                                           case_img       case_img

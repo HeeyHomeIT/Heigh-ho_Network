@@ -20,9 +20,9 @@ class EditPasswordController extends Controller
         $phone=rq('phone');
         $captcha=rq('captcha');
         /*检查手机号码匹不匹配*/
-        $phone=DB::select('select user_phone from hh_user where user_id=? and user_phone=?',[$user_id,$phone]);
+        $isphone=DB::select('select user_phone from hh_user where user_id=? and user_phone=?',[$user_id,$phone]);
         if($phone){
-            /*检查短信验证码*/
+             /*检查短信验证码*/
             if (!smsverify($phone, $captcha)) {
                 $arr = array("code" => "118",
                     "msg" => "验证码不正确"
@@ -65,7 +65,7 @@ class EditPasswordController extends Controller
         $user_id=rq('user_id');
         $oldpassword=rq('oldpassword');
             /*检查原始密码*/
-            $user=DB::select('select user_password from hh_user where $user_id=?',[$user_id]);
+            $user=DB::select('select user_password from hh_user where user_id=?',[$user_id]);
             $old_password=HHEncryption($oldpassword);
             if($old_password==$user[0]->user_password){
                 $flag=create_pid();

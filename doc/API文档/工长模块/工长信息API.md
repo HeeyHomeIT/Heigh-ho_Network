@@ -42,8 +42,8 @@ data         {
                     foremaninfo_nickname      foremaninfo_nickname      //用户昵称
                     foremaninfo_sex           foremaninfo_sex           //性别   1：男生 2：女生
                     foremaninfo_age           foremaninfo_age           //年龄
-                    experience                experience                //从业经历
-                    decoratedareas            decoratedareas            //装修小区
+                    experience                experience 数组           //从业经历
+                    decoratedareas            decoratedareas 数组       //装修小区
                     loc_province              loc_province              //所在地
                     loc_city                  loc_city
                     loc_district              loc_district    

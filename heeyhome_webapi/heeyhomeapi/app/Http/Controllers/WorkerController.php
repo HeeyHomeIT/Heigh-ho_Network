@@ -69,7 +69,7 @@ class WorkerController extends Controller
                     $sel[$key]->service = $price;
                 }
                 if ($worker) {
-                    $worker[0]->price = $sel;
+                    $worker[0]->pricelist = $sel;
                     $arr = array("code" => "000",
                         "data" => $worker[0]
                     );
@@ -97,7 +97,7 @@ class WorkerController extends Controller
                     $sel[$key]->service = $price;
                 }
                 if ($worker) {
-                    $worker[0]->price = $sel;
+                    $worker[0]->pricelist = $sel;
                     $arr = array("code" => "000",
                         "data" => $worker[0]
                     );
@@ -125,7 +125,7 @@ class WorkerController extends Controller
                     $sel[$key]->service = $price;
                 }
                 if ($worker) {
-                    $worker[0]->price = $sel;
+                    $worker[0]->pricelist = $sel;
                     $arr = array("code" => "000",
                         "data" => $worker[0]
                     );
@@ -153,7 +153,7 @@ class WorkerController extends Controller
                     $sel[$key]->service = $price;
                 }
                 if ($worker) {
-                    $worker[0]->price = $sel;
+                    $worker[0]->pricelist = $sel;
                     $arr = array("code" => "000",
                         "data" => $worker[0]
                     );

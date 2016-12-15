@@ -27,9 +27,6 @@
 data
 必须参数
 shop_id          shop_id     //店铺id
-可选参数
-page
-limit
 
 callback            callback
 ```

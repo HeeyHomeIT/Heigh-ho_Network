@@ -39,6 +39,8 @@ class ForemaninfoController extends Controller
                 $userinfo[0]->foremaninfo_phone=$user[0]->user_phone;
                 $userinfo[0]->foremaninfo_email=$user[0]->user_email;
                 $userinfo[0]->servicearea=explode(',',$userinfo[0]->servicearea);
+                $userinfo[0]->experience=explode(',',$userinfo[0]->experience);
+                $userinfo[0]->decoratedareas=explode(',',$userinfo[0]->decoratedareas);
                 $arr = array("code" => "000",
                     "data"=> $userinfo[0]
                 );
@@ -90,8 +92,8 @@ class ForemaninfoController extends Controller
         if($foremaninfo_realname) $personal->foremaninfo_realname=$foremaninfo_realname;
         if($foremaninfo_sex) $personal->foremaninfo_sex=$foremaninfo_sex;
         if($foremaninfo_age) $personal->foremaninfo_age=$foremaninfo_age;
-        if($foremaninfo_experience) $personal->experience=$foremaninfo_experience;
-        if($foremaninfo_decoratedareas) $personal->decoratedareas=$foremaninfo_decoratedareas;
+        if($foremaninfo_experience) $personal->experience=implode(',',$foremaninfo_experience);
+        if($foremaninfo_decoratedareas) $personal->decoratedareas=implode(',',$foremaninfo_decoratedareas);
         if($foremaninfo_worktime) $personal->worktime=$foremaninfo_worktime;
         if($foremaninfo_servicearea) $personal->servicearea=implode(',',$foremaninfo_servicearea);
         if($loc_province) $personal->loc_province=$loc_province;
@@ -108,6 +110,8 @@ class ForemaninfoController extends Controller
             $userinfo[0]->foremaninfo_phone=$user[0]->user_phone;
             $userinfo[0]->foremaninfo_email=$user[0]->user_email;
             $userinfo[0]->servicearea=explode(',',$userinfo[0]->servicearea);
+            $userinfo[0]->experience=explode(',',$userinfo[0]->experience);
+            $userinfo[0]->decoratedareas=explode(',',$userinfo[0]->decoratedareas);
             $arr = array("code" => "000",
                 "msg" => "保存成功"
             );

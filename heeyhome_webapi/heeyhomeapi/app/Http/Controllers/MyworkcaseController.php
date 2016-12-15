@@ -10,32 +10,35 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 
 class MyworkcaseController extends Controller
 {
     public function index(){
-        $callback=rq('callback');
-        $foreman_id=rq('foreman_id');
-        $total=DB::select('select count(id) as total from hh_workcase where foreman_id=?',[$foreman_id]);
-        $total=$total[0]->total;
-        $newpage=new PageController();
-        $offset=$newpage->page($total);
-        $select=DB::select('select * from hh_workcase  where foreman_id=? order by id desc limit ?,?',[$foreman_id,$offset[0],$offset[1]]);
-        foreach($select as $key=>$val){
-            $imgs=DB::select('select img_id,case_img from hh_workcase_img where case_id=?',[$val->case_id]);
-            $select[$key]->img=$imgs;
-        }
-        if($select){
-            $arr = array("code" => "000",
-                "data" => $select
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }else{
-            $arr = array("code" => "117",
-                "msg" => "信息不存在"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
+//        $callback=rq('callback');
+//        $foreman_id=rq('foreman_id');
+//        $total=DB::select('select count(id) as total from hh_workcase where foreman_id=?',[$foreman_id]);
+//        $total=$total[0]->total;
+//        $newpage=new PageController();
+//        $offset=$newpage->page($total);
+//        $select=DB::select('select * from hh_workcase  where foreman_id=? order by id desc limit ?,?',[$foreman_id,$offset[0],$offset[1]]);
+//        foreach($select as $key=>$val){
+//            $imgs=DB::select('select img_id,case_img from hh_workcase_img where case_id=?',[$val->case_id]);
+//            $select[$key]->img=$imgs;
+//        }
+//        if($select){
+//            $arr = array("code" => "000",
+//                "data" => $select
+//            );
+//            return $callback . "(" . HHJson($arr) . ")";
+//        }else{
+//            $arr = array("code" => "117",
+//                "msg" => "信息不存在"
+//            );
+//            return $callback . "(" . HHJson($arr) . ")";
+//        }
+        return view('img');
+
     }
     public function add(){
         $callback=rq('callback');
@@ -114,7 +117,7 @@ class MyworkcaseController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         else{
-            $arr = array("code" => "111",
+            $arr = array("code" => "117",
                 "msg" => "删除失败"
             );
             return $callback . "(" . HHJson($arr) . ")";

@@ -78,16 +78,25 @@ class EditMailController extends Controller
                 $dxyzmsj = smsverify($newemail, $captcha);
             }
             if ((strtotime($dxyzmsj) + 1200) > time()) {
-                $update = DB::update('update hh_user set user_email=? where user_id=?', [$newemail, $user_id]);
-                if ($update) {
-                    $arr = array("code" => "000",
-                        "msg" => "绑定成功",
-                        "data"=>array("newemail"=>$newemail)
-                    );
-                    return $callback . "(" . HHJson($arr) . ")";
-                } else {
-                    $arr = array("code" => "111",
-                        "msg" => "绑定失败"
+                /*检查要绑定的新手机号是否被注册*/
+                $email=DB::select('select user_phone from hh_user where user_id=? and user_email=?',[$user_id,$newemail]);
+                if($email){
+                    $update = DB::update('update hh_user set user_email=? where user_id=?', [$newemail, $user_id]);
+                    if ($update) {
+                        $arr = array("code" => "000",
+                            "msg" => "绑定成功",
+                            "data"=>array("newemail"=>$newemail)
+                        );
+                        return $callback . "(" . HHJson($arr) . ")";
+                    } else {
+                        $arr = array("code" => "111",
+                            "msg" => "绑定失败"
+                        );
+                        return $callback . "(" . HHJson($arr) . ")";
+                    }
+                }else{
+                    $arr = array("code" => "131",
+                        "msg" => "该邮箱已被注册"
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }
