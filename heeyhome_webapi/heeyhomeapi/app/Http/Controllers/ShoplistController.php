@@ -168,7 +168,10 @@ class ShoplistController extends Controller
                 if($score){
                     $select[$key]->shop_score=$score[0];
                 }else{
-                    $select[$key]->shop_score=null;
+                    $select[$key]->shop_score=array("projectquality"=>10.0,
+                        "serviceattitude"=>10.0,
+                        "overallmerit"=>10.0
+                    );
                 }
             }
             $arr = array("code" => "000",

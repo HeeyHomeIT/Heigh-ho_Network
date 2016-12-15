@@ -56,9 +56,9 @@ Route::group(['middleware' => ['web']], function () {
     /*发送邮箱*/
     Route::any('sendmail', 'MailController@emailsend');
     /*修改密码*/
-    Route::any('editpassword/smsedit', 'EditpasswordController@smsedit');
-    Route::any('editpassword/initialpwd', 'EditpasswordController@initialpwd');
-    Route::any('editpassword', 'EditpasswordController@editpassword');
+    Route::any('editpassword/smsedit', 'EditPasswordController@smsedit');
+    Route::any('editpassword/initialpwd', 'EditPasswordController@initialpwd');
+    Route::any('editpassword', 'EditPasswordController@editpassword');
     /*用户个人资料*/
     Route::any('personal/userinfo', 'UserinfoController@index');
     Route::any('personal/userinfo/change', 'UserinfoController@edit');
@@ -146,6 +146,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('myworkcase', 'MyworkcaseController@index');
     Route::any('addmyworkcase', 'MyworkcaseController@add');
     Route::any('delmyworkcase', 'MyworkcaseController@del');
+
+    /*材料*/
+    /*材料分类*/
+    Route::any('materialcate', 'MaterialController@cate');
 
     /*订单*/
     /*订单生成api*/

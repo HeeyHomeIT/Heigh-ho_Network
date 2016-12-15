@@ -43,13 +43,21 @@ class ShopdetailController extends Controller
             $shop_img=DB::select('select id,shop_img,is_face from hh_shop_img where shop_id=?',[$shop_id]);
             $shop_info[0]->shop_imgs=$shop_img;
             $shopper_info=DB::select('select a.foremaninfo_realname,a.home_province,a.home_city,a.worktime,a.experience,a.decoratedareas,b.portrait_img from hh_foremaninfo a left join hh_portrait b on b.portrait_userid=a.foremaninfo_userid where a.foremaninfo_userid=?',[$shop_info[0]->shopper_id]);
+            $shopper_info[0]->experience=explode(',',$shopper_info[0]->experience);
+            $shopper_info[0]->decoratedareas=explode(',',$shopper_info[0]->decoratedareas);
+            $ordernum=DB::select('select count(id) as total from hh_order where shop_id=?',[$shop_id]);
+            $shopper_info[0]->ordernum=$ordernum[0]->total;
             $shop_info[0]->shopper_info=$shopper_info[0];
             $score=DB::select('select projectquality,serviceattitude,overallmerit from hh_score where shop_id=?',[$shop_id]);
             if($score){
                 $shop_info[0]->shop_score=$score[0];
             }else{
-                $shop_info[0]->shop_score=null;
+                $shop_info[0]->shop_score=array("projectquality"=>10.0,
+                                             "serviceattitude"=>10.0,
+                                              "overallmerit"=>10.0
+                                                 );
             }
+
             $arr = array("code" => "000",
                 "data"=>$shop_info[0]
             );

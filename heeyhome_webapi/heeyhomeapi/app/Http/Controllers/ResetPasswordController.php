@@ -29,17 +29,10 @@ class ResetPasswordController extends Controller
         if($sql) {
             $new_password = HHEncryption(rq('new_password'));
             $update = DB::update('update hh_user set user_password=? where user_id=?', [$new_password, $user_id]);
-            if ($update) {
-                $arr = array("code" => "000",
-                    "msg" => "密码重置成功"
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-            } else {
-                $arr = array("code" => "114",
-                    "msg" => "重置失败"
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-            }
+            $arr = array("code" => "000",
+                "msg" => "密码重置成功"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
         }else{
             $arr = array("code" => "126",
                 "msg" => "信息不匹配"

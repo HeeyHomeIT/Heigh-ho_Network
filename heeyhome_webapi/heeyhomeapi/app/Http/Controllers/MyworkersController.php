@@ -25,12 +25,6 @@ class MyworkersController extends Controller
         $callback=rq('callback');
         $shop_id=rq('shop_id');
         $cate=rq('cate_id');
-        if(!$cate){
-            $arr=array("code"=>"112",
-                "msg"=>"工种类别不能为空"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
         /*按工种分类查询员工信息 1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工*/
         switch ($cate){
             case 1:
@@ -104,8 +98,18 @@ class MyworkersController extends Controller
                 }
                 break;
             default:
-                $arr=array("code"=>"117",
-                    "msg"=>"该分类不存在"
+                $mixworker=DB::select('select hh_mixworker.*,hh_portrait.portrait_img as portrait_img from hh_mixworker left join hh_portrait on hh_portrait.portrait_userid=hh_mixworker.userid where shopid=?',[$shop_id]);
+                $eleworker=DB::select('select hh_eleworker.*,hh_portrait.portrait_img as portrait_img from hh_eleworker left join hh_portrait on hh_portrait.portrait_userid=hh_eleworker.userid where shopid=?',[$shop_id]);
+                $brickworker=DB::select('select hh_brickworker.*,hh_portrait.portrait_img as portrait_img from hh_brickworker left join hh_portrait on hh_portrait.portrait_userid=hh_brickworker.userid where shopid=?',[$shop_id]);
+                $woodworker=DB::select('select hh_woodworker.*,hh_portrait.portrait_img as portrait_img from hh_woodworker left join hh_portrait on hh_portrait.portrait_userid=hh_woodworker.userid where shopid=?',[$shop_id]);
+                $paintworker=DB::select('select hh_paintworker.*,hh_portrait.portrait_img as portrait_img from hh_paintworker left join hh_portrait on hh_portrait.portrait_userid=hh_paintworker.userid where shopid=?',[$shop_id]);
+                $arr = array("code" => "000",
+                    "data" => array('mixworker'=>$mixworker,
+                            "eleworker"=>$eleworker,
+                            "brickworker"=>$brickworker,
+                            "woodworker"=>$woodworker,
+                            "paintworker"=>$paintworker
+                        )
                 );
                 return $callback . "(" . HHJson($arr) . ")";
         }

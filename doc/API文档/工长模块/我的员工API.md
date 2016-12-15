@@ -84,8 +84,10 @@ msg           失败
 ###### Json数据格式
 ```
 data
-cate_id             cate_id     //工种id  1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工 
+必选参数
 shop_id             shop_id
+可选参数
+cate_id             cate_id     //工种id  1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工 
 
 callback            callback
 ```

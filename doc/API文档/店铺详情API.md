@@ -52,14 +52,14 @@ data         {
                                                shop_img         shop_img
                                                is_face          is_face
                     shopper_info         {
-                                               foremaninfo_realname     foremaninfo_realname
-                                                home_province           home_province
-                                                home_city               home_city
-                                                worktime                worktime           //工龄
-                                                experience              experience         //从业经历
-                                                decoratedareas          decoratedareas     //装修小区
-                                                portrait_img            portrait_img       //工长头像
-                                                
+                                               foremaninfo_realname    foremaninfo_realname
+                                               home_province           home_province
+                                               home_city               home_city
+                                               worktime                worktime                    //工龄
+                                               experience              experience 数组             //从业经历
+                                               decoratedareas          decoratedareas 数组         //装修小区
+                                               portrait_img            portrait_img               //工长头像
+                                               ordernum                ordernum                   //接单数
                                          }
                     shop_score           {
                                                 projectquality          projectquality     //工程质量评分
