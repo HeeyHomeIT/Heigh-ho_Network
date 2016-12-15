@@ -43,7 +43,6 @@ callback            callback
 callback(
 code         000
 data         {
-                    id              id                      //自增id
                     case_id         case_id                 //案例id
                     area            area                    //建筑面积
                     housetype       housetype               //户型
@@ -136,8 +135,8 @@ msg           失败
 ```
 000            保存成功
 121            没有图片被上传
-122            图片上传出错
-111            上传失败
+132            图片上传出错
+131            上传失败
 ```
 # del() #
 ## 工长删除案例信息接口
