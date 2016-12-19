@@ -20,6 +20,7 @@
             'cropbox':'lib/cropbox/cropbox',
             'pagination':'lib/pagination/tm.pagination',
             'paging': 'lib/jquery/jquery.paging',
+            'superSlide': 'lib/superslide/jquery.SuperSlide2',
 			'app': 'js/app',
 			'route': 'js/j_common/route',
 			'directive': 'js/j_common/directive'
@@ -76,6 +77,10 @@
             'paging': {
                 deps: ['jquery'],
                 exports: 'paging'
+            },
+            'superSlide': {
+                deps: ['jquery'],
+                exports: 'superSlide'
             }
 		},
 		waitSeconds: 15

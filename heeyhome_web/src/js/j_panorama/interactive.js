@@ -169,7 +169,7 @@
 	spliceVrContentHandler = {
 		spliceStrEvent:function(value) {
 			var vrStr = '<div class="pic_box" data-id="' + value.panorama_id + '"><div class="vr_pic">';
-				vrStr += '<a href="' + value.panorama_url + '"><img src="' + value.panorama_img + '" class="now">';
+				vrStr += '<a href="' + value.panorama_url + '"><img src="http://hyu2387760001.my3w.com/' + value.panorama_img + '" class="now">';
 				vrStr += '<div class="bg_mongolia">';
 				vrStr += '<div class="pic_hover"><img src="css/img/icon-tovr.png"></div></div></a></div>';
 				vrStr += '<div class="pic_introduce">';

@@ -199,8 +199,9 @@
 				vrStr += '	<div class="right_summary">';
 				vrStr += '		<div class="shop_name">';
 				vrStr += '			<h2>'+value.shop_name+'</h2>';
-				vrStr += '			<img src="css/img/icon-certification.png">';
-				vrStr += '			<img src="css/img/icon-accreditation.png">';
+				$.each(value.authentication, function(i,v) {
+					vrStr += '		<img src="http://hyu2387760001.my3w.com/'+v+'">';
+				});
 				vrStr += '		</div>';
 				vrStr += '		<div class="shop_introduce">';
 				vrStr += '			<p>常住地址: <span>'+value.shop_address+'</span></p>';
@@ -227,13 +228,14 @@
 				vrStr += '			</div>';
 				vrStr += '		</div>';
 				vrStr += '		<div class="shop_assess">';
-				vrStr += '			<p>工程质量<span>8.5</span>分</p>';
-				vrStr += '			<p>服务态度<span>7</span>分</p>';
-				vrStr += '			<p>综合评价<span>9</span>分</p>';
+				vrStr += '			<p>工程质量<span>'+value.shop_score.projectquality+'</span>分</p>';
+				vrStr += '			<p>服务态度<span>'+value.shop_score.serviceattitude+'</span>分</p>';
+				vrStr += '			<p>综合评价<span>'+value.shop_score.overallmerit+'</span>分</p>';
 				vrStr += '		</div>';
 				vrStr += '		<div class="shop_button">';
 				vrStr += '			<input type="button" class="collect_shop" value="收藏">';
-				vrStr += '			<input type="button" class="enter_shop" value="进入店铺">';
+//				vrStr += '			<input type="button" class="enter_shop" value="进入店铺">';
+				vrStr += '			<a class="enter_shop" rel="nofollow" href="view_shop.html#/shopdetails?pos='+value.shop_id+'" >进入店铺</a>';
 				vrStr += '		</div>';
 				vrStr += '	</div>';
 				vrStr += '</div>';
