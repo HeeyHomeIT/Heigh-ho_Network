@@ -150,6 +150,21 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 							return $ocLazyLoad.load('js/j_center/maddress.js');
 						}]
 					}
+				})
+				.state("shopdetails", { // 工长店铺详情
+					url: "/shopdetails",
+					views: {
+						'shop_content': {
+							templateUrl: 'view/v_shopdetails/v_shopdetail.html',
+							controller: "shopDetailCtrl",
+                            controllerAs: "shopdetails"
+						}
+					},
+					resolve: {
+						deps: ['$ocLazyLoad', function($ocLazyLoad) {
+							return $ocLazyLoad.load('js/j_shopdetail/shopdetail.js');
+						}]
+					}
 				});
 				
 			$urlRouterProvider.when('', '/').when('/center', '/center/mhome');

@@ -166,6 +166,10 @@ label.error.roomerror{
     100% { opacity: 0; }
 }
 
+.fixed {
+	position: fixed !important;
+}
+
 .commonhead,#Head1,#header,#footer {
     font: normal normal normal 12px/20px 'Microsoft YaHei',Arial,sans-serif
 }
