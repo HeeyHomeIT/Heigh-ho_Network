@@ -33,7 +33,6 @@ class PortraitController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{
-//            $userinfo_img='/app/storage/uploads/'.substr($personal[0]->portrait_img,0,4).'-'.substr($personal[0]->portrait_img,4,2).'-'.substr($personal[0]->portrait_img,6,2).'/'.$personal[0]->portrait_img;
             $arr = array("code" => "000",
                 "data"=> array(
                     "user_id"=>$user_id,
@@ -43,33 +42,6 @@ class PortraitController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
-//    public function upload(){
-//        $callback=rq('callback');
-//        $user_id=rq('user_id');
-//        $img=rq('img');
-//        if(!$user_id){
-//            $arr = array("code" => "112",
-//                "msg" => "用户id不能为空"
-//            );
-//            return $callback . "(" . HHJson($arr) . ")";
-//        }
-//        if(!$img){
-//            $arr = array("code" => "121",
-//                "msg" => "没有图片被上传"
-//            );
-//            return $callback . "(" . HHJson($arr) . ")";
-//        }
-//        $file_name = base64_decode($img);
-//        $upfile= date('Ymd').md5(rand(999,10000)).'.jpg';
-//        $uppath='/app/storage/uploads/'.substr($upfile,0,4).'-'.substr($upfile,4,2).'-'.substr($upfile,6,2).'/'.$upfile;
-//        $data=$file_name;
-//        $newfile=fopen($uppath,"w");
-//        if($newfile){
-//            fwrite($newfile,$data);
-//            fclose($newfile);
-//        }
-//    }
-
     public function fileupload(){
         $callback=rq('callback');
         $user_id=rq('user_id');

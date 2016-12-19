@@ -146,10 +146,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('myworkcase', 'MyworkcaseController@index');
     Route::any('addmyworkcase', 'MyworkcaseController@add');
     Route::any('delmyworkcase', 'MyworkcaseController@del');
+    /*工长材料清单*/
+    Route::any('materialslist', 'MaterialslistController@index');
+
 
     /*材料*/
     /*材料分类*/
     Route::any('materialcate', 'MaterialController@cate');
+
 
     /*订单*/
     /*订单生成api*/

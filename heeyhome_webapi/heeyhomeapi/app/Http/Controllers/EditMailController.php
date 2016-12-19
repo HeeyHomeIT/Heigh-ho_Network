@@ -80,7 +80,7 @@ class EditMailController extends Controller
             if ((strtotime($dxyzmsj) + 1200) > time()) {
                 /*检查要绑定的新手机号是否被注册*/
                 $email=DB::select('select user_phone from hh_user where user_id=? and user_email=?',[$user_id,$newemail]);
-                if($email){
+                if(!$email){
                     $update = DB::update('update hh_user set user_email=? where user_id=?', [$newemail, $user_id]);
                     if ($update) {
                         $arr = array("code" => "000",

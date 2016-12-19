@@ -399,17 +399,10 @@ class WorkerController extends Controller
                     [$name, $sex, $age, $birthplace, $worktime, $phone, $idcard, $bankname, $bankcard, $worker_id]);
                 $price = DB::update('update hh_workerprice set service1=?,service2=?,service3=?,service4=?,service5=?,service6=?,service7=?,service8=?,service9=?,service10=?,service11=?,service12=?,service13=?,service14=?,service15=?,service16=? where worker_id=? ',
                     [$service1, $service2, $service3, $service4, $service5, $service6, $service7, $service8, $service9, $service10, $service11, $service12, $service13, $service14, $service15, $service16, $worker_id]);
-                if ($price || $worker) {
-                    $arr = array("code" => "000",
-                        "msg" => "修改成功",
-                    );
-                    return $callback . "(" . HHJson($arr) . ")";
-                } else {
-                    $arr = array("code" => "111",
-                        "msg" => "修改失败"
-                    );
-                    return $callback . "(" . HHJson($arr) . ")";
-                }
+                $arr = array("code" => "000",
+                    "msg" => "修改成功",
+                );
+                return $callback . "(" . HHJson($arr) . ")";
                 break;
             case 2:
                 $service17 = rq('service17');
@@ -418,17 +411,10 @@ class WorkerController extends Controller
                     [$name, $sex, $age, $birthplace, $worktime, $phone, $idcard, $bankname, $bankcard, $worker_id]);
                 $price = DB::update('update hh_workerprice set service17=?,service18=? where worker_id=? ',
                     [$service17, $service18, $worker_id]);
-                if ($price || $worker) {
-                    $arr = array("code" => "000",
-                        "msg" => "修改成功",
-                    );
-                    return $callback . "(" . HHJson($arr) . ")";
-                } else {
-                    $arr = array("code" => "111",
-                        "msg" => "修改失败"
-                    );
-                    return $callback . "(" . HHJson($arr) . ")";
-                }
+                $arr = array("code" => "000",
+                    "msg" => "修改成功",
+                );
+                return $callback . "(" . HHJson($arr) . ")";
                 break;
             case 3:
                 $service19 = rq('service19');
@@ -458,17 +444,11 @@ class WorkerController extends Controller
                     [$name, $sex, $age, $birthplace, $worktime, $phone, $idcard, $bankname, $bankcard, $worker_id]);
                 $price = DB::update('update hh_workerprice set service19=?,service20=?,service21=?,service22=?,service23=?,service24=?,service25=?,service26=?,service27=?,service28=?,service29=?,service30=?,service31=?,service32=?,service33=?,service34=?,service35=?,service36=?,service37=?,service38=?,service39=?,service40=?,service41=? where worker_id=? ',
                     [$service19, $service20, $service21, $service22, $service23, $service24, $service25, $service26, $service27, $service28, $service29, $service30, $service31, $service32, $service33, $service34, $service35, $service36, $service37, $service38, $service39, $service40, $service41, $worker_id]);
-                if ($price || $worker) {
-                    $arr = array("code" => "000",
-                        "msg" => "修改成功",
-                    );
-                    return $callback . "(" . HHJson($arr) . ")";
-                } else {
-                    $arr = array("code" => "111",
-                        "msg" => "修改失败"
-                    );
-                    return $callback . "(" . HHJson($arr) . ")";
-                }
+
+                $arr = array("code" => "000",
+                    "msg" => "修改成功",
+                );
+                return $callback . "(" . HHJson($arr) . ")";
                 break;
             case 4:
                 $service42 = rq('service42');
@@ -487,17 +467,11 @@ class WorkerController extends Controller
                     [$name, $sex, $age, $birthplace, $worktime, $phone, $idcard, $bankname, $bankcard, $worker_id]);
                 $price = DB::update('update hh_workerprice set service42=?,service43=?,service44=?,service45=?,service46=?,service47=?,service48=?,service49=?,service50=?,service51=?,service52=?,service53=? where worker_id=? ',
                     [$service42, $service43, $service44, $service45, $service46, $service47, $service48, $service49, $service50, $service51, $service52, $service53, $worker_id]);
-                if ($price || $worker) {
+
                     $arr = array("code" => "000",
                         "msg" => "修改成功",
                     );
                     return $callback . "(" . HHJson($arr) . ")";
-                } else {
-                    $arr = array("code" => "111",
-                        "msg" => "修改失败"
-                    );
-                    return $callback . "(" . HHJson($arr) . ")";
-                }
                 break;
             case 5:
                 $service54 = rq('service54');
@@ -514,17 +488,11 @@ class WorkerController extends Controller
                     [$name, $sex, $age, $birthplace, $worktime, $phone, $idcard, $bankname, $bankcard, $worker_id]);
                 $price = DB::update('update hh_workerprice set service54=?,service55=?,service56=?,service57=?,service58=?,service59=?,service60=?,service61=?,service62=?,service63=? where worker_id=? ',
                     [$service54, $service55, $service56, $service57, $service58, $service59, $service60, $service61, $service62, $service63, $worker_id]);
-                if ($price || $worker) {
+
                     $arr = array("code" => "000",
                         "msg" => "修改成功",
                     );
                     return $callback . "(" . HHJson($arr) . ")";
-                } else {
-                    $arr = array("code" => "111",
-                        "msg" => "修改失败"
-                    );
-                    return $callback . "(" . HHJson($arr) . ")";
-                }
                 break;
             default:
                 $arr = array("code" => "117",

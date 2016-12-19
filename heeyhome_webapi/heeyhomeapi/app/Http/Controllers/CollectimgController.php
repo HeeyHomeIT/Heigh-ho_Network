@@ -48,7 +48,7 @@ class CollectimgController extends Controller
         $newpage=new PageController();
         $offset=$newpage->page($total);
         /*收藏表和全景图表两表联查*/
-        $select=DB::select('select hh_collection.*,hh_panorama.panorama_img as panorama_img,hh_panorama.panorama_url as url from hh_collection 
+        $select=DB::select('select hh_panorama.panorama_id,hh_panorama.panorama_img,hh_panorama.panorama_style,hh_panorama.panorama_url from hh_collection 
                     left join hh_panorama on hh_collection.iscollected_id=hh_panorama.panorama_id where collect_userid=? and collect_type=? order by collect_time desc limit ?,?',[$user_id,'panorama',$offset[0],$offset[1]]);
         foreach($select as $key=>$val){
             $select[$key]->total=$total;
@@ -67,8 +67,9 @@ class CollectimgController extends Controller
     }
     public function del(){
         $callback=rq('callback');
+        $user_id=rq('user_id');
         $panorama_id=rq('panorama_id');
-        $del=DB::delete('delete from hh_collection where iscollected_id=?',[$panorama_id]);
+        $del=DB::delete('delete from hh_collection where iscollected_id=? and collect_userid=?',[$panorama_id,$user_id]);
         if($del){
             $update = DB::update('update hh_panorama set collect_num=collect_num-1 where panorama_id=?', [$panorama_id]);
             $arr = array("code" => "000",
@@ -76,7 +77,7 @@ class CollectimgController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{
-            $arr = array("code" => "117",
+            $arr = array("code" => "111",
                 "msg" => "删除失败"
             );
             return $callback . "(" . HHJson($arr) . ")";

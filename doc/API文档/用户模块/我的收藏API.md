@@ -46,6 +46,8 @@ data         {
                     iscollected_id     iscollected_id      //全景图id
                     collect_time       collect_time        //收藏时间
                     panorama_img       panorama_img        //全景图封面图
+                    panorama_style     panorama_style
+//全景图风格
                     url                url                 //全景图链接地址
                     total              total               //总数据数
              }
