@@ -138,7 +138,12 @@ var picList = [];
 		 * @param {Object} pn 当前的个数
 		 */
 		defaultActiveEvent:function(value,pn){
-			var _pn = pn.split("=")[1];
+			var _pn;
+			if(pn!=null && pn!=undefined){
+				_pn = pn.split("=")[1];
+			}else {
+				_pn = "1";
+			}
 			if(_pn == "" || _pn == "1"){
 				$(".maxPicBox").append(spliceAlbumContHandler.spliceBigPicEvent(value,_pn));
 				$(".gallery_demo_unstyled li:first").addClass("actives");
