@@ -18,7 +18,7 @@ class MyshoptechnicsController extends  Controller
     public function index(){
         $callback=rq('callback');
         $shop_id=rq('shop_id');
-        $technics=DB::select('select technics_id,technics_text from hh_shop_technics where shop_id=? order by id desc',[$shop_id]);
+        $technics=DB::select('select id,technics_id,technics_text from hh_shop_technics where shop_id=? order by id desc',[$shop_id]);
         foreach($technics as $key=>$val){
             $imgs=DB::select('select img_id,technics_img from hh_technics_img where technics_id=? order by img_id desc',[$val->technics_id]);
             $technics[$key]->img=$imgs;

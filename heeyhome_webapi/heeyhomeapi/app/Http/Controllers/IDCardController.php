@@ -24,14 +24,19 @@ class IDCardController extends Controller
                     "msg" => "正在审核中"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
-            }else{
-                $arr = array("code" => "000",
-                    "data" => $sel[0]
+            }
+            if($sel[0]->isverify==2){
+                $arr = array("code" => "131",
+                    "msg" => "审核未通过"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
+            $arr = array("code" => "000",
+                            "data" => $sel[0]
+                        );
+            return $callback . "(" . HHJson($arr) . ")";
         }else{
-            $arr = array("code" => "131",
+            $arr = array("code" => "132",
                 "msg" => "身份尚未认证"
             );
             return $callback . "(" . HHJson($arr) . ")";
@@ -79,6 +84,10 @@ class IDCardController extends Controller
                 /*拼接路径将信息写入数据库*/
                 $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
                 $path2='api/public/uploads/'.substr($filename2,0,4).'-'.substr($filename2,4,2).'-'.substr($filename2,6,2).'/'.$filename2;
+                $is=DB::select('select real_userid from hh_realname where real_userid=?',[$user_id]);
+                if($is){
+                    $del=DB::delete('delete from hh_realname where real_userid=?',[$user_id]);
+                }
                 $insert=DB::insert('insert into hh_realname(real_userid,real_name,idcardno,facephoto,backphoto) values(?,?,?,?,?)',[$user_id,$name,$idcard,$path,$path2]);
                 $arr = array("code" => "000",
                     "msg" => "上传成功",

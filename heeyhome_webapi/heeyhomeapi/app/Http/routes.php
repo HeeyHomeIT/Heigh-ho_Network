@@ -109,6 +109,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('personal/myshop/technics', 'MyshoptechnicsController@index');
     Route::any('personal/myshop/addtechnics', 'MyshoptechnicsController@add');
     Route::any('personal/myshop/deltechnics', 'MyshoptechnicsController@del');
+    /*安全等级*/
+    Route::any('personal/safe', 'SafeLevelController@index');
     /*身份认证*/
     Route::any('personal/safe/auth', 'IDCardController@index');
     Route::any('personal/safe/authverify', 'IDCardController@cardverify');
@@ -148,7 +150,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('delmyworkcase', 'MyworkcaseController@del');
     /*工长材料清单*/
     Route::any('materialslist', 'MaterialslistController@index');
-
+    /*我的钱包*/
+    Route::any('mywallet', 'WalletController@index');
+    /*我的银行卡*/
+    Route::any('mybankcards', 'WalletController@mycards');
 
     /*材料*/
     /*材料分类*/
@@ -162,5 +167,21 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/client/list', 'OrderController@orderListUser');
     //店铺订单列表
     Route::any('order/shop/list', 'OrderController@orderListFeroman');
+    //生成预算单与结算单
+    Route::any('order/aeckonandactual/generatelist', 'OrderOperateController@generateActualListAndReckonList');
+    //获取预算单结算单字段
+    Route::any('order/aeckonandactual/getlistname', 'OrderOperateController@getActualDataAndReckonData');
+    //添加预算单与结算单数据
+    Route::any('order/aeckonandactual/adddate', 'OrderOperateController@addActualDataAndReckonData');
+    //修改结算单数据
+    Route::any('order/aeckonandactual/update', 'OrderOperateController@updateActualData');
+    //生成订单纠纷表
+    Route::any('order/dispute/generate', 'OrderOperateController@generateOrderCandd');
+    //插入纠纷数据
+    Route::any('order/dispute/update', 'OrderOperateController@intoOrderCandd');
+    //插入纠纷解决方式数据
+    Route::any('order/dispute/updateresult', 'OrderOperateController@intoOrderCanddResult');
+    //更改纠纷订单状态为已解决
+    Route::any('order/dispute/changetype', 'OrderOperateController@changeOrderCanddFinish');
 
 });
