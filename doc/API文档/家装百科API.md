@@ -98,6 +98,9 @@ code         000
 data         {
                     id               id                  //序号
                     article_title    article_title       //文章标题
+                    article_content  article_content     //文章内容
+                    img              img
+                    scan             scan
              }
 msg          ""
 )
@@ -156,8 +159,9 @@ callback         callback
 callback(
 code         000
 data         {
-                    id                id                 //序号
-                    article_content   article_content    //内容
+                    id                id                  //序号
+                    article_title     article_title       //文章标题
+                    article_content   article_content     //内容
              }
 msg          ""
 )

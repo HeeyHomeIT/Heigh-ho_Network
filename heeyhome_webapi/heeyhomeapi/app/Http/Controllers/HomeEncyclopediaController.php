@@ -39,7 +39,7 @@ class HomeEncyclopediaController extends Controller
         $newpage=new PageController();
         $offset=$newpage->page($total);
         //dd($offset);
-        $articles = DB::select('select id,article_title from hh_jzbkarticle where cate_id=? order by id desc limit ?,?',[$cate_id,$offset[0],$offset[1]]);
+        $articles = DB::select('select id,article_title,article_content,img,add_time,scan from hh_jzbkarticle where cate_id=? order by id desc limit ?,?',[$cate_id,$offset[0],$offset[1]]);
         //print_r($articles);
         if($articles){
             $arr=array(
@@ -58,7 +58,7 @@ class HomeEncyclopediaController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $articles = DB::select('select id,article_content from hh_jzbkarticle where id=?',[$article_id]);
+        $articles = DB::select('select id,article_title,article_content from hh_jzbkarticle where id=?',[$article_id]);
         if($articles){
             $arr=array(
                 "code"=>"000",
