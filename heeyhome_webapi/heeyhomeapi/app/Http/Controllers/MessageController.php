@@ -106,7 +106,7 @@ class MessageController extends Controller
     public function isnew(){
         $callback=rq('callback');
         $user_id=rq('user_id');
-        $sel=DB::select('select count(id) as total from hh_message where receiveuserid=? and isread=?',[$user_id,0]);
+        $sel=DB::select('select count(id) as total from hh_message where receiveuserid=? and isread=? and isdel=?',[$user_id,0,0]);
         if($sel){
             $arr=array(
                 "code"=>"000",
@@ -126,7 +126,7 @@ class MessageController extends Controller
         $callback=rq('callback');
         $user_id=rq('user_id');
         $msgid=rq('msgid');
-        $update=DB::update('update hh_message set isread=? and id=?',[1,$msgid]);
+        $update=DB::update('update hh_message set isread=? where id=?',[1,$msgid]);
         if($update){
             $arr=array(
                 "code"=>"000",
@@ -135,5 +135,4 @@ class MessageController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
-
 }
