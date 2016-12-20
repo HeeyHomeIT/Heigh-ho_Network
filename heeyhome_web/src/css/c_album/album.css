@@ -97,8 +97,8 @@ a:hover {
 }
 
 .bottom-lists {
-	width: 739px;
-	margin: 0 12%;
+	width: 750px;
+	margin: 0 118px;
 	text-align: center;
 	overflow: hidden
 }
@@ -189,7 +189,7 @@ a:hover {
 	height: 120px;
 	line-height: 120px;
 	cursor: pointer;
-	border: 2px solid #101010;
+	border: 2px solid #D9D9D9;
 	margin-right: 7px
 }
 
@@ -201,11 +201,10 @@ a:hover {
 }
 
 .gallery_demo_unstyled li.actives {
-	border: 2px solid #fff
+	border: 2px solid #e88226
 }
 
 .gallery_demo_unstyled li img {
-	width: 100%;
 	display: inline-block;
 	text-align: center;
 	vertical-align: middle
@@ -269,25 +268,39 @@ a:hover {
 }
 
 .PicBtn-a {
-	width: 30px;
-	height: 124px;
+	width: 50px;
+	position: relative;
+	height: 50px;
 	float: left
 }
 
 .PicBtn-a a {
-	background: url("../../image/picbtn.png") no-repeat;
 	display: block;
-	width: 30px;
-	height: 124px
+	width: 32px;
+	position: absolute;
+	top: 45px;
+	left: 2px;
+	height: 32px
+}
+
+.PicBtn-a a.PicBtn-left {
+	background: url(../img/left_1.png) no-repeat;
+}
+
+.PicBtn-a:hover {
+	background-color: #333333;
+	cursor: pointer;
+	transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
 }
 
 .PicBtn-a a.PicBtn-right {
-	background-position: -30px 0
+	background: url(../img/right_1.png) no-repeat;
 }
 
-.PicBtn-a a.PicBtn-right:hover,.PicBtn-a a.PicBtn-left:hover {
-	opacity: 0.6
-}
 
 .PicBtn-a-l {
 	margin-right: 10px
@@ -408,8 +421,9 @@ a:hover {
 }
 
 .PicBtn-a {
-	width: 30px;
-	height: 83px;
+	background-color: #D9D9D9;
+	width: 35px;
+	height: 124px;
 	float: left
 }
 
@@ -420,18 +434,6 @@ a:hover {
 	height: 83px
 }
 
-.PicBtn-a a.PicBtn-right {
-	background-position: -30px 0
-}
-
-.PicBtn-a-l {
-	margin-right: 10px
-}
-
-.PicBtn-a-r {
-	margin-left: 10px
-}
-
 .Pic-pageln {
 	border-top: 1px solid #939393;
 	height: 43px;
@@ -439,10 +441,6 @@ a:hover {
 	width: 800px;
 	margin: 0 auto
 }
-
-/*.Pic-pageln font {
-	color: #fff
-}*/
 
 .Pic-pageln span {
 	display: inline-block;
@@ -480,10 +478,13 @@ a:hover {
 .pic-r-span a i {
 	vertical-align: middle;
 	display: inline-block;
-	width: 15px;
+	width: 16px;
 	height: 16px;
-	background: url("../../image/pic-ico.png") no-repeat;
 	margin-right: 5px
+}
+
+.pic-r-span a.realPic i {
+	background: url(../img/icon-realPic.png);
 }
 
 .pic-r-span a.information i {
@@ -491,59 +492,7 @@ a:hover {
 }
 
 .pic-r-span a.download i {
-	background: url(../../image/download.png);
-}
-
-.pic-r-span a.ico01 i.plays {
-	background-position: -17px -25px
-}
-
-.pic-r-span a.ico01 i.ins1 {
-	background-position: 0 -25px
-}
-
-.pic-r-span a.ico01 i.ins {
-	background-position: 0 0
-}
-
-.pic-r-span a.ico01 i {
-	background-position: -17px 0
-}
-
-.pic-r-span a.ico02 i {
-	background-position: -17px -49px
-}
-
-.pic-r-span a.ico02 i:hover,
-.pic-r-span a.ico02 i.ins2 {
-	background-position: 0 -49px
-}
-
-.pic-r-span a.ico03 i {
-	background-position: -17px -73px
-}
-
-.pic-r-span a.ico03 i:hover,
-.pic-r-span a.ico03 i.ins3 {
-	background-position: 0 -73px
-}
-
-.pic-r-span a.ico04 i {
-	background-position: -17px -100px
-}
-
-.pic-r-span a.ico04 i:hover,
-.pic-r-span a.ico04 i.ins4 {
-	background-position: 0 -100px
-}
-
-.pic-r-span a.ico05 i {
-	background-position: -17px -116px
-}
-
-.pic-r-span a.ico05 i:hover,
-.pic-r-span a.ico05 i.ins5 {
-	background-position: 0 -116px
+	background: url(../img/icon-download.png);
 }
 
 .pic-r-span a:hover {
@@ -758,7 +707,7 @@ a:hover {
 	position: absolute;
 	top: 300px;
 	z-index: 9999;
-	background: url("../../image/maxBtn.png") no-repeat;
+	
 	width: 34px;
 	height: 52px;
 	margin-top: -26px;
@@ -766,21 +715,21 @@ a:hover {
 }
 
 .btn-float a.maxBtn-l {
+	background: url(../img/left_arrow.png) no-repeat;
 	left: -320px
 }
 
 .btn-float a.maxBtn-l:hover {
-	background-position: 0 -52px;
+	
 	top: 300px
 }
 
 .btn-float a.maxBtn-r {
 	right: -320px;
-	background-position: -34px 0
+	background: url(../img/right_arrow.png) no-repeat;
 }
 
 .btn-float a.maxBtn-r:hover {
-	background-position: -34px -52px;
 	top: 300px
 }
 

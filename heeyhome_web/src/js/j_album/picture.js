@@ -170,10 +170,10 @@ var picList = [];
 		    $(".maxBtn-r").on("click",function() { //点击右箭头切换图片
 		        controlPicture.changePic(1);
 		    });
-		    $(".PicBtn-left").on("click",function() { //向左标签切换图片
+		    $(".PicBtn-a-l").on("click",function() { //向左标签切换图片
 		        controlPicture.changePic(0);
 		    });
-		    $(".PicBtn-right").on("click",function() { //向右标签切换图片
+		    $(".PicBtn-a-r").on("click",function() { //向右标签切换图片
 		        controlPicture.changePic(1);
 		    });
 		    $(".indexbody-left").on("click",function() { //点击左半部分切换图片
