@@ -61,7 +61,7 @@ class BankCardController extends Controller
         if($array['showapi_res_code']==0){
             if($array['showapi_res_body']['ret_code']==0){
                 $bankname=$array['showapi_res_body']['bankName'];
-                $cardtype=$bankname.$array['showapi_res_body']['cardType'];
+                $cardtype=$array['showapi_res_body']['cardType'];
                 $arr = array('code' => '000', 'data' => array("user_id"=>$user_id,"idcardno"=>$idcardno,"bankcardno" => $bankcardno, "realname" => $realname,"bankname"=>$bankname,"cardtype"=>$cardtype));
                 return $callback . "(" . HHJson($arr) . ")";
             }else{

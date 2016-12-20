@@ -48,6 +48,7 @@ data         {
                     msgcontent             msgcontent
                     sendtime               sendtime
                     isread                 isread       //0:未读 1:已读
+                    total                  total
              }
 msg          ""
 )

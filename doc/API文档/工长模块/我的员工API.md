@@ -111,6 +111,7 @@ data         {
                    bankname         bankname         //开户银行
                    bankcard         bankcard
                    portrait_img     portrait_img     //头像
+                   cate_id          cate_id          
              }
 msg          ""
 )
@@ -237,17 +238,18 @@ msg           失败
 ###### Json数据格式
 ```
 data
-cate_id             cate_id          //工种id     1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工
-shop_id             shop_id          //店铺id
-name                name             //工人姓名
-sex                 sex              //工人性别   1：男生 2：女生
-age                 age              //工人年龄
-birthplace          birthplace       //工人籍贯
-worktime            worktime         //工人从业年限
-idcard              idcard           //身份证
-bankcard            bankcard         //银行卡
-phone               phone            //手机号
-bankname            bankname         //开户银行
+cate_id             cate_id            //工种id     1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工
+shop_id             shop_id            //店铺id
+name                name               //工人姓名
+sex                 sex                //工人性别   1：男生 2：女生
+age                 age                //工人年龄
+birthplace          birthplace         //工人籍贯
+worktime            worktime           //工人从业年限
+idcard              idcard             //身份证
+bankcard            bankcard           //银行卡
+phone               phone              //手机号
+bankname            bankname           //开户银行
+myfile              myfile (file类型)  //头像
 
 service1            service1         //服务品类价格 service1-service16为杂工必须参数 
 service2            service2         

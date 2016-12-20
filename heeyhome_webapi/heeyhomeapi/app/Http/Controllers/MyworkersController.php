@@ -99,10 +99,25 @@ class MyworkersController extends Controller
                 break;
             default:
                 $mixworker=DB::select('select hh_mixworker.*,hh_portrait.portrait_img as portrait_img from hh_mixworker left join hh_portrait on hh_portrait.portrait_userid=hh_mixworker.userid where shopid=?',[$shop_id]);
+                foreach($mixworker as $key=>$val){
+                    $mixworker[$key]->cate_id=1;
+                }
                 $eleworker=DB::select('select hh_eleworker.*,hh_portrait.portrait_img as portrait_img from hh_eleworker left join hh_portrait on hh_portrait.portrait_userid=hh_eleworker.userid where shopid=?',[$shop_id]);
+                foreach($eleworker as $key=>$val){
+                    $eleworker[$key]->cate_id=2;
+                }
                 $brickworker=DB::select('select hh_brickworker.*,hh_portrait.portrait_img as portrait_img from hh_brickworker left join hh_portrait on hh_portrait.portrait_userid=hh_brickworker.userid where shopid=?',[$shop_id]);
+                foreach($brickworker as $key=>$val){
+                    $brickworker[$key]->cate_id=3;
+                }
                 $woodworker=DB::select('select hh_woodworker.*,hh_portrait.portrait_img as portrait_img from hh_woodworker left join hh_portrait on hh_portrait.portrait_userid=hh_woodworker.userid where shopid=?',[$shop_id]);
+                foreach($woodworker as $key=>$val){
+                    $woodworker[$key]->cate_id=4;
+                }
                 $paintworker=DB::select('select hh_paintworker.*,hh_portrait.portrait_img as portrait_img from hh_paintworker left join hh_portrait on hh_portrait.portrait_userid=hh_paintworker.userid where shopid=?',[$shop_id]);
+                foreach($paintworker as $key=>$val){
+                    $paintworker[$key]->cate_id=5;
+                }
                 $arr = array("code" => "000",
                     "data" => array('mixworker'=>$mixworker,
                             "eleworker"=>$eleworker,

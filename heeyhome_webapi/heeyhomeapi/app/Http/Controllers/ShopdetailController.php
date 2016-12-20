@@ -16,6 +16,7 @@ class ShopdetailController extends Controller
     public function index(){
         $callback=rq('callback');
         $shop_id=rq('shop_id');
+        $update = DB::update('update hh_shop set shop_scan=shop_scan+1 where shop_id=?', [$shop_id]);
         $shop_info=DB::select('select shopper_id,shop_name,authentication,opentime,servicetag,servicearea,shop_address,shop_describe,shop_workernum from hh_shop where shop_id=?',[$shop_id]);
         $authentication=explode(',',$shop_info[0]->authentication);
         $servicetag=explode(',',$shop_info[0]->servicetag);

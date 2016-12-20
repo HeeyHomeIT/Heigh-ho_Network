@@ -188,6 +188,7 @@ class WorkerController extends Controller
         $bankname = rq('bankname');    //开户行
         $bankcard = rq('bankcard');    //银行卡号
         $phone = rq('phone');          //手机号
+        $file=Request::file('myfile');
         if (!$cate) {
             $arr = array("code" => "112",
                 "msg" => "工种类别不能为空"
@@ -216,7 +217,28 @@ class WorkerController extends Controller
                 $insert = DB::insert('insert into hh_mixworker(userid,name,sex,age,birthplace,worktime,shopid,phone,idcard,bankname,bankcard) 
                             values (?,?,?,?,?,?,?,?,?,?,?)', [$userid, $name, $sex, $age, $birthplace, $worktime, $shop_id, $phone, $idcard, $bankname, $bankcard]);
                 $update = DB::update('update hh_shop set shop_workernum=shop_workernum+1 where shop_id=?', [$shop_id]);
-                $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, public_path() . '/uploads/default.jpg']);
+                /*头像*/
+                $clientName = $file -> getClientOriginalName();//文件原名
+                $entension = $file -> getClientOriginalExtension();//扩展名
+                $realPath = $file->getRealPath();   //临时文件的绝对路径
+                $type = $file->getClientMimeType();
+                $size=$file-> getClientSize();
+                //dd($size);
+                $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
+                /*上传图片大小不能超过2M*/
+                if($size>2*1024*1024) {
+                    $arr = array("code" => "123",
+                        "msg" => "图片上传出错,不能大于2M"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+                $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
+                if($is){
+                    $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                    $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, $path]);
+                }else{
+                    $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, 'api/public/default.jpg']);
+                }
                 $price = DB::insert('insert into hh_workerprice(worker_id,service1,service2,service3,service4,service5,service6,service7,service8,service9,service10,service11,service12,service13,service14,service15,service16) 
                                values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [$userid, $service1, $service2, $service3, $service4, $service5, $service6, $service7, $service8, $service9, $service10, $service11, $service12, $service13, $service14, $service15, $service16]);
                 if ($price) {
@@ -237,7 +259,28 @@ class WorkerController extends Controller
                 $insert = DB::insert('insert into hh_eleworker(userid,name,sex,age,birthplace,worktime,shopid,phone,idcard,bankname,bankcard) 
                             values (?,?,?,?,?,?,?,?,?,?,?)', [$userid, $name, $sex, $age, $birthplace, $worktime, $shop_id, $phone, $idcard, $bankname, $bankcard]);
                 $update = DB::update('update hh_shop set shop_workernum=shop_workernum+1 where shop_id=?', [$shop_id]);
-                $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, public_path() . '/uploads/default.jpg']);
+                /*头像*/
+                $clientName = $file -> getClientOriginalName();//文件原名
+                $entension = $file -> getClientOriginalExtension();//扩展名
+                $realPath = $file->getRealPath();   //临时文件的绝对路径
+                $type = $file->getClientMimeType();
+                $size=$file-> getClientSize();
+                //dd($size);
+                $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
+                /*上传图片大小不能超过2M*/
+                if($size>2*1024*1024) {
+                    $arr = array("code" => "123",
+                        "msg" => "图片上传出错,不能大于2M"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+                $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
+                if($is){
+                    $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                    $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, $path]);
+                }else{
+                    $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, 'api/public/default.jpg']);
+                }
                 $price = DB::insert('insert into hh_workerprice(worker_id,service17,service18) 
                                values(?,?,?)', [$userid, $service17, $service18]);
                 if ($price) {
@@ -279,7 +322,28 @@ class WorkerController extends Controller
                 $insert = DB::insert('insert into hh_brickworker(userid,name,sex,age,birthplace,worktime,shopid,phone,idcard,bankname,bankcard) 
                             values (?,?,?,?,?,?,?,?,?,?,?)', [$userid, $name, $sex, $age, $birthplace, $worktime, $shop_id, $phone, $idcard, $bankname, $bankcard]);
                 $update = DB::update('update hh_shop set shop_workernum=shop_workernum+1 where shop_id=?', [$shop_id]);
-                $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, public_path() . '/uploads/default.jpg']);
+                /*头像*/
+                $clientName = $file -> getClientOriginalName();//文件原名
+                $entension = $file -> getClientOriginalExtension();//扩展名
+                $realPath = $file->getRealPath();   //临时文件的绝对路径
+                $type = $file->getClientMimeType();
+                $size=$file-> getClientSize();
+                //dd($size);
+                $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
+                /*上传图片大小不能超过2M*/
+                if($size>2*1024*1024) {
+                    $arr = array("code" => "123",
+                        "msg" => "图片上传出错,不能大于2M"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+                $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
+                if($is){
+                    $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                    $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, $path]);
+                }else{
+                    $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, 'api/public/default.jpg']);
+                }
                 $price = DB::insert('insert into hh_workerprice(worker_id,service19,service20,service21,service22,service23,service24,service25,service26,service27,service28,service29,service30,service31,service32,service33,service34,service35,service36,service37,service38,service39,service40,service41) 
                                values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [$userid, $service19, $service20, $service21, $service22, $service23, $service24, $service25, $service26, $service27, $service28, $service29, $service30,
                     $service31, $service32, $service33, $service34, $service35, $service36, $service37, $service38, $service39, $service40, $service41]);
@@ -310,7 +374,28 @@ class WorkerController extends Controller
                 $insert = DB::insert('insert into hh_woodworker(userid,name,sex,age,birthplace,worktime,shopid,phone,idcard,bankname,bankcard) 
                             values (?,?,?,?,?,?,?,?,?,?,?)', [$userid, $name, $sex, $age, $birthplace, $worktime, $shop_id, $phone, $idcard, $bankname, $bankcard]);
                 $update = DB::update('update hh_shop set shop_workernum=shop_workernum+1 where shop_id=?', [$shop_id]);
-                $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, public_path() . '/uploads/default.jpg']);
+                /*头像*/
+                $clientName = $file -> getClientOriginalName();//文件原名
+                $entension = $file -> getClientOriginalExtension();//扩展名
+                $realPath = $file->getRealPath();   //临时文件的绝对路径
+                $type = $file->getClientMimeType();
+                $size=$file-> getClientSize();
+                //dd($size);
+                $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
+                /*上传图片大小不能超过2M*/
+                if($size>2*1024*1024) {
+                    $arr = array("code" => "123",
+                        "msg" => "图片上传出错,不能大于2M"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+                $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
+                if($is){
+                    $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                    $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, $path]);
+                }else{
+                    $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, 'api/public/default.jpg']);
+                }
                 $price = DB::insert('insert into hh_workerprice(worker_id,service42,service43,service44,service45,service46,service47,service48,service49,service50,service51,service52,service53) 
                                values(?,?,?,?,?,?,?,?,?,?,?,?,?)', [$userid, $service42, $service43, $service44, $service45, $service46, $service47, $service48, $service49, $service50, $service51, $service52, $service53]);
                 if ($price) {
@@ -339,7 +424,28 @@ class WorkerController extends Controller
                 $insert = DB::insert('insert into hh_paintworker(userid,name,sex,age,birthplace,worktime,shopid,phone,idcard,bankname,bankcard) 
                             values (?,?,?,?,?,?,?,?,?,?,?)', [$userid, $name, $sex, $age, $birthplace, $worktime, $shop_id, $phone, $idcard, $bankname, $bankcard]);
                 $update = DB::update('update hh_shop set shop_workernum=shop_workernum+1 where shop_id=?', [$shop_id]);
-                $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, public_path() . '/uploads/default.jpg']);
+                /*头像*/
+                $clientName = $file -> getClientOriginalName();//文件原名
+                $entension = $file -> getClientOriginalExtension();//扩展名
+                $realPath = $file->getRealPath();   //临时文件的绝对路径
+                $type = $file->getClientMimeType();
+                $size=$file-> getClientSize();
+                //dd($size);
+                $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
+                /*上传图片大小不能超过2M*/
+                if($size>2*1024*1024) {
+                    $arr = array("code" => "123",
+                        "msg" => "图片上传出错,不能大于2M"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+                $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
+                if($is){
+                    $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                    $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, $path]);
+                }else{
+                    $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$userid, 'api/public/default.jpg']);
+                }
                 $price = DB::insert('insert into hh_workerprice(worker_id,service54,service55,service56,service57,service58,service59,service60,service61,service62,service63) 
                                values(?,?,?,?,?,?,?,?,?,?,?)', [$userid, $service54, $service55, $service56, $service57, $service58, $service59, $service60, $service61, $service62, $service63]);
                 if ($price) {
