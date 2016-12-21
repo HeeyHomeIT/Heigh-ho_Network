@@ -49,8 +49,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('bindingWX', 'WxLoginController@bindingWXLogin');
     /*用户注册*/
     Route::any('register/user_register', 'RegisterController@user_register');
-    /*工长注册*/
-    Route::any('register/gz_register', 'RegisterController@gz_register');
     /*发送短信*/
     Route::any('sendsms', 'SmsController@sms_send');
     /*发送邮箱*/

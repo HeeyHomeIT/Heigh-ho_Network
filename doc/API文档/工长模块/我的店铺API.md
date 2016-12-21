@@ -48,6 +48,9 @@ data         {
                     foremanimg           foremanimg             //工长个人头像
                     shop_address         shop_address           //地址
                     shop_describe        shop_describe          //店铺理念(签名)
+                    shop_scan            shop_scan              //店铺浏览量
+                    shop_volume          shop_volume            //店铺成交量
+                    collectnum           collectnum             //收藏量
                     shop_imgs            {
                                                id               id
                                                shop_img         shop_img
@@ -71,6 +74,7 @@ data         {
                                                                case_img      case_img
                                                             }
                                          }
+                    shop_score           shop_score             //店铺评分
              }
 msg          ""
 )
