@@ -28,7 +28,28 @@ class OrderController extends Controller
         $shop_id = rq('shop_id');
         $order_address = rq('address_id');
         $calculator_result_id = rq('calculator_result_id');
-        /*判断订单是否重复*/
+        $time_json = rq('time');
+        if ($time_json) {
+            $time_arr = json_decode($time_json, true);
+            $time_count = count($time_arr);
+            $time_flag = true;
+        }
+        if (!$time_flag) {
+            $arr = array(
+                "code" => "210",
+                "msg" => "缺少预约时间",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        $worker_json = rq('worker');
+        //判断是否约定工人
+        if ($time_json) {
+            $worker_arr = json_decode($worker_json, true);
+            $worker_count = count($worker_arr);
+            $worker_flag = true;
+        }
+        /* TODO 判断订单是否重复*/
         $order_tbl_isrepeat = DB::select('SELECT order_id FROM hh_order WHERE user_id =  ? AND shop_id = ? AND order_address = ? AND calculator_result_id = ? AND order_status != ? ',
             [$user_id, $shop_id, $order_address, $calculator_result_id, 7]);
         if ($order_tbl_isrepeat) {
