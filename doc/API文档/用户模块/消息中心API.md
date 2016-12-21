@@ -214,7 +214,6 @@ msg           失败
 ###### Json数据格式
 ```
 data
-user_id             user_id
 msgid               msgid
 
 callback            callback

@@ -90,6 +90,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('personal/message/empty', 'MessageController@delall');
     Route::any('personal/message/isnew', 'MessageController@isnew');
     Route::any('personal/message/read', 'MessageController@read');
+    Route::any('personal/message/readall', 'MessageController@readall');
     /*收藏全景图*/
     Route::any('panorama/collect', 'CollectimgController@collect');
     /*收藏成本结果*/
@@ -152,6 +153,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('materialslist', 'MaterialslistController@index');
     /*我的钱包*/
     Route::any('mywallet', 'WalletController@index');
+    /*提现申请*/
+    Route::any('withdraw/apply', 'WalletController@apply');
     /*我的银行卡*/
     Route::any('mybankcards', 'WalletController@mycards');
 
@@ -183,5 +186,50 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/dispute/updateresult', 'OrderOperateController@intoOrderCanddResult');
     //更改纠纷订单状态为已解决
     Route::any('order/dispute/changetype', 'OrderOperateController@changeOrderCanddFinish');
+    //添加材料订单
+    Route::get('order/material/produce', 'OrderMaterialController@generateOrderMaterial');
+});
 
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['web', 'admin.login']], function () {
+
+    Route::any('loginout', 'LoginController@loginout');
+    Route::any('index', function () {
+        return view('index');
+    });
+    Route::any('webset', function () {
+        return view('webset');
+    });
+    Route::any('editpassword', function () {
+        return view('editpassword');
+    });
+    Route::any('banner', function () {
+        return view('banner');
+    });
+    Route::any('panorama', 'PanoramaController@index');
+    Route::get('addpanorama', function () {
+        return view('addpanorama');
+    });
+    Route::any('panorama/add', 'PanoramaController@add');
+    Route::any('panorama/del', 'PanoramaController@del');
+    Route::any('panorama/delall', 'PanoramaController@delall');
+
+    Route::any('homeencyclopedia', 'HomeEncyclopediaController@index');
+    Route::any('addhomeencyclopediacate', function () {
+        return view('addcate');
+    });
+    Route::any('addhomeencyclopediaarticle', function () {
+        return view('addarticle');
+    });
+    Route::any('addhomeencyclopediaarticle', 'HomeEncyclopediaController@createarticle');
+    Route::any('homeencyclopedia/addcate', 'HomeEncyclopediaController@addcate');
+    Route::any('homeencyclopedia/addarticle', 'HomeEncyclopediaController@addarticle');
+    Route::any('homeencyclopedia/del', 'HomeEncyclopediaController@del');
+    Route::any('homeencyclopedia/delall', 'HomeEncyclopediaController@delall');
+});
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'], function () {
+    Route::any('/', function () {
+        return view('login');
+    });
+    Route::any('login', 'LoginController@login');
 });

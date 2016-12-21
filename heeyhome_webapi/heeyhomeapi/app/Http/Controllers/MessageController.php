@@ -124,13 +124,24 @@ class MessageController extends Controller
     }
     public function read(){
         $callback=rq('callback');
-        $user_id=rq('user_id');
         $msgid=rq('msgid');
         $update=DB::update('update hh_message set isread=? where id=?',[1,$msgid]);
         if($update){
             $arr=array(
                 "code"=>"000",
                 "msg"=>"标记为已读"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+    public function readall(){
+        $callback=rq('callback');
+        $user_id=rq('user_id');
+        $update=DB::update('update hh_message set isread=? where receiveuserid=?',[1,$user_id]);
+        if($update){
+            $arr=array(
+                "code"=>"000",
+                "msg"=>"全部标记为已读"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }

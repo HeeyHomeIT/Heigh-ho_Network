@@ -55,6 +55,7 @@ data         {
                                           img_id         img_id
                                           case_img       case_img
                                     }
+                    type            type                     //1:入驻之前的作品 2：已完成的订单作品
              }
 msg          ""
 )
