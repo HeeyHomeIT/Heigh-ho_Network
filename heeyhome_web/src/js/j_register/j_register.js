@@ -97,9 +97,9 @@
 		 */
 		pswSaveEvent : function(){
 	        var $remember = $(".remember");
-	        var userVal = $.cookie("user");
-	        var userPswVal = $.cookie("a");
-	        var checkFlagVal = $.cookie("checked");
+	        var userVal = $.cookie("user");//获取用户的手机号
+	        var userPswVal = $.cookie("a");//获取用户的密码
+	        var checkFlagVal = $.cookie("checked");//判断有没有勾选记住密码
 	        if (userVal != null && userVal != "") {
 	            $(".dl_iphone").val($.base64.decode(userVal));
 	        }
@@ -114,9 +114,9 @@
 	                $.cookie("checked", 1); // 1:记住密码框选择 0：记住密码框不选择
 	            } else {
 	                // 当记住密码不选中是把session中的值删掉
-	                $.cookie("checked", null, {expires: -1,path: '/'});
-	                $.cookie("user", null, {expires: -1,path: '/'});
-	                $.cookie("a", null, {expires: -1,path: '/'});
+	                $.cookie("checked", 0);
+	                $.cookie("user", null, {expires: -1,path: '/'});//手机号
+	                $.cookie("a", null, {expires: -1,path: '/'});//密码
 	            }
 	
 	        });
@@ -286,25 +286,30 @@
 			            if (phoneVal != null && pswVal != null && phoneVal != "" && pswVal != "") {
 			                if ($rememberFlag.prop("checked")) {
 			                    // 如果用户选择记住密码存储手机号和密码到cookie中
-			                    $.cookie("user", $.base64.encode(phoneVal), {expires: 7, path: '/'});
-			                    $.cookie("a", $.base64.encode(pswVal), {expires: 7, path: '/'});
+			                    $.cookie("user", $.base64.encode(phoneVal), {expires: 7, path: '/'});//手机号
+			                    $.cookie("a", $.base64.encode(pswVal), {expires: 7, path: '/'});//密码
 			                    /* 用户密码 */
 			                    $.cookie("checked", 1); // 1:记住密码框选择 0：记住密码框不选择
 			                } else {
 			                    // 如果用户不选择记住密码那么从cookie中去除手机号和密码
-			                    $.cookie("user", null, {expires: -1,path: '/'});
-			                    $.cookie("a", null, {expires: -1,path: '/'});
-			                    $.cookie("checked", null, {expires: -1,path: '/'});
+			                    $.cookie("user", null, {expires: -1,path: '/'});//手机号
+			                    $.cookie("a", null, {expires: -1,path: '/'});//密码
+			                    $.cookie("checked", 0);
 			                }
 			            }
 			        },
 			        success: function (data) {
 			            if (data != null && data.code == '000') {
+			            	//console.log(data.data);
 			                $.cookie("userId", $.base64.encode(data.data.user_id), {expires: 7, path: '/'});
 			                $.cookie("userName", $.base64.encode(data.data.user_name), {expires: 7, path: '/'});
+			                $.cookie("userPhone", $.base64.encode(data.data.user_phone), {expires: 7, path: '/'});
 			                $.cookie("userType", $.base64.encode(data.data.user_type), {expires: 7, path: '/'});
+			                $.cookie("userEmail", $.base64.encode(data.data.user_email), {expires: 7, path: '/'});
+			                $.cookie("userShopId", $.base64.encode(data.data.shop_id), {expires: 7, path: '/'});
+			                $.cookie("userNickName", $.base64.encode(data.data.nickname), {expires: 7, path: '/'});
 			                //alert('登录成功');
-			                window.location.href = "index.html?name=" + data.data.user_name; // 进行跳转
+			                window.location.href = "index.html"; // 进行跳转
 			            }else if(data != null && data.code != '000') { // 错误
 			            	errorMsgHendler.remindBox(data.msg);
 			            }
