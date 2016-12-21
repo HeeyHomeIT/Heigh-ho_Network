@@ -16,7 +16,7 @@ class BankCardController extends Controller
     public function getname(){
         $callback=rq('callback');
         $user_id=rq('user_id');
-        $sel=DB::select('select real_name,idcardno from hh_realname where real_userid=?',[$user_id]);
+        $sel=DB::select('select real_name,idcardno from hh_realname where real_userid=? and isverify',[$user_id,1]);
         if($sel){
             $name=$sel[0]->real_name;
             $arr = array("code" => "000",

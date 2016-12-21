@@ -32,7 +32,8 @@ class IDCardController extends Controller
                 return $callback . "(" . HHJson($arr) . ")";
             }
             $arr = array("code" => "000",
-                            "data" => $sel[0]
+                            "data" => $sel[0],
+                            "msg"=>"审核已通过"
                         );
             return $callback . "(" . HHJson($arr) . ")";
         }else{

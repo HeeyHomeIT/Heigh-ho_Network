@@ -50,7 +50,33 @@ class MyshopController extends Controller
             $select[0]->workcase=$workcase;
             $select[0]->servicetag=explode(',',$select[0]->servicetag);
             $select[0]->servicearea=explode(',',$select[0]->servicearea);
-            $select[0]->authentication=explode(',',$select[0]->authentication);
+            $authentication=explode(',',$select[0]->authentication);
+            foreach($authentication as $k=>$v){
+                switch ($v){
+                    case 1: $authentication[$k]='api/public/smrz.png';
+                        break;
+                    case 2: $authentication[$k]='api/public/bzj.png';
+                        break;
+                    case 3: $authentication[$k]='api/public/tdbx.png';
+                        break;
+                    case 4: $authentication[$k]='api/public/bx.png';
+                        break;
+                    default: $authentication[$k]='';
+                        break;
+                }
+            }
+            $select[0]->authentication=$authentication;
+            $score=DB::select('select projectquality,serviceattitude,overallmerit from hh_score where shop_id=?',[$shop_id]);
+            if($score){
+                $select[0]->shop_score=$score[0];
+            }else{
+                $select[0]->shop_score=array("projectquality"=>10.0,
+                    "serviceattitude"=>10.0,
+                    "overallmerit"=>10.0
+                );
+            }
+            $collect=DB::select('select count(id) as collectnum from hh_collection where iscollected_id=?',[$shop_id]);
+            $select[0]->collectnum=$collect[0]->collectnum;
             $gz_img=DB::select('select portrait_img from hh_portrait where portrait_userid=?',[$select[0]->shopper_id]);
             $select[0]->foremanimg=$gz_img[0]->portrait_img;
             $arr = array("code" => "000",

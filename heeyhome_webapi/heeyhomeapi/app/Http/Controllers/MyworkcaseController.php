@@ -37,13 +37,14 @@ class MyworkcaseController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-       // return view('img');
+       //return view('img');
     }
     public function add(){
         $callback=rq('callback');
         $foreman_id=rq('foreman_id');
         $housetype=rq('housetype');
         $style=rq('style');
+        $area=rq('area');
         $timelong=rq('timelong');
         $address=rq('address');
         $case_id=rand_number(5);
@@ -54,6 +55,7 @@ class MyworkcaseController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        //dd($files);
         $isvalid=true;
         foreach($files as $file){
             if(!$file->isValid()){
@@ -61,7 +63,7 @@ class MyworkcaseController extends Controller
             }
         }
         if($isvalid){
-            $case=DB::insert('insert into hh_workcase(case_id,foreman_id,housetype,style,timelong,address) values(?,?,?,?,?,?)',[$case_id,$foreman_id,$housetype,$style,$timelong,$address]);
+            $case=DB::insert('insert into hh_workcase(case_id,foreman_id,area,housetype,style,timelong,address,type) values(?,?,?,?,?,?,?,?)',[$case_id,$foreman_id,$area,$housetype,$style,$timelong,$address,1]);
             $ifinsert=false;
             foreach($files as $key=>$file){
                 $clientName = $file -> getClientOriginalName();//文件原名
