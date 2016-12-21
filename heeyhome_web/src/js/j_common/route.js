@@ -162,7 +162,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 					},
 					resolve: {
 						deps: ['$ocLazyLoad', function($ocLazyLoad) {
-							return $ocLazyLoad.load('js/j_shopdetail/shopdetail.js');
+							return $ocLazyLoad.load(['js/j_shopdetail/parabola.js', 'js/j_shopdetail/shopdetail.js']);
 						}]
 					}
 				});
