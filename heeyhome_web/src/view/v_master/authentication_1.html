@@ -1,0 +1,49 @@
+<form method="post" target="if" enctype="multipart/form-data" action="" id="form">
+    <input type="hidden" name="user_id" id="user_id" value="">
+    <div class="authentic_one">
+        <div class="remind remind_p">
+            <p>*为了保证您的账号安全，请填写您的真实信息</p>
+        </div>
+        <div class="bind_phone">
+            <div class="phone_number">
+                <span>真实姓名</span>
+                <input title="" type="text" name="name" id="rel_name">
+                <span>*请填写真实姓名</span>
+            </div>
+            <div class="confirm_code phone_number">
+                <span>身份证号</span>
+                <input title="" type="text" name="idcardno" id="id_code">
+                <span>*请填写身份证号码</span>
+            </div>
+        </div>
+        <a class="next_section next_auth" href="">下一步</a> <!--ui-sref="center.authentication.authentication_2"-->
+    </div><!--authentic_one-->
+
+
+    <div class="authentic_two hide">
+        <div class="auth_wrap clearfix">
+            <span class="auth_photo">*请上传本人身份证正反面照片</span>
+            <div class="showImg fl">
+                <a href="javascript:;" class="file">
+                    <img src="css/img/auth.gif" class="auth_plus">
+                    <input type="file" name="face">
+                </a>
+                <a href="javascript:;" class="close">
+                    <img src="css/img/auth_del.png">
+                </a>
+            </div><!--showImg-->
+            <div class="showImg fl">
+                <a href="javascript:;" class="file">
+                    <img src="css/img/auth.gif" class="auth_plus">
+                    <input type="file" name="back">
+                </a>
+                <a href="javascript:;" class="close">
+                    <img src="css/img/auth_del.png">
+                </a>
+            </div><!--showImg-->
+        </div> <!--auth_wrap-->
+        <input class="next_section next_auth next_confirm" type="submit" value="确定">
+        <!--<a class="next_section next_auth next_confirm" href="" id="auth_confirm">确定</a>-->
+    </div><!--authentic_two-->
+</form>
+<iframe id="if" name="if" src="about:blank" frameborder='0' width="1500px" height="1500px"></iframe>

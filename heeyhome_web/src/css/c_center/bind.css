@@ -1,0 +1,576 @@
+/* 绑定手机 */
+#user_right {
+    float: right
+}
+
+.right_title {
+    height: 53px;
+    line-height: 53px;
+    background-color: #525252;
+    border-radius: 5px
+}
+
+.right_title span {
+    font-size: 16px;
+    color: #FFFFFF;
+    margin-left: 29px
+}
+
+.content_wrap {
+    border-radius: 5px;
+    height: 898px;
+    border: 1px solid #cdcdcd;
+    border-top: none
+}
+
+/*.right_content {*/
+    /*padding: 100px 50px*/
+/*}*/
+
+.revise_phone {
+    padding-left: 14px;
+    border-left: 3px solid #E88226;
+    color: #4B4948;
+    font-size: 18px;
+    margin-bottom: 30px
+}
+
+.revise_process a {
+    color: #939393;
+    display: inline-block;
+    font-size: 12px;
+    text-align: center
+}
+
+.revise_process a:nth-child(1) {
+    margin-left: 70px
+}
+
+.revise_process a:nth-child(2) {
+    margin-left: 175px
+}
+
+.revise_process a:nth-child(3) {
+    margin-left: 175px
+}
+
+.revise_process a:hover {
+    text-decoration: none
+}
+
+.revise_process span {
+    background: #939393;
+    position: relative;
+    color: #000000;
+    font-size: 15px;
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    width: 35px;
+    opacity: 0.3;
+    margin-bottom: 10px;
+    border-radius: 50%
+}
+
+.revise_process span:after {
+    content: "";
+    z-index: 20;
+    display: block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid #939393;
+    position: absolute;
+    top: 0;
+    left: 5px
+}
+
+.revise_process a.active span {
+    background: #EEC988;
+    color: #E88226
+}
+
+.revise_process a.active span:after {
+    border: 1px solid #EEC988
+}
+
+.revise_process a.active {
+    color: #4B4948
+}
+
+.remind {
+    margin-top: 60px
+}
+
+.remind p {
+    color: #4B4948;
+    font-size: 14px
+}
+
+.remind p a {
+    color: #E88226
+}
+
+.bind_phone {
+    margin-top: 50px
+}
+
+.bind_phone h3 {
+    color: #4B4948;
+    font-size: 14px;
+    margin-bottom: 30px
+}
+
+.bind_phone .phone_number {
+    color: #4B4948;
+    font-size: 14px;
+    margin-bottom: 35px
+}
+
+.bind_phone .phone_number input {
+    border: 0;
+    margin-left: 10px;
+    width: 106px;
+    height: 30px;
+    border-bottom: 1px solid #000000
+}
+
+.bind_phone .phone_number span:last-child {
+    margin-left: 11px;
+    color: #A1A1A1
+}
+
+.bind_phone .confirm_code {
+    color: #4B4948;
+    font-size: 14px
+}
+
+.bind_phone .confirm_code input {
+    width: 106px;
+    height: 30px;
+    margin-left: 10px;
+    border: 0;
+    border-bottom: 1px solid #000000
+}
+
+.bind_phone .confirm_code input:last-child {
+    width: 120px;
+    height: 38px;
+    border-radius: 4px;
+    border: 1px solid #EEC988;
+    color: #EEC988;
+    background-color: #FFFFFF;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 11px
+}
+
+.next_section {
+    display: inline-block;
+    width: 200px;
+    height: 34px;
+    line-height: 34px;
+    margin-top: 50px;
+    background-color: #EEC988;
+    color: #FFFFFF;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 0;
+    font-size: 14px
+}
+
+.next_section:hover {
+    color: #FFFFFF;
+    -webkit-box-shadow: 3px 3px 5px #939393;
+    -moz-box-shadow: 3px 3px 5px #939393;
+    box-shadow: 3px 3px 5px #939393
+}
+
+.new_phone {
+    margin-top: 60px
+}
+
+.new_phone h3 {
+    color: #4B4948;
+    font-size: 14px;
+    margin-bottom: 17px
+}
+
+.new_phone .newphone_num {
+    color: #4B4948;
+    font-size: 14px;
+    margin-bottom: 29px
+}
+
+.new_phone .newphone_num input {
+    border: 0;
+    margin-left: 10px;
+    width: 156px;
+    height: 30px;
+    border-bottom: 1px solid #000000
+}
+
+.new_phone .newphone_code {
+    color: #4B4948;
+    font-size: 14px;
+    margin-bottom: 47px
+}
+
+.new_phone .newphone_code input {
+    border: 0;
+    margin-left: 10px;
+    width: 156px;
+    height: 30px;
+    border-bottom: 1px solid #000000
+}
+
+.new_phone .newphone_code input:last-child {
+    width: 120px;
+    height: 38px;
+    border-radius: 4px;
+    border: 1px solid #EEC988;
+    color: #EEC988;
+    background-color: #FFFFFF;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 27px
+}
+
+.new_phone p {
+    color: #4B4948;
+    font-size: 14px
+}
+
+.sure {
+    display: block;
+    width: 200px;
+    height: 34px;
+    line-height: 34px;
+    margin-top: 50px;
+    background-color: #EEC988;
+    color: #FFFFFF;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 0;
+    font-size: 14px
+}
+
+.sure:hover {
+    color: #FFFFFF;
+    -webkit-box-shadow: 3px 3px 5px #939393;
+    -moz-box-shadow: 3px 3px 5px #939393;
+    box-shadow: 3px 3px 5px #939393
+}
+
+.success {
+    height: 28px;
+    line-height: 28px;
+    margin-left: 50px;
+    padding-top: 72px
+}
+
+.success span {
+    color: #4B4948;
+    position: relative;
+    font-size: 14px;
+    display: inline-block
+}
+
+.success span:before {
+    content: url(../img/icon-success.png);
+    width: 28px;
+    height: 28px;
+    display: block;
+    position: absolute;
+    left: -45px
+}
+
+.success a {
+    color: #4B4948;
+    font-size: 14px;
+    margin-left: 42px
+}
+
+.bind_phonecnt {
+    overflow: hidden;
+    min-height: 500px;
+    position: relative
+}
+
+.phone_content {
+    position: absolute;
+    top: 0
+}
+
+.phone_content.ng-enter, .phone_content.ng-leave {
+    transition: 0.5s all ease;
+    -moz-animation: 0.5s all ease;
+    -webkit-transition: 0.5s all ease
+}
+
+.phone_content.ng-enter {
+    -webkit-animation: slideInRight 0.5s both ease;
+    -moz-animation: slideInRight 0.5s both ease;
+    animation: slideInRight 0.5s both ease
+}
+
+/* leave animation */
+.phone_content.ng-leave {
+    -webkit-animation: slideOutLeft 0.5s both ease;
+    -moz-animation: slideOutLeft 0.5s both ease;
+    animation: slideOutLeft 0.5s both ease
+}
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+    to {
+        transform: translateX(-200%);
+    }
+}
+
+@-moz-keyframes slideOutLeft {
+    to {
+        -moz-transform: translateX(-200%);
+    }
+}
+
+@-webkit-keyframes slideOutLeft {
+    to {
+        -webkit-transform: translateX(-200%);
+    }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from {
+        transform: translateX(200%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@-moz-keyframes slideInRight {
+    from {
+        -moz-transform: translateX(200%);
+    }
+    to {
+        -moz-transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes slideInRight {
+    from {
+        -webkit-transform: translateX(200%);
+    }
+    to {
+        -webkit-transform: translateX(0);
+    }
+}
+
+.right_title {
+    height: 53px;
+    line-height: 53px;
+    background-color: #525252;
+    border-radius: 5px
+}
+
+.right_title span {
+    font-size: 16px;
+    color: white;
+    margin-left: 29px
+}
+
+.works_content_wrap {
+    height: 845px;
+    border: 1px solid #cdcdcd;
+    border-top: none
+}
+
+/* 身份验证 */
+.content_wrap .safe_right_content {
+    border: none;
+}
+
+.revise_process a.auth_first {
+    margin-left: 160px;
+}
+
+.revise_process a.auth_second {
+    margin-left: 230px;
+}
+
+.remind_p {
+    margin-top: 84px;
+}
+
+.next_auth {
+    margin-top: 84px;
+    color: white;
+}
+
+.auth_photo {
+    margin-top: 55px;
+    display: block;
+    font-size: 14px;
+    color: #939393;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+.file {
+    position: relative;
+    display: inline-block;
+    background: white;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    overflow: hidden;
+    color: #e4e4e4;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    width: 271px;
+    height: 191px;
+}
+
+.file .auth_plus {
+    margin-left: 88px;
+    margin-top: 50px;
+}
+
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.next_confirm {
+    width: 80px;
+    height: 34px;
+    line-height: 34px;
+    color: white;
+}
+
+.zc_btnClick {
+    cursor: auto !important;
+    background-color: #999 !important;
+    color: #ddd !important
+}
+
+.showImg {
+    width: 271px;
+    height: 191px;
+    margin-left: 45px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+
+.opacity {
+    opacity: 0;
+}
+
+.close {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    line-height: 20px;
+    text-align: center;
+    display: none;
+}
+
+.bind_phone .confirm_code #id_code {
+    width: 160px;
+}
+
+/* 修改密码 */
+.message_wrap {
+    width: 670px;
+    height: 134px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    margin-top: 90px;
+}
+
+.message {
+    width: 560px;
+    height: 37px;
+    line-height: 37px;
+    margin: 45px auto;
+}
+
+.message_fl img {
+    margin-top: -4px;
+    margin-left: 20px;
+}
+
+.message_fl span {
+    font-size: 16px;
+    color: #4b4948;
+    margin-left: 15px;
+}
+
+.message_fr a {
+    width: 100px;
+    height: 37px;
+    line-height: 37px;
+    display: inline-block;
+    border: 1px solid #eec988;
+    border-radius: 4px;
+    text-align: center;
+    color: #eec988;
+    font-size: 16px;
+}
+
+.message_fr a:hover {
+    background-color: #eec988;
+    color: white;
+    transition: all .5s ease 0s;
+    -webkit-transition: all .5s ease 0s;
+    -moz-transition: all .5s ease 0s;
+    -ms-transition: all .5s ease 0s;
+}
+
+.password_wrap {
+    margin-top: 35px;
+}
+
+.revise_process a.revise_password {
+    margin-left: 95px;
+}
+
+#re_select {
+    font-size: 14px;
+    color: #e88226;
+    margin-left: 25px;
+}
+
+.bind_phone .confirm_code input#login_code {
+    width: 150px;
+    height: 30px;
+    margin-left: 10px;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    border-radius: 0;
+    color: #4b4948;
+    text-align: inherit;
+    cursor: inherit;
+}
+
+.success #password_button {
+    margin-left: 5px;
+}
+

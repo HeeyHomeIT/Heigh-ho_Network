@@ -1,0 +1,48 @@
+<div class="master_user_wrap clearfix">
+    <!--左边导航start-->
+    <!-- 当前位置start -->
+    <div id="selfcenter_top">
+        <div class="now_location">
+            <a href="index.html"><img src="css/img/icon-toindex.png"></a>
+            <span>&gt;</span>
+            <span>个人中心</span>
+            <span>&gt;</span>
+            <span>我的主页</span>
+        </div>
+    </div>
+    <!-- 当前位置end -->
+    <div class="user_left fl">
+        <!-- 左侧导航start -->
+        <ul class="left_ul" id="left_ul">
+            <li>
+                <a class="a_content" href="" ui-sref="master.mhome"><span>&bull;</span>&nbsp;&nbsp;我的主页&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="master.mdata"><span>&bull;</span>&nbsp;&nbsp;个人资料&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="master.mshop"><span>&bull;</span>&nbsp;&nbsp;店铺资料&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="master.morder"><span>&bull;</span>&nbsp;&nbsp;我的订单&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="master.mwork"><span>&bull;</span>&nbsp;&nbsp;我的作品&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="master.mteam"><span>&bull;</span>&nbsp;&nbsp;我的团队&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="master.setting"><span>&bull;</span>&nbsp;&nbsp;安全设置&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="master.msginfo"><span>&bull;</span>&nbsp;&nbsp;消息中心&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="master.mwallet"><span>&bull;</span>&nbsp;&nbsp;我的钱包&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+        </ul>
+    </div><!--user_left-->
+    <!--左边导航end-->
+    <div id="master_right" ui-view="master_right"></div>
+</div><!--master_user_wrap-->
