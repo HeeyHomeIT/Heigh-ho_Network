@@ -49,7 +49,7 @@ class OrderController extends Controller
             $worker_count = count($worker_arr);
             $worker_flag = true;
         }
-        /* TODO 判断订单是否重复*/
+        /* 判断订单是否重复*/
         $order_tbl_isrepeat = DB::select('SELECT order_id FROM hh_order WHERE user_id =  ? AND shop_id = ? AND order_address = ? AND calculator_result_id = ? AND order_status != ? ',
             [$user_id, $shop_id, $order_address, $calculator_result_id, 7]);
         if ($order_tbl_isrepeat) {
