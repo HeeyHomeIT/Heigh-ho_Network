@@ -127,8 +127,6 @@
 		initMWorkInfoEvent: function(){
 			var self = this;
 			var _wObj = JSON.parse(sessionStorage.getItem("wObj"));
-			console.log(worksObj)
-			console.log(_wObj)
 			// 判断sessionStorage里面有没有值，如果有值那么赋值到全局变量中去并且进行初始化我要的工人信息模块数据
 			if(_wObj!=null && _wObj != undefined){
 				// 进行初始化我要的工人信息模块数据
@@ -150,8 +148,6 @@
 				 	$("#cata"+v.ucateid+" .needclist").append(self.spliceWdataEvent(v.ucateid,i,v.resList[0]));
 				});
 			}
-			
-			console.log(worksObj)
 		},
 		/**
 		 * 页面店铺信息初始化数据 
@@ -276,7 +272,6 @@
 
 			var numberItem = 0;
 			// 抛物线运动
-			
 			// 判断worksObj是否为空
 			if(JSON.stringify(worksObj) == "{}") { 
 			 	$(".selectItemContent").append(self.spliceConFrameEvent(ucateid,shopName));
@@ -331,7 +326,6 @@
 				worksObj[uid].ucateid = ucateid;
 				worksObj[uid].shopName = shopName;
 	//			worksObj.push(a);
-//				console.log(worksObj);
 				
 				sessionStorage.wObj = JSON.stringify(worksObj); // 存储到session里面
 				// 页面一条一条插入数据
@@ -363,7 +357,6 @@
 			$(document).on("click",".needclose",function(){
 				alert($(this).parents(".needclist").children("div").length);
 				var _wObj = JSON.parse(sessionStorage.getItem("wObj"));
-				console.log(_wObj);
 				var id = $(this).parent().data("nid");
 				delete _wObj[id];//删除属性
 				var jslength=0;
@@ -371,6 +364,17 @@
 					jslength++;
 				}
 				$(".h-bd").text(jslength);
+				$.each(_wObj, function(i,v) {
+					worksObj = {};
+					worksObj[i] = {
+						ucateid:0, // 工种类别
+						shopName:'',
+						resList: []
+					}
+					worksObj[i].resList.push(v.resList[0]);
+					worksObj[i].ucateid = v.ucateid;
+					worksObj[i].shopName = v.shopName;
+				});
 				sessionStorage.wObj = JSON.stringify(_wObj);
 				if($(this).parents(".needclist").children("div").length == 1){
 					$(this).parents(".needcont").remove();
