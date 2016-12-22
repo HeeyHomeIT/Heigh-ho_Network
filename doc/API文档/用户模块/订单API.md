@@ -28,8 +28,8 @@ user_id                 user_id                 用户id
 shop_id                 shop_id                 店铺id
 address_id              address_id              地址id
 calculator_result_id    calculator_result_id    计算器结果id
-time                    time                    预约时间（json字符串）
-worker                  worker                  预约工人的id（json字符串）
+time                    time                    预约时间（json字符串）（必选，至多2个字段）
+worker                  worker                  预约工人的id（json字符串）（可选，最多9个字段）
 callback                callback
 ```
 

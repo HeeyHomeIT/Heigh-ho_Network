@@ -95,9 +95,11 @@ class OrderController extends Controller
                 }
             }
             if ($worker_flag) {
-                $i = $worker_count - 1;
+                $i = 0;
                 //遍历数组
-                foreach ($worker_arr as $pa[$i]) ;
+                foreach ($worker_arr as $pa[$i]) {
+                    $i++;
+                };
                 //至多9名员工，不足补空
                 while ($i < 10) {
                     $pa[$i] = '';

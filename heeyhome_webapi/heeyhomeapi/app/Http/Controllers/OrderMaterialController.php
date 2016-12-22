@@ -126,13 +126,29 @@ class OrderMaterialController extends Controller
         }
     }
 
-    //获取材料单列表
+    //TODO 获取材料单列表
     public function getMaterialList()
     {
+        $order_id = rq('order_id');
+        $material_supplier_id = rq('material_supplier_id');
+        $callback = rq('callback');
+        //判断来源
+        if ($order_id) {
+            $sel_material_user = DB::select('SELECT * FROM hh_order_material WHERE order_id = ?',
+                [$order_id]);
+        } elseif ($material_supplier_id) {
 
+        } else {
+            $arr = array(
+                "code" => "301",
+                "msg" => "参数错误,获取列表失败",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
     }
 
-    //获取材料订单数据
+    //TODO 获取材料订单数据
     public function getOrderMaterial()
     {
         $order_id = rq('order_id');
