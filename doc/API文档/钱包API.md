@@ -41,6 +41,7 @@ data         {
                     bankcardno     bankcardno
                     bankname       bankname
                     cardtype       cardtype
+                    banklogo       banklogo
              }
 msg          ""
 )
