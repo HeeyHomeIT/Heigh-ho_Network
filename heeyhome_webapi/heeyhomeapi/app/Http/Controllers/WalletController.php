@@ -19,7 +19,7 @@ class WalletController extends Controller
     public function mycards(){
         $callback=rq('callback');
         $user_id=rq('user_id');
-        $cards=DB::select('select bankcardno,bankname,cardtype from hh_bankcard where bank_userid=?',[$user_id]);
+        $cards=DB::select('select bankcardno,bankname,cardtype,banklogo from hh_bankcard where bank_userid=?',[$user_id]);
         if($cards){
             $arr = array("code" => "000",
                 "data"=>$cards

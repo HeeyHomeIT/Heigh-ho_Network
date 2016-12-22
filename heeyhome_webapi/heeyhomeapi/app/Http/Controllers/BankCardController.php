@@ -40,13 +40,13 @@ class BankCardController extends Controller
         $realname=rq('realname');
         $idcardno=rq('idcardno');
         $bankcardno=rq('bankcardno');
-        $host = "http://ali-bankcard.showapi.com";
-        $path = "/bankcard";
+        $host = "http://jisuyhkgsd.market.alicloudapi.com";
+        $path = "/bankcard/query";
         $method = "GET";
         $appcode = "e52017c3b93f46588f93c5745141249d";
         $headers = array();
         array_push($headers, "Authorization:APPCODE " . $appcode);
-        $querys = "kahao=".$bankcardno;
+        $querys = "bankcard=".$bankcardno;
         $bodys = "";
         $url = $host . $path . "?" . $querys;
         $curl = curl_init();
@@ -58,18 +58,19 @@ class BankCardController extends Controller
         $json_data =curl_exec($curl);
         $array = json_decode($json_data, true);
         //dd($array);
-        if($array['showapi_res_code']==0){
-            if($array['showapi_res_body']['ret_code']==0){
-                $bankname=$array['showapi_res_body']['bankName'];
-                $cardtype=$array['showapi_res_body']['cardType'];
-                $arr = array('code' => '000', 'data' => array("user_id"=>$user_id,"idcardno"=>$idcardno,"bankcardno" => $bankcardno, "realname" => $realname,"bankname"=>$bankname,"cardtype"=>$cardtype));
-                return $callback . "(" . HHJson($arr) . ")";
-            }else{
-                $arr = array('code' => $array['showapi_res_body']['ret_code'],"msg"=>$array['showapi_res_body']['remark']);
-                return $callback . "(" . HHJson($arr) . ")";
-            }
+        if($array['status']==0){
+                if($array['result']['iscorrect']==0) {
+                    $bankname = $array['result']['bank'];
+                    $cardtype = $array['result']['type'];
+                    $banklogo = $array['result']['logo'];
+                    $arr = array('code' => '000', 'data' => array("user_id" => $user_id, "idcardno" => $idcardno, "bankcardno" => $bankcardno, "realname" => $realname, "bankname" => $bankname, "cardtype" => $cardtype,"banklogo"=>$banklogo));
+                    return $callback . "(" . HHJson($arr) . ")";
+                }else{
+                    $arr = array('code' => '200', 'msg' => '银行卡校验不正确');
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
         }else{
-            $arr = array('code' => $array['showapi_res_code'], 'msg' => $array['showapi_res_error']);
+            $arr = array('code' => $array['status'], 'msg' => $array['msg']);
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
@@ -83,6 +84,7 @@ class BankCardController extends Controller
         $cardtype=rq('cardtype');
         $phone=rq('phone');
         $captcha=rq('captcha');
+        $banklogo=rq('banklogo');
         $host = "http://jisubank4.market.alicloudapi.com";
         $path = "/bankcardverify4/verify";
         $method = "GET";
@@ -113,7 +115,7 @@ class BankCardController extends Controller
             //var_dump($json_data);
             if ($array['status'] == '0') {
                 if($array['result']['verifystatus']==0) {
-                    $sql=DB::insert('insert into hh_bankcard (bank_userid,realname,bankcardno,bindphone,bankname,cardtype) values(?,?,?,?,?,?)',[$user_id,$name,$bankcard,$phone,$bankname,$cardtype]);
+                    $sql=DB::insert('insert into hh_bankcard (bank_userid,realname,bankcardno,bindphone,bankname,cardtype,banklogo) values(?,?,?,?,?,?,?)',[$user_id,$name,$bankcard,$phone,$bankname,$cardtype,$banklogo]);
                     $arr = array('code' => '000', 'msg' => '银行卡添加成功', 'data' => array("bankcard" => $bankcard, "realname" => $name,"phone"=>$phone,"bankname"=>$bankname,"cardtype"=>$cardtype));
                     return $callback . "(" . HHJson($arr) . ")";
                 }else{

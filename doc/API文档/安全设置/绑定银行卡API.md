@@ -110,6 +110,7 @@ data         {
                     realname        realname        //持卡人姓名
                     bankname        bankname        //银行名
                     cardtype        cardtype        //银行卡类型
+                    banklogo        banklogo        //银行logo
              }
 msg          ""
 )
@@ -128,7 +129,10 @@ msg           失败
 
 ```
 000           成功
--1            找不到此卡号信息
+200           银行卡校验不正确
+201           银行卡号为空
+202           银行卡号不正确
+210           没有信息
 
 ```
 # cardverify() #
@@ -165,6 +169,7 @@ bankname            bankname
 cardtype            cardtype
 phone               phone
 captcha             captcha
+banklogo            banklogo
 
 callback            callback
 ```
