@@ -85,6 +85,27 @@ class OrderController extends Controller
             $order_step_tbl = DB::select('SELECT order_step FROM hh_order_step WHERE step_id = ?',
                 [$order_step]);
             $order_step_cont = $order_step_tbl[0]->order_step;
+            if ($time_flag) {
+                if ($time_count == 1) {
+                    $ins_order_reservation_time = DB::insert('INSERT INTO hh_order_reservation_time (order_id,reservation_time1) VALUES (?,?)',
+                        [$order_id, $time_arr[0]]);
+                } else {
+                    $ins_order_reservation_time = DB::insert('INSERT INTO hh_order_reservation_time (order_id,reservation_time1,reservation_time2) VALUES (?,?,?)',
+                        [$order_id, $time_arr[0], $time_arr[1]]);
+                }
+            }
+            if ($worker_flag) {
+                $i = $worker_count - 1;
+                //遍历数组
+                foreach ($worker_arr as $pa[$i]) ;
+                //至多9名员工，不足补空
+                while ($i < 10) {
+                    $pa[$i] = '';
+                    $i++;
+                }
+                $order_personnel_tbl = DB::insert('INSERT INTO hh_order_personnel(personnel_id, order_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
+                    [$order_personnel, $order_id, $pa[0], $pa[1], $pa[2], $pa[3], $pa[4], $pa[5], $pa[6], $pa[7], $pa[8], $pa[9]]);
+            }
             $arr = array(
                 "code" => "000",
                 "msg" => "订单生成成功",
