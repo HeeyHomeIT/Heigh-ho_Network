@@ -41,7 +41,7 @@ class WalletController extends Controller
         $cardtype=rq('cardtype');
         $bankcard=$bankname.$cardtype.$bankcardno;
         $time=date('Y-m-d H:i:s', time());
-        $insert=DB::insert('insert into hh_withdrawapply(apply_userid,money,payment,apply_time)',[$user_id,$money,$bankcard,$time]);
+        $insert=DB::insert('insert into hh_withdrawapply(apply_userid,money,payment,apply_time) values(?,?,?,?)',[$user_id,$money,$bankcard,$time]);
         $arr = array("code" => "000",
             "msg" => "申请提现成功，银行处理中"
         );

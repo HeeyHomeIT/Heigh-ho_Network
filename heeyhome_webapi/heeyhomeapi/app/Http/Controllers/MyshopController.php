@@ -117,24 +117,10 @@ class MyshopController extends Controller
         if($servicearea) $shop->servicearea=implode(',',$servicearea);
         if($shop_address) $shop->shop_address=$shop_address;
         if($shop_describe) $shop->shop_describe=$shop_describe;
-        if($shop->save()){
-            $select=DB::select('select * from hh_shop where shop_id=?',[$shop_id]);
-
-                $img=DB::select('select id,shop_img,is_face from hh_shop_img where shop_id=?',[$shop_id]);
-                $select[0]->shop_imgs=$img;
-                $technics=DB::select('select id,technics_text,technics_img from hh_shop_technics where shop_id=?',[$shop_id]);
-                $select[0]->shop_technics=$technics;
-                $select[0]->servicetag=explode(',',$select[0]->servicetag);
-                $select[0]->servicearea=explode(',',$select[0]->servicearea);
-                $arr = array("code" => "000",
-                    "data"=>$shop
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-        }else{
-            $arr = array("code" => "111",
-                "msg" => "保存失败"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
+        $shop->save();
+        $arr = array("code" => "000",
+            "msg"=>"保存成功"
+        );
+        return $callback . "(" . HHJson($arr) . ")";
     }
 }
