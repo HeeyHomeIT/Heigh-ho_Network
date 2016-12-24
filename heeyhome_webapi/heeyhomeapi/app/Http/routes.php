@@ -160,6 +160,9 @@ Route::group(['middleware' => ['web']], function () {
     /*材料分类*/
     Route::any('materialcate', 'MaterialController@cate');
 
+    //成本计算器
+    //成本计算
+    Route::any('costcalculator/count', 'CostCalculatorController@costCalculator');
 
     /*订单*/
     /*订单生成api*/
@@ -186,6 +189,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/dispute/changetype', 'OrderOperateController@changeOrderCanddFinish');
     //添加材料订单
     Route::get('order/material/produce', 'OrderMaterialController@generateOrderMaterial');
+
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['web', 'admin.login']], function () {
