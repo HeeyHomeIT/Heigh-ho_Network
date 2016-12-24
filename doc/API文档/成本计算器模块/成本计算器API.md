@@ -45,15 +45,15 @@ calculator_json     calculator_json     计算器数据（json封装）
     （以上参数为必填项，以下参数为选填）
     //主卧参数
     master_distribution array{  
-    //地面处理方式 TODO 例：实木地板：smdb 强化复合地板：qhfhdb 瓷砖：cz
+    //地面处理方式  例：实木地板：smdb 强化复合地板：qhfhdb 瓷砖：cz
                                 'ground'=>'smdb',       
-    //衣柜制作方式 TODO 例：木工制作衣柜：true 自行购买衣柜：false
+    //衣柜制作方式  例：木工制作衣柜：true 自行购买衣柜：false
                                 'wardrobe'=>'true',     
-    //木工制作吊顶 TODO 例：需要：true 不需要：false                            
+    //木工制作吊顶  例：需要：true 不需要：false                            
                                 'ceiling'=>'true',      
-    //墙面铺设墙纸 TODO 例：需要：true 不需要：false
+    //墙面铺设墙纸  例：需要：true 不需要：false
                                 'wallpaper'=>'false',   
-    //有无飘窗结构 TODO 例：有飘窗：true 没有飘窗：false
+    //有无飘窗结构  例：有飘窗：true 没有飘窗：false
                                 'window'=>'true'        
                             },
     //儿童房参数                        
@@ -63,9 +63,9 @@ calculator_json     calculator_json     计算器数据（json封装）
                                 'ceiling'=>'true',
                                 'wallpaper'=>'false',
                                 'window'=>'true'     
-    //榻榻米的制作 TODO 例：木工制作榻榻米：true 自行购买榻榻米：false
+    //榻榻米的制作  例：木工制作榻榻米：true 自行购买榻榻米：false
                                 'tatami'=>'true'
-    //书桌书架选择 TODO 例：木工制作简易书桌书架：true 购买成品书桌书架：false
+    //书桌书架选择  例：木工制作简易书桌书架：true 购买成品书桌书架：false
                                 'desk'=>'true'
                             },
     //次卧参数                        
@@ -75,8 +75,31 @@ calculator_json     calculator_json     计算器数据（json封装）
     //衣帽间参数
     cloakroom_distribution  array{...},
     //书房参数
-    study_distribution      array{...},
-                            
+    study_distribution      array{
+                                    ...
+    //书桌书架选择  例：木工制作简易书桌书架：true 购买成品书桌书架：false
+                                'bookcase'=>'true'
+                                },
+    //客餐厅参数
+    parlor_distribution     array{
+                                    ...
+    //鞋柜制作方式  例：木工制作鞋柜：true 自行购买鞋柜：false
+                                'shoebox'=>'true',
+    //酒柜制作方式  例：木工制作酒柜：true 自行购买酒柜：false
+                                'wine_cabinet'=>'true'
+                                },
+    //阳台参数
+    balcony_distribution     array{
+                                    ...
+    //木工制作吊柜  例：需要：true 不需要：false
+                                'hanging_cabinet'=>'true'
+                                },
+    //厨房参数
+    kitchen_distribution     array{
+                                    ...
+    //木工制作厨柜  例：需要：true 不需要：false
+                                'cupboard'=>'true'
+                                },
 callback            callback
 ```
 
