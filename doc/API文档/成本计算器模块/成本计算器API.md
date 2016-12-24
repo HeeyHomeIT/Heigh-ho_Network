@@ -31,6 +31,9 @@ calculator_json     calculator_json     计算器数据（json封装）
     parlor_num          parlor_num,          客厅书
     bathroom_num        bathroom_num,        卫生间数
     balcony_num         balcony_num,         阳台数
+    floor               floor,               楼层数（0代表有电梯，其他数字代表楼层）    
+    wall                wall,                墙体改造（true false）
+    ground_sank         ground_sank,         卫生间地面下沉（true false）
     room_distribution   array{  
                                 'master'=>'1',          //主卧数量
                                 'second'=>'1',          //次卧数量

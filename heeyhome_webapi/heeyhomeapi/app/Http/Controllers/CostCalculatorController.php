@@ -16,18 +16,30 @@ class CostCalculatorController extends Controller
     {
         $calculator_json = rq('calculator_json');
         $calculator_arr = json_decode($calculator_json, true);
-
-        $city = rq('city');
-        $area = rq('area');
+        $callback = rq('callback');
         //基础信息
+        $city = $calculator_arr['city'];
+        $area = $calculator_arr['area'];
         $room_num = $calculator_arr['room_num'];
         $parlor_num = $calculator_arr['parlor_num'];
         $bathroom_num = $calculator_arr['bathroom_num'];
         $balcony_num = $calculator_arr['balcony_num'];
         //其他辅助信息
+        $floor = $calculator_arr['floor'];
+        $wall = $calculator_arr['wall'];
+        $ground_sank = $calculator_arr['ground_sank'];
+        //其他基础信息
         //房间分配 TODO 例：array('master'=>'1','second'=>'1','child'=>'1','parent'=>'0','cloakroom'=>'0','study'=>'0')
         $room_distribution = $calculator_arr['room_distribution'];
         if ($room_distribution['master'] != 0) {
+            if (!$calculator_arr['master_distribution']) {
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "暂未开放此城市",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
             //房间内设计 TODO 例：array('ground'=>'smdb','wardrobe'=>'true','ceiling'=>'true','wallpaper'=>'false','window'=>'true')
             $master_distribution = $calculator_arr['master_distribution'];
             //地面处理方式 TODO 例：实木地板：smdb 强化复合地板：qhfhdb 瓷砖：cz
@@ -86,7 +98,6 @@ class CostCalculatorController extends Controller
             $study_tatami = $study_distribution['tatami'];
             $study_desk = $study_distribution['desk'];
         }
-        $callback = rq('callback');
         if ($area < 70 || $area > 160) {
             $arr = array(
                 "code" => "200",
