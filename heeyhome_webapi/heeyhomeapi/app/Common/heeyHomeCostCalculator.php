@@ -38,6 +38,7 @@ function costCalculator_suzhou($area, $room_num, $parlor_num, $bathroom_num, $ba
     $wgfc = wgfc($flag, $area, $room_num, $bathroom_num, $balcony_num);
     $mgfc = mgfc($flag, $area, $room_num, $balcony_num);
     $yqcl = yqcl($flag, $area, $room_num, $balcony_num);
+    //主材费用
     $czdd = 0;
     $czgd = 0;
     $bc = 0;
@@ -49,6 +50,7 @@ function costCalculator_suzhou($area, $room_num, $parlor_num, $bathroom_num, $ba
     $ygym = 0;
     $jcdd = 0;
     $cgsys = 0;
+    $zj = $rgzj + $zdsdcl + $gdsdcl + $wgfc + $mgfc + $yqcl;
     return array(
         "sdrg" => $sdrg,
         "wgrg" => $wgrg,
@@ -71,6 +73,7 @@ function costCalculator_suzhou($area, $room_num, $parlor_num, $bathroom_num, $ba
         "lyfym" => $lyfym,
         "ygym" => $ygym,
         "jcdd" => $jcdd,
-        "cgsys" => $cgsys
+        "cgsys" => $cgsys,
+        "zj" => $zj
     );
 }

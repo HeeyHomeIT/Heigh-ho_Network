@@ -53,7 +53,8 @@ calculator_result_json      calculator_result_json     计算器数据（json封
             lyfym           lyfym,          //淋浴移门
             ygym            ygym,           //衣柜移门
             jcdd            jcdd,           //集成吊顶
-            cgsys           cgsys           //橱柜石英石
+            cgsys           cgsys,          //橱柜石英石
+            zj              zj              //装修总价
   },
 callback                    callback
 ```
@@ -157,7 +158,8 @@ data         {
             lyfym                   lyfym,          //淋浴移门
             ygym                    ygym,           //衣柜移门
             jcdd                    jcdd,           //集成吊顶
-            cgsys                   cgsys           //橱柜石英石
+            cgsys                   cgsys,          //橱柜石英石
+            zj                      zj              //装修总价
   },
 msg          查询成功
 )

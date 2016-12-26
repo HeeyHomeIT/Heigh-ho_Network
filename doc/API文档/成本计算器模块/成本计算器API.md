@@ -132,7 +132,8 @@ data         {
                 lyfym       lyfym,          //淋浴移门
                 ygym        ygym,           //衣柜移门
                 jcdd        jcdd,           //集成吊顶
-                cgsys       cgsys           //橱柜石英石
+                cgsys       cgsys,          //橱柜石英石
+                zj          zj              //装修总价
              }
 msg          计算成功
 )
