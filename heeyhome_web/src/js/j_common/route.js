@@ -6,16 +6,24 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 					url: "/",
 					views: {
 						'content': {
-							templateUrl: 'view/v_index/index_wrap.html',
+							templateUrl: 'view/v_index/index_wrap.html'
 						}
 					}
+					
 				})
 				.state('cal', { // 成本计算页面
 					url: '/cal',
 					views: {
 						'content': {
-							templateUrl: 'view/v_cal/v_cal.html'
+							templateUrl: 'view/v_cal/v_cal.html',
+							controller: "calCtrl",
+							controllerAs: "cal"
 						}
+					},
+					resolve: {
+						deps: ['$ocLazyLoad', function($ocLazyLoad) {
+							return $ocLazyLoad.load('js/j_cal/cal.js')
+						}]
 					}
 				})
 				.state('panorama', { // 虚拟现实页面
@@ -163,6 +171,36 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 					resolve: {
 						deps: ['$ocLazyLoad', function($ocLazyLoad) {
 							return $ocLazyLoad.load(['js/j_shopdetail/parabola.js', 'js/j_shopdetail/shopdetail.js']);
+						}]
+					}
+				})
+				.state("reservation", { // 立即预订
+					url: "/reservation",
+					views: {
+						'reservation_content': {
+							templateUrl: 'view/v_reservation/v_startreservation.html',
+							controller: "reservationCtrl",
+                            controllerAs: "reservation"
+						}
+					},
+					resolve: {
+						deps: ['$ocLazyLoad', function($ocLazyLoad) {
+							return $ocLazyLoad.load(['lib/laydate/laydate.js','js/j_reservation/reservation.js']);
+						}]
+					}
+				})
+				.state("calresult", { // 立即预订
+					url: "/calresult",
+					views: {
+						'calresult_content': {
+							templateUrl: 'view/v_cal/v_calresult.html',
+							controller: "calresultCtrl",
+                            controllerAs: "calresult"
+						}
+					},
+					resolve: {
+						deps: ['$ocLazyLoad', function($ocLazyLoad) {
+							return $ocLazyLoad.load(['js/j_cal/calresult.js']);
 						}]
 					}
 				});

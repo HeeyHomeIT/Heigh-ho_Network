@@ -77,7 +77,7 @@ calculator_json     calculator_json     计算器数据（json封装）
     //书房参数
     study_distribution      array{
                                     ...
-    //书桌书架选择  例：木工制作简易书桌书架：true 购买成品书桌书架：false
+    //书桌书柜选择  例：木工制作简易书桌书架：true 购买成品书桌书柜：false
                                 'bookcase'=>'true'
                                 },
     //客餐厅参数
