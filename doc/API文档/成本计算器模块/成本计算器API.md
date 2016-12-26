@@ -77,7 +77,7 @@ calculator_json     calculator_json     计算器数据（json封装）
     //书房参数
     study_distribution      array{
                                     ...
-    //书桌书柜选择  例：木工制作简易书桌书架：true 购买成品书桌书柜：false
+    //书桌书架选择  例：木工制作简易书桌书架：true 购买成品书桌书架：false
                                 'bookcase'=>'true'
                                 },
     //客餐厅参数
@@ -111,7 +111,8 @@ callback            callback
 callback(
 code         000
 data         {
-                sdrg        $sdrg,          //水电人工
+                gzrg        gzrg,           //工长人工
+                sdrg        sdrg,           //水电人工
                 wgrg        wgrg,           //瓦工人工
                 mgrg        mgrg,           //木工人工
                 yqgrg       yqgrg,          //油漆工人工
@@ -133,7 +134,7 @@ data         {
                 ygym        ygym,           //衣柜移门
                 jcdd        jcdd,           //集成吊顶
                 cgsys       cgsys,          //橱柜石英石
-                zxzj        zxzj              //装修总价
+                zj          zj              //装修总价
              }
 msg          计算成功
 )
