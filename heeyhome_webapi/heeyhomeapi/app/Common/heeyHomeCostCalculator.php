@@ -26,12 +26,13 @@ function costCalculator_suzhou($area, $room_num, $parlor_num, $bathroom_num, $ba
         $flag = 7;
     }
     //人工费用
+    $gzrg = $area * 50;
     $sdrg = sdrg($area);
     $wgrg = wgrg($flag, $area, $room_num, $balcony_num);
     $mgrg = mgrg($flag, $area, $room_num, $balcony_num);
     $yqgrg = yqgrg($flag, $area, $room_num);
     $zgrg = zgrg($flag, $area, $room_num, $balcony_num);
-    $rgzj = $sdrg + $wgrg + $mgrg + $yqgrg + $zgrg;
+    $rgzj = $gzrg + $sdrg + $wgrg + $mgrg + $yqgrg + $zgrg;
     //辅材费用
     $zdsdcl = zdsdcl($flag, $area);
     $gdsdcl = gdsdcl($flag, $area);
@@ -52,6 +53,7 @@ function costCalculator_suzhou($area, $room_num, $parlor_num, $bathroom_num, $ba
     $cgsys = 0;
     $zxzj = $rgzj + $zdsdcl + $gdsdcl + $wgfc + $mgfc + $yqcl;
     return array(
+        "gzrg" => $gzrg,
         "sdrg" => $sdrg,
         "wgrg" => $wgrg,
         "mgrg" => $mgrg,
