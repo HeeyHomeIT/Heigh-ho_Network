@@ -238,7 +238,7 @@ class CostCalculatorController extends Controller
         $callback = rq('callback');
         //有计算结果id则返还单条数据
         if ($calculator_results_id) {
-            $sel_calculator_results_tbl_once = DB::select('SELECT a.*,b.* FROM hh_calculator_results a LEFT JOIN hh_housetype b ON a.housetype_id = b.id WHERE a.user = ? AND a.calculator_results_id = ?',
+            $sel_calculator_results_tbl_once = DB::select('SELECT a.*,b.* FROM hh_calculator_results a LEFT JOIN hh_housetype b ON a.housetype_id = b.id WHERE a.user_id = ? AND a.calculator_results_id = ?',
                 [$user_id, $calculator_results_id]);
             if ($sel_calculator_results_tbl_once) {
                 $arr = array(
