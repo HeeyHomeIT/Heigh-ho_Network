@@ -210,7 +210,7 @@ class CostCalculatorController extends Controller
         $str2 = substr((string)$mtime[0], 1);
         $str = $str1 . $str2;
         $calculator_results_id = $str;
-        $ins_calculator_result = DB::insert('INSERT INTO hh_calculator_results (calculator_results_id,user_id,city,housetype_id,area,gzrg,sdrg,wgrg,mgrg,yqgrg,zgrg,rgzj,zdsdcl,gdsdcl,wgfc,mgfc,yqcl,czdd,czgd,bc,dls,db,mm,cfym,lyfym,ygym,jcdd,cgsys)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+        $ins_calculator_result = DB::insert('INSERT INTO hh_calculator_results (calculator_results_id,user_id,city,housetype_id,area,gzrg,sdrg,wgrg,mgrg,yqgrg,zgrg,rgzj,zdsdcl,gdsdcl,wgfc,mgfc,yqcl,czzd,czgd,bc,dls,db,mm,cfym,lyfym,ygym,jcdd,cgsys)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
             [$calculator_results_id, $user_id, $city, $housetype_id, $area, $gzrg, $sdrg, $wgrg, $mgrg, $yqgrg, $zgrg, $rgzj, $zdsdcl, $gdsdcl, $wgfc, $mgfc, $yqcl, $czdd, $czgd, $bc, $dls, $db, $mm, $cfym, $lyfym, $ygym, $jcdd, $cgsys]);
         if ($ins_calculator_result) {
             $arr = array(
