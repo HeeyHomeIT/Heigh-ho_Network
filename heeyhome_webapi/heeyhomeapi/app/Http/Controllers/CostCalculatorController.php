@@ -203,7 +203,7 @@ class CostCalculatorController extends Controller
         $ygym = $calculator_result_arr['ygym'];
         $jcdd = $calculator_result_arr['jcdd'];
         $cgsys = $calculator_result_arr['cgsys'];
-        $zj = $calculator_result_arr['zj'];
+        $zxzj = $calculator_result_arr['zxzj'];
         //生成计算器结果id
         $mtime = explode(' ', microtime());
         $mtime[0] = ($mtime[0] + 1) * 1000000;
@@ -211,8 +211,8 @@ class CostCalculatorController extends Controller
         $str2 = substr((string)$mtime[0], 1);
         $str = $str1 . $str2;
         $calculator_results_id = $str;
-        $ins_calculator_result = DB::insert('INSERT INTO hh_calculator_results (calculator_results_id,user_id,city,housetype_id,area,gzrg,sdrg,wgrg,mgrg,yqgrg,zgrg,rgzj,zdsdcl,gdsdcl,wgfc,mgfc,yqcl,czzd,czgd,bc,dls,db,mm,cfym,lyfym,ygym,jcdd,cgsys,zj)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-            [$calculator_results_id, $user_id, $city, $housetype_id, $area, $gzrg, $sdrg, $wgrg, $mgrg, $yqgrg, $zgrg, $rgzj, $zdsdcl, $gdsdcl, $wgfc, $mgfc, $yqcl, $czdd, $czgd, $bc, $dls, $db, $mm, $cfym, $lyfym, $ygym, $jcdd, $cgsys, $zj]);
+        $ins_calculator_result = DB::insert('INSERT INTO hh_calculator_results (calculator_results_id,user_id,city,housetype_id,area,gzrg,sdrg,wgrg,mgrg,yqgrg,zgrg,rgzj,zdsdcl,gdsdcl,wgfc,mgfc,yqcl,czzd,czgd,bc,dls,db,mm,cfym,lyfym,ygym,jcdd,cgsys,zxzj)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            [$calculator_results_id, $user_id, $city, $housetype_id, $area, $gzrg, $sdrg, $wgrg, $mgrg, $yqgrg, $zgrg, $rgzj, $zdsdcl, $gdsdcl, $wgfc, $mgfc, $yqcl, $czdd, $czgd, $bc, $dls, $db, $mm, $cfym, $lyfym, $ygym, $jcdd, $cgsys, $zxzj]);
         if ($ins_calculator_result) {
             $arr = array(
                 "code" => "000",

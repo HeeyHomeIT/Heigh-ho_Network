@@ -54,7 +54,7 @@ calculator_result_json      calculator_result_json     计算器数据（json封
             ygym            ygym,           //衣柜移门
             jcdd            jcdd,           //集成吊顶
             cgsys           cgsys,          //橱柜石英石
-            zj              zj              //装修总价
+            zxzj            zxzj              //装修总价
   },
 callback                    callback
 ```
