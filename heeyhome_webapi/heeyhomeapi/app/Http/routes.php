@@ -163,6 +163,10 @@ Route::group(['middleware' => ['web']], function () {
     //成本计算器
     //成本计算
     Route::any('costcalculator/count', 'CostCalculatorController@costCalculator');
+    //收藏成本计算结果
+    Route::any('costcalculator/result/collect', 'CostCalculatorController@collectCalculatorResult');
+    //获取已收藏的成本计算结果
+    Route::any('costcalculator/result/get', 'CostCalculatorController@getCalculatorResult');
 
     /*订单*/
     /*订单生成api*/

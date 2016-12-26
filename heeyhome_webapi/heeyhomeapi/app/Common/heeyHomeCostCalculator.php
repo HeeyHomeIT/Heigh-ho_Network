@@ -33,11 +33,11 @@ function costCalculator_suzhou($area, $room_num, $parlor_num, $bathroom_num, $ba
     $zgrg = zgrg($flag, $area, $room_num, $balcony_num);
     $rgzj = $sdrg + $wgrg + $mgrg + $yqgrg + $zgrg;
     //辅材费用
-    $zdsdcl = zdsdcl();
-    $gdsdcl = gdsdcl();
-    $wgfc = wgfc();
-    $mgfc = mgfc();
-    $yqcl = yqcl();
+    $zdsdcl = zdsdcl($flag, $area);
+    $gdsdcl = gdsdcl($flag, $area);
+    $wgfc = wgfc($flag, $area, $room_num, $bathroom_num, $balcony_num);
+    $mgfc = mgfc($flag, $area, $room_num, $balcony_num);
+    $yqcl = yqcl($flag, $area, $room_num, $balcony_num);
     $czdd = 0;
     $czgd = 0;
     $bc = 0;
@@ -55,8 +55,8 @@ function costCalculator_suzhou($area, $room_num, $parlor_num, $bathroom_num, $ba
         "mgrg" => $mgrg,
         "yqgrg" => $yqgrg,
         "zgrg" => $zgrg,
-        "rgzj " => $rgzj,
-        "zdsdcl " => $zdsdcl,
+        "rgzj" => $rgzj,
+        "zdsdcl" => $zdsdcl,
         "gdsdcl" => $gdsdcl,
         "wgfc" => $wgfc,
         "mgfc" => $mgfc,

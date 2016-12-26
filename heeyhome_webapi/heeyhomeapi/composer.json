@@ -31,7 +31,10 @@
             "app/Common/heeyHomeOperation.php",
             "app/Common/heeyHomeIsloged.php",
             "app/Common/heeyHomeSmsverify.php",
-            "app/Common/heeyHomeIsmatched.php"
+            "app/Common/heeyHomeIsmatched.php",
+            "app/Common/heeyHomeCostCalculator.php",
+            "app/Common/heeyHomeCostCalculatorResult.php",
+            "app/Common/heeyHomeOrderList.php"
         ],
         "psr-4": {
             "App\\": "app/"
