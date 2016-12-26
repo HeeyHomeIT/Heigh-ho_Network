@@ -54,8 +54,6 @@
 				$.each(payObj,function(i,v){
 					$("."+i).prepend(parseFloat(v).toFixed(2))
 				});
-				var sum = parseFloat(payObj.rgzj)+parseFloat(payObj.zdsdcl)+parseFloat(payObj.wgfc)+parseFloat(payObj.mgfc)+parseFloat(payObj.yqcl);
-				$(".total em").prepend(sum.toFixed(2));
 			}
 		},
 		/**
@@ -71,7 +69,6 @@
 	            collectionObj.parlor_num = kt;
 	            collectionObj.bathroom_num = wsj;
 	            collectionObj.balcony_num = yt;
-	            collectionObj.rgzj = parseFloat(payObj.rgzj)+parseFloat(payObj.zdsdcl)+parseFloat(payObj.wgfc)+parseFloat(payObj.mgfc)+parseFloat(payObj.yqcl);
 				console.log(collectionObj);
 				$.ajax({
 					url: COLLECTIONURL,
