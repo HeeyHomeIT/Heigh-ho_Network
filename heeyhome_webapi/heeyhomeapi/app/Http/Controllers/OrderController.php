@@ -50,7 +50,7 @@ class OrderController extends Controller
             $worker_flag = true;
         }
         /* 判断订单是否重复*/
-        $order_tbl_isrepeat = DB::select('SELECT order_id FROM hh_order WHERE user_id =  ? AND shop_id = ? AND order_address = ? AND calculator_result_id = ? AND order_status != ? ',
+        $order_tbl_isrepeat = DB::select('SELECT order_id,order_time FROM hh_order WHERE user_id =  ? AND shop_id = ? AND order_address = ? AND calculator_result_id = ? AND order_status != ? ',
             [$user_id, $shop_id, $order_address, $calculator_result_id, 7]);
         if ($order_tbl_isrepeat) {
             $order_id = $order_tbl_isrepeat[0]->order_id;
@@ -58,7 +58,7 @@ class OrderController extends Controller
                 "code" => "202",
                 "msg" => "订单已重复存在",
                 "data" => array(
-                    "order_id" => $order_id
+                    "order_id" => $order_id,
                 )
             );
             return $callback . "(" . HHJson($arr) . ")";
@@ -108,7 +108,7 @@ class OrderController extends Controller
                 $order_personnel_tbl = DB::insert('INSERT INTO hh_order_personnel(personnel_id, order_id, person1, person2, person3, person4, person5, person6, person7, person8, person9) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
                     [$order_personnel, $order_id, $pa[0], $pa[1], $pa[2], $pa[3], $pa[4], $pa[5], $pa[6], $pa[7], $pa[8], $pa[9]]);
             }
-            $order_tbl_isrepeat = DB::select('SELECT order_id FROM hh_order WHERE user_id =  ? AND shop_id = ? AND order_address = ? AND calculator_result_id = ? AND order_status != ? ',
+            $order_tbl_isrepeat = DB::select('SELECT order_id,order_time FROM hh_order WHERE user_id =  ? AND shop_id = ? AND order_address = ? AND calculator_result_id = ? AND order_status != ? ',
                 [$user_id, $shop_id, $order_address, $calculator_result_id, 7]);
             $order_time = $order_tbl_isrepeat[0]->order_time;
             $arr = array(
@@ -188,14 +188,17 @@ class OrderController extends Controller
     {
         $user_id = rq('user_id');
         $page = ceil(rq('page'));
+        $limit = ceil(rq('limit'));
         if (!$page) {
             $page = 1;
         }
+        if (!$limit) {
+            $limit = 20;
+        }
         $callback = rq('callback');
-        $page_min = ($page - 1) * 20;
-        $page_max = $page * 20;
+        $page_start = ($page - 1) * $limit;
         $order_tbl_list = DB::select('SELECT * FROM hh_order WHERE user_id = ? LIMIT ?,?',
-            [$user_id, $page_min, $page_max]);
+            [$user_id, $page_start, $limit]);
         if ($order_tbl_list) {
             $arr = array("code" => "000",
                 "data" => array("order_tbl_list" => $order_tbl_list
@@ -229,8 +232,7 @@ class OrderController extends Controller
             $limit = 20;
         }
         $callback = rq('callback');
-        $page_min = ($page - 1) * $limit;
-        $page_max = $page * $limit;
+        $page_start = ($page - 1) * $limit;
         //根据工长ID获取店铺ID
         if ($user_id && $shop_id == null) {
             $shop_tbl_shop_id = DB::select('SELECT shop_id FROM hh_shop WHERE shopper_id = ?',
@@ -247,10 +249,14 @@ class OrderController extends Controller
             }
         }
         $order_tbl_list = DB::select('SELECT * FROM hh_order_view WHERE shop_id = ? ORDER BY order_time LIMIT ?,?',
-            [$shop_id, $page_min, $page_max]);
+            [$shop_id, $page_start, $limit]);
+        $order_tbl_count = DB::select('SELECT COUNT(id) AS order_count FROM hh_order_view WHERE shop_id = ?',
+            [$shop_id]);
+        $order_count = $order_tbl_count[0]->order_count;
         if ($order_tbl_list) {
             $arr = array("code" => "000",
-                "data" => array("order_list" => $order_tbl_list
+                "data" => array("order_list" => $order_tbl_list,
+                    "order_count" => $order_count
                 ),
                 "msg" => "查询成功"
             );
@@ -258,6 +264,31 @@ class OrderController extends Controller
         } else {
             $arr = array(
                 "code" => "205",
+                "msg" => "没有订单",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+
+    //订单状态步骤查询
+    public function orderStatusSel()
+    {
+        $user_id = rq('user_id');
+        $order_id = rq('order_id');
+        $callback = rq('callback');
+        $sql_order_status = DB::select('SELECT a.order_status AS order_status_id,a.order_step AS order_step_id,b.order_status AS order_status,c.order_step AS order_step FROM hh_order a LEFT JOIN hh_order_status b ON (a.order_status = b.order_status_id) LEFT JOIN hh_order_step c ON (a.order_step = c.step_id) WHERE user_id = ?, order_id = ? ',
+            [$user_id, $order_id]);
+        if ($sql_order_status) {
+            $arr = array(
+                "code" => "000",
+                "msg" => "查询成功",
+                "data" => $sql_order_status[0]
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "200",
                 "msg" => "没有订单",
                 "data" => ""
             );

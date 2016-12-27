@@ -171,6 +171,8 @@ Route::group(['middleware' => ['web']], function () {
     /*订单*/
     /*订单生成api*/
     Route::any('order/client/produce', 'OrderController@orderProduce');
+    //查询订单状态及步骤
+    Route::any('order/client/selstatus', 'OrderController@orderStatusSel');
     //用户订单列表
     Route::any('order/client/list', 'OrderController@orderListUser');
     //店铺订单列表
@@ -193,6 +195,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/dispute/changetype', 'OrderOperateController@changeOrderCanddFinish');
     //添加材料订单
     Route::get('order/material/produce', 'OrderMaterialController@generateOrderMaterial');
+
 
 });
 

@@ -28,8 +28,8 @@ user_id                 user_id                 用户id
 shop_id                 shop_id                 店铺id
 address_id              address_id              地址id
 calculator_result_id    calculator_result_id    计算器结果id
-time                    time                    预约时间（json字符串）（必选，至多2个字段）
-worker                  worker                  预约工人的id（json字符串）（可选，最多9个字段）
+time                    time                    预约时间（json字符串）
+worker                  worker                  预约工人的id（json字符串）
 callback                callback
 ```
 
@@ -65,5 +65,69 @@ msg           订单生成失败
 ```
 201     订单生成失败
 202     订单已重复存在
+
+```
+
+# orderStatusSel()
+## 查询订单状态及步骤接口
+
+### 接口地址
+
+```
+.../order/client/selstatus
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../order/client/produce
+```
+
+###### Json数据格式
+```
+data
+
+user_id                 user_id                 用户id
+order_id                order_id                店铺id
+callback                callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                    order_status_id     //订单状态id
+                    order_step_id       //订单步骤id
+                    order_status        //订单状态
+                    order_step          //订单步骤
+             }
+msg          查询成功
+)
+```
+
+```
+失败
+callback(
+code          200
+data          ""
+msg           没有订单
+)
+```
+
+###### Code值含义
+
+```
+000     查询成功
+200     没有订单
 
 ```

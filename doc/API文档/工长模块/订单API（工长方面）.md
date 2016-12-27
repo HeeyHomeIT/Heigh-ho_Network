@@ -35,7 +35,8 @@ limit                   limit                   每页显示条数（不填写�
 成功
 callback(
 code         000
-data         {
+data         {      
+                    order_count                 订单总数
                     order_list                  订单列表
                     {
                         id                      自增id
