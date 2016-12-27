@@ -16,18 +16,15 @@
 
 ```
 接收方式        GET     POST
-```
-
-```
-.../public/personal/securitylist
-```
+``` 
 
 ###### Json数据格式
 ```
 data
 shop_id                 shop_id                 商铺id             
 user_id                 user_id                 工长id
-page                    page                    订单页码
+page                    page                    订单页码(不填写默认为第一页)
+limit                   limit                   每页显示条数（不填写默认为20条）
 > 商铺id与工长id必填一个
 ```
 
@@ -56,15 +53,16 @@ data         {
                         reckon_list             预算表id
                         actual_list             结算表id
                         order_time              订单创建时间
+                        user_realname           用户真实姓名
+                        user_phone              用户手机号
+                        actual_finish_amount    用户已付金额
+                        calculator_results_id   计算器结果id
+                        area                    面积
+                        room                    室
+                        parlour                 厅
+                        toilet                  卫生间
+                        balcony                 阳台
                     }
-                    order_list_verify           待确认订单列表  
-                    order_list_reservation      待预约订单列表
-                    order_list_amount           待上门量房订单列表
-                    order_list_prepayments      待用户预支付订单列表
-                    order_list_processing       进行中订单列表
-                    order_list_complete         已完成订单列表
-                    order_list_cancel           已取消订单列表
-                    order_list_cancel_foreman   工长店铺取消订单列表
              }
 msg          查询成功
 )
