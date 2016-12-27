@@ -105,9 +105,12 @@ class OrderController extends Controller
                     $pa[$i] = '';
                     $i++;
                 }
-                $order_personnel_tbl = DB::insert('INSERT INTO hh_order_personnel(personnel_id, order_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
+                $order_personnel_tbl = DB::insert('INSERT INTO hh_order_personnel(personnel_id, order_id, person1, person2, person3, person4, person5, person6, person7, person8, person9) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
                     [$order_personnel, $order_id, $pa[0], $pa[1], $pa[2], $pa[3], $pa[4], $pa[5], $pa[6], $pa[7], $pa[8], $pa[9]]);
             }
+            $order_tbl_isrepeat = DB::select('SELECT order_id FROM hh_order WHERE user_id =  ? AND shop_id = ? AND order_address = ? AND calculator_result_id = ? AND order_status != ? ',
+                [$user_id, $shop_id, $order_address, $calculator_result_id, 7]);
+            $order_time = $order_tbl_isrepeat[0]->order_time;
             $arr = array(
                 "code" => "000",
                 "msg" => "订单生成成功",
@@ -115,6 +118,7 @@ class OrderController extends Controller
                     "order_id" => $order_id,
                     "user_id" => $user_id,
                     "shop_id" => $shop_id,
+                    "order_time" => $order_time,
                     "order_status" => $order_status_cont,
                     "order_step" => $order_step_cont
                 )
@@ -217,12 +221,16 @@ class OrderController extends Controller
         //工长ID
         $user_id = rq('user_id');
         $page = ceil(rq('page'));
+        $limit = ceil(rq('limit'));
         if (!$page) {
             $page = 1;
         }
+        if (!$limit) {
+            $limit = 20;
+        }
         $callback = rq('callback');
-        $page_min = ($page - 1) * 20;
-        $page_max = $page * 20;
+        $page_min = ($page - 1) * $limit;
+        $page_max = $page * $limit;
         //根据工长ID获取店铺ID
         if ($user_id && $shop_id == null) {
             $shop_tbl_shop_id = DB::select('SELECT shop_id FROM hh_shop WHERE shopper_id = ?',
@@ -238,10 +246,7 @@ class OrderController extends Controller
                 return $callback . "(" . HHJson($arr) . ")";
             }
         }
-        $order_tbl_list = DB::select('SELECT a.*,b.userinfo_realname,d.user_phone FROM hh_order a 
-inner join hh_userinfo b ON a.user_id = b.userinfo_userid 
-LEFT OUTER JOIN hh_user d ON a.user_id = d.user_id 
-WHERE shop_id = ? ORDER BY order_time LIMIT ?,?',
+        $order_tbl_list = DB::select('SELECT * FROM hh_order_view WHERE shop_id = ? ORDER BY order_time LIMIT ?,?',
             [$shop_id, $page_min, $page_max]);
         if ($order_tbl_list) {
             $arr = array("code" => "000",
