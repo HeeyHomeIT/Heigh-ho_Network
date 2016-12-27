@@ -119,7 +119,9 @@ class OrderController extends Controller
                     "user_id" => $user_id,
                     "shop_id" => $shop_id,
                     "order_time" => $order_time,
+                    "order_status_id" => $order_status,
                     "order_status" => $order_status_cont,
+                    "order_step_id" => $order_step,
                     "order_step" => $order_step_cont
                 )
             );
@@ -277,7 +279,7 @@ class OrderController extends Controller
         $user_id = rq('user_id');
         $order_id = rq('order_id');
         $callback = rq('callback');
-        $sql_order_status = DB::select('SELECT a.order_status AS order_status_id,a.order_step AS order_step_id,b.order_status AS order_status,c.order_step AS order_step FROM hh_order a LEFT JOIN hh_order_status b ON (a.order_status = b.order_status_id) LEFT JOIN hh_order_step c ON (a.order_step = c.step_id) WHERE user_id = ?, order_id = ? ',
+        $sql_order_status = DB::select('SELECT a.order_status AS order_status_id,a.order_step AS order_step_id,b.order_status AS order_status,c.order_step AS order_step FROM hh_order a LEFT JOIN hh_order_status b ON (a.order_status = b.order_status_id) LEFT JOIN hh_order_step c ON (a.order_step = c.step_id) WHERE a.user_id = ? AND a.order_id = ? ',
             [$user_id, $order_id]);
         if ($sql_order_status) {
             $arr = array(

@@ -41,11 +41,13 @@ callback                callback
 callback(
 code         000
 data         {
-                    order_id        order_id            //订单ID
-                    user_id         user_id             //用户id
-                    shop_id         shop_id             //店铺id
-                    order_status    order_status        //订单状态
-                    order_step      order_step          //订单步骤
+                    order_id                //订单ID
+                    user_id                 //用户id
+                    shop_id                 //店铺id
+                    order_status_id         //订单状态id
+                    order_status            //订单状态
+                    order_step_id           //订单步骤id
+                    order_step              //订单步骤
              }
 msg          订单生成成功
 )
