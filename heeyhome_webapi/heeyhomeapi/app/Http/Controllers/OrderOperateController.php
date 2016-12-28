@@ -12,48 +12,118 @@ use Illuminate\Support\Facades\DB;
 class OrderOperateController extends Controller
 {
 
-    //TODO 生成预算单与结算单
+    //生成预算单
     public function generateActualListAndReckonList()
     {
         $order_id = rq('order_id');
+        $list_data_json = rq('list_data_json');
+        //存在list数据
+        if ($list_data_json) {
+            $list_data_arr = json_decode($list_data_json, true);
+            $list_data_exist = true;
+        } else {
+            $list_data_exist = false;
+        }
         $callback = rq('callback');
-        //查询订单是否存在，存在则去除装修人员id号
+        //查询订单是否存在，存在则获取装修人员id号
         $sel_order_tbl = DB::select('SELECT order_personnel FROM hh_order WHERE order_id = ?',
             [$order_id]);
         if (!$sel_order_tbl) {
             $arr = array(
-                "code" => "206",
+                "code" => "200",
                 "msg" => "订单号错误",
                 "data" => ""
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
         $order_personnel = $sel_order_tbl[0]->order_personnel;
-        //生成预算单与结算单表
-        //预算
-        $reckon_list_tbl = DB::insert('INSERT INTO hh_order_reckon_list(order_id,order_personnel) VALUES (?,?)',
+        //查询预算单是否存在
+        $sel_order_tbl = DB::select('SELECT * FROM hh_order_reckon_list WHERE order_id = ? AND order_personnel = ?',
             [$order_id, $order_personnel]);
-        if (!$reckon_list_tbl) {
+        if ($sel_order_tbl) {
             $arr = array(
-                "code" => "220",
-                "msg" => "预算单生成失败",
+                "code" => "200",
+                "msg" => "预算单已经存在",
                 "data" => ""
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        //生成预算单与结算单表
+        //预算
+        if ($list_data_exist) {
+            $reckon_list_tbl = DB::insert('INSERT INTO hh_order_reckon_list(order_id,order_personnel,service1,service2,service3,service4,service5,service6,service7,service8,
+service9,service10,service11,service12,service13,service14,service15,service16,service17,service18,service19,service20,service21,service22,service23,service24,service25,service26,
+service27,service28,service29,service30,service31,service32,service33,service34,service35,service36,service37,service38,service39,service40,service41,service42,service43,service44,
+service45,service46,service47,service48,service49,service50,service51,service52,service53,service54,service55,service56,service57,service58,service59,service60,service61,service62,
+service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                [$order_id, $order_personnel, $list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6],
+                    $list_data_arr[7], $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14],
+                    $list_data_arr[15], $list_data_arr[16], $list_data_arr[17], $list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22],
+                    $list_data_arr[23], $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30],
+                    $list_data_arr[31], $list_data_arr[32], $list_data_arr[33], $list_data_arr[34], $list_data_arr[35], $list_data_arr[36], $list_data_arr[37], $list_data_arr[38],
+                    $list_data_arr[39], $list_data_arr[40], $list_data_arr[41], $list_data_arr[42], $list_data_arr[43], $list_data_arr[44], $list_data_arr[45], $list_data_arr[46],
+                    $list_data_arr[47], $list_data_arr[48], $list_data_arr[49], $list_data_arr[50], $list_data_arr[51], $list_data_arr[52], $list_data_arr[53], $list_data_arr[54],
+                    $list_data_arr[55], $list_data_arr[56], $list_data_arr[57], $list_data_arr[58], $list_data_arr[59], $list_data_arr[60], $list_data_arr[61], $list_data_arr[62], 1]);
+            if (!$reckon_list_tbl) {
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "预算单生成失败",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        } else {
+            $reckon_list_tbl = DB::insert('INSERT INTO hh_order_reckon_list(order_id,order_personnel,is_available) VALUES (?,?,?)',
+                [$order_id, $order_personnel, 1]);
+            if (!$reckon_list_tbl) {
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "预算单生成失败",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        }
         //结算
-        $actual_list_tbl = DB::insert('INSERT INTO hh_order_actual_list(order_id,order_personnel) VALUES (?,?)',
-            [$order_id, $order_personnel]);
-        if (!$actual_list_tbl) {
-            //清除预算单
-            $del_reckon_list_tbl = DB::delete('DELETE FROM hh_order_reckon_list WHERE order_id = ?',
-                [$order_id]);
-            $arr = array(
-                "code" => "221",
-                "msg" => "结算单生成失败",
-                "data" => ""
-            );
-            return $callback . "(" . HHJson($arr) . ")";
+        if ($list_data_exist) {
+            $reckon_list_tbl = DB::insert('INSERT INTO hh_order_actual_list(order_id,order_personnel,service1,service2,service3,service4,service5,service6,service7,service8,
+service9,service10,service11,service12,service13,service14,service15,service16,service17,service18,service19,service20,service21,service22,service23,service24,service25,service26,
+service27,service28,service29,service30,service31,service32,service33,service34,service35,service36,service37,service38,service39,service40,service41,service42,service43,service44,
+service45,service46,service47,service48,service49,service50,service51,service52,service53,service54,service55,service56,service57,service58,service59,service60,service61,service62,
+service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                [$order_id, $order_personnel, $list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6],
+                    $list_data_arr[7], $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14],
+                    $list_data_arr[15], $list_data_arr[16], $list_data_arr[17], $list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22],
+                    $list_data_arr[23], $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30],
+                    $list_data_arr[31], $list_data_arr[32], $list_data_arr[33], $list_data_arr[34], $list_data_arr[35], $list_data_arr[36], $list_data_arr[37], $list_data_arr[38],
+                    $list_data_arr[39], $list_data_arr[40], $list_data_arr[41], $list_data_arr[42], $list_data_arr[43], $list_data_arr[44], $list_data_arr[45], $list_data_arr[46],
+                    $list_data_arr[47], $list_data_arr[48], $list_data_arr[49], $list_data_arr[50], $list_data_arr[51], $list_data_arr[52], $list_data_arr[53], $list_data_arr[54],
+                    $list_data_arr[55], $list_data_arr[56], $list_data_arr[57], $list_data_arr[58], $list_data_arr[59], $list_data_arr[60], $list_data_arr[61], $list_data_arr[62], 1]);
+            if (!$reckon_list_tbl) {
+                //清除预算单
+                $del_reckon_list_tbl = DB::delete('DELETE FROM hh_order_reckon_list WHERE order_id = ?',
+                    [$order_id]);
+                $arr = array(
+                    "code" => "000",
+                    "msg" => "结算单生成失败",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        } else {
+            $actual_list_tbl = DB::insert('INSERT INTO hh_order_actual_list(order_id,order_personnel,is_available) VALUES (?,?,?)',
+                [$order_id, $order_personnel, 1]);
+            if (!$actual_list_tbl) {
+                //清除预算单
+                $del_reckon_list_tbl = DB::delete('DELETE FROM hh_order_reckon_list WHERE order_id = ?',
+                    [$order_id]);
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "结算单生成失败",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
         }
         $arr = array(
             "code" => "000",
@@ -67,107 +137,86 @@ class OrderOperateController extends Controller
     public function getActualDataAndReckonData()
     {
         $callback = rq('callback');
-        $arr = array(
-            "code" => "000",
-            "msg" => "返回预算单字段名成功",
-            "data" => array("shuidian_zj" => "水电方面总价（建筑面积）",
-                "wagong_rg" => "瓦工人工（建筑面积）",
-                "wagong_fztz" => "瓦工方形贴砖（铺贴面积）",
-                "wagong_lxtz" => "瓦工菱形贴砖（铺贴面积）",
-                "wagong_zbx" => "瓦工走边线（米数）",
-                "wagong_fs" => "瓦工防水（涂刷面积）",
-                "wagong_zp" => "瓦工找平（找平面积）",
-                "wagong_qdq" => "瓦工砌单墙（砌墙面积）",
-                "wagong_qmfs" => "瓦工墙面粉刷（粉刷面积）",
-                "wagong_flsg" => "瓦工封落水管（根数）",
-                "wagogn_qt" => "瓦工其他",
-                "mugong_rg" => "木工人工（建筑面积）",
-                "mugong_gz_high" => "木工柜子1米以上（投影面积）",
-                "mugong_gz_low" => "木工柜子1米以下（长度）",
-                "mugong_ct" => "木工抽屉（个数）",
-                "mugong_mb" => "木工门板（个数）",
-                "mugong_sgbdd_area" => "木工石膏板吊顶（面积）",
-                "mugong_sgbdd_num" => "木工石膏板吊顶（张数）",
-                "mugong_ftm" => "木工封头门及门套基础（个数）",
-                "mugong_clh" => "木工窗帘盒（米数）",
-                "mugon_qt" => "木工其他",
-                "youqi_rg" => "油漆工人工（建筑面积）",
-                "youqi_pwgb" => "油漆工铺网格布（卷数）",
-                "youqi_stl" => "油漆工刷涂料（施工面积）",
-                "youqi_qt" => "油漆其他",
-                "remark" => "备注"
-            )
-        );
-        return $callback . "(" . HHJson($arr) . ")";
+        $sel_worker_service = DB::select('SELECT * FROM hh_worker_service_view');
+        if ($sel_worker_service) {
+            $arr = array(
+                "code" => "000",
+                "msg" => "获取成功",
+                "data" => $sel_worker_service
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "获取失败",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
     }
 
-    //添加预算单与结算单数据
+    //添加预算单数据
     public function addActualDataAndReckonData()
     {
         $order_id = rq('order_id');
         $callback = rq('callback');
-        $shuidian_zj = rq('shuidian_zj');
-        $wagong_rg = rq('wagong_rg');
-        $wagong_fztz = rq('wagong_fztz');
-        $wagong_lxtz = rq('wagong_lxtz');
-        $wagong_zbx = rq('wagong_zbx');
-        $wagong_fs = rq('wagong_fs');
-        $wagong_zp = rq('wagong_zp');
-        $wagong_qdq = rq('wagong_qdq');
-        $wagong_qmfs = rq('wagong_qmfs');
-        $wagong_flsg = rq('wagong_flsg');
-        $wagogn_qt = rq('wagogn_qt');
-        $mugong_rg = rq('mugong_rg');
-        $mugong_gz_high = rq('mugong_gz_high');
-        $mugong_gz_low = rq('mugong_gz_low');
-        $mugong_ct = rq('mugong_ct');
-        $mugong_mb = rq('mugong_mb');
-        $mugong_sgbdd_area = rq('mugong_sgbdd_area');
-        $mugong_sgbdd_num = rq('mugong_sgbdd_num');
-        $mugong_ftm = rq('mugong_ftm');
-        $mugong_clh = rq('mugong_clh');
-        $mugon_qt = rq('mugon_qt');
-        $youqi_rg = rq('youqi_rg');
-        $youqi_pwgb = rq('youqi_pwgb');
-        $youqi_stl = rq('youqi_stl');
-        $youqi_qt = rq('youqi_qt');
+        $list_data_json = rq('list_data_json');
+        $list_data_arr = json_decode($list_data_json, true);
         $remark = rq('remark');
         //查看订单是否存在
         $sel_order_tbl = DB::select('SELECT * FROM hh_order_reckon_list WHERE order_id = ?',
             [$order_id]);
         if (!$sel_order_tbl) {
             $arr = array(
-                "code" => "206",
+                "code" => "200",
                 "msg" => "订单号错误",
                 "data" => ""
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
         //判断字段是否为空
-        if ($shuidian_zj && $wagong_rg && $wagong_fztz && $wagong_lxtz && $wagong_zbx && $wagong_fs && $wagong_zp && $wagong_qdq && $wagong_qmfs && $wagong_flsg && $wagogn_qt && $mugong_rg && $mugong_gz_high && $mugong_gz_low && $mugong_ct && $mugong_mb && $mugong_sgbdd_area && $mugong_sgbdd_num && $mugong_ftm && $mugong_clh && $mugon_qt && $youqi_rg && $youqi_pwgb && $youqi_stl && $youqi_qt && $remark) {
+        if (count($list_data_arr) < 63) {
             $arr = array(
-                "code" => "223",
-                "msg" => "数据不能为空",
+                "code" => "200",
+                "msg" => "缺少数据",
                 "data" => ""
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        //获取当前时间转化为mysql时间戳格式
+        $timenow = strtotime(date('Y-m-d H:i:s', time()));
         //预算
-        $reckon_list_tbl = DB::insert('UPDATE hh_order_reckon_list SET shuidian_zj= ? , 
-        wagong_rg= ? , wagong_fztz= ? , wagong_lxtz= ? , wagong_zbx= ? , wagong_fs= ? , wagong_zp= ? , wagong_qdq= ? , wagong_qmfs= ? , wagong_flsg= ? , wagogn_qt= ? , 
-        mugong_rg= ? , mugong_gz_high= ? , mugong_gz_low= ? , mugong_ct= ? , mugong_mb= ? , mugong_sgbdd_area= ? , mugong_sgbdd_num= ? , mugong_ftm= ? , mugong_clh= ? , mugon_qt= ? , 
-        youqi_rg= ? , youqi_pwgb= ? , youqi_stl= ? , youqi_qt= ? , remark = ? WHERE order_id = ?',
-            [$shuidian_zj, $wagong_rg, $wagong_fztz, $wagong_lxtz, $wagong_zbx, $wagong_fs, $wagong_zp, $wagong_qdq, $wagong_qmfs, $wagong_flsg, $wagogn_qt,
-                $mugong_rg, $mugong_gz_high, $mugong_gz_low, $mugong_ct, $mugong_mb, $mugong_sgbdd_area, $mugong_sgbdd_num, $mugong_ftm, $mugong_clh, $mugon_qt,
-                $youqi_rg, $youqi_pwgb, $youqi_stl, $youqi_qt, $remark, $order_id]);
+        $reckon_list_tbl = DB::insert('UPDATE hh_order_reckon_list SET service1 = ? ,service2 = ? ,service3 = ? ,service4 = ? ,
+service5 = ? ,service6 = ? ,service7 = ? ,service8 = ? ,service9 = ? ,service10 = ? ,service11 = ? ,service12 = ? ,service13 = ? ,service14 = ? ,service15 = ? ,
+service16 = ? ,service17 = ? ,service18 = ? ,service19 = ? ,service20 = ? ,service21 = ? ,service22 = ? ,service23 = ? ,service24 = ? ,service25 = ? ,service26 = ? ,
+service27 = ? ,service28 = ? ,service29 = ? ,service30 = ? ,service31 = ? ,service32 = ? ,service33 = ? ,service34 = ? ,service35 = ? ,service36 = ? ,service37 = ? ,
+service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,service42 = ? ,service43 = ? ,service44 = ? ,service45 = ? ,service46 = ? ,service47 = ? ,service48 = ? ,
+service49 = ? ,service50 = ? ,service51 = ? ,service52 = ? ,service53 = ? ,service54 = ? ,service55 = ? ,service56 = ? ,service57 = ? ,service58 = ? ,service59 = ? ,
+service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,remark = ? WHERE order_id = ?)',
+            [$list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6], $list_data_arr[7],
+                $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14], $list_data_arr[15],
+                $list_data_arr[16], $list_data_arr[17], $list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22], $list_data_arr[23],
+                $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30], $list_data_arr[31],
+                $list_data_arr[32], $list_data_arr[33], $list_data_arr[34], $list_data_arr[35], $list_data_arr[36], $list_data_arr[37], $list_data_arr[38], $list_data_arr[39],
+                $list_data_arr[40], $list_data_arr[41], $list_data_arr[42], $list_data_arr[43], $list_data_arr[44], $list_data_arr[45], $list_data_arr[46], $list_data_arr[47],
+                $list_data_arr[48], $list_data_arr[49], $list_data_arr[50], $list_data_arr[51], $list_data_arr[52], $list_data_arr[53], $list_data_arr[54], $list_data_arr[55],
+                $list_data_arr[56], $list_data_arr[57], $list_data_arr[58], $list_data_arr[59], $list_data_arr[60], $list_data_arr[61], $list_data_arr[62], 0, $remark, $order_id]);
         //结算
-        $actual_list_tbl = DB::insert('UPDATE hh_order_actual_list SET shuidian_zj= ? , 
-        wagong_rg= ? , wagong_fztz= ? , wagong_lxtz= ? , wagong_zbx= ? , wagong_fs= ? , wagong_zp= ? , wagong_qdq= ? , wagong_qmfs= ? , wagong_flsg= ? , wagogn_qt= ? , 
-        mugong_rg= ? , mugong_gz_high= ? , mugong_gz_low= ? , mugong_ct= ? , mugong_mb= ? , mugong_sgbdd_area= ? , mugong_sgbdd_num= ? , mugong_ftm= ? , mugong_clh= ? , mugon_qt= ? , 
-        youqi_rg= ? , youqi_pwgb= ? , youqi_stl= ? , youqi_qt= ? , remark = ? WHERE order_id = ?',
-            [$shuidian_zj, $wagong_rg, $wagong_fztz, $wagong_lxtz, $wagong_zbx, $wagong_fs, $wagong_zp, $wagong_qdq, $wagong_qmfs, $wagong_flsg, $wagogn_qt,
-                $mugong_rg, $mugong_gz_high, $mugong_gz_low, $mugong_ct, $mugong_mb, $mugong_sgbdd_area, $mugong_sgbdd_num, $mugong_ftm, $mugong_clh, $mugon_qt,
-                $youqi_rg, $youqi_pwgb, $youqi_stl, $youqi_qt, $remark, $order_id]);
+        $actual_list_tbl = DB::insert('UPDATE hh_order_actual_list SET service1 = ? ,service2 = ? ,service3 = ? ,service4 = ? ,
+service5 = ? ,service6 = ? ,service7 = ? ,service8 = ? ,service9 = ? ,service10 = ? ,service11 = ? ,service12 = ? ,service13 = ? ,service14 = ? ,service15 = ? ,
+service16 = ? ,service17 = ? ,service18 = ? ,service19 = ? ,service20 = ? ,service21 = ? ,service22 = ? ,service23 = ? ,service24 = ? ,service25 = ? ,service26 = ? ,
+service27 = ? ,service28 = ? ,service29 = ? ,service30 = ? ,service31 = ? ,service32 = ? ,service33 = ? ,service34 = ? ,service35 = ? ,service36 = ? ,service37 = ? ,
+service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,service42 = ? ,service43 = ? ,service44 = ? ,service45 = ? ,service46 = ? ,service47 = ? ,service48 = ? ,
+service49 = ? ,service50 = ? ,service51 = ? ,service52 = ? ,service53 = ? ,service54 = ? ,service55 = ? ,service56 = ? ,service57 = ? ,service58 = ? ,service59 = ? ,
+service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,remark = ? ,update_time = ? WHERE order_id = ?)',
+            [$list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6], $list_data_arr[7],
+                $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14], $list_data_arr[15],
+                $list_data_arr[16], $list_data_arr[17], $list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22], $list_data_arr[23],
+                $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30], $list_data_arr[31],
+                $list_data_arr[32], $list_data_arr[33], $list_data_arr[34], $list_data_arr[35], $list_data_arr[36], $list_data_arr[37], $list_data_arr[38], $list_data_arr[39],
+                $list_data_arr[40], $list_data_arr[41], $list_data_arr[42], $list_data_arr[43], $list_data_arr[44], $list_data_arr[45], $list_data_arr[46], $list_data_arr[47],
+                $list_data_arr[48], $list_data_arr[49], $list_data_arr[50], $list_data_arr[51], $list_data_arr[52], $list_data_arr[53], $list_data_arr[54], $list_data_arr[55],
+                $list_data_arr[56], $list_data_arr[57], $list_data_arr[58], $list_data_arr[59], $list_data_arr[60], $list_data_arr[61], $list_data_arr[62], 1, $remark, $timenow, $order_id]);
         if ($reckon_list_tbl && $actual_list_tbl) {
             $arr = array(
                 "code" => "000",
@@ -177,7 +226,7 @@ class OrderOperateController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         } else {
             $arr = array(
-                "code" => "222",
+                "code" => "200",
                 "msg" => "插入失败",
                 "data" => ""
             );
@@ -190,60 +239,95 @@ class OrderOperateController extends Controller
     {
         $order_id = rq('order_id');
         $callback = rq('callback');
-        $shuidian_zj = rq('shuidian_zj');
-        $wagong_rg = rq('wagong_rg');
-        $wagong_fztz = rq('wagong_fztz');
-        $wagong_lxtz = rq('wagong_lxtz');
-        $wagong_zbx = rq('wagong_zbx');
-        $wagong_fs = rq('wagong_fs');
-        $wagong_zp = rq('wagong_zp');
-        $wagong_qdq = rq('wagong_qdq');
-        $wagong_qmfs = rq('wagong_qmfs');
-        $wagong_flsg = rq('wagong_flsg');
-        $wagogn_qt = rq('wagogn_qt');
-        $mugong_rg = rq('mugong_rg');
-        $mugong_gz_high = rq('mugong_gz_high');
-        $mugong_gz_low = rq('mugong_gz_low');
-        $mugong_ct = rq('mugong_ct');
-        $mugong_mb = rq('mugong_mb');
-        $mugong_sgbdd_area = rq('mugong_sgbdd_area');
-        $mugong_sgbdd_num = rq('mugong_sgbdd_num');
-        $mugong_ftm = rq('mugong_ftm');
-        $mugong_clh = rq('mugong_clh');
-        $mugon_qt = rq('mugon_qt');
-        $youqi_rg = rq('youqi_rg');
-        $youqi_pwgb = rq('youqi_pwgb');
-        $youqi_stl = rq('youqi_stl');
-        $youqi_qt = rq('youqi_qt');
+        $list_data_json = rq('list_data_json');
+        $list_data_arr = json_decode($list_data_json, true);
         $remark = rq('remark');
-        //判断字段是否为空
-        if ($shuidian_zj && $wagong_rg && $wagong_fztz && $wagong_lxtz && $wagong_zbx && $wagong_fs && $wagong_zp && $wagong_qdq && $wagong_qmfs && $wagong_flsg && $wagogn_qt && $mugong_rg && $mugong_gz_high && $mugong_gz_low && $mugong_ct && $mugong_mb && $mugong_sgbdd_area && $mugong_sgbdd_num && $mugong_ftm && $mugong_clh && $mugon_qt && $youqi_rg && $youqi_pwgb && $youqi_stl && $youqi_qt && $remark) {
-            $arr = array(
-                "code" => "223",
-                "msg" => "数据不能为空",
-                "data" => ""
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
         //查看订单是否存在
-        $sel_order_tbl = DB::select('SELECT * FROM hh_order_actual_list WHERE order_id = ?',
+        $sel_order_tbl = DB::select('SELECT * FROM hh_order_reckon_list WHERE order_id = ?',
             [$order_id]);
         if (!$sel_order_tbl) {
             $arr = array(
-                "code" => "206",
+                "code" => "200",
                 "msg" => "订单号错误",
                 "data" => ""
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        //判断字段是否为空
+        if (count($list_data_arr) < 63) {
+            $arr = array(
+                "code" => "200",
+                "msg" => "缺少数据",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        //获取当前时间转化为mysql时间戳格式
+        $timenow = strtotime(date('Y-m-d H:i:s', time()));
+        //判断订单步骤 控制结算单更改字段
+        //获取订单步骤
+        $sel_order_step = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?',
+            [$order_id]);
+        if ($sel_order_step) {
+            $order_step = $sel_order_step[0]->order_step;
+            switch ($order_step) {
+                case 5:
+                    //杂工及水电工结算单数据修改
+                    $actual_list_tbl = DB::insert('UPDATE hh_order_actual_list SET service1 = ? ,service2 = ? ,service3 = ? ,service4 = ? ,
+service5 = ? ,service6 = ? ,service7 = ? ,service8 = ? ,service9 = ? ,service10 = ? ,service11 = ? ,service12 = ? ,service13 = ? ,service14 = ? ,service15 = ? ,
+service16 = ? ,service17 = ? ,service18 = ? ,remark = ? ,update_time = ? WHERE order_id = ?)',
+                        [$list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6], $list_data_arr[7],
+                            $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14], $list_data_arr[15],
+                            $list_data_arr[16], $list_data_arr[17], $remark, $timenow, $order_id]);
+                    break;
+                case 9:
+                    //瓦工结算单数据修改
+                    $actual_list_tbl = DB::insert('UPDATE hh_order_actual_list SET service19 = ? ,service20 = ? ,service21 = ? ,service22 = ? ,service23 = ? ,service24 = ? ,service25 = ? ,service26 = ? ,
+service27 = ? ,service28 = ? ,service29 = ? ,service30 = ? ,service31 = ? ,service32 = ? ,service33 = ? ,service34 = ? ,service35 = ? ,service36 = ? ,service37 = ? ,
+service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,remark = ? ,update_time = ? WHERE order_id = ?)',
+                        [$list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22], $list_data_arr[23],
+                            $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30], $list_data_arr[31],
+                            $list_data_arr[32], $list_data_arr[33], $list_data_arr[34], $list_data_arr[35], $list_data_arr[36], $list_data_arr[37], $list_data_arr[38], $list_data_arr[39],
+                            $list_data_arr[40], $remark, $timenow, $order_id]);
+                    break;
+                case 13:
+                    //木工结算单数据修改
+                    $actual_list_tbl = DB::insert('UPDATE hh_order_actual_list SET service42 = ? ,service43 = ? ,service44 = ? ,service45 = ? ,service46 = ? ,service47 = ? ,service48 = ? ,
+service49 = ? ,service50 = ? ,service51 = ? ,service52 = ? ,service53 = ? ,remark = ? ,update_time = ? WHERE order_id = ?)',
+                        [$list_data_arr[41], $list_data_arr[42], $list_data_arr[43], $list_data_arr[44], $list_data_arr[45], $list_data_arr[46], $list_data_arr[47],
+                            $list_data_arr[48], $list_data_arr[49], $list_data_arr[50], $list_data_arr[51], $list_data_arr[52], $remark, $timenow, $order_id]);
+                    break;
+                case 17:
+                    $actual_list_tbl = DB::insert('UPDATE hh_order_actual_list SET service54 = ? ,service55 = ? ,service56 = ? ,service57 = ? ,service58 = ? ,service59 = ? ,
+service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_time = ? WHERE order_id = ?)',
+                        [$list_data_arr[53], $list_data_arr[54], $list_data_arr[55],
+                            $list_data_arr[56], $list_data_arr[57], $list_data_arr[58], $list_data_arr[59], $list_data_arr[60], $list_data_arr[61], $list_data_arr[62], $remark, $timenow, $order_id]);
+                    break;
+                default:
+                    $arr = array(
+                        "code" => "200",
+                        "msg" => "订单当前状态无法修改结算单",
+                        "data" => ""
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+            }
+        }
         //结算
-        $actual_list_tbl = DB::insert('UPDATE hh_order_actual_list SET shuidian_zj= ? , 
-        wagong_rg= ? , wagong_fztz= ? , wagong_lxtz= ? , wagong_zbx= ? , wagong_fs= ? , wagong_zp= ? , wagong_qdq= ? , wagong_qmfs= ? , wagong_flsg= ? , wagogn_qt= ? , 
-        mugong_rg= ? , mugong_gz_high= ? , mugong_gz_low= ? , mugong_ct= ? , mugong_mb= ? , mugong_sgbdd_area= ? , mugong_sgbdd_num= ? , mugong_ftm= ? , mugong_clh= ? , mugon_qt= ? , 
-        youqi_rg= ? , youqi_pwgb= ? , youqi_stl= ? , youqi_qt= ? , remark = ? WHERE order_id = ?',
-            [$shuidian_zj, $wagong_rg, $wagong_fztz, $wagong_lxtz, $wagong_zbx, $wagong_fs, $wagong_zp, $wagong_qdq, $wagong_qmfs, $wagong_flsg, $wagogn_qt,
-                $mugong_rg, $mugong_gz_high, $mugong_gz_low, $mugong_ct, $mugong_mb, $mugong_sgbdd_area, $mugong_sgbdd_num, $mugong_ftm, $mugong_clh, $mugon_qt,
-                $youqi_rg, $youqi_pwgb, $youqi_stl, $youqi_qt, $remark, $order_id]);
+//        $actual_list_tbl = DB::insert('UPDATE hh_order_actual_list SET service1 = ? ,service2 = ? ,service3 = ? ,service4 = ? ,
+//service5 = ? ,service6 = ? ,service7 = ? ,service8 = ? ,service9 = ? ,service10 = ? ,service11 = ? ,service12 = ? ,service13 = ? ,service14 = ? ,service15 = ? ,
+//service16 = ? ,service17 = ? ,service18 = ? ,service19 = ? ,service20 = ? ,service21 = ? ,service22 = ? ,service23 = ? ,service24 = ? ,service25 = ? ,service26 = ? ,
+//service27 = ? ,service28 = ? ,service29 = ? ,service30 = ? ,service31 = ? ,service32 = ? ,service33 = ? ,service34 = ? ,service35 = ? ,service36 = ? ,service37 = ? ,
+//service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,service42 = ? ,service43 = ? ,service44 = ? ,service45 = ? ,service46 = ? ,service47 = ? ,service48 = ? ,
+//service49 = ? ,service50 = ? ,service51 = ? ,service52 = ? ,service53 = ? ,service54 = ? ,service55 = ? ,service56 = ? ,service57 = ? ,service58 = ? ,service59 = ? ,
+//service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,remark = ? ,update_time = ? WHERE order_id = ?)',
+//            [$list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6], $list_data_arr[7],
+//                $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14], $list_data_arr[15],
+//                $list_data_arr[16], $list_data_arr[17], $list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22], $list_data_arr[23],
+//                $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30], $list_data_arr[31],
+//                $list_data_arr[32], $list_data_arr[33], $list_data_arr[34], $list_data_arr[35], $list_data_arr[36], $list_data_arr[37], $list_data_arr[38], $list_data_arr[39],
+//                $list_data_arr[40], $list_data_arr[41], $list_data_arr[42], $list_data_arr[43], $list_data_arr[44], $list_data_arr[45], $list_data_arr[46], $list_data_arr[47],
+//                $list_data_arr[48], $list_data_arr[49], $list_data_arr[50], $list_data_arr[51], $list_data_arr[52], $list_data_arr[53], $list_data_arr[54], $list_data_arr[55],
+//                $list_data_arr[56], $list_data_arr[57], $list_data_arr[58], $list_data_arr[59], $list_data_arr[60], $list_data_arr[61], $list_data_arr[62], $remark, $timenow, $order_id]);
         if ($actual_list_tbl) {
             $arr = array(
                 "code" => "000",
@@ -253,7 +337,7 @@ class OrderOperateController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         } else {
             $arr = array(
-                "code" => "222",
+                "code" => "200",
                 "msg" => "插入失败",
                 "data" => ""
             );
