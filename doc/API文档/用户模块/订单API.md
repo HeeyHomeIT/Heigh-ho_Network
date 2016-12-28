@@ -88,7 +88,7 @@ msg           订单生成失败
 ```
 
 ```
-.../order/client/produce
+.../order/client/selstatus
 ```
 
 ###### Json数据格式
@@ -108,10 +108,14 @@ callback                callback
 callback(
 code         000
 data         {
-                    order_status_id     //订单状态id
-                    order_step_id       //订单步骤id
-                    order_status        //订单状态
-                    order_step          //订单步骤
+                    order_id                    //订单id
+                    order_time                  //下单时间
+                    order_confirmation_time     //确认时间
+                    reservation_time            //预约上门时间
+                    order_status_id             //订单状态id
+                    order_step_id               //订单步骤id
+                    order_status                //订单状态
+                    order_step                  //订单步骤
              }
 msg          查询成功
 )

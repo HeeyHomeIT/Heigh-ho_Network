@@ -268,7 +268,7 @@ class CostCalculatorController extends Controller
             //返还全部数据
             $sel_calculator_results_tbl = DB::select('SELECT a.*,b.* FROM hh_calculator_results a LEFT JOIN hh_housetype b ON a.housetype_id = b.id WHERE a.user_id = ? ORDER BY a.id LIMIT ?,?',
                 [$user_id, $page_start, $limit]);
-            $sel_calculator_results_count = DB::select('SELECT COUNT(id) AS cal_count FROM hh_calculator_results WHERE a.user_id = ?',
+            $sel_calculator_results_count = DB::select('SELECT COUNT(id) AS cal_count FROM hh_calculator_results WHERE user_id = ?',
                 [$user_id]);
             if ($sel_calculator_results_count) {
                 $calculator_count = $sel_calculator_results_count[0]->cal_count;

@@ -250,7 +250,7 @@ class OrderController extends Controller
                 return $callback . "(" . HHJson($arr) . ")";
             }
         }
-        $order_tbl_list = DB::select('SELECT * FROM hh_order_view WHERE shop_id = ? ORDER BY order_time LIMIT ?,?',
+        $order_tbl_list = DB::select('SELECT * FROM hh_order_new_view WHERE shop_id = ? ORDER BY order_time LIMIT ?,?',
             [$shop_id, $page_start, $limit]);
         $order_tbl_count = DB::select('SELECT COUNT(id) AS order_count FROM hh_order_view WHERE shop_id = ?',
             [$shop_id]);
@@ -279,13 +279,35 @@ class OrderController extends Controller
         $user_id = rq('user_id');
         $order_id = rq('order_id');
         $callback = rq('callback');
-        $sql_order_status = DB::select('SELECT a.order_status AS order_status_id,a.order_step AS order_step_id,b.order_status AS order_status,c.order_step AS order_step FROM hh_order a LEFT JOIN hh_order_status b ON (a.order_status = b.order_status_id) LEFT JOIN hh_order_step c ON (a.order_step = c.step_id) WHERE a.user_id = ? AND a.order_id = ? ',
+        $sql_order_status = DB::select('SELECT * FROM hh_order_status_view WHERE user_id = ? AND order_id = ? ',
             [$user_id, $order_id]);
         if ($sql_order_status) {
+            $order_status_id = $sql_order_status[0]->order_status_id;
+            if ($sql_order_status[0]->confirm_time == 1) {
+                $reservation_time = $sql_order_status[0]->reservation_time1;
+            } else if ($sql_order_status[0]->confirm_time == 2) {
+                $reservation_time = $sql_order_status[0]->reservation_time2;
+            }
+            if ($sql_order_status[0]->order_status_id == 1) {
+                $order_confirmation_time = "";
+                $reservation_time = "";
+            } elseif ($order_status_id != 7 || $order_status_id != 8) {
+                $order_confirmation_time = $sql_order_status[0]->order_confirmation_time;
+            }
+            $data = array(
+                "order_id" => $sql_order_status[0]->order_id,
+                "order_time" => $sql_order_status[0]->order_time,
+                "order_confirmation_time" => $order_confirmation_time,
+                "reservation_time" => $reservation_time,
+                "order_status_id" => $order_status_id,
+                "order_step_id" => $sql_order_status[0]->order_step_id,
+                "order_status" => $sql_order_status[0]->order_status,
+                "order_step" => $sql_order_status[0]->order_step,
+            );
             $arr = array(
                 "code" => "000",
                 "msg" => "查询成功",
-                "data" => $sql_order_status[0]
+                "data" => $data
             );
             return $callback . "(" . HHJson($arr) . ")";
         } else {
