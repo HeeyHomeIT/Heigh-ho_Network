@@ -235,10 +235,19 @@ class CostCalculatorController extends Controller
     {
         $user_id = rq('user_id');
         $calculator_results_id = rq('calculator_results_id');
+        $page = ceil(rq('page'));
+        $limit = ceil(rq('limit'));
+        if (!$page) {
+            $page = 1;
+        }
+        if (!$limit) {
+            $limit = 20;
+        }
         $callback = rq('callback');
+        $page_start = ($page - 1) * $limit;
         //有计算结果id则返还单条数据
         if ($calculator_results_id) {
-            $sel_calculator_results_tbl_once = DB::select('SELECT a.*,b.* FROM hh_calculator_results a LEFT JOIN hh_housetype b ON a.housetype_id = b.id WHERE a.user_id = ? AND a.calculator_results_id = ?',
+            $sel_calculator_results_tbl_once = DB::select('SELECT a.*,b.* FROM hh_calculator_results a LEFT JOIN hh_housetype b ON a.housetype_id = b.id WHERE a.user_id = ? AND a.calculator_results_id = ? ',
                 [$user_id, $calculator_results_id]);
             if ($sel_calculator_results_tbl_once) {
                 $arr = array(
@@ -257,13 +266,21 @@ class CostCalculatorController extends Controller
             }
         } else {
             //返还全部数据
-            $sel_calculator_results_tbl = DB::select('SELECT a.*,b.* FROM hh_calculator_results a LEFT JOIN hh_housetype b ON a.housetype_id = b.id WHERE a.user_id = ?',
+            $sel_calculator_results_tbl = DB::select('SELECT a.*,b.* FROM hh_calculator_results a LEFT JOIN hh_housetype b ON a.housetype_id = b.id WHERE a.user_id = ? ORDER BY a.id LIMIT ?,?',
+                [$user_id, $page_start, $limit]);
+            $sel_calculator_results_count = DB::select('SELECT COUNT(id) AS cal_count FROM hh_calculator_results WHERE a.user_id = ?',
                 [$user_id]);
+            if ($sel_calculator_results_count) {
+                $calculator_count = $sel_calculator_results_count[0]->cal_count;
+            }
             if ($sel_calculator_results_tbl) {
                 $arr = array(
                     "code" => "000",
                     "msg" => "查询成功",
-                    "data" => $sel_calculator_results_tbl
+                    "data" => array(
+                        "calculator_count" => $calculator_count,
+                        "calculator_data" => $sel_calculator_results_tbl
+                    )
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             } else {
