@@ -167,6 +167,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('costcalculator/result/collect', 'CostCalculatorController@collectCalculatorResult');
     //获取已收藏的成本计算结果
     Route::any('costcalculator/result/get', 'CostCalculatorController@getCalculatorResult');
+    //删除已收藏的成本计算结果
+    Route::any('costcalculator/result/del', 'CostCalculatorController@delCostCalculatorResult');
 
     /*订单*/
     /*订单生成api*/

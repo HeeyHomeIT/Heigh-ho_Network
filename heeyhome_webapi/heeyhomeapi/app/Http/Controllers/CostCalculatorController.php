@@ -293,4 +293,29 @@ class CostCalculatorController extends Controller
             }
         }
     }
+
+    //删除计算器结果
+    public function delCostCalculatorResult()
+    {
+        $calculator_results_id = rq('calculator_results_id');
+        $user_id = rq('user_id');
+        $callback = rq('callback');
+        $del_cost_calculator_result = DB::delete('DELETE FROM hh_calculator_results WHERE calculator_results_id = ? AND user_id = ?',
+            [$calculator_results_id, $user_id]);
+        if ($del_cost_calculator_result) {
+            $arr = array(
+                "code" => "000",
+                "msg" => "删除成功",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "参数错误",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
 }

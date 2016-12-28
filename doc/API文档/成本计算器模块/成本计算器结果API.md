@@ -178,3 +178,57 @@ msg           查询失败，没有数据
 200     查询失败，没有数据
 
 ```
+
+# delCostCalculatorResult()
+## 删除收藏成本计算器结果接口
+
+### 接口地址
+
+```
+.../costcalculator/result/del
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET     POST
+```
+
+###### Json数据格式
+```
+data
+user_id                     用户id
+calculator_result_id        计算器结果id
+callback                    callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         ""
+msg          删除成功
+)
+```
+
+```
+失败
+callback(
+code          200
+data          ""
+msg           参数错误
+)
+```
+
+###### Code值含义
+
+```
+000     删除成功
+200     参数错误（没有此条数据）
+
+```
