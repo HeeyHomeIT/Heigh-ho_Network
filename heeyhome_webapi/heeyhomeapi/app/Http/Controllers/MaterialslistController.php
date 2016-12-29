@@ -38,6 +38,8 @@ class MaterialslistController extends Controller
                     }
                 }
                 $elematerialist[$key]->spec = $spec;
+            }else{
+                $elematerialist[$key]->spec = array();
             }
         }
         $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,2]);
@@ -61,6 +63,8 @@ class MaterialslistController extends Controller
                     }
                 }
                 $brickmaterialist[$key]->spec = $spec;
+            }else{
+                $brickmaterialist[$key]->spec = array();
             }
         }
         $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,3]);
@@ -84,6 +88,8 @@ class MaterialslistController extends Controller
                     }
                 }
                 $woodmaterialist[$key]->spec = $spec;
+            }else{
+                $woodmaterialist[$key]->spec = array();
             }
         }
         $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,4]);
@@ -107,6 +113,8 @@ class MaterialslistController extends Controller
                     }
                 }
                 $paintmaterialist[$key]->spec = $spec;
+            }else{
+                $paintmaterialist[$key]->spec = array();
             }
         }
         $arr = array("code" => "000",

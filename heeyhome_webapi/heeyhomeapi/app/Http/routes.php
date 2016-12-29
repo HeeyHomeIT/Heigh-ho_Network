@@ -205,21 +205,33 @@ Route::group(['middleware' => ['web']], function () {
 
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['web', 'admin.login']], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web','admin.login']], function()
+{
 
     Route::any('loginout', 'LoginController@loginout');
-    Route::any('index', function () {
+    Route::any('index', function(){
         return view('index');
     });
-    Route::any('webset', function () {
-        return view('webset');
-    });
-    Route::any('editpassword', function () {
+    Route::any('webset','IndexController@webset');
+    Route::any('editpassword', function (){
         return view('editpassword');
     });
-    Route::any('banner', function () {
-        return view('banner');
+    /*轮播图*/
+    Route::any('banner', 'BannerController@index');
+    Route::any('addbanner', function (){
+        return view('addbanner');
     });
+    Route::any('banner/add', 'BannerController@add');
+    Route::any('banner/changeorder', 'BannerController@changeorder');
+    Route::any('banner/del', 'BannerController@del');
+    Route::any('adminlist', 'AdminUserController@index');
+    Route::any('addadminuser', function (){
+        return view('addadminuser');
+    });
+    Route::any('adminuser/add', 'AdminUserController@add');
+    Route::any('adminuser/del', 'AdminUserController@del');
+    Route::any('adminuser/editpwd', 'AdminUserController@editpwd');
+    /*虚拟现实*/
     Route::any('panorama', 'PanoramaController@index');
     Route::get('addpanorama', function () {
         return view('addpanorama');
@@ -227,23 +239,59 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['web
     Route::any('panorama/add', 'PanoramaController@add');
     Route::any('panorama/del', 'PanoramaController@del');
     Route::any('panorama/delall', 'PanoramaController@delall');
-
+    /*家装百科*/
     Route::any('homeencyclopedia', 'HomeEncyclopediaController@index');
-    Route::any('addhomeencyclopediacate', function () {
+    Route::any('addhomeencyclopediacate', function(){
         return view('addcate');
-    });
-    Route::any('addhomeencyclopediaarticle', function () {
-        return view('addarticle');
     });
     Route::any('addhomeencyclopediaarticle', 'HomeEncyclopediaController@createarticle');
     Route::any('homeencyclopedia/addcate', 'HomeEncyclopediaController@addcate');
     Route::any('homeencyclopedia/addarticle', 'HomeEncyclopediaController@addarticle');
     Route::any('homeencyclopedia/del', 'HomeEncyclopediaController@del');
+    Route::any('homeencyclopedia/edit/{id}', 'HomeEncyclopediaController@edit');
+    Route::any('homeencyclopedia/editarticle', 'HomeEncyclopediaController@editarticle');
     Route::any('homeencyclopedia/delall', 'HomeEncyclopediaController@delall');
+    /*工长入驻*/
+    Route::any('foreman', 'ForemanController@index');
+    Route::any('addforeman', function(){
+        return view('addforeman');
+    });
+    Route::any('editforeman/{id}', 'ForemanController@editforeman');
+    Route::any('foreman/edit', 'ForemanController@edit');
+    Route::any('foreman/add', 'ForemanController@add');
+    Route::any('foreman/del', 'ForemanController@del');
+    Route::any('foreman/delall', 'ForemanController@delall');
+    /*提现申请*/
+    Route::any('application', 'ApplicationController@index');
+    Route::any('application/process/{id}','ApplicationController@process');
+    Route::any('application/doprocess','ApplicationController@doprocess');
+    /*实名认证*/
+    Route::any('verification', 'VerifyController@index');
+    Route::any('verification/verify/{id}', 'VerifyController@verify');
+    Route::any('verification/doverify', 'VerifyController@doverify');
+    /*材料*/
+    Route::any('materials', 'MaterialController@index');
+    Route::any('addmaterial', 'MaterialController@addmaterial');
+    Route::any('material/add', 'MaterialController@add');
+    Route::any('material/del', 'MaterialController@del');
+    Route::any('material/editmaterial/{id}', 'MaterialController@editmaterial');
+    Route::any('material/edit', 'MaterialController@edit');
+    Route::any('addmaterialspec', 'MaterialController@addspec');
+    Route::any('materialspec/add', 'MaterialController@specadd');
+    Route::any('addmaterialprice', 'MaterialController@addprice');
+    Route::any('materialprice/add', 'MaterialController@priceadd');
+    /*材料商*/
+    Route::any('supplierlist', 'SupplierController@index');
+    Route::any('addsupplier', function(){
+        return view('addsupplier');
+    });
+    Route::any('supplier/add', 'SupplierController@add');
+
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'], function () {
-    Route::any('/', function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => 'web'], function()
+{
+    Route::any('/', function (){
         return view('login');
     });
     Route::any('login', 'LoginController@login');
