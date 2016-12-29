@@ -183,10 +183,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/aeckonandactual/generatelist', 'OrderOperateController@generateActualListAndReckonList');
     //获取预算单结算单字段
     Route::any('order/aeckonandactual/getlistname', 'OrderOperateController@getActualDataAndReckonData');
+    //获取预算单结算单字段(分类)
+    Route::any('order/aeckonandactual/getlistnamebylist', 'OrderOperateController@getActualDataAndReckonDataList');
     //添加预算单与结算单数据
     Route::any('order/aeckonandactual/adddate', 'OrderOperateController@addActualDataAndReckonData');
     //修改结算单数据
     Route::any('order/aeckonandactual/update', 'OrderOperateController@updateActualData');
+    //查询预算与结算单数据
+    Route::any('order/aeckonandactual/seldata', 'OrderOperateController@searchActualDataAndReckonData');
     //生成订单纠纷表
     Route::any('order/dispute/generate', 'OrderOperateController@generateOrderCandd');
     //插入纠纷数据

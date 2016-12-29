@@ -65,6 +65,10 @@ code 含义
 ```
 .../order/aeckonandactual/getlistname
 ```
+######分类接口地址如下：
+```
+.../order/aeckonandactual/getlistnamebylist
+```
 
 ### 接口格式
 

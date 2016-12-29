@@ -133,9 +133,9 @@ service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         return $callback . "(" . HHJson($arr) . ")";
     }
 
-    //获取预算单结算单字段
     public function getActualDataAndReckonData()
     {
+        $shop_id = rq('shop_id');
         $callback = rq('callback');
         $sel_worker_service = DB::select('SELECT * FROM hh_worker_service_view');
         if ($sel_worker_service) {
@@ -143,6 +143,90 @@ service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
                 "code" => "000",
                 "msg" => "获取成功",
                 "data" => $sel_worker_service
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "获取失败",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+
+    //获取预算单结算单字段(分类)
+    public function getActualDataAndReckonDataList()
+    {
+        $shop_id = rq('shop_id');
+        $callback = rq('callback');
+        $sel_worker_service1 = DB::select('SELECT id,servicename,unit,cost FROM hh_worker_service_view WHERE category = ? AND serviceitem = ?', ['杂工', '基础改造']);
+        $sel_worker_service2 = DB::select('SELECT id,servicename,unit,cost FROM hh_worker_service_view WHERE category = ? AND serviceitem = ?', ['水电工', '水电改造']);
+        $sel_worker_service3 = DB::select('SELECT id,servicename,unit,cost FROM hh_worker_service_view WHERE category = ? AND serviceitem = ?', ['瓦工', '贴砖']);
+        $sel_worker_service4 = DB::select('SELECT id,servicename,unit,cost FROM hh_worker_service_view WHERE category = ? AND serviceitem = ?', ['瓦工', '砌墙']);
+        $sel_worker_service5 = DB::select('SELECT id,servicename,unit,cost FROM hh_worker_service_view WHERE category = ? AND serviceitem = ?', ['瓦工', '粉刷']);
+        $sel_worker_service6 = DB::select('SELECT id,servicename,unit,cost FROM hh_worker_service_view WHERE category = ? AND serviceitem = ?', ['木工', '家具制作（免漆板）']);
+        $sel_worker_service7 = DB::select('SELECT id,servicename,unit,cost FROM hh_worker_service_view WHERE category = ? AND serviceitem = ?', ['木工', '吊顶、隔墙']);
+        $sel_worker_service8 = DB::select('SELECT id,servicename,unit,cost FROM hh_worker_service_view WHERE category = ? AND serviceitem = ?', ['木工', '杂项']);
+        $sel_worker_service9 = DB::select('SELECT id,servicename,unit,cost FROM hh_worker_service_view WHERE category = ? AND serviceitem = ?', ['油漆工', '天花墙面乳胶漆']);
+        $sel_worker_service0 = DB::select('SELECT id,servicename,unit,cost FROM hh_worker_service_view WHERE category = ? AND serviceitem = ?', ['油漆工', '木质油漆工程']);
+        if ($sel_worker_service1 && $sel_worker_service2 && $sel_worker_service3 && $sel_worker_service4 && $sel_worker_service5 && $sel_worker_service6 && $sel_worker_service7 && $sel_worker_service8 && $sel_worker_service9) {
+            $data = array(
+                "1" => array(
+                    "name" => "杂工",
+                    "data_list" => $zadata = array(
+                        array(
+                            "name" => "基础改造",
+                            "data_list" => $sel_worker_service1)
+                    )),
+                "2" => array(
+                    "name" => "水电工",
+                    "data_list" => $zadata = array(
+                        array(
+                            "name" => "水电改造",
+                            "data_list" => $sel_worker_service2)
+                    )),
+                "3" => array(
+                    "name" => "瓦工",
+                    "data_list" => $zadata = array(
+                        array(
+                            "name" => "贴砖",
+                            "data_list" => $sel_worker_service3),
+                        array(
+                            "name" => "砌墙",
+                            "data_list" => $sel_worker_service4),
+                        array(
+                            "name" => "粉刷",
+                            "data_list" => $sel_worker_service5)
+                    )),
+                "4" => array(
+                    "name" => "木工",
+                    "data_list" => $zadata = array(
+                        array(
+                            "name" => "家具制作（免漆板）",
+                            "data_list" => $sel_worker_service6),
+                        array(
+                            "name" => "吊顶、隔墙",
+                            "data_list" => $sel_worker_service7),
+                        array(
+                            "name" => "杂项",
+                            "data_list" => $sel_worker_service8)
+                    )),
+                "5" => array(
+                    "name" => "油漆工",
+                    "data_list" => $zadata = array(
+                        array(
+                            "name" => "天花墙面乳胶漆",
+                            "data_list" => $sel_worker_service9),
+                        array(
+                            "name" => "木质油漆工程",
+                            "data_list" => $sel_worker_service0)
+                    )),
+            );
+            $arr = array(
+                "code" => "000",
+                "msg" => "获取成功",
+                "data" => $data
             );
             return $callback . "(" . HHJson($arr) . ")";
         } else {
@@ -350,6 +434,109 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
     {
         $order_id = rq('order_id');
         $callback = rq('callback');
+        $sel_reckon_list = DB::select('SELECT * FROM hh_order_reckon_list WHERE order_id = ?', [$order_id]);
+        $sel_actual_list = DB::select('SELECT * FROM hh_order_actual_list WHERE order_id = ?', [$order_id]);
+        if ($sel_reckon_list && $sel_actual_list) {
+            //按阶段隐藏结算单数据
+            //查询订单阶段
+            $sel_order_tbl = DB::select('SELECT order_strp FROM hh_order WHERE order_id = ?', [$order_id]);
+            if ($sel_order_tbl) $order_step = $sel_order_tbl[0]->order_step;
+            //复制结算单数据
+            $sel_actual_list_user = $sel_actual_list;
+            //隐藏结算单数据
+            if ($sel_actual_list_user < 17) {
+                $sel_actual_list_user[0]->service63 = "";
+                $sel_actual_list_user[0]->service62 = "";
+                $sel_actual_list_user[0]->service61 = "";
+                $sel_actual_list_user[0]->service60 = "";
+                $sel_actual_list_user[0]->service59 = "";
+                $sel_actual_list_user[0]->service58 = "";
+                $sel_actual_list_user[0]->service57 = "";
+                $sel_actual_list_user[0]->service56 = "";
+                $sel_actual_list_user[0]->service55 = "";
+                $sel_actual_list_user[0]->service54 = "";
+                if ($sel_actual_list_user < 13) {
+                    $sel_actual_list_user[0]->service53 = "";
+                    $sel_actual_list_user[0]->service52 = "";
+                    $sel_actual_list_user[0]->service51 = "";
+                    $sel_actual_list_user[0]->service50 = "";
+                    $sel_actual_list_user[0]->service49 = "";
+                    $sel_actual_list_user[0]->service48 = "";
+                    $sel_actual_list_user[0]->service47 = "";
+                    $sel_actual_list_user[0]->service46 = "";
+                    $sel_actual_list_user[0]->service45 = "";
+                    $sel_actual_list_user[0]->service44 = "";
+                    $sel_actual_list_user[0]->service43 = "";
+                    $sel_actual_list_user[0]->service42 = "";
+                    if ($sel_actual_list_user < 9) {
+                        $sel_actual_list_user[0]->service41 = "";
+                        $sel_actual_list_user[0]->service40 = "";
+                        $sel_actual_list_user[0]->service39 = "";
+                        $sel_actual_list_user[0]->service38 = "";
+                        $sel_actual_list_user[0]->service37 = "";
+                        $sel_actual_list_user[0]->service36 = "";
+                        $sel_actual_list_user[0]->service35 = "";
+                        $sel_actual_list_user[0]->service34 = "";
+                        $sel_actual_list_user[0]->service33 = "";
+                        $sel_actual_list_user[0]->service32 = "";
+                        $sel_actual_list_user[0]->service31 = "";
+                        $sel_actual_list_user[0]->service20 = "";
+                        $sel_actual_list_user[0]->service29 = "";
+                        $sel_actual_list_user[0]->service28 = "";
+                        $sel_actual_list_user[0]->service27 = "";
+                        $sel_actual_list_user[0]->service26 = "";
+                        $sel_actual_list_user[0]->service25 = "";
+                        $sel_actual_list_user[0]->service24 = "";
+                        $sel_actual_list_user[0]->service23 = "";
+                        $sel_actual_list_user[0]->service22 = "";
+                        $sel_actual_list_user[0]->service21 = "";
+                        $sel_actual_list_user[0]->service20 = "";
+                        $sel_actual_list_user[0]->service19 = "";
+                        if ($sel_actual_list_user < 5) {
+                            $sel_actual_list_user[0]->service18 = "";
+                            $sel_actual_list_user[0]->service17 = "";
+                            $sel_actual_list_user[0]->service16 = "";
+                            $sel_actual_list_user[0]->service15 = "";
+                            $sel_actual_list_user[0]->service14 = "";
+                            $sel_actual_list_user[0]->service13 = "";
+                            $sel_actual_list_user[0]->service12 = "";
+                            $sel_actual_list_user[0]->service11 = "";
+                            $sel_actual_list_user[0]->service10 = "";
+                            $sel_actual_list_user[0]->service9 = "";
+                            $sel_actual_list_user[0]->service8 = "";
+                            $sel_actual_list_user[0]->service7 = "";
+                            $sel_actual_list_user[0]->service6 = "";
+                            $sel_actual_list_user[0]->service5 = "";
+                            $sel_actual_list_user[0]->service4 = "";
+                            $sel_actual_list_user[0]->service3 = "";
+                            $sel_actual_list_user[0]->service2 = "";
+                            $sel_actual_list_user[0]->service1 = "";
+                        }
+                    }
+                }
+            }
+            $data = array(
+                "1" => array("name" => "预算单数据", "data_list" => $sel_reckon_list
+                ),
+                "2" => array("name" => "结算单数据", "data_list" => $sel_actual_list
+                ),
+                "3" => array("name" => "结算单数据(隐藏)", "data_list" => $sel_actual_list_user
+                )
+            );
+            $arr = array(
+                "code" => "000",
+                "msg" => "查询成功",
+                "data" => $data
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }else{
+            $arr = array(
+                "code" => "200",
+                "msg" => "查询失败",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
     }
 
     //生成订单纠纷表
