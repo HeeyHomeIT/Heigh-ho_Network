@@ -439,7 +439,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         if ($sel_reckon_list && $sel_actual_list) {
             //按阶段隐藏结算单数据
             //查询订单阶段
-            $sel_order_tbl = DB::select('SELECT order_strp FROM hh_order WHERE order_id = ?', [$order_id]);
+            $sel_order_tbl = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?', [$order_id]);
             if ($sel_order_tbl) $order_step = $sel_order_tbl[0]->order_step;
             //复制结算单数据
             $sel_actual_list_user = $sel_actual_list;
