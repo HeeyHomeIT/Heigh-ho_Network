@@ -441,95 +441,91 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             //查询订单阶段
             $sel_order_tbl = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?', [$order_id]);
             if ($sel_order_tbl) $order_step = $sel_order_tbl[0]->order_step;
-            //复制结算单数据
-            $sel_actual_list_user = $sel_actual_list;
             //隐藏结算单数据
-            if ($sel_actual_list_user < 17) {
-                $sel_actual_list_user[0]->service63 = "";
-                $sel_actual_list_user[0]->service62 = "";
-                $sel_actual_list_user[0]->service61 = "";
-                $sel_actual_list_user[0]->service60 = "";
-                $sel_actual_list_user[0]->service59 = "";
-                $sel_actual_list_user[0]->service58 = "";
-                $sel_actual_list_user[0]->service57 = "";
-                $sel_actual_list_user[0]->service56 = "";
-                $sel_actual_list_user[0]->service55 = "";
-                $sel_actual_list_user[0]->service54 = "";
-                if ($sel_actual_list_user < 13) {
-                    $sel_actual_list_user[0]->service53 = "";
-                    $sel_actual_list_user[0]->service52 = "";
-                    $sel_actual_list_user[0]->service51 = "";
-                    $sel_actual_list_user[0]->service50 = "";
-                    $sel_actual_list_user[0]->service49 = "";
-                    $sel_actual_list_user[0]->service48 = "";
-                    $sel_actual_list_user[0]->service47 = "";
-                    $sel_actual_list_user[0]->service46 = "";
-                    $sel_actual_list_user[0]->service45 = "";
-                    $sel_actual_list_user[0]->service44 = "";
-                    $sel_actual_list_user[0]->service43 = "";
-                    $sel_actual_list_user[0]->service42 = "";
-                    if ($sel_actual_list_user < 9) {
-                        $sel_actual_list_user[0]->service41 = "";
-                        $sel_actual_list_user[0]->service40 = "";
-                        $sel_actual_list_user[0]->service39 = "";
-                        $sel_actual_list_user[0]->service38 = "";
-                        $sel_actual_list_user[0]->service37 = "";
-                        $sel_actual_list_user[0]->service36 = "";
-                        $sel_actual_list_user[0]->service35 = "";
-                        $sel_actual_list_user[0]->service34 = "";
-                        $sel_actual_list_user[0]->service33 = "";
-                        $sel_actual_list_user[0]->service32 = "";
-                        $sel_actual_list_user[0]->service31 = "";
-                        $sel_actual_list_user[0]->service20 = "";
-                        $sel_actual_list_user[0]->service29 = "";
-                        $sel_actual_list_user[0]->service28 = "";
-                        $sel_actual_list_user[0]->service27 = "";
-                        $sel_actual_list_user[0]->service26 = "";
-                        $sel_actual_list_user[0]->service25 = "";
-                        $sel_actual_list_user[0]->service24 = "";
-                        $sel_actual_list_user[0]->service23 = "";
-                        $sel_actual_list_user[0]->service22 = "";
-                        $sel_actual_list_user[0]->service21 = "";
-                        $sel_actual_list_user[0]->service20 = "";
-                        $sel_actual_list_user[0]->service19 = "";
-                        if ($sel_actual_list_user < 5) {
-                            $sel_actual_list_user[0]->service18 = "";
-                            $sel_actual_list_user[0]->service17 = "";
-                            $sel_actual_list_user[0]->service16 = "";
-                            $sel_actual_list_user[0]->service15 = "";
-                            $sel_actual_list_user[0]->service14 = "";
-                            $sel_actual_list_user[0]->service13 = "";
-                            $sel_actual_list_user[0]->service12 = "";
-                            $sel_actual_list_user[0]->service11 = "";
-                            $sel_actual_list_user[0]->service10 = "";
-                            $sel_actual_list_user[0]->service9 = "";
-                            $sel_actual_list_user[0]->service8 = "";
-                            $sel_actual_list_user[0]->service7 = "";
-                            $sel_actual_list_user[0]->service6 = "";
-                            $sel_actual_list_user[0]->service5 = "";
-                            $sel_actual_list_user[0]->service4 = "";
-                            $sel_actual_list_user[0]->service3 = "";
-                            $sel_actual_list_user[0]->service2 = "";
-                            $sel_actual_list_user[0]->service1 = "";
+            if ($order_step < 17) {
+                $sel_actual_list[0]->service63 = "";
+                $sel_actual_list[0]->service62 = "";
+                $sel_actual_list[0]->service61 = "";
+                $sel_actual_list[0]->service60 = "";
+                $sel_actual_list[0]->service59 = "";
+                $sel_actual_list[0]->service58 = "";
+                $sel_actual_list[0]->service57 = "";
+                $sel_actual_list[0]->service56 = "";
+                $sel_actual_list[0]->service55 = "";
+                $sel_actual_list[0]->service54 = "";
+                if ($order_step < 13) {
+                    $sel_actual_list[0]->service53 = "";
+                    $sel_actual_list[0]->service52 = "";
+                    $sel_actual_list[0]->service51 = "";
+                    $sel_actual_list[0]->service50 = "";
+                    $sel_actual_list[0]->service49 = "";
+                    $sel_actual_list[0]->service48 = "";
+                    $sel_actual_list[0]->service47 = "";
+                    $sel_actual_list[0]->service46 = "";
+                    $sel_actual_list[0]->service45 = "";
+                    $sel_actual_list[0]->service44 = "";
+                    $sel_actual_list[0]->service43 = "";
+                    $sel_actual_list[0]->service42 = "";
+                    if ($order_step < 9) {
+                        $sel_actual_list[0]->service41 = "";
+                        $sel_actual_list[0]->service40 = "";
+                        $sel_actual_list[0]->service39 = "";
+                        $sel_actual_list[0]->service38 = "";
+                        $sel_actual_list[0]->service37 = "";
+                        $sel_actual_list[0]->service36 = "";
+                        $sel_actual_list[0]->service35 = "";
+                        $sel_actual_list[0]->service34 = "";
+                        $sel_actual_list[0]->service33 = "";
+                        $sel_actual_list[0]->service32 = "";
+                        $sel_actual_list[0]->service31 = "";
+                        $sel_actual_list[0]->service20 = "";
+                        $sel_actual_list[0]->service29 = "";
+                        $sel_actual_list[0]->service28 = "";
+                        $sel_actual_list[0]->service27 = "";
+                        $sel_actual_list[0]->service26 = "";
+                        $sel_actual_list[0]->service25 = "";
+                        $sel_actual_list[0]->service24 = "";
+                        $sel_actual_list[0]->service23 = "";
+                        $sel_actual_list[0]->service22 = "";
+                        $sel_actual_list[0]->service21 = "";
+                        $sel_actual_list[0]->service20 = "";
+                        $sel_actual_list[0]->service19 = "";
+                        if ($order_step < 5) {
+                            $sel_actual_list[0]->service18 = "";
+                            $sel_actual_list[0]->service17 = "";
+                            $sel_actual_list[0]->service16 = "";
+                            $sel_actual_list[0]->service15 = "";
+                            $sel_actual_list[0]->service14 = "";
+                            $sel_actual_list[0]->service13 = "";
+                            $sel_actual_list[0]->service12 = "";
+                            $sel_actual_list[0]->service11 = "";
+                            $sel_actual_list[0]->service10 = "";
+                            $sel_actual_list[0]->service9 = "";
+                            $sel_actual_list[0]->service8 = "";
+                            $sel_actual_list[0]->service7 = "";
+                            $sel_actual_list[0]->service6 = "";
+                            $sel_actual_list[0]->service5 = "";
+                            $sel_actual_list[0]->service4 = "";
+                            $sel_actual_list[0]->service3 = "";
+                            $sel_actual_list[0]->service2 = "";
+                            $sel_actual_list[0]->service1 = "";
                         }
                     }
                 }
             }
+
             $data = array(
                 "1" => array("name" => "预算单数据", "data_list" => $sel_reckon_list
                 ),
                 "2" => array("name" => "结算单数据", "data_list" => $sel_actual_list
-                ),
-                "3" => array("name" => "结算单数据(隐藏)", "data_list" => $sel_actual_list_user
                 )
             );
             $arr = array(
                 "code" => "000",
-                "msg" => "查询成功",
                 "data" => $data
             );
             return $callback . "(" . HHJson($arr) . ")";
-        }else{
+        } else {
             $arr = array(
                 "code" => "200",
                 "msg" => "查询失败",
