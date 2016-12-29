@@ -16,7 +16,7 @@ class BankCardController extends Controller
     public function getname(){
         $callback=rq('callback');
         $user_id=rq('user_id');
-        $sel=DB::select('select real_name,idcardno from hh_realname where real_userid=? and isverify',[$user_id,1]);
+        $sel=DB::select('select real_name,idcardno from hh_realname where real_userid=? and isverify=?',[$user_id,1]);
         if($sel){
             $name=$sel[0]->real_name;
             $arr = array("code" => "000",
@@ -115,7 +115,10 @@ class BankCardController extends Controller
             //var_dump($json_data);
             if ($array['status'] == '0') {
                 if($array['result']['verifystatus']==0) {
-                    $sql=DB::insert('insert into hh_bankcard (bank_userid,realname,bankcardno,bindphone,bankname,cardtype,banklogo) values(?,?,?,?,?,?,?)',[$user_id,$name,$bankcard,$phone,$bankname,$cardtype,$banklogo]);
+                    $bank=DB::select('select id from  hh_bankcard where bank_userid=? and bankcardno=?',[$user_id,$bankcard]);
+                    if(!$bank){
+                        $sql=DB::insert('insert into hh_bankcard (bank_userid,realname,bankcardno,bindphone,bankname,cardtype,banklogo) values(?,?,?,?,?,?,?)',[$user_id,$name,$bankcard,$phone,$bankname,$cardtype,$banklogo]);
+                    }
                     $arr = array('code' => '000', 'msg' => '银行卡添加成功', 'data' => array("bankcard" => $bankcard, "realname" => $name,"phone"=>$phone,"bankname"=>$bankname,"cardtype"=>$cardtype));
                     return $callback . "(" . HHJson($arr) . ")";
                 }else{

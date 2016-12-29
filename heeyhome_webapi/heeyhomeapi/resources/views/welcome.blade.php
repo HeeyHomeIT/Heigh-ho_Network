@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>嘿吼网</title>
 
         
 
@@ -33,12 +33,18 @@
             .title {
                 font-size: 96px;
             }
+            .title2 {
+                font-size: 30px;
+                margin-left:100px;
+                margin-top:100px;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Heeyhome 2.0</div>
+                <div class="title2">敬请期待......</div>
             </div>
         </div>
     </body>

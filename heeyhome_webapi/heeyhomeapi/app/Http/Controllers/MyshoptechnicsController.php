@@ -54,6 +54,9 @@ class MyshoptechnicsController extends  Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        if (! is_array($files)) {
+            $files = [$files];
+        }
         $isvalid=true;
         foreach($files as $file){
             if(!$file->isValid()){

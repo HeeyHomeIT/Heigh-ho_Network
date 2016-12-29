@@ -55,6 +55,9 @@ class MyworkcaseController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        if (! is_array($files)) {
+            $files = [$files];
+        }
         //dd($files);
         $isvalid=true;
         foreach($files as $file){

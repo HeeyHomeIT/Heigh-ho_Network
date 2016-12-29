@@ -26,6 +26,7 @@
 ```
 data
 cate_id             cate_id         //工种类别
+shop_id             shop_id         //店铺id
 
 callback            callback
 ```

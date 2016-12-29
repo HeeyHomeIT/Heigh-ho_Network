@@ -28,7 +28,11 @@ class MyworkersController extends Controller
         /*按工种分类查询员工信息 1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工*/
         switch ($cate){
             case 1:
-                $mixworker=DB::select('select hh_mixworker.*,hh_portrait.portrait_img as portrait_img from hh_mixworker left join hh_portrait on hh_portrait.portrait_userid=hh_mixworker.userid where shopid=?',[$shop_id]);
+                $total=DB::select('select count(id) as total from hh_mixworker where shopid=?',[$shop_id]);
+                $total=$total[0]->total;
+                $newpage=new PageController();
+                $offset=$newpage->page($total);
+                $mixworker=DB::select('select hh_mixworker.*,hh_portrait.portrait_img as portrait_img from hh_mixworker left join hh_portrait on hh_portrait.portrait_userid=hh_mixworker.userid where shopid=? order by id desc limit ?,?',[$shop_id,$offset[0],$offset[1]]);
                 if($mixworker) {
                     $arr = array("code" => "000",
                         "data" => $mixworker
@@ -42,6 +46,10 @@ class MyworkersController extends Controller
                 }
                 break;
             case 2:
+                $total=DB::select('select count(id) as total from hh_eleworker where shopid=?',[$shop_id]);
+                $total=$total[0]->total;
+                $newpage=new PageController();
+                $offset=$newpage->page($total);
                 $eleworker=DB::select('select hh_eleworker.*,hh_portrait.portrait_img as portrait_img from hh_eleworker left join hh_portrait on hh_portrait.portrait_userid=hh_eleworker.userid where shopid=?',[$shop_id]);
                 if($eleworker) {
                     $arr = array("code" => "000",
@@ -56,6 +64,10 @@ class MyworkersController extends Controller
                 }
                 break;
             case 3:
+                $total=DB::select('select count(id) as total from hh_brickworker where shopid=?',[$shop_id]);
+                $total=$total[0]->total;
+                $newpage=new PageController();
+                $offset=$newpage->page($total);
                 $brickworker=DB::select('select hh_brickworker.*,hh_portrait.portrait_img as portrait_img from hh_brickworker left join hh_portrait on hh_portrait.portrait_userid=hh_brickworker.userid where shopid=?',[$shop_id]);
                 if($brickworker) {
                     $arr = array("code" => "000",
@@ -70,6 +82,10 @@ class MyworkersController extends Controller
                 }
                 break;
             case 4:
+                $total=DB::select('select count(id) as total from hh_woodworker where shopid=?',[$shop_id]);
+                $total=$total[0]->total;
+                $newpage=new PageController();
+                $offset=$newpage->page($total);
                 $woodworker=DB::select('select hh_woodworker.*,hh_portrait.portrait_img as portrait_img from hh_woodworker left join hh_portrait on hh_portrait.portrait_userid=hh_woodworker.userid where shopid=?',[$shop_id]);
                 if($woodworker) {
                     $arr = array("code" => "000",
@@ -84,6 +100,10 @@ class MyworkersController extends Controller
                 }
                 break;
             case 5:
+                $total=DB::select('select count(id) as total from hh_paintworker where shopid=?',[$shop_id]);
+                $total=$total[0]->total;
+                $newpage=new PageController();
+                $offset=$newpage->page($total);
                 $paintworker=DB::select('select hh_paintworker.*,hh_portrait.portrait_img as portrait_img from hh_paintworker left join hh_portrait on hh_portrait.portrait_userid=hh_paintworker.userid where shopid=?',[$shop_id]);
                 if($paintworker) {
                     $arr = array("code" => "000",
