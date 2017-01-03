@@ -256,6 +256,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     Route::any('addforeman', function(){
         return view('addforeman');
     });
+    Route::any('addforeman/pricelist/{shop_id}', 'ForemanController@pricelist');
+    Route::any('addforeman/addprice', 'ForemanController@addprice');
     Route::any('editforeman/{id}', 'ForemanController@editforeman');
     Route::any('foreman/edit', 'ForemanController@edit');
     Route::any('foreman/add', 'ForemanController@add');
