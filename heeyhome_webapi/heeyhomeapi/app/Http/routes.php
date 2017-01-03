@@ -155,10 +155,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('withdraw/apply', 'WalletController@apply');
     /*我的银行卡*/
     Route::any('mybankcards', 'WalletController@mycards');
+    /*账单明细*/
+    Route::any('mywallet/bill', 'WalletController@bill');
 
     /*材料*/
     /*材料分类*/
-    Route::any('materialcate', 'MaterialController@cate');
+    Route::any('materials', 'MaterialController@materials');
+
 
     //成本计算器
     //成本计算
@@ -267,6 +270,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     Route::any('application', 'ApplicationController@index');
     Route::any('application/process/{id}','ApplicationController@process');
     Route::any('application/doprocess','ApplicationController@doprocess');
+    Route::any('application/info/{id}','ApplicationController@info');
     /*实名认证*/
     Route::any('verification', 'VerifyController@index');
     Route::any('verification/verify/{id}', 'VerifyController@verify');
