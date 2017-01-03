@@ -170,6 +170,7 @@ msg           失败
 data
 必选参数
 shop_id           shop_id           //店铺id
+user_id           user_id
 
 callback          callback
 ```
@@ -227,7 +228,8 @@ msg           失败
 ```
 data
 必选参数
-panorama_id        panorama_id           //店铺id
+panorama_id        panorama_id           //全景图id
+user_id            user_id
 
 callback           callback
 ```

@@ -33,10 +33,13 @@ class UserinfoController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{
-            $user=DB::select('select user_phone,user_email from hh_user where user_id=?',[$user_id]);
+            $user=DB::select('select user_name,user_phone,user_email from hh_user where user_id=?',[$user_id]);
             if($user){
+                $userinfo[0]->user_name=$user[0]->user_name;
                 $userinfo[0]->userinfo_phone=$user[0]->user_phone;
                 $userinfo[0]->userinfo_email=$user[0]->user_email;
+                if($user[0]->user_name==$user[0]->user_phone) $userinfo[0]->isedit=1;
+                else  $userinfo[0]->isedit=2;
                 $arr = array("code" => "000",
                     "data"=> $userinfo[0]
                 );
@@ -92,14 +95,8 @@ class UserinfoController extends Controller
         if($home_city) $personal->home_city=$home_city;
         if($home_district) $personal->home_district=$home_district;
         $personal->save();
-            $userinfo=DB::select('select * from hh_userinfo where userinfo_userid=?',[$user_id]);
-            $user=DB::select('select user_phone,user_email from hh_user where user_id=?',[$user_id]);
-            $userinfo[0]->userinfo_name=$user[0]->user_name;
-            $userinfo[0]->userinfo_phone=$user[0]->user_phone;
-            $userinfo[0]->userinfo_email=$user[0]->user_email;
             $arr = array("code" => "000",
-                "msg" => "保存成功",
-                "data"=>$userinfo[0]
+                "msg" => "保存成功"
             );
             return $callback . "(" . HHJson($arr) . ")";
     }
