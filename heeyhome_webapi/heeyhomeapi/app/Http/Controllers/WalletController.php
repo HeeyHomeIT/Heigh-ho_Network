@@ -14,6 +14,20 @@ use Illuminate\Support\Facades\DB;
 class WalletController extends Controller
 {
     public function index(){
+        $callback = rq('callback');
+        $user_id = rq('user_id');
+        $money = DB::select('select total,available_total from hh_wallet_balance where user_id =?',[$user_id]);
+        if ($money) {
+            $arr = array("code" => "000",
+                    "data" =>$money[0] //这里肯定返回一个的，不取第一个的话，ios这边会返回一个数组里面包含一个字典
+                );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array("code" => "117",
+                    "msg" => "没有金额"
+                );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
 
     }
     public function mycards(){
