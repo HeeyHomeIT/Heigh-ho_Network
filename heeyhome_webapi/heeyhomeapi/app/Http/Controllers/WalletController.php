@@ -86,4 +86,13 @@ class WalletController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+    public function del(){
+        $callback=rq('callback');
+        $id=rq('id');
+        $delete=DB::update('update hh_wallet_detail set isdel=? where id=?',[1,$id]);
+        $arr = array("code" => "000",
+            "msg" => "删除成功"
+        );
+        return $callback . "(" . HHJson($arr) . ")";
+    }
 }

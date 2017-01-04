@@ -192,3 +192,60 @@ msg           失败
 ```
 117          信息不存在
 ```
+# del() #
+##单条账单明细删除接口
+
+
+### 接口地址
+
+
+```
+.../mywallet/bill/del
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../mywallet/bill/del
+```
+
+###### Json数据格式
+```
+data
+id                  id    
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         ""
+msg          成功
+
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
+```
