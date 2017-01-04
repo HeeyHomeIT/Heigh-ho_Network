@@ -112,16 +112,16 @@ class MyworkcaseController extends Controller
     public function del(){
         $callback=rq('callback');
         $case_id=rq('case_id');
-        $del=DB::delete('delete from hh_workcase where case_id=?',$case_id);
+        $del=DB::delete('delete from hh_workcase where case_id=?',[$case_id]);
         if($del){
-            $delimgs=DB::delete('delete from hh_workcase_img where case_id=?',$case_id);
+            $delimgs=DB::delete('delete from hh_workcase_img where case_id=?',[$case_id]);
             $arr = array("code" => "000",
                 "msg" => "删除成功"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
         else{
-            $arr = array("code" => "117",
+            $arr = array("code" => "111",
                 "msg" => "删除失败"
             );
             return $callback . "(" . HHJson($arr) . ")";

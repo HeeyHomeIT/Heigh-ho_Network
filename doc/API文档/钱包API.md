@@ -115,6 +115,74 @@ msg          "申请提现成功，银行处理中"
 callback(
 code          111
 data          ""
+msg           "申请提现失败，该银行卡未绑定"
+)
+```
+
+###### Code值含义
+
+```
+```
+# bill() #
+##账单明细接口
+
+
+### 接口地址
+
+
+```
+.../mywallet/bill
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../mywallet/bill
+```
+
+###### Json数据格式
+```
+data
+必选参数
+user_id             user_id    
+可选参数
+month               month       //按月筛选 格式0000-00
+page                page        //默认第一页   
+limit               limit       //每天显示数 默认20条
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                    id          id
+                    money       money
+                    content     content
+                    time        time
+                    img         img
+                    total       total        //总数据数
+             }
+
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
 msg           失败
 )
 ```
@@ -122,4 +190,5 @@ msg           失败
 ###### Code值含义
 
 ```
+117          信息不存在
 ```
