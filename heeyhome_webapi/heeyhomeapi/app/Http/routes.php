@@ -208,6 +208,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/dispute/changetype', 'OrderOperateController@changeOrderCanddFinish');
     //添加材料订单
     Route::get('order/material/produce', 'OrderMaterialController@generateOrderMaterial');
+    //订单详情
+    Route::any('order/detail', 'OrderDisplayController@orderDetailsToShow');
 
 
 });
