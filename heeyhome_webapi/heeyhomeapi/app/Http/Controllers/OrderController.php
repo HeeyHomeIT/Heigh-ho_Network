@@ -199,7 +199,7 @@ class OrderController extends Controller
         }
         $callback = rq('callback');
         $page_start = ($page - 1) * $limit;
-        $order_tbl_list = DB::select('SELECT * FROM hh_order WHERE user_id = ? LIMIT ?,?',
+        $order_tbl_list = DB::select('SELECT * FROM hh_order_user_view WHERE user_id = ? LIMIT ?,?',
             [$user_id, $page_start, $limit]);
         if ($order_tbl_list) {
             $arr = array("code" => "000",
