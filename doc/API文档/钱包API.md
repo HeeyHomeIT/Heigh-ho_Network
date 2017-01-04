@@ -249,3 +249,62 @@ msg           失败
 
 ```
 ```
+
+# index() #
+##获取当前总额 提现金额接口 、保证金写死
+
+
+### 接口地址
+
+
+```
+.../mywallet
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET POST
+```
+
+```
+.../mywallet
+```
+
+###### Json数据格式
+```
+data
+user_id             user_id    
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                available_total          提现金额
+                total                    当前总额
+            }
+
+)
+```
+
+```
+失败
+callback(
+code          117
+data          ""
+msg           "没有金额"
+)
+```
+
+###### Code值含义
+
+```
+```
