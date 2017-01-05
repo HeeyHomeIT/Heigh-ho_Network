@@ -143,7 +143,7 @@ class OrderController extends Controller
         $user_id = rq('user_id');
         $callback = rq('callback');
         /*查询订单是否存在*/
-        $order_tbl_isdestroy = DB::select('SELECT order_status FROM hh_order WHERE user_id =  ? AND $order_id = ?',
+        $order_tbl_isdestroy = DB::select('SELECT order_status FROM hh_order WHERE user_id =  ? AND order_id = ?',
             [$user_id, $order_id]);
         if ($order_tbl_isdestroy) {
             $order_status = $order_tbl_isdestroy[0]->order_status;
@@ -389,4 +389,26 @@ class OrderController extends Controller
             }
         }
     }
+
+    public function appointment() 
+    {
+        $callback = rq('callback');
+        $order_id = rq('order_id');
+        $appointmentTime = DB::select('select * from hh_order_reservation_time where order_id = ?',[$order_id]);
+        if ($appointmentTime) {
+                $arr = array(
+                "code" => "000",
+                "data" => $appointmentTime[0]
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "200",
+                 "msg" => "没有时间"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+
+    }
+    
 }

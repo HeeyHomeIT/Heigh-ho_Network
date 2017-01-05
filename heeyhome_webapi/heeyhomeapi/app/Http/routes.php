@@ -184,6 +184,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/client/list', 'OrderController@orderListUser');
     //店铺订单列表
     Route::any('order/shop/list', 'OrderController@orderListFeroman');
+    //取消订单
+    Route::any('order/shop/destory', 'OrderController@orderDestroy');
     //生成预算单与结算单
     Route::any('order/aeckonandactual/generatelist', 'OrderOperateController@generateActualListAndReckonList');
     //获取预算单结算单字段
@@ -212,6 +214,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('order/material/produce', 'OrderMaterialController@generateOrderMaterial');
     //订单详情
     Route::any('order/detail', 'OrderDisplayController@orderDetailsToShow');
+    //获取上门预约时间
+    Route::any('order/appointment', 'OrderController@appointment');
     //查询或添加装修风格
     Route::any('order/style/addhousestyle', 'OrderDisplayController@addHouseStyle');
 
