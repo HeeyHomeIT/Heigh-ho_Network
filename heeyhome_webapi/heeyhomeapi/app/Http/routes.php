@@ -218,7 +218,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/appointment', 'OrderController@appointment');
     //查询或添加装修风格
     Route::any('order/style/addhousestyle', 'OrderController@addHouseStyle');
+    Route::any('order/shop/destory', 'OrderController@orderDestroy');
 
+    //材料订单
+    //获取材料订单列表
+    Route::any('order/material/getlist', 'OrderMaterialController@getMaterialList');
 
 });
 
