@@ -218,6 +218,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/appointment', 'OrderController@appointment');
     //查询或添加装修风格
     Route::any('order/style/addhousestyle', 'OrderDisplayController@addHouseStyle');
+    //获取上门预约时间
+    Route::any('order/appointment', 'OrderController@appointment');
+    Route::any('order/shop/destory', 'OrderController@orderDestroy');
+
+
 
 
 });
