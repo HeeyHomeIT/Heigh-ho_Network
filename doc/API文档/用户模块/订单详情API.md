@@ -48,6 +48,12 @@ data         {
                                                                         }
                                                   material_pay_status   material_pay_status
                                           }
+                    worker                {
+                                                  name         name
+                                                  portrait     portrait
+                                                  type         type
+                                                  typename     typename
+                                          }
              }
 msg          ""
 )
