@@ -152,7 +152,7 @@ data
 必选参数
 user_id             user_id    
 可选参数
-month               month       //按月筛选 格式0000-00
+month               month       //按月筛选 格式201701
 page                page        //默认第一页   
 limit               limit       //每天显示数 默认20条
 
