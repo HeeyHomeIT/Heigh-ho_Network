@@ -324,45 +324,68 @@ class OrderController extends Controller
         }
     }
 
-    //添加装修风格
+    //查询或添加装修风格
     public function addHouseStyle()
     {
         $house_style = rq('house_style');
         $order_id = rq('order_id');
         $callback = rq('callback');
-        //查询是否已有装修风格
-        $sel_order_house_style = DB::select('SELECT house_style FROM hh_order WHERE order_id = ? ', [$order_id]);
-        if (!$sel_order_house_style) {
-            $arr = array(
-                "code" => "200",
-                "msg" => "订单号错误",
-                "data" => ""
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        } else {
-            if ($sel_order_house_style[0]->house_style == "") {
-                $ins_order_house_style = DB::update('UPDATE hh_order SET house_style = ? WHERE order_id = ? ', [$house_style, $order_id]);
-                if ($ins_order_house_style) {
-                    $arr = array(
-                        "code" => "000",
-                        "msg" => "添加成功",
-                        "data" => ""
-                    );
-                } else {
-                    $arr = array(
-                        "code" => "200",
-                        "msg" => "添加失败",
-                        "data" => ""
-                    );
-                }
-                return $callback . "(" . HHJson($arr) . ")";
-            }else {
+        if ($house_style == "") {
+            //查询是否已有装修风格
+            $sel_order_house_style = DB::select('SELECT house_style FROM hh_order WHERE order_id = ? ', [$order_id]);
+            if (!$sel_order_house_style) {
                 $arr = array(
                     "code" => "200",
-                    "msg" => "已有装修风格",
+                    "msg" => "订单号错误",
+                    "data" => ""
+                );
+            } else {
+                $house_style = $sel_order_house_style[0]->house_style;
+                $arr = array(
+                    "code" => "000",
+                    "msg" => "查询成功",
+                    "data" => array(
+                        "订单号" => $order_id,
+                        "装修风格" => $house_style
+                    )
+                );
+            }
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            //查询是否已有装修风格
+            $sel_order_house_style = DB::select('SELECT house_style FROM hh_order WHERE order_id = ? ', [$order_id]);
+            if (!$sel_order_house_style) {
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "订单号错误",
                     "data" => ""
                 );
                 return $callback . "(" . HHJson($arr) . ")";
+            } else {
+                if ($sel_order_house_style[0]->house_style == "") {
+                    $ins_order_house_style = DB::update('UPDATE hh_order SET house_style = ? WHERE order_id = ? ', [$house_style, $order_id]);
+                    if ($ins_order_house_style) {
+                        $arr = array(
+                            "code" => "000",
+                            "msg" => "添加成功",
+                            "data" => ""
+                        );
+                    } else {
+                        $arr = array(
+                            "code" => "200",
+                            "msg" => "添加失败",
+                            "data" => ""
+                        );
+                    }
+                    return $callback . "(" . HHJson($arr) . ")";
+                } else {
+                    $arr = array(
+                        "code" => "200",
+                        "msg" => "已有装修风格",
+                        "data" => ""
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
             }
         }
     }

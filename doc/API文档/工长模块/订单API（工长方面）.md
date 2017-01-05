@@ -80,7 +80,7 @@ msg           没有订单
 
 ---
 
-## 添加订单装修风格API ##
+## 查询或添加装修风格API ##
 ### 接口地址
 
 
@@ -100,7 +100,7 @@ msg           没有订单
 ```
 data
 order_id                order_id                订单id
-house_style             house_style             装修风格
+house_style             house_style             装修风格（可选，如果不传则自动返回当前订单已有的装修风格）
 callback                callback                回调
 ```
 

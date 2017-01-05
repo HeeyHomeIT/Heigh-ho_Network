@@ -212,7 +212,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('order/material/produce', 'OrderMaterialController@generateOrderMaterial');
     //订单详情
     Route::any('order/detail', 'OrderDisplayController@orderDetailsToShow');
-    //添加订单装修风格
+    //查询或添加装修风格
     Route::any('order/style/addhousestyle', 'OrderDisplayController@addHouseStyle');
 
 
