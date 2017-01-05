@@ -390,14 +390,13 @@ class OrderController extends Controller
         }
     }
 
-
-    public function appointment()
+    public function appointment() 
     {
         $callback = rq('callback');
         $order_id = rq('order_id');
         $appointmentTime = DB::select('select * from hh_order_reservation_time where order_id = ?',[$order_id]);
         if ($appointmentTime) {
-            $arr = array(
+                $arr = array(
                 "code" => "000",
                 "data" => $appointmentTime[0]
             );
@@ -405,11 +404,11 @@ class OrderController extends Controller
         } else {
             $arr = array(
                 "code" => "200",
-                "msg" => "没有时间"
+                 "msg" => "没有时间"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
 
     }
-
+    
 }
