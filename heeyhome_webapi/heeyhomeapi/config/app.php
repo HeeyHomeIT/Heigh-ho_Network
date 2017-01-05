@@ -203,5 +203,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
     ],
-
+    'providers' => [
+        // ...
+        'Latrell\Alipay\AlipayServiceProvider',
+    ]
 ];
