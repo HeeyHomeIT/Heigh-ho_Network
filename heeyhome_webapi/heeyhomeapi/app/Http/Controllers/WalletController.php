@@ -73,6 +73,8 @@ class WalletController extends Controller
         $callback=rq('callback');
         $user_id=rq('user_id');
         $month=rq('month');
+        $month=substr($month,0,4)."-".substr($month,4,2);
+        //dd($month);
         $where='';
         $para[]=$user_id;
         $para[]=0;
