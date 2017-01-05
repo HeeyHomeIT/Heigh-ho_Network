@@ -211,3 +211,59 @@ code 含义
 ---
 
 ```
+
+---
+
+## 查询预结算单编辑状态API ##
+### 接口地址
+
+
+```
+.../order/aeckonandactual/selstatus
+```
+
+### 接口格式
+
+### 调用 
+
+```
+接收方式        GET     POST
+```
+
+###### Json数据格式
+```
+data
+order_id                order_id                订单id
+callback                callback                回调
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                “预算单编辑状态” ：0
+                “结算单编辑状态” ：1
+                （0：不可编辑 1：可编辑）
+            }
+msg          查询成功
+)
+```
+
+```
+失败
+callback(
+code          200
+data          ""
+msg           预算单不存在
+)
+---
+callback(
+code          200
+data          ""
+msg           结算单不存在
+)
+---

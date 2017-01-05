@@ -201,9 +201,13 @@ class OrderController extends Controller
         $page_start = ($page - 1) * $limit;
         $order_tbl_list = DB::select('SELECT * FROM hh_order_user_view WHERE user_id = ? LIMIT ?,?',
             [$user_id, $page_start, $limit]);
+        $order_tbl_count = DB::select('SELECT COUNT(id) AS order_count FROM hh_order_user_view WHERE user_id = ?',
+            [$user_id]);
+        $order_count = $order_tbl_count[0]->order_count;
         if ($order_tbl_list) {
             $arr = array("code" => "000",
-                "data" => array("order_tbl_list" => $order_tbl_list
+                "data" => array("order_list" => $order_tbl_list,
+                    "order_count" => $order_count
                 ),
                 "msg" => "查询成功"
             );

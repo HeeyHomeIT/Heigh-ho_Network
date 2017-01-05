@@ -198,6 +198,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/aeckonandactual/getlistdata', 'OrderOperateController@getActualAndReckonData');
     //查询预结算单数据和付款信息
     Route::any('order/aeckonandactual/seldata', 'OrderOperateController@searchActualDataAndReckonData');
+    //查询预结算单编辑状态
+    Route::any('order/aeckonandactual/selstatus', 'OrderOperateController@getActualReckonStatus');
     //生成订单纠纷表
     Route::any('order/dispute/generate', 'OrderOperateController@generateOrderCandd');
     //插入纠纷数据
