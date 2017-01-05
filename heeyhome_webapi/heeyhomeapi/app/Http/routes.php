@@ -213,7 +213,7 @@ Route::group(['middleware' => ['web']], function () {
     //订单详情
     Route::any('order/detail', 'OrderDisplayController@orderDetailsToShow');
     //查询或添加装修风格
-    Route::any('order/style/addhousestyle', 'OrderDisplayController@addHouseStyle');
+    Route::any('order/style/addhousestyle', 'OrderController@addHouseStyle');
 
 
 });
