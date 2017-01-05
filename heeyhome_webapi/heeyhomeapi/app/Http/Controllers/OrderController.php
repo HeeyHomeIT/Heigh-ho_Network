@@ -161,7 +161,7 @@ class OrderController extends Controller
                     [7, $order_id, $user_id]);
                 if ($order_tbl) {
                     $arr = array(
-                        "code" => "100",
+                        "code" => "000",
                         "msg" => "订单已取消",
                         "data" => ""
                     );
