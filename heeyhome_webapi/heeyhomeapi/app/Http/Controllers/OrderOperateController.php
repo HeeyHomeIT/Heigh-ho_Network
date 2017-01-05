@@ -453,7 +453,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         }
     }
 
-    //TODO 查询预结算单数据和付款信息
+    //查询预结算单数据和付款信息
     public function searchActualDataAndReckonData()
     {
         $order_id = rq('order_id');
@@ -1228,7 +1228,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         return $callback . "(" . HHJson($arr) . ")";
     }
 
-    //TODO 生成装修人员订单
+    //生成装修人员订单
     public function generateOrderWorker()
     {
         $order_id = rq('order_id');
