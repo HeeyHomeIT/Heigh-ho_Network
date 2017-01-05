@@ -126,38 +126,60 @@ class OrderMaterialController extends Controller
         }
     }
 
-    //TODO 获取材料单列表
+    //获取材料单列表
     public function getMaterialList()
     {
+        $user_id = rq('user_id');
         $order_id = rq('order_id');
         $material_supplier_id = rq('material_supplier_id');
         $callback = rq('callback');
         //判断来源
-        if ($order_id) {
-            $sel_material_user = DB::select('SELECT * FROM hh_order_material WHERE order_id = ?',
+        if ($material_supplier_id)
+            $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE material_supplier_id = ?',
+                [$material_supplier_id]);
+        else if ($user_id)
+            $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE user_id = ?',
+                [$user_id]);
+        else if ($order_id)
+            $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE order_id = ?',
                 [$order_id]);
-        } elseif ($material_supplier_id) {
-
-        } else {
+        else {
             $arr = array(
-                "code" => "301",
+                "code" => "200",
                 "msg" => "参数错误,获取列表失败",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        if ($sel_material_user) {
+            $arr = array(
+                "code" => "000",
+                "msg" => "查询成功",
+                "data" => $sel_material_user
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+
+            $arr = array(
+                "code" => "200",
+                "msg" => "没有订单",
                 "data" => ""
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
 
-    //TODO 获取材料订单数据
-    public function getOrderMaterial()
+//TODO 获取材料订单数据
+    public
+    function getOrderMaterial()
     {
-        $order_id = rq('order_id');
+        $order_material_id = rq('order_material_id');
         $material_type = rq('material_type');
         $callback = rq('callback');
         if ($material_type) {
             //查询材料订单是否存在
-            $sel_material_tbl = DB::select('SELECT * FROM hh_order_material WHERE order_id = ? AND material_type= ?',
-                [$order_id, $material_type]);
+            $sel_material_tbl = DB::select('SELECT * FROM hh_order_material WHERE order_material_id = ? AND material_type= ?',
+                [$order_material_id, $material_type]);
             if ($sel_material_tbl) {
                 $material_id = $sel_material_tbl[0]->sel_material_id;
                 $sel_material_list_tbl = DB::select('' .
