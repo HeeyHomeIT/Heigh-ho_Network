@@ -453,7 +453,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         }
     }
 
-    //TODO 查询预结算单数据和付款信息
+    //查询预结算单数据和付款信息
     public function searchActualDataAndReckonData()
     {
         $order_id = rq('order_id');
@@ -1188,7 +1188,47 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         }
     }
 
-    //TODO 生成装修人员订单
+    //查看预算单结算单可修改状态
+    public function getActualReckonStatus()
+    {
+        $order_id = rq('order_id');
+        $callback = rq('callback');
+        $sel_actual_tbl = DB::select('SELECT is_available FROM hh_order_actual_list WHERE order_id = ?',
+            [$order_id]);
+        if ($sel_actual_tbl) {
+            $actual_is_available = $sel_actual_tbl[0]->is_available;
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "预算单不存在",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        $sel_reckon_tbl = DB::select('SELECT is_available FROM hh_order_reckon_list WHERE order_id = ?',
+            [$order_id]);
+        if ($sel_reckon_tbl) {
+            $reckon_is_available = $sel_reckon_tbl[0]->is_available;
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "结算单不存在",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        $arr = array(
+            "code" => "000",
+            "msg" => "查询成功",
+            "data" => array(
+                "预算单编辑状态" => $actual_is_available,
+                "结算单编辑状态" => $reckon_is_available
+            )
+        );
+        return $callback . "(" . HHJson($arr) . ")";
+    }
+
+    //生成装修人员订单
     public function generateOrderWorker()
     {
         $order_id = rq('order_id');

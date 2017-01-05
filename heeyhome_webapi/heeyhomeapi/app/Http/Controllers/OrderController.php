@@ -34,7 +34,7 @@ class OrderController extends Controller
             $time_count = count($time_arr);
             $time_flag = true;
         }
-        if (!$time_flag) {
+        if (!$time_flag || $time_count < 1) {
             $arr = array(
                 "code" => "210",
                 "msg" => "缺少预约时间",
@@ -89,7 +89,7 @@ class OrderController extends Controller
                 if ($time_count == 1) {
                     $ins_order_reservation_time = DB::insert('INSERT INTO hh_order_reservation_time (order_id,reservation_time1) VALUES (?,?)',
                         [$order_id, $time_arr[0]]);
-                } else {
+                } else if ($time_count == 2) {
                     $ins_order_reservation_time = DB::insert('INSERT INTO hh_order_reservation_time (order_id,reservation_time1,reservation_time2) VALUES (?,?,?)',
                         [$order_id, $time_arr[0], $time_arr[1]]);
                 }
@@ -104,7 +104,7 @@ class OrderController extends Controller
                 while ($i < 10) {
                     $pa[$i] = '';
                     $i++;
-                }
+                };
                 $order_personnel_tbl = DB::insert('INSERT INTO hh_order_personnel(personnel_id, order_id, person1, person2, person3, person4, person5, person6, person7, person8, person9) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
                     [$order_personnel, $order_id, $pa[0], $pa[1], $pa[2], $pa[3], $pa[4], $pa[5], $pa[6], $pa[7], $pa[8], $pa[9]]);
             }
@@ -201,9 +201,13 @@ class OrderController extends Controller
         $page_start = ($page - 1) * $limit;
         $order_tbl_list = DB::select('SELECT * FROM hh_order_user_view WHERE user_id = ? LIMIT ?,?',
             [$user_id, $page_start, $limit]);
+        $order_tbl_count = DB::select('SELECT COUNT(id) AS order_count FROM hh_order_user_view WHERE user_id = ?',
+            [$user_id]);
+        $order_count = $order_tbl_count[0]->order_count;
         if ($order_tbl_list) {
             $arr = array("code" => "000",
-                "data" => array("order_tbl_list" => $order_tbl_list
+                "data" => array("order_list" => $order_tbl_list,
+                    "order_count" => $order_count
                 ),
                 "msg" => "查询成功"
             );
@@ -320,10 +324,69 @@ class OrderController extends Controller
         }
     }
 
-    //TODO 订单列表（材料商）
-    public function orderListMaterial()
+    //查询或添加装修风格
+    public function addHouseStyle()
     {
-
+        $house_style = rq('house_style');
+        $order_id = rq('order_id');
+        $callback = rq('callback');
+        if ($house_style == "") {
+            //查询是否已有装修风格
+            $sel_order_house_style = DB::select('SELECT house_style FROM hh_order WHERE order_id = ? ', [$order_id]);
+            if (!$sel_order_house_style) {
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "订单号错误",
+                    "data" => ""
+                );
+            } else {
+                $house_style = $sel_order_house_style[0]->house_style;
+                $arr = array(
+                    "code" => "000",
+                    "msg" => "查询成功",
+                    "data" => array(
+                        "订单号" => $order_id,
+                        "装修风格" => $house_style
+                    )
+                );
+            }
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            //查询是否已有装修风格
+            $sel_order_house_style = DB::select('SELECT house_style FROM hh_order WHERE order_id = ? ', [$order_id]);
+            if (!$sel_order_house_style) {
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "订单号错误",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            } else {
+                if ($sel_order_house_style[0]->house_style == "") {
+                    $ins_order_house_style = DB::update('UPDATE hh_order SET house_style = ? WHERE order_id = ? ', [$house_style, $order_id]);
+                    if ($ins_order_house_style) {
+                        $arr = array(
+                            "code" => "000",
+                            "msg" => "添加成功",
+                            "data" => ""
+                        );
+                    } else {
+                        $arr = array(
+                            "code" => "200",
+                            "msg" => "添加失败",
+                            "data" => ""
+                        );
+                    }
+                    return $callback . "(" . HHJson($arr) . ")";
+                } else {
+                    $arr = array(
+                        "code" => "200",
+                        "msg" => "已有装修风格",
+                        "data" => ""
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+            }
+        }
     }
-
 }

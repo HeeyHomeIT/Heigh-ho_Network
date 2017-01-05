@@ -198,6 +198,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/aeckonandactual/getlistdata', 'OrderOperateController@getActualAndReckonData');
     //查询预结算单数据和付款信息
     Route::any('order/aeckonandactual/seldata', 'OrderOperateController@searchActualDataAndReckonData');
+    //查询预结算单编辑状态
+    Route::any('order/aeckonandactual/selstatus', 'OrderOperateController@getActualReckonStatus');
     //生成订单纠纷表
     Route::any('order/dispute/generate', 'OrderOperateController@generateOrderCandd');
     //插入纠纷数据
@@ -208,6 +210,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/dispute/changetype', 'OrderOperateController@changeOrderCanddFinish');
     //添加材料订单
     Route::get('order/material/produce', 'OrderMaterialController@generateOrderMaterial');
+    //订单详情
+    Route::any('order/detail', 'OrderDisplayController@orderDetailsToShow');
+    //查询或添加装修风格
+    Route::any('order/style/addhousestyle', 'OrderDisplayController@addHouseStyle');
 
 
 });
