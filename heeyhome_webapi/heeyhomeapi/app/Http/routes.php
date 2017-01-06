@@ -221,7 +221,9 @@ Route::group(['middleware' => ['web']], function () {
     //材料订单
     //获取材料订单列表
     Route::any('order/material/getlist', 'OrderMaterialController@getMaterialList');
-
+    //获取材料商订单未完成、已完成、正在完成数量
+    Route::any('order/materialCount', 'OrderMaterialController@getOrderMaterialCount');
+    
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web','admin.login']], function()

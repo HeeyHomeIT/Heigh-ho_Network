@@ -198,4 +198,42 @@ class OrderMaterialController extends Controller
 
     }
 
+    public function getOrderMaterialCount()
+    {
+        $callback = rq('callback');
+        $material_supplier_id = rq('material_supplier_id');
+        if ($material_supplier_id) {
+            $orderList = DB::select('SELECT order_material_status FROM hh_order_material where material_supplier_id = ?',[$material_supplier_id]);
+            $unfinishCount = 0;
+            $ingCount = 0;
+            $finishCount = 0;
+
+
+            foreach ($orderList as $key => $value) {
+                $status = $value -> order_material_status;
+                if ($status == 3) {
+                    $finishCount++;
+                } else if ($status == 2) {
+                    $ingCount++;
+                } else if ($status == 1) {
+                    $unfinishCount++;
+                }
+            }
+
+            $arr = array(
+                "code" => "000",
+                "data" => array("unfinishCount" => $unfinishCount, "ingCount" => $ingCount, "finishCount" => $finishCount)
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "203",
+                "msg" => "材料商不存在",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+
+
 }
