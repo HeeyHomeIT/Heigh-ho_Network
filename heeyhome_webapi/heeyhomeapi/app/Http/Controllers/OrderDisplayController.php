@@ -111,7 +111,7 @@ class OrderDisplayController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }else{
-            $arr = array("code" => "117",
+            $arr = array("code" => "000",
                      "data" => array('now_order_step'=>$noworder_step,
                          "detail"=>$select,
                          "worker"=>$worker_info
