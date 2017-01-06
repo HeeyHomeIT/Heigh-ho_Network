@@ -222,12 +222,6 @@ Route::group(['middleware' => ['web']], function () {
     //获取材料订单列表
     Route::any('order/material/getlist', 'OrderMaterialController@getMaterialList');
 
-
-    /*消息*/
-    //消息列表
-    Route::any('message/list', 'MessageController@index');
-    //清空所有消息
-    Route::any('message/delAll', 'MessageController@delall');
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web','admin.login']], function()
