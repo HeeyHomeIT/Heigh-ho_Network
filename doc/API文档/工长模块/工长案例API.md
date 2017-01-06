@@ -28,6 +28,7 @@ data
 必须参数
 foreman_id          foreman_id     //工长id
 可选参数
+type                type           //默认为type等于1和2  1:入驻之前的作品 2：已完成的订单作品 3:未完成的订单作品
 page
 limit
 
@@ -55,7 +56,8 @@ data         {
                                           img_id         img_id
                                           case_img       case_img
                                     }
-                    type            type                     //1:入驻之前的作品 2：已完成的订单作品
+                    type            type                     //1:入驻之前的作品 2：已完成的订单作品 3:未完成的订单作品
+                    total           total                    //数据总数
              }
 msg          ""
 )
