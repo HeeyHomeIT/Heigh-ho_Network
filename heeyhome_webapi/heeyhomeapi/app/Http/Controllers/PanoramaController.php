@@ -33,6 +33,7 @@ class PanoramaController extends Controller
     }
     public function index(){
         $callback=rq('callback');
+        $user_id=rq('user_id');
         $area=rq('area');
         $housetype=rq('housetype');
         $servicetag=rq('servicetag');
@@ -106,7 +107,12 @@ class PanoramaController extends Controller
         $select=DB::select('select * from hh_panorama where panorama_status=? '.$where.$order.$limit,$para);
         foreach($select as $key=>$val){
             $select[$key]->total=$total;
-
+            $sel=DB::select('select id from hh_collection where collect_userid=? and iscollected_id=?',[$user_id,$val->panorama_id]);
+            if($sel){
+                $select[$key]->iscollected=1;
+            }else{
+                $select[$key]->iscollected=0;
+            }
         }
         if($select){
             $arr = array("code" => "000",
@@ -116,6 +122,18 @@ class PanoramaController extends Controller
         }else{
             $arr = array("code" => "117",
                 "msg" => "信息不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+    public function like(){
+        $callback=rq('callback');
+        $panorama_id=rq('panorama_id');
+        $update=DB::UPDATE('update hh_panorama set like_num=like_num+1 where panorama_id=?',[$panorama_id]);
+        $select=DB::select('select like_num from hh_panorama where panorama_id=?',[$panorama_id]);
+        if($select){
+            $arr = array("code" => "000",
+                "data" => $select[0]
             );
             return $callback . "(" . HHJson($arr) . ")";
         }

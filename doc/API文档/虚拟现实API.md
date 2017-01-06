@@ -85,6 +85,7 @@ msg           失败
 ```
 data
 可选参数
+user_id             user_id
 area                area 建筑面积筛选条件数组的key 
 housetype           housetype 户型筛选条件数组的key
 servicetag          servicetag 装修风格筛选条件数组的key
@@ -112,6 +113,7 @@ data         {
                    scan_num              scan_num               //浏览量
                    like_num              like_num               //点赞量
                    total                 total                  //总数据数
+                   iscollected           iscollected            1:已收藏 0:未收藏
              }
 msg          ""
 )
@@ -130,4 +132,61 @@ msg           失败
 
 ```
 117           信息不存在
+```
+# like() #
+## 虚拟现实点赞接口
+
+
+### 接口地址
+
+
+```
+.../panorama/like
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../panorama/like
+```
+
+###### Json数据格式
+```
+data
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                   like_num      like_num
+             }
+msg          ""
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
 ```

@@ -32,11 +32,11 @@ Route::group(['middleware' => ['web']], function () {
     /*虚拟现实*/
     Route::any('panorama/gettags', 'PanoramaController@gettags');
     Route::any('panorama', 'PanoramaController@index');
+    Route::any('panorama', 'PanoramaController@like');
     /*家装百科*/
     Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
     Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
     Route::any('jzbk/info', 'HomeEncyclopediaController@info');
-
     /*登录*/
     Route::any('login/login', 'LoginController@login');
     /*qq第三方登录*/
@@ -91,8 +91,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('personal/message/readall', 'MessageController@readall');
     /*收藏全景图*/
     Route::any('panorama/collect', 'CollectimgController@collect');
-    /*收藏成本结果*/
-
     /*收藏店铺*/
     Route::any('shop/collect', 'CollectshopController@collect');
     /*我的店铺*/
@@ -161,7 +159,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('mywallet/bill/del', 'WalletController@del');
 
     /*材料*/
-    /*材料分类*/
+    //材料分类
     Route::any('materials', 'MaterialController@materials');
 
 
@@ -223,7 +221,9 @@ Route::group(['middleware' => ['web']], function () {
     //材料订单
     //获取材料订单列表
     Route::any('order/material/getlist', 'OrderMaterialController@getMaterialList');
-
+    //获取材料商订单未完成、已完成、正在完成数量
+    Route::any('order/materialCount', 'OrderMaterialController@getOrderMaterialCount');
+    
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web','admin.login']], function()

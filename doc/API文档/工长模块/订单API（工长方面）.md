@@ -123,4 +123,93 @@ code          200
 data          ""
 msg           订单号错误/添加失败/已有装修风格
 )
+
+## 取消订单API ##
+### 接口地址
+
+
+```
+.../order/shop/destory
+```
+
+### 接口格式
+
+### 调用 
+
+```
+接收方式        GET     POST
+```
+
+###### Json数据格式
+```
+data
+order_id                order_id                订单id
+user_id                 user_id
+callback                callback                回调
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         ""
+msg          添加成功
+)
+```
+
+```
+失败
+callback(
+code          200
+data          ""
+msg           
+)
+
+## 获取订单上门时间API ##
+### 接口地址
+
+
+```
+.../order/appointment
+```
+
+### 接口格式
+
+### 调用 
+
+```
+接收方式        GET     POST
+```
+
+###### Json数据格式
+```
+data
+order_id                order_id                订单id
+callback                callback                回调
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                reservation_time1   第一个时间
+                reservation_time2   第二个时间
+            }
+)
+```
+
+```
+失败
+callback(
+code          200
+data          ""
+msg           
+)
 ---

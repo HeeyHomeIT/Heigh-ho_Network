@@ -17,14 +17,34 @@ class MyworkcaseController extends Controller
     public function index(){
         $callback=rq('callback');
         $foreman_id=rq('foreman_id');
-        $total=DB::select('select count(id) as total from hh_workcase where foreman_id=?',[$foreman_id]);
+        $type=rq('type');
+        $where=' and (type=1 or type=2)';
+        if($type){
+            switch ($type){
+                case 1: $where=' and type=1';
+                    break;
+                case 2: $where=' and type=2';
+                    break;
+                case 3: $where=' and type=3';
+            }
+        }
+        $total=DB::select('select count(id) as total from hh_workcase where foreman_id=?'.$where,[$foreman_id]);
         $total=$total[0]->total;
         $newpage=new PageController();
         $offset=$newpage->page($total);
-        $select=DB::select('select * from hh_workcase  where foreman_id=? order by id desc limit ?,?',[$foreman_id,$offset[0],$offset[1]]);
+        $select=DB::select('select * from hh_workcase  where foreman_id=?'.$where.' order by id desc limit ?,?',[$foreman_id,$offset[0],$offset[1]]);
         foreach($select as $key=>$val){
             $imgs=DB::select('select img_id,case_img from hh_workcase_img where case_id=?',[$val->case_id]);
             $select[$key]->img=$imgs;
+            $select[$key]->total=$total;
+            if($val->type==2){
+                 $order=DB::select('select order_step from hh_order where order_id=?',[$val->case_id]);
+                 $select[$key]->order_step=$order[0]->order_step;
+            }
+            if($val->type==3){
+                $order=DB::select('select order_step from hh_order where order_id=?',[$val->case_id]);
+                $select[$key]->order_step=$order[0]->order_step;
+            }
         }
         if($select){
             $arr = array("code" => "000",
