@@ -44,7 +44,7 @@ callback            callback
 callback(
 code         000
 data         {
-                    case_id         case_id                 //案例id
+                    case_id         case_id                 //案例id    如果是订单case_id就为订单id
                     area            area                    //建筑面积
                     housetype       housetype               //户型
                     style           style                   //装修风格
@@ -58,6 +58,7 @@ data         {
                                     }
                     type            type                     //1:入驻之前的作品 2：已完成的订单作品 3:未完成的订单作品
                     total           total                    //数据总数
+                    order_step      order_step               //如果是订单会返这个字段
              }
 msg          ""
 )

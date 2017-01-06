@@ -37,6 +37,14 @@ class MyworkcaseController extends Controller
             $imgs=DB::select('select img_id,case_img from hh_workcase_img where case_id=?',[$val->case_id]);
             $select[$key]->img=$imgs;
             $select[$key]->total=$total;
+            if($val->type==2){
+                 $order=DB::select('select order_step from hh_order where order_id=?',[$val->case_id]);
+                 $select[$key]->order_step=$order[0]->order_step;
+            }
+            if($val->type==3){
+                $order=DB::select('select order_step from hh_order where order_id=?',[$val->case_id]);
+                $select[$key]->order_step=$order[0]->order_step;
+            }
         }
         if($select){
             $arr = array("code" => "000",
