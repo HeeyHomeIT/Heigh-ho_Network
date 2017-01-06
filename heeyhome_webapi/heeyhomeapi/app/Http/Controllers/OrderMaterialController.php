@@ -248,7 +248,6 @@ class OrderMaterialController extends Controller
             if ($sel_material_user) {
                 $arr = array(
                 "code" => "000",
-                "msg" => "查询成功",
                 "data" => $sel_material_user
                 );
                 return $callback . "(" . HHJson($arr) . ")";
