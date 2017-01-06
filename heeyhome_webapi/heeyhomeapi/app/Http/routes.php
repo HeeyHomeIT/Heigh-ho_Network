@@ -223,6 +223,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/material/getlist', 'OrderMaterialController@getMaterialList');
     //获取材料商订单未完成、已完成、正在完成数量
     Route::any('order/materialCount', 'OrderMaterialController@getOrderMaterialCount');
+    //根据状态未完成、已完成、正在完成获取材料订单
+    Route::any('order/materialByStatus', 'OrderMaterialController@materialOrderByStatus');
+    
     
 });
 

@@ -236,4 +236,39 @@ class OrderMaterialController extends Controller
     }
 
 
+    public function materialOrderByStatus() 
+    {
+        $callback = rq('callback');
+        $material_supplier_id = rq('material_supplier_id');
+        $status = rq('status');
+
+        if ($status == 1 || $status == 2 || $status == 3) {
+            $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE material_supplier_id = ? AND order_material_status =?',
+                [$material_supplier_id,$status]);
+            if ($sel_material_user) {
+                $arr = array(
+                "code" => "000",
+                "msg" => "查询成功",
+                "data" => $sel_material_user
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            } else {
+                $arr = array(
+                "code" => "117",
+                "msg" => "订单不存在",
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+
+        } else {
+            $arr = array(
+                "code" => "203",
+                "msg" => "状态错误",
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+
+
+    }
+
 }
