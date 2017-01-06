@@ -51,6 +51,7 @@ class HomeEncyclopediaController extends Controller
         }
     }
     public function info(){
+
         $callback=rq('callback');
         $article_id=rq('id');
         if (!$article_id) {
@@ -59,6 +60,7 @@ class HomeEncyclopediaController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        DB::update('update hh_jzbkarticle set scan=scan+1 where id=?',[$article_id]);
         $articles = DB::select('select id,article_title,article_content from hh_jzbkarticle where id=?',[$article_id]);
         if($articles){
             $arr=array(
