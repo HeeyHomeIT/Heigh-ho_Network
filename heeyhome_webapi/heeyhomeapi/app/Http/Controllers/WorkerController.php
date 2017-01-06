@@ -16,7 +16,7 @@ class WorkerController extends Controller
 {
     public function workerinfo()
     {
-        $callback = rq('callbcak');
+        $callback = rq('callback');
         $cate = rq('cate_id');
         $worker_id = rq('worker_id');
         if (!$cate) {
