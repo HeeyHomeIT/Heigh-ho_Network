@@ -313,6 +313,19 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
 
 });
 
+//支付宝视图接口
+Route::any('/alipay/pay', function () {
+    return view('alipayapi');
+});
+//支付宝同步回调接口
+Route::any('/alipay/return_url', function () {
+    return view('return_url');
+});
+//支付宝异步回调接口
+Route::any('/alipay/notify_url', function () {
+    return view('notify_url');
+});
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => 'web'], function()
 {
     Route::any('/', function (){
