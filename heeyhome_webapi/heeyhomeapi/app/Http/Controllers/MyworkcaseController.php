@@ -159,4 +159,16 @@ class MyworkcaseController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+    public function scan(){
+        $callback=rq('callback');
+        $case_id=rq('case_id');
+        $update=DB::UPDATE('update hh_workcase set scan_num=scan_num+1 where case_id=?',[$case_id]);
+        $select=DB::select('select scan_num from hh_workcase where case_id=?',[$case_id]);
+        if($select){
+            $arr = array("code" => "000",
+                "data" => $select[0]
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
 }

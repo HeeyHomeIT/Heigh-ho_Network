@@ -257,3 +257,61 @@ msg           失败
 
 ```
 ```
+# scan() #
+## 工长案例浏览量计数接口
+
+
+### 接口地址
+
+
+```
+.../myworkcase/scan
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../myworkcase/scan
+```
+
+###### Json数据格式
+```
+data
+case_id             case_id
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                   scan_num      scan_num
+             }
+msg          ""
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
+```

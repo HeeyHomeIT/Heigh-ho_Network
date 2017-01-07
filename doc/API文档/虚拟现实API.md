@@ -191,3 +191,61 @@ msg           失败
 
 ```
 ```
+# scan() #
+## 虚拟现实浏览量计数接口
+
+
+### 接口地址
+
+
+```
+.../panorama/scan
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../panorama/scan
+```
+
+###### Json数据格式
+```
+data
+panorama_id         panorama_id
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                   scan_num      scan_num
+             }
+msg          ""
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
+```

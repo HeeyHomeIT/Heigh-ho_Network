@@ -138,4 +138,16 @@ class PanoramaController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+    public function scan(){
+        $callback=rq('callback');
+        $panorama_id=rq('panorama_id');
+        $update=DB::UPDATE('update hh_panorama set scan_num=scan_num+1 where panorama_id=?',[$panorama_id]);
+        $select=DB::select('select scan_num from hh_panorama where panorama_id=?',[$panorama_id]);
+        if($select){
+            $arr = array("code" => "000",
+                "data" => $select[0]
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
 }

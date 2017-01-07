@@ -32,7 +32,8 @@ Route::group(['middleware' => ['web']], function () {
     /*虚拟现实*/
     Route::any('panorama/gettags', 'PanoramaController@gettags');
     Route::any('panorama', 'PanoramaController@index');
-    Route::any('panorama', 'PanoramaController@like');
+    Route::any('panorama/like', 'PanoramaController@like');
+    Route::any('panorama/scan', 'PanoramaController@scan');
     /*家装百科*/
     Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
     Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
@@ -146,6 +147,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('addmyworkcase', 'MyworkcaseController@add');
     Route::any('delmyworkcase', 'MyworkcaseController@del');
     Route::any('myworkcase/like', 'MyworkcaseController@like');
+    Route::any('myworkcase/scan', 'MyworkcaseController@scan');
     /*工长材料清单*/
     Route::any('materialslist', 'MaterialslistController@index');
     /*我的钱包*/
