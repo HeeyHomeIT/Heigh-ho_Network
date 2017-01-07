@@ -159,6 +159,7 @@ msg           失败
 ###### Json数据格式
 ```
 data
+panorama_id         panorama_id
 
 callback            callback
 ```

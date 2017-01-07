@@ -199,3 +199,61 @@ msg           失败
 
 ```
 ```
+# like() #
+## 工长案例点赞接口
+
+
+### 接口地址
+
+
+```
+.../myworkcase/like
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../myworkcase/like
+```
+
+###### Json数据格式
+```
+data
+case_id             case_id
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                   like_num      like_num
+             }
+msg          ""
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
+```

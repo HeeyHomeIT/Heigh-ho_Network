@@ -145,6 +145,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('myworkcase', 'MyworkcaseController@index');
     Route::any('addmyworkcase', 'MyworkcaseController@add');
     Route::any('delmyworkcase', 'MyworkcaseController@del');
+    Route::any('myworkcase/like', 'MyworkcaseController@like');
     /*工长材料清单*/
     Route::any('materialslist', 'MaterialslistController@index');
     /*我的钱包*/
