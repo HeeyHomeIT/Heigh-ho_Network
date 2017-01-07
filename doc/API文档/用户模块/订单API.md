@@ -191,6 +191,7 @@ data         {
                         parlour                 厅
                         toilet                  卫生间
                         balcony                 阳台
+                        user_portrait           用户头像
                     }
              }
 msg          查询成功

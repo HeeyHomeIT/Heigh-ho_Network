@@ -201,6 +201,14 @@ class OrderController extends Controller
         $page_start = ($page - 1) * $limit;
         $order_tbl_list = DB::select('SELECT * FROM hh_order_user_view WHERE user_id = ? LIMIT ?,?',
             [$user_id, $page_start, $limit]);
+        foreach($order_tbl_list as $key=>$val){
+            $order_step_ch=DB::select('select order_step from hh_order_step where step_id=?',[$val->order_step]);
+            $order_tbl_list[$key]->order_step_ch=$order_step_ch[0]->order_step;
+            $order_status_ch=DB::select('select order_status from hh_order_status where order_status_id=?',[$val->order_status]);
+            $order_tbl_list[$key]->order_status_ch=$order_status_ch[0]->order_status;
+            $portrait=DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?',[$val->user_id]);
+            $order_tbl_list[$key]->user_portrait=$portrait[0]->portrait_img;
+        }
         $order_tbl_count = DB::select('SELECT COUNT(id) AS order_count FROM hh_order_user_view WHERE user_id = ?',
             [$user_id]);
         $order_count = $order_tbl_count[0]->order_count;
@@ -256,6 +264,10 @@ class OrderController extends Controller
         }
         $order_tbl_list = DB::select('SELECT * FROM hh_order_new_view WHERE shop_id = ? ORDER BY order_time LIMIT ?,?',
             [$shop_id, $page_start, $limit]);
+        foreach($order_tbl_list as $key=>$val){
+            $portrait=DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?',[$val->user_id]);
+            $order_tbl_list[$key]->user_portrait=$portrait[0]->portrait_img;
+        }
         $order_tbl_count = DB::select('SELECT COUNT(id) AS order_count FROM hh_order_view WHERE shop_id = ?',
             [$shop_id]);
         $order_count = $order_tbl_count[0]->order_count;

@@ -63,6 +63,9 @@ data         {
                         parlour                 厅
                         toilet                  卫生间
                         balcony                 阳台
+                        order_step_ch           订单步骤中文
+                        order_status            订单状态中文
+                        user_portrait           用户头像
                     }
              }
 msg          查询成功

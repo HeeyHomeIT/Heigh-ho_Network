@@ -64,7 +64,7 @@ function personal($user_id){
         $arr = array('name'=>$woodworker[0]->name,
             "portrait"=>$woodworker[0]->portrait_img,
                 "type"=>4,
-            "typename"=>"瓦工"
+            "typename"=>"木工"
         );
         return $arr;
     }
