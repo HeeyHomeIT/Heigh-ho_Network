@@ -22,6 +22,7 @@
             'paging': 'lib/jquery/jquery.paging',
             'superSlide': 'lib/superslide/jquery.SuperSlide2',
             'dialog': 'lib/dialog/dialog',
+            'idCode': 'lib/jquery/jquery.idcode',
             'ymdClass': 'lib/ymdClass/YMDClass',
             'layer': 'lib/layui/lay/modules/layer',
             'app': 'js/app',
@@ -96,7 +97,11 @@
             'layer': {
                 deps: ['jquery'],
                 exports: 'layer'
-            }
+            },
+            'idCode': {
+            	deps: ['jquery'],
+				exports: 'idCode'
+			}
         },
         waitSeconds: 15
     });
@@ -105,7 +110,7 @@
      * init main
      * 自动导入app.js,index.js模块
      */
-    require(['app', 'route', 'directive', 'cropbox', 'pagination', 'paging', 'dialog', 'ymdClass', 'layer'], function (app) {
+    require(['app', 'route', 'directive', 'cropbox', 'pagination', 'paging', 'dialog', 'ymdClass', 'layer','idCode'], function (app) {
         // 手动启动angularjs，特别说明此处的bootstrap不是那个ui框架，而是angularjs的一个手动启动框架的函数
         app.init();
     })
