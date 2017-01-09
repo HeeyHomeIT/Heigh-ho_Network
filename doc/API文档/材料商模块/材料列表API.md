@@ -27,7 +27,8 @@
 data
 必选参数
 cate_id             cate_id     1:水电材料 2：瓦工材料 3：木工材料 4:油漆工材料
-
+page                    page                    订单页码(不填写默认为第一页)
+limit                   limit                   每页显示条数（不填写默认为20条）
 callback            callback
 ```
 

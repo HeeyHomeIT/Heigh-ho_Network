@@ -201,13 +201,13 @@ class OrderController extends Controller
         $page_start = ($page - 1) * $limit;
         $order_tbl_list = DB::select('SELECT * FROM hh_order_user_view WHERE user_id = ? LIMIT ?,?',
             [$user_id, $page_start, $limit]);
-        foreach($order_tbl_list as $key=>$val){
-            $order_step_ch=DB::select('select order_step from hh_order_step where step_id=?',[$val->order_step]);
-            $order_tbl_list[$key]->order_step_ch=$order_step_ch[0]->order_step;
-            $order_status_ch=DB::select('select order_status from hh_order_status where order_status_id=?',[$val->order_status]);
-            $order_tbl_list[$key]->order_status_ch=$order_status_ch[0]->order_status;
-            $portrait=DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?',[$val->user_id]);
-            $order_tbl_list[$key]->user_portrait=$portrait[0]->portrait_img;
+        foreach ($order_tbl_list as $key => $val) {
+            $order_step_ch = DB::select('select order_step from hh_order_step where step_id=?', [$val->order_step]);
+            $order_tbl_list[$key]->order_step_ch = $order_step_ch[0]->order_step;
+            $order_status_ch = DB::select('select order_status from hh_order_status where order_status_id=?', [$val->order_status]);
+            $order_tbl_list[$key]->order_status_ch = $order_status_ch[0]->order_status;
+            $portrait = DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?', [$val->user_id]);
+            $order_tbl_list[$key]->user_portrait = $portrait[0]->portrait_img;
         }
         $order_tbl_count = DB::select('SELECT COUNT(id) AS order_count FROM hh_order_user_view WHERE user_id = ?',
             [$user_id]);
@@ -228,6 +228,12 @@ class OrderController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+    }
+
+    //TODO 订单列表（用户带筛选条件）
+    public function orderListUserFilter()
+    {
+
     }
 
     /*订单列表（店铺）*/
@@ -264,9 +270,9 @@ class OrderController extends Controller
         }
         $order_tbl_list = DB::select('SELECT * FROM hh_order_new_view WHERE shop_id = ? ORDER BY order_time LIMIT ?,?',
             [$shop_id, $page_start, $limit]);
-        foreach($order_tbl_list as $key=>$val){
-            $portrait=DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?',[$val->user_id]);
-            $order_tbl_list[$key]->user_portrait=$portrait[0]->portrait_img;
+        foreach ($order_tbl_list as $key => $val) {
+            $portrait = DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?', [$val->user_id]);
+            $order_tbl_list[$key]->user_portrait = $portrait[0]->portrait_img;
         }
         $order_tbl_count = DB::select('SELECT COUNT(id) AS order_count FROM hh_order_view WHERE shop_id = ?',
             [$shop_id]);
@@ -402,13 +408,13 @@ class OrderController extends Controller
         }
     }
 
-    public function appointment() 
+    public function appointment()
     {
         $callback = rq('callback');
         $order_id = rq('order_id');
-        $appointmentTime = DB::select('select * from hh_order_reservation_time where order_id = ?',[$order_id]);
+        $appointmentTime = DB::select('select * from hh_order_reservation_time where order_id = ?', [$order_id]);
         if ($appointmentTime) {
-                $arr = array(
+            $arr = array(
                 "code" => "000",
                 "data" => $appointmentTime[0]
             );
@@ -416,11 +422,11 @@ class OrderController extends Controller
         } else {
             $arr = array(
                 "code" => "200",
-                 "msg" => "没有时间"
+                "msg" => "没有时间"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
 
     }
-    
+
 }

@@ -7,6 +7,7 @@
  */
 namespace App\Http\Controllers;
 
+use ClassPreloader\Parser\DirVisitor;
 use Illuminate\Support\Facades\DB;
 
 class OrderMaterialController extends Controller
@@ -132,11 +133,20 @@ class OrderMaterialController extends Controller
         $user_id = rq('user_id');
         $order_id = rq('order_id');
         $material_supplier_id = rq('material_supplier_id');
+        $page = ceil(rq('page'));
+        $limit = ceil(rq('limit'));
+        if (!$page) {
+            $page = 1;
+        }
+        if (!$limit) {
+            $limit = 20;
+        }
         $callback = rq('callback');
+        $page_start = ($page - 1) * $limit;
         //判断来源
         if ($material_supplier_id)
-            $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE material_supplier_id = ?',
-                [$material_supplier_id]);
+            $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE material_supplier_id = ? AND pay_status = ? LIMIT ?,?',
+                [$material_supplier_id, 3, $page_start, $limit]);
         else if ($user_id)
             $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE user_id = ?',
                 [$user_id]);
@@ -159,7 +169,6 @@ class OrderMaterialController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         } else {
-
             $arr = array(
                 "code" => "200",
                 "msg" => "没有订单",
@@ -169,31 +178,46 @@ class OrderMaterialController extends Controller
         }
     }
 
-//TODO 获取材料订单数据
+    //获取材料订单数据
     public function getOrderMaterial()
     {
-        $order_material_id = rq('order_material_id');
-        $material_type = rq('material_type');
+        $material_id = rq('material_id');
         $callback = rq('callback');
-        if ($material_type) {
-            //查询材料订单是否存在
-            $sel_material_tbl = DB::select('SELECT * FROM hh_order_material WHERE order_material_id = ? AND material_type= ?',
-                [$order_material_id, $material_type]);
-            if ($sel_material_tbl) {
-                $material_id = $sel_material_tbl[0]->sel_material_id;
-                $sel_material_list_tbl = DB::select('' .
-                    []);
-            } else {
-                $arr = array(
-                    "code" => "203",
-                    "msg" => "订单不存在",
-                    "data" => ""
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-            }
+        $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE order_material_id = ?',
+            [$material_id]);
+        $sel_material_list_tbl = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ?',
+            [$material_id]);
+        if ($sel_material_user) {
+            $arr_user = array("基础信息" => $sel_material_user);
         } else {
-
+            $arr = array(
+                "code" => "200",
+                "msg" => "没有订单",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
         }
+        if ($sel_material_user) {
+            $arr_data = array("材料信息" => $sel_material_list_tbl);
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "没有订单",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        $data = array_merge($arr_user,$arr_data);
+        $arr = array(
+            "code" => "000",
+            "msg" => "查询成功",
+            "data" => $data
+        );
+        return $callback . "(" . HHJson($arr) . ")";
+    }
+
+    //TODO 材料商更新材料单状态为去配送中
+    public function changeMaterialStatus(){
 
     }
 
@@ -274,79 +298,262 @@ class OrderMaterialController extends Controller
         $order_id = rq('order_id');
         $material_type = rq('material_type');
         $callback = rq('callback');
+        if (!$material_type) {
+            //获取订单当前状态
+            $material_type = 0;
+            $sel_order_step = DB::select('SELECT order_step FROM hh_order where order_id = ?',
+                [$order_id]);
+            if ($sel_order_step) {
+                $order_step = $sel_order_step[0]->order_step;
+                switch ($order_step) {
+                    case 3;
+                        $material_type = 1;
+                        break;
+                    case 7;
+                        $material_type = 3;
+                        break;
+                    case 11;
+                        $material_type = 4;
+                        break;
+                    case 15;
+                        $material_type = 5;
+                        break;
+                }
+            }
+        }
         //获取材料订单id
         $sel_material_id = DB::select('SELECT material_id FROM hh_order_material WHERE order_id = ? AND material_type = ?',
             [$order_id, $material_type]);
         if ($sel_material_id) {
             $material_id = $sel_material_id[0]->material_id;
             //查询材料单列表数据视图
-            $sel_material_list_data_view_0 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 0',
+            $sel_material_list_data_view_0 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 0 ORDER BY material_id',
                 [$material_id]);
-            $sel_material_list_data_view_1 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 1',
+            $sel_material_list_data_view_1 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 1 ORDER BY material_id',
                 [$material_id]);
-            $sel_material_list_data_view_2 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 2',
+            $sel_material_list_data_view_2 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 2 ORDER BY material_id',
                 [$material_id]);
-            $sel_material_list_data_view_3 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 3',
+            $sel_material_list_data_view_3 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 3 ORDER BY material_id',
                 [$material_id]);
-            $sel_material_list_data_view_4 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 4',
+            $sel_material_list_data_view_4 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 4 ORDER BY material_id',
                 [$material_id]);
-            $sel_material_list_data_view_5 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 5 ',
+            $sel_material_list_data_view_5 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 5 ORDER BY material_id',
                 [$material_id]);
-            $sel_material_list_data_view_6 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 6',
+            $sel_material_list_data_view_6 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 6 ORDER BY material_id',
                 [$material_id]);
-            $sel_material_list_data_view_8 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 8',
+            $sel_material_list_data_view_8 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 8 ORDER BY material_id',
                 [$material_id]);
             if ($sel_material_list_data_view_0) {
                 $arr_0 = $sel_material_list_data_view_0;
+                //按品牌名分组
+                $sel_material_list_by_name = DB::select('SELECT material_id,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 0 GROUP BY material_id',
+                    [$material_id]);
+                $sel_material_list_by_name_num = DB::select('SELECT count(a.id) AS num FROM (SELECT material_id as id ,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 0 GROUP BY material_id) a ',
+                    [$material_id]);
+                if ($sel_material_list_by_name) {
+                    $num = $sel_material_list_by_name_num[0]->num;
+                    for ($i = 0; $i < $num; $i++) {
+                        $sel_material_list_by_name_each = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 0 AND material_id = ? ',
+                            [$material_id, $sel_material_list_by_name[$i]->material_id]);
+                        $arr_name_0[$i] = array("name" => $sel_material_list_by_name[$i]->material_name,
+                            "img" => $sel_material_list_by_name[$i]->material_img,
+                            "data" => $sel_material_list_by_name_each);
+                    }
+                }
             } else {
-                $arr_0 = "";
+                $arr_name_0 = "";
             }
             if ($sel_material_list_data_view_1) {
                 $arr_1 = $sel_material_list_data_view_1;
+                //按品牌名分组
+                $sel_material_list_by_name = DB::select('SELECT material_id,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 1 GROUP BY material_id',
+                    [$material_id]);
+                $sel_material_list_by_name_num = DB::select('SELECT count(a.id) AS num FROM (SELECT material_id as id ,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 1 GROUP BY material_id) a ',
+                    [$material_id]);
+                if ($sel_material_list_by_name) {
+                    $num = $sel_material_list_by_name_num[0]->num;
+                    for ($i = 0; $i < $num; $i++) {
+                        $sel_material_list_by_name_each = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 1 AND material_id = ? ',
+                            [$material_id, $sel_material_list_by_name[$i]->material_id]);
+                        $arr_name_1[$i] = array("name" => $sel_material_list_by_name[$i]->material_name,
+                            "img" => $sel_material_list_by_name[$i]->material_img,
+                            "data" => $sel_material_list_by_name_each);
+                    }
+                }
             } else {
-                $arr_1 = "";
+                $arr_name_1 = "";
             }
             if ($sel_material_list_data_view_2) {
                 $arr_2 = $sel_material_list_data_view_2;
+                //按品牌名分组
+                $sel_material_list_by_name = DB::select('SELECT material_id,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 2 GROUP BY material_id',
+                    [$material_id]);
+                $sel_material_list_by_name_num = DB::select('SELECT count(a.id) AS num FROM (SELECT material_id as id ,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 2 GROUP BY material_id) a ',
+                    [$material_id]);
+                if ($sel_material_list_by_name) {
+                    $num = $sel_material_list_by_name_num[0]->num;
+                    for ($i = 0; $i < $num; $i++) {
+                        $sel_material_list_by_name_each = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 2 AND material_id = ? ',
+                            [$material_id, $sel_material_list_by_name[$i]->material_id]);
+                        $arr_name_2[$i] = array("name" => $sel_material_list_by_name[$i]->material_name,
+                            "img" => $sel_material_list_by_name[$i]->material_img,
+                            "data" => $sel_material_list_by_name_each);
+                    }
+                }
             } else {
-                $arr_2 = "";
+                $arr_name_2 = "";
             }
             if ($sel_material_list_data_view_3) {
                 $arr_3 = $sel_material_list_data_view_3;
+                //按品牌名分组
+                $sel_material_list_by_name = DB::select('SELECT count(a.id) AS num FROM (SELECT material_id as id ,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 3 GROUP BY material_id) a ',
+                    [$material_id]);
+                $sel_material_list_by_name_num = DB::select('SELECT count(img) AS num FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 3 ',
+                    [$material_id]);
+                if ($sel_material_list_by_name) {
+                    $num = $sel_material_list_by_name_num[0]->num;
+                    for ($i = 0; $i < $num; $i++) {
+                        $sel_material_list_by_name_each = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 3 AND material_id = ? ',
+                            [$material_id, $sel_material_list_by_name[$i]->material_id]);
+                        $arr_name_3[$i] = array("name" => $sel_material_list_by_name[$i]->material_name,
+                            "img" => $sel_material_list_by_name[$i]->material_img,
+                            "data" => $sel_material_list_by_name_each);
+                    }
+                }
             } else {
-                $arr_3 = "";
+                $arr_name_3 = "";
             }
             if ($sel_material_list_data_view_4) {
                 $arr_4 = $sel_material_list_data_view_4;
+                //按品牌名分组
+                $sel_material_list_by_name = DB::select('SELECT material_id,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 4 GROUP BY material_id',
+                    [$material_id]);
+                $sel_material_list_by_name_num = DB::select('SELECT count(a.id) AS num FROM (SELECT material_id as id ,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 4 GROUP BY material_id) a ',
+                    [$material_id]);
+                if ($sel_material_list_by_name) {
+                    $num = $sel_material_list_by_name_num[0]->num;
+                    for ($i = 0; $i < $num; $i++) {
+                        $sel_material_list_by_name_each = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 4 AND material_id = ? ',
+                            [$material_id, $sel_material_list_by_name[$i]->material_id]);
+                        $arr_name_4[$i] = array("name" => $sel_material_list_by_name[$i]->material_name,
+                            "img" => $sel_material_list_by_name[$i]->material_img,
+                            "data" => $sel_material_list_by_name_each);
+                    }
+                }
             } else {
-                $arr_4 = "";
+                $arr_name_4 = "";
             }
             if ($sel_material_list_data_view_5) {
                 $arr_5 = $sel_material_list_data_view_5;
+                //按品牌名分组
+                $sel_material_list_by_name = DB::select('SELECT material_id,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 5 GROUP BY material_id',
+                    [$material_id]);
+                $sel_material_list_by_name_num = DB::select('SELECT count(a.id) AS num FROM (SELECT material_id as id ,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 5 GROUP BY material_id) a ',
+                    [$material_id]);
+                if ($sel_material_list_by_name) {
+                    $num = $sel_material_list_by_name_num[0]->num;
+                    for ($i = 0; $i < $num; $i++) {
+                        $sel_material_list_by_name_each = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 5 AND material_id = ? ',
+                            [$material_id, $sel_material_list_by_name[$i]->material_id]);
+                        $arr_name_5[$i] = array("name" => $sel_material_list_by_name[$i]->material_name,
+                            "img" => $sel_material_list_by_name[$i]->material_img,
+                            "data" => $sel_material_list_by_name_each);
+                    }
+                }
             } else {
-                $arr_5 = "";
+                $arr_name_5 = "";
             }
             if ($sel_material_list_data_view_6) {
                 $arr_6 = $sel_material_list_data_view_6;
+                //按品牌名分组
+                $sel_material_list_by_name = DB::select('SELECT material_id,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 6 GROUP BY material_id',
+                    [$material_id]);
+                $sel_material_list_by_name_num = DB::select('SELECT count(a.id) AS num FROM (SELECT material_id as id ,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 6 GROUP BY material_id) a ',
+                    [$material_id]);
+                if ($sel_material_list_by_name) {
+                    $num = $sel_material_list_by_name_num[0]->num;
+                    for ($i = 0; $i < $num; $i++) {
+                        $sel_material_list_by_name_each = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 6 AND material_id = ? ',
+                            [$material_id, $sel_material_list_by_name[$i]->material_id]);
+                        $arr_name_6[$i] = array("name" => $sel_material_list_by_name[$i]->material_name,
+                            "img" => $sel_material_list_by_name[$i]->material_img,
+                            "data" => $sel_material_list_by_name_each);
+                    }
+                }
             } else {
-                $arr_6 = "";
+                $arr_name_6 = "";
             }
             if ($sel_material_list_data_view_8) {
                 $arr_8 = $sel_material_list_data_view_8;
+                //按品牌名分组
+                $sel_material_list_by_name = DB::select('SELECT material_id,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 8 GROUP BY material_id',
+                    [$material_id]);
+                $sel_material_list_by_name_num = DB::select('SELECT count(a.id) AS num FROM (SELECT material_id as id ,name AS material_name,img AS material_img FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 8 GROUP BY material_id) a ',
+                    [$material_id]);
+                if ($sel_material_list_by_name) {
+                    $num = $sel_material_list_by_name_num[0]->num;
+                    for ($i = 0; $i < $num; $i++) {
+                        $sel_material_list_by_name_each = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 8 AND material_id = ? ',
+                            [$material_id, $sel_material_list_by_name[$i]->material_id]);
+                        $arr_name_8[$i] = array("name" => $sel_material_list_by_name[$i]->material_name,
+                            "img" => $sel_material_list_by_name[$i]->material_img,
+                            "data" => $sel_material_list_by_name_each);
+                    }
+                }
             } else {
-                $arr_8 = "";
+                $arr_name_8 = "";
+            }
+            $counter = 1;
+            $one = array();
+            $two = array();
+            $thr = array();
+            $for = array();
+            $fiv = array();
+            if ($arr_name_0 != "") {
+                $one = array($counter => array("无品牌" => $arr_name_0));
+                $counter++;
+            }
+            if ($arr_name_1 != "" && $arr_name_2 != "") {
+                $two = array(array('公元优家' => $arr_name_1,
+                    '伟星管业' => $arr_name_2));
+                $counter++;
+            } else if ($arr_name_1 != "") {
+                $two = array($counter => array("公元优家" => $arr_name_1));
+                $counter++;
+            } else if ($arr_name_2 != "") {
+                $two = array($counter => array("伟星管业" => $arr_name_2));
+                $counter++;
+            }
+            if ($arr_name_3 != "" && $arr_name_4 != "") {
+                $thr = array(array('上海熊猫' => $arr_name_3,
+                    '昆山长江线' => $arr_name_4));
+                $counter++;
+            } else if ($arr_name_3 != "") {
+                $thr = array($counter => array("上海熊猫" => $arr_name_3));
+                $counter++;
+            } else if ($arr_name_4 != "") {
+                $thr = array($counter => array("昆山长江线" => $arr_name_4));
+                $counter++;
+            }
+            if ($arr_name_5 != "" && $arr_name_6 != "") {
+                $for = array(array('泰山牌' => $arr_name_5,
+                    '拉法基牌' => $arr_name_6));
+                $counter++;
+            } else if ($arr_name_5 != "") {
+                $for = array($counter => array("泰山牌" => $arr_name_5));
+                $counter++;
+            } else if ($arr_name_6 != "") {
+                $for = array($counter => array("拉法基牌" => $arr_name_6));
+                $counter++;
+            }
+            if ($arr_name_8 != "") {
+                $fiv = array($counter => array("公元PVC" => $arr_name_8));
+                $counter++;
             }
             $arr = array(
                 "code" => "000",
                 "msg" => "材料单数据",
-                "data" => array('无品牌' => $arr_0,
-                    '公元优家' => $arr_1,
-                    '伟星管业' => $arr_2,
-                    '上海熊猫' => $arr_3,
-                    '昆山长江线' => $arr_4,
-                    '泰山牌' => $arr_5,
-                    '拉法基牌' => $arr_6,
-                    '公元PVC' => $arr_8,)
+                "data" => array_merge($one, $two, $thr, $for, $fiv)
             );
             return $callback . "(" . HHJson($arr) . ")";
         } else {
@@ -357,5 +564,11 @@ class OrderMaterialController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+    }
+
+    //用户确认材料单
+    public function chooseMaterialByUser()
+    {
+
     }
 }
