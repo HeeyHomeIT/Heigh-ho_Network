@@ -188,6 +188,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/shop/list', 'OrderController@orderListFeroman');
     //取消订单
     Route::any('order/shop/destory', 'OrderController@orderDestroy');
+    //确认订单
+    Route::any('order/shop/confirm', 'OrderController@orderConfirm');
     //生成预算单与结算单
     Route::any('order/aeckonandactual/generatelist', 'OrderOperateController@generateActualListAndReckonList');
     //获取预算单结算单字段

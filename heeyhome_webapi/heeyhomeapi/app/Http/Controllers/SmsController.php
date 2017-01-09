@@ -70,7 +70,7 @@ class SmsController extends Controller
                 return $callback . "(" . HHJson($arr) . ")";
             }
             else {
-                $arr = array('code' => $array['code'], 'msg' => $array['msg']);
+                $arr = array('code' => strva($array['code']), 'msg' => $array['msg']);
                 return $callback . "(" . HHJson($arr) . ")";
             }
 
