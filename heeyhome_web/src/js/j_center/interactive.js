@@ -44,6 +44,7 @@
     }else {
         USERID = "";
     }
+
     /*定义一个类*/
     var centerWrap = {
         /**
@@ -81,7 +82,27 @@
                     if (hash.indexOf(uiSref.replace('.', '/')) != -1) {
                         $(this).parent().addClass('left_active');
                     }
-                })
+                });
+
+                /* 消息中心有多少条新消息 */
+                $.ajax({
+                    type: "get",
+                    url: NEWSURL,
+                    async: true,
+                    dataType: "jsonp",
+                    data: {
+                        user_id: USERID
+                    },
+                    success: function (data) {
+                        if (data != null && data.code == '000') {
+                            if (data.data.newmsgtotal > 0) {
+                                $('.left_ul li').eq(4).append("<i>" + data.data.newmsgtotal + "</i>");
+                            }
+                        }
+                    },
+                    error: function (data) {
+                    }
+                });
             }]);
         },
         /*

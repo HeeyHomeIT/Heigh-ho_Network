@@ -35,7 +35,6 @@
     var TYPEURL = BASEURL + 'bankcard/getcardtype?callback=JSON_CALLBACK';//获取银行卡类型接口
     var VERIFYURL = BASEURL + 'bankcard/cardverify?callback=JSON_CALLBACK';//银行卡四元素认证接口
     var BANKINFOURL = BASEURL + 'mybankcards?callback=JSON_CALLBACK';//获取银行卡信息接口
-    var APPLYURL = BASEURL + 'withdraw/apply';//提现
     var PHCODE = BASEURL + 'sendsms'; // 手机验证码
     var TAGURL = BASEURL + 'personal/myshop/stylelist?callback=JSON_CALLBACK';//风格标签
     var MASTERSHOPURL = BASEURL + 'personal/myshop/change';//编辑工长店铺资料
@@ -149,7 +148,7 @@
                     }
                 });
 
-                /* 有多少条新消息 */
+                /* 消息中心有多少条新消息 */
                 $.ajax({
                     type: "get",
                     url: NEWSURL,
@@ -2824,7 +2823,7 @@
                     if(data && data.code == '000') {
                         var cost = [],k = 0;
                         var length = $(".edit_bottom li").length;
-                        $(".staff_picture .add_picture").attr("data-flag", "1").addClass("clear").css('background','url("http://hyu2387760001.my3w.com/' + data.data.portrait_img + '") no-repeat');
+                        $(".staff_picture .add_picture").attr("data-flag", "1").addClass("clear").css({'background':'url("http://hyu2387760001.my3w.com/' + data.data.portrait_img + '") no-repeat','backgroundSize':'100% 100%'});
                         $(".staff_name .name").val(data.data.name);//工人姓名
                         $(".staff_name .sex option:selected").val(data.data.sex);//工人性别   1：男生 2：女生
                         $(".staff_name .age").val(data.data.age);//工人年龄
