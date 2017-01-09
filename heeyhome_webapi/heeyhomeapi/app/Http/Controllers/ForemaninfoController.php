@@ -35,7 +35,11 @@ class ForemaninfoController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }else{
             $user=DB::select('select user_phone,user_email from hh_user where user_id=?',[$foreman_id]);
+            $realname = DB::select('select real_name from hh_realname where real_userid=?',[$foreman_id]);
             if($user){
+                if ($realname) {
+                    $userinfo[0]->foremaninfo_realname = $realname[0]->real_name;
+                }
                 $userinfo[0]->foremaninfo_phone=$user[0]->user_phone;
                 $userinfo[0]->foremaninfo_email=$user[0]->user_email;
                 $userinfo[0]->servicearea=explode(',',$userinfo[0]->servicearea);
