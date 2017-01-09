@@ -170,8 +170,7 @@ class OrderMaterialController extends Controller
     }
 
 //TODO 获取材料订单数据
-    public
-    function getOrderMaterial()
+    public function getOrderMaterial()
     {
         $order_material_id = rq('order_material_id');
         $material_type = rq('material_type');
@@ -203,14 +202,14 @@ class OrderMaterialController extends Controller
         $callback = rq('callback');
         $material_supplier_id = rq('material_supplier_id');
         if ($material_supplier_id) {
-            $orderList = DB::select('SELECT order_material_status FROM hh_order_material where material_supplier_id = ?',[$material_supplier_id]);
+            $orderList = DB::select('SELECT order_material_status FROM hh_order_material where material_supplier_id = ?', [$material_supplier_id]);
             $unfinishCount = 0;
             $ingCount = 0;
             $finishCount = 0;
 
 
             foreach ($orderList as $key => $value) {
-                $status = $value -> order_material_status;
+                $status = $value->order_material_status;
                 if ($status == 3) {
                     $finishCount++;
                 } else if ($status == 2) {
@@ -235,8 +234,7 @@ class OrderMaterialController extends Controller
         }
     }
 
-
-    public function materialOrderByStatus() 
+    public function materialOrderByStatus()
     {
         $callback = rq('callback');
         $material_supplier_id = rq('material_supplier_id');
@@ -244,17 +242,17 @@ class OrderMaterialController extends Controller
 
         if ($status == 1 || $status == 2 || $status == 3) {
             $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE material_supplier_id = ? AND order_material_status =?',
-                [$material_supplier_id,$status]);
+                [$material_supplier_id, $status]);
             if ($sel_material_user) {
                 $arr = array(
-                "code" => "000",
-                "data" => $sel_material_user
+                    "code" => "000",
+                    "data" => $sel_material_user
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             } else {
                 $arr = array(
-                "code" => "117",
-                "msg" => "订单不存在",
+                    "code" => "117",
+                    "msg" => "订单不存在",
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
@@ -270,4 +268,94 @@ class OrderMaterialController extends Controller
 
     }
 
+    //用户材料订单数据获取
+    public function getMaterialListData()
+    {
+        $order_id = rq('order_id');
+        $material_type = rq('material_type');
+        $callback = rq('callback');
+        //获取材料订单id
+        $sel_material_id = DB::select('SELECT material_id FROM hh_order_material WHERE order_id = ? AND material_type = ?',
+            [$order_id, $material_type]);
+        if ($sel_material_id) {
+            $material_id = $sel_material_id[0]->material_id;
+            //查询材料单列表数据视图
+            $sel_material_list_data_view_0 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 0',
+                [$material_id]);
+            $sel_material_list_data_view_1 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 1',
+                [$material_id]);
+            $sel_material_list_data_view_2 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 2',
+                [$material_id]);
+            $sel_material_list_data_view_3 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 3',
+                [$material_id]);
+            $sel_material_list_data_view_4 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 4',
+                [$material_id]);
+            $sel_material_list_data_view_5 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 5 ',
+                [$material_id]);
+            $sel_material_list_data_view_6 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 6',
+                [$material_id]);
+            $sel_material_list_data_view_8 = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ? AND brand_id = 8',
+                [$material_id]);
+            if ($sel_material_list_data_view_0) {
+                $arr_0 = $sel_material_list_data_view_0;
+            } else {
+                $arr_0 = "";
+            }
+            if ($sel_material_list_data_view_1) {
+                $arr_1 = $sel_material_list_data_view_1;
+            } else {
+                $arr_1 = "";
+            }
+            if ($sel_material_list_data_view_2) {
+                $arr_2 = $sel_material_list_data_view_2;
+            } else {
+                $arr_2 = "";
+            }
+            if ($sel_material_list_data_view_3) {
+                $arr_3 = $sel_material_list_data_view_3;
+            } else {
+                $arr_3 = "";
+            }
+            if ($sel_material_list_data_view_4) {
+                $arr_4 = $sel_material_list_data_view_4;
+            } else {
+                $arr_4 = "";
+            }
+            if ($sel_material_list_data_view_5) {
+                $arr_5 = $sel_material_list_data_view_5;
+            } else {
+                $arr_5 = "";
+            }
+            if ($sel_material_list_data_view_6) {
+                $arr_6 = $sel_material_list_data_view_6;
+            } else {
+                $arr_6 = "";
+            }
+            if ($sel_material_list_data_view_8) {
+                $arr_8 = $sel_material_list_data_view_8;
+            } else {
+                $arr_8 = "";
+            }
+            $arr = array(
+                "code" => "000",
+                "msg" => "材料单数据",
+                "data" => array('无品牌' => $arr_0,
+                    '公元优家' => $arr_1,
+                    '伟星管业' => $arr_2,
+                    '上海熊猫' => $arr_3,
+                    '昆山长江线' => $arr_4,
+                    '泰山牌' => $arr_5,
+                    '拉法基牌' => $arr_6,
+                    '公元PVC' => $arr_8,)
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "订单不存在",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
 }

@@ -29,8 +29,8 @@ require_once("lib/alipay_submit.class.php");
 
 /**************************请求参数**************************/
 
-$pay_type = $_POST['pay_type'];
-$order_id = $_POST['order_id'];
+$pay_type = $_REQUEST ['pay_type'];
+$order_id = $_REQUEST ['order_id'];
 //支付订单初始数据
 $pay_id = '';
 $pay_name = 'heeyhome网装修订单';
@@ -72,7 +72,7 @@ if ($pay_type == 'order') {
                 //判断订单状态是否为待用户预支付
                 if ($order_status == 4) {
                     //查询工长预支付金额
-                    $sel_pay_each_gz = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_step = ?',
+                    $sel_pay_each_gz = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_pay_step = ?',
                         [$order_id, 1, 1]);
                     if ($sel_pay_each_gz) {
                         $pay_amount = $sel_pay_each_gz[0]->pay_amount;
@@ -80,7 +80,7 @@ if ($pay_type == 'order') {
                         $pay_mess .= $pay_each_mess;
                     }
                     //查询水电工预支付金额
-                    $sel_pay_each_sdg = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_step = ?',
+                    $sel_pay_each_sdg = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_pay_step = ?',
                         [$order_id, 1, 2]);
                     if ($sel_pay_each_gz) {
                         $pay_amount = $sel_pay_each_sdg[0]->pay_amount;
@@ -88,7 +88,7 @@ if ($pay_type == 'order') {
                         $pay_mess .= $pay_each_mess;
                     }
                     //查询杂工预支付金额
-                    $sel_pay_each_zg = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_step = ?',
+                    $sel_pay_each_zg = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_pay_step = ?',
                         [$order_id, 1, 11]);
                     if ($sel_pay_each_gz) {
                         $pay_amount = $sel_pay_each_zg[0]->pay_amount;
@@ -96,7 +96,7 @@ if ($pay_type == 'order') {
                         $pay_mess .= $pay_each_mess;
                     }
                     //查询支付编号,使用同一条编号
-                    $sel_pay_id = \Illuminate\Support\Facades\DB::select('SELECT pay_id FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND (order_step = ? OR order_step = ? OR order_step = ?)',
+                    $sel_pay_id = \Illuminate\Support\Facades\DB::select('SELECT pay_id FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND (order_pay_step = ? OR order_pay_step = ? OR order_pay_step = ?)',
                         [$order_id, 1, 1, 2, 11]);
                     if ($sel_pay_id) {
                         $pay_id = $sel_pay_id[0]->pay_id;
@@ -105,7 +105,7 @@ if ($pay_type == 'order') {
                     switch ($order_step) {
                         case 5;
                             //水电改造完成
-                            $sel_pay_each_wg = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_step = ?',
+                            $sel_pay_each_wg = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_pay_step = ?',
                                 [$order_id, 1, 3]);
                             if ($sel_pay_each_wg) {
                                 $pay_amount = $sel_pay_each_wg[0]->pay_amount;
@@ -115,7 +115,7 @@ if ($pay_type == 'order') {
                             break;
                         case 9;
                             //瓦工改造完成
-                            $sel_pay_each_mg = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_step = ?',
+                            $sel_pay_each_mg = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_pay_step = ?',
                                 [$order_id, 1, 4]);
                             if ($sel_pay_each_mg) {
                                 $pay_amount = $sel_pay_each_mg[0]->pay_amount;
@@ -125,7 +125,7 @@ if ($pay_type == 'order') {
                             break;
                         case 13;
                             //木工改造完成
-                            $sel_pay_each_yqg = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_step = ?',
+                            $sel_pay_each_yqg = \Illuminate\Support\Facades\DB::select('SELECT pay_amount FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_pay_step = ?',
                                 [$order_id, 1, 5]);
                             if ($sel_pay_each_yqg) {
                                 $pay_amount = $sel_pay_each_yqg[0]->pay_amount;
@@ -138,7 +138,7 @@ if ($pay_type == 'order') {
                             break;
                     }
                     //查询补差价
-                    $sel_pay_each_cj = \Illuminate\Support\Facades\DB::select('SELECT pay_amount ,pay_id FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_step = ?',
+                    $sel_pay_each_cj = \Illuminate\Support\Facades\DB::select('SELECT pay_amount ,pay_id FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_pay_step = ?',
                         [$order_id, 1, 10]);
                     if ($sel_pay_each_cj) {
                         $pay_amount = $sel_pay_each_cj[0]->pay_amount;
@@ -189,7 +189,7 @@ $out_trade_no = $pay_id;
 //订单名称，必填
 $subject = $pay_name;
 //付款金额，必填
-$total_fee = $pay_amount;
+$total_fee = $actual_next_amount;
 //商品描述，可空
 $body = $pay_mess;
 

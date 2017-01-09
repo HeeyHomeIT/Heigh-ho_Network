@@ -213,6 +213,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/dispute/changetype', 'OrderOperateController@changeOrderCanddFinish');
     //添加材料订单
     Route::get('order/material/produce', 'OrderMaterialController@generateOrderMaterial');
+    //用户材料订单数据获取
+    Route::get('order/material/userget', 'OrderMaterialController@getMaterialListData');
     //订单详情
     Route::any('order/detail', 'OrderDisplayController@orderDetailsToShow');
     //获取上门预约时间
