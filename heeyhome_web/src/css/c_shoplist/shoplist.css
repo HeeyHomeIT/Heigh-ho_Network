@@ -232,6 +232,7 @@
 	float: left;
 	width: 118px;
 	height: 42px;
+	line-height: 42px;
 	cursor: pointer;
 	text-align: center
 }

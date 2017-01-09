@@ -167,6 +167,7 @@
 
 .personal_content_wrap .right_content_wrap {
     height: auto;
+    position: relative;
 }
 
 /* 左边导航结束 */
