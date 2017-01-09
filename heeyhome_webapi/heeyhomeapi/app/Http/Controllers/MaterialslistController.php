@@ -16,7 +16,7 @@ class MaterialslistController extends Controller
     public function index(){
         $callback=rq('callback');
         $order_id=rq('order_id');
-        $elematerialist=DB::select('select material_id,name,unit,img from hh_material_name where cate_id=? and if_show=?',[1,1]);
+        $elematerialist=DB::select('select * from hh_materials_material_name_view where cate_id=? and if_show=?',[1,1]);
         $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,1]);
         //dd($num);
         foreach($elematerialist as $key=>$value) {
@@ -43,7 +43,7 @@ class MaterialslistController extends Controller
             }
         }
         $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,2]);
-        $brickmaterialist=DB::select('select material_id,name,unit,img from hh_material_name where cate_id=? and if_show=?',[2,1]);
+        $brickmaterialist=DB::select('select * from hh_materials_material_name_view where cate_id=? and if_show=?',[2,1]);
         foreach($brickmaterialist as $key=>$value){
             $spec=DB::select('select spec_id,spec_name from hh_material_spec where material_id=?',[$value->material_id]);
             if($spec) {
@@ -68,7 +68,7 @@ class MaterialslistController extends Controller
             }
         }
         $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,3]);
-        $woodmaterialist=DB::select('select material_id,name,unit,img from hh_material_name where cate_id=? and if_show=?',[3,1]);
+        $woodmaterialist=DB::select('select * from hh_materials_material_name_view where cate_id=? and if_show=?',[3,1]);
         foreach($woodmaterialist as $key=>$value){
             $spec=DB::select('select spec_id,spec_name from hh_material_spec where material_id=?',[$value->material_id]);
             if($spec) {
@@ -93,7 +93,7 @@ class MaterialslistController extends Controller
             }
         }
         $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,4]);
-        $paintmaterialist=DB::select('select material_id,name,unit,img from hh_material_name where cate_id=? and if_show=?',[4,1]);
+        $paintmaterialist=DB::select('select * from hh_materials_material_name_view where cate_id=? and if_show=?',[4,1]);
         foreach($paintmaterialist as $key=>$value){
             $spec=DB::select('select spec_id,spec_name from hh_material_spec where material_id=?',[$value->material_id]);
             if($spec) {

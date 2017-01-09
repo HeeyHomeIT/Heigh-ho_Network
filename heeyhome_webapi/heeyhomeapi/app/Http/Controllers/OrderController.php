@@ -136,6 +136,71 @@ class OrderController extends Controller
         }
     }
 
+    /*确认订单*/
+    public function orderConfirm() 
+    {
+        $order_id = rq('order_id');
+        $callback = rq('callback');
+        $user_id = rq('user_id');
+        $confirm_time = rq('confirm_time');
+
+        $order_tbl_isdestroy = DB::select('SELECT order_status FROM hh_order WHERE user_id =  ? AND order_id = ?',
+            [$user_id, $order_id]);
+        if ($order_tbl_isdestroy) {
+            $order_status = $order_tbl_isdestroy[0]->order_status;
+            if ($order_status == 1 || $order_status == 2) { 
+                $selectTime = DB::select('select confirm_time from hh_order_reservation_time where confirm_time = ?',[$confirm_time]);
+
+                $changeOrder_status = DB::update('update hh_order set order_status = 3 where user_id=? and order_id=?',[$user_id,$order_id]);
+                if ($changeOrder_status) {
+                    if ($selectTime[0]->confirm_time == $confirm_time) {
+                        $arr = array(
+                            "code" => "000",
+                            "msg" => "确认成功"
+                        );
+                        return $callback . "(" . HHJson($arr) . ")";
+                    } else {
+                        $changeTime = DB::update('update hh_order_reservation_time set confirm_time = ? where order_id = ?',[$confirm_time,$order_id]);
+                        if ($changeTime) {
+                            $arr = array(
+                                "code" => "000",
+                                "msg" => "确认成功"
+                            );
+                            return $callback . "(" . HHJson($arr) . ")";
+                        } else {
+                            $arr = array(
+                                "code" => "206",
+                                "msg" => "修改失败"
+                            );
+                            return $callback . "(" . HHJson($arr) . ")";
+                        }
+                    }
+                    
+                } else {
+                    $arr = array(
+                        "code" => "204",
+                        "msg" => "修改失败"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+
+            } else {
+                $arr = array(
+                "code" => "203",
+                "msg" => "订单不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+            }
+        } else {
+            $arr = array(
+                "code" => "205",
+                "msg" => "订单不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+
+    }
+
     /*取消订单*/
     public function orderDestroy()
     {
@@ -268,7 +333,7 @@ class OrderController extends Controller
                 return $callback . "(" . HHJson($arr) . ")";
             }
         }
-        $order_tbl_list = DB::select('SELECT * FROM hh_order_new_view WHERE shop_id = ? ORDER BY order_time LIMIT ?,?',
+        $order_tbl_list = DB::select('SELECT * FROM hh_order_new_view WHERE shop_id = ? ORDER BY order_time DESC LIMIT ?,?',
             [$shop_id, $page_start, $limit]);
         foreach ($order_tbl_list as $key => $val) {
             $portrait = DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?', [$val->user_id]);

@@ -35,7 +35,6 @@
     var TYPEURL = BASEURL + 'bankcard/getcardtype?callback=JSON_CALLBACK';//获取银行卡类型接口
     var VERIFYURL = BASEURL + 'bankcard/cardverify?callback=JSON_CALLBACK';//银行卡四元素认证接口
     var BANKINFOURL = BASEURL + 'mybankcards?callback=JSON_CALLBACK';//获取银行卡信息接口
-    var APPLYURL = BASEURL + 'withdraw/apply';//提现
     var PHCODE = BASEURL + 'sendsms'; // 手机验证码
     var TAGURL = BASEURL + 'personal/myshop/stylelist?callback=JSON_CALLBACK';//风格标签
     var MASTERSHOPURL = BASEURL + 'personal/myshop/change';//编辑工长店铺资料
@@ -89,7 +88,6 @@
     } else {
         USERID = "";
     }
-
     /**
      * 移动号码归属地支持号段:134 135 136 137 138 139 147 150 151 152 157 158 159 178  182 183 184 187 188
      * 联通号码归属地支持号段:130 131 132  145 155 156 176  186
@@ -149,7 +147,7 @@
                     }
                 });
 
-                /* 有多少条新消息 */
+                /* 消息中心有多少条新消息 */
                 $.ajax({
                     type: "get",
                     url: NEWSURL,
@@ -491,7 +489,7 @@
                 loadDetail.showInformation();
                 var myfile = [];
                 var perform = sessionStorage.getItem("action");//当前是编辑还是新增
-                if(perform == "edit") {
+                if (perform == "edit") {
                     getInformation.workDetail();
                 } else {
                     var $name = $(".staff_name .name").val();//工人姓名
@@ -1459,6 +1457,9 @@
                 error: function (data) {
                     layer.alert(data.msg);
                 }
+            });
+            $('.enter_store').click(function () {
+                window.location.href = 'view_shop.html#/shopdetails?pos=' + $.base64.decode($.cookie("userShopId")) + '';
             });
         },
         /* 获取工长店铺的安全等级 */
@@ -2808,7 +2809,7 @@
 
     /* 编辑前获得我的员工具体信息 */
     getInformation = {
-        workDetail : function() {
+        workDetail: function () {
             var cate_id = sessionStorage.getItem("cateid");
             var worker_id = sessionStorage.getItem("userid");
             $.ajax({
@@ -2820,11 +2821,14 @@
                     cate_id: cate_id,
                     worker_id: worker_id
                 },
-                success: function(data) {
-                    if(data && data.code == '000') {
-                        var cost = [],k = 0;
+                success: function (data) {
+                    if (data && data.code == '000') {
+                        var cost = [], k = 0;
                         var length = $(".edit_bottom li").length;
-                        $(".staff_picture .add_picture").attr("data-flag", "1").addClass("clear").css('background','url("http://hyu2387760001.my3w.com/' + data.data.portrait_img + '") no-repeat');
+                        $(".staff_picture .add_picture").attr("data-flag", "1").addClass("clear").css({
+                            'background': 'url("http://hyu2387760001.my3w.com/' + data.data.portrait_img + '") no-repeat',
+                            'backgroundSize': '100% 100%'
+                        });
                         $(".staff_name .name").val(data.data.name);//工人姓名
                         $(".staff_name .sex option:selected").val(data.data.sex);//工人性别   1：男生 2：女生
                         $(".staff_name .age").val(data.data.age);//工人年龄
@@ -2834,13 +2838,13 @@
                         $(".staff_phone .bankcard").val(data.data.bankcard);//银行卡
                         $(".staff_phone .phone").val(data.data.phone);//手机号
                         $(".staff_phone .bankname").val(data.data.bankname);//开户银行
-                        $.each(data.data.pricelist,function(i,v) {
-                            $.each(v.service, function(m,n) {
+                        $.each(data.data.pricelist, function (i, v) {
+                            $.each(v.service, function (m, n) {
                                 cost[k] = n.cost;
-                                k ++;
+                                k++;
                             });
                         });
-                        for(var j = 0; j < length; j ++) {
+                        for (var j = 0; j < length; j++) {
                             $(".edit_bottom li").eq(j).find("input").val(cost[j]);
                         }
                         var $name = $(".staff_name .name").val();//工人姓名
@@ -2883,7 +2887,7 @@
                                 workerAction.editWorker($name, $sex, $age, $birthplace, $worktime, $idcard, $bankcard, $phone, $bankname, myfile); //编辑工人
                             });
                         });
-                        if(count == 1) {
+                        if (count == 1) {
                             $(".staff_confirm").on("click", function () {
                                 var pic = '<img src="http://hyu2387760001.my3w.com/' + data.data.portrait_img + '">';
                                 myfile.push(pic);
@@ -2895,7 +2899,8 @@
                         layer.alert(data.msg);
                     }
                 },
-                error: function(data) {}
+                error: function (data) {
+                }
             });
 
         }

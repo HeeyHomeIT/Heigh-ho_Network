@@ -255,7 +255,8 @@
 			                //window.location.href = "../../index2.html?userName=" + data.data.user_name; //进行登录
 			                changeTabHendler.swtchTab(1); // 进入登录页面
 			            } else if(data != null && data.code != '000') { //错误
-			            	errorMsgHendler.remindBox(data.msg);
+			            	//errorMsgHendler.remindBox(data.msg);
+                            layer.alert(data.msg);
 			            }
 					},
 					complete : function() { // 向服务器发送请求成功后执行一些动作
@@ -311,7 +312,8 @@
 			                //alert('登录成功');
 			                window.location.href = "index.html"; // 进行跳转
 			            }else if(data != null && data.code != '000') { // 错误
-			            	errorMsgHendler.remindBox(data.msg);
+			            	//errorMsgHendler.remindBox(data.msg);
+							layer.alert(data.msg);
 			            }
 			        },
 			        complete: function () { // 向服务器发送请求成功后执行一些动作
