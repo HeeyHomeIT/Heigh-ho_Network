@@ -1,0 +1,223 @@
+body {
+    font-family: "微软雅黑";
+}
+
+/* 公共样式 */
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+@font-face {
+    font-family: 'iconfont';  /* project id："158259" */
+    src: url('//at.alicdn.com/t/font_lbxg4uiezl3xflxr.eot');
+    src: url('//at.alicdn.com/t/font_lbxg4uiezl3xflxr.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_lbxg4uiezl3xflxr.woff') format('woff'),
+    url('//at.alicdn.com/t/font_lbxg4uiezl3xflxr.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_lbxg4uiezl3xflxr.svg#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: "iconfont";
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+    padding-left: 8px
+}
+
+.contact_wrap {
+    width: 1190px;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid white;
+}
+
+.contact_top {
+    width: 651px;
+    height: 99px;
+    background: url("../img/start/start_top2.png") no-repeat;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.contact_content {
+    width: 1188px;
+    height: auto;
+    border: 1px solid #ededed;
+    margin-top: 49px;
+}
+
+.contact_process {
+    height: 32px;
+    line-height: 32px;
+    margin: 0 auto;
+    margin-top: 44px;
+    margin-left: 346px;
+}
+
+.second_process, .three_process {
+    margin-left: 10px;
+}
+
+.first_process .iconfont, .second_process .iconfont, .three_process .iconfont {
+    vertical-align: middle;
+    font-size: 32px;
+    color: #999;
+    margin-right: 10px;
+}
+
+.first_process .span_text, .second_process .span_text, .three_process .span_text {
+    font-size: 14px;
+    color: #999;
+}
+
+.first_process .span_line, .second_process .span_line {
+    width: 76px;
+    height: 3px;
+    display: inline-block;
+    background-color: #999;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.contact_active .iconfont {
+    color: #eec988;
+}
+
+.contact_active .span_text {
+    color: #EEC988;
+}
+
+.contact_active .span_line {
+    background-color: #eec988;
+}
+
+.contact_detail {
+    height: auto;
+        margin-top: 35px;
+    margin-left: 80px;
+    margin-bottom: 52px;
+}
+
+.contact_detail .contact_title {
+    position: relative;
+    padding: 20px 0;
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.contact_detail .contact_title span {
+    margin-right: 90px;
+}
+
+.contact_detail .contact_title span:last-child {
+    float: right;
+}
+
+.contact_detail .contact_title span em{
+    color: #999;
+}
+
+.contact_detail .bookingprocesscon {
+	position: relative;
+}
+
+.contact_detail .bookingprocesscon h4 {
+   	font-size: 14px;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+.contact_detail .bookingprocesscon ul {
+    padding: 25px 0 0 10px;
+    border-top: 1px solid #f4f4f4;
+}
+
+.contact_detail .bookingprocesscon ul li {
+    padding-left: 40px;
+    height: 80px;
+    position: relative;
+    line-height: 30px;
+    color: #666;
+    font-size: 13px;
+}
+
+.contact_detail .bookingprocesscon ul li:before {
+    content: "";
+    width: 1px;
+    height: 80px;
+    position: absolute;
+    left: 17px;
+    bottom: 65px;
+    background-color: #d4d4d4;
+}
+
+.contact_detail .bookingprocesscon ul li:first-child:before {
+    height: 0;
+}
+
+.contact_detail .bookingprocesscon ul li em {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    font-size: 12px;
+    z-index: 1;
+    width: 15px;  
+    height: 15px;  
+    border-radius: 50%; 
+    background: #d4d4d4;
+}
+.contact_detail .bookingprocesscon ul li em:before {
+	content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    font-size: 12px;
+    z-index: 1;
+    width: 9px;
+    height: 9px; 
+    border-radius: 50%;   
+    background-color:#fff;  
+}
+
+.contact_detail .bookingprocesscon ul li.detail_active em {
+    background-color: #EEC988;
+}
+
+.contact_detail .bookingprocesscon ul li.detail_active:before {
+    background-color: #EEC988;
+}
+
+.contact_detail .bookingprocesscon ul li p {
+	font-size: 14px;
+    vertical-align: middle;
+    line-height: 32px;
+}
+
+.contact_detail .bookingprocesscon ul li p span.date {
+	margin-left: 5px;
+}
+
+.contact_detail .bookingprocesscon ul li p span.time {
+	margin: 0 20px 0 5px;
+}
+
+.contact_detail .bookingprocesscon ul li div {
+	margin-left: 5px;
+	color: #999;
+}
+

@@ -111,10 +111,10 @@ var picList = [];
 							console.log(v)
 							$("#cname").text(v.technics_text);
 							$(".ctitle").text(v.technics_text+"的图集相册")
-							$("#zNum").text(v.img.length);
+							$("#zNum").text(v.technics_img.length);
 							$(".gallery_demo_unstyled").append(spliceAlbumContHandler.spliceSmallPicEvent(v));
 							self.defaultActiveEvent(v,getUrlParamHandler.getUrlParam('voe').split("#")[1]);
-							$.each(v.img, function(item,val) {
+							$.each(v.technics_img, function(item,val) {
 								var pObj = {
 									"picPos": item+1,
 									"pid": val.img_id,
@@ -236,7 +236,7 @@ var picList = [];
 		 */
 		spliceBigPicEvent:function(value,pn) {
 			console.log(value)
-			var vrStr = '<img id="mainPic" src="http://hyu2387760001.my3w.com/'+value.img[pn-1].technics_img+'" />';
+			var vrStr = '<img id="mainPic" src="http://hyu2387760001.my3w.com/'+value.technics_img[pn-1].technics_img+'" />';
 			return vrStr;
 		},
 		/**
@@ -245,7 +245,7 @@ var picList = [];
 		 */
 		spliceSmallPicEvent:function(value) {
 			var vrStr = '';
-			$.each(value.img, function(i,v) {
+			$.each(value.technics_img, function(i,v) {
 				vrStr += '<li id="tu_'+(i+1)+'"><span></span><a href="javascript:void(0);"><img src="http://hyu2387760001.my3w.com/'+v.technics_img+'" /></a></li>';
 			});
 			return vrStr;
