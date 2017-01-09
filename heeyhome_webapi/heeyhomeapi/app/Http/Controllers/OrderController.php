@@ -327,7 +327,7 @@ class OrderController extends Controller
                 return $callback . "(" . HHJson($arr) . ")";
             }
         }
-        $order_tbl_list = DB::select('SELECT * FROM hh_order_new_view WHERE shop_id = ? ORDER BY order_time LIMIT ?,?',
+        $order_tbl_list = DB::select('SELECT * FROM hh_order_new_view WHERE shop_id = ? ORDER BY order_time DESC LIMIT ?,?',
             [$shop_id, $page_start, $limit]);
         foreach($order_tbl_list as $key=>$val){
             $portrait=DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?',[$val->user_id]);
