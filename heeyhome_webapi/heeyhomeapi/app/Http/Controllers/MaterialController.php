@@ -56,8 +56,7 @@ class MaterialController extends Controller
             $where=' and brand_id=?';
             $para[]=$brand_id;
         }
-        $elematerialist=DB::select('select DISTINCT hh_materials.material_id,hh_material_name.name,hh_material_name.unit,hh_material_name.img from hh_materials 
-        left join hh_material_name on hh_material_name.material_id=hh_materials.material_id where hh_materials.cate_id=? and hh_materials.if_show=?'.$where,$para);
+        $elematerialist=DB::select('select * from hh_materials_material_name_view where cate_id=? and if_show=?'.$where,$para);
         foreach ($elematerialist as $key=>$val){
             $specs=DB::select('select DISTINCT hh_materials.spec_id,hh_material_spec.spec_name from hh_materials left join hh_material_spec on hh_material_spec.spec_id=hh_materials.spec_id where hh_materials.material_id=?',[$val->material_id]);
             if($specs[0]->spec_id==0)
