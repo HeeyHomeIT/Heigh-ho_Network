@@ -109,8 +109,10 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     views: {
                         'user_right': {
                             templateUrl: 'view/v_center/v_mypage.html',
+                            controller: "homeCtrl",
+                            controllerAs: "mhome"
                         }
-                    },
+                    }
                 })
                 .state("center.mdata", { // 用户个人中心-个人资料
                     url: "/mdata",
@@ -163,7 +165,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                             controller: "mCollectionCtrl",
                             controllerAs: "mcollection"
                         }
-                    },
+                    }
                 })
                 .state("center.msgcenter", { // 用户个人中心-消息中心
                     url: "/msgcenter",
@@ -189,6 +191,11 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                             controllerAs: "setting"
                         }
                     },
+                    resolve: {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load('js/j_center/safe.js')
+                        }]
+                    }
                 })
                 .state("center.maddress", { // 用户个人中心-收货地址
                     url: "/maddress",
