@@ -1,0 +1,118 @@
+.pay_success {
+	width: 1190px;
+	margin: 0 auto;
+	background-color: #f7f7f7;
+	font-size: 14px;
+	font-family: FZLTHJW;
+	color: #4B4948;
+	padding: 20px 0 50px;
+}
+
+.pay_success .icon a {
+	display: block;
+	width: 182px;
+	height: 61px;
+}
+
+.pay_success .icon a img {
+	width: 100%;
+	height: 100%;
+}
+
+.spay_content {
+	margin-top: 50px;
+	padding-left: 30px;
+}
+
+.spay_title .spay_icon {
+	float: left;
+	width: 30px;
+	height: 30px;	
+}
+
+.spay_title .spay_icon img {
+	width: 100%;
+	height: 100%;
+}
+
+.spay_title .spay_tips {
+	height: 30px;
+	line-height: 30px;
+	float: left;
+	margin-left: 10px;
+}
+
+.spay_title .spay_tips p {
+	font-weight: 800;
+}
+
+.spay_title .spay_money {
+	height: 30px;
+	line-height: 30px;
+	margin-left: 20px;
+	float: left;
+}
+
+.spay_title .spay_money p span {
+	font-size: 16px;
+}
+
+.spay_bottom {
+	margin-left: 40px;
+}
+
+.spay_bottom ul {
+	margin-top: 20px;
+	color: #8c8c8c;
+}
+
+.spay_bottom ul li .spay_right {
+	margin-left: 15px;
+}
+
+.spay_bottom .spay_button {
+	margin-top: 15px;
+}
+
+.spay_bottom .spay_button .view {
+	display: inline-block;
+	width: 80px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	border-radius: 4px;
+	background-color: #EEC988;
+	color: #FFFFFF;
+}
+
+.spay_bottom .spay_button .view:hover {
+	transition: all 0.3s ease-out;
+	background-color: #E88226;
+	-o-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-webkit-transition: all 0.3s ease-out;
+}
+
+.spay_bottom .spay_button .back {
+	display: inline-block;
+	width: 78px;
+	height: 26px;
+	line-height: 26px;
+	margin-left: 10px;
+	text-align: center;
+	border: 1px solid #EEC988;
+	border-radius: 4px;
+	background-color: #FFFFFF;
+	color: #EEC988;
+}
+
+.spay_bottom .spay_button .back:hover {
+	transition: all 0.3s ease-out;
+	background-color: #4B4948;
+	color: #EEC988;
+	-o-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-webkit-transition: all 0.3s ease-out;
+}

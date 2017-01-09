@@ -58,10 +58,11 @@
             self.initMDataEvent();
             self.initMHomeEvent();
             self.initMCollectionEvent();
-            // self.initMOrderEvent();
+            self.initMOrderEvent();
             self.initMsgInfo();
             self.initMOrderDataEvent();
             self.initMOrderDetailEvent();
+            self.initSuccessPayEvent();
         },
         /**
          * 个人中心样式改变事件
@@ -301,7 +302,17 @@
             HHIT_CENTERAPP.controller('msgCtrl', ['$scope', '$http', function ($scope, $http) {
                 initInfo.info();
             }]);
+        },
+        /*
+         * 支付成功
+         */
+        initSuccessPayEvent : function() {
+            HHIT_CENTERAPP.controller('pay_endCtrl', ['$scope', '$http', function ($scope, $http) {
+                $("#headerWrapper").remove();
+                $("#menuNavOuter").remove();
+            }]);
         }
+
     };
 
     /* div移动撞击事件 */

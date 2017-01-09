@@ -2490,3 +2490,254 @@ a:focus {
     border-radius: 2px;
     font-size: 14px
 }
+/* 收货地址样式 */
+.address_wrap {
+    width: 754px;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 31px;
+}
+
+.address_list {
+    height: 118px;
+    margin-top: 16px;
+}
+
+.address_list_title {
+    height: 35px;
+    line-height: 35px;
+    background-color: #efefef;
+}
+
+.address_list_title span {
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    color: #4b4948;
+}
+
+.address_list_content span {
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    color: #4b4948;
+}
+
+.address_list_content .recipient, .address_list_content .address_code, .address_list_content .address_tel {
+    vertical-align: top;
+    margin-top: 35px;
+}
+
+.address_list_content .in_area, .address_list_content .detailed_address {
+    text-align: left;
+    padding: 26px 10px;
+    box-sizing: border-box;
+}
+
+.recipient {
+    width: 100px;
+}
+
+.in_area {
+    width: 110px;
+}
+
+.detailed_address {
+    width: 214px;
+}
+
+.address_code {
+    width: 97px;
+}
+
+.address_tel {
+    width: 93px;
+}
+
+.editor_del {
+    display: inline-block;
+    width: 115px;
+    text-align: right;
+}
+
+.address_editor, .address_del {
+    width: 20px;
+    height: 35px;
+    display: inline-block;
+    text-align: center;
+    line-height: 35px;
+    vertical-align: middle;
+}
+
+.address_editor img, .address_del img {
+    margin-top: -5px;
+    vertical-align: inherit;
+}
+
+.address_editor {
+    margin-right: 15px;
+}
+
+.address_del {
+    margin-right: 15px;
+}
+
+.address_list_content {
+    width: 752px;
+    height: 83px;
+    border: 1px solid #d3d3d3;
+    border-top: none;
+}
+
+.default_address {
+    width: 83px;
+    height: 30px;
+    line-height: 32px;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid #eec988;
+    color: #eec988;
+    margin-left: 25px;
+    vertical-align: top;
+    margin-top: 25px;
+}
+
+.default_address:hover {
+    background-color: #eec988;
+    color: white;
+}
+
+.address_add a {
+    width: 114px;
+    height: 32px;
+    line-height: 32px;
+    display: block;
+    background-color: #eec988;
+    color: white;
+    font-size: 14px;
+    border-radius: 2px;
+    margin-top: 16px;
+}
+
+.address_add a img {
+    vertical-align: middle;
+    margin-right: 9px;
+    margin-left: 8px;
+}
+
+.address_add a:hover {
+    transition: all .5s ease 0s;
+    -webkit-transition: all .5s ease 0s;
+    -moz-transition: all .5s ease 0s;
+    -ms-transition: all .5s ease 0s;
+    -webkit-box-shadow: 3px 3px 5px #939393;
+    -moz-box-shadow: 3px 3px 5px #939393;
+    box-shadow: 3px 3px 5px #939393
+}
+
+.add_address_wrap {
+    padding: 20px;
+    border: 1px #eeeeee solid;
+    overflow: hidden;
+    width: 754px;
+    height: auto;
+    margin: 0 auto
+}
+
+.add_address_cont {
+    margin: 20px 0 0 2px
+}
+
+.add_address_cont .cont_box {
+    position: relative
+}
+
+.add_address_cont .cont_box .address_cont_line {
+    zoom: 1
+}
+
+.address_cont_line .address_lable {
+    width: 75px;
+    display: inline;
+    padding-right: 12px;
+    float: left;
+    text-align: right;
+    line-height: 34px;
+    font-weight: 100;
+    color: #666
+}
+
+.address_cont_line .i-chk {
+    margin-left: 75px;
+    vertical-align: middle;
+    margin-top: 0px
+}
+
+.address_cont_line .set_lable {
+    position: relative;
+    padding-left: 10px;
+    color: #666;
+    font-weight: 100
+}
+
+.address_cont_line .address_content {
+    float: left;
+    display: inline;
+    padding-bottom: 15px
+}
+
+.address_cont_line .address_content>select {
+    float: left;
+    width: 175px;
+    border: 1px solid #ddd;
+    height: 34px;
+    line-height: 28px;
+    margin-right: 10px
+}
+
+.address_cont_line .address_content>input {
+    padding: 7px 10px;
+    width: 500px;
+    border: 1px solid #ddd
+}
+
+.address_cont_line .address_content>input.smallinput {
+    width: 300px
+}
+
+.address_cont_line .saveaddBtn {
+    display: inline-block;
+    height: 34px;
+    line-height: 34px;
+    color: #fff;
+    background-color: #f36f20;
+    border: none;
+    cursor: pointer;
+    padding: 0 30px;
+    margin: 10px 0 0 75px
+}
+
+.add_address_wrap label.error {
+    position: relative;
+    float: right;
+    font-size: 12px;
+    padding: 0 8px;
+    font-weight: 100
+}
+
+.border_eec988 {
+    transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear
+}
+
+.border_ff5704 {
+    transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    border: 1px solid #ff5704 !important
+}

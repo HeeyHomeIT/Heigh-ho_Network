@@ -1,0 +1,59 @@
+.error_detail {
+	width: 1190px;
+	margin: 0 auto;
+	padding: 20px 0;
+	text-align: center;
+	font-family: FZLTHJW;
+	font-size: 14px;
+}
+
+.error_detail img {
+	margin-top: 30px;
+}
+
+.error_detail h3 {
+	margin: 30px 0;
+}
+
+.error_detail .error_button .back {
+	display: inline-block;
+	width: 120px;
+	height: 34px;
+	line-height: 34px;
+	background-color: #EEC988;
+	color: #FFFFFF;
+	border-radius: 4px;
+	border: 1px solid #EEC988;
+	cursor: pointer;
+}
+
+.error_detail .error_button .back:hover {
+	transition: all 0.3s ease-in-out;
+	background-color: #E88226;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+}
+
+.error_detail .error_button .home {
+	margin-left: 18px;
+	display: inline-block;
+	width: 120px;
+	height: 34px;
+	line-height: 34px;
+	background-color: #FFFFFF;
+	color: #EEC988;
+	border-radius: 4px;
+	border: 1px solid #EEC988;
+}
+
+.error_detail .error_button .home:hover {
+	transition: all 0.3s ease-in-out;
+	background-color: #EEC988;
+	color: #333333;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+}
