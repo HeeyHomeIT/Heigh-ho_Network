@@ -8,31 +8,35 @@
                 <ul class="clearfix fl">
                     <li>
                         <p class="wallet_li_top">项目总额</p>
-                        <p class="wallet_money"><span>8536,</span>00元</p>
+                        <p class="wallet_money total"><span>8536,</span>元</p>
                     </li>
                     <li>
-                        <p class="wallet_li_top">滞留金额</p>
-                        <p class="retention"><span>2000,</span>00元</p>
+                        <p class="wallet_li_top">提现金额</p>
+                        <p class="wallet_money withdraw"><span>2000,</span>元</p>
                     </li>
                     <li>
-                        <p class="wallet_li_top">账户状态</p>
-                        <p class="wallet_money">有效</p>
+                        <p class="wallet_li_top">保证金</p>
+                        <p class="wallet_money"><span>50000</span>元</p><!--retention-->
                     </li>
                 </ul>
-                <a href="javascript:;" class="wallet_withdrawal">提现</a>
-                <a href="javascript:;" class="wallet_safe">安全中心</a>
+                <a href="withdraw.html#/withdraw" class="wallet_withdrawal" target="_blank">提现</a>
+                <a href="bank.html#/bank" class="wallet_safe" target="_blank">我的银行卡</a>
             </div><!--wallet_content_top-->
             <div class="wallet_content_bottom">
                 <div class="wallet_bottom_title clearfix">
                     <div class="bottom_title_left fl">
                         <div class="transaction_records">最近交易记录</div>
-                        <div class="withdrawal_record">提现记录</div>
-                        <div class="bottom_title_active"></div>
+                        <a href="javascript:;">2017 - 01</a>
+                        <a href="javascript:;">2016年12月</a>
+                        <a href="javascript:;">八月份</a>
+                        <a href="javascript:;">七月份</a>
+                        <a href="javascript:;">六月份</a>
                     </div><!--bottom_title_left-->
                     <div class="bottom_title_right fr">
-                        <a href="javascript:;" class="check_detail">查看明细<img src="css/img/cash_img.png"></a>
+                        <a href="javascript:;" class="check_detail">全部<img src="css/img/cash_img.png"></a>
                     </div><!--bottom_title_right-->
                 </div><!--wallet_bottom_title-->
+                <div class="wallet_month">10月份</div><!--wallet_month-->
                 <div class="wallet_bottom_content">
                     <div class="wallet_dl">
                         <span class="wallet_time">时间</span>
@@ -41,36 +45,15 @@
                         <span class="wallet_cash">交易状态</span>
                         <span class="wallet_opera">操作</span>
                     </div><!--wallet_dl-->
-                    <div class="wallet_dd">
-                        <span class="wallet_time">2016.2.13</span>
-                        <span class="wallet_account">张新民（木工结尾阶段）</span>
-                        <span class="wallet_coin">+2000.00</span>
-                        <span class="wallet_cash">支付成功</span>
-                        <a href="javascript:;" class="dd_opera">详情<i></i></a>
-                    </div><!--wallet_dd-->
-                    <div class="wallet_dd">
-                        <span class="wallet_time">2016.2.13</span>
-                        <span class="wallet_account">张新民（木工结尾阶段）</span>
-                        <span class="wallet_coin">+2000.00</span>
-                        <span class="wallet_cash">支付成功</span>
-                        <a href="javascript:;" class="dd_opera">详情<i></i></a>
-                    </div><!--wallet_dd-->
-                    <div class="wallet_dd">
-                        <span class="wallet_time">2016.2.13</span>
-                        <span class="wallet_account">张新民（木工结尾阶段）</span>
-                        <span class="wallet_coin">+2000.00</span>
-                        <span class="wallet_cash">支付成功</span>
-                        <a href="javascript:;" class="dd_opera">详情<i></i></a>
-                    </div><!--wallet_dd-->
-                    <div class="wallet_dd">
-                        <span class="wallet_time">2016.2.13</span>
-                        <span class="wallet_account">张新民（木工结尾阶段）</span>
-                        <span class="wallet_coin">+2000.00</span>
-                        <span class="wallet_cash">支付成功</span>
-                        <a href="javascript:;" class="dd_opera">详情<i></i></a>
-                    </div><!--wallet_dd-->
-                    <a href="javascript:;" class="local_history fr">查看所有历史记录</a>
+                    <!--wallet_dd-->
                 </div><!--wallet_bottom_content-->
+                <!-- 页码start -->
+                <div class="page_number">
+                    <div style="margin:80px auto;width:800px;">
+                        <div class="page_div5"></div>
+                    </div>
+                </div>
+                <!-- 页码end -->
             </div><!--wallet_content_bottom-->
         </div><!--wallet_content-->
     </div><!--right_content_wrap-->

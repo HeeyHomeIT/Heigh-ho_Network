@@ -6,13 +6,13 @@
             </div><!--left_img-->
             <div class="left_user fl">
                 <p><a href="javascript:;" class="user_name">晨曦</a></p>
-                <p>用户名：<span>185****0217</span></p>
+                <p>用户名：<span id="user_phone">185****0217</span></p>
                 <p class="level_p">安全等级</p>
                 <div class="safe_level">
-                    <div class="active_level"></div>
+                    <div class="active_level" id="active_level"></div>
                 </div><!--safe_level-->
                 <div class="safe_name">
-                    <span class="active_name">弱</span>
+                    <span class="">弱</span>
                     <span>中</span>
                     <span>强</span>
                 </div><!--safe_name-->
@@ -22,12 +22,12 @@
             <div class="title_email fl clearfix">
                 <img class="fl" src="css/img/title_email.png">
                 <p class="email_bind fl">邮箱绑定</p>
-                <p class="fl"><span>未绑定</span><a href="javascript:;">立即绑定</a></p>
+                <p id="email" class="fl"><span>未绑定</span><a href="#/center/setting/email/email_1">立即绑定</a></p>
             </div><!--title_email-->
             <div class="title_tel fl clearfix">
                 <img class="fl" src="css/img/title_tel.png">
                 <p class="email_bind fl">手机号码绑定</p>
-                <p class="fl"><span>已绑定</span><a href="javascript:;">修改</a></p>
+                <p class="fl"><span>已绑定</span><a href="#/center/setting/bind/bind_phone_1">修改</a></p>
             </div><!--title_tel-->
         </div><!--title_right-->
     </div><!--user_right_title-->
@@ -45,23 +45,23 @@
         <div class="my_collection">
             <a href="javascript:;" class="my_collection_title">我的收藏</a>
             <div class="my_collection_content">
-                <a href="javascript:;" class="rendering">
+                <a href="#/center/mcollection?index=0" class="rendering">
                     <img class="render_img" src="css/img/rendering.png">
                     <span>效果图</span>
                     <img class="line_img" src="css/img/user_line.png">
-                    <b><i>20</i>套</b>
+                    <b><i id="pic_total">0</i>套</b>
                 </a><!--rendering-->
-                <a href="javascript:;" class="bill">
+                <a href="#/center/mcollection?index=1" class="bill">
                     <img class="render_img" src="css/img/bill.png">
                     <span>账单</span>
                     <img class="line_img" src="css/img/user_line.png">
-                    <b><i>5</i>张</b>
+                    <b><i id="bill_total">5</i>张</b>
                 </a><!--bill-->
-                <a href="javascript:;" class="store">
+                <a href="#/center/mcollection?index=2" class="store">
                     <img class="render_img" src="css/img/store.png">
                     <span>店铺</span>
                     <img class="line_img" src="css/img/user_line.png">
-                    <b><i>33</i>家</b>
+                    <b><i id="shop_total">0</i>家</b>
                 </a><!--store-->
             </div><!--my_collection_content-->
         </div><!--my_collection-->

@@ -1,0 +1,265 @@
+/* 公共样式 */
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+#pageheader {
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+.logo a {
+    /*border-right: 1px solid #4b4948;*/
+    padding-right: 30px;
+}
+
+.logo span {
+    width: 1px;
+    height: 62px;
+    background-color: #4b4948;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.logo_withdraw {
+    width: 500px;
+    height: 90px;
+    float: left;
+    padding-left: 40px;
+}
+
+.logo_withdraw p {
+    height: 26px;
+    line-height: 26px;
+    font-size: 20px;
+    color: #4b4948;
+    margin-top: 8px;
+}
+
+.logo_withdraw .wChina {
+    margin-top: 15px;
+}
+
+.bankWrap {
+    width: 1190px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.now_location img {
+    vertical-align: top;
+    margin-top: 2px;
+}
+
+.now_location a {
+    font-size: 14px;
+    color: #666;
+}
+
+.bankContent_wrap {
+    margin-bottom: 300px;
+}
+
+.bank_content {
+    width: 265px;
+    height: 147px;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-right: 23px;
+}
+
+.bank_content_title {
+    width: 220px;
+    height: 70px;
+    border-bottom: 1px dashed #969696;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+
+.bank_content_title img {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 40px;
+    height: 40px;
+}
+
+.bank_content_title span {
+    width: 150px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.bank_content_title .bank_name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #4b4948;
+}
+
+.bank_content_title .bank_type {
+    font-size: 14px;
+    color: #4b4948;
+    margin-top: 5px;
+}
+
+.bankContent {
+    height: 75px;
+    line-height: 75px;
+    font-size: 14px;
+    margin-left: 25px;
+    color: #4b4948;
+}
+
+.add_bank_a {
+    width: 267px;
+    height: 147px;
+    margin-top: 20px;
+}
+
+.add_bank_title {
+    margin-top: 35px;
+    margin-bottom: 50px;
+}
+
+.add_bank_title img {
+    margin-left: 175px;
+}
+
+.cardholder, .cardnumber {
+    margin-top: 17px;
+}
+
+.cardnumber {
+    margin-bottom: 75px;
+}
+
+.cardholder span, .cardnumber span {
+    width: 45px;
+    text-align: right;
+    display: inline-block;
+    font-size: 14px;
+    color: #4b4948;
+}
+
+.cardholder input, .cardnumber input {
+    width: 265px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 3px;
+    border: 1px solid #dfdfdf;
+    padding-left: 13px;
+    margin-left: 20px;
+}
+
+.process1_next {
+    width: 85px;
+    height: 37px;
+    line-height: 37px;
+    background-color: #eec988;
+    border: 1px solid #dab678;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    border-radius: 2px;
+    margin-top: 45px;
+    margin-bottom: 250px;
+}
+
+.process3_next {
+    width: 143px;
+    height: 37px;
+    line-height: 37px;
+    background-color: #eec988;
+    border: 1px solid #dab678;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    border-radius: 2px;
+    margin-top: 45px;
+    margin-bottom: 350px;
+}
+
+.add_process2 p {
+    font-size: 14px;
+    color: #8a8a8a;
+    margin-bottom: 25px;
+}
+
+.cardcode span {
+    font-size: 14px;
+    color: #4b4948;
+    margin-right: 10px;
+}
+
+.cardcode input {
+    width: 103px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    padding-left: 5px;
+    margin-right: 18px;
+    margin-top: -3px;
+}
+
+.cardcode a {
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #eec988;
+    color: #eec988;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.add_process3 p {
+    font-size: 14px;
+    color: #4b4948;
+}
+
+.add_process3 p img {
+    margin-right: 10px;
+}
+
+.cardtype {
+    margin-top: 15px;
+}
+
+.cardtype span {
+    width: 56px;
+    text-align: right;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #4b4948;
+}
+
+.cardtype input {
+    width: 232px;
+    height: 32px;
+    line-height: 32px;
+    padding-left: 5px;
+    border: 1px solid #dfdfdf;
+    border-radius: 3px;
+}
+.zc_btnClick {
+    cursor: auto !important;
+    background-color: #999 !important;
+    color: #ddd !important
+}

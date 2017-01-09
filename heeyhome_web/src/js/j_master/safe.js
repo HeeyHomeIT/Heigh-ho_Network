@@ -11,8 +11,8 @@
 
     var BASEURL = 'http://hyu2387760001.my3w.com/';
 
-    var USERDATAURL = BASEURL + 'personal/userinfo'; // 用户个人资料
-    var SAFELEVELURL = 'http://hyu2387760001.my3w.com/personal/safe'; // 安全等级
+    var FOREMANURL = BASEURL + 'personal/foremaninfo'; // 工长个人资料
+    var SAFELEVELURL = BASEURL + 'personal/safe'; // 安全等级
     var AUTHVERIFYURL = BASEURL + 'personal/safe/authverify'; // 身份验证
     var AUTHURL = BASEURL + 'personal/safe/auth'; // 获取身份验证状态
     var PASSWORDURL = BASEURL + 'editpassword'; // 修改密码
@@ -68,7 +68,6 @@
         },
         initEvent: function () {
             var self = this;
-
             //身份验证事件
             self.initAuthenticationEvent();
 
@@ -99,11 +98,11 @@
             //新邮箱点击验证码事件
             $(document).on('click', '#email_code', function () {
                 if ($('#new_email').val() == '') {
-                    alert(MSG8);
+                    layer.alert(MSG8);
                 } else if (EMAILREG.test($('#new_email').val())) {
                     self.sendCaptcha(SENDEMAILSURL, {email: $('#new_email').val()}, $('#email_code'));
                 } else {
-                    alert(MSG9);
+                    layer.alert(MSG9);
                 }
             });
         },
@@ -112,17 +111,17 @@
          */
         initCommonEvent: function (success) {
             $.ajax({
-                url: USERDATAURL,
+                url: FOREMANURL,
                 type: "GET",
                 async: true,
                 dataType: 'jsonp',
                 data: {
-                    user_id: $.base64.decode($.cookie("userId"))
+                    foreman_id: $.base64.decode($.cookie("userId"))
                 },
                 success: function (data) {
                     if (data && data.code == '000') {
-                        phone = data.data.userinfo_phone; //获取用户的电话号码
-                        email = data.data.userinfo_email; //获取用户的邮箱
+                        phone = data.data.foremaninfo_phone; //获取工长的电话号码
+                        email = data.data.foremaninfo_email; //获取工长的邮箱
                         success.call();
                     }
                 },
@@ -137,7 +136,7 @@
             /* 身份验证第一步：输入姓名与身份证号 */
             $(document).on('click', '.next_auth', function () {
                 if ($('#rel_name').val() == "" || $('#id_code').val() == "") {
-                    alert(MSG10);
+                    layer.alert(MSG10);
                 } else if (isIDCard1.test($('#id_code').val())) {
                     if ($('#id_code').val().length == 18) {
                         var idCardWi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]; //将前17位加权因子保存在数组里
@@ -157,7 +156,7 @@
                                 $('.authentic_two').show().removeClass('hide');
                                 $(".revise_process a").eq(1).addClass("active").siblings().removeClass("active");
                             } else {
-                                alert(MSG11);
+                                layer.alert(MSG11);
                             }
                         } else {
                             //用计算出的验证码与最后一位身份证号码匹配，如果一致，说明通过，否则是无效的身份证号码
@@ -166,12 +165,12 @@
                                 $('.authentic_two').show().removeClass('hide');
                                 $(".revise_process a").eq(1).addClass("active").siblings().removeClass("active");
                             } else {
-                                alert(MSG11);
+                                layer.alert(MSG11);
                             }
                         }
                     }
                 } else {
-                    alert(MSG12);
+                    layer.alert(MSG12);
                 }
             });
             /* 身份验证上传身份证照片 */
@@ -186,8 +185,7 @@
                     if (!/image\/\w+/.test(file.type)) {
                         inputImg.parent().parent().css('background-image', '');
                         inputImg.parent().removeClass('opacity');
-                        alert("请确保文件为图像类型");
-                        //alertError(swal);//弹出文件格式错误通知
+                        layer.alert("请确保文件为图像类型");
                         inputImg.val('');//清空file选择的文件
                         return false;
                     }
@@ -224,7 +222,7 @@
                             if (data.code == '131') {
                                 //console.log(data);
                             } else {
-                                alert(data.msg);
+                                layer.alert(data.msg);
                             }
                         },
                         error: function (data) {
@@ -263,7 +261,7 @@
                             }
                         }, 1000); // 启动计时器，1秒执行一次
                     } else {
-                        alert(data.msg);
+                        layer.alert(data.msg);
                     }
                 },
                 error: function (data) {
@@ -309,14 +307,14 @@
                                         //console.log(flag);
                                         window.location.href = '#/master/setting/bind/bind_phone_2';
                                     } else {
-                                        alert(data.msg);
+                                        layer.alert(data.msg);
                                     }
                                 },
                                 error: function (data) {
                                 }
                             });
                         } else {
-                            alert(MSG7);
+                            layer.alert(MSG7);
                         }
                     });
                 };
@@ -348,7 +346,7 @@
                                 //console.log(data);
                                 window.location.href = '#/master/setting/bind/bind_phone_3';
                             } else {
-                                alert(data.msg);
+                                layer.alert(data.msg);
                             }
                         },
                         error: function (data) {
@@ -403,14 +401,14 @@
                                         //console.log(flag);
                                         window.location.href = '#/master/setting/email/email_2';
                                     } else {
-                                        alert(data.msg);
+                                        layer.alert(data.msg);
                                     }
                                 },
                                 error: function (data) {
                                 }
                             });
                         } else {
-                            alert(MSG7);
+                            layer.alert(MSG7);
                         }
                     });
                 };
@@ -443,7 +441,7 @@
                                 //console.log(data);
                                 window.location.href = '#/master/setting/email/email_3';
                             } else {
-                                alert(data.msg);
+                                layer.alert(data.msg);
                             }
                         },
                         error: function (data) {
@@ -502,7 +500,7 @@
                                     //console.log(password_flag);
                                     window.location.href = '#/master/setting/reset/reset_6';
                                 } else {
-                                    alert(data.msg);
+                                    layer.alert(data.msg);
                                 }
                             },
                             error: function (data) {
@@ -525,7 +523,7 @@
                 /* 密码身份验证 */
                 $(document).on('click', '#next_password1', function () {//判断输入登录密码是否正确决定要不要调转到下一步
                     if ($('#login_code').val() == '') {
-                        alert(MSG3);
+                        layer.alert(MSG3);
                     } else {
                         $.ajax({
                             url: LOGINPASSWORDURL,
@@ -541,7 +539,7 @@
                                     password_flag = data.data.flag;
                                     window.location.href = '#/master/setting/reset/reset_4';
                                 } else {
-                                    alert(data.msg);
+                                    layer.alert(data.msg);
                                 }
                             },
                             error: function (data) {
@@ -556,11 +554,11 @@
                 $(".revise_process a").eq(1).addClass("active").siblings().removeClass("active");
                 $(document).on('click', '#next_reset2', function () {//判断输入新密码两次是否一样
                     if ($('#new_password1').val() == '' || $('#new_password2').val() == '') {
-                        alert(MSG3);
+                        layer.alert(MSG3);
                     } else if (!PSWREG.test($('#new_password1').val())) {
-                        alert(MSG4);
+                        layer.alert(MSG4);
                     } else if ($('#new_password1').val() != $('#new_password2').val()) {
-                        alert(MSG6);
+                        layer.alert(MSG6);
                     }
                     else {
                         /* 修改密码 */
@@ -578,7 +576,7 @@
                                 if (data.code == '000') {
                                     window.location.href = '#/master/setting/reset/reset_5';
                                 } else {
-                                    alert(data.msg);
+                                    layer.alert(data.msg);
                                 }
                             },
                             error: function (data) {
@@ -593,11 +591,11 @@
                 $(".revise_process a").eq(1).addClass("active").siblings().removeClass("active");
                 $(document).on('click', '#ms_reset2', function () {//判断输入新密码两次是否一样
                     if ($('#new_password1').val() == '' || $('#new_password2').val() == '') {
-                        alert(MSG3);
+                        layer.alert(MSG3);
                     } else if (!PSWREG.test($('#new_password1').val())) {
-                        alert('密码格式不正确');
+                        layer.alert('密码格式不正确');
                     } else if ($('#new_password1').val() != $('#new_password2').val()) {
-                        alert(MSG6);
+                        layer.alert(MSG6);
                     }
                     else {
                         /* 修改密码 */
@@ -615,7 +613,7 @@
                                 if (data.code == '000') {
                                     window.location.href = '#/master/setting/reset/reset_5';
                                 } else {
-                                    alert(data.msg);
+                                    layer.alert(data.msg);
                                 }
                             },
                             error: function (data) {
@@ -676,7 +674,9 @@
                                     $('.star i').eq(i).addClass('active_i');
                                 }
                             } else {
-                                $('.star i').eq(i).addClass('active_i');
+                                for (var i = 0; i < 5; i++) {
+                                    $('.star i').eq(i).addClass('active_i');
+                                }
                             }
                             $('#number').html(parseInt(data.data.score) + '.0');
                         }

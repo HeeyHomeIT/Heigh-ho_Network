@@ -1,6 +1,7 @@
 var resObj = {};
 var roomPlanObj = {};
 var COUNTURL = 'http://hyu2387760001.my3w.com/costcalculator/count'; // 成本计算器接口
+
 var heeyhomeCal = {
 	init: function() {
 		var self = this;
@@ -92,7 +93,7 @@ var heeyhomeCal = {
 				}else {
 					// 次卧、儿童房、父母房、衣帽间、书房置亮并且可以点击
 					self.styleAddOrRemoveEvent($(".roomsdiv"),1);
-					
+
 					// 设置状态
     				self.flowStatusEvent($(".cal2").data("type"),0);
     				self.flowStatusEvent($(".cal3").data("type"),0);
@@ -177,10 +178,10 @@ var heeyhomeCal = {
     				}
 	    		});
 	    		if(element.hasClass("s4")||element.hasClass("s5")){
-	    			
+
 	    		}else {
 	    			// 把它插入到data-select中
-	    			element.attr("data-select",parseInt(element.find("em").text()));	
+	    			element.attr("data-select",parseInt(element.find("em").text()));
 	    		}
     		}else if(sum < roomNumber){
     			$(".roomsdiv div").removeClass("okhover");
@@ -192,7 +193,7 @@ var heeyhomeCal = {
 //	    			element.attr("data-select",parseInt(element.find("em").text()));	
 	    		}else{
 	    			// 把它插入到data-select中
-	    			element.attr("data-select",parseInt(element.find("em").text()));	
+	    			element.attr("data-select",parseInt(element.find("em").text()));
 	    		}
     		}else if(sum > roomNumber){
     			// 显示错误信息
@@ -215,30 +216,30 @@ var heeyhomeCal = {
 	    		});
     		}
 			self.contentStrEvent(roomPlanObj);
-			
+
     	}
     },
     /**
      * 错误文本
-     * 
+     *
 	 * @param {Object} val 户型面积
 	 * @return message 错误信息
      */
 	errorMsgEvent:function(val) {
 		var NUM_70 = 70, NUM_160 = 160;
 		var message = "";
-		
+
 		if (val < NUM_70 || val > NUM_160) {
             message = "小于70㎡或大于160㎡请咨询客服";
         }else {
         	message = "true";
         }
-		
+
 		return message;
 	},
 	/**
 	 * 为相关的元素添加或删除样式
-	 * 
+	 *
 	 * @param {Object} element 需要添加样式的元素
 	 * @param {Object} type 0:删除 1：添加
 	 */
@@ -260,7 +261,7 @@ var heeyhomeCal = {
 			}else if(_type == 6){
 				$(".other_list").css("cursor","pointer");
 			}
-    		
+
 		}else if(_type == 4 || _type == 5 || _type == 7){
 			_element.removeClass("col_eec988").find("dl").removeClass("col_eec988").removeClass("after_eec988 ");
 			if(_type == 4){
@@ -271,7 +272,7 @@ var heeyhomeCal = {
 				$(".other_list").css("cursor","not-allowed");
 			}
 		}
-		
+
 	},
 	/**
 	 * 根据不同的房间数改变安排房间DIV的标题
@@ -279,7 +280,7 @@ var heeyhomeCal = {
 	 * @return _titleText 标题文本
 	 */
 	changeTitleEvent:function(num) {
-		var _titleText; 
+		var _titleText;
     	switch (num) {
             case 1:
                 _titleText = "您只有一间主卧&nbsp&nbsp请继续往下填写";
@@ -319,7 +320,7 @@ var heeyhomeCal = {
 			_element.parent().parent().siblings().find("dl").removeClass("item_hover_180");
 			_element.parent().parent().siblings().find("div.filter_nav").hide()
 		}
-		
+
 	},
 	/**
 	 * 流程状态
@@ -550,7 +551,7 @@ var heeyhomeCal = {
     		e.stopPropagation();
     		// 户型选择的选择框旁边小三角切换、选择文本显示和隐藏
     		self.triangleArrowChangeEvent($(this).find("dl"),1);
-    		
+
     		self.styleAddOrRemoveEvent($(".cal5"),6);
     		$(".other_list li a").off("click");
     		self.houseCharacteristicEvent();
@@ -580,7 +581,7 @@ var heeyhomeCal = {
     		self.styleAddOrRemoveEvent($(".cal5"),6);
     		$(".cal6 input").addClass("col_eec988").addClass("border_eec988").css("cursor","pointer");
     	});
-    	
+
     	self.roomConfigureSelectEvent();
     	// 关闭下拉框和三角形置为初始状态事件
     	self.closeDropBoxEvent($(".other_list li a dl"),$(".other_list li>div"),1);
@@ -592,7 +593,7 @@ var heeyhomeCal = {
 		$(".filter_item a").on("click",function(){
 			$(this).addClass("cit").siblings().removeClass("cit");
     	});
-    	
+
     	$(".filter_nav i").on("click", function() {
             $(this).parents(".filter_nav").hide();
             var _em = $(this).parents(".filter_nav").siblings().find("dl");
@@ -644,7 +645,7 @@ var heeyhomeCal = {
 				calObj.balcony_distribution = self.initGetCalDataEvent($(".otherroom1 .filter_item")); // 阳台参数
 				calObj.kitchen_distribution = self.initGetCalDataEvent($(".otherroom2 .filter_item")); // 厨房参数
 				floorObj = self.initGetCalDataEvent($(".other0 .filter_item")); // 厨房参数
-				// 判断是否选择了有电梯 
+				// 判断是否选择了有电梯
 				if(floorObj.isElevator == 0){ // 如果有电梯，那么直接赋值0给后台
 					calObj.floor = floorObj.isElevator; // 楼层数参数
 				}else if(floorObj.isElevator == -1){ // 如果无电梯
@@ -690,7 +691,7 @@ var heeyhomeCal = {
                       	costObj.cgsys = data.data.cgsys; // 橱柜石英石费用
                       	costObj.zxzj = data.data.zxzj; // 装修总价
                         sessionStorage.payJson = JSON.stringify(costObj);
-                        var url = "calresult.html#/calresult"; 
+                        var url = "calresult.html#/calresult";
 						window.location.href = url + "?cs="+calObj.city+"&mj="+calObj.area+"&fj="+calObj.room_num+"&kt="+calObj.parlor_num+"&wsj="+calObj.bathroom_num+"&yt="+calObj.balcony_num;
 					},error: function(data) {}
 				});
@@ -709,7 +710,7 @@ var heeyhomeCal = {
 $(function() {
 	var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 	HHIT_CENTERAPP.controller('calCtrl', ['$scope', '$http', function($scope, $http) {
-		heeyhomeCal.init()	
+		heeyhomeCal.init()
 	}]);
-	
+
 })

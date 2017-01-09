@@ -1,4 +1,4 @@
-<div class="user_right fr">
+<div class="user_right fr  personal_content_wrap" ng-controller="personal">
     <div class="right_title">
         <span>个人资料 &nbsp;&nbsp;&nbsp;PERSONAL INFORMATION</span>
     </div><!--right_title-->
@@ -23,8 +23,8 @@
                         </div><!--personal_form_list-->
                         <div class="personal_form_list">
                             <span>性别</span>
-                            <label><input title="" type="radio" name="sex" id="man">&nbsp;&nbsp;男</label>
-                            <label><input title="" type="radio" name="sex" id="women">&nbsp;&nbsp;女</label>
+                            <label><input title="" type="radio" name="sex" id="man" value="1">&nbsp;&nbsp;男</label>
+                            <label><input title="" type="radio" name="sex" id="women" value="2">&nbsp;&nbsp;女</label>
                         </div><!--personal_form_list-->
                         <div class="personal_form_list">
                             <span>年龄</span>
@@ -39,18 +39,34 @@
                             <span class="personal_tel">152****1234</span>
                             <a href="#/master/setting/bind/bind_phone_1">修改绑定</a>
                         </div><!--personal_form_list-->
-                        <div class="personal_form_list personal_form_area">
-                            <span>从业经历</span>
-                            <textarea title=""></textarea>
+                        <div class="personal_form_list personal_form_area clearfix">
+                            <span class="fl">从业经历</span>
+                            <!--<div class="fl business_experience">-->
+                                <!--<input type="text" title="" class="input_all">-->
+                                <!--<a class="personal_circle" href="javascript:;">+</a>-->
+                            <!--</div>-->
+                            <a id="experience_circle" class="personal_circle" href="javascript:;">+</a>
                         </div><!--personal_form_list-->
                         <div class="personal_form_list personal_area_list">
                             <span>服务区域</span>
                             <!--<a class="personal_area" href="javascript:;"></a>-->
                             <a id="personal_circle" class="personal_circle" href="javascript:;">+</a>
+                            <div class="area_edit display">
+                                <div class="tag_content">
+                                    <span>吴中区</span>
+                                    <span>工业园区</span>
+                                    <span>高新区</span>
+                                    <span>姑苏区</span>
+                                    <span>平江区</span>
+                                    <span>相城区</span>
+                                </div><!--tag_content-->
+                                <a href="javascript:;" class="area_sure">确定</a>
+                            </div><!--area_edit-->
                         </div><!--personal_form_list-->
-                        <div class="personal_form_list">
-                            <span>装修小区</span>
-                            <input class="personal_user_community" title="" type="text" placeholder="请输入您装修过的小区">
+                        <div class="personal_form_list renovation_area clearfix">
+                            <span class="fl">装修小区</span>
+                            <!--<input class="personal_user_community" title="" type="text" placeholder="请输入您装修过的小区">-->
+                            <a id="area_circle" class="personal_circle" href="javascript:;">+</a>
                         </div><!--personal_form_list-->
                         <div id="loc" class="personal_form_list clearfix">
                             <span class="fl">所在城市</span>
@@ -90,7 +106,7 @@
                                 </div>
                             </div>
                         </div><!--personal_form_list-->
-                        <a class="personal_submit" href="javascript:;">提交</a>
+                        <a id="personal_submit" class="personal_submit" href="javascript:;">提交</a>
                     </div><!--personal_form-->
                 </form>
             </div><!--personal_content-->

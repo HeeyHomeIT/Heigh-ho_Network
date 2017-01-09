@@ -8,7 +8,7 @@
                 <span>用户名</span>
                 <input id="shop_name" class="shop_name" title="" type="text" placeholder="请输入您的店名">
             </div><!--shop_detail-->
-            <div class="shop_detail">
+            <div id="shop_certification" class="shop_detail">
                 <span>店铺认证</span>
                 <a id="shop_head" class="shop_head clearfix" href="javascript:;"></a>
             </div><!--shop_detail-->
@@ -23,12 +23,13 @@
                         <a class="complete_del" href="javascript:;">
                             <img src="css/img/shop_del.png">
                         </a>
-                        <img ng-src="http://hyu2387760001.my3w.com/{{info.technics_img[0].technics_img}}">
+                        <img class="craft_img" ng-src="http://hyu2387760001.my3w.com/{{info.technics_img[0].technics_img}}">
                         <div class="show_bg"></div><!--show_bg-->
                         <a class="renderings_show_a" href="javascript:;">更改</a>
                         <div class="renderings_bg"></div>
                     </div><!--renderings_show-->
-                    <a class="renderings_add" href="javascript:;">+</a>
+
+                    <a id="technic_add" class="renderings_add" href="javascript:;">+</a>
                     <p class="detail_p">随便说点什么...随便说点什么...随便说点什么...</p>
                 </div><!--renderings_show_wrap-->
             </div><!--shop_detail-->
@@ -39,9 +40,9 @@
                         <a class="complete_del" href="javascript:;">
                             <img src="css/img/shop_del.png">
                         </a>
-                        <img ng-src="http://hyu2387760001.my3w.com/{{img.shop_img[0]}}">
-                        <div class="show_bg"></div><!--show_bg-->
-                        <a class="renderings_show_a" href="javascript:;">更改</a>
+                        <img ng-src="http://hyu2387760001.my3w.com/{{img.shop_img}}">
+                        <!--<div class="show_bg"></div>&lt;!&ndash;show_bg&ndash;&gt;-->
+                        <!--<a class="renderings_show_a" href="javascript:;">更改</a>-->
                         <div class="renderings_bg"></div>
                     </div><!--renderings_show-->
                     <a class="renderings_add" href="javascript:;">+</a>
@@ -52,12 +53,24 @@
                 <!--<a class="personal_area" href="javascript:;">新中式</a>-->
                 <!--<a class="personal_area" href="javascript:;">北欧风格</a>-->
                 <a id="personal_style" class="personal_circle" href="javascript:;">+</a>
+                <div class="edit display"></div>
             </div><!--shop_detail-->
             <div class="shop_detail shop_detail_area">
                 <span>服务区域</span>
                 <!--<a class="personal_area" href="javascript:;">园区</a>-->
                 <!--<a class="personal_area" href="javascript:;">姑苏区</a>-->
                 <a id="personal_circle" class="personal_circle" href="javascript:;">+</a>
+                <div class="area_edit display">
+                    <div class="tag_content">
+                        <span>吴中区</span>
+                        <span>园区</span>
+                        <span>高新区</span>
+                        <span>姑苏区</span>
+                        <span>平江区</span>
+                        <span>相城区</span>
+                    </div><!--tag_content-->
+                    <a href="javascript:;" class="area_sure">确定</a>
+                </div><!--area_edit-->
             </div><!--shop_detail-->
             <div class="shop_detail">
                 <span>店铺地址</span>
@@ -67,7 +80,54 @@
                 <span>店铺理念</span>
                 <input id="shop_describe" class="shop_name" title="" type="text" placeholder="请输入您的店铺理念">
             </div><!--shop_detail-->
-            <a class="shop_save" href="javascript:;">保存</a>
+            <a id="shop_save" class="shop_save" href="javascript:;">保存</a>
         </div><!--shop_content-->
     </div><!--right_content_wrap-->
+    <div class="add_technology hide">
+        <div class="add_close">
+            <img id="add_close" src="css/img/technology_delete1.png">
+        </div>
+        <div class="add_technologycnt">
+            <div class="add_content clearfix">
+                <!--<div class="picture_cnt fl">-->
+                <!--<a href="javascript:;">-->
+                <!--<img src="css/img/bigshop-1.png">-->
+                <!--</a>-->
+                <!--<div class="close">-->
+                <!--<img src="css/img/auth_del.png">-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="add_picture fl">
+                    <a href="javascript:;">+
+                        <input type="file" title="上传新图片">
+                    </a>
+                    <div class="close">
+                        <img src="css/img/auth_del.png">
+                    </div>
+                </div>
+                <div class="add_picture fl">
+                    <a href="javascript:;">+
+                        <input type="file" title="上传新图片">
+                    </a>
+                    <div class="close">
+                        <img src="css/img/auth_del.png">
+                    </div>
+                </div>
+                <div class="add_picture fl">
+                    <a href="javascript:;">+
+                        <input type="file" title="上传新图片">
+                    </a>
+                    <div class="close">
+                        <img src="css/img/auth_del.png">
+                    </div>
+                </div>
+            </div>
+            <textarea id="textarea" placeholder="随便说点什么..." class="do_please"></textarea>
+            <input type="button" value="完成" class="complete">
+            <div class="add-bg">
+                <img src="css/img/bg-decoration.png">
+            </div>
+        </div>
+    </div>
+    <div class="wrap hide"></div>
 </div><!--user_right-->

@@ -1,17 +1,17 @@
 body #crcontainer {
     /*background-color: rgba(231,231,231,0.5)*/
-   background-color: rgba(0,0,0,0.83)
+    background-color: rgba(0, 0, 0, 0.83)
 }
 
 #crcontent {
     color: #636363;
     width: 1190px;
-    margin: 0 auto 
+    margin: 0 auto
 }
 
 #crcontent h3 {
     font-size: 24px;
-    padding: 130px 0 69px 0; 
+    padding: 130px 0 69px 0;
     height: 42px;
     line-height: 42px;
     text-align: center;
@@ -20,27 +20,27 @@ body #crcontainer {
 
 #crcontent p {
     font-size: 16px;
- 	padding-left: 65px;
+    padding-left: 65px;
     height: 32px;
     line-height: 32px;
     position: relative
 }
 
-#crcontent>div {
-	padding-top: 20px;
-	padding-bottom: 80px;
+#crcontent > div {
+    padding-top: 20px;
+    padding-bottom: 80px;
     position: relative
 }
 
-#crcontent .cr_condiv>div.cr_content {
+#crcontent .cr_condiv > div.cr_content {
     margin: 10px auto;
     margin-top: 5px;
     padding: 20px 0 27px;
     position: relative
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_title {
-	float: left;
+#crcontent .cr_condiv > div.cr_content > div.cr_title {
+    float: left;
     width: 132px;
     height: 132px;
     margin: 100px 30px 100px 50px;
@@ -49,7 +49,7 @@ body #crcontainer {
     border-radius: 50%
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_title>a {
+#crcontent .cr_condiv > div.cr_content > div.cr_title > a {
     display: block;
     width: 100%;
     height: 100%;
@@ -57,17 +57,17 @@ body #crcontainer {
     position: relative
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_title>a>em {
-	display: inline-block;
+#crcontent .cr_condiv > div.cr_content > div.cr_title > a > em {
+    display: inline-block;
     margin-top: 20px;
     width: 45px;
     height: 58px;
     text-indent: -999px;
     /* background: url(../img/icon_cal.png) no-repeat; */
-   	background: #fff
+    background: #fff
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_title>a>dl {
+#crcontent .cr_condiv > div.cr_content > div.cr_title > a > dl {
     height: 32px;
     font-size: 16px;
     color: #1c1c1c;
@@ -75,8 +75,8 @@ body #crcontainer {
     line-height: 32px
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_con {
-	float: left;
+#crcontent .cr_condiv > div.cr_content > div.cr_con {
+    float: left;
     width: 900px;
     color: #EEC988;
     font-size: 16px;
@@ -84,17 +84,17 @@ body #crcontainer {
     position: relative
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_con .plan_one {
-	position: relative;
+#crcontent .cr_condiv > div.cr_content > div.cr_con .plan_one {
+    position: relative;
     margin: 10px;
     padding: 10px
 }
 
-.plan_one>span,.plan_one>i {
-	display: inline-block
+.plan_one > span, .plan_one > i {
+    display: inline-block
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_con .plan_one>span {
+#crcontent .cr_condiv > div.cr_content > div.cr_con .plan_one > span {
     width: 160px;
     height: 20px;
     line-height: 20px;
@@ -102,7 +102,7 @@ body #crcontainer {
     margin: 0 3px
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_con .plan_one>i {
+#crcontent .cr_condiv > div.cr_content > div.cr_con .plan_one > i {
     width: 12px;
     height: 12px;
     background: url(../img/tc_newDetail.png) no-repeat;
@@ -112,39 +112,44 @@ body #crcontainer {
     z-index: 999
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_con .wages {
+#crcontent .cr_condiv > div.cr_content > div.cr_con .wages {
     padding-bottom: 8px;
     margin: -31px 23px 0 215px;
     border-left: 1px dashed #EEC988;
     position: relative
 }
 
-#crcontent .cr_condiv>div#rgcontent>div.cr_con .wages {
-	margin: -31px 23px 0 45px;
+#crcontent .cr_condiv > div#rgcontent > div.cr_con .wages {
+    margin: -31px 23px 0 45px;
 }
+
 /*#crcontent .cr_condiv>div#rgcontent>div.cr_con .wages.lastWages {
 	border-left: 0;
 }*/
 
-#crcontent .cr_condiv>div.cr_content>div.cr_con .wages dl {
-	height: 25px;
+#crcontent .cr_condiv > div.cr_content > div.cr_con .wages dl {
+    height: 25px;
     margin: 10px auto;
     margin-top: 10px;
     margin-left: 20px
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_con .wages dl dd {
+#crcontent .cr_condiv > div.cr_content > div.cr_con .wages dl dd {
     float: left;
     width: 183px;
     margin: -9px 15px
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_con .wages_tip,#crcontent .cr_condiv>div.specialreminder {
+#crcontent .cr_condiv > div.cr_content > div.cr_con .wages a {
+    cursor: pointer;
+}
+
+#crcontent .cr_condiv > div.cr_content > div.cr_con .wages_tip, #crcontent .cr_condiv > div.specialreminder {
     margin: 5px 0 24px 68px
 }
 
-#crcontent .cr_condiv>div.cr_content>div.cr_con .wages_tip span {
-	display: inline-block;
+#crcontent .cr_condiv > div.cr_content > div.cr_con .wages_tip span {
+    display: inline-block;
     font-size: 14px;
     margin-left: 15px;
     color: #ff7449;
@@ -152,16 +157,16 @@ body #crcontainer {
 }
 
 .cr_dl_margintop {
-	margin-top: 30px !important
+    margin-top: 30px !important
 }
 
-#crcontent .cr_condiv>div.specialreminder h5 {
+#crcontent .cr_condiv > div.specialreminder h5 {
     font-size: 18px;
     color: #ff7449;
     margin-left: 40px
 }
 
-#crcontent .cr_condiv>div.specialreminder span {
+#crcontent .cr_condiv > div.specialreminder span {
     display: inline-block;
     font-size: 14px;
     margin-left: 40px;
@@ -170,17 +175,17 @@ body #crcontainer {
     padding: 15px 0
 }
 
-#crcontent .cr_condiv>div.cr_btn {
+#crcontent .cr_condiv > div.cr_btn {
     margin-top: 0px;
     position: relative;
     text-align: right;
     margin-bottom: 60px;
 }
 
-#crcontent .cr_condiv>div.cr_btn span {
+#crcontent .cr_condiv > div.cr_btn span {
     display: inline-block;
-    font-family: Arial,sans-serif;
- 	width: 170px;
+    font-family: Arial, sans-serif;
+    width: 170px;
     height: 55px;
     text-align: center;
     margin-left: 90px;
@@ -188,13 +193,13 @@ body #crcontainer {
     font-size: 16px
 }
 
-#crcontent .cr_condiv>div.cr_btn span.total {
-	background: #e69628;
+#crcontent .cr_condiv > div.cr_btn span.total {
+    background: #e69628;
     border: 1px solid #e69628;
-	color: #fff
+    color: #fff
 }
 
-#crcontent .cr_condiv>div.cr_btn span.cr_collection {
+#crcontent .cr_condiv > div.cr_btn span.cr_collection {
     border: 1px solid #e69628;
     border-radius: 2px;
     margin-left: 20px;
@@ -202,8 +207,216 @@ body #crcontainer {
     color: #e69628
 }
 
-#crcontent .cr_condiv>div.cr_btn span.cr_back {
+#crcontent .cr_condiv > div.cr_btn span.cr_back {
     float: right;
     line-height: 95px;
     color: #fff
+}
+
+#slide_bar {
+    position: fixed;
+    z-index: 100000020;
+    width: 50px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: black;
+}
+
+#slide_bar ul {
+    height: auto;
+}
+
+#slide_bar .bar_space {
+    height: 5%;
+}
+
+.slideBar_list {
+    height: auto;
+}
+
+.sl_wcontent {
+    cursor: pointer;
+}
+
+.sl_wcontent .wcontent_title {
+    width: 50px;
+    height: 118px;
+    display: block;
+    text-align: center;
+    background-image: url("../../css/img/calresult_arrow.png");
+    background-repeat: no-repeat;
+    background-position: 15px 90px;
+}
+
+.sl_wcontent .wcontent_detail {
+    width: 50px;
+    height: 5%;
+    display: block;
+    text-align: center;
+}
+
+.sl_wcontent .wcontent_detail img {
+    margin-top: 16px;
+}
+
+.sl_wcontent .wcontent_title span {
+    width: 20px;
+    display: block;
+    font-size: 16px;
+    color: #EEC988;
+    margin-left: 15px;
+    margin-bottom: 7px;
+}
+
+.sl_wcontent div {
+    width: 50px;
+    height: 40px;
+    display: block;
+    position: relative;
+}
+
+.sl_wcontent div:hover {
+    background-color: #EEC988;
+    transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+}
+
+.sl_wcontentActive {
+    background-color: #EEC988;
+    transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+}
+
+.sl_wcontentActive .wcontent_title {
+    background-image: url("../../css/img/calresult_arrowactive.png");
+}
+
+.sl_wcontentActive .wcontent_title span {
+    color: white;
+}
+
+.sl_wcontent .wcontent_title:hover {
+    background-image: url("../../css/img/calresult_arrowactive.png");
+}
+
+.sl_wcontent .wcontent_title:hover span {
+    color: white;
+}
+
+.sl_wcontent a {
+    /*display: block;*/
+    /*padding: 0 25px;*/
+    background-color: #292929;
+    position: absolute;
+    left: -122px;
+    top: 0;
+    line-height: 40px;
+    color: white;
+    display: none;
+    text-align: center;
+    width: 102px;
+}
+
+.sl_wcontent a:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 10px solid #292929;
+    border-bottom: 9px solid transparent;
+    border-top: 9px solid transparent;
+    display: inline-block;
+    top: 12px;
+    right: -6px;
+    position: absolute;
+}
+
+.sl_wcontent .wcontent_detail1 {
+    background: url("../../css/img/calresult_foreman.png") no-repeat center center;
+}
+
+.sl_wcontent .wcontent_detail2 {
+    background: url("../../css/img/calresult_ele.png") no-repeat center center;
+}
+
+.sl_wcontent .wcontent_detail3 {
+    background: url("../../css/img/calresult_bri.png") no-repeat center center;
+}
+
+.sl_wcontent .wcontent_detail4 {
+    background: url("../../css/img/calresult_wood.png") no-repeat center center;
+}
+
+.sl_wcontent .wcontent_detail5 {
+    background: url("../../css/img/calresult_painter.png") no-repeat center center;
+}
+
+.sl_wcontent .wcontent_detail6 {
+    background: url("../../css/img/calresult_hand.png") no-repeat center center;
+}
+
+.sl_wcontent .wcontent_detail7 {
+    background: url("../../css/img/calresult_elematerial.png") no-repeat center center;
+}
+
+.sl_wcontent .wcontent_detail8 {
+    background: url("../../css/img/calresult_elematerial1.png") no-repeat center center;
+}
+
+.sl_wcontent .wcontent_detail9 {
+    background: url("../../css/img/calresult_brimaterial.png") no-repeat center center;
+}
+
+.sl_wcontent .wcontent_detail10 {
+    background: url("../../css/img/calresult_woodmaterial.png") no-repeat center center;
+}
+
+.sl_wcontent .wcontent_detail11 {
+    background: url("../../css/img/calresult_paintermaterial.png") no-repeat center center;
+}
+
+.slide_content {
+    position: fixed;
+    z-index: 100000020;
+    width: 300px;
+    right: -300px;
+    top: 0;
+    bottom: 0;
+    background-color: #1c1c1c;
+    padding: 25px 23px 0 23px;
+    overflow: auto;
+}
+
+.slideContent_title {
+    width: 244px;
+    height: 25px;
+    line-height: 25px;
+    color: #EEC988;
+    border-bottom: 1px solid #EEC988;
+    font-size: 14px;
+}
+
+.slideContent_content ul {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.slideContent_content ul li {
+    color: #767676;
+    font-size: 14px;
+    line-height: 25px;
+}
+
+.slideContent_content ul .liactive {
+    opacity: 1;
+}
+
+.hide {
+    display: none;
 }
