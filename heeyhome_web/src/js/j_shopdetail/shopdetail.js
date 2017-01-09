@@ -16,6 +16,7 @@
 	var WORKSURL = "http://hyu2387760001.my3w.com/myworkers"; // 工人列表信息接口
 	var WORKINFOURL = "http://hyu2387760001.my3w.com/myworkers/workerinfo"; // 工人详细信息接口
 	
+	
 	var worksObj = {};
 
 	/*定义一个类*/
@@ -28,6 +29,8 @@
 		},
 		initEvent: function() {
 			var self = this;
+			var shopId = getUrlParamHandler.getUrlParam('pos');
+			$("#JdpId").val(shopId);
 			/* 我要的工人信息初始化*/
 			self.initMWorkInfoEvent();
 			/* 页面店铺信息初始化数据 */
@@ -48,6 +51,10 @@
 			self.initMWworkClickEvent();
 			/* 我要的工人删除事件*/
 			self.initDeleteMworkEvent();
+			/* 去预约*/
+			self.initGoReservationEvent();
+			/* 展开工种价格明细*/
+			self.initSpriceListEvent();
 
 		},
 		/**
@@ -135,6 +142,7 @@
 					jslength++;
 				}
 				$(".h-bd").text(jslength);
+				$(".settlement-total").find("em").text(jslength);
 				$.each(_wObj, function(i,v) {
 					worksObj[i] = {
 						ucateid:0, // 工种类别
@@ -154,7 +162,7 @@
 		 */
 		initShopDataEvent: function() {
 			var self = this;
-			var shopId = getUrlParamHandler.getUrlParam('pos');
+			var shopId = $("#JdpId").val();
 			var sc = spliceShopDetailContHandler;
 			$.ajax({
 				url: SHOPDATAURL,
@@ -165,6 +173,8 @@
 					shop_id: shopId
 				},
 				success: function(data) {
+					$("#JgzId").val(data.data.shopper_id);
+					$(".Jmore").attr("href","successcase.html#/successcase?pos="+$("#JgzId").val()+"")
 					$(".hd ul").append(sc.spliceHdPictureEvent(data.data));
 					$(".bd ul").append(sc.spliceBdPictureEvent(data.data));
 					$(".scontent").append(sc.spliceShopInfoEvent(data.data));
@@ -182,7 +192,7 @@
 		 */
 		initTechnicsDataEvent: function() {
 			var sc = spliceShopDetailContHandler;
-			var shopId = getUrlParamHandler.getUrlParam('pos');
+			var shopId = $("#JdpId").val();
 			$.ajax({
 				url: TECHNICSURL,
 				type: "GET",
@@ -192,6 +202,7 @@
 					shop_id: shopId
 				},
 				success: function(data) {
+					console.log(data)
 					$(".process_content").append(sc.spliceGyInfoEvent(data.data));
 				},
 				error: function(data) {}
@@ -212,6 +223,8 @@
 					foreman_id: shopperId
 				},
 				success: function(data) {
+					console.log("success");
+					console.log(data)
 					$("#sd_hexgrid").append(sc.spliceCgInfoEvent(data.data));
 				},
 				error: function(data) {}
@@ -222,7 +235,7 @@
 		 */
 		initWorksDataEvent: function() {
 			var self = this;
-			var shopId = getUrlParamHandler.getUrlParam('pos');
+			var shopId = $("#JdpId").val();
 			console.log(shopId)
 			var sc = spliceShopDetailContHandler;
 			$.ajax({
@@ -300,6 +313,7 @@
 					eleFlyElement.style.visibility = "hidden";
 					var len = parseInt($(".h-bd").text());
 					eleShopCart.querySelector("div.h-bd").innerHTML = ++len;
+					$(".settlement-total").find("em").text(parseInt($(".h-bd").text()));
 				}
 			});
 			
@@ -359,23 +373,31 @@
 				var _wObj = JSON.parse(sessionStorage.getItem("wObj"));
 				var id = $(this).parent().data("nid");
 				delete _wObj[id];//删除属性
+				console.log(_wObj)
 				var jslength=0;
 				for(var js2 in _wObj){
 					jslength++;
 				}
 				$(".h-bd").text(jslength);
-				$.each(_wObj, function(i,v) {
-					worksObj = {};
-					worksObj[i] = {
-						ucateid:0, // 工种类别
-						shopName:'',
-						resList: []
-					}
-					worksObj[i].resList.push(v.resList[0]);
-					worksObj[i].ucateid = v.ucateid;
-					worksObj[i].shopName = v.shopName;
-				});
-				sessionStorage.wObj = JSON.stringify(_wObj);
+				$(".settlement-total").find("em").text(jslength);
+				if(JSON.stringify(_wObj) == "{}") { 
+				 	worksObj = {};
+				}else{
+					$.each(_wObj, function(i,v) {
+					
+						worksObj = {};
+						worksObj[i] = {
+							ucateid:0, // 工种类别
+							shopName:'',
+							resList: []
+						}
+						worksObj[i].resList.push(v.resList[0]);
+						worksObj[i].ucateid = v.ucateid;
+						worksObj[i].shopName = v.shopName;
+					});
+				}
+				
+				sessionStorage.wObj = JSON.stringify(worksObj);
 				if($(this).parents(".needclist").children("div").length == 1){
 					$(this).parents(".needcont").remove();
 				}else {
@@ -418,9 +440,63 @@
 		 * @param {Object} uinfo 工人信息
 		 */
 		spliceWdataEvent:function(ucateid,uid,uinfo){
-			var str = '<div data-nid="'+uid+'" data-ntype="'+ucateid+'"><div class="needpic"><img src="http://hyu2387760001.my3w.com/' + uinfo.img + '"></div><div class="needname">';
+			var str = '<div class="Jworker" data-nid="'+uid+'" data-ntype="'+ucateid+'"><div class="needpic"><img src="http://hyu2387760001.my3w.com/' + uinfo.img + '"></div><div class="needname">';
 			str += '<span>'+uinfo.name+'</span><span>'+uinfo.city+'</span></div><div class="needmoney">'+uinfo.cp+'元/平方米</div><a class="needclose"></a></div>'
 			return str;
+		},
+		/**
+		 * 一键预约
+		 */
+		initGoReservationEvent:function(){
+			var dpId = $("#JdpId").val(); // 店铺ID
+			$(document).on("click","#JReservation",function(){
+				var gzId = $("#JgzId").val(); // 工长ID
+				var reservationObj = {};
+				reservationObj["dp"]=dpId;
+				reservationObj["gz"]=gzId;
+				reservationObj["mark"]="onekey";
+				console.log(reservationObj);
+				sessionStorage.setItem("rt_list",JSON.stringify(reservationObj));
+	 			var url = "reservation.html#/reservation"; 
+				window.location.href = url + "?type=1";
+//				alert(decodeURI("%E8%BF%99%E6%98%AF%E8%B0%81"))
+			});
+			$(document).on("click",".settlement-btncon",function(){
+				var length = $(".h-bd").text();
+				if(parseInt(length)!=0){
+					var reservationObj = {};
+					reservationObj = {
+						"dp":0, // 店铺ID
+						"mark":"choose", // 标志位 choose：选择工人 onekey：一键预约
+						"worker": [] // 工人数组
+					}
+					reservationObj["dp"]=dpId;
+					$.each($(".selectItemContent>div"),function(i,v){
+						var attributeObj = {};
+						attributeObj["nid"] = $(v).find(".Jworker").data("nid"); // 工人id 
+						attributeObj["ntype"] = $(v).find(".Jworker").data("ntype"); // 工人类型
+						reservationObj.worker.push(attributeObj);
+					});
+					console.log(reservationObj);
+					sessionStorage.setItem("rt_list",JSON.stringify(reservationObj));
+					var url = "reservation.html#/reservation"; 
+					window.location.href = url + "?type=2";
+				}else{
+					alert("请选择相应的工人");
+				}
+			});
+		},
+		/**
+		 * 展开工种价格明细
+		 */
+		initSpriceListEvent:function(){
+			$(document).on("click",".btndown",function(){
+				if($(this).hasClass("pickdowm")){
+					$(this).removeClass("pickdowm").siblings(".price_list").addClass("autoheight");
+				}else{
+					$(this).addClass("pickdowm").siblings(".price_list").removeClass("autoheight");
+				}
+			});
 		}
 	};
 
@@ -522,8 +598,8 @@
 			var vrStr = '';
 			var shopId = getUrlParamHandler.getUrlParam('pos');
 			$.each(value, function(i, v) {
-				if(v.img.length != 0) {
-					vrStr += '<div class="process_box"><a rel="nofollow" href="album.html?ams=' + shopId + '&voe=' + v.technics_id + '" target="_blank" ><img src="http://hyu2387760001.my3w.com/' + v.img[0].technics_img + '"><div class="btntc"><i></i><p title=' + v.technics_text + '><em>' + v.technics_text + '</em></p></div></a></div>';
+				if(v.technics_img.length != 0) {
+					vrStr += '<div class="process_box"><a rel="nofollow" href="album.html?ams=' + shopId + '&voe=' + v.technics_id + '" target="_blank" ><img src="http://hyu2387760001.my3w.com/' + v.technics_img[0].technics_img + '"><div class="btntc"><i></i><p title=' + v.technics_text + '><em>' + v.technics_text + '</em></p></div></a></div>';
 				}
 
 			});

@@ -174,6 +174,21 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 						}]
 					}
 				})
+				.state('successcase', { // 更多成功案例
+					url: '/successcase',
+					views: {
+						'sc_content': {
+							templateUrl: 'view/v_successcase/v_successcase.html',
+							controller: "successcaseCtrl",
+                            controllerAs: "successcase"
+						}
+					},
+					resolve: {
+						deps: ['$ocLazyLoad', function($ocLazyLoad) {
+							return $ocLazyLoad.load(['js/j_successcase/successcase.js']);
+						}]
+					}
+				})
 				.state("reservation", { // 立即预订
 					url: "/reservation",
 					views: {
@@ -189,7 +204,37 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function(app) {
 						}]
 					}
 				})
-				.state("calresult", { // 立即预订
+				.state("waitcontact", { // 等待联系和确认
+					url: "/waitcontact",
+					views: {
+						'reservation_content': {
+							templateUrl: 'view/v_reservation/v_waitcontact.html',
+							controller: "waitcontactCtrl",
+                            controllerAs: "waitcontact"
+						}
+					},
+					resolve: {
+						deps: ['$ocLazyLoad', function($ocLazyLoad) {
+							return $ocLazyLoad.load(['js/j_reservation/waitcontact.js']);
+						}]
+					}
+				})
+				.state("advancelist", { // 预支付清单
+					url: "/advancelist",
+					views: {
+						'reservation_content': {
+							templateUrl: 'view/v_reservation/v_advancePaymentList.html',
+							controller: "advancelistCtrl",
+                            controllerAs: "advancelist"
+						}
+					},
+					resolve: {
+						deps: ['$ocLazyLoad', function($ocLazyLoad) {
+							return $ocLazyLoad.load(['js/j_reservation/advancePaymentList.js']);
+						}]
+					}
+				})
+				.state("calresult", { // 计算结果
 					url: "/calresult",
 					views: {
 						'calresult_content': {

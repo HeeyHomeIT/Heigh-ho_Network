@@ -16,7 +16,7 @@
 			<div class="scontent"></div>
 			<div class="shop_button">
 				<div class="shop_order">
-					<input type="button" value="立即预约">
+					<input id="JReservation" type="button" value="一键预约">
 				</div>
 				<div class="shop_like clearfix">
 					<a href="#nogo" class="collect_shop"><span></span>收藏</a>
@@ -104,7 +104,7 @@
 	<!-- 成功案例start -->
 	<div class="same_class" id="success">
 		<div id="sdcontent">
-			<h3>成功案例 <span>SUCCESS CASE</span><span class="s_more"><a>查看更多</a></span></h3>
+			<h3>成功案例 <span>SUCCESS CASE</span><span class="s_more"><a class="Jmore" href="" target="_blank">查看更多</a></span></h3>
 			<!--<div class="sd_swith">
 				<div class="select sd_completed selected">已完成</div>
 				<div class="select sd_unfinished">待完成</div>
@@ -728,6 +728,179 @@
 		</div>
 	</div>
 	<!-- 施工团队end -->
+	<!-- 店铺价格start -->
+	<div id="shop_price">
+		<h3>价格明细<span>PRICE DETAILS</span></h3>
+		<div class="con_price clearfix">
+			<ul>
+				<li class="orderMust">
+					<div class="sdg_price_warp">
+						<div class="sdg_sprice_title">
+							<em class="sdg_icon"></em>
+							<span>水电工</span>
+						</div>
+						<div class="sdg_price_con"> 
+							<div class="project_title clearfix">
+								<span>名称</span>
+								<span>单位</span>
+								<span>价格</span>
+							</div>
+							<div class="price_list">
+								<p class="clearfix"><span>局部改造</span><span>m<sup>2</sup></span><span>40</span></p>
+								<p class="clearfix"><span>全部换线</span><span>m<sup>2</sup></span><span>50</span></p>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="orderMust">
+					<div class="sdg_price_warp">
+						<div class="sdg_sprice_title">
+							<em class="wg_icon"></em>
+							<span>瓦工</span>
+						</div>
+						<div class="sdg_price_con"> 
+							<div class="project_title clearfix">
+								<span>名称</span>
+								<span>单位</span>
+								<span>价格</span>
+							</div>
+							<div class="price_list autoheight">
+								<p class="clearfix"><span>常规瓷砖方正贴</span><span>m<sup>2</sup></span><span>40</span></p>
+								<p class="clearfix"><span>常规瓷砖菱形贴</span><span>m<sup>2</sup></span><span>50</span></p>
+								<p class="clearfix"><span>条形木纹砖</span><span>m<sup>2</sup></span><span>50</span></p>
+								<p class="clearfix"><span>瓷砖走边线</span><span>m</span><span>20</span></p>
+								<p class="clearfix"><span>加工砖上墙方正贴</span><span>m<sup>2</sup></span><span>50</span></p>
+								<p class="clearfix"><span>加工砖上墙菱形贴</span><span>m<sup>2</sup></span><span>60</span></p>
+								<p class="clearfix"><span>普通马赛克铺贴</span><span>m<sup>2</sup></span><span>65</span></p>
+								<p class="clearfix"><span>门槛石、挡水条</span><span>根</span><span>20</span></p>
+								<p class="clearfix"><span>踢脚线铺贴</span><span>m</span><span>8</span></p>
+								<p class="clearfix"><span>砖砌12cm墙(单面粉刷)</span><span>m<sup>2</sup></span><span>60</span></p>
+								<p class="clearfix"><span>砖砌12cm墙(双面粉刷)</span><span>m<sup>2</sup></span><span>70</span></p>
+								<p class="clearfix"><span>砖砌24cm墙(单面粉刷)</span><span>m<sup>2</sup></span><span>80</span></p>
+								<p class="clearfix"><span>砖砌24cm墙(双面粉刷)</span><span>m<sup>2</sup></span><span>90</span></p>
+								<p class="clearfix"><span>封下水管(单管)</span><span>根</span><span>100</span></p>
+								<p class="clearfix"><span>封下水管(双管)</span><span>根</span><span>150</span></p>
+								<p class="clearfix"><span>粉线糟</span><span>户</span><span>300-400</span></p>
+								<p class="clearfix"><span>墙面粉刷(单面计算)</span><span>m<sup>2</sup></span><span>20</span></p>
+								<p class="clearfix"><span>地面找平(5cm以内)</span><span>m<sup>2</sup></span><span>20</span></p>
+								<p class="clearfix"><span>地面现浇(30mm以内)</span><span>m<sup>2</sup></span><span>60</span></p>
+								<p class="clearfix"><span>刷防水涂料</span><span>间</span><span>150</span></p>
+								<p class="clearfix"><span>墙面拉毛处理</span><span>m<sup>2</sup></span><span>5</span></p>
+								<p class="clearfix"><span>修补门边</span><span>m</span><span>15</span></p>
+								<p class="clearfix"><span>粉刷门框</span><span>m</span><span>30</span></p>
+							</div>
+							<div class="btndown pickup">
+								<span>展开</span>
+								<i></i>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="orderMust">
+					<div class="sdg_price_warp">
+						<div class="sdg_sprice_title">
+							<em class="sdg_icon"></em>
+							<span>木工</span>
+						</div>
+						<div class="sdg_price_con"> 
+							<div class="project_title clearfix">
+								<span>名称</span>
+								<span>单位</span>
+								<span>价格</span>
+							</div>
+							<div class="price_list autoheight">
+								<p class="clearfix"><span>高柜制作(免漆板)</span><span>m<sup>2</sup></span><span>140</span></p>
+								<p class="clearfix"><span>矮柜制作(免漆板)</span><span>m</span><span>140</span></p>
+								<p class="clearfix"><span>抽屉制作(免漆板)</span><span>只</span><span>50</span></p>
+								<p class="clearfix"><span>门板制作(免漆板)</span><span>扇</span><span>40</span></p>
+								<p class="clearfix"><span>榻榻米制作(免漆板)</span><span>m<sup>2</sup></span><span>180</span></p>
+								<p class="clearfix"><span>木龙骨或轻钢龙骨混搭</span><span>m<sup>2</sup></span><span>40</span></p>
+								<p class="clearfix"><span>轻钢龙骨</span><span>m<sup>2</sup></span><span>55</span></p>
+								<p class="clearfix"><span>门套基础(加门边)</span><span>m</span><span>20</span></p>
+								<p class="clearfix"><span>降门头、封柜顶</span><span>m</span><span>30</span></p>
+								<p class="clearfix"><span>窗帘套制作</span><span>m</span><span>25</span></p>
+								<p class="clearfix"><span>电视背景制作</span><span>m<sup>2</sup></span><span>30</span></p>
+								<p class="clearfix"><span>踢脚线安装</span><span>m</span><span>5</span></p>
+							</div>
+							<div class="btndown pickup">
+								<span>展开</span>
+								<i></i>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="orderMust">
+					<div class="sdg_price_warp">
+						<div class="sdg_sprice_title">
+							<em class="sdg_icon"></em>
+							<span>油漆工</span>
+						</div>
+						<div class="sdg_price_con"> 
+							<div class="project_title clearfix">
+								<span>名称</span>
+								<span>单位</span>
+								<span>价格</span>
+							</div>
+							<div class="price_list autoheight">
+								<p class="clearfix"><span>原顶天花墙面乳胶漆</span><span>m<sup>2</sup></span><span>25</span></p>
+								<p class="clearfix"><span>石膏板天花乳胶漆</span><span>m<sup>2</sup></span><span>23</span></p>
+								<p class="clearfix"><span>天花墙面喷乳胶漆</span><span>m<sup>2</sup></span><span>28</span></p>
+								<p class="clearfix"><span>铺纤维网</span><span>卷</span><span>150</span></p>
+								<p class="clearfix"><span>木质硝基清漆</span><span>m<sup>2</sup></span><span>76</span></p>
+								<p class="clearfix"><span>木质有色硝基透明漆</span><span>m<sup>2</sup></span><span>87</span></p>
+								<p class="clearfix"><span>木质硝基白色显木纹</span><span>m<sup>2</sup></span><span>87</span></p>
+								<p class="clearfix"><span>木质透明PU漆</span><span>m<sup>2</sup></span><span>76</span></p>
+								<p class="clearfix"><span>装饰实木线条喷刷清漆</span><span>m<sup>2</sup></span><span>76</span></p>
+								<p class="clearfix"><span>装饰实木线条喷刷索色</span><span>m<sup>2</sup></span><span>76</span></p>
+							</div>
+							<div class="btndown pickup">
+								<span>展开</span>
+								<i></i>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="orderMust">
+					<div class="sdg_price_warp">
+						<div class="sdg_sprice_title">
+							<em class="sdg_icon"></em>
+							<span>杂工</span>
+						</div>
+						<div class="sdg_price_con"> 
+							<div class="project_title clearfix">
+								<span>名称</span>
+								<span>单位</span>
+								<span>价格</span>
+							</div>
+							<div class="price_list autoheight">
+								<p class="clearfix"><span>原墙/顶面腻子铲除</span><span>m<sup>2</sup></span><span>3</span></p>
+								<p class="clearfix"><span>墙面粉刷层凿除</span><span>m<sup>2</sup></span><span>15</span></p>
+								<p class="clearfix"><span>墙地面旧瓷砖拆除</span><span>m<sup>2</sup></span><span>40</span></p>
+								<p class="clearfix"><span>拆除墙面保温层</span><span>m<sup>2</sup></span><span>15</span></p>
+								<p class="clearfix"><span>门洞移位(左右20cm以内)</span><span>个</span><span>100</span></p>
+								<p class="clearfix"><span>12cm砌墙开门洞</span><span>个</span><span>100</span></p>
+								<p class="clearfix"><span>12cm砌墙开门洞</span><span>个</span><span>150</span></p>
+								<p class="clearfix"><span>混泥土24cm墙切割费</span><span>m</span><span>120</span></p>
+								<p class="clearfix"><span>拆除24cm混泥土墙</span><span>m<sup>2</sup></span><span>180</span></p>
+								<p class="clearfix"><span>砖墙凿除半墙</span><span>m<sup>2</sup></span><span>100</span></p>
+								<p class="clearfix"><span>混泥土墙凿除半墙</span><span>m<sup>2</sup></span><span>400</span></p>
+								<p class="clearfix"><span>拆除12cm砖墙</span><span>m<sup>2</sup></span><span>50</span></p>
+								<p class="clearfix"><span>拆除12cm混泥土墙</span><span>m<sup>2</sup></span><span>120</span></p>
+								<p class="clearfix"><span>拆除24cm砖墙</span><span>m<sup>2</sup></span><span>60</span></p>
+								<p class="clearfix"><span>拆除混泥土飘窗台</span><span>m<sup>2</sup></span><span>180</span></p>
+								<p class="clearfix"><span>垃圾清运</span><span>次</span><span>200-400</span></p>
+							</div>
+							<div class="btndown pickup">
+								<span>展开</span>
+								<i></i>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 店铺价格end -->
 </div>
 <!--tab_content-->
 <div id="mui-mbar" >
@@ -766,7 +939,7 @@
 			<div class="settlement">
 				<div class="settlement-con">
 					<div class="settlement-total">
-						<h3>已选3位</h3>
+						<h3>已选<em>0</em>位</h3>
 					</div>
 					<div class="settlement-btn">
 						<div class="settlement-btncon">去预定></div>
@@ -776,6 +949,9 @@
 		</div>
 	</div>
 	<div class="mui-mbar-tabs">
+		<!-- 隐藏域-->
+		<input type="hidden" id="JdpId" value="">	<!-- 店铺ID-->
+		<input type="hidden" id="JgzId" value="">	<!-- 工长ID-->
 		<div class="mui-mbar-tab ccs">
 			<a class="hh-inline" target="_blank" title="点此可以直接和卖家交流选好的宝贝，或相互交流网购体验，还支持语音视频噢。"><span class="display">旺旺在线</span></a>
 		</div>

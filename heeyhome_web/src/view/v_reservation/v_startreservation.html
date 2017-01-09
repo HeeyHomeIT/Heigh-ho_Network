@@ -1,0 +1,159 @@
+<div class="appointment_wrap">
+    <div class="start_appointment_top"></div><!--start_appointment_top-->
+    <div class="start_appointment_content">
+    	<div class="reservation_persion">
+    		<div class="reservation_persion_title">预约的人员</div>
+    		<div class="reservation_persion_content clearfix">
+    			<div class="cards">
+    				<!--<div class="card avatar">
+	    				<img src="css/img/foreman.png">
+	    				<h1>凯文-乐福</h1>
+	    				<span>22.3分 | 10.7篮板 | 1.8助攻</span>
+	    				<div class="corner">
+	    					<div class="corner_logo">
+	    						<a><img src="css/img/icon-sdg.png"></a>
+	    					</div>
+	    					<span class="corner_text">水电工</span>
+	    				</div>
+	    			</div>-->
+    			</div>
+    			<p class="explain"></p>
+    		</div>
+    	</div>
+        <div class="door_address">
+            <div class="door_address_title">选择上门地址</div><!--door_address_title-->
+            <div class="door_address_content clearfix">
+                <!--<div class="door_content_detail on fl">
+                	<div class="defaultTip">默认地址</div>
+                    <div class="door_detail_inner">
+                        <div class="inner_top">江苏省苏州市工业园区路劲主场33幢锦溪苑一单元0802室</div>
+                        <div class="inner_bottom">
+                            <span>张磊</span>
+                            <a href="javascript:;"><i class="iconfont">&#xe604;</i>18335758550</a>
+                        </div>
+                    </div>
+                </div>-->
+            </div><!--door_address_content-->
+            <a class="user_new_address" href="javascript:;">使用新地址</a>
+        </div><!--door_address-->
+        <div class="confirm_appointment_info">
+            <div class="door_address_title">确认预约信息</div><!--door_address_title-->
+            <div class="cal_result">我的计算结果</div>
+            <div class="confirm_info_content clearfix"></div><!--confirm_info_content-->
+            <div class="edit_area">
+                <div class="edit_area_title">
+                    <span>名称</span>
+                    <span>单位</span>
+                    <span>数量</span>
+                </div><!--edit_area_title-->
+                <div class="edit_area_content">
+                    <div class="floor_area clearfix">
+                        <span class="name">建筑面积</span>
+                        <span class="unit">m<sup>2</sup></span>
+                        <span id="Jarea" class="num"></span>
+                    </div><!--floor_area-->
+                    <div class="floor_area clearfix">
+                        <span class="name">房间</span>
+                        <span class="unit">间</span>
+                        <span id="Jroom" class="num"></span>
+                    </div><!--floor_area-->
+                    <div class="floor_area clearfix">
+                        <span class="name">客厅</span>
+                        <span class="unit">厅</span>
+                        <span id="Jparlour" class="num"></span>
+                    </div><!--floor_area-->
+                    <div class="floor_area clearfix">
+                        <span class="name">卫生间</span>
+                        <span class="unit">间</span>
+                        <span id="Jtoilet" class="num"></span>
+                    </div><!--floor_area-->
+                    <div class="floor_area clearfix">
+                        <span class="name">阳台</span>
+                        <span class="unit">个</span>
+                        <span id="Jbalcony" class="num"></span>
+                    </div><!--floor_area-->
+                    <div class="budget_amount fr">
+                        <span>预算金额</span>
+                        <a href="javascript:;">RMB <em id="Jzxzj"></em></a>
+                    </div><!--budget_amount-->
+                </div><!--edit_area_content-->
+            </div><!--edit_area-->
+        </div><!--confirm_appointment_info-->
+        <div class="confirm_appointment_time">
+            <div class="door_address_title">确认预约时间</div><!--door_address_title-->
+            <div class="confirm_time_content">
+                <div class="add_time">
+                	<span>请选择预约的上门时间：</span>
+                	<input class="laydate-icon" id="JHomeTime" >
+                    <input class="addtime" type="button" value="添加" />
+                    <label class="error"></label>
+                </div><!--add_time-->
+                <p class="text_p">已经添加了<span class="Jspan1">0</span>条预约上门时间，你还能添加<span class="Jspan2">4</span>条</p>
+                <div class="appointment_time_wrap clearfix"></div><!--appointment_time_wrap-->
+                
+            </div><!--confirm_time_content-->
+        </div><!--confirm_appointment_time-->
+        <div class="tj">
+        	<a class="start_submit" href="javascript:;">提交</a>
+        </div>
+    </div><!--start_appointment_content-->
+    <div id="addaddress" class="display">
+    	<div class="add_address_wrap">
+    		<div class="add_address_title">
+    			<span>创建地址</span>
+    			<i class="Jclose"></i>
+    		</div>
+    		
+        	<div class="add_address_cont">
+        		<div class="cont_box">
+        			<div class="address_cont_line clearfix">
+        				<label class="address_lable">所在地区</label>
+        				<div data-toggle="distpicker" class="address_content">
+                            <select class="form-control" id="sr_province"></select>
+                            <select class="form-control" id="sr_city"></select>
+                            <select class="form-control" id="sr_district"></select>
+                        </div>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<label class="address_lable">详细地址</label>
+        				<div  class="address_content">
+        					<input id="alladdress" type="text" placeholder="建议您如实填写详细收货地址，如街道名称、门牌号码、楼层和房间号等信息" autocomplete="off">
+        					<label class="error"></label>
+                        </div>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<label class="address_lable">邮政编码</label>
+        				<div  class="address_content">
+        					<input id="zipcode" class="smallinput" type="text" placeholder="如您不清楚邮递区号，请填写000000" autocomplete="off">
+        					<label class="error"></label>
+                        </div>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<label class="address_lable">收货人姓名 </label>
+        				<div  class="address_content">
+        					<input id="receiver" class="smallinput" type="text" autocomplete="off">
+        					<label class="error"></label>
+                        </div>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<label class="address_lable">手机号码 </label>
+        				<div  class="address_content">
+        					<input id="mobile" class="smallinput" type="text" autocomplete="off">
+        					<label class="error"></label>
+                        </div>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<input type="checkbox" class="i-chk" checked="checked" name="defaultAddress" id="J_SetDefault">
+        				<label for="J_SetDefault" class="set_lable" >设置为默认地址</label>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<input type="button" class="saveaddBtn" value="保存">
+        			</div>
+        		</div>
+        	</div>
+        </div>
+    </div>
+    <input type="hidden" id="d" value="" >
+    <input type="hidden" id="c" value="" >
+    <input type="hidden" id="t" value="" >
+</div><!--appointment_wrap-->

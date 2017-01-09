@@ -162,7 +162,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('mywallet/bill/del', 'WalletController@del');
 
     /*材料*/
-    //材料分类
+    //材料列表
+    Route::any('materials/brands', 'MaterialController@brand');
     Route::any('materials', 'MaterialController@materials');
 
 

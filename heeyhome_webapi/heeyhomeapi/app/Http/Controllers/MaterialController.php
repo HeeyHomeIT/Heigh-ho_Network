@@ -25,54 +25,50 @@ class MaterialController extends Controller
     }
     public function brand(){
         $callback=rq('callback');
-        $brands=DB::select('select brand_id,brand_name from hh_material_brand');
-        if($brands){
-            $arr = array("code" => "000",
-                "data" => $brands
-            );
-            return $callback . "(" . HHJson($arr) . ")";
+        $cate_id=rq('cate_id');
+        $brand=array();
+        $brands=DB::select('select DISTINCT hh_materials.brand_id,hh_material_brand.brand_name from hh_materials left join hh_material_brand on hh_material_brand.brand_id=hh_materials.brand_id where hh_materials.cate_id=?',[$cate_id]);
+        foreach($brands as $key=>$val){
+            if($val->brand_id){
+                $brand[]=$brands[$key];
+            }
         }
+            if($brand){
+                $arr = array("code" => "000",
+                    "data" => $brand
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }else {
+
+                $arr = array("code" => "111",
+                    "msg" => "该材料分类下没有品牌"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
     }
     public function materials(){
         $callback=rq('callback');
-        $elematerialist=DB::select('select material_id,name,unit,img from hh_material_name where cate_id=? and if_show=?',[1,1]);
-        foreach($elematerialist as $key=>$value) {
-            $spec = DB::select('select spec_id,spec_name from hh_material_spec where material_id=?', [$value->material_id]);
-            if ($spec) {
-                $elematerialist[$key]->spec = $spec;
-            }
-            $price = DB::select('select spec_id,spec_name from hh_material_spec where material_id=?', [$value->material_id]);
+        $brand_id=rq('brand_id');
+        $cate_id=rq('cate_id');
+        $where='';
+        $para=array($cate_id,1);
+        if($brand_id){
+            $where=' and brand_id=?';
+            $para[]=$brand_id;
         }
-        $brickmaterialist=DB::select('select material_id,name,unit,img from hh_material_name where cate_id=? and if_show=?',[2,1]);
-        foreach($elematerialist as $key=>$value) {
-            $spec = DB::select('select spec_id,spec_name from hh_material_spec where material_id=?', [$value->material_id]);
-            if ($spec) {
-                $elematerialist[$key]->spec = $spec;
-            }
-            $price = DB::select('select spec_id,spec_name from hh_material_spec where material_id=?', [$value->material_id]);
-        }
-        $woodmaterialist=DB::select('select material_id,name,unit,img from hh_material_name where cate_id=? and if_show=?',[3,1]);
-        foreach($elematerialist as $key=>$value) {
-            $spec = DB::select('select spec_id,spec_name from hh_material_spec where material_id=?', [$value->material_id]);
-            if ($spec) {
-                $elematerialist[$key]->spec = $spec;
-            }
-            $price = DB::select('select spec_id,spec_name from hh_material_spec where material_id=?', [$value->material_id]);
-        }
-        $paintmaterialist=DB::select('select material_id,name,unit,img from hh_material_name where cate_id=? and if_show=?',[4,1]);
-        foreach($elematerialist as $key=>$value) {
-            $spec = DB::select('select spec_id,spec_name from hh_material_spec where material_id=?', [$value->material_id]);
-            if ($spec) {
-                $elematerialist[$key]->spec = $spec;
-            }
-            $price = DB::select('select spec_id,spec_name from hh_material_spec where material_id=?', [$value->material_id]);
+        $elematerialist=DB::select('select DISTINCT hh_materials.material_id,hh_material_name.name,hh_material_name.unit,hh_material_name.img from hh_materials 
+        left join hh_material_name on hh_material_name.material_id=hh_materials.material_id where hh_materials.cate_id=? and hh_materials.if_show=?'.$where,$para);
+        foreach ($elematerialist as $key=>$val){
+            $specs=DB::select('select DISTINCT hh_materials.spec_id,hh_material_spec.spec_name from hh_materials left join hh_material_spec on hh_material_spec.spec_id=hh_materials.spec_id where hh_materials.material_id=?',[$val->material_id]);
+            if($specs[0]->spec_id==0)
+                $elematerialist[$key]->spec=array();
+            else
+                $elematerialist[$key]->spec=$specs;
+            $price=DB::SELECT('select DISTINCT price from hh_materials where material_id=?',[$val->material_id]);
+            $elematerialist[$key]->price=$price;
         }
         $arr = array("code" => "000",
-            "data" => array("ele"=>$elematerialist,
-                "brick"=>$brickmaterialist,
-                "wood"=>$woodmaterialist,
-                "paint"=>$paintmaterialist
-            )
+            "data" => $elematerialist
         );
         return $callback . "(" . HHJson($arr) . ")";
     }
