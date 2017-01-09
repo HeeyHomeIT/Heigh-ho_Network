@@ -110,7 +110,7 @@
             /* 鼠标移入左边导航栏的效果 */
             $('.sl_wcontent').hover(function () {
                 var $a = $(this).find('a');
-                var r = -122;
+                var r = -102;
                 $a.show().css({"left": (r - 20) + 'px'}).stop().animate({left: r}, 500);
             }, function () {
                 $(this).find('a').hide();
