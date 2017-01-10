@@ -17,7 +17,7 @@ function yzsmsbom($phone)
         $sql = DB::select('select frequency from hh_smsbom where phone=? and sendtime=?', [$phone, $time]);
         if ($sql) {
             $frequency = $sql[0]->frequency;
-            if ($frequency > 6) {
+            if ($frequency > 24) {
                 addBalckMan($phone, "短信发送过于频繁");
                 return false;
             } else {

@@ -15,109 +15,105 @@ class SmsController extends Controller
 {
     /*注册短信验证*/
     public function sms_send(){
-        $callback=rq('callback');
-        $apikey = "b3f36a2994f1a2abda18ab1bda66cf8e"; //apikey(https://www.yunpian.com)登陆官网后获取
+        $callback = rq('callback');
+        $app_key = "23539060";
+        $app_secret = "cd9664aa70af1768dde5b1f99266dfbd";
+        $mobileCode = rand(100000, 999999);//随机验证码
         $mobile = rq('phone'); //手机号
-        $text = "【嘿吼网】您的验证码为#code#,请不要告诉别人~";
-        if(!$mobile){
+        if (!$mobile) {
             $arr = array("code" => "101",
                 "msg" => "手机号不能为空"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        /*检查手机格式*/
-        if(!preg_match("/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$|17[0-9]{1}[0-9]{8}$/",$mobile)){
-            $arr = array("code" => "129",
-                "msg" => "手机格式不正确"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
         if(yzsmsbom($mobile)){
-            $ch = curl_init();
-
-            $mobileCode = null;
-            $arr = array();
-            /* 设置验证方式 */
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept:text/plain;charset=utf-8', 'Content-Type:application/x-www-form-urlencoded', 'charset=utf-8'));
-            /* 设置返回结果为流 */
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            /* 设置超时时间*/
-            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-            /* 设置通信方式 */
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            // 取得用户信息
-            $json_data = $this->get_user($ch, $apikey);
-            $array = json_decode($json_data, true);
-            // 发送短信
-            //$data = array('text' => $text, 'apikey' => $apikey, 'mobile' => $mobile);
-            //$json_data = send($ch, $data);
-            //$array = json_decode($json_data, true);
-            //echo '<pre>';
-            //print_r($array);
-            // 发送模板短信
-            // 需要对value进行编码
-            $mobileCode = rand(100000, 999999);//随机验证码
-            $data = array('tpl_id' => '1487876', 'tpl_value' => ('#code#') . '=' . urlencode($mobileCode), 'apikey' => $apikey, 'mobile' => $mobile);
-            //print_r($data);
-            $json_data = $this->tpl_send($ch, $data);
-            $array = json_decode($json_data, true);
-            //echo '<pre>';
-            if ($array['code'] == '0') {
+            $request_paras = array(
+                'ParamString' => '{"code":"'.urlencode($mobileCode).'"}',
+                'RecNum' => $mobile,
+                'SignName' => '嘿吼网',
+                'TemplateCode' => 'SMS_39210314'
+            );
+            $request_host = "http://sms.market.alicloudapi.com";
+            $request_uri = "/singleSendSms";
+            $request_method = "GET";
+            $info = "";
+            $content = $this->do_get($app_key, $app_secret, $request_host, $request_uri, $request_method, $request_paras, $info);
+            $array = json_decode($content, true);
+            if ($array['success']) {
                 $yzmsj = date("Y-m-d H:i:s", time());
-                $arr = array('code' => '000',  'msg' => '验证码发送成功','data' => array('phone' => $array['mobile'], "yzmsj" => $yzmsj));
-                $sql=DB::insert('insert into hh_sms (record_key,record_type,sms,smstime) values(?,?,?,?)',[$array['mobile'],'phone_verify',$mobileCode,$yzmsj]);
+                $arr = array('code' => '000',  'msg' => '验证码发送成功','data' => array('phone' => $mobile, "yzmsj" => $yzmsj));
+                $sql=DB::insert('insert into hh_sms (record_key,record_type,sms,smstime) values(?,?,?,?)',[$mobile,'phone_verify',$mobileCode,$yzmsj]);
                 return $callback . "(" . HHJson($arr) . ")";
             }
             else {
-                $arr = array('code' => strval($array['code']), 'msg' => $array['msg']);
+                $arr = array('code' => '122', 'msg' => "60s内只能发送一次");
                 return $callback . "(" . HHJson($arr) . ")";
             }
-
-            // 发送语音验证码
-            //$data = array('code' => '9876', 'apikey' => $apikey, 'mobile' => $mobile);
-            //$json_data = voice_send($ch, $data);
-            //$array = json_decode($json_data, true);
-            //echo '<pre>';
-            //print_r($array);
-
-            curl_close($ch);
-
         } else {
             $arr = array('code' => '120',  'msg' => '您的手机号' . $mobile . '发送过于频繁！');
             return $callback . "(" . HHJson($arr) . ")";
         }
-
     }
+    public function do_get($app_key, $app_secret, $request_host, $request_uri, $request_method, $request_paras, &$info) {
+        ksort($request_paras);
+        $request_header_accept = "application/json;charset=utf-8";
+        $content_type = "";
+        $headers = array(
+            'X-Ca-Key' => $app_key,
+            'Accept' => $request_header_accept
+        );
+        ksort($headers);
+        $header_str = "";
+        $header_ignore_list = array('X-CA-SIGNATURE', 'X-CA-SIGNATURE-HEADERS', 'ACCEPT', 'CONTENT-MD5', 'CONTENT-TYPE', 'DATE');
+        $sig_header = array();
+        foreach($headers as $k => $v) {
+            if(in_array(strtoupper($k), $header_ignore_list)) {
+                continue;
+            }
+            $header_str .= $k . ':' . $v . "\n";
+            array_push($sig_header, $k);
+        }
+        $url_str = $request_uri;
+        $para_array = array();
+        foreach($request_paras as $k => $v) {
+            array_push($para_array, $k .'='. $v);
+        }
+        if(!empty($para_array)) {
+            $url_str .= '?' . join('&', $para_array);
+        }
+        $content_md5 = "";
+        $date = "";
+        $sign_str = "";
+        $sign_str .= $request_method ."\n";
+        $sign_str .= $request_header_accept."\n";
+        $sign_str .= $content_md5."\n";
+        $sign_str .= "\n";
+        $sign_str .= $date."\n";
+        $sign_str .= $header_str;
+        $sign_str .= $url_str;
 
-    /***************************************************************************************/
-    //获得账户
-    function get_user($ch, $apikey)
-    {
-        curl_setopt($ch, CURLOPT_URL, 'https://sms.yunpian.com/v2/user/get.json');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('apikey' => $apikey)));
-        return curl_exec($ch);
-    }
+        $sign = base64_encode(hash_hmac('sha256', $sign_str, $app_secret, true));
+        $headers['X-Ca-Signature'] = $sign;
+        $headers['X-Ca-Signature-Headers'] = join(',', $sig_header);
+        $request_header = array();
+        foreach($headers as $k => $v) {
+            array_push($request_header, $k .': ' . $v);
+        }
 
-    function send($ch, $data)
-    {
-        curl_setopt($ch, CURLOPT_URL, 'https://sms.yunpian.com/v2/sms/single_send.json');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        return curl_exec($ch);
-    }
+        $ch = curl_init();
 
-    function tpl_send($ch, $data)
-    {
-        curl_setopt($ch, CURLOPT_URL, 'https://sms.yunpian.com/v2/sms/tpl_single_send.json');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        return curl_exec($ch);
-    }
-
-    function voice_send($ch, $data)
-    {
-        curl_setopt($ch, CURLOPT_URL, 'http://voice.yunpian.com/v2/voice/send.json');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        return curl_exec($ch);
+        curl_setopt($ch, CURLOPT_URL, $request_host . $url_str);
+        //curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+        curl_setopt($ch, CURLOPT_VERBOSE, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $request_header);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $ret = curl_exec($ch);
+        $info = curl_getinfo($ch);
+        curl_close($ch);
+        return $ret;
     }
 
 }
