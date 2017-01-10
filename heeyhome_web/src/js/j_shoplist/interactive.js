@@ -259,17 +259,17 @@
                 centerFontColor: "#000",
                 centerBorder: "1px solid #ddd",
                 transition: "all .2s",
-                centerHoverBgColor: "#25dd3d",
-                centerHoverBorder: "1px solid #25dd3d",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
                 centerFontHoverColor: "#fff",
                 otherFontHoverColor: "#fff",
                 otherBorder: "1px solid #ddd",
-                otherHoverBorder: "1px solid #25dd3d",
+                otherHoverBorder: "1px solid #eec988",
                 otherBgColor: "#fff",
-                otherHoverBgColor: "#25dd3d",
+                otherHoverBgColor: "#eec988",
                 currentFontColor: "#fff",
-                currentBgColor: "#f79898",
-                currentBorder: "1px solid #f79898",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
                 fontSize: 13,
                 currentFontSize: 13,
                 cormer: 2, //按钮的边角曲度
@@ -277,9 +277,9 @@
                 showJump: true, //是否显示跳转功能
                 jumpBgColor: "#fff",
                 jumpFontHoverColor: "#fff",
-                jumpHoverBgColor: "#25dd3d",
+                jumpHoverBgColor: "#eec988",
                 jumpBorder: "1px solid #ddd",
-                jumpHoverBorder: "1px solid #25dd3d",
+                jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: SHOPLISTURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
