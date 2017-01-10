@@ -301,14 +301,13 @@
 			        },
 			        success: function (data) {
 			            if (data != null && data.code == '000') {
-			            	//console.log(data.data);
 			                $.cookie("userId", $.base64.encode(data.data.user_id), {expires: 7, path: '/'});
-			                $.cookie("userName", $.base64.encode(data.data.user_name), {expires: 7, path: '/'});
+			                $.cookie("userName", $.base64.encode(escape(data.data.user_name)), {expires: 7, path: '/'});
 			                $.cookie("userPhone", $.base64.encode(data.data.user_phone), {expires: 7, path: '/'});
 			                $.cookie("userType", $.base64.encode(data.data.user_type), {expires: 7, path: '/'});
 			                $.cookie("userEmail", $.base64.encode(data.data.user_email), {expires: 7, path: '/'});
 			                $.cookie("userShopId", $.base64.encode(data.data.shop_id), {expires: 7, path: '/'});
-			                $.cookie("userNickName", $.base64.encode(data.data.nickname), {expires: 7, path: '/'});
+			                $.cookie("userNickName", $.base64.encode(escape(data.data.nickname)), {expires: 7, path: '/'});
 			                //alert('登录成功');
 			                window.location.href = "index.html"; // 进行跳转
 			            }else if(data != null && data.code != '000') { // 错误
