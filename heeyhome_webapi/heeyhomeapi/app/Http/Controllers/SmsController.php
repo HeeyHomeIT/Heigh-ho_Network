@@ -46,7 +46,7 @@ class SmsController extends Controller
                 return $callback . "(" . HHJson($arr) . ")";
             }
             else {
-                $arr = array('code' => '122', 'msg' => "60s内只能发送一次");
+                $arr = array('code' => '122', 'msg' => "一小时内发送频繁！");
                 return $callback . "(" . HHJson($arr) . ")";
             }
         } else {

@@ -178,6 +178,94 @@ class MyworkcaseController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+    public function edit(){
+        $callback=rq('callback');
+        $housetype=rq('housetype');
+        $style=rq('style');
+        $area=rq('area');
+        $timelong=rq('timelong');
+        $address=rq('address');
+        $case_id=rq('cate_id');
+        DB::delete('delete from hh_workcase_img where case_id=?',[$case_id]);
+        $count = rq('count');
+        $files = array();
+        if ($count) {
+            for ($i=0; $i < $count; $i++) {
+                $fileName = "myfile".$i;
+                if(!Request::hasFile($fileName)){
+                    $arr = array("code" => "121",
+                        "msg" => "没有图片被上传"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+                $files[$i] = Request::file($fileName);
+            }
+        } else {
+            $myfile=Request::file('myfile');
+
+            if(!Request::hasFile('myfile')){
+                $arr = array("code" => "121",
+                    "msg" => "没有图片被上传"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+
+            if (! is_array($myfile)) {
+                $files = [$myfile];
+            } else {
+                $files = $myfile;
+            }
+        }
+        $isvalid=true;
+        foreach($files as $file){
+            if(!$file->isValid()){
+                $isvalid=false;
+            }
+        }
+        if($isvalid){
+            $ifinsert=false;
+            foreach($files as $key=>$file){
+                $clientName = $file -> getClientOriginalName();//文件原名
+                $entension = $file -> getClientOriginalExtension();//扩展名
+                $realPath = $file->getRealPath();   //临时文件的绝对路径
+                $type = $file->getClientMimeType();
+                $size=$file-> getClientSize();
+                $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
+                $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
+                if($is){
+                    $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                    $insert=DB::insert('insert into hh_workcase_img(case_id,case_img) values (?,?)',[$case_id,$path]);
+                    if($insert){
+                        $ifinsert=true;
+                    }else{
+                        $ifinsert=false;
+                    }
+                }else{
+                    $arr = array("code" => "131",
+                        "msg" => "上传失败"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+            }
+            if($ifinsert){
+                $update=DB::update('update hh_workcase set housetype=?,style=?,area=?,timelong=?,address=? where case_id=?',[$case_id]);
+                $arr = array("code" => "000",
+                    "msg" => "修改成功"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }else{
+                $arr = array("code" => "111",
+                    "msg" => "修改失败"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        }else{
+            $arr = array("code" => "132",
+                "msg" => "上传的文件无效"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
     public function like(){
         $callback=rq('callback');
         $case_id=rq('case_id');
