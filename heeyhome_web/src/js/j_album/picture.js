@@ -196,6 +196,13 @@ var picList = [];
 		    $(".download").on("click",function() { //下载的点击事件
 		    	picDownload.jsEvent();
 		    });
+		    $(".pic-head .back").on("click",function() { //返回工长店铺
+		    	var href = window.location.search;
+		    	var ams = href.split("&")[0].split("=")[0];
+		    	var id = href.split("&")[0].split("=")[1];
+		    	var pos = ams.replace(ams,"?pos=") + id;
+		    	window.location.href = "view_shop.html#/shopdetails" + pos;
+		    });
 		},
 		/*
 		 * 其他事件

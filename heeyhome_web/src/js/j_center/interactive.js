@@ -39,9 +39,9 @@
     var MAXROWS; //信息中心总页数
 
     var USERID = $.cookie("userId"); // 得到userid
-    if(USERID!=null && USERID !="" && USERID !=undefined){
+    if (USERID != null && USERID != "" && USERID != undefined) {
         USERID = $.base64.decode($.cookie("userId"));
-    }else {
+    } else {
         USERID = "";
     }
 
@@ -143,7 +143,7 @@
         /*
          * 我的订单详情
          */
-        initMOrderDetailEvent : function () {
+        initMOrderDetailEvent: function () {
             HHIT_CENTERAPP.controller('order_detailCtrl', ['$scope', '$http', function ($scope, $http) {
                 $('#menuNavOuter').remove();
                 var shop_id = sessionStorage.getItem("shopid");
@@ -157,11 +157,11 @@
                     data: {
                         shop_id: shop_id
                     },
-                    success: function(data) {
-                        if(data != null && data.code == '000') {
+                    success: function (data) {
+                        if (data != null && data.code == '000') {
                             $.each(data.data.order_list, function (i, v) {
                                 if (v.order_id == order_id) {
-                                    $(".owner_picture img").attr("src","http://hyu2387760001.my3w.com/"+v.user_portrait);
+                                    $(".owner_picture img").attr("src", "http://hyu2387760001.my3w.com/" + v.user_portrait);
                                     $(".owner_summary h3").html(v.user_realname);
                                     $(".owner_summary p span").html(v.user_phone);
                                     $(".owner_left .area h3 span").html(v.area);
@@ -175,7 +175,7 @@
                             layer.alert(data.msg);
                         }
                     },
-                    error: function(data) {
+                    error: function (data) {
 
                     }
                 });
@@ -198,34 +198,38 @@
                         page: 1,
                         limit: 2
                     },
-                    success: function(data) {
-                        if(data != null && data.code == '000') {
-                        	console.log(data.data)
+                    success: function (data) {
+                        if (data != null && data.code == '000') {
                             var order_total = data.data.order_count;
                             var order = '';
-                            $.each(data.data.order_list,function(i,v) {
+                            $.each(data.data.order_list, function (i, v) {
                                 order += spliceOrderHandler.spliceOrderList(v);
                             });
                             $(".order_content .page_number").before(order);
-                            $(".order_box").each(function() {
-                                if($(this).find(".all a").length == 1) {
+                            $(".order_box").each(function () {
+                                if ($(this).find(".all a").length == 1) {
                                     $(this).find(".all .top").addClass("one");
                                 }
                             });
-                            $(".ordercnt_content .all").on("click",function() {
+                            $(".ordercnt_content .all").on("click", function () {
                                 var shopid = $(this).attr("data-shopid");
                                 var orderid = $(this).attr("data-orderid");
-                                sessionStorage.setItem("shopid",shopid);
-                                sessionStorage.setItem("orderid",orderid);
+                                sessionStorage.setItem("shopid", shopid);
+                                sessionStorage.setItem("orderid", orderid);
                             });
                             OrderPageHandler.pageContentEvent(order_total);
                             /* 我的订单点击小三角事件 */
                             arrowClick.getEvent();
+                        } else if (data.code == '200') {
+                            $('#orderContent').remove();
+                            $('.not_information').show().removeClass('hide');
+                            $('.not_information_text').html('您的订单空空如也~~');
                         } else {
-                            layer.alert(data.msg)
+                            layer.msg(data.msg);
                         }
                     },
-                    error: function(data) {}
+                    error: function (data) {
+                    }
                 });
             }]);
         },
@@ -328,7 +332,7 @@
         /*
          * 支付成功
          */
-        initSuccessPayEvent : function() {
+        initSuccessPayEvent: function () {
             HHIT_CENTERAPP.controller('pay_endCtrl', ['$scope', '$http', function ($scope, $http) {
                 $("#headerWrapper").remove();
                 $("#menuNavOuter").remove();
@@ -521,8 +525,8 @@
                 success: function (data) {
                     if (data != null && data.code == '000') {
                         console.log(data.data);
-                        if(data.data.isedit == '2') {
-                            $(".personal_user_name").attr("disabled",true);
+                        if (data.data.isedit == '2') {
+                            $(".personal_user_name").attr("disabled", true);
                         }
                         $(".personal_user_name").val(data.data.user_name);//获取用户的用户名
                         var abb_phone = data.data.userinfo_phone.substr(0, 3) + "****" + data.data.userinfo_phone.substr(7, 11);//手机号中间四位变成*号
@@ -541,7 +545,7 @@
                         $(".personal_form_list #city2 option:selected").html(data.data.home_city).val(data.data.home_city);
                         $(".personal_form_list #district2 option:selected").html(data.data.home_district).val(data.data.home_district);
                         $(".personal_form_list .personal_area_detail").val(data.data.loc_address);
-                        if(data.data.userinfo_email != null && data.data.userinfo_email != '') {
+                        if (data.data.userinfo_email != null && data.data.userinfo_email != '') {
                             $(".personal_form_list p span").html(data.data.userinfo_email);
                         }
                     }
@@ -549,13 +553,13 @@
                 error: function (data) {
                 }
             });
-            $(".personal_form .personal_submit").on("click",function() {
+            $(".personal_form .personal_submit").on("click", function () {
                 var phone = $('.personal_tel').html();
                 var account = $(".personal_user_name").val();
-                var age =  $('.personal_user_age').val();
+                var age = $('.personal_user_age').val();
                 var nickname = $('.personal_user_nickname').val();
                 var sex;
-                if($('#man').attr('checked') == 'checked') {
+                if ($('#man').attr('checked') == 'checked') {
                     sex = 1;
                 } else {
                     sex = 0;
@@ -587,20 +591,21 @@
                         home_city: city2,
                         home_district: district2
                     },
-                    beforeSend: function() {
-                        $(".personal_form .personal_submit").attr("disabled",true);
+                    beforeSend: function () {
+                        $(".personal_form .personal_submit").attr("disabled", true);
                     },
-                    success: function(data) {
-                        if(data != null || data.code == '000') {
+                    success: function (data) {
+                        if (data != null || data.code == '000') {
                             layer.msg(data.msg);
                         } else {
                             alert(data.msg)
                         }
                     },
-                    complete: function() {
-                        $(".personal_form .personal_submit").attr("disabled",false);
+                    complete: function () {
+                        $(".personal_form .personal_submit").attr("disabled", false);
                     },
-                    error: function(data) {}
+                    error: function (data) {
+                    }
                 });
             });
         }
@@ -670,7 +675,7 @@
 
     /* 获得我的订单详情内容 */
     OrderDetail = {
-        getDetail : function() {
+        getDetail: function () {
             var order_id = sessionStorage.getItem("orderid");
             $.ajax({
                 type: "get",
@@ -680,37 +685,37 @@
                 data: {
                     order_id: order_id
                 },
-                success: function(data) {
-                    if(data != null && data.code == '000') {
-                        if(data.data.now_order_step != 18) {
+                success: function (data) {
+                    if (data != null && data.code == '000') {
+                        if (data.data.now_order_step != 18) {
                             var stage = '<div class="axis_start">';
                             stage += '<h2>进场准备</h2>';
                             stage += '<h3>READING..</h3>';
                             stage += '</div>';
                             var work = '<div class="work_worker">';
-                            $.each(data.data.detail, function(i,v) {
+                            $.each(data.data.detail, function (i, v) {
                                 stage += spliceStageHandler.spliceStrEvent(v);
                             });
-                            if(data.data.now_order_step != 1) {
-                                $.each(data.data.worker,function(i,v) {
+                            if (data.data.now_order_step != 1) {
+                                $.each(data.data.worker, function (i, v) {
                                     work += '<div class="worker">';
-                                    work += '<img src="http://hyu2387760001.my3w.com/'+v.portrait+'">';
-                                    work += '<p><span class="worker_cname">'+v.name+'</span>';
+                                    work += '<img src="http://hyu2387760001.my3w.com/' + v.portrait + '">';
+                                    work += '<p><span class="worker_cname">' + v.name + '</span>';
                                     work += '</p></div>';
                                 });
                                 work += '</div>';
                                 $(".axis_content").append(work);
                             }
                             $(".axis_content").append(stage);
-                            for(var i = 0; i < $(".work_stage .step .status").length; i ++) {
-                                if($(".work_stage .step .status").eq(i).html() == "(undefined)") {
+                            for (var i = 0; i < $(".work_stage .step .status").length; i++) {
+                                if ($(".work_stage .step .status").eq(i).html() == "(undefined)") {
                                     $(".work_stage .step .status").eq(i).empty();
                                 }
                             }
                             $(".work_stage").eq(0).addClass("first_stage").find(".stage_title em").remove();
                             $(".work_stage").eq(0).find(".stage_title b").before("<i></i>");
                             $(".complete_stage").prev().children().find(".step").html("工长上传图片");
-                            if($(".work_stage").length == 17) {
+                            if ($(".work_stage").length == 17) {
                                 var end = '<div class="axis_end">';
                                 end += '<i></i>';
                                 end += '<h2>工期完成</h2>';
@@ -718,7 +723,7 @@
                                 end += '</div>';
                                 $(".axis_content").append(end);
                             }
-                            $("#time_axis").css("height",$(".axis_content").height()+200);
+                            $("#time_axis").css("height", $(".axis_content").height() + 200);
                             /* 左侧悬浮条 */
                             suspensionMenu.menuTab();
                         } else {
@@ -728,7 +733,7 @@
                         layer.alert(data.msg)
                     }
                 },
-                error: function(data) {
+                error: function (data) {
                 }
             });
         }
@@ -1028,8 +1033,12 @@
                         pageHandler.pageContentEvent(); //分页
                         deleteRecord.singleSelection(); //单项删除
                         markRead.checkAll();       //全选标记
+                    } else if (data.code == '117') {//信息找不到
+                        $('#contentWrap').remove();
+                        $('.not_information').show().removeClass('hide');
+                        $('.not_information_text').html('您的消息空空如也~~');
                     } else {
-                        layer.alert(data.msg);
+                        layer.msg(data.msg);
                     }
                 },
                 error: function (data) {
@@ -1069,17 +1078,17 @@
                 centerFontColor: "#000",
                 centerBorder: "1px solid #ddd",
                 transition: "all .2s",
-                centerHoverBgColor: "#25dd3d",
-                centerHoverBorder: "1px solid #25dd3d",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
                 centerFontHoverColor: "#fff",
                 otherFontHoverColor: "#fff",
                 otherBorder: "1px solid #ddd",
-                otherHoverBorder: "1px solid #25dd3d",
+                otherHoverBorder: "1px solid #eec988",
                 otherBgColor: "#fff",
-                otherHoverBgColor: "#25dd3d",
+                otherHoverBgColor: "#eec988",
                 currentFontColor: "#fff",
-                currentBgColor: "#f79898",
-                currentBorder: "1px solid #f79898",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
                 fontSize: 13,
                 currentFontSize: 13,
                 cormer: 2, //按钮的边角曲度
@@ -1087,9 +1096,9 @@
                 showJump: true, //是否显示跳转功能
                 jumpBgColor: "#fff",
                 jumpFontHoverColor: "#fff",
-                jumpHoverBgColor: "#25dd3d",
+                jumpHoverBgColor: "#eec988",
                 jumpBorder: "1px solid #ddd",
-                jumpHoverBorder: "1px solid #25dd3d",
+                jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: READURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
@@ -1202,7 +1211,7 @@
 
     /* 时间轴订单左侧的悬浮条 */
     suspensionMenu = {
-        menuTab : function() {
+        menuTab: function () {
             $(".work_stage").eq(0).addClass("first_stage bar");
             $(".work_stage").eq(1).addClass("sdg_stage bar");
             $(".work_stage").eq(5).addClass("wg_stage bar");
@@ -1210,38 +1219,38 @@
             $(".work_stage").eq(13).addClass("yqg_stage bar");
             $(".work_stage").eq(17).addClass("end_stage bar");
             var li = '';
-            if($(".work_stage").hasClass("first_stage")) {
+            if ($(".work_stage").hasClass("first_stage")) {
                 li += '<li class="current">';
                 li += '<a href="javascript:void(0)" tab="&first_stage">进场准备</a>';
                 li += '</li>';
             }
-            if($(".work_stage").hasClass("sdg_stage")) {
+            if ($(".work_stage").hasClass("sdg_stage")) {
                 li += '<li>';
                 li += '<a href="javascript:void(0)" tab="&sdg_stage">水电工阶段</a>';
                 li += '</li>';
             }
-            if($(".work_stage").hasClass("wg_stage")) {
+            if ($(".work_stage").hasClass("wg_stage")) {
                 li += '<li>';
                 li += '<a href="javascript:void(0)" tab="&wg_stage">瓦工阶段</a>';
                 li += '</li>';
             }
-            if($(".work_stage").hasClass("mg_stage")) {
+            if ($(".work_stage").hasClass("mg_stage")) {
                 li += '<li>';
                 li += '<a href="javascript:void(0)" tab="&mg_stage">木工阶段</a>';
                 li += '</li>';
             }
-            if($(".work_stage").hasClass("yqg_stage")) {
+            if ($(".work_stage").hasClass("yqg_stage")) {
                 li += '<li>';
                 li += '<a href="javascript:void(0)" tab="&yqg_stage">油漆工阶段</a>';
                 li += '</li>';
             }
-            if($(".work_stage").hasClass("end_stage")) {
+            if ($(".work_stage").hasClass("end_stage")) {
                 li += '<li>';
                 li += '<a href="javascript:void(0)" tab="&end_stage">工期完成</a>';
                 li += '</li>';
             }
             $("#suspension_menu ul").append(li);
-            if($("#suspension_menu ul li").length >= 3) {
+            if ($("#suspension_menu ul li").length >= 3) {
                 var top = '';
                 top += '<li>';
                 top += '<a href="javascript:void(0)" tab="&to_head">回到顶部</a>';
@@ -1252,34 +1261,34 @@
             $(_head).addClass("to_head bar");
             var items = $(".bar");
             var _tabs = $("#suspension_menu li ");
-            $(_tabs).on('click',function(e) {
+            $(_tabs).on('click', function (e) {
                 e.stopPropagation();
                 var x = $(this).index();
                 var divTop;
-                if(x == _tabs.length - 1){
+                if (x == _tabs.length - 1) {
                     divTop = items.eq(0).offset().top;
                 }
-                else{
-                    divTop = items.eq(x+1).offset().top;
+                else {
+                    divTop = items.eq(x + 1).offset().top;
                 }
                 $("html,body").stop().animate({
                     scrollTop: divTop
                 }, 10);
             });
-            $(window).scroll(function() {
+            $(window).scroll(function () {
                 var scrollTop = $(document).scrollTop();
                 var oTabUl = $('#suspension_menu');
                 var curId = '';
-                if(scrollTop > 550) {
+                if (scrollTop > 550) {
                     $(oTabUl).css('display', 'block');
                 } else {
                     $(oTabUl).css('display', 'none');
                 }
 
-                items.each(function() {
+                items.each(function () {
                     var m = $(this); //定义变量，获取当前类
                     var itemsTop = m.offset().top; //定义变量，获取当前类的top偏移量
-                    if(scrollTop > itemsTop - 100) {
+                    if (scrollTop > itemsTop - 100) {
                         curId = "&" + m.attr("class").split(" ")[1];
                     } else {
                         return false;
@@ -1288,7 +1297,7 @@
 
                 //给相应的楼层设置cur,取消其他楼层的cur
                 var curLink = oTabUl.find(".current");
-                if(curId && curLink.find('a').attr("tab") != curId) {
+                if (curId && curLink.find('a').attr("tab") != curId) {
                     oTabUl.find("[tab= '" + curId + "']").parent().addClass("current");
                     curLink.removeClass("current");
                 }
@@ -1299,8 +1308,8 @@
      * 我的订单详情拼接内容
      */
     spliceStageHandler = {
-        spliceStrEvent : function(value) {
-            if(value.material_pay_status == 1) {
+        spliceStrEvent: function (value) {
+            if (value.material_pay_status == 1) {
                 value.material_pay_status = "未配送";
             } else if (value.material_pay_status == 2) {
                 value.material_pay_status = "配送中";
@@ -1309,27 +1318,27 @@
             }
             var vrStr = '<div class="work_stage">';
             vrStr += '<div class="stage_title">';
-            vrStr += '<span class="date">'+value.img_time+'</span>';
+            vrStr += '<span class="date">' + value.img_time + '</span>';
             vrStr += '<em></em>';
             vrStr += '<b></b>';
-            vrStr += '<span class="step">'+value.order_step+'<span class="status">('+value.material_pay_status+')</span></span>';
+            vrStr += '<span class="step">' + value.order_step + '<span class="status">(' + value.material_pay_status + ')</span></span>';
             vrStr += '</div>';
             vrStr += '<div class="stage_content">';
             vrStr += '<div class="stage_pic clearfix">';
-            $.each(value.img,function(m,n) {
+            $.each(value.img, function (m, n) {
                 vrStr += '<div class="pic">';
-                vrStr += '<img src="http://hyu2387760001.my3w.com/'+n.img_url+'">';
+                vrStr += '<img src="http://hyu2387760001.my3w.com/' + n.img_url + '">';
                 vrStr += '</div>';
             });
             vrStr += '</div>';
-            vrStr += '<p>'+value.img_content+'</p>';
+            vrStr += '<p>' + value.img_content + '</p>';
             vrStr += '</div></div>';
-            if(value.order_step.indexOf("完成") > 0) {
+            if (value.order_step.indexOf("完成") > 0) {
                 vrStr += '<div class="work_stage complete_stage">';
                 vrStr += '<div class="stage_title">';
                 vrStr += '<i></i>';
                 vrStr += '<b></b>';
-                vrStr += '<span class="step">'+value.order_step+'</span>';
+                vrStr += '<span class="step">' + value.order_step + '</span>';
                 vrStr += '<a href="javascript:;" target="_blank" class="balance">结算清单</a>';
                 vrStr += '</div>';
                 vrStr += '<div class="stage_content">';
@@ -1346,24 +1355,24 @@
         spliceOrderList: function (value) {
             var vrStr = '<div class="order_box">';
             vrStr += '<div class="ordercnt_title clearfix">';
-            vrStr += '<span class="type">'+value.room+'室 '+value.parlour+'厅'+value.toilet+'卫'+value.balcony+'阳台</span>';
-            vrStr += '<span class="time">'+value.order_time+'</span><span>订单号</span>';
-            vrStr += '<span class="order_num">'+value.order_id+'</span><span class="name">'+value.shop_name+'</span>';
+            vrStr += '<span class="type">' + value.room + '室 ' + value.parlour + '厅' + value.toilet + '卫' + value.balcony + '阳台</span>';
+            vrStr += '<span class="time">' + value.order_time + '</span><span>订单号</span>';
+            vrStr += '<span class="order_num">' + value.order_id + '</span><span class="name">' + value.shop_name + '</span>';
             vrStr += '</div><div class="ordercnt_content">';
             vrStr += '<div class="block clearfix"><div class="address">';
-            vrStr += '<p>'+value.order_address+'</p></div>';
-            vrStr += '<div class="area"><p class="item_hover_0"><span>'+value.area+'</span>㎡</p></div>';
-            vrStr += '<div class="now_stage"><p>'+value.order_step_ch+'</p></div>';
-            vrStr += '<div class="money"><p>'+value.actual_finish_amount+'</p></div>';
-            vrStr += '<div class="trade_stage"><p>'+value.order_status_ch+'</p></div>';
-            vrStr += '<div class="all" data-shopid="'+value.shop_id+'" data-orderid="'+value.order_id+'"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';
-            if(value.order_status == 6) {
+            vrStr += '<p>' + value.order_address + '</p></div>';
+            vrStr += '<div class="area"><p class="item_hover_0"><span>' + value.area + '</span>㎡</p></div>';
+            vrStr += '<div class="now_stage"><p>' + value.order_step_ch + '</p></div>';
+            vrStr += '<div class="money"><p>' + value.actual_finish_amount + '</p></div>';
+            vrStr += '<div class="trade_stage"><p>' + value.order_status_ch + '</p></div>';
+            vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';
+            if (value.order_status == 6) {
                 vrStr += '<a href="javascript:;" class="bottom">确认验货</a>';
             }
-            if(value.order_status == 4) {
+            if (value.order_status == 4) {
                 vrStr += '<a href="success_pay.html#/success_pay/pay_end" class="bottom">支付</a>';
             }
-            if(value.order_status == 5 && (value.order_step == 3 || value.order_step == 5 || value.order_step == 7 || value.order_step == 9 || value.order_step == 11 || value.order_step == 13 || value.order_step == 15 || value.order_step == 17)) {
+            if (value.order_status == 5 && (value.order_step == 3 || value.order_step == 5 || value.order_step == 7 || value.order_step == 9 || value.order_step == 11 || value.order_step == 13 || value.order_step == 15 || value.order_step == 17)) {
                 vrStr += '<a href="success_pay.html#/success_pay/pay_end" class="bottom">支付</a>';
             }
             vrStr += '</div></div>';
@@ -1383,17 +1392,17 @@
                 centerFontColor: "#000",
                 centerBorder: "1px solid #ddd",
                 transition: "all .2s",
-                centerHoverBgColor: "#25dd3d",
-                centerHoverBorder: "1px solid #25dd3d",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
                 centerFontHoverColor: "#fff",
                 otherFontHoverColor: "#fff",
                 otherBorder: "1px solid #ddd",
-                otherHoverBorder: "1px solid #25dd3d",
+                otherHoverBorder: "1px solid #eec988",
                 otherBgColor: "#fff",
-                otherHoverBgColor: "#25dd3d",
+                otherHoverBgColor: "#eec988",
                 currentFontColor: "#fff",
-                currentBgColor: "#f79898",
-                currentBorder: "1px solid #f79898",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
                 fontSize: 13,
                 currentFontSize: 13,
                 cormer: 2, //按钮的边角曲度
@@ -1401,9 +1410,9 @@
                 showJump: true, //是否显示跳转功能
                 jumpBgColor: "#fff",
                 jumpFontHoverColor: "#fff",
-                jumpHoverBgColor: "#25dd3d",
+                jumpHoverBgColor: "#eec988",
                 jumpBorder: "1px solid #ddd",
-                jumpHoverBorder: "1px solid #25dd3d",
+                jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: USERORDERURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
@@ -1415,20 +1424,20 @@
                 dataOperate: function oprate(data) {
                     $(".order_content .page_number").prevAll().remove();
                     var order = '';
-                    $.each(data.data.order_list,function(i,v) {
+                    $.each(data.data.order_list, function (i, v) {
                         order += spliceOrderHandler.spliceOrderList(v);
                     });
                     $(".order_content .page_number").before(order);
-                    $(".order_box").each(function() {
-                        if($(this).find(".all a").length == 1) {
+                    $(".order_box").each(function () {
+                        if ($(this).find(".all a").length == 1) {
                             $(this).find(".all .top").addClass("one");
                         }
                     });
-                    $(".ordercnt_content .all").on("click",function() {
+                    $(".ordercnt_content .all").on("click", function () {
                         var shopid = $(this).attr("data-shopid");
                         var orderid = $(this).attr("data-orderid");
-                        sessionStorage.setItem("shopid",shopid);
-                        sessionStorage.setItem("orderid",orderid);
+                        sessionStorage.setItem("shopid", shopid);
+                        sessionStorage.setItem("orderid", orderid);
                     });
                     /* 我的订单点击小三角事件 */
                     arrowClick.getEvent();
@@ -1440,7 +1449,7 @@
      * 我的订单点击小三角事件
      */
     arrowClick = {
-        getEvent: function() {
+        getEvent: function () {
             var _arrow = $(".order_title div").eq(6);//全部后面的小三角形
             var _area = $(".order_content .order_box");//哪一份订单
             var _arrowcnt = $(".order_title div").eq(6).find("ul");//全部后面的小三角形里的内容
@@ -1471,17 +1480,17 @@
                 centerFontColor: "#000",
                 centerBorder: "1px solid #ddd",
                 transition: "all .2s",
-                centerHoverBgColor: "#25dd3d",
-                centerHoverBorder: "1px solid #25dd3d",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
                 centerFontHoverColor: "#fff",
                 otherFontHoverColor: "#fff",
                 otherBorder: "1px solid #ddd",
-                otherHoverBorder: "1px solid #25dd3d",
+                otherHoverBorder: "1px solid #eec988",
                 otherBgColor: "#fff",
-                otherHoverBgColor: "#25dd3d",
+                otherHoverBgColor: "#eec988",
                 currentFontColor: "#fff",
-                currentBgColor: "#f79898",
-                currentBorder: "1px solid #f79898",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
                 fontSize: 13,
                 currentFontSize: 13,
                 cormer: 2, //按钮的边角曲度
@@ -1489,9 +1498,9 @@
                 showJump: true, //是否显示跳转功能
                 jumpBgColor: "#fff",
                 jumpFontHoverColor: "#fff",
-                jumpHoverBgColor: "#25dd3d",
+                jumpHoverBgColor: "#eec988",
                 jumpBorder: "1px solid #ddd",
-                jumpHoverBorder: "1px solid #25dd3d",
+                jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: PANORAMAURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
@@ -1543,17 +1552,17 @@
                 centerFontColor: "#000",
                 centerBorder: "1px solid #ddd",
                 transition: "all .2s",
-                centerHoverBgColor: "#25dd3d",
-                centerHoverBorder: "1px solid #25dd3d",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
                 centerFontHoverColor: "#fff",
                 otherFontHoverColor: "#fff",
                 otherBorder: "1px solid #ddd",
-                otherHoverBorder: "1px solid #25dd3d",
+                otherHoverBorder: "1px solid #eec988",
                 otherBgColor: "#fff",
-                otherHoverBgColor: "#25dd3d",
+                otherHoverBgColor: "#eec988",
                 currentFontColor: "#fff",
-                currentBgColor: "#f79898",
-                currentBorder: "1px solid #f79898",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
                 fontSize: 13,
                 currentFontSize: 13,
                 cormer: 2, //按钮的边角曲度
@@ -1561,9 +1570,9 @@
                 showJump: true, //是否显示跳转功能
                 jumpBgColor: "#fff",
                 jumpFontHoverColor: "#fff",
-                jumpHoverBgColor: "#25dd3d",
+                jumpHoverBgColor: "#eec988",
                 jumpBorder: "1px solid #ddd",
-                jumpHoverBorder: "1px solid #25dd3d",
+                jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: BILLURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
@@ -1627,17 +1636,17 @@
                 centerFontColor: "#000",
                 centerBorder: "1px solid #ddd",
                 transition: "all .2s",
-                centerHoverBgColor: "#25dd3d",
-                centerHoverBorder: "1px solid #25dd3d",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
                 centerFontHoverColor: "#fff",
                 otherFontHoverColor: "#fff",
                 otherBorder: "1px solid #ddd",
-                otherHoverBorder: "1px solid #25dd3d",
+                otherHoverBorder: "1px solid #eec988",
                 otherBgColor: "#fff",
-                otherHoverBgColor: "#25dd3d",
+                otherHoverBgColor: "#eec988",
                 currentFontColor: "#fff",
-                currentBgColor: "#f79898",
-                currentBorder: "1px solid #f79898",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
                 fontSize: 13,
                 currentFontSize: 13,
                 cormer: 2, //按钮的边角曲度
@@ -1645,9 +1654,9 @@
                 showJump: true, //是否显示跳转功能
                 jumpBgColor: "#fff",
                 jumpFontHoverColor: "#fff",
-                jumpHoverBgColor: "#25dd3d",
+                jumpHoverBgColor: "#eec988",
                 jumpBorder: "1px solid #ddd",
-                jumpHoverBorder: "1px solid #25dd3d",
+                jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: SHOPCURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"

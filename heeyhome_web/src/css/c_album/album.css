@@ -434,7 +434,7 @@ a:hover {
 }
 
 .w-width2 .PicBtn-a a {
-    background: url("../image/picbtn2.png") no-repeat;
+    /*background: url("../image/picbtn2.png") no-repeat;*/
     display: block;
     width: 30px;
     height: 83px
@@ -555,7 +555,7 @@ a:hover {
     height: 26px;
     left: 0;
     bottom: 0;
-    _bottom: -1px;
+    /*_bottom: -1px;*/
     background: #000;
     filter: alpha(opacity=75);
     -moz-opacity: .75;
@@ -566,7 +566,7 @@ a:hover {
     position: absolute;
     left: 0;
     bottom: 0;
-    _bottom: -2px;
+    /*_bottom: -2px;*/
     overflow: hidden;
     color: #ccc;
     line-height: 26px;
@@ -624,7 +624,7 @@ a:hover {
     left: 0;
     text-align: center;
     display: block;
-    background: url("../image/bottomimg-zu.png") no-repeat;
+    /*background: url("../image/bottomimg-zu.png") no-repeat;*/
     height: 41px;
     width: 112px;
     z-index: 1
@@ -638,7 +638,7 @@ a:hover {
     left: 0;
     text-align: center;
     display: block;
-    background: url("../image/bottomimg-zu.png") no-repeat;
+    /*background: url("../image/bottomimg-zu.png") no-repeat;*/
     height: 41px;
     width: 112px;
     z-index: 1
@@ -646,7 +646,7 @@ a:hover {
 
 * html .prevspan {
     _background: 0;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../image/bottomimg-zu.png')
+    /*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../image/bottomimg-zu.png')*/
     width: 112px;
     height: 41px;
     display: block;
@@ -656,7 +656,7 @@ a:hover {
 
 * html .nextspan {
     _background: 0;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../image/bottomimg-zu.png')
+    /*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../image/bottomimg-zu.png');*/
     width: 112px;
     height: 41px;
     display: block;

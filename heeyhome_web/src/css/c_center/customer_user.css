@@ -446,6 +446,11 @@ a:focus {
     width: 126px;
 }
 
+.personal_form_list .personal_user_name:disabled {
+    background-color: white;
+    cursor: not-allowed;
+}
+
 .personal_form_list b {
     margin-left: 16px;
     font-size: 14px;
@@ -1030,7 +1035,7 @@ a:focus {
 }
 
 .collection_shop_wrap .page_number {
-    margin: 6px 0 0 0;
+    margin: 25px 0 0 0;
 }
 
 .collection_shop {
@@ -2264,6 +2269,18 @@ a:focus {
     margin-left: 7px
 }
 
+.order_title div:nth-child(7):after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #000000;
+    position: absolute;
+    top: -8px
+}
+
 .item_hover_0:after {
     transform: rotate(0deg);
     transition: transform 0.3s
@@ -2492,6 +2509,7 @@ a:focus {
     border-radius: 2px;
     font-size: 14px
 }
+
 /* 收货地址样式 */
 .address_wrap {
     width: 754px;
@@ -2688,7 +2706,7 @@ a:focus {
     padding-bottom: 15px
 }
 
-.address_cont_line .address_content>select {
+.address_cont_line .address_content > select {
     float: left;
     width: 175px;
     border: 1px solid #ddd;
@@ -2697,13 +2715,13 @@ a:focus {
     margin-right: 10px
 }
 
-.address_cont_line .address_content>input {
+.address_cont_line .address_content > input {
     padding: 7px 10px;
     width: 500px;
     border: 1px solid #ddd
 }
 
-.address_cont_line .address_content>input.smallinput {
+.address_cont_line .address_content > input.smallinput {
     width: 300px
 }
 
@@ -2742,4 +2760,26 @@ a:focus {
     -webkit-transition: all .3s linear;
     -moz-transition: all .3s linear;
     border: 1px solid #ff5704 !important
+}
+
+.not_information {
+    border: 1px solid white;
+}
+
+.not_information .not_information_img {
+    width: 160px;
+    height: 140px;
+    margin: 25px auto;
+    margin-top: 100px;
+}
+
+.not_information .not_information_img img {
+    width: 160px;
+    height: 140px;
+}
+
+.not_information_text {
+    text-align: center;
+    font-size: 14px;
+    color: #999;
 }

@@ -581,6 +581,11 @@
     width: 126px;
 }
 
+.personal_form_list .personal_user_name:disabled {
+    background-color: white;
+    cursor: not-allowed;
+}
+
 .personal_form_list b {
     margin-left: 16px;
     font-size: 14px;
@@ -1038,6 +1043,19 @@
 .shop_detail .detail_p {
     margin-left: 8px;
     color: #4b4948;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 5px;
+}
+
+.shop_detail .detail_p b {
+    width: 100px;
+    margin-right: 10px;
+    display: inline-block;
+    word-break: keep-all; /* 不换行 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow: ellipsis; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
 }
 
 .renderings_show {
@@ -1137,6 +1155,37 @@
     margin-left: 11px;
     font-size: 80px;
     color: #eee;
+}
+
+.renderings_show_wrap .renderings_img {
+    position: relative;
+    display: inline-block;
+    background: white;
+    border: 1px solid #c7c7c7;
+    overflow: hidden;
+    color: #e4e4e4;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 86px;
+    width: 86px;
+    height: 86px;
+    border-radius: 0;
+    font-size: 80px;
+    text-align: center;
+}
+
+.renderings_show_wrap .renderings_img input {
+    width: 86px;
+    height: 86px;
+}
+
+#renderings_img {
+    width: 86px;
+    height: 86px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    margin-left: 11px;
 }
 
 .shop_detail_style {
@@ -1745,6 +1794,11 @@
     width: 1190px;
     margin: 0 auto;
     font-size: 14px
+}
+
+.now_location a img {
+    vertical-align: top;
+    margin-top: 2px;
 }
 
 #owner_information {
@@ -3785,11 +3839,11 @@ div.clear:after, div.clear:before {
 }
 
 .wallet_dl span, .wallet_dd span {
-
     text-align: center;
     display: inline-block;
     font-size: 14px;
     color: #4b4948;
+    float: left;
 }
 
 .wallet_dd .dd_opera {
@@ -4110,6 +4164,31 @@ div.clear:after, div.clear:before {
 }
 
 .order_wrap {
-   min-height: 500px;
+    min-height: 500px;
 }
 
+.wallet_content_bottom .page_number {
+    /*width: 872px;*/
+}
+
+.not_information {
+    border: 1px solid white;
+}
+
+.not_information .not_information_img {
+    width: 160px;
+    height: 140px;
+    margin: 25px auto;
+    margin-top: 100px;
+}
+
+.not_information .not_information_img img {
+    width: 160px;
+    height: 140px;
+}
+
+.not_information_text {
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+}

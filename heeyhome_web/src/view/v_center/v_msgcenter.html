@@ -9,51 +9,37 @@
                 <span class="content">消息内容</span>
                 <span class="time">时间</span>
             </div>
-            <div class="main_contentWrap">
-                <!--<div class="main_content">
-                    <span class="name">嗨吼网</span>
-                    <span class="content">欢迎入驻嗨吼网！您已注册成功！<i>您可以收藏登陆地址：heeyhome.com</i></span>
-                    <span class="time">2016.12.15</span>
-                    <a class="delete" href="javascript:;"><img src="css/img/delete.png"></a>
+            <div id="contentWrap">
+                <div class="main_contentWrap">
+
                 </div>
-                <div class="main_content">
-                    <span class="name">嗨吼网</span>
-                    <span class="content">欢迎入驻嗨吼网！您已注册成功！<i>您可以收藏登陆地址：heeyhome.com</i></span>
-                    <span class="time">2016.12.15</span>
-                    <a class="delete" href="javascript:;"><img src="css/img/delete.png"></a>
+                <div class="detail_cnt display">
                 </div>
-                <div class="main_content">
-                    <span class="name">嗨吼网</span>
-                    <span class="content">欢迎入驻嗨吼网！您已注册成功！<i>您可以收藏登陆地址：heeyhome.com</i></span>
-                    <span class="time">2016.12.15</span>
-                    <a class="delete" href="javascript:;"><img src="css/img/delete.png"></a>
+                <div class="information_choose">
+                    <input title="" type="checkbox">
+                    <span>全选</span>
+                    <a href="javascript:;">全部标记</a>
                 </div>
-                <div class="main_content">
-                    <span class="name">嗨吼网</span>
-                    <span class="content">欢迎入驻嗨吼网！您已注册成功！<i>您可以收藏登陆地址：heeyhome.com</i></span>
-                    <span class="time">2016.12.15</span>
-                    <a class="delete" href="javascript:;"><img src="css/img/delete.png"></a>
-                </div>-->
-            </div>
-            <div class="detail_cnt display">
-            </div>
-            <div class="information_choose">
-                <input title="" type="checkbox">
-                <span>全选</span>
-                <a href="javascript:;">全部标记</a>
-            </div>
-            <!-- 页码start -->
-            <div class="page_number">
-                <div style="margin:80px auto;width:1000px;">
-                    <div class="page_div2"></div>
+                <!-- 页码start -->
+                <div class="page_number">
+                    <div style="display: inline-block;text-align: left">
+                        <div class="page_div2"></div>
+                    </div>
                 </div>
-            </div>
-            <!-- 页码end -->
+                <!-- 页码end -->
+            </div><!--contentWrap-->
+            <div class="not_information hide">
+                <div class="not_information_img">
+                    <img src="css/img/no_information_found.png">
+                </div><!--not_information_img-->
+                <div class="not_information_text"></div><!--not_information_text-->
+            </div><!--not_information-->
         </div>
     </div>
 </div><!--user_right-->
-<div id="ReminderBox" class="display" style="position:fixed;width:100%;height:100%;top:0px;left:0px;z-index: 999;background: rgba(0,0,0,0.6);">
-    <div class="remindebox" >
+<div id="ReminderBox" class="display"
+     style="position:fixed;width:100%;height:100%;top:0px;left:0px;z-index: 999;background: rgba(0,0,0,0.6);">
+    <div class="remindebox">
         <div class="remindemodel">
             <div class="remindemodel_header">
                 <h1>提示</h1>
@@ -65,7 +51,7 @@
                     </div>
                 </div>
                 <div class="remindemodel_footer">
-                    <input class="remindemodel_ok" type="button" data-select = "" value="好的"/>
+                    <input class="remindemodel_ok" type="button" data-select="" value="好的"/>
                 </div>
             </div>
         </div>
