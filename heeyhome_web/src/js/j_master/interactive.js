@@ -111,7 +111,7 @@
             self.initMHomeEvent();
             self.initMDataEvent();
             self.initMWorkEvent();
-            self.initMSuccessEvent();
+            // self.initMSuccessEvent();
             self.initMNewWorkEvent();
             self.initMTeamEvent();
             self.initMShopEvent();
@@ -226,36 +226,7 @@
                 getWorkInfoHandler.workInfo();
             }]);
         },
-        /*
-         *  我的作品成功案例
-         */
-        initMSuccessEvent: function () {
-            HHIT_CENTERAPP.controller('success_caseCtrl', ['$scope', '$http', function ($scope, $http) {
-                /* 去掉头部多余的部分 */
-                $("#menuNavOuter").remove();
-                $("#headerWrapper").remove();
-                /* 切换图片 */
-                superSlide.slidePic();
-                $http({
-                    method: "JSONP",
-                    url: WORKCURL,
-                    params: {
-                        foreman_id: USERID
-                    }
-                }).success(function (data, status) {
-                    /* 如果成功执行 */
-                    if (data && data.code === '000') {
-                        console.log(data.data);
-                        $scope.works = data.data;
-                    }
-                    /* 如果失败执行 */
-                    else {
-                        layer.alert(data.msg);
-                    }
-                }).error(function (data, status) {
-                });
-            }]);
-        },
+
 
         /*
          * 我的作品添加新作品
@@ -705,6 +676,10 @@
                         });
 
                         OrderPageHandler.pageContentEvent();
+                    } else if (data.code == '205') {
+                        $('#orderContent').remove();
+                        $('.not_information').show().removeClass('hide');
+                        $('.not_information_text').html('您的订单空空如也~~');
                     }
                 },
                 error: function (data) {
@@ -1537,7 +1512,7 @@
                 }).success(function (data, status) {
                     /* 如果成功执行 */
                     if (data.code === '000') {
-                        // console.log(data);
+                        console.log(data);
                         var abb_phone = data.data.foremaninfo_phone.substr(0, 3) + "****" + data.data.foremaninfo_phone.substr(7, 11);//手机号中间四位变成*号
                         $('.personal_tel').html(abb_phone); //获取工长的电话号码
                         $('.personal_user_age').val(data.data.foremaninfo_age); //获取工长的年龄
@@ -1569,6 +1544,9 @@
                         var dLen = data.data.decoratedareas.length;
                         for (var i = 0; i < dLen; i++) {
                             $('.renovation_area').append('<div class="fl"> <input type="text" title="" class="personal_user_community" value="' + data.data.decoratedareas[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
+                        }
+                        if (data.data.isedit == 2) {
+                            $('.personal_user_name').attr("disabled", true);
                         }
                         $('.personal_user_community').eq(0).addClass('personal_user_first');
                         //获取所在地信息
@@ -1861,17 +1839,17 @@
                 centerFontColor: "#000",
                 centerBorder: "1px solid #ddd",
                 transition: "all .2s",
-                centerHoverBgColor: "#25dd3d",
-                centerHoverBorder: "1px solid #25dd3d",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
                 centerFontHoverColor: "#fff",
                 otherFontHoverColor: "#fff",
                 otherBorder: "1px solid #ddd",
-                otherHoverBorder: "1px solid #25dd3d",
+                otherHoverBorder: "1px solid #eec988",
                 otherBgColor: "#fff",
-                otherHoverBgColor: "#25dd3d",
+                otherHoverBgColor: "#eec988",
                 currentFontColor: "#fff",
-                currentBgColor: "#f79898",
-                currentBorder: "1px solid #f79898",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
                 fontSize: 13,
                 currentFontSize: 13,
                 cormer: 2, //按钮的边角曲度
@@ -1879,9 +1857,9 @@
                 showJump: true, //是否显示跳转功能
                 jumpBgColor: "#fff",
                 jumpFontHoverColor: "#fff",
-                jumpHoverBgColor: "#25dd3d",
+                jumpHoverBgColor: "#eec988",
                 jumpBorder: "1px solid #ddd",
-                jumpHoverBorder: "1px solid #25dd3d",
+                jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: BILLURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
@@ -2975,7 +2953,6 @@
         shopInfo: function () {
             HHIT_CENTERAPP.controller('shop', ['$scope', '$http', function ($scope, $http) {
                 /* 获取工长店铺资料开始 */
-
                 $http({
                     method: "JSONP",
                     url: SHOPCURL,
@@ -3006,10 +2983,30 @@
                         for (var i = 0; i < hLen; i++) {
                             $('#shop_head').append('<img class="fl" src="http://hyu2387760001.my3w.com/' + data.data.authentication[i] + '">');
                         }
-                        //获取店铺资料的本店工艺
-                        $scope.infos = data.data.shop_technics;
-                        //获取店铺资料的效果图展示
-                        $scope.imgs = data.data.shop_imgs;
+                        //获取店铺资料的本店工艺(最多只显示五张)
+                        if (data.data.shop_technics.length >= 5) {
+                            $scope.infos = data.data.shop_technics.slice(0, 5);
+                            $('#technic_add').hide();
+                        } else {
+                            $scope.infos = data.data.shop_technics;
+                            $('#technic_add').show();
+                        }
+                        if (data.data.shop_technics.length > 0) {
+                            $.each(data.data.shop_technics, function (i, v) {
+                                $('.detail_p').append('<b>' + v.technics_text + '</b>');
+                            });
+                        } else {
+                            $('.detail_p').append('随便说点什么吧！');
+                        }
+
+                        //获取店铺资料的效果图展示(最多只显示四张)
+                        if (data.data.shop_imgs.length >= 4) {
+                            $scope.imgs = data.data.shop_imgs.slice(0, 4);
+                            $('.renderings_img').hide();
+                        } else {
+                            $scope.imgs = data.data.shop_imgs;
+                            $('.renderings_img').show();
+                        }
                     }
                     /* 如果失败执行 */
                     else {
@@ -3190,28 +3187,34 @@
                     $('.wrap').hide();
                 });
 
-                /* 本店工艺图片上传预览 */
-                $('.add_content').find('input').change(function () {
-                    var inputImg = $(this);
-                    var file = inputImg.get(0).files[0];
-                    var reader = new FileReader();
-                    if (!/image\/\w+/.test(file.type)) {
-                        inputImg.parent().parent().css('background-image', '');
-                        inputImg.parent().removeClass('opacity');
-                        layer.msg("请确保文件为图像类型");
-                        inputImg.val('');//清空file选择的文件
-                        return false;
-                    }
-                    // onload是异步操作
-                    else {
-                        reader.onload = function (e) {
-                            inputImg.parent().addClass('opacity');//图片预览时input file 添加opacity样式，设置完全透明
-                            inputImg.parent().parent().css('background-image', 'url("' + e.target.result + '")');//图片设置为$('.showImg')背景图
-                            inputImg.parent().parent().find('.close').show();
+                /* 图片上传预览 */
+                function upImg(div) {
+                    $(div).find('input').change(function () {
+                        var inputImg = $(this);
+                        var file = inputImg.get(0).files[0];
+                        var reader = new FileReader();
+                        if (!/image\/\w+/.test(file.type)) {
+                            inputImg.parent().parent().css('background-image', '');
+                            inputImg.parent().removeClass('opacity');
+                            layer.msg("请确保文件为图像类型");
+                            inputImg.val('');//清空file选择的文件
+                            return false;
                         }
-                    }
-                    reader.readAsDataURL(file);
-                });
+                        // onload是异步操作
+                        else {
+                            reader.onload = function (e) {
+                                inputImg.parent().addClass('opacity');//图片预览时input file 添加opacity样式，设置完全透明
+                                inputImg.parent().parent().css('background-image', 'url("' + e.target.result + '")');//图片设置为$('.showImg')背景图
+                                inputImg.parent().parent().find('.close').show();
+                            }
+                        }
+                        reader.readAsDataURL(file);
+                    });
+                }
+
+                upImg('.add_content');//本店工艺上传图片
+                upImg('#renderings_img');//效果图上传图片
+
 
                 /* 上传图片后点击红色叉叉图片取消事件 */
                 $('.close').click(function () {
@@ -3220,10 +3223,6 @@
                     $(this).hide();
                 });
 
-                /* 添加店铺工艺 */
-                $('.complete').click(function () {
-
-                });
             }]);
         }
     };
@@ -3251,6 +3250,9 @@
                             } else {
                                 $scope.works = data.data;
                                 $('.new_album').show();
+                            }
+                            $scope.session = function (id) {
+                                sessionStorage.setItem("case_id", id);
                             }
                         }
                         /* 如果失败执行 */
@@ -3667,6 +3669,7 @@
                     limit: 4
                 },
                 success: function (data) {
+                    //console.log(data);
                     if (data != null && data.code == '000') {
                         $(".main_contentWrap").empty();
                         TOTAL = data.data[0].total; // 总数
@@ -3679,8 +3682,12 @@
                         pageHandler.pageContentEvent(); //分页
                         deleteRecord.singleSelection(); //单项删除
                         markRead.checkAll();       //全选标记
+                    } else if (data.code == '117') {//信息找不到
+                        $('#contentWrap').remove();
+                        $('.not_information').show().removeClass('hide');
+                        $('.not_information_text').html('您的消息空空如也~~');
                     } else {
-                        errorMsgHendler.remindBox(data.msg)
+                        layer.msg(data.msg);
                     }
                 },
                 error: function (data) {
@@ -3714,17 +3721,17 @@
                 centerFontColor: "#000",
                 centerBorder: "1px solid #ddd",
                 transition: "all .2s",
-                centerHoverBgColor: "#25dd3d",
-                centerHoverBorder: "1px solid #25dd3d",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
                 centerFontHoverColor: "#fff",
                 otherFontHoverColor: "#fff",
                 otherBorder: "1px solid #ddd",
-                otherHoverBorder: "1px solid #25dd3d",
+                otherHoverBorder: "1px solid #eec988",
                 otherBgColor: "#fff",
-                otherHoverBgColor: "#25dd3d",
+                otherHoverBgColor: "#eec988",
                 currentFontColor: "#fff",
-                currentBgColor: "#f79898",
-                currentBorder: "1px solid #f79898",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
                 fontSize: 13,
                 currentFontSize: 13,
                 cormer: 2, //按钮的边角曲度
@@ -3732,9 +3739,9 @@
                 showJump: true, //是否显示跳转功能
                 jumpBgColor: "#fff",
                 jumpFontHoverColor: "#fff",
-                jumpHoverBgColor: "#25dd3d",
+                jumpHoverBgColor: "#eec988",
                 jumpBorder: "1px solid #ddd",
-                jumpHoverBorder: "1px solid #25dd3d",
+                jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: READURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
@@ -3810,17 +3817,17 @@
                 centerFontColor: "#000",
                 centerBorder: "1px solid #ddd",
                 transition: "all .2s",
-                centerHoverBgColor: "#25dd3d",
-                centerHoverBorder: "1px solid #25dd3d",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
                 centerFontHoverColor: "#fff",
                 otherFontHoverColor: "#fff",
                 otherBorder: "1px solid #ddd",
-                otherHoverBorder: "1px solid #25dd3d",
+                otherHoverBorder: "1px solid #eec988",
                 otherBgColor: "#fff",
-                otherHoverBgColor: "#25dd3d",
+                otherHoverBgColor: "#eec988",
                 currentFontColor: "#fff",
-                currentBgColor: "#f79898",
-                currentBorder: "1px solid #f79898",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
                 fontSize: 13,
                 currentFontSize: 13,
                 cormer: 2, //按钮的边角曲度
@@ -3828,9 +3835,9 @@
                 showJump: true, //是否显示跳转功能
                 jumpBgColor: "#fff",
                 jumpFontHoverColor: "#fff",
-                jumpHoverBgColor: "#25dd3d",
+                jumpHoverBgColor: "#eec988",
                 jumpBorder: "1px solid #ddd",
-                jumpHoverBorder: "1px solid #25dd3d",
+                jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: ORDERURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
@@ -3903,17 +3910,17 @@
                 centerFontColor: "#000",
                 centerBorder: "1px solid #ddd",
                 transition: "all .2s",
-                centerHoverBgColor: "#25dd3d",
-                centerHoverBorder: "1px solid #25dd3d",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
                 centerFontHoverColor: "#fff",
                 otherFontHoverColor: "#fff",
                 otherBorder: "1px solid #ddd",
-                otherHoverBorder: "1px solid #25dd3d",
+                otherHoverBorder: "1px solid #eec988",
                 otherBgColor: "#fff",
-                otherHoverBgColor: "#25dd3d",
+                otherHoverBgColor: "#eec988",
                 currentFontColor: "#fff",
-                currentBgColor: "#f79898",
-                currentBorder: "1px solid #f79898",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
                 fontSize: 13,
                 currentFontSize: 13,
                 cormer: 2, //按钮的边角曲度
@@ -3921,9 +3928,9 @@
                 showJump: true, //是否显示跳转功能
                 jumpBgColor: "#fff",
                 jumpFontHoverColor: "#fff",
-                jumpHoverBgColor: "#25dd3d",
+                jumpHoverBgColor: "#eec988",
                 jumpBorder: "1px solid #ddd",
-                jumpHoverBorder: "1px solid #25dd3d",
+                jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: WORKCURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
@@ -3973,17 +3980,17 @@
                 centerFontColor: "#000",
                 centerBorder: "1px solid #ddd",
                 transition: "all .2s",
-                centerHoverBgColor: "#25dd3d",
-                centerHoverBorder: "1px solid #25dd3d",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
                 centerFontHoverColor: "#fff",
                 otherFontHoverColor: "#fff",
                 otherBorder: "1px solid #ddd",
-                otherHoverBorder: "1px solid #25dd3d",
+                otherHoverBorder: "1px solid #eec988",
                 otherBgColor: "#fff",
-                otherHoverBgColor: "#25dd3d",
+                otherHoverBgColor: "#eec988",
                 currentFontColor: "#fff",
-                currentBgColor: "#f79898",
-                currentBorder: "1px solid #f79898",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
                 fontSize: 13,
                 currentFontSize: 13,
                 cormer: 2, //按钮的边角曲度
@@ -3991,9 +3998,9 @@
                 showJump: true, //是否显示跳转功能
                 jumpBgColor: "#fff",
                 jumpFontHoverColor: "#fff",
-                jumpHoverBgColor: "#25dd3d",
+                jumpHoverBgColor: "#eec988",
                 jumpBorder: "1px solid #ddd",
-                jumpHoverBorder: "1px solid #25dd3d",
+                jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: WORKCURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
