@@ -219,7 +219,7 @@ Route::group(['middleware' => ['web']], function () {
     //用户材料订单数据获取
     Route::get('order/material/userget', 'OrderMaterialController@getMaterialListData');
     //用户确认材料单线下购买
-    Route::get('order/material/out', 'OrderMaterialController@outMaterialByUser');
+    Route::get('order/material/outMaterialByUser', 'OrderMaterialController@outMaterialByUser');
     //订单详情
     Route::any('order/detail', 'OrderDisplayController@orderDetailsToShow');
     //获取上门预约时间
@@ -237,7 +237,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/materialByStatus', 'OrderMaterialController@materialOrderByStatus');
     //查询材料订单订单详情
     Route::any('order/material/getOrderMaterialDetails', 'OrderMaterialController@getOrderMaterial');
-    
+    //材料商更新材料单状态为去配送中
+    Route::any('order/material/changeMaterialStatus', 'OrderMaterialController@changeMaterialStatus');
+
     
 });
 

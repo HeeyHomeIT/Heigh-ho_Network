@@ -75,7 +75,7 @@ msg           订单不存在
 
 
 ```
-.../order/material/out
+.../order/material/outMaterialByUser
 ```
 
 ### 接口格式

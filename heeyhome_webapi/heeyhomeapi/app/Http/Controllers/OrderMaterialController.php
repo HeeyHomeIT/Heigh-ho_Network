@@ -216,10 +216,28 @@ class OrderMaterialController extends Controller
         return $callback . "(" . HHJson($arr) . ")";
     }
 
-    //TODO 材料商更新材料单状态为去配送中
+    //材料商更新材料单状态为去配送中
     public function changeMaterialStatus()
     {
-
+        $material_id = rq('material_id');
+        $callback = rq('callback');
+        $upd_material_type = DB::update('UPDATE hh_order_material SET order_material_status = ? WHERE material_id = ? AND pay_status = ?',
+            [2, $material_id, 1]);
+        if ($upd_material_type) {
+            $arr = array(
+                "code" => "000",
+                "msg" => "更新成功",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "更新失败",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
     }
 
     //获取待配送 正在配送 已经完成的订单数量  
@@ -228,7 +246,7 @@ class OrderMaterialController extends Controller
         $callback = rq('callback');
         $material_supplier_id = rq('material_supplier_id');
         if ($material_supplier_id) {
-            $orderList = DB::select('SELECT order_material_status FROM hh_order_material where material_supplier_id = ? AND pay_status = ?', [$material_supplier_id,3]);
+            $orderList = DB::select('SELECT order_material_status FROM hh_order_material where material_supplier_id = ? AND pay_status = ?', [$material_supplier_id, 3]);
             $unfinishCount = 0;
             $ingCount = 0;
             $finishCount = 0;
@@ -269,7 +287,7 @@ class OrderMaterialController extends Controller
 
         if ($status == 1 || $status == 2 || $status == 3) {
             $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE material_supplier_id = ? AND order_material_status =? AND pay_status = ?',
-                [$material_supplier_id, $status,3]);
+                [$material_supplier_id, $status, 3]);
             if ($sel_material_user) {
                 $arr = array(
                     "code" => "000",
@@ -560,7 +578,7 @@ class OrderMaterialController extends Controller
             if ($sel_material_tbl) {
                 $pay_status = $sel_material_tbl[0]->pay_status;
             }
-            $pay_status_arr = array("订单支付状态未为" => $pay_status);
+            $pay_status_arr = array("order_pay_type" => $pay_status);
             $arr = array(
                 "code" => "000",
                 "msg" => "材料单数据",
@@ -590,30 +608,27 @@ class OrderMaterialController extends Controller
         $callback = rq('callback');
         //进入支付阶段
         $sel_material_tbl = DB::select('SELECT material_id,material_type,material_price FROM hh_order_material WHERE order_id =? AND pay_status = ?',
-            [$order_id, 1]);
-        if (!$sel_material_tbl) {
-            //获取材料订单id
-            $sel_material_tbl = DB::select('SELECT material_id FROM hh_order_material WHERE order_id =? AND pay_status = ?',
-                [$order_id, 0]);
-            if ($sel_material_tbl) {
-                $material_id = $sel_material_tbl[0]->material_id;
+            [$order_id, 0]);
+        if ($sel_material_tbl) {
+            $material_id = $sel_material_tbl[0]->material_id;
+            //修改材料表信息
+            $upd_material_tbl = DB::update('UPDATE hh_order_material SET pay_status = ?,material_price=? WHERE material_id = ?',
+                [3, 0, $material_id]);
+            if ($upd_material_tbl) {
+                $arr = array(
+                    "code" => "000",
+                    "msg" => "成功",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
             } else {
                 $arr = array(
                     "code" => "200",
-                    "msg" => "订单不存在",
+                    "msg" => "失败",
                     "data" => ""
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
-            //修改材料表信息
-            DB::update('UPDATE hh_order_material SET pay_status = ?,material_price=? WHERE $material_id = ?',
-                [1, 0, $material_id]);
-            $arr = array(
-                "code" => "000",
-                "msg" => "成功",
-                "data" => ""
-            );
-            return $callback . "(" . HHJson($arr) . ")";
         } else {
             $arr = array(
                 "code" => "200",
