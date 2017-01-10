@@ -14,9 +14,13 @@
 
 	var TAGSURL = 'http://hyu2387760001.my3w.com/panorama/gettags'; // 筛选条件标签显示
 	var VRCONTENTURL = 'http://hyu2387760001.my3w.com/panorama'; // 虚拟现实
+	var VRVIEWURL = 'http://hyu2387760001.my3w.com/panorama/scan'; // 虚拟现实浏览量
+	var VRLIKEURL = 'http://hyu2387760001.my3w.com/panorama/like'; // 虚拟现实点赞量
+	var VRCOLLECTURL = 'http://hyu2387760001.my3w.com/panorama/collect'; // 虚拟现实收藏
 	
 	var TOTAL; // 后台数据总数
 	var MAXROWS; //总页数
+	
 	/**
 	 * 筛选条件初始化
 	 * area 建筑面积筛选条件数组的key 
@@ -119,7 +123,6 @@
 		 * @param {Object} filterObj 筛选条件对象
 		 */
 		vrContentEvent: function(filterObj) {
-			console.log(filterObj)
 			$.ajax({
 				url: VRCONTENTURL,
 				type: "GET",
@@ -141,9 +144,115 @@
 						$(".content_pic").append(vrStr)
 					});
 					pageHandler.pageContentEvent();
+					viewPlus.addView();
+					addCollect.collectVr();
+					countPraise.praiseVr();
 					orderModuleHandler.orderClickEvent();
 				},
 				error: function(data) {}
+			});
+		}
+	};
+	/**
+	 * 浏览量计数
+	 */
+	viewPlus = {
+		addView : function() {
+			$(".vr_pic").on("click",function() {
+				var id = $(this).parent().attr("data-id");
+				$.ajax({
+					type: "get",
+					url: VRVIEWURL,
+					async: true,
+					dataType: "jsonp",
+					data: {
+						panorama_id: id
+					},
+					success: function(data) {
+						if(data && data.code == '000') {
+							data.data.scan_num ++;
+						} else {
+							layer.alert(data.msg);
+						}
+					},
+					error: function(data) {}
+				});
+			});			
+		}
+	};
+	/*
+	 * 添加收藏
+	 */
+	addCollect = {
+		collectVr : function() {
+			$(".pic_badge").on("click",function() {	
+				var USERID = $.cookie("userId"); // 得到userid
+			    if(USERID!=null && USERID !="" && USERID !=undefined){
+			        USERID = $.base64.decode($.cookie("userId"));
+			    }else {
+			        USERID = "";
+			    }
+				if(USERID == '') {
+					layer.msg("亲，收藏前请先登录哦~");					
+					function login(){
+						window.location.href = "register.html#/dl";	
+						setTimeout(function(){
+							login()
+						},1500);
+					}
+					setTimeout(function(){
+						login()
+					},1500);
+				} else {
+					var userType = $.cookie('userType');
+					if ($.base64.decode(userType) == 1) {
+						var id = $(this).parents(".pic_box").attr("data-id");
+						$.ajax({
+							type: "get",
+							url: VRCOLLECTURL,
+							async: true,
+							dataType: "jsonp",
+							data: {
+								user_id: USERID,
+								panorama_id: id
+							},
+							success: function(data) {
+								layer.msg(data.msg);
+							},
+							error: function(data) {}
+						});
+					} else {
+						layer.alert("此功能暂时只对用户开放")
+					}
+				}
+			});
+		}
+	};
+	/**
+	 * 点赞计数
+	 */
+	countPraise = {
+		praiseVr : function() {
+			$(".pic_praise").on("click",function() {
+				var id = $(this).parents(".pic_box").attr("data-id");
+				$.ajax({
+					type: "get",
+					url: VRLIKEURL,
+					async: true,
+					dataType: "jsonp",
+					data: {
+						panorama_id: id
+					},
+					success: function(data) {
+						if(data && data.code == '000') {
+							data.data.like_num ++;
+							vrContentHandler.vrContentEvent(filterObj);
+						} else {
+							layer.alert(data.msg);
+						}
+					},
+					error: function(data) {}
+				});
 			});
 		}
 	};
@@ -188,7 +297,7 @@
 	pageHandler = {
 		pageContentEvent:function() {
 			MAXROWS =  Math.ceil(TOTAL/4); // 页数
-			$(".page_div3").paging({
+			$(".page_div3").empty().paging({
 				total: MAXROWS, //全部页数
 				animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
 				centerBgColor: "#fff",
@@ -232,6 +341,9 @@
 						var vrStr = spliceVrContentHandler.spliceStrEvent(v);
 						$(".content_pic").append(vrStr)
 					});
+					viewPlus.addView();
+					addCollect.collectVr();
+					countPraise.praiseVr();
 				} //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
 			});
 		}
