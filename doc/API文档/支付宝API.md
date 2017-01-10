@@ -23,6 +23,7 @@
 data
 pay_type                    支付类型（'order':订单支付,'material':材料订单支付）
 order_id                    订单编号（当订单类型位订单支付时，需要输入订单编号）
+material_list               材料id列表(json格式，当支付类型为material时必填)
 callback                    回调
 ```
 

@@ -67,3 +67,49 @@ data          ""
 msg           订单不存在
 )
 ---
+```
+
+
+## 用户确认材料单线下购买API ##
+### 接口地址
+
+
+```
+.../order/material/out
+```
+
+### 接口格式
+
+### 调用 
+
+```
+接收方式    GET   POST
+```
+
+###### Json数据格式
+```
+data
+order_id                    订单id
+callback                    回调
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code          000
+data          ""
+msg           成功
+)
+```
+
+```
+失败
+callback(
+code          200
+data          ""
+msg           订单不存在
+)
+---

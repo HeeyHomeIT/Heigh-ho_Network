@@ -207,7 +207,7 @@ class OrderMaterialController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $data = array_merge($arr_user,$arr_data);
+        $data = array_merge($arr_user, $arr_data);
         $arr = array(
             "code" => "000",
             "msg" => "查询成功",
@@ -217,7 +217,8 @@ class OrderMaterialController extends Controller
     }
 
     //TODO 材料商更新材料单状态为去配送中
-    public function changeMaterialStatus(){
+    public function changeMaterialStatus()
+    {
 
     }
 
@@ -550,10 +551,18 @@ class OrderMaterialController extends Controller
                 $fiv = array($counter => array("公元PVC" => $arr_name_8));
                 $counter++;
             }
+            //查询材料订单是否进入支付阶段 默认为未进入
+            $pay_status = 0;
+            $sel_material_tbl = DB::select('SELECT pay_status FROM hh_order_material WHERE material_id =?',
+                [$material_id]);
+            if ($sel_material_tbl) {
+                $pay_status = $sel_material_tbl[0]->pay_status;
+            }
+            $pay_status_arr = array("订单支付状态未为" => $pay_status);
             $arr = array(
                 "code" => "000",
                 "msg" => "材料单数据",
-                "data" => array_merge($one, $two, $thr, $for, $fiv)
+                "data" => array_merge($one, $two, $thr, $for, $fiv, $pay_status_arr)
             );
             return $callback . "(" . HHJson($arr) . ")";
         } else {
@@ -569,6 +578,48 @@ class OrderMaterialController extends Controller
     //用户确认材料单
     public function chooseMaterialByUser()
     {
-        
+
     }
+
+    //用户确认材料单线下购买
+    public function outMaterialByUser()
+    {
+        $order_id = rq('order_id');
+        $callback = rq('callback');
+        //进入支付阶段
+        $sel_material_tbl = DB::select('SELECT material_id,material_type,material_price FROM hh_order_material WHERE order_id =? AND pay_status = ?',
+            [$order_id, 1]);
+        if (!$sel_material_tbl) {
+            //获取材料订单id
+            $sel_material_tbl = DB::select('SELECT material_id FROM hh_order_material WHERE order_id =? AND pay_status = ?',
+                [$order_id, 0]);
+            if ($sel_material_tbl) {
+                $material_id = $sel_material_tbl[0]->material_id;
+            } else {
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "订单不存在",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+            //修改材料表信息
+            DB::update('UPDATE hh_order_material SET pay_status = ?,material_price=? WHERE $material_id = ?',
+                [1, 0, $material_id]);
+            $arr = array(
+                "code" => "000",
+                "msg" => "成功",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "订单不存在",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+
 }

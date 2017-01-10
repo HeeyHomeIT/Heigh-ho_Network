@@ -29,13 +29,14 @@ require_once("lib/alipay_submit.class.php");
 
 /**************************请求参数**************************/
 
-$pay_type = $_POST ['pay_type'];
-$order_id = $_POST ['order_id'];
+$pay_type = $_REQUEST ['pay_type'];
+$order_id = $_REQUEST ['order_id'];
 //支付订单初始数据
 $pay_id = '';
 $pay_name = 'heeyhome网装修订单';
 $pay_amount = 0;
 $pay_mess = '订单支付内容为：';
+
 //支付详情
 if ($pay_type == 'order') {
 //获取当前订单状态
@@ -157,7 +158,11 @@ if ($pay_type == 'order') {
         return;
     }
 } else if ($pay_type == 'material') {
-    $material_list_arr = json_decode($_POST['material_list'], true);
+    //进入支付阶段
+$sel_material_tbl = \Illuminate\Support\Facades\DB::select('SELECT material_id,material_type,material_price FROM hh_order_material WHERE order_id =? AND pay_status = ?',
+    [$order_id, 1]);
+if (!$sel_material_tbl) {
+    $material_list_arr = json_decode($_REQUEST['material_list'], true);
     //获取材料订单id
     $sel_material_tbl = \Illuminate\Support\Facades\DB::select('SELECT material_id,order_id,material_type FROM hh_order_material WHERE order_id =? AND pay_status = ?',
         [$order_id, 0]);
@@ -191,7 +196,7 @@ if ($pay_type == 'order') {
     $sum = 0.00;
     while ($i < $count) {
         \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material_list SET choose_flag = ? WHERE material_id = ? AND material_name_id = ?',
-            [$material_id, $material_list_arr[$i]]);
+            [1, $material_id, $material_list_arr[$i]]);
         //获取当前材料金额
         $sel_aterial_list_data_tbl = \Illuminate\Support\Facades\DB::select('SELECT price,num FROM hh_material_list_data_view WHERE material_list_id = ? AND id = ?',
             [$material_id, $material_list_arr[$i]]);
@@ -207,36 +212,36 @@ if ($pay_type == 'order') {
         return;
     }
     //插入支付表
-    \Illuminate\Support\Facades\DB::insert('INSERT INTO hh_order_pay_each (order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES ?,?,?,?,?,?',
+    \Illuminate\Support\Facades\DB::insert('INSERT INTO hh_order_pay_each (order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',
         [$order_id, $material_id, $order_pay_step, $order_step, $sum, 1]);
-    //进入支付阶段
-    $sel_material_tbl = \Illuminate\Support\Facades\DB::select('SELECT material_id,material_type,material_price FROM hh_order_material WHERE order_id =? AND pay_status = ?',
-        [$order_id, 1]);
-    if ($sel_material_tbl) {
-        $pay_id = $sel_material_tbl[0]->material_id;
-        $pay_name = "heeyhome网装材料订单";
-        $pay_amount = $sel_material_tbl[0]->material_price;
-        $material_type = $sel_material_tbl[0]->material_type;
-        switch ($material_type) {
-            case 1:
-                $pay_mess .= '1.水电辅材';
-                break;
-            case 2:
-                $pay_mess .= '1.木工辅材';
-                break;
-            case 3:
-                $pay_mess .= '1.瓦工辅材';
-                break;
-            case 4:
-                $pay_mess .= '1.油漆工辅材';
-                break;
-        }
-    } else {
-        //不存在未支付的订单
-        return;
-    }
+    //修改材料表信息
+    \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET pay_status = ?,material_price=? WHERE order_id = ? AND material_type = ?',
+        [1, $sum, $order_id, $material_type]);
+    $actual_next_amount = $sum;
+} else {
+    $material_id = $sel_material_tbl[0]->material_id;
+    $sum = $sel_material_tbl[0]->material_price;
+    $material_type = $sel_material_tbl[0]->material_type;
 }
 
+$pay_id = $material_id;
+$pay_name = "heeyhome网装材料订单";
+$actual_next_amount = $sum;
+switch ($material_type) {
+    case 1:
+        $pay_mess .= '1.水电辅材';
+        break;
+    case 2:
+        $pay_mess .= '1.木工辅材';
+        break;
+    case 3:
+        $pay_mess .= '1.瓦工辅材';
+        break;
+    case 4:
+        $pay_mess .= '1.油漆工辅材';
+        break;
+}
+}
 //商户订单号，商户网站订单系统中唯一订单号，必填
 $out_trade_no = $pay_id;
 //订单名称，必填
@@ -245,7 +250,6 @@ $subject = $pay_name;
 $total_fee = $actual_next_amount;
 //商品描述，可空
 $body = $pay_mess;
-
 /************************************************************/
 
 //构造要请求的参数数组，无需改动
@@ -270,9 +274,9 @@ $parameter = array(
 );
 
 //建立请求
-//$alipaySubmit = new AlipaySubmit($alipay_config);
-//$html_text = $alipaySubmit->buildRequestForm($parameter, "get", "确认");
-//echo $html_text;
+$alipaySubmit = new AlipaySubmit($alipay_config);
+$html_text = $alipaySubmit->buildRequestForm($parameter, "get", "确认");
+echo $html_text;
 
 ?>
 </body>
