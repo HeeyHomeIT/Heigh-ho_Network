@@ -131,6 +131,12 @@
     border-radius: 4px;
 }
 
+.worker_detail input:disabled {
+    background-color: white;
+    cursor: not-allowed;
+    color: #eee;
+}
+
 .worker_detail li {
     height: 30px;
     line-height: 30px;
