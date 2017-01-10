@@ -528,11 +528,17 @@
 	margin-bottom: 0
 }
 
-#manager_information .manager_introduce .manager_detail div> span {
+#manager_information .manager_introduce .manager_detail div> span:first-child {
 	display: inline-block;
 	text-align: left;
-	width: 70px;
+	width: 60px;
 	margin-right: 35px
+}
+
+#manager_information .manager_introduce .manager_detail div> span:last-child {
+	display: inline-block;
+	text-align: left;
+	width: 140px
 }
 
 #manager_information .work_experience .icon_experience,
