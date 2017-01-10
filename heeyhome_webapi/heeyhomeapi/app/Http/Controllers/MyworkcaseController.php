@@ -68,16 +68,47 @@ class MyworkcaseController extends Controller
         $timelong=rq('timelong');
         $address=rq('address');
         $case_id=rand_number(5);
-        $files=Request::file('myfile');
-        if(!Request::hasFile('myfile')){
-            $arr = array("code" => "121",
-                "msg" => "没有图片被上传"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
+
+        $count = rq('count');
+        $files = array();
+        if ($count) {
+            for ($i=0; $i < $count; $i++) { 
+                $fileName = "myfile".$i;
+                if(!Request::hasFile($fileName)){
+                $arr = array("code" => "121",
+                    "msg" => "没有图片被上传"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+                $files[$i] = Request::file($fileName);
+            }
+        } else {
+            $myfile=Request::file('myfile');
+
+            if(!Request::hasFile('myfile')){
+                $arr = array("code" => "121",
+                    "msg" => "没有图片被上传"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+
+            if (! is_array($myfile)) {
+                $files = [$myfile];
+            } else {
+                $files = $myfile;
+            }
         }
-        if (! is_array($files)) {
-            $files = [$files];
-        }
+
+        // $files=Request::file('myfile');
+        // if(!Request::hasFile('myfile')){
+        //     $arr = array("code" => "121",
+        //         "msg" => "没有图片被上传"
+        //     );
+        //     return $callback . "(" . HHJson($arr) . ")";
+        // }
+        // if (! is_array($files)) {
+        //     $files = [$files];
+        // }
         //dd($files);
         $isvalid=true;
         foreach($files as $file){
