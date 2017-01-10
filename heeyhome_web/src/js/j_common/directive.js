@@ -1,4 +1,4 @@
-define(['app', 'bootstrap', 'js/j_common/common', 'js/j_index/interactive'], function(app, bootstrap) {
+define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive'], function(app, bootstrap) {
 	/**
 	 * 头部
 	 */

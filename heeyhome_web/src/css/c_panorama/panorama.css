@@ -77,7 +77,7 @@
 #virtual_reality .virtual_content .pic_box .vr_pic {
 	position: relative;
 	overflow: hidden;
-	width: 291px;
+	width: 290px;
 	height: 255px
 }
 
@@ -168,6 +168,10 @@
 #virtual_reality .virtual_content .pic_box .pic_icon .pic_view img {
 	width: 19px;
 	height: 11px
+}
+
+#virtual_reality .virtual_content .pic_box .pic_icon .pic_praise {
+	float: left;
 }
 
 #virtual_reality .virtual_content .pic_box .pic_icon .pic_praise img {

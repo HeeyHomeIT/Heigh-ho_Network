@@ -37,7 +37,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     },
                     resolve: {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['css/c_common/fliter.css', 'css/c_panorama/panorama.css', 'css/c_common/pagewrap.css', 'js/j_panorama/interactive.js'])
+                            return $ocLazyLoad.load(['css/c_common/fliter.css', 'css/c_panorama/panorama.css', 'css/c_common/pagewrap.css','lib/layui/css/modules/layer/default/layer.css', 'js/j_panorama/interactive.js'])
                         }]
                     }
 

@@ -99,13 +99,18 @@
         initSlideEvent: function () {
             /* 屏幕可视区高度小于735时调整相应的高度 */
             var height = $(window).height();
-            if (height < 735) {
+            console.log(height)
+            if (height != 736) {
                 var $div = $('#slide_bar div');
                 $.each($div, function () {
                     $(this).css('height', parseFloat($(this).css('height')) * height / 735);
                 });
                 $('.wcontent_title').css('backgroundPosition', '15px ' + 90 * height / 735 + 'px');
-                $('.wcontent_title span').css('fontSize', '12px');
+                if(height > 736){
+                    $('.wcontent_title span').css({'marginTop': '20px', 'position': 'absolute'});
+                }else{
+                    $('.wcontent_title span').css('fontSize', '12px');
+                }
             }
             /* 鼠标移入左边导航栏的效果 */
             $('.sl_wcontent').hover(function () {

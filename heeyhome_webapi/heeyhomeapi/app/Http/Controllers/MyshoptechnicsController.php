@@ -40,7 +40,35 @@ class MyshoptechnicsController extends  Controller
         $shop_id=rq('shop_id');
         $technics_text=rq('describe');
         $technics_id=rand_number(6);
-        $files=Request::file('myfile');
+        $count = rq('count');
+        $files = array();
+        if ($count) {
+            for ($i=0; $i < $count; $i++) { 
+                $fileName = "myfile".$i;
+                if(!Request::hasFile($fileName)){
+                $arr = array("code" => "121",
+                    "msg" => "没有图片被上传"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+                $files[$i] = Request::file($fileName);
+            }
+        } else {
+            $myfile=Request::file('myfile');
+
+            if(!Request::hasFile('myfile')){
+                $arr = array("code" => "121",
+                    "msg" => "没有图片被上传"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+
+            if (! is_array($myfile)) {
+                $files = [$myfile];
+            } else {
+                $files = $myfile;
+            }
+        }
         //dd($files);
         if(!$shop_id){
             $arr = array("code" => "112",
@@ -48,15 +76,7 @@ class MyshoptechnicsController extends  Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        if(!Request::hasFile('myfile')){
-            $arr = array("code" => "121",
-                "msg" => "没有图片被上传"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
-        if (! is_array($files)) {
-            $files = [$files];
-        }
+        
         $isvalid=true;
         foreach($files as $file){
             if(!$file->isValid()){

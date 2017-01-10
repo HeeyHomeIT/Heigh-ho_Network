@@ -200,6 +200,7 @@
                     },
                     success: function(data) {
                         if(data != null && data.code == '000') {
+                        	console.log(data.data)
                             var order_total = data.data.order_count;
                             var order = '';
                             $.each(data.data.order_list,function(i,v) {
@@ -403,6 +404,7 @@
                 }
             });
         },
+
         /* 获取用户我的收藏信息 */
         getCollectEvent: function () {
             /* 效果图 */
@@ -1027,7 +1029,7 @@
                         deleteRecord.singleSelection(); //单项删除
                         markRead.checkAll();       //全选标记
                     } else {
-                        errorMsgHendler.remindBox(data.msg)
+                        layer.alert(data.msg);
                     }
                 },
                 error: function (data) {
@@ -1131,7 +1133,7 @@
                             initInfo.info();//删除记录后刷新数据
                             layer.msg(data.msg);
                         } else {
-                            errorMsgHendler.remindBox(data.msg)
+                            layer.alert(data.msg)
                         }
                     },
                     error: function (data) {
@@ -1161,14 +1163,14 @@
                                 $(".main_content").attr("data-isread", "1").removeClass("isnews");
                                 $(".left_ul li i").remove();
                             } else {
-                                errorMsgHendler.remindBox(data.msg)
+                                layer.alert(data.msg)
                             }
                         },
                         error: function (data) {
                         }
                     });
                 } else {
-                    errorMsgHendler.remindBox("请先选中全选按钮");
+                    layer.alert("请先选中全选按钮");
                 }
             });
         }
