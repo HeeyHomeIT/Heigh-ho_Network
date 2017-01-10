@@ -7,7 +7,7 @@
         baseUrl: './',
         paths: {
             'jquery': 'lib/jquery/jquery-2.1.1.min',
-            'bootstrap': 'lib/bootstrap/bootstrap.min',
+            //'bootstrap': 'lib/bootstrap/bootstrap.min',
             'angular': 'lib/angular/angular.min',
             'angular-route': 'lib/angular/angular-route.min',
             'angular-resource': 'lib/angular/angular-resource.min',
@@ -38,11 +38,11 @@
                 deps: ['angular'],
                 exports: 'ngResource'
             },
-            'bootstrap': {
-                // angular-route依赖angular
-                deps: ['jquery'],
-                exports: 'bootstrap'
-            },
+//          'bootstrap': {
+//              // angular-route依赖angular
+//              deps: ['jquery'],
+//              exports: 'bootstrap'
+//          },
             'angular-route': {
                 deps: ['angular'],
                 exports: 'angular-route'

@@ -30,20 +30,17 @@ define(['app'], function(app) {
 					dataType: 'jsonp',
 					success: function(data) {
 						if(data != null && data.code == '000' ) {
-							var numberChange = '<ol class="carousel-indicators">';
-							var carouselPic = '<div class="carousel-inner">';
+							var carouselPic = '<ul class="car-inner">';
 							$.each(data.data, function(i,n) {
 								if(i == 0) {
-									numberChange += '<li data-target="#myCarousel" data-slide-to="'+i+'" class="active"></li>';
-									carouselPic += '<div class="item active"><a href="'+n.img_path+'" target="_blank"><img src="http://hyu2387760001.my3w.com/'+n.img+'"></a></div>';
+									carouselPic += '<li class="item active"><a href="'+n.img_path+'" target="_blank"><img src="http://hyu2387760001.my3w.com/'+n.img+'"></a></li>';
 								} else {
-									numberChange += '<li data-target="#myCarousel" data-slide-to="'+i+'"></li>';
-									carouselPic += '<div class="item"><a href="'+n.img_path+'" target="_blank"><img src="http://hyu2387760001.my3w.com/'+n.img+'"></a></div>';
+									carouselPic += '<li class="item"><a href="'+n.img_path+'" target="_blank"><img src="http://hyu2387760001.my3w.com/'+n.img+'"></a></li>';
 								}
 							});
-							numberChange += '</ol>';
-							carouselPic += '</div>';
-							$("#myCarousel").append(numberChange).append(carouselPic);
+							carouselPic += '</ul>';
+							$("#myCarousel").append(carouselPic);
+                            superSlide.slidePic();
 							onchangeNumber.change();
 						}
 					},
@@ -87,17 +84,32 @@ define(['app'], function(app) {
 			}
 		};
 		/*
+		 * 轮播图控制
+		 */
+		superSlide = {
+			slidePic : function() {
+				$("#myCarousel").slide({
+	                titCell: ".hd ul",
+	                mainCell: ".car-inner",
+	                autoPage: true,
+	                trigger: "click",
+	                effect: "left",
+	                autoPlay: true,	               	             
+	                vis: 1
+	            });
+			}
+		};
+		/*
 		 * 轮播图右侧数字随之改变
 		 */
 		onchangeNumber = {
-			change : function() {
-				$("#myCarousel").carousel();
-				var _focus = $(".carousel-indicators li");
+			change : function() {				
+				var _focus = $(".hd li");
 				var _number = $(".number_control li");
 				var i = 0;
 				setInterval(function() {
 					for(i = 0; i < 5; i++) {
-						if($(_focus).eq(i).attr("class") == "active") {
+						if($(_focus).eq(i).attr("class") == "on") {
 							$(_number).eq(i).addClass("active");
 							$(_number).eq(i).siblings().removeClass("active");
 						}
