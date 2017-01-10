@@ -221,12 +221,13 @@ class OrderMaterialController extends Controller
 
     }
 
+    //获取待配送 正在配送 已经完成的订单数量  
     public function getOrderMaterialCount()
     {
         $callback = rq('callback');
         $material_supplier_id = rq('material_supplier_id');
         if ($material_supplier_id) {
-            $orderList = DB::select('SELECT order_material_status FROM hh_order_material where material_supplier_id = ?', [$material_supplier_id]);
+            $orderList = DB::select('SELECT order_material_status FROM hh_order_material where material_supplier_id = ? AND pay_status = ?', [$material_supplier_id,3]);
             $unfinishCount = 0;
             $ingCount = 0;
             $finishCount = 0;
@@ -258,6 +259,7 @@ class OrderMaterialController extends Controller
         }
     }
 
+    //获取待配送 正在配送 已经完成的订单
     public function materialOrderByStatus()
     {
         $callback = rq('callback');
@@ -265,8 +267,8 @@ class OrderMaterialController extends Controller
         $status = rq('status');
 
         if ($status == 1 || $status == 2 || $status == 3) {
-            $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE material_supplier_id = ? AND order_material_status =?',
-                [$material_supplier_id, $status]);
+            $sel_material_user = DB::select('SELECT * FROM hh_material_list_view WHERE material_supplier_id = ? AND order_material_status =? AND pay_status = ?',
+                [$material_supplier_id, $status,3]);
             if ($sel_material_user) {
                 $arr = array(
                     "code" => "000",
