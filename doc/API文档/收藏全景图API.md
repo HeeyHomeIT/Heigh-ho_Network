@@ -7,7 +7,7 @@
 
 
 ```
-.../public/panorama/collect
+.../panorama/collect
 ```
 
 ### 接口格式
@@ -19,7 +19,7 @@
 ```
 
 ```
-.../public/panorama/collect
+.../panorama/collect
 ```
 
 ###### Json数据格式
