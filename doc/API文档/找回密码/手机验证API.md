@@ -23,7 +23,6 @@
 ###### Json数据格式
 ```
 data
-user_id           user_id
 phone             phone       //手机号
 captcha           captcha     //验证码
 

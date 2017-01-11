@@ -19,7 +19,6 @@
 ###### Json数据格式
 ```
 data
-user_id           user_id
 email             email       //邮箱
 captcha           captcha     //验证码
 

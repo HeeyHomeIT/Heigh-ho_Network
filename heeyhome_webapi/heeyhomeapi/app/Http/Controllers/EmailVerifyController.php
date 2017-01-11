@@ -17,10 +17,10 @@ class EmailVerifyController extends Controller
     public function verify(){
         $callback=rq('callback');
         $captcha=rq('captcha');
-        $user_id=rq('user_id');
         $email = rq('email');
         /*检查用户和邮箱是否匹配*/
-        if (match($user_id, $email)) {
+        $match=DB::select('select user_id from hh_user where user_email=?',[$email]);
+        if ($match) {
             /*检查验证码*/
             if (!smsverify($email, $captcha)) {
                 $arr = array("code" => "118",
@@ -33,7 +33,7 @@ class EmailVerifyController extends Controller
             if ((strtotime($yxyzmsj) + 1200) > time()) {
                 $flag = create_pid();
                 $time=date("Y-m-d H:i:s", time());
-                $insert=DB::insert('insert into hh_token(userid,flag,time) values(?,?,?)',[$user_id,$flag,$time]);
+                $insert=DB::insert('insert into hh_token(userid,flag,time) values(?,?,?)',[$match[0]->user_id,$flag,$time]);
                 if ($insert) {
                     $arr = array("code" => "000",
                         "msg" => "验证成功",

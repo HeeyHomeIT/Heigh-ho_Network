@@ -69,8 +69,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('personal/portrait/change', 'PortraitController@fileupload');
     /*登录历史*/
     Route::any('personal/loginhistory', 'GetloginrecordController@index');
-    /*确认账号*/
-    Route::any('verification/confirm', 'AccountconfirmController@confirm');
     /*手机验证*/
     Route::any('verification/phoneverify', 'PhoneVerifyController@verify');
     /*邮箱验证*/
