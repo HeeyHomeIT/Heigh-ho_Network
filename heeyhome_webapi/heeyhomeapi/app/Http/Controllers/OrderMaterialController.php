@@ -43,10 +43,8 @@ class OrderMaterialController extends Controller
             [$order_id, $material_type]);
         //查询材料订单是否存在
         if ($sel_material_tbl) {
-            return 1;
             $material_id = $sel_material_tbl[0]->material_id;
             for ($i = 0; $i < $count; $i++) {
-
                 //查询单条材料是否存在
                 $sel_material_echo_tbl = DB::select('SELECT * FROM hh_order_material_list WHERE material_name_id = ? AND material_id = ?',
                     [$material_arr_keys[$i], $material_id]);
@@ -84,7 +82,6 @@ class OrderMaterialController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         } else {
-            return 2;
             //生成需要的数据
             $material_id = $str;
             $material_list = $material_id;
@@ -156,6 +153,7 @@ class OrderMaterialController extends Controller
         else {
             $arr = array(
                 "code" => "200",
+                "code" => "200",
                 "msg" => "参数错误,获取列表失败",
                 "data" => ""
             );
@@ -188,7 +186,7 @@ class OrderMaterialController extends Controller
         $sel_material_list_tbl = DB::select('SELECT * FROM hh_material_list_data_view WHERE material_list_id = ?',
             [$material_id]);
         if ($sel_material_user) {
-            $arr_user = array("基础信息" => $sel_material_user);
+            $arr_user = array("basic_info" => $sel_material_user[0]);
         } else {
             $arr = array(
                 "code" => "200",
@@ -198,7 +196,7 @@ class OrderMaterialController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         if ($sel_material_user) {
-            $arr_data = array("材料信息" => $sel_material_list_tbl);
+            $arr_data = array("material_info" => $sel_material_list_tbl);
         } else {
             $arr = array(
                 "code" => "200",
