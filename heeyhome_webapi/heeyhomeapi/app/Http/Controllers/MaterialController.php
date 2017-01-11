@@ -51,10 +51,17 @@ class MaterialController extends Controller
         $brand_id=rq('brand_id');
         $cate_id=rq('cate_id');
         $where='';
-        $para=array($cate_id,1);
+        $para=array();
+        array_push($para, $cate_id,1);
         if($brand_id){
-            $where=' and brand_id=?';
-            $para[]=$brand_id;
+            for ($i=0; $i < count($brand_id); $i++) { 
+                if ($i == 0) {
+                    $where=' and brand_id=?';
+                } else {
+                    $where = $where.' or brand_id = ?';
+                }
+                array_push($para, $brand_id[$i]);
+            }
         }
         $elematerialist=DB::select('select * from hh_materials_material_name_view where cate_id=? and if_show=?'.$where,$para);
         foreach ($elematerialist as $key=>$val){
