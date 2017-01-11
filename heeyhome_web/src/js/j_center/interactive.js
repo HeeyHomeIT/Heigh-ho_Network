@@ -37,6 +37,8 @@
     var newValue;
     var TOTAL; // 信息中心后台数据总数
     var MAXROWS; //信息中心总页数
+    var load = '<div class="loading"><img src="image/icon-loading.gif"></div>';
+
 
     var USERID = $.cookie("userId"); // 得到userid
     if (USERID != null && USERID != "" && USERID != undefined) {
@@ -83,7 +85,18 @@
                         $(this).parent().addClass('left_active');
                     }
                 });
-
+                $.ajaxSetup({//给所有的Ajax加加载层
+                    beforeSend: function () {
+                        $(".right_content_wrap").append(load);
+                        $(".order_content .right_content").append(load);
+                        $(".safe_right_content").append(load);
+                    },
+                    complete: function () {
+                        $(".right_content_wrap .loading").remove(); //关闭加载层
+                        $(".order_content .right_content .loading").remove(); //关闭加载层
+                        $(".safe_right_content .loading").remove(); //关闭加载层
+                    }
+                });
                 /* 消息中心有多少条新消息 */
                 $.ajax({
                     type: "get",
@@ -611,68 +624,6 @@
         }
     };
 
-    /* 我的收藏成本计算 */
-    getBillInfoHandler = {
-        billInfoEvent: function () {
-            function ajax() {
-                $.ajax({
-                    url: BILLURL,
-                    type: "GET",
-                    async: true,
-                    dataType: 'jsonp',
-                    data: {
-                        user_id: USERID,
-                        page: 1,
-                        limit: 2
-                    },
-                    success: function (data) {
-                        //console.log(data.data);
-                        if (data != null && data.code == '000') {
-                            bill_total = data.data.calculator_count;
-                            var vrStr = "";
-                            $.each(data.data.calculator_data, function (i, v) {
-                                vrStr += spliceBillHandler.spliceStrEvent(v);
-                            });
-                            $(".billWrap").html(vrStr);
-                            billPageHandler.pageContentEvent();
-
-                            $(document).on("click", ".collection_detail", function (e) {
-                                sessionStorage.setItem("payJson", $(e.target).parents('.check_list').attr('data-cal'));
-                            });
-
-                        }
-                    },
-                    error: function (data) {
-                    }
-                });
-            }
-
-            ajax();
-            /* 删除我的收藏成本计算 */
-            $(document).on('click', '.collection_del', function (e) {
-                var calculator_results_id = $(e.target).parents('.check_list').attr('calculator_results_id');
-                $.ajax({
-                    url: BILLDELURL,
-                    type: "GET",
-                    async: true,
-                    dataType: 'jsonp',
-                    data: {
-                        user_id: USERID,
-                        calculator_results_id: calculator_results_id
-                    },
-                    success: function (data) {
-                        layer.msg(data.msg);
-                        ajax();
-                        billPageHandler.pageContentEvent();
-                    },
-                    error: function (data) {
-                        layer.msg(data.msg);
-                    }
-                });
-            })
-        }
-    };
-
     /* 获得我的订单详情内容 */
     OrderDetail = {
         getDetail: function () {
@@ -739,6 +690,73 @@
         }
     };
 
+    /* 我的收藏成本计算 */
+    getBillInfoHandler = {
+        billInfoEvent: function () {
+            function ajax() {
+                $.ajax({
+                    url: BILLURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        user_id: USERID,
+                        page: 1,
+                        limit: 2
+                    },
+                    success: function (data) {
+                        //console.log(data.data);
+                        //data.code = 200;
+                        if (data != null && data.code == '000') {
+                            bill_total = data.data.calculator_count;
+                            var vrStr = "";
+                            $.each(data.data.calculator_data, function (i, v) {
+                                vrStr += spliceBillHandler.spliceStrEvent(v);
+                            });
+                            $(".billWrap").html(vrStr);
+                            billPageHandler.pageContentEvent();
+
+                            $(document).on("click", ".collection_detail", function (e) {
+                                sessionStorage.setItem("payJson", $(e.target).parents('.check_list').attr('data-cal'));
+                            });
+
+                        } else if (data.code == '200') {
+                            $('.check_wrap').remove();
+                            $('.check_list_wrap .not_information').show().removeClass('hide');
+                            $('.check_list_wrap .not_information_text').html('您现在还没有关于成本计算的收藏哦~~');
+                        }
+                    },
+                    error: function (data) {
+                    }
+                });
+            }
+
+            ajax();
+            /* 删除我的收藏成本计算 */
+            $(document).on('click', '.collection_del', function (e) {
+                var calculator_results_id = $(e.target).parents('.check_list').attr('calculator_results_id');
+                $.ajax({
+                    url: BILLDELURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        user_id: USERID,
+                        calculator_results_id: calculator_results_id
+                    },
+                    success: function (data) {
+                        layer.msg(data.msg);
+                        ajax();
+                        billPageHandler.pageContentEvent();
+                    },
+                    error: function (data) {
+                        layer.msg(data.msg);
+                    }
+                });
+            })
+        }
+    };
+
     /* 获取我的收藏店铺列表 */
     getShopInfoHandler = {
         shopInfo: function () {
@@ -755,7 +773,8 @@
                             limit: 4
                         },
                         success: function (data) {
-                            console.log(data.data);
+                            //console.log(data.data);
+                            //data.code = 117;
                             if (data != null && data.code == '000') {
                                 shop_total = data.data[0].total;
 
@@ -766,6 +785,10 @@
 
                                 $(".shopWrap").html(vrStr);
                                 shopPageHandler.pageContentEvent();
+                            } else if (data.code == '117') {
+                                $('.shop_wrap').remove();
+                                $('.collection_shop_wrap .not_information').show().removeClass('hide');
+                                $('.collection_shop_wrap .not_information_text').html('您现在还没有收藏店铺哦~~');
                             }
                         },
                         error: function (data) {
@@ -818,6 +841,7 @@
                         }
                     }).success(function (data, status) {
                         /* 如果成功执行 */
+                        //data.code = 117;
                         if (data && data.code === '000') {
                             //console.log(data.data);
                             pic_total = data.data[0].total;//获取总数据
@@ -829,9 +853,10 @@
                             pageHandler.pageContentEvent();
                         }
                         /* 如果失败执行 */
-                        else {
-                            $(".picWrap").html('');
-                            $(".page_div3").empty();
+                        else if (data.code == '117') {
+                            $('.img_wrap').remove();
+                            $('.complete_before .not_information').show().removeClass('hide');
+                            $('.complete_before .not_information_text').html('您现在还没有收藏全景图哦~~');
                         }
                     }).error(function (data, status) {
                     });
@@ -950,33 +975,8 @@
     readNews = {
         tobeRead: function () {
             $(".main_content .content").on("click", function () {
-                var tit = $(this).html();
                 var cnt = $(this).siblings(".cnt").html();
-                $(".detail_cnt").dialog({
-                    title: tit,					// title
-                    dragable: true,
-                    html: '', 						// html template
-                    width: 400,					// width
-                    height: 200,				// height
-                    cannelText: '取消',		// cannel text
-                    confirmText: '确认',	// confirm text
-                    showFooter: true,
-                    onClose: function () {	// colse callback
-
-                    },
-                    onOpen: false,				// open callback
-                    onConfirm: function () { //  confirm callback required
-
-                        $(".detail_cnt").dialog().close();
-                    },
-                    onCannel: function () {  	// Cannel callback
-                        //$(".detail_cnt").find('.body-content').html("");
-                    },
-                    getContent: function () { 	// get Content callback
-                        $(".detail_cnt").find('.body-content').html(cnt);
-                    }
-                }).open();
-                $(".detail_cnt").find('.body-content').html(cnt);
+                layer.alert(cnt);
                 if ($(this).parent().attr("data-isread") == "0") { //未读消息
                     var id = $(this).parent().attr("data-id");
                     var $now = $(this).parent();
@@ -1366,18 +1366,18 @@
             vrStr += '<div class="money"><p>' + value.actual_finish_amount + '</p></div>';
             vrStr += '<div class="trade_stage"><p>' + value.order_status_ch + '</p></div>';
             // 未开工之前跳转到预约单页面
-            if(value.order_step == 18 &&(value.order_status == 1 ||value.order_status == 2||value.order_status == 3||value.order_status == 4)){
-            	console.log(value)
-            	var oInfoObj = {};
-				oInfoObj.shop_id = value.shop_id;
-				oInfoObj.user_id = value.user_id;
-				oInfoObj.order_id = value.order_id;
-				$.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
-            	vrStr += '<div class="all" data-shopid="'+value.shop_id+'" data-orderid="'+value.order_id+'"><a href="reservation.html#/waitcontact?type=1" target="_blank" class="top">查看详情</a>';
-            }else{
-            	vrStr += '<div class="all" data-shopid="'+value.shop_id+'" data-orderid="'+value.order_id+'"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';	
+            if (value.order_step == 18 && (value.order_status == 1 || value.order_status == 2 || value.order_status == 3 || value.order_status == 4)) {
+                console.log(value)
+                var oInfoObj = {};
+                oInfoObj.shop_id = value.shop_id;
+                oInfoObj.user_id = value.user_id;
+                oInfoObj.order_id = value.order_id;
+                $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
+                vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"><a href="reservation.html#/waitcontact?type=1" target="_blank" class="top">查看详情</a>';
+            } else {
+                vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';
             }
-            if(value.order_status == 6) {
+            if (value.order_status == 6) {
                 vrStr += '<a href="javascript:;" class="bottom">确认验货</a>';
             }
 //          if(value.order_status == 4) {
@@ -1386,16 +1386,16 @@
 //          if(value.order_status == 5 && (value.order_step == 3 || value.order_step == 5 || value.order_step == 7 || value.order_step == 9 || value.order_step == 11 || value.order_step == 13 || value.order_step == 15 || value.order_step == 17)) {
 //              vrStr += '<a href="success_pay.html#/success_pay/pay_end" class="bottom">支付</a>';
 //          }
-			// 订单进行中
-            if(value.order_status == 5){
-            	// 辅材类
-            	if(value.order_step == 3 || value.order_step == 7 || value.order_step == 11 || value.order_step == 15){
-            		vrStr += '<a href="reservation.html#/materiallist?pos='+value.order_id+'" class="bottom">辅材支付</a>';
-            	}
-            	// 人工费
-            	if(value.order_step == 5 || value.order_step == 9 || value.order_step == 13 || value.order_step == 17){
-            		vrStr += '<a href="reservation.html#/advancelist?pos='+value.order_id+'" class="bottom">人工支付</a>';
-            	}
+            // 订单进行中
+            if (value.order_status == 5) {
+                // 辅材类
+                if (value.order_step == 3 || value.order_step == 7 || value.order_step == 11 || value.order_step == 15) {
+                    vrStr += '<a href="reservation.html#/materiallist?pos=' + value.order_id + '" class="bottom">辅材支付</a>';
+                }
+                // 人工费
+                if (value.order_step == 5 || value.order_step == 9 || value.order_step == 13 || value.order_step == 17) {
+                    vrStr += '<a href="reservation.html#/advancelist?pos=' + value.order_id + '" class="bottom">人工支付</a>';
+                }
             }
             vrStr += '</div></div>';
             vrStr += '</div></div>';
