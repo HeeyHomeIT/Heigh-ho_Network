@@ -10,29 +10,40 @@
                 <div id="title_active" class="title_active"></div><!--title_active-->
             </div><!--works_content_title-->
             <div class="works_complete_wrap">
-                <!-- 具体内容start -->
-                <div class="works_complete clearfix"></div><!--works_complete-->
-                <!-- 具体内容end -->
-                <!-- 页码start -->
-                <div class="page_number">
-                    <div style="display: inline-block;text-align: left">
-                        <div class="page_div4"></div>
+
+                <div class="works_completeWrap">
+                    <!-- 具体内容start -->
+                    <div class="works_complete clearfix"></div><!--works_complete-->
+                    <!-- 具体内容end -->
+                    <!-- 页码start -->
+                    <div class="page_number">
+                        <div style="display: inline-block;text-align: left">
+                            <div class="page_div4"></div>
+                        </div>
                     </div>
-                </div>
-                <!-- 页码end -->
+                    <!-- 页码end -->
+                </div><!--works_completeWrap-->
+                <div class="not_information hide">
+                    <div class="not_information_img">
+                        <img src="css/img/no_information_found.png">
+                    </div><!--not_information_img-->
+                    <div class="not_information_text"></div><!--not_information_text-->
+                </div><!--not_information-->
                 <div class="complete_before clearfix">
                     <div class="before_title">
                         <span>入驻嗨吼之前的项目</span>
                     </div><!--before_title-->
                     <div class="works_detail fl complete_img" ng-repeat="work in works">
-                        <a class="bg" href="success_case.html#/success" target="_blank" ng-click="session(work.case_id)">
+                        <a class="bg" href="success_case.html#/success" target="_blank"
+                           ng-click="session(work.case_id)">
                             <a class="complete_del" href="javascript:;">
                                 <img src="css/img/my_work_del.png">
                             </a>
                             <div class="detail_img">
                                 <img ng-src="http://hyu2387760001.my3w.com/{{work.img[0].case_img}}">
                             </div><!--detail_img-->
-                            <a class="complete_bg" href="success_case.html#/success" ng-click="session(work.case_id)" target="_blank"></a><!--complete_bg-->
+                            <a class="complete_bg" href="success_case.html#/success" ng-click="session(work.case_id)"
+                               target="_blank"></a><!--complete_bg-->
                             <a href="success_case.html#/success" class="works_style" target="_blank">{{work.style}}</a>
                         </a>
                     </div>
@@ -45,16 +56,24 @@
                 </div><!--complete_before-->
             </div><!--works_complete_wrap-->
             <div class="works_pending_wrap clearfix hide">
-                <!-- 具体内容start -->
-                <div class="worksPending clearfix"></div><!--worksPending-->
-                <!-- 具体内容end -->
-                <!-- 页码start -->
-                <div class="page_number">
-                    <div style="display: inline-block;text-align: left">
-                        <div class="page_div5"></div>
+                <div class="works_pending">
+                    <!-- 具体内容start -->
+                    <div class="worksPending clearfix"></div><!--worksPending-->
+                    <!-- 具体内容end -->
+                    <!-- 页码start -->
+                    <div class="page_number">
+                        <div style="display: inline-block;text-align: left">
+                            <div class="page_div5"></div>
+                        </div>
                     </div>
-                </div>
-                <!-- 页码end -->
+                    <!-- 页码end -->
+                </div><!--works_pending-->
+                <div class="not_information hide">
+                    <div class="not_information_img">
+                        <img src="css/img/no_information_found.png">
+                    </div><!--not_information_img-->
+                    <div class="not_information_text"></div><!--not_information_text-->
+                </div><!--not_information-->
             </div><!--works_pending_wrap-->
         </div><!--works_content-->
     </div><!--right_content_wrap-->

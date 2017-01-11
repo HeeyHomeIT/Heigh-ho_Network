@@ -833,6 +833,10 @@ a:focus {
     padding-left: 40px;
 }
 
+.complete_before .not_information {
+    margin-left: -41px;
+}
+
 .works_detail:hover {
     cursor: pointer;
 }
@@ -945,6 +949,11 @@ a:focus {
     margin-top: 19px;
 }
 
+.check_list_wrap .not_information {
+    margin-top: -19px;
+    margin-left: -1px;
+}
+
 .check_list {
     width: 775px;
     height: auto;
@@ -1032,6 +1041,11 @@ a:focus {
     height: auto;
     margin: 0 auto;
     margin-top: 27px;
+}
+
+.collection_shop_wrap .not_information {
+    margin-left: -80px;
+    margin-top: -27px;
 }
 
 .collection_shop_wrap .page_number {
@@ -2764,6 +2778,8 @@ a:focus {
 
 .not_information {
     border: 1px solid white;
+    width: 870px;
+    height: 300px;
 }
 
 .not_information .not_information_img {
