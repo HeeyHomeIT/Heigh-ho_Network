@@ -674,13 +674,16 @@
          */
         spliceCgInfoEvent: function (value) {
             var vrStr = '';
-            $.each(value, function (i, v) {
-                if (v.img.length != 0) {
-                    vrStr += '<li class="sd_hexli" data-type="' + v.type + '" ><a><div><img src="http://hyu2387760001.my3w.com/' + v.img[0].case_img + '"><div class="sd_title"><span class="sd_area">' + v.area + '㎡</span><span>' + v.housetype + '&middot;' + v.style + '</span></div>';
-                    vrStr += '<div class="sd_stips"><span><em class="cr_icon_location"></em>' + v.address + '</span><span >施工时间</span><span style="padding: 0px;margin-top: -5px;">' + v.timelong + '</span><div><em class="cr_icon_look"></em><span>' + v.scan_num + '</span>';
-                    vrStr += '<em class="cr_icon_love"></em><span>' + v.like_num + '</span></div></div></div></a></li>';
-                }
+        	$.each(value, function (i, v) {
+        		if(i<7){
+        			if (v.img.length != 0) {
+	                    vrStr += '<li class="sd_hexli" data-type="' + v.type + '" ><a><div><img src="http://hyu2387760001.my3w.com/' + v.img[0].case_img + '"><div class="sd_title"><span class="sd_area">' + v.area + '㎡</span><span>' + v.housetype + '&middot;' + v.style + '</span></div>';
+	                    vrStr += '<div class="sd_stips"><span><em class="cr_icon_location"></em>' + v.address + '</span><span >施工时间</span><span style="padding: 0px;margin-top: -5px;">' + v.timelong + '</span><div><em class="cr_icon_look"></em><span>' + v.scan_num + '</span>';
+	                    vrStr += '<em class="cr_icon_love"></em><span>' + v.like_num + '</span></div></div></div></a></li>';
+	                }
+        		}
             });
+            
             return vrStr;
         },
         /**

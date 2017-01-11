@@ -1,11 +1,11 @@
 #foreman_shop {
     position: relative;
-    -moz-box-shadow: 0px 0px 15px #939393;
-    -webkit-box-shadow: 0px 0px 15px #939393;
+    -moz-box-shadow: 0px 0px 8px #939393;
+    -webkit-box-shadow: 0px 0px 8px #939393;
     border: 1px solid #FFFFFF;
     margin: 0 auto;
     width: 1320px;
-    box-shadow: 0px 0px 28px #939393
+    box-shadow: 0px 0px 8px #939393
 }
 
 #foreman_shop .foreman_shopcnt {
