@@ -1,6 +1,7 @@
 define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
     app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
         function ($stateProvider, $urlRouterProvider, $httpProvider) {
+            $httpProvider.interceptors.push('interceptors');//数据没出来之前加载loading
             $stateProvider
                 .state("home", { // 首页页面
                     url: "/",

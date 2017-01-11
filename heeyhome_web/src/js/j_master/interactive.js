@@ -72,6 +72,7 @@
     var myfile = [];
     var len2 = 0;//已完成项目的总数
     var len3 = 0;//未完成项目的总数
+    var load = '<div class="loading"><img src="image/icon-loading.gif"></div>';
 
 
     // 错误提示文字
@@ -146,7 +147,14 @@
                         $(this).parent().addClass('left_active');
                     }
                 });
-
+                $.ajaxSetup({//给所有的Ajax加加载层
+                    beforeSend: function () {
+                        $(".right_content_wrap").append(load);
+                    },
+                    complete: function () {
+                        $(".right_content_wrap .loading").remove(); //关闭加载层
+                    }
+                });
                 /* 消息中心有多少条新消息 */
                 $.ajax({
                     type: "get",
@@ -1778,6 +1786,7 @@
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
+                            //console.log(data);
                             var bill = "";
                             var total = data.data[0].total;
                             $.each(data.data, function (i, v) {
@@ -1787,9 +1796,16 @@
                             $(".wallet_bottom_content").append(bill);
                             BillDelete.deleteRecord();
                             BillPageHandler.pageContentEvent(total, time);
+                            $('.not_information').hide();
+                            $('.not_information_text').html();
+                            $(".page_number").css('opacity', '1');
                         } else {
                             $(".wallet_dl").nextAll().remove();
-                            layer.alert(data.msg);
+                            $(".page_number").css('opacity','0');
+                            // layer.alert(data.msg);
+                            //$('.wallet').remove();
+                            $('.not_information').show().removeClass('hide');
+                            $('.not_information_text').html('您还没有交易记录哦~~');
                         }
                     },
                     error: function (data) {
@@ -1809,6 +1825,7 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
+                        console.log(data);
                         var bill = "";
                         var total = data.data[0].total;
                         $.each(data.data, function (i, v) {
@@ -1820,7 +1837,11 @@
                         BillPageHandler.pageContentEvent(total, time);
                     } else {
                         $(".wallet_dl").nextAll().remove();
-                        layer.alert(data.msg);
+                        $(".page_number").css('opacity', '0');
+                        // layer.alert(data.msg);
+                        //$('.wallet').remove();
+                        $('.not_information').show().removeClass('hide');
+                        $('.not_information_text').html('您还没有交易记录哦~~');
                     }
                 },
                 error: function (data) {
@@ -1876,7 +1897,13 @@
                     $.each(data.data, function (i, v) {
                         bill += spliceBillContent.spliceStrEvent(v);
                     });
+                    $(".wallet_dl").nextAll().remove();
                     $(".wallet_bottom_content").append(bill);
+                    BillPageHandler.pageContentEvent(total, time);
+                    BillDelete.deleteRecord();
+                    $('.not_information').hide();
+                    $('.not_information_text').html();
+                    $(".page_number").css('opacity', '1');
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
             });
         }
@@ -3239,6 +3266,13 @@
                         params: {
                             foreman_id: USERID,
                             type: 1
+                        },
+                        beforeSend: function () {
+                            $(".complete_before .works_detail").remove();
+                            $(".complete_before").append(load);
+                        },
+                        complete: function () {
+                            $(".complete_before .loading").remove();
                         }
                     }).success(function (data, status) {
                         /* 如果成功执行 */
@@ -3301,13 +3335,23 @@
                     },
                     success: function (data) {
                         //console.log(data.data);
-                        len2 = data.data[0].total;//获取已完成的总数据
-                        var vrStr = '';
-                        $.each(data.data, function (i, v) {
-                            vrStr += spliceWCompleteContent.spliceStrEvent(v);
-                        });
-                        $(".works_complete").html(vrStr);
-                        WCompletePageHandler.pageContentEvent();
+
+                        if (data && data.code === '000') {
+                            len2 = data.data[0].total;//获取已完成的总数据
+                            var vrStr = '';
+                            $.each(data.data, function (i, v) {
+                                vrStr += spliceWCompleteContent.spliceStrEvent(v);
+                            });
+                            $(".works_complete").html(vrStr);
+                            WCompletePageHandler.pageContentEvent();
+                        }
+                        else if (data.code == '117') {
+                            $('.works_completeWrap').remove();
+                            $('.works_complete_wrap .not_information').show().removeClass('hide');
+                            $('.works_complete_wrap .not_information_text').html('您现在还没有已完成的作品哦~~');
+                        } else {
+                            layer.msg(data.msg);
+                        }
                     },
                     error: function (data) {
                     }
@@ -3327,13 +3371,21 @@
                     },
                     success: function (data) {
                         //console.log(data.data);
-                        len3 = data.data[0].total;//获取已完成的总数据
-                        var vrStr = '';
-                        $.each(data.data, function (i, v) {
-                            vrStr += spliceWUndoneContent.spliceStrEvent(v);
-                        });
-                        $(".worksPending").html(vrStr);
-                        WUndonePageHandler.pageContentEvent();
+                        if (data && data.code === '000') {
+                            len3 = data.data[0].total;//获取已完成的总数据
+                            var vrStr = '';
+                            $.each(data.data, function (i, v) {
+                                vrStr += spliceWUndoneContent.spliceStrEvent(v);
+                            });
+                            $(".worksPending").html(vrStr);
+                            WUndonePageHandler.pageContentEvent();
+                        } else if (data.code == '117') {
+                            $('.works_pending').remove();
+                            $('.works_pending_wrap .not_information').show().removeClass('hide');
+                            $('.works_pending_wrap .not_information_text').html('您现在还没有待完成的作品哦~~');
+                        } else {
+                            layer.msg(data.msg);
+                        }
                     },
                     error: function (data) {
                     }
@@ -3598,37 +3650,11 @@
     readNews = {
         tobeRead: function () {
             $(".main_content .content").on("click", function () {
-                var tit = $(this).html();
                 var cnt = $(this).siblings(".cnt").html();
-                $(".detail_cnt").dialog({
-                    title: tit,					// title
-                    dragable: true,
-                    html: '', 						// html template
-                    width: 400,					// width
-                    height: 200,				// height
-                    cannelText: '取消',		// cannel text
-                    confirmText: '确认',	// confirm text
-                    showFooter: true,
-                    onClose: function () {	// colse callback
-
-                    },
-                    onOpen: false,				// open callback
-                    onConfirm: function () { //  confirm callback required
-
-                        $(".detail_cnt").dialog().close();
-                    },
-                    onCannel: function () {  	// Cannel callback
-                        //$(".detail_cnt").find('.body-content').html("");
-                    },
-                    getContent: function () { 	// get Content callback
-                        $(".detail_cnt").find('.body-content').html(cnt);
-                    }
-                }).open();
-                $(".detail_cnt").find('.body-content').html(cnt);
+                layer.alert(cnt);
                 if ($(this).parent().attr("data-isread") == "0") { //未读消息
                     var id = $(this).parent().attr("data-id");
                     var $now = $(this).parent();
-                    //$(this).parent().removeClass("isnews");
                     var num = $(".left_ul li i").html();
                     if (num != 0) {
                         num--;
