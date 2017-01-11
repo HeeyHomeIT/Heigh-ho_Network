@@ -1,294 +1,217 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>水电材料清单</title>
-		<link rel="stylesheet" href="../../lib/bootstrap/bootstrap.min.css" />
-		<link rel="stylesheet" href="../../css/c_common/common.css"/>
-		<link rel="stylesheet" href="../../css/c_reservation/c_material.css" />
-	</head>
-	<body>
-		<div class="materialList_wrap">
-			<div class="materialList_cont">
-				<div class="materialPaylist">
-					<h5><i class="icon-splitL"></i>材料清单<i class="icon-splitR"></i></h5>
-				</div>
-				<div id="itemlists" class="itemlists">
-					<div  class="itemlist">
-						<div class="titlelist">
-							<dl>
-								<dt>请选择一个品牌</dt>
-								<dd>
-									<ul class="airplane_rad clearfix">
-										<li>
-											<label for="airplaneRadio1" id="repAirRadio1">
+<div class="materialList_wrap">
+	<div class="materialList_cont">
+		<div class="materialPaylist">
+			<h5><i class="icon-splitL"></i>材料清单<i class="icon-splitR"></i></h5>
+		</div>
+		<div id="itemlists" class="itemlists">
+			<!--<div class="itemlist">
+				<div class="titlelist">
+					<dl>
+						<dt>请选择一个品牌</dt>
+						<dd>
+							<ul class="airplane_rad clearfix">
+								<li>
+									<label for="airplaneRadio1" id="repAirRadio1">
 												<input type="radio" checked="checked" id="airplaneRadio1" class="display" />
 												<i class="rep_radiao_check"></i>
 												<span>公园优价</span>
 											</label>
-										</li>
-										<li>
-											<label for="airplaneRadio2" id="repAirRadio2">
+								</li>
+								<li>
+									<label for="airplaneRadio2" id="repAirRadio2">
 												<input type="radio" id="airplaneRadio2" class="display" />
 												<i class=""></i>
 												<span>伟新管页</span>
 											</label>
-										</li>
-									</ul>
-								</dd>
-							</dl>
-						</div>
-						<div class="material_cardtable ">
-							<table  cellspacing="0" cellpadding="0">
-								<thead>
-									<tr>
-										<td align="center" width="200px">参考图</td>
-										<td align="center" width="185px">名称</td>
-										<td align="center" width="100px">规格</td>
-										<td align="center" width="100px">单位</td>
-										<td align="center" width="100px">单价/元</td>
-										<td align="center" width="100px">数量</td>
-										<td align="center" width="100px">小计/元</td>
-										<td align="center" width="50px">
-											<label class="set_default" >
-												<input class="JcheckGcd" id="checkGcd" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-								</thead>
-								<tbody >
-									<tr class="shows">
-										<td rowspan="3" class="border_eee"><img src="../../css/img/bigshop-1.png"></td>
-										<td rowspan="3" class="border_eee" >都芳第二代全能五合一内墙漆（独资生产）</td>
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-									<tr class="shows">
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-									<tr class="shows">
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-									<tr class="shows">
-										<td rowspan="3" class="border_eee"><img src="../../css/img/bigshop-1.png"></td>
-										<td rowspan="3" class="border_eee" >都芳第二代全能五合一内墙漆（独资生产）</td>
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-									<tr class="shows">
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-									<tr class="shows">
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div  class="itemlist">
-						<div class="titlelist">
-							<dl>
-								<dt>请选择一个品牌</dt>
-								<dd>
-									<ul class="airplane_rad clearfix">
-										<li>
-											<label for="airplaneRadio1" id="repAirRadio1">
-												<input type="radio" checked="checked" id="airplaneRadio1" class="display" />
-												<i class="rep_radiao_check"></i>
-												<span>公园优价</span>
-											</label>
-										</li>
-										<li>
-											<label for="airplaneRadio2" id="repAirRadio2">
-												<input type="radio" id="airplaneRadio2" class="display" />
-												<i class=""></i>
-												<span>伟新管页</span>
-											</label>
-										</li>
-									</ul>
-								</dd>
-							</dl>
-						</div>
-						<div class="material_cardtable ">
-							<table  cellspacing="0" cellpadding="0">
-								<thead>
-									<tr>
-										<td align="center" width="200px">参考图</td>
-										<td align="center" width="185px">名称</td>
-										<td align="center" width="100px">规格</td>
-										<td align="center" width="100px">单位</td>
-										<td align="center" width="100px">单价/元</td>
-										<td align="center" width="100px">数量</td>
-										<td align="center" width="100px">小计/元</td>
-										<td align="center" width="50px">
-											<label class="set_default" >
-												<input class="JcheckGcd" id="checkGcd" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-								</thead>
-								<tbody >
-									<tr class="shows">
-										<td rowspan="3" class="border_eee"><img src="../../css/img/bigshop-1.png"></td>
-										<td rowspan="3" class="border_eee" >都芳第二代全能五合一内墙漆（独资生产）</td>
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-									<tr class="shows">
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-									<tr class="shows">
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-									<tr class="shows">
-										<td rowspan="3" class="border_eee"><img src="../../css/img/bigshop-1.png"></td>
-										<td rowspan="3" class="border_eee" >都芳第二代全能五合一内墙漆（独资生产）</td>
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-									<tr class="shows">
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-									<tr class="shows">
-										<td>E0等级</td>
-										<td>根</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>1000</td>
-										<td>
-											<label class="set_default" >
-												<input name="subBox" type="checkbox" />
-												<em class="defalut_ico"></em>
-											</label>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
+								</li>
+							</ul>
+						</dd>
+					</dl>
 				</div>
-				<div class="settlement">
-					<p>友情提醒：自行购买的同时,请注意材料的完整度以及确保材料能够及时配送到位,以免耽误装修进度</p>
-					<div class="listnumber">
-						<span>共100项</span>
-						<span>实际需支付：<em>37.20</em></span>
-					</div>
-					<div class="paymentbtn">
-						<input class="selfPurchase" type="button" value="自行购买">
-						<input class="payment" type="button" value="支付">
-					</div>
-				</div>	
+				<div class="material_cardtable ">
+					<table cellspacing="0" cellpadding="0">
+						<thead>
+							<tr>
+								<td align="center" width="200px">参考图</td>
+								<td align="center" width="185px">名称</td>
+								<td align="center" width="100px">规格</td>
+								<td align="center" width="100px">单位</td>
+								<td align="center" width="100px">单价/元</td>
+								<td align="center" width="100px">数量</td>
+								<td align="center" width="100px">小计/元</td>
+								<td align="center" width="50px">
+									<label class="set_default">
+												<input class="JcheckGcd" id="checkGcd" type="checkbox" />
+												<em class="defalut_ico"></em>
+											</label>
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="shows">
+								<td rowspan="3" class="border_eee"><img src="../../css/img/bigshop-1.png"></td>
+								<td rowspan="3" class="border_eee">都芳第二代全能五合一内墙漆（独资生产）</td>
+								<td>E0等级</td>
+								<td>根</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>
+									<label class="set_default">
+												<input name="subBox" type="checkbox" />
+												<em class="defalut_ico"></em>
+											</label>
+								</td>
+							</tr>
+							<tr class="shows">
+								<td>E0等级</td>
+								<td>根</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>
+									<label class="set_default">
+												<input name="subBox" type="checkbox" />
+												<em class="defalut_ico"></em>
+											</label>
+								</td>
+							</tr>
+							<tr class="shows">
+								<td>E0等级</td>
+								<td>根</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>
+									<label class="set_default">
+												<input name="subBox" type="checkbox" />
+												<em class="defalut_ico"></em>
+											</label>
+								</td>
+							</tr>
+							<tr class="shows">
+								<td rowspan="3" class="border_eee"><img src="../../css/img/bigshop-1.png"></td>
+								<td rowspan="3" class="border_eee">都芳第二代全能五合一内墙漆（独资生产）</td>
+								<td>E0等级</td>
+								<td>根</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>
+									<label class="set_default">
+												<input name="subBox" type="checkbox" />
+												<em class="defalut_ico"></em>
+											</label>
+								</td>
+							</tr>
+							<tr class="shows">
+								<td>E0等级</td>
+								<td>根</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>
+									<label class="set_default">
+												<input name="subBox" type="checkbox" />
+												<em class="defalut_ico"></em>
+											</label>
+								</td>
+							</tr>
+							<tr class="shows">
+								<td>E0等级</td>
+								<td>根</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>1000</td>
+								<td>
+									<label class="set_default">
+												<input name="subBox" type="checkbox" />
+												<em class="defalut_ico"></em>
+											</label>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>-->
+			
+		</div>
+		<div class="settlement">
+			<p>友情提醒：自行购买的同时,请注意材料的完整度以及确保材料能够及时配送到位,以免耽误装修进度</p>
+			<div class="listnumber">
+				<span>共100项</span>
+				<span>实际需支付：<em class="Jtotal">37.20</em></span>
+			</div>
+			<div class="paymentbtn">
+				<div class="explain">
+					<label for="checkYt" class="lookit_default">
+						<input id="checkYt" class="display" type="checkbox" />
+						<em class=""></em>
+						<span>请仔细核对线下填写预算单上的金额并已认真阅读和同意以下条款之后在支付</span>
+					</label>
+					<span id="nocheck" class="err_check">请仔细阅读合同条款并勾选确认</span>
+				</div>
+				<div class="paybtn">
+					<input id="JSelfPurchase" class="selfPurchase" type="button" value="自行购买">
+					<form action="" method="post" id="meterialFrom" target="_blank" style="display: inline-block;">
+						<input id="Jpayment" class="payment" data-submit="material" type="button" value="支付">
+					</form>
+				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="../../lib/jquery/jquery-2.1.1.min.js" ></script>
-		<script type="text/javascript" src="../../js/j_reservation/material.js" ></script>
-	</body>
-</html>
+		<div class="orderInfo">
+				<dl>
+					<dt>劳动报酬包含</dt>
+					<dd>
+						<div class="info_box">
+							<p> 1.工长管理费 </p>
+							<p> 2.杂工劳动报酬 </p>
+							<p> 3.水电工劳动报酬 </p>
+							<p> 4.瓦工劳动报酬 </p>
+							<p> 5.木工劳动报酬</p>
+							<p> 6.油漆工劳动报酬</p>
+							<p> 以上费用均由您与店铺工长签约的《房屋装修施工合同》中约定的工程预算量进行预支付，最终实际结算由您与店铺工长共同测量实际工程量进行结算。由于杂工的角色不稳定，工长可以承担杂工的职责。</p>
+						</div>
+					</dd>
+					<dd></dd>
+				</dl>
+				<dl>
+					<dt>材料购买声明</dt>
+					<dd>
+						<div class="info_box">
+							<p>工长为您开具的辅材清单，您可按照清单在线下自行购买，也可以在嘿吼网订单中集成的合作供应商处以家装公司的采购价一键购买或选择性购买，只为您自装提供便利。一经发现供应商有配送假冒伪劣产品或供违规行为的，嘿吼网会对供应商进行严厉制裁（包含罚款、曝光、终止合作）。</p>
+							<p>如果您通过嘿吼网购买辅材，辅材费用包含辅材本身的成本、运送成本以及搬运上楼的成本。配送成本计算方式为单次配送满500元且配送里程不超过25公里不收取任何运送费用。</p>
+							<p>搬运成本若为人工搬运上楼分为以下几种情况：</p>
+							<p>（1）多层无电梯：</p>
+							<p>由人力搬运常规板材（规格1.22米*2.44米）为1.5元1件1层。黄沙、水泥、瓷砖粘合剂、腻子粉等袋装类材料为1.6元1件1层。长条形龙骨按照1元1捆1层进行计算。</p>
+							<p>（2）有电梯：</p>
+							<p>由于板材规格较大，如果不能放入电梯进行运送上楼，只可按照上一条方式进行计算。如果电梯可以容纳，上楼费即默认为按照人工搬运1层的费用进行计算。</p>
+							<p>目前嘿吼网苏州地区合作辅材供应商为：</p>
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt>辅材补货声明</dt>
+					<dd>
+						<div class="info_box">
+							<p> 由于每个工种施工方法不同造成材料损耗用量不一，正常情况下每一工种有一次补货的机会。由工种再次开具材料单进行补货。您可自行选择线上或线下购买。补货所产生的配送运费和搬运费参照材料购买声明中第1、2款。 </p>
+						</div>
+					</dd>
+				</dl>
+				<dl id="InsuranceDeclaration">
+					<dt>辅材退货声明</dt>
+					<dd>
+						<div class="info_box">
+							<p>装修由于是人工作业，工程结束后的多余材料无法全部进行回收，回收遵循以下原则：</p>
+							<p>1.未拆过包装的产品</p>
+							<p>2.没有使用或损坏的完整材料</p>
+							<p>3.黄沙、水泥、砖由于转移成本较高，无法进行回收。</p>
+							<p>符合以上条件的材料都可以进行退货，退货货款 = 实际退货材料总价—搬运成本—运送成本</p>
+							<p>退货货款支付方式为运送方现金支付。</p>
+						</div>
+					</dd>
+				</dl>
+
+			</div>
+	</div>
+</div>

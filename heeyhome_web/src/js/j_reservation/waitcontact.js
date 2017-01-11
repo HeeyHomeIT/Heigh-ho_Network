@@ -104,7 +104,7 @@
 			var vrStr3 = '';
 			var vrStr4 = '';
 			// 测试数据 start
-//			value.order_status_id = "4";
+			value.order_status_id = "4";
 //			value.reservation_time = "2016-12-28 18:40:32";
 			value.order_confirmation_time = "2016-12-27 20:40:32";
 //			console.log("`````````````11111`````");

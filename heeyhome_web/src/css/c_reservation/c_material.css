@@ -238,7 +238,7 @@ body {
     color: #f74342;
 }
 
-.materialList_wrap .materialList_cont .settlement input {
+.materialList_wrap .materialList_cont .settlement .paybtn input {
     padding: 0;
     display: inline-block;
     width: 160px;
@@ -250,15 +250,142 @@ body {
     letter-spacing: 2px;
 }
 
-.materialList_wrap .materialList_cont .settlement input.selfPurchase {
+.materialList_wrap .materialList_cont .settlement .paybtn input.selfPurchase {
     border: 1px solid #cd461e;
     color: #e6501e;
     background-color: #fff;
     margin-right: 20px;
 }
 
-.materialList_wrap .materialList_cont .settlement input.payment {
+.materialList_wrap .materialList_cont .settlement .paybtn input.payment {
     border: 1px solid #cd461e;
     color: #fff;
     background-color: #e6501e;
+}
+
+.materialList_wrap .materialList_cont .settlement .paybtn input.alreadyPaid {
+    background: #999;
+    border: 1px solid #999;
+    color: #ddd;
+    cursor: auto;
+}
+
+.cursor {
+	cursor: auto !important;
+}
+
+.materialList_wrap .materialList_cont .settlement .paybtn input.ap {
+    border: 1px solid #999;
+    color: #999;
+    cursor: auto;
+}
+
+.materialList_wrap .materialList_cont .orderInfo {
+    border: 1px solid #ddd;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 15px 10px 0 15px;
+    height: 363px;
+    font-size: 12px
+}
+
+.materialList_wrap .materialList_cont .orderInfo dl {
+    padding-bottom: 10px
+}
+
+.materialList_wrap .materialList_cont .orderInfo dl dt {
+    font-size: 14px;
+    font-weight: 700;
+    padding-bottom: 7px
+}
+
+.materialList_wrap .materialList_cont .orderInfo dl dd {
+    color: #666;
+    padding-bottom: 7px
+}
+
+.materialList_wrap .materialList_cont .orderInfo dl dd .contract_info {
+    width: 807px;
+    padding: 10px
+}
+
+.materialList_wrap .materialList_cont .orderInfo dl dd .contract_info .contract_txt {
+    color: #666
+}
+
+.materialList_wrap .materialList_cont .orderInfo dl dd .contract_info .contract_txt_title {
+    font: 700 20px/32px simsun;
+    text-align: center
+}
+
+.materialList_wrap .materialList_cont .orderInfo dl dd .contract_info .contract_txt_red {
+    color: red
+}
+
+.materialList_wrap .materialList_cont .orderInfo dl dd .contract_info .contract_txt_bold {
+    font-weight: 700
+}
+
+.explain{
+	position: relative;
+    float: left;
+}
+
+.explain .lookit_default {
+	    margin-bottom: 0;
+    position: relative;
+    cursor: pointer;
+    display: block;
+    float: left;
+    text-align: right;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.explain .lookit_default input {
+	margin: 0;
+	padding: 0;
+}
+
+.explain .lookit_default em {
+	background: url(../img/tc-search.png) no-repeat;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-position: -121px 0;
+    background-color: #fff;
+    position: absolute;
+    top: 3.5px;
+}
+
+.explain .lookit_default em.defalut_ico  {
+	background-position: -121px -35px;
+}
+
+.explain .lookit_default span  {
+    vertical-align: middle;
+    padding-left: 24px;
+    line-height: 22px;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.explain .err_check  {
+    line-height: 20px;
+    font-size: 12px;
+    background: url(../img/verify_img.png) 2px -40px no-repeat #fff4d9;
+    position: relative;
+    padding: 0 10px 0 20px;
+    border: 1px solid #FFD5A1;
+    color: #333;
+    white-space: nowrap;
+    margin-left: 20px;
+    display: inline-block;
+    float: left;
+       margin-top: 10px;
+}
+
+.explain .yes_check  {
+    background: url(../img/verify_img.png) 2px 0px no-repeat;
+    border: 1px solid #8ab923;
 }

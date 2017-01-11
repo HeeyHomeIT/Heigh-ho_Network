@@ -584,6 +584,21 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                         }]
                     }
                 })
+                .state("materiallist", { // 水电材料支付单
+                    url: "/materiallist",
+                    views: {
+                        'reservation_content': {
+                            templateUrl: 'view/v_reservation/v_material.html',
+                            controller: "materiallistCtrl",
+                            controllerAs: "materiallist"
+                        }
+                    },
+                    resolve: {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['js/j_reservation/material.js']);
+                        }]
+                    }
+                })
                 .state("calresult", { // 计算结果
                     url: "/calresult",
                     views: {

@@ -1365,15 +1365,37 @@
             vrStr += '<div class="now_stage"><p>' + value.order_step_ch + '</p></div>';
             vrStr += '<div class="money"><p>' + value.actual_finish_amount + '</p></div>';
             vrStr += '<div class="trade_stage"><p>' + value.order_status_ch + '</p></div>';
-            vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';
-            if (value.order_status == 6) {
+            // 未开工之前跳转到预约单页面
+            if(value.order_step == 18 &&(value.order_status == 1 ||value.order_status == 2||value.order_status == 3||value.order_status == 4)){
+            	console.log(value)
+            	var oInfoObj = {};
+				oInfoObj.shop_id = value.shop_id;
+				oInfoObj.user_id = value.user_id;
+				oInfoObj.order_id = value.order_id;
+				$.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
+            	vrStr += '<div class="all" data-shopid="'+value.shop_id+'" data-orderid="'+value.order_id+'"><a href="reservation.html#/waitcontact?type=1" target="_blank" class="top">查看详情</a>';
+            }else{
+            	vrStr += '<div class="all" data-shopid="'+value.shop_id+'" data-orderid="'+value.order_id+'"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';	
+            }
+            if(value.order_status == 6) {
                 vrStr += '<a href="javascript:;" class="bottom">确认验货</a>';
             }
-            if (value.order_status == 4) {
-                vrStr += '<a href="success_pay.html#/success_pay/pay_end" class="bottom">支付</a>';
-            }
-            if (value.order_status == 5 && (value.order_step == 3 || value.order_step == 5 || value.order_step == 7 || value.order_step == 9 || value.order_step == 11 || value.order_step == 13 || value.order_step == 15 || value.order_step == 17)) {
-                vrStr += '<a href="success_pay.html#/success_pay/pay_end" class="bottom">支付</a>';
+//          if(value.order_status == 4) {
+//              vrStr += '<a href="success_pay.html#/success_pay/pay_end" class="bottom">支付</a>';
+//          }
+//          if(value.order_status == 5 && (value.order_step == 3 || value.order_step == 5 || value.order_step == 7 || value.order_step == 9 || value.order_step == 11 || value.order_step == 13 || value.order_step == 15 || value.order_step == 17)) {
+//              vrStr += '<a href="success_pay.html#/success_pay/pay_end" class="bottom">支付</a>';
+//          }
+			// 订单进行中
+            if(value.order_status == 5){
+            	// 辅材类
+            	if(value.order_step == 3 || value.order_step == 7 || value.order_step == 11 || value.order_step == 15){
+            		vrStr += '<a href="reservation.html#/materiallist?pos='+value.order_id+'" class="bottom">辅材支付</a>';
+            	}
+            	// 人工费
+            	if(value.order_step == 5 || value.order_step == 9 || value.order_step == 13 || value.order_step == 17){
+            		vrStr += '<a href="reservation.html#/advancelist?pos='+value.order_id+'" class="bottom">人工支付</a>';
+            	}
             }
             vrStr += '</div></div>';
             vrStr += '</div></div>';
