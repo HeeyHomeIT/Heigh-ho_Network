@@ -37,7 +37,8 @@ callback          callback
 callback(
 code         000
 data         {
-                    flag    flag     //唯一标识符
+                    flag       flag     //唯一标识符
+                    user_id    user_id
              }
 msg          成功
 )
