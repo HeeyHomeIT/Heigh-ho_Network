@@ -6,7 +6,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     url: "/",
                     views: {
                         'content': {
-                            templateUrl: 'view/v_index/index_wrap.html'
+                            templateUrl: 'view/v_index/index_wrap.html',
                         }
                     }
 

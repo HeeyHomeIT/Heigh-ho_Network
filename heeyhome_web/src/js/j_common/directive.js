@@ -1,4 +1,4 @@
-define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive'], function(app, bootstrap) {
+define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j_index/indexCal'], function(app, bootstrap) {
 	/**
 	 * 头部
 	 */
@@ -41,7 +41,10 @@ define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive'], func
 
 	app.directive('vCalculator', function() {
 		return {
-			templateUrl: "view/v_index/v_calculator.html"
+			templateUrl: "view/v_cal/v_cal.html",
+			link: function(scope, iElement, iAttrs) {
+				app.indexCalWrapHandler();
+			}
 		};
 	});
 
