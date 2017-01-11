@@ -254,6 +254,7 @@ var heeyhomeCal = {
 			_element.removeClass("col_eec988").children("div").removeClass("col_eec988").removeClass("border_eec988").removeClass("after_eec988 ").css("cursor","not-allowed");
 		}else if(_type == 2 || _type == 3 || _type == 6){
 			_element.addClass("col_eec988").find("dl").addClass("col_eec988").addClass("after_eec988 ");
+			_element.find("em").addClass("clickit");
 			if(_type == 2){
 				$(".mainarea_list").css("cursor","pointer");
 			}else if(_type == 3){
@@ -264,6 +265,7 @@ var heeyhomeCal = {
 
 		}else if(_type == 4 || _type == 5 || _type == 7){
 			_element.removeClass("col_eec988").find("dl").removeClass("col_eec988").removeClass("after_eec988 ");
+			_element.find("em").removeClass("clickit");
 			if(_type == 4){
 				$(".mainarea_list").css("cursor","not-allowed");
 			}else if(_type == 5){

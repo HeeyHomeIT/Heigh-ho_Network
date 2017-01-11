@@ -26,6 +26,10 @@ body #calcontainer {
     position: relative
 }
 
+#calcontent .calcon {
+    position: relative;
+}
+
 #calcontent .cal_icon {
     position: absolute;
     margin-top: 20px;
@@ -70,7 +74,7 @@ body #calcontainer {
 
 
 #calcontent .cal1>div.areadiv>em {
-    margin-top: -32px;
+    margin-top: -26px;
     margin-right: 7px;
     width: 21px;
     height: 21px;
@@ -92,6 +96,9 @@ body #calcontainer {
 }
 
 #calcontent .cal1>div.areadiv>label.error {
+    max-width: inherit;
+    font-weight: 100;
+    margin-bottom: 0;
     top: 2px;
     right: -500px;
 }
@@ -239,11 +246,60 @@ body #calcontainer {
     width: 90px;
     height: 85px;
     text-indent: -999px;
-    background: url(../img/icon_cal.png) no-repeat
+    background: url(../img/sprite-cal.png) no-repeat
 }
 
-#calcontent .cal3>div.mainareadiv .mainarea_list li>a.item0>em,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a.item0>em {
-	background-position: -65px -3px
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a.item0>em {
+    background-position: -168px -205px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a.item0>em.clickit {
+    background-position: -168px -283px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a.item1>em {
+    background-position: -346px -115px;
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a.item2>em {
+    background-position: -347px -283px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a.item3>em {
+   background-position: -74px -287px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a.item4>em {
+    
+    background-position: -259px -115px
+}
+
+#calcontent .cal3>div.mainareadiv .mainarea_list li>a.item5>em {
+    background-position: -435px -110px
+}
+
+#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a.otheritem0>em {
+	background-position: 6px -209px
+}
+
+#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a.otheritem0>em.clickit {
+	background-position: 7px -290px
+}
+
+#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a.otheritem1>em {
+	background-position: -432px -205px
+}
+
+#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a.otheritem1>em.clickit {
+	background-position: -432px -282px
+}
+
+#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a.otheritem2>em {
+	background-position: -257px -209px
+}
+
+#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a.otheritem2>em.clickit {
+	background-position: -257px -287px
 }
 
 #calcontent .cal3>div.mainareadiv .mainarea_list li>a>dl,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>a>dl,#calcontent .cal5>div.othersdiv .other_list li>a>dl {
@@ -428,11 +484,31 @@ body #calcontainer {
     width: 90px;
     height: 85px;
     text-indent: -999px;
-    background: url(../img/icon_cal.png) no-repeat
+    background: url(../img/sprite-cal.png) no-repeat
 }
 
 #calcontent .cal5>div.othersdiv .other_list li>a.item0>em {
-	background-position: -65px -3px
+	background-position: 10px -10px
+}
+
+#calcontent .cal5>div.othersdiv .other_list li>a.item0>em.clickit {
+	background-position: 9px -111px
+}
+
+#calcontent .cal5>div.othersdiv .other_list li>a.item1>em {
+	background-position: -168px -9px
+}
+
+#calcontent .cal5>div.othersdiv .other_list li>a.item1>em.clickit {
+	background-position: -168px -113px
+}
+
+#calcontent .cal5>div.othersdiv .other_list li>a.item2>em {
+	background-position: -75px -13px
+}
+
+#calcontent .cal5>div.othersdiv .other_list li>a.item2>em.clickit {
+	background-position: -72px -114px
 }
 
 #calcontent .cal5>div.othersdiv .filter_nav .filter_item>div {
@@ -440,7 +516,7 @@ body #calcontainer {
 }
 
 #calcontent .cal6 {
-	padding: 48px 45px 10px 45px
+	padding: 48px 45px 120px 45px
 }
 
 #calcontent .cal6>input.nowcal {
