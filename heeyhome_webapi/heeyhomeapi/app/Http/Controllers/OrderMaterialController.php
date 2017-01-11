@@ -220,7 +220,7 @@ class OrderMaterialController extends Controller
         $material_id = rq('material_id');
         $callback = rq('callback');
         $upd_material_type = DB::update('UPDATE hh_order_material SET order_material_status = ? WHERE material_id = ? AND pay_status = ?',
-            [2, $material_id, 1]);
+            [2, $material_id, 3]);
         if ($upd_material_type) {
             $arr = array(
                 "code" => "000",

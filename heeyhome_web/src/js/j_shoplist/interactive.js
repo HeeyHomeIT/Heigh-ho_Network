@@ -222,12 +222,12 @@
             vrStr += '			<p>店铺年限：<span>' + value.opentime + '</span>年</p>';
             vrStr += '		</div>';
             vrStr += '		<div class="shop_icon clearfix">';
-            vrStr += '			<div class="icon_pnumber">';
-            vrStr += '				<img src="css/img/icon-pnumber-1.png">';
+            vrStr += '			<div>';
+            vrStr += '				<em class="sprite icon_pnumber"></em>';
             vrStr += '				<span>' + value.shop_scan + '</span>';
             vrStr += '			</div>';
-            vrStr += '			<div class="icon_turnover">';
-            vrStr += '				<img src="css/img/icon-turnover-1.png">';
+            vrStr += '			<div>';
+            vrStr += '				<em class="sprite icon_turnover"></em>';
             vrStr += '				<span>' + value.shop_volume + '</span>';
             vrStr += '			</div>';
             vrStr += '		</div>';

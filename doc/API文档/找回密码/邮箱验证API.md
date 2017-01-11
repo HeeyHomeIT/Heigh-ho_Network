@@ -19,7 +19,6 @@
 ###### Json数据格式
 ```
 data
-user_id           user_id
 email             email       //邮箱
 captcha           captcha     //验证码
 
@@ -34,7 +33,7 @@ callback          callback
 callback(
 code         000
 data         {
-                    flag    flag     //唯一标识符
+                    flag       flag      //唯一标识符
              }
 msg          成功
 )
