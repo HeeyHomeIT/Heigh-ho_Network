@@ -283,7 +283,7 @@
 				vrStr += '<div class="pic_hover"><img src="css/img/icon-tovr.png"></div></div></a></div>';
 				vrStr += '<div class="pic_introduce">';
 				vrStr += '<div class="pic_style clearfix"><h2>' + value.panorama_style + '</h2></div>';
-				vrStr += '<div class="pic_badge"><img src="css/img/icon-badge.png" title="点击收藏"></div>';
+				vrStr += '<div class="sprite pic_badge" title="点击收藏"></div>';
 				vrStr += '<div class="pic_detail"><p>建筑面积：<em>' + value.panorama_area + '</em>㎡</p><p>' + value.panorama_housetype + '</p></div>';
 				vrStr += '<div class="pic_icon"><div class="pic_view">';
 				vrStr += '<img src="css/img/icon-view.png" title="浏览数"><span>' + value.scan_num + '</span></div>';
