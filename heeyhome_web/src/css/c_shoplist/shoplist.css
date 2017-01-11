@@ -174,10 +174,25 @@
     margin-right: 43px
 }
 
+#foreman_shop .shop_content .shop_box .shop_icon div em {
+ 	display: inline-block;
+    width: 29px;
+    height: 29px;
+    vertical-align: middle;
+}
+
+#foreman_shop .shop_content .shop_box .shop_icon div em.icon_pnumber {
+    background-position: -73px -158px
+}
+
+#foreman_shop .shop_content .shop_box .shop_icon div em.icon_turnover {
+    background-position: -19px -158px
+}
+
 #foreman_shop .shop_content .shop_box .shop_icon span {
     position: absolute;
     top: 5px;
-    left: 35px
+    left: 40px
 }
 
 #foreman_shop .shop_content .shop_box .shop_assess {

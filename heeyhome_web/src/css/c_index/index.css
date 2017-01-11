@@ -365,7 +365,7 @@
 	position: absolute;
 	left: 60px;
 	top: 5px;
-	background: url(../img/line-left.png) no-repeat
+	background-position: 87px -13px
 }
 
 .appointment_decoration .title .line_right {
@@ -374,7 +374,7 @@
 	position: absolute;
 	right: 60px;
 	top: 5px;
-	background: url(../img/line-right.png) no-repeat
+	background-position: -19px -40px
 }
 
 .appointment_decoration .title .title_text h2 {
