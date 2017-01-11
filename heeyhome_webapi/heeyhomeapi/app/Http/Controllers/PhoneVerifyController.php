@@ -37,8 +37,7 @@ class PhoneVerifyController extends Controller
                 if ($insert) {
                     $arr = array("code" => "000",
                         "msg" => "验证成功",
-                        "data" => array("flag" => $flag,
-                        "user_id"=>$match[0]->user_id)
+                        "data" => array("flag" => $flag)
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }else{

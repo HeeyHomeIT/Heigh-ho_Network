@@ -25,7 +25,6 @@
 ###### Json数据格式
 ```
 data
-user_id             user_id
 new_password        new_password
 flag                flag
 
