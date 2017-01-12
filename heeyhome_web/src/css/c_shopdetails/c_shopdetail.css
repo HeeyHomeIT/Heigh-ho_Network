@@ -154,10 +154,13 @@
 	padding: 10px 0
 }
 
-#selfshop_top .shop_information .shop_introduce p img {
+#selfshop_top .shop_information .shop_introduce p em.icon-position {
 	margin-right: 5px;
-	width: 12px;
-	height: 17px
+    display: inline-block;
+    width: 29px;
+    height: 25px;
+    vertical-align: middle;
+    background-position: -17px -258px
 }
 
 #selfshop_top .shop_information .shop_introduce p {
@@ -299,7 +302,7 @@
 }
 
 #selfshop_top .shop_information .shop_like .collect_shop span {
-	background: url(../img/icon-collect.png) no-repeat;
+	background-position: -23px -306px;
 	display: inline-block;
 	width: 16px;
 	height: 16px;
@@ -332,7 +335,7 @@
 }
 
 #selfshop_top .shop_information .shop_like .share_shop span {
-	background: url(../img/icon-share.png) no-repeat;
+	background-position: -56px -306px;
 	display: inline-block;
 	width: 18px;
 	height: 18px;
@@ -496,7 +499,7 @@
 	position: absolute;
 	width: 1px;
 	height: 261px;
-	background: url(../img/border-line.png);
+	background-position: -505px -0px;
 	top: 10px;
 	right: 0
 }
@@ -567,10 +570,15 @@
 	margin: 0
 }
 
-#manager_information .work_experience .icon_experience img {
-	position: absolute;
-	left: 31px;
-	top: 16px
+#manager_information .work_experience .icon_experience em {
+    position: absolute;
+    left: 31px;
+    top: 15px;
+    display: inline-block;
+    width: 25px;
+    height: 29px;
+    vertical-align: middle;
+    background-position: -109px -362px;
 }
 
 #manager_information .work_experience .icon_experience span {
@@ -582,10 +590,15 @@
 	font-size: 14px
 }
 
-#manager_information .decoration_history .icon_decoration img {
+#manager_information .decoration_history .icon_decoration em {
 	position: absolute;
-	left: 28px;
-	top: 13px
+    left: 28px;
+    top: 13px;
+    display: inline-block;
+    width: 32px;
+    height: 34px;
+    vertical-align: middle;
+    background-position: -101px -294px;
 }
 
 #manager_information .decoration_history .icon_decoration span {
@@ -667,7 +680,7 @@
 	height: 20px;
 	margin: 2px 6px 0 0;
 	vertical-align: middle;
-	background: url(../img/icon_plice.png) no-repeat;
+	background-position: -17px -345px;
 	float: left;
 	position: relative;
 }
@@ -1011,7 +1024,22 @@
 }
 
 #teamcontainer .teamtitle i.icon_sdg {
-	background: url(../img/icon-sdg.png) no-repeat
+	background-position: -338px -64px
+}
+
+#teamcontainer .teamtitle i.icon_wg {
+	background-position: -338px -114px;
+    width: 34px;
+}
+
+#teamcontainer .teamtitle i.icon_mg {
+    background-position: -338px -170px;
+    width: 40px;
+}
+
+#teamcontainer .teamtitle i.icon_yqg {
+    background-position: -337px -9px;
+    width: 30px;
 }
 
 #teamcontainer .teamtitle>h5 {
@@ -1030,13 +1058,13 @@
 }
 
 #teamcontainer .teamtitle i.icon_splitL {
-	margin-right: 7px;
-	background: url(../img/icon-splitL.png) no-repeat
+	margin-right: 9px;
+	background-position: -8px -437px
 }
 
 #teamcontainer .teamtitle i.icon_splitR {
 	margin-left: 10px;
-	background: url(../img/icon-splitR.png) no-repeat
+	background-position: -8px -408px
 }
 
 #teamcontainer .team_con {
@@ -1080,12 +1108,12 @@
 
 .click_prev>a {
 	left: 0;
-	background: url(../img/icon-arrowsL.png) center no-repeat
+	background-position: -305px -605px
 }
 
 .click_next>a {
 	right: 0;
-	background: url(../img/icon-arrowsR.png) center no-repeat
+	background-position: -49px -605px
 }
 
 .click_prev>a:hover {
@@ -1267,12 +1295,12 @@
 
 .sliderworker_item p.masklayer:after {
 	content: "";
-	background: url(../img/icon-add.png) no-repeat;
-	width: 50px;
-	height: 50px;
-	display: block;
-	background-size: contain;
-	margin: auto
+    background: url(../img/sprite-icon.png) no-repeat;
+    background-position: -14px -460px;
+    width: 70px;
+    height: 70px;
+    display: block;
+    margin: auto;
 }
 
 #shop_price {
@@ -1310,6 +1338,7 @@
 }
 
 #shop_price .con_price li .sdg_price_warp .sdg_sprice_title {
+	position: relative;
     padding: 10px 15px;
     line-height: 23px;
     background: #666;
@@ -1320,28 +1349,10 @@
     color: #fff;
 }
 
-#shop_price .con_price li .sdg_price_warp .sdg_sprice_title>em {
-        width: 24px;
-    height: 26px;
-    display: inline-block;
-    margin: auto;
-}
-
-#shop_price .con_price li .sdg_price_warp .sdg_sprice_title>em.sdg_icon {
-    background: url(../img/icon-sdg.png) no-repeat;
-    background-size: contain;
-}
-
-#shop_price .con_price li .sdg_price_warp .sdg_sprice_title>em.wg_icon {
-    background: url(../img/icon-sdg.png) no-repeat;
-    background-size: contain;
-}
-
 #shop_price .con_price li .sdg_price_warp .sdg_sprice_title>span {
         display: inline-block;
     position: relative;
-    vertical-align: super;
-    margin-left: 5px;
+    font-weight: 700;
 }
 
 #shop_price .con_price li .sdg_price_warp .sdg_price_con {
@@ -1349,8 +1360,8 @@
 }
 
 #shop_price .con_price li .sdg_price_warp .sdg_price_con .project_title {
-   	height: 57px;
-    line-height: 57px;
+   	height: 46px;
+    line-height: 46px;
     background-color: #f2f2f2;
 }
 
@@ -1413,8 +1424,8 @@
 }
 
 #shop_price .con_price li .sdg_price_warp .sdg_price_con .pickup i,#shop_price .con_price li .sdg_price_warp .sdg_price_con .pickdowm i{
-	background: url(../img/detail_spirit_ty.png) no-repeat;
-    background-position: -250px -50px;
+	background: url(../img/sprite-icon.png) no-repeat;
+    background-position: -574px -15px;
     width: 9px;
     height: 6px;
     display: inline-block;
@@ -1423,7 +1434,7 @@
 }
 
 #shop_price .con_price li .sdg_price_warp .sdg_price_con .pickdowm i {
-    background-position: -200px -50px;
+    background-position: -574px -37px;
 }
 
 .orderMust .autoheight {
@@ -1493,8 +1504,7 @@
 	position: absolute;
 	width: 1px;
 	height: 35px;
-	background: url(../img/icon-hline.png);
-	background-size: contain
+	background-position: -507px -0px
 }
 
 #mui-mbar .mui-mbar-tabs .line-right {
@@ -1509,11 +1519,11 @@
 }
 
 #mui-mbar .mui-mbar-tabs .mwwork em {
-	background-image: url(../img/icon-gwc.png);
 	position: absolute;
 	margin-left: 35px;
 	width: 35px;
-	height: 35px
+	height: 35px;
+	background-position: -3px -365px
 }
 
 #mui-mbar .mui-mbar-tabs .mwwork .h-text {
@@ -1574,12 +1584,12 @@
 }
 
 #mui-mbar .mui-mbar-tabs .gotop em {
-	background-image: url(../img/icon-gotop.png);
 	position: absolute;
 	left: -5px;
 	top: 0;
 	width: 35px;
-	height: 35px
+	height: 35px;
+	background-position: -56px -356px
 }
 
 .mui-mbar-tab:hover {
@@ -1700,7 +1710,7 @@
 	width: 40px;
 	border-radius: 50%;
 	opacity: .5;
-	background: url(../img/icon_close.png) no-repeat 50% 50%;
+	background-position: -518px -14px;
 	-webkit-transition: -webkit-transform .5s ease-out;
 	-moz-transition: -moz-transform .5s ease-out;
 	-o-transition: -o-transform .5s ease-out;

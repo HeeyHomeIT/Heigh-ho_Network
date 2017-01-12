@@ -504,7 +504,7 @@
          */
         spliceWdataEvent: function (ucateid, uid, uinfo) {
             var str = '<div class="Jworker" data-nid="' + uid + '" data-ntype="' + ucateid + '"><div class="needpic"><img src="http://hyu2387760001.my3w.com/' + uinfo.img + '"></div><div class="needname">';
-            str += '<span>' + uinfo.name + '</span><span>' + uinfo.city + '</span></div><div class="needmoney">' + uinfo.cp + '元/平方米</div><a class="needclose"></a></div>'
+            str += '<span>' + uinfo.name + '</span><span>' + uinfo.city + '</span></div><div class="needmoney">' + uinfo.cp + '元/平方米</div><a class="sprite needclose"></a></div>'
             return str;
         },
         /**
@@ -611,7 +611,7 @@
                 vrStr += '<img src="http://hyu2387760001.my3w.com/' + v + '">';
             });
             vrStr += '</div><div class="signature"><h3>' + value.shop_describe + '</h3></div>';
-            vrStr += '<div class="shop_introduce"><p><img src="css/img/icon-location.png">' + value.shop_address + '</p><p class="service_area">服务范围:&nbsp;';
+            vrStr += '<div class="shop_introduce"><p><em class="sprite icon-position"></em>' + value.shop_address + '</p><p class="service_area">服务范围:&nbsp;';
             $.each(value.servicearea, function (i, v) {
                 vrStr += '<span>' + v + '</span>';
             });
@@ -662,7 +662,7 @@
             var shopId = getUrlParamHandler.getUrlParam('pos');
             $.each(value, function (i, v) {
                 if (v.technics_img.length != 0) {
-                    vrStr += '<div class="process_box"><a rel="nofollow" href="album.html?ams=' + shopId + '&voe=' + v.technics_id + '" target="_blank" ><img src="http://hyu2387760001.my3w.com/' + v.technics_img[0].technics_img + '"><div class="btntc"><i></i><p title=' + v.technics_text + '><em>' + v.technics_text + '</em></p></div></a></div>';
+                    vrStr += '<div class="process_box"><a rel="nofollow" href="album.html?ams=' + shopId + '&voe=' + v.technics_id + '" target="_blank" ><img src="http://hyu2387760001.my3w.com/' + v.technics_img[0].technics_img + '"><div class="btntc"><i class="sprite"></i><p title=' + v.technics_text + '><em>' + v.technics_text + '</em></p></div></a></div>';
                 }
 
             });
