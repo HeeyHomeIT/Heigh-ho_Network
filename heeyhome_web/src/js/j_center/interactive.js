@@ -29,6 +29,9 @@
     var ORDERURL = BASEURL + 'order/shop/list'; // 我的订单
     var USERORDERURL = BASEURL + 'order/client/list';//用户订单
     var ORDERDETAILURL = BASEURL + 'order/detail';//用户订单详情
+    var SHOPIMGURL = BASEURL + 'personal/myshop/imgs';//店铺图片
+    var SELSTATUSURL = BASEURL + 'order/client/selstatus';//查询订单状态及步骤
+    var CALRESULTURL = BASEURL + 'costcalculator/result/get'; // 获取收藏的成本计算器结果接口
 
     var email;//获取用户邮箱
     var pic_total;//获取我的收藏全景图总数据
@@ -125,6 +128,7 @@
             HHIT_CENTERAPP.controller('homeCtrl', ['$scope', '$http', function ($scope, $http) {
                 getHomeInfoHandler.getInfoEvent();//获取用户信息
                 getHomeInfoHandler.getImgEvent();//获取用户头像
+                getHomeInfoHandler.getOrderEvent();//获取用户我的订单信息
                 getHomeInfoHandler.getCollectEvent();//获取用户我的收藏信息
                 getHomeInfoHandler.getSafeEvent();//获取用户的安全等级
             }]);
@@ -177,7 +181,7 @@
                                     $(".owner_picture img").attr("src", "http://hyu2387760001.my3w.com/" + v.user_portrait);
                                     $(".owner_summary h3").html(v.user_realname);
                                     $(".owner_summary p span").html(v.user_phone);
-                                    $(".owner_left .area h3 span").html(v.area);
+                                    $(".owner_left .area p span").html(v.area);
                                     $(".owner_left .order p").html(order_id);
                                     $(".owner_middle .type p").html(v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台");
                                     $(".owner_middle .time p").html(v.order_time);
@@ -421,7 +425,141 @@
                 }
             });
         },
-
+		/* 获取用户我的订单信息 */
+		getOrderEvent: function () {
+			$.ajax({
+				type: "get",
+				url: USERORDERURL,
+				async: true,
+				dataType: "jsonp",
+				data: {
+					user_id: USERID
+				},
+				success: function(data) {
+					if(data && data.code == '000') {
+						var _new = data.data.order_count - 1;
+						var orderid = data.data.order_list[_new].order_id;
+						var shopid = data.data.order_list[_new].shop_id;
+						/* 获取店铺图片 */
+						$.ajax({
+							type: "get",
+							url: SHOPIMGURL,
+							async: true,
+							dataType: "jsonp",
+							data: {
+								shop_id: shopid
+							},
+							success: function(data) {
+								if (data && data.code == '000') {
+									var src = BASEURL + data.data[0].shop_img;
+									$(".order_content_title .order_title_left img").attr("src",src);
+								} else {
+									layer.alert(data.msg);
+								}
+							},
+							error: function(data) {}
+						});
+						var ststus = data.data.order_list[_new].order_status;
+						var step = data.data.order_list[_new].order_step;
+						$(".order_cnt_right").on("click", function () {
+                            sessionStorage.setItem("shopid", data.data.order_list[_new].shop_id);
+                            sessionStorage.setItem("orderid", data.data.order_list[_new].order_id);
+                        });
+						 // 未开工之前跳转到预约单页面
+			            if (step == 18 && (status == 1 || status == 2 || status == 3 || status == 4)) {	
+//			                var oInfoObj = {};
+//			                oInfoObj.shop_id = value.shop_id;
+//			                oInfoObj.user_id = value.user_id;
+//			                oInfoObj.order_id = value.order_id;
+//			                $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
+							$(".order_cnt_right .detail").attr("href","reservation.html#/waitcontact?type=1");
+			            } else {
+			            	$(".order_cnt_right .detail").attr("href","order_detail.html#/morder_wrap/morder_detail");
+			            }
+			            // 订单进行中
+			            if (status == 5) {
+			                // 辅材类
+			                if (step == 3 || step == 7 || step == 11 || step == 15) {
+			                	$(".order_cnt_right .operation").attr("href","reservation.html#/materiallist?pos="+data.data.order_list[_new].order_id);
+			                }
+			                // 人工费
+			                if (step == 5 || step == 9 || step == 13 || step == 17) {
+			                	$(".order_cnt_right .operation").attr("href","reservation.html#/advancelist?pos="+data.data.order_list[_new].order_id);
+			                }
+			            } else if(status == 6) {
+							$(".order_cnt_right .operation").html("确认收货");
+						} else if(status == 1) {
+							$(".order_cnt_right .operation").html("取消订单");
+						} else {
+							$(".order_cnt_right .operation").remove();
+							$(".order_cnt_right .detail").addClass("one");
+						}						
+						$(".order_content_title .order_title_left span").html(data.data.order_list[_new].shop_name);//获取店铺名称 
+						$(".order_content_title .order_title_right span").html(data.data.order_list[_new].order_time);//获取订单创建时间
+						$(".order_cnt_left .status .order_span_right").html(data.data.order_list[_new].order_status_ch);//获取订单状态
+						$(".order_cnt_left .address .order_span_right").html(data.data.order_list[_new].order_address);//获取订单地址
+						$(".order_cnt_left .house .order_span_right .area").html(data.data.order_list[_new].area);//获取订单房屋信息-面积
+						var type = data.data.order_list[_new].room + "室" + data.data.order_list[_new].parlour + "厅" +data.data.order_list[_new].toilet + "卫" +data.data.order_list[_new].balcony + "阳台";
+						$(".order_cnt_left .house .order_span_right .type").html(type);//获取订单房屋信息-户型
+						/* 获取预约金额 */
+						var result_id =  data.data.order_list[_new].calculator_result_id;
+						$.ajax({
+							type: "get",
+							url: CALRESULTURL,
+							async: true,
+							dataType: "jsonp",
+							data: {
+								user_id: USERID
+							},
+							success: function(data) {
+								if(data && data.code == '000') {
+									$.each(data.data.calculator_data, function(i,v) {
+										if(v.calculator_results_id == result_id) {
+											$(".order_cnt_left .house .order_span_right .money").html(v.zj);
+										}
+									});
+								} else {
+									layer.alert(data.msg);
+								}
+							},
+							error: function(data) {}
+						});
+						//$(".order_cnt_left .house .order_span_right .money").html(data.data.order_list[_new].actual_finish_amount);//获取订单房屋信息-预约金额
+						/* 获取预约时间 */
+						var time = '(';
+						$.ajax({
+							type: "get",
+							url: SELSTATUSURL,
+							async: true,
+							dataType: "jsonp",
+							data: {
+								user_id: USERID,
+								order_id: orderid
+							},
+							success: function(data) {
+								if (data &&　data.code == '000') {
+									$.each(data.data.reservation_time_user,function(i,v) {
+										time += v + '   ';
+									});
+									time += ')';
+									if(status == 1) {
+										$(".order_cnt_left .time .order_span_right").html("待工长确认"+status);
+									} else {
+										$(".order_cnt_left .time .order_span_right").html(data.data.reservation_time);
+									}
+								} else {
+									layer.alert(data.msg)
+								}
+							},
+							error: function(data) {}
+						});
+					} else {
+						layer.alert(data.msg);
+					}
+				},
+				error: function(data) {}
+			});
+		},
         /* 获取用户我的收藏信息 */
         getCollectEvent: function () {
             /* 效果图 */
