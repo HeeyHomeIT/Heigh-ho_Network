@@ -11,14 +11,6 @@
 	margin: 0 auto
 }
 
-#selfshop_top .now_location {
-	height: 17px;
-	margin: 30px 0 16px 0;
-	color: #656565;
-	font-family: FZLTHJW;
-	font-size: 14px
-}
-
 #selfshop_top .picBtnTop {
 	border: 1px solid #ccc;
 	position: relative;
@@ -431,14 +423,6 @@
 #selfshop_top .selfshop_content {
 	width: 1190px;
 	margin: 0 auto
-}
-
-#selfshop_top .now_location {
-	height: 17px;
-	margin: 30px 0 16px 0;
-	color: #656565;
-	font-family: FZLTHJW;
-	font-size: 14px
 }
 
 #selfshop_top .pic_bigshop {

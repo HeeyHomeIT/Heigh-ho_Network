@@ -513,7 +513,7 @@ label.error.roomerror{
 #nowCity>div {
     font-size: 14px;
     color: #333;
-    display: block;
+    /*display: block;*/
     z-index: 1002;
     position: relative;
     padding: 0 60px
@@ -587,6 +587,24 @@ label.error.roomerror{
 
 #menuNav .current {
     color: #eecf88
+}
+
+.now_location {
+	width: 1190px;
+	height: 24px;
+	line-height: 24px;
+	color: #656565;
+	font-family: FZLTHJW;
+	font-size: 14px;
+	margin: 20px auto
+}
+
+.now_location em {
+	display: inline-block;
+        width: 19px;
+    height: 20px;
+    vertical-align: middle;
+    background: url(../img/icon-toindex.png) no-repeat;
 }
 
 #footer {

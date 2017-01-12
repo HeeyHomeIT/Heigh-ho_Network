@@ -232,6 +232,7 @@
                     shop_id: shopId
                 },
                 success: function (data) {
+                	$(".sname").html(data.data.shop_name);
                     $("#JgzId").val(data.data.shopper_id);
                     $(".Jmore").attr("href", "successcase.html#/successcase?pos=" + $("#JgzId").val() + "")
                     $(".hd ul").append(sc.spliceHdPictureEvent(data.data));

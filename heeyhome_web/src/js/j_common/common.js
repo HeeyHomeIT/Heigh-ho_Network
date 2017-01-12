@@ -11,9 +11,21 @@ define(['app', 'base64', 'cookie'], function (app) {
             },
             initEvent: function () {
                 var self = this;
+                self.initNavigationSelectEvent(); // 导航栏切换
                 self.searchBoxClickEvent(); // 搜索框点击事件
                 self.myHeeyHomeEvent(); // 我的嘿吼
                 self.getUserDataEvent(); // 得到登录信息
+            },
+            /**
+             * 导航栏切换
+             */
+            initNavigationSelectEvent:function(){
+            	 console.log($("#header").parents("div"))
+            	var $Jheader = $("#header").parents("div");
+            	var JdivId = $Jheader.attr("id");
+            	if(JdivId != "index_header"){
+            		$("#"+JdivId).find("#menuNav").remove();
+            	}
             },
             /**
              * 搜索框点击事件

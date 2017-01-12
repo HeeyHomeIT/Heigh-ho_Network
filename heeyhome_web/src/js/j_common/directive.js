@@ -6,10 +6,11 @@ define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j
 		return {
 			templateUrl: "view/v_common/_header.html",
 			link: function(scope, iElement, iAttrs) {
-				if(iElement.context.id == "center_header"){
-					$("#"+iElement.context.id).find("#menuNav").remove();
-					
-				}
+//				console.log(iElement.context.id)
+//				if(iElement.context.id == "center_header"){
+//					$("#"+iElement.context.id).find("#menuNav").remove();
+//					
+//				}
 				app.headerWrapHandler();
 			}
 		};
