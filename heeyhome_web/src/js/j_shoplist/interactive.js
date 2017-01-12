@@ -161,7 +161,7 @@
                                 $('.collect_shop').val('已收藏');
                             }
                         });
-                        pageHandler.pageContentEvent();
+                        shopListPageHandler.pageContentEvent();
                         orderModuleHandler.orderClickEvent();
                     } else {
                         $(".number").text(0);
@@ -249,10 +249,10 @@
     /**
      * 分页
      */
-    pageHandler = {
+    shopListPageHandler = {
         pageContentEvent: function () {
             MAXROWS = Math.ceil(TOTAL / 4); // 页数
-            $(".page_div3").paging({
+            $(".page_div3").empty().paging({
                 total: MAXROWS, //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
                 centerBgColor: "#fff",
