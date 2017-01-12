@@ -9,6 +9,10 @@ body {
 	overflow: hidden
 }
 
+.sprite-login {
+	background: url(../img/sprite-login.png) no-repeat;
+}
+
 .margin_top_1 {
 	margin-top: 31px
 }
@@ -97,10 +101,9 @@ body {
 }
 
 .main_header .logo {
-	background: url(../img/logo1.png) no-repeat;
+	background-position: -0px -0px;
 	width: 114px;
 	height: 74px;
-	background-size: contain;
 	margin: 0 auto
 }
 
@@ -174,6 +177,31 @@ body {
 	margin-left: 13px;
 	margin-top: 11px;
 	margin-right: 7px
+}
+
+.container .main .register .registerItem em,.login .registerItem em {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	margin-left: 13px;
+	margin-top: 11px;
+	margin-right: 7px;
+}
+
+.container .main .register .registerItem em.i-phone,.login .registerItem em.i-phone {
+	background-position: -192px -24px;
+}
+
+.container .main .register .registerItem em.i-psw,.login .registerItem em.i-psw {
+	background-position: -253px -74px;
+}
+
+.container .main .register .registerItem em.i-psword,.login .registerItem em.i-psword {
+	background-position: -192px -74px;
+}
+
+.container .main .register .registerItem em.i-code,.login .registerItem em.i-code {
+	background-position: -253px -24px;
 }
 
 .container .main .register .registerItem span,.login .registerItem span {
@@ -321,11 +349,13 @@ body {
 .container .main .third_login .qq {
 	float: left;
 	margin-left: 186px;
+	background-position: -10px -128px;
 	width: 50px;
 	height: 50px
 }
 
 .container .main .third_login .wechat {
+	background-position: -88px -128px;
 	margin-left: 301px;
 	width: 50px;
 	height: 50px
