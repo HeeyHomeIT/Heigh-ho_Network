@@ -19,7 +19,6 @@ class LoginController extends Controller
         $callback=rq('callback');
         $user_account=rq('account');
         $user_password=rq('password');
-        $type=rq('type');
         /*检查用户名和密码是否为空*/
         if (!($user_account && $user_password)) {
             $arr = array("code" => "112",
@@ -28,7 +27,7 @@ class LoginController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         /*检查账号是否存在*/
-        $user =DB::select('select id from hh_user where (user_name=? or user_phone=? or user_email=?) and user_type=?',[$user_account,$user_account,$user_account,$type]);
+        $user =DB::select('select id from hh_user where user_name=? or user_phone=? or user_email=?',[$user_account,$user_account,$user_account]);
         if (!$user) {
             $arr = array("code" => "114",
                 "msg" => "账号不存在"
@@ -37,7 +36,7 @@ class LoginController extends Controller
         }
         /*检查密码是否正确*/
         $user_password=HHEncryption($user_password);
-        $pwd=DB::select('select * from hh_user where user_password=? and (user_name=? or user_phone=? or user_email=?) and user_type=?',[$user_password,$user_account,$user_account,$user_account,$type]);
+        $pwd=DB::select('select * from hh_user where user_password=? and (user_name=? or user_phone=? or user_email=?)',[$user_password,$user_account,$user_account,$user_account]);
         if(!$pwd) {
             $arr = array("code" => "115",
                 "msg" => "密码不正确"

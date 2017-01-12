@@ -16,17 +16,12 @@
 接收方式        GET
 ```
 
-```
-.../login/login
-```
-
 ###### Json数据格式
 ```
 data
 必选参数
 account             account
 password            password
-user_type           user_type
 可选参数
 login_ip            login_ip
 login_browser       login_browser
