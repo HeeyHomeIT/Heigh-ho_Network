@@ -98,7 +98,6 @@ class MyworkcaseController extends Controller
                 $files = $myfile;
             }
         }
-
         // $files=Request::file('myfile');
         // if(!Request::hasFile('myfile')){
         //     $arr = array("code" => "121",
@@ -185,8 +184,12 @@ class MyworkcaseController extends Controller
         $area=rq('area');
         $timelong=rq('timelong');
         $address=rq('address');
-        $case_id=rq('cate_id');
-        DB::delete('delete from hh_workcase_img where case_id=?',[$case_id]);
+        $case_id=rq('case_id');
+        $imgs_id=rq('img_id');
+        if($imgs_id)
+            foreach ($imgs_id as $key=>$val){
+                DB::delete('delete from hh_workcase_img where img_id=?',[$val]);
+            }
         $count = rq('count');
         $files = array();
         if ($count) {
@@ -200,22 +203,6 @@ class MyworkcaseController extends Controller
                 }
                 $files[$i] = Request::file($fileName);
             }
-        } else {
-            $myfile=Request::file('myfile');
-
-            if(!Request::hasFile('myfile')){
-                $arr = array("code" => "121",
-                    "msg" => "没有图片被上传"
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-            }
-
-            if (! is_array($myfile)) {
-                $files = [$myfile];
-            } else {
-                $files = $myfile;
-            }
-        }
         $isvalid=true;
         foreach($files as $file){
             if(!$file->isValid()){
@@ -242,29 +229,23 @@ class MyworkcaseController extends Controller
                     }
                 }else{
                     $arr = array("code" => "131",
-                        "msg" => "上传失败"
+                        "msg" => "图片上传失败"
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }
             }
-            if($ifinsert){
-                $update=DB::update('update hh_workcase set housetype=?,style=?,area=?,timelong=?,address=? where case_id=?',[$case_id]);
-                $arr = array("code" => "000",
-                    "msg" => "修改成功"
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-            }else{
-                $arr = array("code" => "111",
-                    "msg" => "修改失败"
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-            }
         }else{
             $arr = array("code" => "132",
-                "msg" => "上传的文件无效"
+                "msg" => "上传的图片无效"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+        }
+        DB::UPDATE('update hh_workcase set area=?,housetype=?,style=?,timelong=?,address=? where case_id=?',[$case_id]);
+        $arr = array("code" => "000",
+            "msg" => "修改成功"
+        );
+        return $callback . "(" . HHJson($arr) . ")";
     }
     public function like(){
         $callback=rq('callback');
