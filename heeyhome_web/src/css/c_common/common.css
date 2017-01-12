@@ -178,6 +178,10 @@ label.error.roomerror{
 	background: url(../img/sprite-icon.png) no-repeat;
 }
 
+.sprite-image {
+	background: url(../img/sprite-img.png) no-repeat;
+}
+
 .commonhead,#Head1,#header,#footer {
     font: normal normal normal 12px/20px 'Microsoft YaHei',Arial,sans-serif
 }

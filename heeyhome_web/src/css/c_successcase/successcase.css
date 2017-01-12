@@ -108,19 +108,18 @@
     display: inline-block;
     font-size: 0;
     overflow: hidden;
-    background-size: cover;
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
     margin-right: 5px;
     vertical-align: middle;
 }
 
 .sc_content .main_content .sc_contents .product-3 li .image .image_title .roomicon em.sc_icon_love{
-    background-image: url(../img/icon_love.png);
+    background-position: -40px -45px;
 }
 
 .sc_content .main_content .sc_contents .product-3 li .image .image_title .roomicon em.sc_icon_look{
-    background-image: url(../img/icon_look.png);
+    background-position: -40px -13px;
 }
 
 .sc_content .main_content .sc_contents .product-3 li .introduce{
@@ -163,13 +162,16 @@
     display: inline-block;
     font-size: 0;
     overflow: hidden;
-    background-size: cover;
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
     margin-right: 5px;
     vertical-align: middle;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon em.sc_icon_love{
-    background-image: url(../img/icon_love.png);
+.sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon em.sc_icon_address{
+    background-position: -8px -13px;
+}
+
+.sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon em.sc_icon_time{
+    background-position: -8px -45px;
 }

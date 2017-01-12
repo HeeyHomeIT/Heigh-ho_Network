@@ -919,9 +919,6 @@
 	padding: 2px 0
 }
 
-#sd_hexgrid .sd_hexli> a>div> div.sd_stips> span> em.cr_icon_location {
-	background-image: url(../img/icon-location.png)
-}
 
 #sd_hexgrid .sd_hexli> a>div> div.sd_stips> div {
 	position: relative;
@@ -931,14 +928,6 @@
 #sd_hexgrid .sd_hexli> a>div> div.sd_stips> div> span {
 	display: inline-block;
 	margin-right: 10px
-}
-
-#sd_hexgrid .sd_hexli> a>div> div.sd_stips> div> em.cr_icon_look {
-	background-image: url(../img/icon_look.png)
-}
-
-#sd_hexgrid .sd_hexli> a>div> div.sd_stips> div> em.cr_icon_love {
-	background-image: url(../img/icon_love.png)
 }
 
 #sd_hexgrid .sd_hexli:hover div.sd_title,
