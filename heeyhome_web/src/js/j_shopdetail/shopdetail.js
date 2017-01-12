@@ -232,6 +232,7 @@
                     shop_id: shopId
                 },
                 success: function (data) {
+                	$(".sname").html(data.data.shop_name);
                     $("#JgzId").val(data.data.shopper_id);
                     $(".Jmore").attr("href", "successcase.html#/successcase?pos=" + $("#JgzId").val() + "")
                     $(".hd ul").append(sc.spliceHdPictureEvent(data.data));
@@ -504,7 +505,7 @@
          */
         spliceWdataEvent: function (ucateid, uid, uinfo) {
             var str = '<div class="Jworker" data-nid="' + uid + '" data-ntype="' + ucateid + '"><div class="needpic"><img src="http://hyu2387760001.my3w.com/' + uinfo.img + '"></div><div class="needname">';
-            str += '<span>' + uinfo.name + '</span><span>' + uinfo.city + '</span></div><div class="needmoney">' + uinfo.cp + '元/平方米</div><a class="needclose"></a></div>'
+            str += '<span>' + uinfo.name + '</span><span>' + uinfo.city + '</span></div><div class="needmoney">' + uinfo.cp + '元/平方米</div><a class="sprite needclose"></a></div>'
             return str;
         },
         /**
@@ -611,7 +612,7 @@
                 vrStr += '<img src="http://hyu2387760001.my3w.com/' + v + '">';
             });
             vrStr += '</div><div class="signature"><h3>' + value.shop_describe + '</h3></div>';
-            vrStr += '<div class="shop_introduce"><p><img src="css/img/icon-location.png">' + value.shop_address + '</p><p class="service_area">服务范围:&nbsp;';
+            vrStr += '<div class="shop_introduce"><p><em class="sprite icon-position"></em>' + value.shop_address + '</p><p class="service_area">服务范围:&nbsp;';
             $.each(value.servicearea, function (i, v) {
                 vrStr += '<span>' + v + '</span>';
             });
@@ -662,7 +663,7 @@
             var shopId = getUrlParamHandler.getUrlParam('pos');
             $.each(value, function (i, v) {
                 if (v.technics_img.length != 0) {
-                    vrStr += '<div class="process_box"><a rel="nofollow" href="album.html?ams=' + shopId + '&voe=' + v.technics_id + '" target="_blank" ><img src="http://hyu2387760001.my3w.com/' + v.technics_img[0].technics_img + '"><div class="btntc"><i></i><p title=' + v.technics_text + '><em>' + v.technics_text + '</em></p></div></a></div>';
+                    vrStr += '<div class="process_box"><a rel="nofollow" href="album.html?ams=' + shopId + '&voe=' + v.technics_id + '" target="_blank" ><img src="http://hyu2387760001.my3w.com/' + v.technics_img[0].technics_img + '"><div class="btntc"><i class="sprite"></i><p title=' + v.technics_text + '><em>' + v.technics_text + '</em></p></div></a></div>';
                 }
 
             });
@@ -677,9 +678,9 @@
         	$.each(value, function (i, v) {
         		if(i<7){
         			if (v.img.length != 0) {
-	                    vrStr += '<li class="sd_hexli" data-type="' + v.type + '" ><a><div><img src="http://hyu2387760001.my3w.com/' + v.img[0].case_img + '"><div class="sd_title"><span class="sd_area">' + v.area + '㎡</span><span>' + v.housetype + '&middot;' + v.style + '</span></div>';
-	                    vrStr += '<div class="sd_stips"><span><em class="cr_icon_location"></em>' + v.address + '</span><span >施工时间</span><span style="padding: 0px;margin-top: -5px;">' + v.timelong + '</span><div><em class="cr_icon_look"></em><span>' + v.scan_num + '</span>';
-	                    vrStr += '<em class="cr_icon_love"></em><span>' + v.like_num + '</span></div></div></div></a></li>';
+	                    vrStr += '<li class="sd_hexli" data-type="' + v.type + '" ><a><div><img src="http://hyu2387760001.my3w.com/' + v.img[0].case_img + '"><div class="sd_title"><span class="sd_area">' + v.area + '㎡</span></div>';
+	                    vrStr += '<div class="sd_stips"><span>' + v.housetype + '&middot;' + v.style + '</span>';
+	                    vrStr += '</div></div></a></li>';
 	                }
         		}
             });

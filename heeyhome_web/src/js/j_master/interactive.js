@@ -321,6 +321,26 @@
                     error: function (data) {
                     }
                 });
+                
+                $.ajax({
+	                url: SHOPCURL,
+	                type: "GET",
+	                async: true,
+	                dataType: 'jsonp',
+	                data: {
+	                    shop_id: $.base64.decode($.cookie("userShopId"))
+	                },
+	                success: function (data) {
+	                    if (data && data.code == '000') {
+	                        $("#success_case .now_location .shopname").html(data.data.shop_name);//获取店铺名字      
+	                    } else {
+	                    	layer.alert(data.msg);
+	                    }
+	                },
+	                error: function (data) {
+	                }
+	            });
+                
             }]);
         },
 

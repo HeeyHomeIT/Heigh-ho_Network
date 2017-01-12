@@ -55,7 +55,9 @@
                 }).error(function (data, status) {
                 });
                 /* 左边导航栏点击事件 */
-                $scope.barTab = function (describe, id) {
+                 $scope.barTab = function (describe, id,name) {
+                	var cate_describe = sessionStorage.setItem("describe",describe);
+                	var cate_name = sessionStorage.setItem("name",name);
                     /* 获取右边文章标题 */
                     $rH.html(describe);
                     /* 获取右边文章列表 */
@@ -70,6 +72,8 @@
          */
         initDetailEvent: function () {
             HHIT_NEWAPP.controller('myDetail', ['$scope', '$http', function ($scope, $http) {
+            	var cate_describe = sessionStorage.getItem("describe");
+                var cate_name = sessionStorage.getItem("name");
                 /* 获取文章详情接口 */
                 $http({
                     method: "JSONP",
@@ -83,6 +87,8 @@
                     if (data.code === '000') {
                         //console.log(data.data);
                         //往详情页里面塞内容
+                        $(".gonglve_detail .now_location .stage").html(cate_name);
+                        $(".gonglve_detail .now_location .attention").html(cate_describe);
                         $('.gonglve_title').html(data.data.article_title);
                         $('.gonglve_content').html(data.data.article_content);
                     } else {  /* 如果失败执行 */

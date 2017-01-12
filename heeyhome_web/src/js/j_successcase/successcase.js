@@ -77,11 +77,11 @@
 			$.each(value, function(i, v) {
 				if(v.img.length != 0) {
 					vrStr += '<li><div class="image"><a href="javascript:void(0)"><img src="http://hyu2387760001.my3w.com/' + v.img[0].case_img + '"></a>';
-					vrStr += '<div class="image_title"><div class="roomtype">'+v.housetype+'</div><div class="roomicon"><em class="sc_icon_love"></em><span>'+v.like_num+'</span></div>';
-					vrStr += '<div class="roomicon"><em class="sc_icon_look"></em><span>'+v.scan_num+'</span></div></div></div>';
+					vrStr += '<div class="image_title"><div class="roomtype">'+v.housetype+'</div><div class="roomicon"><em class="sprite-image sc_icon_love"></em><span>'+v.like_num+'</span></div>';
+					vrStr += '<div class="roomicon"><em class="sprite-image sc_icon_look"></em><span>'+v.scan_num+'</span></div></div></div>';
 					vrStr += '<div class="introduce"><strong>'+v.style +'&nbsp;'+v.area +'m<sup>2</sup></strong>';
-					vrStr += '<div class="introduce-icon"><em class="sc_icon_love"></em><span>'+v.address+'</span></div>';
-					vrStr += '<div class="introduce-icon"><em class="sc_icon_love"></em><span>'+v.timelong+'</span></div></div></li>';
+					vrStr += '<div class="introduce-icon"><em class="sprite-image sc_icon_address"></em><span>'+v.address+'</span></div>';
+					vrStr += '<div class="introduce-icon"><em class="sprite-image sc_icon_time"></em><span>'+v.timelong+'</span></div></div></li>';
 				}
 			});
 			return vrStr;

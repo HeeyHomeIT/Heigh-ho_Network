@@ -67,6 +67,10 @@ class LoginController extends Controller
                     $pwd[0]->nickname = null;
                 }
             }
+            if($pwd[0]->user_type==3){
+                $nickname=DB::select('select material_supplier_name from hh_material_supplier_info where material_supplier_id=?',[$pwd[0]->user_id]);
+                $pwd[0]->nickname=$nickname[0]->material_supplier_name;
+            }
             $arr=array("code"=>"000",
                 "msg"=>"登录成功",
                 "data"=>$pwd[0]

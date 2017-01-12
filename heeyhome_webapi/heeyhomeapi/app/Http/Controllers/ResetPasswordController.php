@@ -15,7 +15,6 @@ class ResetPasswordController extends Controller
 {
     public function  resetpassword(){
         $callback=rq('callback');
-        $user_id=rq('user_id');
         $flag=rq('flag');
         /*检查参数不能为空*/
         if (!(rq('new_password') && $flag)){
@@ -25,10 +24,10 @@ class ResetPasswordController extends Controller
             return $callback."(".HHJson($arr).")";
         }
         /*检查用户和唯一标识符是否匹配*/
-        $sql=DB::select('select id from hh_token where userid=? and flag=?',[$user_id,$flag]);
+        $sql=DB::select('select userid from hh_token where flag=?',[$flag]);
         if($sql) {
             $new_password = HHEncryption(rq('new_password'));
-            $update = DB::update('update hh_user set user_password=? where user_id=?', [$new_password, $user_id]);
+            $update = DB::update('update hh_user set user_password=? where user_id=?', [$new_password, $sql[0]->userid]);
             $arr = array("code" => "000",
                 "msg" => "密码重置成功"
             );

@@ -315,3 +315,71 @@ msg           失败
 
 ```
 ```
+# edit() #
+## 工长编辑案例接口
+
+
+### 接口地址
+
+
+```
+.../myworkcase/edit
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../myworkcase/edit
+```
+
+###### Json数据格式
+```
+data
+case_id             case_id
+housetype           housetype
+style               style
+area                area
+timelong            timelong
+address             address
+可选
+img_id              img_id       //要删除的图片img_id(数组)
+count               count        //上传的图片数        
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         ""
+msg          "修改成功"
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
+000           修改成功
+121           没有图片被上传
+131           图片上传失败
+132           上传的图片无效
+```

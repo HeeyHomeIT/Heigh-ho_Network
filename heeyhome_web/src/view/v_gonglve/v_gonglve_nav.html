@@ -12,7 +12,7 @@
             <!-- 左侧导航start -->
             <div class="left_bar">
                 <ul class="bar_content">
-                    <a class="bar_list" ng-repeat="x in names" ng-click="barTab(x.cate_describe,x.id)" id="{{x.id}}"
+                    <a class="bar_list" ng-repeat="x in names" ng-click="barTab(x.cate_describe,x.id,x.cate_name)" id="{{x.id}}"
                        ng-class="$first ? 'active' : ''">
                         <div>
                             <li>{{x.cate_name}}</li>
