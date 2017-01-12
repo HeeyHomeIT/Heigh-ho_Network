@@ -1,0 +1,290 @@
+/* 公共样式 */
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+@font-face {
+    font-family: 'iconfont';  /* project id 158259 */
+    src: url('//at.alicdn.com/t/font_5acdna2bf7jh5mi.eot');
+    src: url('//at.alicdn.com/t/font_5acdna2bf7jh5mi.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_5acdna2bf7jh5mi.woff') format('woff'),
+    url('//at.alicdn.com/t/font_5acdna2bf7jh5mi.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_5acdna2bf7jh5mi.svg#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: "iconfont";
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+    padding-right: 6px;
+}
+
+#pageheader {
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+.logo a {
+    /*border-right: 1px solid #4b4948;*/
+    padding-right: 30px;
+}
+
+.logo span {
+    width: 1px;
+    height: 62px;
+    background-color: #4b4948;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.logo_withdraw {
+    width: 500px;
+    height: 90px;
+    float: left;
+    padding-left: 40px;
+}
+
+.logo_withdraw p {
+    height: 26px;
+    line-height: 26px;
+    font-size: 20px;
+    color: #4b4948;
+    margin-top: 8px;
+}
+
+.logo_withdraw .wChina {
+    margin-top: 15px;
+}
+
+.refundWrap {
+    width: 1190px;
+    margin: 0 auto;
+    height: auto;
+}
+
+.refund_title {
+    width: 100%;
+    height: 55px;
+    line-height: 55px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.title_detail {
+    width: 165px;
+    height: 55px;
+    text-align: center;
+    color: #4b4948;
+    margin-right: 120px;
+}
+
+.title_detail:first-child {
+    margin-left: 235px;
+}
+
+.title_detail:last-child {
+    margin-right: 0;
+}
+
+.title_detail span {
+    font-size: 16px;
+}
+
+.active {
+    border-bottom: 2px solid #EEC988;
+    margin-bottom: -2px;
+}
+
+.refund_content {
+    margin-top: 54px;
+}
+
+.order_info {
+    width: 265px;
+    height: 137px;
+    border: 1px solid #d3d3d3;
+    margin-right: 32px;
+    margin-bottom: 116px;
+}
+
+.order_info_title {
+    width: 263px;
+    height: 39px;
+    line-height: 39px;
+    background-color: #f0f0f0;
+}
+
+.order_info_title span {
+    display: inline-block;
+    width: 80px;
+    height: 17px;
+    line-height: 17px;
+    text-align: center;
+    border-left: 4px solid #EEC988;
+    margin-left: 12px;
+    font-size: 14px;
+}
+
+.account_title span {
+    width: 125px;
+}
+
+.order_info_content {
+    width: 263px;
+    height: 98px;
+}
+
+.order_info_content p {
+    line-height: 22px;
+    margin-left: 20px;
+    font-size: 14px;
+    color: #4b4948;
+}
+
+.order_info_content p:first-child {
+    margin-top: 18px;
+}
+
+.order_info_content p i {
+    margin-right: 30px;
+}
+
+.amount_content {
+    width: 263px;
+    height: 98px;
+    line-height: 98px;
+    text-align: center;
+}
+
+.account_content {
+    width: 263px;
+    height: 98px;
+}
+
+.amount_content span {
+    font-size: 16px;
+}
+
+.account_content input {
+    width: 200px;
+    border: none;
+    border-bottom: 1px solid #4b4a48;
+    padding-left: 3px;
+}
+
+.account_input {
+    margin-top: 30px;
+    margin-left: 15px;
+}
+
+.amount_content span i {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 3px;
+}
+
+.submit_application {
+    display: block;
+    width: 90px;
+    height: 29px;
+    line-height: 29px;
+    text-align: center;
+    background-color: #EEC988;
+    color: white;
+    border: 1px solid #e5c68f;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 250px;
+}
+
+.deal_wrap {
+    height: 500px;
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 150px;
+}
+
+.deal_left, .successfully_left {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.deal_left .iconfont {
+    font-size: 46px;
+    color: #EEC988;
+}
+
+.successfully_left .iconfont {
+    font-size: 36px;
+    color: #EEC988;
+}
+
+.deal_right {
+    margin-left: 15px;
+}
+
+.deal_right .process {
+    line-height: 25px;
+    font-size: 16px;
+}
+
+.deal_right .wait, .successfully_right .wait {
+    font-size: 14px;
+    line-height: 25px;
+}
+
+.successfully {
+    width: 1190px;
+    height: 500px;
+}
+
+.successfully_right .process {
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.successfully_bottom {
+    margin-top: 100px;
+}
+
+.successfully_bottom .back_order {
+    display: inline-block;
+    width: 90px;
+    height: 29px;
+    line-height: 29px;
+    text-align: center;
+    background-color: #EEC988;
+    color: white;
+    border: 1px solid #e5c68f;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 15px;
+}
+
+.successfully_bottom .back_index {
+    display: inline-block;
+    width: 90px;
+    height: 29px;
+    line-height: 29px;
+    text-align: center;
+    color: #EEC988;
+    border: 1px solid #EEC988;
+    border-radius: 5px;
+    font-size: 14px;
+}

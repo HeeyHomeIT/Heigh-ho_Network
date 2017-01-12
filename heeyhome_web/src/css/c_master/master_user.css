@@ -4199,17 +4199,19 @@ div.clear:after, div.clear:before {
 }
 
 .loading {
-    width: 100px;
-    height: 100px;
+    width: 872px;
+    min-height: 500px;
+    line-height: 500px;
     margin: 20px auto;
     position: absolute;
-    top: 35%;
-    left: 45%;
+    top: 0;
+    left: 0;
+    text-align: center;
 }
 
 .loading img {
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
 }
 
 .bottom_title_left a.active {

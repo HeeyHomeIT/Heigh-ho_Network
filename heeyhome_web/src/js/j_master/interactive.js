@@ -759,7 +759,7 @@
                     $('.order_wrap input').attr("disabled", "disabled");//不可以编辑，只可以看
                 } else if (status == '待用户预支付') {//未开工状态，只能进行进场准备
                     layer.msg('未开工');
-                    if (houseStyle == '') {//如果装修风格不存在
+                    if (houseStyle == '' || houseStyle == null) {//如果装修风格不存在
                         /* 在没有选择风格之前后面的状态都不能点击 */
                         $('.order_process input').attr("disabled", "disabled");
                         /* 点击选择风格 */
@@ -815,10 +815,10 @@
                         /* 工种 */
                         sessionStorage.setItem("type", $('#order_wrap .process_title').eq(i).attr('typename'));
                     }
-                    var begin = parseInt(step) + 1;
+                    var begin = parseInt(newStep) + 1;
                     var $order_edit_next = $('.order_edit').eq(parseInt(step));
                     if ($order_edit_next.parent().hasClass('hide')) {
-                        begin = parseInt(step) + 2;
+                        begin = parseInt(newStep) + 2;
                     }
                     for (var i = begin; i < 18; i++) {
                         $('.order_edit').eq(i).addClass('determine_process');
@@ -910,6 +910,27 @@
                     $('.wrap').hide();
                 });
 
+                /* 点击查看详情 */
+                $('.detail_a ').click(function () {
+                    if ($(this).hasClass('detail_m')) {
+                        /* 工种 */
+                        sessionStorage.setItem("type", $(this).parent('.order_process').find('.process_title').attr('typename'));
+                        window.open('material.html#/material/list');//跳转到材料单页面
+                    } else {
+                        var NUM = $(this).parent(".order_process");
+                        $('.see_details').show().removeClass('hide');
+                        $('.wrap').show().removeClass('hide');
+                        $('.see_details').css('top', ($(window).height() - NUM.outerHeight()) / 2 + $(document).scrollTop() - 100);
+                    }
+
+                });
+                /* 查看详情关闭 */
+                $('.complete').click(function () {
+                    $('.see_details').hide();
+                    $('.wrap').hide();
+                });
+
+
                 /* 获取业主信息 */
                 $.ajax({
                     type: "get",
@@ -983,10 +1004,12 @@
                             //console.log(data.data);
                             //HOUSESTYLE = data.data.装修风格;
                             //console.log(HOUSESTYLE);
-                            $('.process_style p').html(data.data.装修风格);
-                            $('#confirm_type').hide();//隐藏按钮
-                            $('#testSelect').hide();//隐藏select框
-                            sessionStorage.setItem("houseStyle", data.data.装修风格);
+                            if (data.data.装修风格 != null) {
+                                $('.process_style p').html(data.data.装修风格);
+                                $('#confirm_type').hide();//隐藏按钮
+                                $('#testSelect').hide();//隐藏select框
+                                sessionStorage.setItem("houseStyle", data.data.装修风格);
+                            }
                         }
                     },
                     error: function (data) {
