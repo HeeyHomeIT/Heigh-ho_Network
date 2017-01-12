@@ -182,6 +182,7 @@
          */
         initMHomeEvent: function () {
             HHIT_CENTERAPP.controller('mhomeCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("我的主页");
                 getHomeInfoHandler.getInfoEvent();//获取工长店铺
                 getHomeInfoHandler.getSafeEvent();//获取工长的安全等级
                 getHomeInfoHandler.getEmailEvent();//获取工长的邮箱信息
@@ -192,6 +193,7 @@
          */
         initMDataEvent: function () {
             HHIT_CENTERAPP.controller('mDataCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("个人资料");
                 // 加载城市插件
                 $('[data-toggle="distpicker"]').distpicker();
                 /* details */
@@ -216,6 +218,7 @@
          */
         initMWorkEvent: function () {
             HHIT_CENTERAPP.controller('mWorkCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("我的作品");
                 /* details */
                 var $dtDiv = $("#works_content_title1 div");
                 var iSpeed = 0;
@@ -349,6 +352,7 @@
          */
         initMTeamEvent: function () {
             HHIT_CENTERAPP.controller('mTeamCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("我的团队");
                 getTeamInfoHandler.getInfoEvent();
             }]);
         },
@@ -537,6 +541,7 @@
          */
         initMShopEvent: function () {
             HHIT_CENTERAPP.controller('mShopCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("店铺资料");
                 getShopInfoHandler.shopInfo();
             }]);
         },
@@ -560,6 +565,7 @@
          */
         initBillEvent: function () {
             HHIT_CENTERAPP.controller('billCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("我的钱包");
                 getWalletData.getMoney();
                 getNearByMonth.fiveMonth();
                 getBillInfoHandler.getInfoEvent();
@@ -570,6 +576,7 @@
          */
         initMOrderEvent: function () {
             HHIT_CENTERAPP.controller('mOrderCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("我的订单");
                 orderList.getInfoEvent();
             }]);
         },
@@ -638,6 +645,7 @@
          */
         initMsgInfo: function () {
             HHIT_CENTERAPP.controller('msginfoCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("消息中心");
                 initInfo.info();
             }]);
         }
