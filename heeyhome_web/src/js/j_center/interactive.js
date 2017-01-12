@@ -234,8 +234,10 @@
                             $(".ordercnt_content .all").on("click", function () {
                                 var shopid = $(this).attr("data-shopid");
                                 var orderid = $(this).attr("data-orderid");
+                                var orderstep = $(this).attr("data-orderstep");
                                 sessionStorage.setItem("shopid", shopid);
                                 sessionStorage.setItem("orderid", orderid);
+                                sessionStorage.setItem("orderstep", orderstep);
                             });
                             OrderPageHandler.pageContentEvent(order_total);
                             /* 我的订单点击小三角事件 */
@@ -1516,9 +1518,9 @@
                 oInfoObj.user_id = value.user_id;
                 oInfoObj.order_id = value.order_id;
                 $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
-                vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"><a href="reservation.html#/waitcontact?type=1" target="_blank" class="top">查看详情</a>';
+                vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="reservation.html#/waitcontact?type=1" target="_blank" class="top">查看详情</a>';
             } else {
-                vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';
+                vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';
             }
             if (value.order_status == 6) {
                 vrStr += '<a href="javascript:;" class="bottom">确认验货</a>';
@@ -1601,8 +1603,10 @@
                     $(".ordercnt_content .all").on("click", function () {
                         var shopid = $(this).attr("data-shopid");
                         var orderid = $(this).attr("data-orderid");
+                        var orderstep = $(this).attr("data-orderstep");
                         sessionStorage.setItem("shopid", shopid);
                         sessionStorage.setItem("orderid", orderid);
+                        sessionStorage.setItem("orderstep", orderstep);
                     });
                     /* 我的订单点击小三角事件 */
                     arrowClick.getEvent();
