@@ -137,7 +137,7 @@ class OrderController extends Controller
     }
 
     /*确认订单*/
-    public function orderConfirm() 
+    public function orderConfirm()
     {
         $order_id = rq('order_id');
         $callback = rq('callback');
@@ -148,10 +148,10 @@ class OrderController extends Controller
             [$user_id, $order_id]);
         if ($order_tbl_isdestroy) {
             $order_status = $order_tbl_isdestroy[0]->order_status;
-            if ($order_status == 1 || $order_status == 2) { 
-                $selectTime = DB::select('select confirm_time from hh_order_reservation_time where confirm_time = ?',[$confirm_time]);
+            if ($order_status == 1 || $order_status == 2) {
+                $selectTime = DB::select('select confirm_time from hh_order_reservation_time where confirm_time = ?', [$confirm_time]);
 
-                $changeOrder_status = DB::update('update hh_order set order_status = 3 where user_id=? and order_id=?',[$user_id,$order_id]);
+                $changeOrder_status = DB::update('update hh_order set order_status = 3 where user_id=? and order_id=?', [$user_id, $order_id]);
                 if ($changeOrder_status) {
                     if ($selectTime[0]->confirm_time == $confirm_time) {
                         $arr = array(
@@ -160,7 +160,7 @@ class OrderController extends Controller
                         );
                         return $callback . "(" . HHJson($arr) . ")";
                     } else {
-                        $changeTime = DB::update('update hh_order_reservation_time set confirm_time = ? where order_id = ?',[$confirm_time,$order_id]);
+                        $changeTime = DB::update('update hh_order_reservation_time set confirm_time = ? where order_id = ?', [$confirm_time, $order_id]);
                         if ($changeTime) {
                             $arr = array(
                                 "code" => "000",
@@ -175,7 +175,7 @@ class OrderController extends Controller
                             return $callback . "(" . HHJson($arr) . ")";
                         }
                     }
-                    
+
                 } else {
                     $arr = array(
                         "code" => "204",
@@ -186,10 +186,10 @@ class OrderController extends Controller
 
             } else {
                 $arr = array(
-                "code" => "203",
-                "msg" => "订单不存在"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
+                    "code" => "203",
+                    "msg" => "订单不存在"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
             }
         } else {
             $arr = array(
@@ -375,6 +375,8 @@ class OrderController extends Controller
             } else if ($sql_order_status[0]->confirm_time == 2) {
                 $reservation_time = $sql_order_status[0]->reservation_time2;
             }
+            $reservation_time_user = array('reservation_time1' => $sql_order_status[0]->reservation_time1,
+                'reservation_time2' => $sql_order_status[0]->reservation_time2,);
             if ($sql_order_status[0]->order_status_id == 1) {
                 $order_confirmation_time = "";
                 $reservation_time = "";
@@ -386,6 +388,7 @@ class OrderController extends Controller
                 "order_time" => $sql_order_status[0]->order_time,
                 "order_confirmation_time" => $order_confirmation_time,
                 "reservation_time" => $reservation_time,
+                "reservation_time_user" => $reservation_time_user,
                 "order_status_id" => $order_status_id,
                 "order_step_id" => $sql_order_status[0]->order_step_id,
                 "order_status" => $sql_order_status[0]->order_status,

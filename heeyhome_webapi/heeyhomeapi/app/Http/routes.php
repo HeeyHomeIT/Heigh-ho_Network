@@ -226,6 +226,9 @@ Route::group(['middleware' => ['web']], function () {
     //查询或添加装修风格
     Route::any('order/style/addhousestyle', 'OrderController@addHouseStyle');
     Route::any('order/shop/destory', 'OrderController@orderDestroy');
+    //用户退款信息获取
+    Route::any('order/user/getrefundinfo', 'OrderController@getRefundInfo');
+
 
     //材料订单
     //获取材料订单列表
