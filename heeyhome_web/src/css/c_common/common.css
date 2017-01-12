@@ -507,7 +507,6 @@ label.error.roomerror{
 #nowCity {
     line-height: 24px;
     position: relative;
-    margin: 46px 0 0;
     float: left
 }
 
@@ -520,166 +519,12 @@ label.error.roomerror{
     padding: 0 60px
 }
 
-#nowCity>div em {
-    display: inline-block;
-    width: 14px;
-    height: 19px;
-    margin-right: 5px;
-    background: url(../img/icon-location.png) no-repeat;
-    background-position: 0 0;
-    vertical-align: sub
-}
-
-#nowCity>div label {
-	color: #767676
-}
-
 #nowCity>div a:hover {
 	color: #eec988
 }
 
-.s_box_outer {
-    float: right
-}
-
-#headerWrapper .searchcon {
-    font-family: Microsoft YaHei,Simsun,serif;
-    padding-top: 43px;
-    float: left;
-    position: relative;
-    margin-right: 35px
-}
-
-#headerWrapper .searchcon input {
-	width: 400px;
-    display: inline-block;
-    border: 1px solid #eec988;
-    height: 32px;
-    line-height: 30px;
-    text-indent: 12px;
-    color: #666;
-    font-size: 14px;
-    border-radius: 4px;
-    float: left
-}
-
-#headerWrapper .searchcon .search-btn {
-    width: 32px;
-    display: inline-block;
-    height: 32px;
-    text-align: center;
-    background: #ffffff;
-    vertical-align: middle;
-    border: 0;
-    padding-left: 10px;
-    cursor: pointer
-}
-
-.c_searchpop {
-    width: 400px;
-    position: absolute;
-    left: 0;
-    top: 75px;
-    padding: 10px 10px 0;
-    background: #fff;
-    z-index: 1000;
-    border: 1px solid #dfdfdf;
-    box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.1);
-    font-size: 14px
-}
-
-.c_searchpop .c_searchpoptit {
-    color: #666
-}
-
-.c_searchpoptit {
-    width: 100%;
-    float: left
-}
-
-.c_searchpop .c_searchpoptit h3 {
-    font-weight: 700;
-    color: #666
-}
-
-.c_searchpop .c_pop_city {
-    float: left;
-    padding: 7px 0 14px;
-    width: 100%;
-    line-height: 24px
-}
-
-.c_searchpop .c_pop_dlcity {
-    padding-top: 0
-}
-
-.c_pop_dlcity dl {
-    padding: 0 20px;
-    overflow: hidden
-}
-
-.c_pop_dlcity dd {
-    width: 330px;
-    float: right;
-    height: 35px;
-    padding: 5px;
-    border-bottom: dotted 1px #ccc;
-    overflow: hidden
-}
-
-.c_pop_dlcity dd span {
-    display: inline-block;
-    background: #ff6815;
-    border-radius: 6px;
-    font-size: 12px;
-    -webkit-text-size-adjust: none;
-    color: #fff;
-    padding: 1px 0px;
-    line-height: 13px;
-    width: 20px;
-    text-align: center
-}
-
-.c_searchpop .c_pop_city a {
-	margin-left: 10px;
-    line-height: 24px;
-    color: #666;
-    cursor: pointer
-}
-
-.c_searchpop a.col_ff6815 {
-    color: #ff6815
-}
-
-.c_pop_dlcity dd span.bgcol_005bb5 {
-    background: #005bb5
-}
-
-/*#pageheader .rightLogin {
-	margin: 36px 0px 0 28px;
-    position: relative
-}
-
-#pageheader .rightLogin>a {
-	display: block;
-	float: left;
-    font-size: 16px;
-    text-align: center;
-    cursor: pointer;
-    color: #eecf88;
-    margin: 0 5px;
-    padding: 19px 25px;
-    border: 1px solid #eecf88;
-    border-radius: 4px
-}
-
-#pageheader .rightLogin>a.register {
-	background: #eecf88;
-	color:#fff
-}*/
-
 #pageheader .rightPicture {
-    margin: 12px 0px 0 28px;
+    margin: 5px 0px 0 45px;
     position: relative
 }
 
@@ -691,11 +536,12 @@ label.error.roomerror{
 #pageheader .rightPicture>a>span {
 	position: absolute;
     font-size: 16px;
-    color: #EEC988;
-    bottom: 20px;
-    left: 14px;
-    font-weight: 700;
-    text-shadow: #fff 1px 0 0,#fff 0 1px 0,#fff -1px 0 0,#fff 0 -1px 0
+    bottom: 35px;
+    left: 5px;
+    border: 1px solid #767676;
+    border-radius: 5px;
+    padding: 6px 24px;
+    color: #767676;
 }
 
 #menuNavOuter {
@@ -704,7 +550,7 @@ label.error.roomerror{
 }
 
 #menuNavWrapper {
-    padding-top: 10px
+    padding: 10px 0;
 }
 
 #menuNavPanel {
@@ -751,7 +597,7 @@ label.error.roomerror{
 #footer>ul {
     width: 1190px;
     margin: 10px auto 0;
-    padding: 200px 0 150px 0
+    padding: 135px 0 95px 0;
 }
 
 #footer>ul>li {
@@ -774,7 +620,7 @@ label.error.roomerror{
 }
 
 #footer>div {
-	padding-bottom: 60px;
+	padding-bottom: 35px;
 	position: relative
 }
 
