@@ -657,6 +657,7 @@
          */
         initSafeLevelEvent: function () {
             HHIT_CENTERAPP.controller('mSettingCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jcenter").html("安全设置");
                 /* 获取用户的安全等级 */
                 $.ajax({
                     dataType: "JSONP",

@@ -42,6 +42,7 @@
 		},
 		initEvent: function() {
 			var self = this;
+			$(".Jcenter").html("收货地址");
 			self.initAddressInfoEvent(); // 我的收货地址初始化
 			self.addAddressInfoEvent(); // 添加新地址
 			self.clickInputBoxEvent(); // 点击input框事件
