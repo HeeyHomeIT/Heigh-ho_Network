@@ -187,8 +187,8 @@ class MyworkcaseController extends Controller
         $case_id=rq('case_id');
         $imgs_id=rq('img_id');
         if($imgs_id)
-            foreach ($imgs_id as $key=>$val){
-                DB::delete('delete from hh_workcase_img where img_id=?',[$val]);
+            foreach ($imgs_id as $key => $val) {
+                DB::delete('delete from hh_workcase_img where img_id=?', [$val]);
             }
         $count = rq('count');
         $files = array();
@@ -241,7 +241,7 @@ class MyworkcaseController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         }
-        DB::UPDATE('update hh_workcase set area=?,housetype=?,style=?,timelong=?,address=? where case_id=?',[$case_id]);
+        DB::UPDATE('update hh_workcase set area=?,housetype=?,style=?,timelong=?,address=? where case_id=?',[$area,$housetype,$style,$timelong,$address,$case_id]);
         $arr = array("code" => "000",
             "msg" => "修改成功"
         );

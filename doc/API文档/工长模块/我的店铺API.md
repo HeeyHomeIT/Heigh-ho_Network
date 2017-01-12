@@ -60,7 +60,8 @@ data         {
                                                id                id
                                                technics_text     technics_text
                                                technics_img      {
-                                                                    technics_img  technics_img
+                                                                      img_id         img_id
+                                                                      technics_img   technics_img
                                                                  }
                                          }
                     workcase             {
@@ -70,8 +71,9 @@ data         {
                                                style        style             //装修风格
                                                timelong     timelong          //工期
                                                address      address           //地址
-                                               case_img     {                 
-                                                               case_img      case_img
+                                               case_img     { 
+                                                                 img_id        img_id
+                                                                 case_img      case_img
                                                             }
                                          }
                     shop_score           shop_score             //店铺评分
