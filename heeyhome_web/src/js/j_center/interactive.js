@@ -32,6 +32,7 @@
     var SHOPIMGURL = BASEURL + 'personal/myshop/imgs';//店铺图片
     var SELSTATUSURL = BASEURL + 'order/client/selstatus';//查询订单状态及步骤
     var CALRESULTURL = BASEURL + 'costcalculator/result/get'; // 获取收藏的成本计算器结果接口
+    var CANCELORDERURL = BASEURL + 'order/client/destory';//用户取消订单
 
     var email;//获取用户邮箱
     var pic_total;//获取我的收藏全景图总数据
@@ -64,7 +65,6 @@
             self.initMDataEvent();
             self.initMHomeEvent();
             self.initMCollectionEvent();
-            self.initMOrderEvent();
             self.initMsgInfo();
             self.initMOrderDataEvent();
             self.initMOrderDetailEvent();
@@ -239,10 +239,32 @@
                                 sessionStorage.setItem("shopid", shopid);
                                 sessionStorage.setItem("orderid", orderid);
                                 sessionStorage.setItem("orderstep", orderstep);
+                                if($(".ordercnt_content .all .bottom").html() == "取消订单") {
+                                	$.ajax({
+										type: "get",
+										url: CANCELORDERURL,
+										async: true,
+										dataType: "jsonp",
+										data: {
+											user_id: USERID,
+											order_id: orderid
+										},
+										success: function(data) {
+											if(data &&　data.code == '000') {
+												layer.alert(data.msg);
+												centerWrap.initMOrderDataEvent();
+												$(".ordercnt_content .all .bottom").css("cursor","not-allowed");
+											} else {
+												layer.alert(data.msg);
+											}										
+										},
+										error: function(data) {}
+									});
+                                } else if($(".ordercnt_content .all .bottom").html() == "确认验货") {
+                                	layer.alert("订单已完成");
+                                }
                             });
                             OrderPageHandler.pageContentEvent(order_total);
-                            /* 我的订单点击小三角事件 */
-                            arrowClick.getEvent();
                         } else if (data.code == '200') {
                             $('#orderContent').remove();
                             $('.not_information').show().removeClass('hide');
@@ -308,43 +330,6 @@
             }]);
         },
 
-        /* 我的订单点击小三角事件 */
-        initMOrderEvent: function () {
-            HHIT_CENTERAPP.controller('mMorderCtrl', ['$scope', '$http', function ($scope, $http) {
-                var _arrow = $(".order_title div").eq(6);//全部后面的小三角形
-                var _area = $(".order_content .order_box");//哪一份订单
-                var _arrowcnt = $(".order_title div").eq(6).find("ul");//全部后面的小三角形里的内容
-                $(_arrow).click(function () {
-                    $(_arrowcnt).slideDown(500);
-                }, function () {
-                    if ($(_arrow).hasClass("item_hover_180")) {
-                        $(_arrow).removeClass("item_hover_180");
-                    }
-                    else {
-                        $(_arrow).addClass("item_hover_180");
-                    }
-                    $(_arrowcnt).slideToggle(500);
-                });
-                $(_area).each(function () {
-                    var _arrowsize = $(this).find(".area").children("p");//建筑面积里的小三角形
-                    var _sizecnt = $(this).find(".ordercnt_content").children(".order_detail");//建筑面积里的小三角形里的内容
-                    $(_arrowsize).click(function () {
-                        $(_sizecnt).slideDown(500);
-                    }, function () {
-
-                        if ($(this).hasClass("item_hover_180")) {
-                            $(this).removeClass("item_hover_180");
-                            $(this).css({"border": "0"});
-                        }
-                        else {
-                            $(this).addClass("item_hover_180");
-                            $(this).css({"border": "1px solid #EFEFEF", "border-bottom": "1px solid #ffffff"});
-                        }
-                        $(_sizecnt).slideToggle(500);
-                    });
-                });
-            }]);
-        },
         /*
          * 消息中心初始化
          */
@@ -467,7 +452,7 @@
 							},
 							error: function(data) {}
 						});
-						var ststus = data.data.order_list[_new].order_status;
+						var status = data.data.order_list[_new].order_status;
 						var step = data.data.order_list[_new].order_step;
 						$(".order_cnt_right").on("click", function () {
                             sessionStorage.setItem("shopid", data.data.order_list[_new].shop_id);
@@ -488,16 +473,42 @@
 			            if (status == 5) {
 			                // 辅材类
 			                if (step == 3 || step == 7 || step == 11 || step == 15) {
-			                	$(".order_cnt_right .operation").attr("href","reservation.html#/materiallist?pos="+data.data.order_list[_new].order_id);
+			                	$(".order_cnt_right .operation").attr("href","reservation.html#/materiallist?pos="+data.data.order_list[_new].order_id).html("辅材支付");
 			                }
 			                // 人工费
 			                if (step == 5 || step == 9 || step == 13 || step == 17) {
-			                	$(".order_cnt_right .operation").attr("href","reservation.html#/advancelist?pos="+data.data.order_list[_new].order_id);
+			                	$(".order_cnt_right .operation").attr("href","reservation.html#/advancelist?pos="+data.data.order_list[_new].order_id).html("人工支付");
 			                }
 			            } else if(status == 6) {
-							$(".order_cnt_right .operation").html("确认收货");
+							$(".order_cnt_right .operation").html("确认验货");
+							$(".order_cnt_right .operation").on("click",function() {
+								layer.alert("订单已完成");
+							});				
 						} else if(status == 1) {
 							$(".order_cnt_right .operation").html("取消订单");
+							/* 取消订单 */
+							$(".order_cnt_right .operation").on("click",function() {
+								$.ajax({
+									type: "get",
+									url: CANCELORDERURL,
+									async: true,
+									dataType: "jsonp",
+									data: {
+										user_id: USERID,
+										order_id: orderid
+									},
+									success: function(data) {
+										if(data &&　data.code == '000') {
+											layer.alert(data.msg);
+											getHomeInfoHandler.getOrderEvent();
+											$(".order_cnt_right .operation").css("cursor","not-allowed");
+										} else {
+											layer.alert(data.msg);
+										}										
+									},
+									error: function(data) {}
+								});
+							});							
 						} else {
 							$(".order_cnt_right .operation").remove();
 							$(".order_cnt_right .detail").addClass("one");
@@ -549,14 +560,14 @@
 									$.each(data.data.reservation_time_user,function(i,v) {
 										time += v + '   ';
 									});
-									time += ')';
+									time += ')';									
 									if(status == 1) {
-										$(".order_cnt_left .time .order_span_right").html("待工长确认"+status);
+										$(".order_cnt_left .time .order_span_right").html("待工长确认"+time);
 									} else {
 										$(".order_cnt_left .time .order_span_right").html(data.data.reservation_time);
 									}
 								} else {
-									layer.alert(data.msg)
+									layer.alert(data.msg);
 								}
 							},
 							error: function(data) {}
@@ -1525,6 +1536,9 @@
             }
             if (value.order_status == 6) {
                 vrStr += '<a href="javascript:;" class="bottom">确认验货</a>';
+            }
+            if (value.order_status == 1) {
+                vrStr += '<a href="javascript:;" class="bottom">取消订单</a>';
             }
 //          if(value.order_status == 4) {
 //              vrStr += '<a href="success_pay.html#/success_pay/pay_end" class="bottom">支付</a>';
