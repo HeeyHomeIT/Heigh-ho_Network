@@ -1844,6 +1844,7 @@
                 success: function (data) {
                     if (data != null && data.code == '000') {
                         $(".wallet_content_top li .withdraw span").html(data.data.available_total);
+                        sessionStorage.setItem('availableTotal', data.data.available_total);
                         $(".wallet_content_top li .total span").html(data.data.total);
                     } else {
                         layer.alert(data.msg);
@@ -2079,6 +2080,8 @@
         getInfoEvent: function () {
             HHIT_CENTERAPP.controller('withdraw', ['$scope', '$http', function ($scope, $http) {
                 $('#headerWrapper').remove();
+                var availableTotal = sessionStorage.getItem('availableTotal');
+                $('.current_balance b').html(availableTotal);
                 /* 列出我的银行卡信息 */
                 $http({
                     method: "JSONP",
@@ -2096,7 +2099,6 @@
                             data.data[i].bankcardnoDim = cardno.substr(cardno.length - 4);//获取银行卡后四位
                         }
                         $scope.wbanks = data.data;
-
                     }
                     /* 如果失败执行 */
                     else {
@@ -2109,17 +2111,18 @@
                 $('#cash_confirm').click(function () {
                     var val = $('input:radio[name="money"]:checked').val();
                     if (val == null) {
-                        layer.alert("请至少选择一个银行卡!");
+                        layer.alert("请至少选择一个银行卡！");
                         return false;
                     } else if ($('#money').val() == '') {
-                        layer.alert("提现金额不能为空!");
+                        layer.alert("提现金额不能为空！");
                     } else if ($('#money').val() <= 0) {
-                        layer.alert("提现金额不能小于等于0!");
+                        layer.alert("提现金额不能小于等于0！");
                     }
                     else {
                         var wbank;
                         $.each($scope.wbanks, function (i, val) {
-                            if (val.bankcardno == $('.bank :radio:checked').attr('no')) {
+                            $('.bank :radio').eq(i).data('no',val.bankcardno);
+                            if (val.bankcardno == $('.bank :radio:checked').data('no')) {
                                 wbank = val;
                             }
                         });
@@ -2139,6 +2142,8 @@
                                 if (data.code == '000') {
                                     $('.withdraw_complete').show().removeClass('hide');
                                     $('.withdraw_contentWrap').hide();
+                                } else {
+                                    layer.msg(data.msg);
                                 }
                             },
                             error: function (data) {
