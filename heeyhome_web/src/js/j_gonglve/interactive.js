@@ -87,7 +87,7 @@
                 }).success(function (data, status) {
                     /* 如果成功执行 */
                     if (data.code === '000') {
-                        //console.log(data.data);
+                          
                         //往详情页里面塞内容
                         $(".gonglve_detail .now_location .stage").html(cate_name);
                         $(".gonglve_detail .now_location .attention").html(cate_describe);
@@ -140,7 +140,7 @@
      */
     pageHandler = {
         pageContentEvent: function (id) {
-            $(".page_div3").empty().paging({
+        	$(".page_number>div").append($(".page_div3").empty().paging({
                 total: Math.ceil(gonglve_total / 2), //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
                 centerBgColor: "#fff",
@@ -183,7 +183,7 @@
                     });
                     $(".right_wrap").html(vrStr);
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
-            });
+            }));
         }
     };
     /**
