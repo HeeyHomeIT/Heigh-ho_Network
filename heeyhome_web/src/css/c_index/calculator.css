@@ -388,7 +388,7 @@ body #calcontainer {
     font-weight: 700
 }
 
-#calcontent .cal3>div.mainareadiv .mainarea_list li>div>i,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>div>i {
+#calcontent .cal3>div.mainareadiv .mainarea_list li>div>i,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>div>i,#calcontent .cal5>div.othersdiv .other_list li>div>i {
     display: block;
     position: absolute;
     top: 0;
@@ -399,7 +399,7 @@ body #calcontainer {
     width: 40px;
     border-radius: 50%;
     opacity: .5;
-    background: url(../img/icon_close.png) no-repeat 50% 50%;
+    background-position: -518px -14px;
     -webkit-transition: -webkit-transform .5s ease-out;
     -moz-transition: -moz-transform .5s ease-out;
     -o-transition: -o-transform .5s ease-out;
@@ -407,7 +407,7 @@ body #calcontainer {
     transition: transform .5s ease-out;
 }
 
-#calcontent .cal3>div.mainareadiv .mainarea_list li>div>i:hover,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>div>i:hover {
+#calcontent .cal3>div.mainareadiv .mainarea_list li>div>i:hover,#calcontent .cal4>div.otherroomsdiv .otherroom_list li>div>i:hover,#calcontent .cal5>div.othersdiv .other_list li>div>i:hover {
 	opacity: 1;
     display: block;
     position: absolute;

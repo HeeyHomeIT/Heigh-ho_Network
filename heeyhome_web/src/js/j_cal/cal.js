@@ -448,7 +448,7 @@ var heeyhomeCal = {
 					+ '			<dl class="item_hover_0 col_eec988 after_eec988">'+obj[i].info.cname+'</dl> '
 					+ '		</a> '
 					+ '		<div class="filter_nav '+obj[i].info.cstyle+' display"> '
-					+ '			<i></i> '
+					+ '			<i class="sprite"></i> '
 					+ '			<div class="filter_mod"> '
 					+ '				<div class="filter_item"> '
 					+ '					<label class="item_title" data-name="ground" >地面处理方式：</label> '
