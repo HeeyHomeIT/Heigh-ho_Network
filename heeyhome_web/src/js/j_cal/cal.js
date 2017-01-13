@@ -163,8 +163,6 @@ var heeyhomeCal = {
     	var self = this;
     	var sum = 0;
     	if(flag){
-    		console.log("roomsPlanStatusEvent: ");
-			console.log(roomPlanObj);
 			// 循环全局对象求合
     		$.each(roomPlanObj, function(i,v) {
     			sum += parseInt(roomPlanObj[i].count);
@@ -655,8 +653,6 @@ var heeyhomeCal = {
 				}
 				calObj.wall = $("#other1").attr("data-select"); // 墙体改造
 				calObj.ground_sank = $("#other2").attr("data-select"); // 卫生间地面下沉
-				console.log(calObj);
-				console.log(JSON.stringify(calObj))
 				$.ajax({
 					url: COUNTURL,
 					type: "GET",
@@ -665,36 +661,46 @@ var heeyhomeCal = {
 					data: {
 						calculator_json: JSON.stringify(calObj)
 					},
+					beforeSend:function(){
+						$("#loading").removeClass("display");
+					},
 					success: function(data) {
-						console.log(data);
-						var costObj = {};
-						costObj.gzrg = data.data.gzrg; // 工长人工费用
-						costObj.sdrg = data.data.sdrg; // 水电人工费用
-						costObj.wgrg = data.data.wgrg; // 瓦工人工费用
-                        costObj.mgrg = data.data.mgrg; // 木工人工费用
-                       	costObj.yqgrg = data.data.yqgrg; // 油漆工人工费用
-                        costObj.zgrg = data.data.zgrg; // 杂工人工费用
-                        costObj.rgzj = data.data.rgzj; // 人工总价费用
-                      	costObj.zdsdcl = data.data.zdsdcl; // 中端水电材料费用
-                      	costObj.gdsdcl = data.data.gdsdcl; // 高端水电材料费用
-                        costObj.wgfc = data.data.wgfc; // 瓦工辅材费用
-                        costObj.mgfc = data.data.mgfc; // 木工辅材费用
-                        costObj.yqcl = data.data.yqcl; // 油漆材料费用
-                        costObj.czdd = data.data.czdd; // 瓷砖低端费用
-                        costObj.czgd = data.data.czgd; // 瓷砖高端费用
-                        costObj.bc = data.data.bc; // 板材费用
-                        costObj.dls = data.data.dls; // 大理石费用
-                        costObj.db = data.data.db; // 地板费用
-                        costObj.mm = data.data.mm; // 木门费用
-                        costObj.cfym = data.data.cfym; // 厨房移门费用
-                       	costObj.lyfym = data.data.lyfym; // 淋浴移门费用
-                       	costObj.ygym = data.data.ygym; // 衣柜移门费用
-                       	costObj.jcdd = data.data.jcdd; // 集成吊顶费用
-                      	costObj.cgsys = data.data.cgsys; // 橱柜石英石费用
-                      	costObj.zxzj = data.data.zxzj; // 装修总价
-                        sessionStorage.payJson = JSON.stringify(costObj);
-                        var url = "calresult.html#/calresult";
-						window.location.href = url + "?cs="+calObj.city+"&mj="+calObj.area+"&fj="+calObj.room_num+"&kt="+calObj.parlor_num+"&wsj="+calObj.bathroom_num+"&yt="+calObj.balcony_num;
+						if(data.code == 000){
+							var costObj = {};
+							costObj.gzrg = data.data.gzrg; // 工长人工费用
+							costObj.sdrg = data.data.sdrg; // 水电人工费用
+							costObj.wgrg = data.data.wgrg; // 瓦工人工费用
+	                        costObj.mgrg = data.data.mgrg; // 木工人工费用
+	                       	costObj.yqgrg = data.data.yqgrg; // 油漆工人工费用
+	                        costObj.zgrg = data.data.zgrg; // 杂工人工费用
+	                        costObj.rgzj = data.data.rgzj; // 人工总价费用
+	                      	costObj.zdsdcl = data.data.zdsdcl; // 中端水电材料费用
+	                      	costObj.gdsdcl = data.data.gdsdcl; // 高端水电材料费用
+	                        costObj.wgfc = data.data.wgfc; // 瓦工辅材费用
+	                        costObj.mgfc = data.data.mgfc; // 木工辅材费用
+	                        costObj.yqcl = data.data.yqcl; // 油漆材料费用
+	                        costObj.czdd = data.data.czdd; // 瓷砖低端费用
+	                        costObj.czgd = data.data.czgd; // 瓷砖高端费用
+	                        costObj.bc = data.data.bc; // 板材费用
+	                        costObj.dls = data.data.dls; // 大理石费用
+	                        costObj.db = data.data.db; // 地板费用
+	                        costObj.mm = data.data.mm; // 木门费用
+	                        costObj.cfym = data.data.cfym; // 厨房移门费用
+	                       	costObj.lyfym = data.data.lyfym; // 淋浴移门费用
+	                       	costObj.ygym = data.data.ygym; // 衣柜移门费用
+	                       	costObj.jcdd = data.data.jcdd; // 集成吊顶费用
+	                      	costObj.cgsys = data.data.cgsys; // 橱柜石英石费用
+	                      	costObj.zxzj = data.data.zxzj; // 装修总价
+	                        sessionStorage.payJson = JSON.stringify(costObj);
+	                        var url = "calresult.html#/calresult";
+							window.location.href = url + "?cs="+calObj.city+"&mj="+calObj.area+"&fj="+calObj.room_num+"&kt="+calObj.parlor_num+"&wsj="+calObj.bathroom_num+"&yt="+calObj.balcony_num;
+						}else if(data.code == 200){
+							layer.alert(data.msg);
+						}
+						
+                        
+					},complete:function(){
+						$("#loading").addClass("display");
 					},error: function(data) {}
 				});
 			}

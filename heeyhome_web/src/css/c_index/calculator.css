@@ -125,6 +125,7 @@ body #calcontainer {
     cursor: not-allowed;
     position: relative;
     text-align: center;
+    box-sizing: content-box;
     transition: all .3s linear;
     -ms-transition: all .3s linear;
     -o-transition: all .3s linear;
