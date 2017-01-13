@@ -84,6 +84,11 @@
 		 */
 		clickLoginEvent : function() {
 			var $submit = $(".promptly_do");
+			$(document).keydown(function(event) {
+				if(event.keyCode == 13) {
+					$submit.click();
+				}
+			});
 			$submit.on("click",function(){
 				var hash = window.location.hash;
 				var info = hash.split("#")[1]; // 对字符串进行分割得到dl或zc
