@@ -150,6 +150,7 @@
                 $.ajaxSetup({//给所有的Ajax加加载层
                     beforeSend: function () {
                         $(".right_content_wrap").append(load);
+                        $(".safe_right .loading").css('top','70%');
                     },
                     complete: function () {
                         $(".right_content_wrap .loading").remove(); //关闭加载层

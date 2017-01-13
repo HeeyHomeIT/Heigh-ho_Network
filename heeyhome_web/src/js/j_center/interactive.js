@@ -93,6 +93,7 @@
                         $(".right_content_wrap").append(load);
                         $(".order_content .right_content").append(load);
                         $(".safe_right_content").append(load);
+                        $(".safe_right_content .loading").css('top','80%');
                     },
                     complete: function () {
                         $(".right_content_wrap .loading").remove(); //关闭加载层
@@ -1539,7 +1540,7 @@
                 }
                 // 人工费
                 if (value.order_step == 5 || value.order_step == 9 || value.order_step == 13 || value.order_step == 17) {
-                    vrStr += '<a href="reservation.html#/advancelist?pos=' + value.order_id + '" class="bottom">人工支付</a>';
+                    vrStr += '<a href="reservation.html#/advancelist?pos=' + value.order_id + '"  class="bottom">人工支付</a>'; /*href="refund.html#/refund/home/refund_step_1"*/
                 }
             }
             vrStr += '</div></div>';

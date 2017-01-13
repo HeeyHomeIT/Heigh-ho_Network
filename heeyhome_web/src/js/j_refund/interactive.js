@@ -15,6 +15,8 @@
      */
     var HHIT_SHOPLISTAPP = angular.module('heeyhomeApp');
 
+    var GETREFUNDINFOURL = "http://hyu2387760001.my3w.com/order/user/getrefundinfo"; // 用户退款信息获取
+
 
     /*定义一个类*/
     var refundWrap = {
@@ -28,6 +30,7 @@
             var self = this;
             self.initRemoveHeadEvent();
             self.initJudgementEvent();
+            self.initGetInfoEvent();
 
         },
         /**
@@ -49,7 +52,36 @@
                     $('.title_detail').eq(1).addClass('active');
                 }
             });
-
+        },
+        /**
+         * 获取用户退款信息
+         */
+        initGetInfoEvent: function () {
+            var order_id = sessionStorage.getItem("orderid");
+            $.ajax({
+                url: GETREFUNDINFOURL,
+                type: "GET",
+                async: true,
+                dataType: 'jsonp',
+                data: {
+                    order_id: order_id
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data != null && data.code == '000') {
+                        $('#order_number').html(data.data.order_id);//获取订单编号
+                        if(data.data.order_step=='17'){
+                            $('#order_step').html('油漆工完工阶段');//获取订单步骤
+                        }
+                        $('#order_time').html(data.data.order_time);//获取订单时间
+                        $('#order_money').html(-data.data.pay_amount);//获取退款金额
+                    }else{
+                        layer.msg(data.msg);
+                    }
+                },
+                error: function (data) {
+                }
+            });
         }
     };
 
