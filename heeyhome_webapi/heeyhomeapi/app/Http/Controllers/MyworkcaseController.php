@@ -21,11 +21,14 @@ class MyworkcaseController extends Controller
         $where=' and (type=1 or type=2)';
         if($type){
             switch ($type){
-                case 1: $where=' and type=1';
+                case 1: $where=' and type=1';            //入驻前案例
                     break;
-                case 2: $where=' and type=2';
+                case 2: $where=' and type=2';            //已完成订单案例
                     break;
-                case 3: $where=' and type=3';
+                case 3: $where=' and type=3';            //未完成订单案例
+                    break;
+                case 4: $where=' and (type=2 or type=3)';        //订单案例包括已完成和未完成
+                    break;
             }
         }
         $total=DB::select('select count(id) as total from hh_workcase where foreman_id=?'.$where,[$foreman_id]);
