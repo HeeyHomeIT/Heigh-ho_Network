@@ -17,6 +17,17 @@
     padding-right: 6px;
 }
 
+.loagbg {
+    background-position-y: 12px;
+    height: 127px
+}
+
+.vrloagbg {
+	background: url(../../image/icon-loading.gif) center no-repeat;
+	background-position-y: 115px;
+    height: 404px;
+}
+
 .bg_mongolia {
     position: absolute;
     width: 100%;
@@ -196,6 +207,31 @@
 #virtual_reality .virtual_content .pic_box .pic_icon .pic_praise img {
     width: 15px;
     height: 15px
+}
+
+.nullpage {
+    color: #999;
+    font-size: 14px;
+    overflow: hidden;
+    text-align: center;
+    padding: 145px 0 140px 0;
+    border: 1px solid #999;
+}
+
+.nullpage i {
+	position: relative;
+   	background: url(../img/noinfo.png) no-repeat;
+    width: 86px;
+    height: 85px;
+    display: inline-block;
+    
+}
+
+.nullpage span {
+    display: block;
+    float: left;
+    width: 100%;
+    margin: 10px 0;
 }
 
 

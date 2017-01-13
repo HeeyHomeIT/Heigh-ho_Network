@@ -58,37 +58,43 @@
 		 * 获取筛选标签内容
 		 */
 		initGetTagsEvent: function() {
+			
 			$.ajax({
 				url: TAGSURL,
 				type: "GET",
 				async: true,
 				dataType: 'jsonp',
-				success: function(data) {
-					if(data != null && data.code == '000') {
-						$.each(data.data, function(i, v) {
-							var fliterStr = '<div class="fliter_' + i + '"  data-name='+i+'  >';
-							$.each(v, function(item, val) {
-								switch(item) {
-									case 0:
-										fliterStr += '<span class="fliter_name">' + val + '</span><ul class="fliter_tab" >';
-										break;
-									case 1:
-										fliterStr += '<li class="active" data-label="' + item + '" >';
-										fliterStr += '<a>' + val + '</a></li>';
-										break;
-									default:
-										fliterStr += '<li class="" data-label="' + item + '" >';
-										fliterStr += '<a>' + val + '</a></li>';
-								}
-							});
-							fliterStr += '</ul></div>';
-							$(".fliter").append(fliterStr);
-						});
-						tabSelectHandler.tabSelectEvent()
-						
-					}
+				beforeSend:function(){
+					$(".fliter").addClass("loagbg");
+				},complete:function(){
+					$(".fliter").removeClass("loagbg");
 				},
 				error: function(data) {}
+			}).done(function(data){
+				if(data != null && data.code == '000') {
+					var fliterStr = '';
+					$.each(data.data, function(i, v) {
+						fliterStr += '<div class="fliter_' + i + '"  data-name='+i+'  >';
+						$.each(v, function(item, val) {
+							switch(item) {
+								case 0:
+									fliterStr += '<span class="fliter_name">' + val + '</span><ul class="fliter_tab" >';
+									break;
+								case 1:
+									fliterStr += '<li class="active" data-label="' + item + '" >';
+									fliterStr += '<a>' + val + '</a></li>';
+									break;
+								default:
+									fliterStr += '<li class="" data-label="' + item + '" >';
+									fliterStr += '<a>' + val + '</a></li>';
+							}
+						});
+						fliterStr += '</ul></div>';
+						
+					});
+					$(".fliter").html(fliterStr);
+					tabSelectHandler.tabSelectEvent()
+				}
 			});
 		},
 
@@ -111,9 +117,6 @@
 					filterObj[$siblingdiv.eq(i).data("name")]=$siblingdiv.eq(i).find("li.active").data("label");
 				});
 				vrContentHandler.vrContentEvent(filterObj);
-				$(".content_pic div").remove();
-				$(".page_div3 div").remove();
-				
 			});
 		}
 	};
@@ -136,20 +139,22 @@
 					page:filterObj.pageVal,
 					limit:filterObj.limitVal
 				},
-				success: function(data) {
+				complete:function(){
+					$(".content_pic").removeClass("vrloagbg");
+				}
+			}).done(function(data){
+				if(data && data.code == '000'){
 					TOTAL = data.data[0].total; // 总数
-					$(".content_pic div").remove();
-					$.each(data.data, function(i, v) {
-						var vrStr = spliceVrContentHandler.spliceStrEvent(v);
-						$(".content_pic").append(vrStr)
-					});
+					$(".content_pic").html(spliceVrContentHandler.spliceStrEvent(data.data));
 					pageHandler.pageContentEvent();
 					viewPlus.addView();
 					addCollect.collectVr();
 					countPraise.praiseVr();
 					orderModuleHandler.orderClickEvent();
-				},
-				error: function(data) {}
+				}else{
+					$(".content_pic").html('<div class="nullpage"><i>&nbsp;</i><span>暂时还没有,设计师正在加班加点的制作中...</span></div>')
+				}
+				
 			});
 		}
 	};
@@ -267,8 +272,6 @@
 				$(this).addClass("active").siblings().removeClass("active");
 				filterObj[sortname] = $(this).data("label");
 				vrContentHandler.vrContentEvent(filterObj);
-				$(".content_pic div").remove();
-				$(".page_div3 div").remove();
 			});
 		}
 	};
@@ -277,17 +280,21 @@
 	 */
 	spliceVrContentHandler = {
 		spliceStrEvent:function(value) {
-			var vrStr = '<div class="pic_box" data-id="' + value.panorama_id + '"><div class="vr_pic">';
-				vrStr += '<a href="' + value.panorama_url + '"><img src="http://hyu2387760001.my3w.com/' + value.panorama_img + '" class="now">';
+			var vrStr = '';
+			$.each(value, function(i, v) {
+				vrStr += '<div class="pic_box" data-id="' + v.panorama_id + '"><div class="vr_pic">';
+				vrStr += '<a href="' + v.panorama_url + '"><img src="http://hyu2387760001.my3w.com/' + v.panorama_img + '" class="now">';
 				vrStr += '<div class="bg_mongolia">';
 				vrStr += '<div class="pic_hover"><img src="css/img/icon-tovr.png"></div></div></a></div>';
 				vrStr += '<div class="pic_introduce">';
-				vrStr += '<div class="pic_style clearfix"><h2>' + value.panorama_style + '</h2></div>';
+				vrStr += '<div class="pic_style clearfix"><h2>' + v.panorama_style + '</h2></div>';
 				vrStr += '<div class="sprite pic_badge" title="点击收藏"></div>';
-				vrStr += '<div class="pic_detail"><p>建筑面积：<em>' + value.panorama_area + '</em>㎡</p><p>' + value.panorama_housetype + '</p></div>';
+				vrStr += '<div class="pic_detail"><p>建筑面积：<em>' + v.panorama_area + '</em>㎡</p><p>' + v.panorama_housetype + '</p></div>';
 				vrStr += '<div class="pic_icon"><div class="pic_view">';
-				vrStr += '<i class="iconfont">&#xe620;</i><span>' + value.scan_num + '</span></div>';
-				vrStr += '<div class="pic_praise"><i class="iconfont">&#xe611;</i><span>' + value.like_num + '</span></div></div></div></div>';
+				vrStr += '<i class="iconfont">&#xe620;</i><span>' + v.scan_num + '</span></div>';
+				vrStr += '<div class="pic_praise"><i class="iconfont">&#xe611;</i><span>' + v.like_num + '</span></div></div></div></div>';
+			});
+			
 			return vrStr;
 		}
 	};
@@ -297,7 +304,7 @@
 	pageHandler = {
 		pageContentEvent:function() {
 			MAXROWS =  Math.ceil(TOTAL/4); // 页数
-			$(".page_div3").empty().paging({
+			$(".page_number>div").append($(".page_div3").empty().paging({
 				total: MAXROWS, //全部页数
 				animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
 				centerBgColor: "#fff",
@@ -336,16 +343,13 @@
 					limit:filterObj.limitVal
 				},   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
 				dataOperate: function oprate(data) {
-					$(".content_pic div").remove();
-					$.each(data.data, function(i, v) {
-						var vrStr = spliceVrContentHandler.spliceStrEvent(v);
-						$(".content_pic").append(vrStr)
-					});
+					$(".content_pic").html(spliceVrContentHandler.spliceStrEvent(data.data));
 					viewPlus.addView();
 					addCollect.collectVr();
 					countPraise.praiseVr();
 				} //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
-			});
+			}));
+			
 		}
 	}
 	//入口方法调用 代码只能从这里执行

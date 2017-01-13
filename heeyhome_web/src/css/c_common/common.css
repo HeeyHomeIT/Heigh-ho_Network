@@ -182,6 +182,11 @@ label.error.roomerror{
 	background: url(../img/sprite-img.png) no-repeat;
 }
 
+.loagbg {
+    background: url(../../image/icon-loading.gif) center no-repeat;
+    /*height: 148px*/
+}
+
 .commonhead,#Head1,#header,#footer {
     font: normal normal normal 12px/20px 'Microsoft YaHei',Arial,sans-serif
 }
