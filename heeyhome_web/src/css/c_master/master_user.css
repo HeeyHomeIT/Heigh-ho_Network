@@ -1601,10 +1601,10 @@
 
 .order_title div:nth-child(7) ul {
     position: absolute;
-    width: 80px;
+    width: 90px;
     border: 1px solid #E69628;
     color: #EEC988;
-    left: -32px;
+    left: -35px;
     top: 9px;
     text-align: center;
     background-color: white;
@@ -1717,6 +1717,7 @@
 }
 
 .order_box .ordercnt_content .block .all a:hover {
+    cursor: pointer;
     transition: all .3s linear;
     -ms-transition: all .3s linear;
     -o-transition: all .3s linear;
@@ -1831,7 +1832,7 @@
 }
 
 .owner_content {
-    width: 800px;
+    width: 840px;
     margin: 0 auto;
 }
 

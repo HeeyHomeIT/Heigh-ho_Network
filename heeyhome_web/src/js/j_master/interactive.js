@@ -45,6 +45,7 @@
     var ALLREADURL = BASEURL + 'personal/message/readall'; // 全部标记已读接口
     var NEWSURL = BASEURL + 'personal/message/isnew'; // 读取新消息接口
     var ORDERURL = BASEURL + 'order/shop/list'; // 我的订单
+    var ORDERFILTERURL = BASEURL + 'order/shop/listfilter'; // 我的订单筛选
     var ADDDATEURL = BASEURL + 'order/aeckonandactual/adddate'; // 添加预算单与结算单数据
     var GENERATEURL = BASEURL + 'order/aeckonandactual/generatelist'; // 预算单结算单生成
     var LISTNAMEURL = BASEURL + 'order/aeckonandactual/getlistname?callback=JSON_CALLBACK'; // 获取预算单结算单字段
@@ -66,6 +67,7 @@
 
     var TOTAL; // 消息中心后台数据总数
     var ORDERTOTAL; // 我的订单后台数据总数
+    var ORDERFILTERTOTAL; // 我的订单筛选后台数据总数
     var HOUSESTYLE;//我的订单装修风格
     var ORDERID;//订单id
     var MAXROWS; //消息中心总页数
@@ -150,7 +152,7 @@
                 $.ajaxSetup({//给所有的Ajax加加载层
                     beforeSend: function () {
                         $(".right_content_wrap").append(load);
-                        $(".safe_right .loading").css('top','70%');
+                        $(".safe_right .loading").css('top', '70%');
                     },
                     complete: function () {
                         $(".right_content_wrap .loading").remove(); //关闭加载层
@@ -183,7 +185,7 @@
          */
         initMHomeEvent: function () {
             HHIT_CENTERAPP.controller('mhomeCtrl', ['$scope', '$http', function ($scope, $http) {
-            	$(".Jforeman").html("我的主页");
+                $(".Jforeman").html("我的主页");
                 getHomeInfoHandler.getInfoEvent();//获取工长店铺
                 getHomeInfoHandler.getSafeEvent();//获取工长的安全等级
                 getHomeInfoHandler.getEmailEvent();//获取工长的邮箱信息
@@ -194,7 +196,7 @@
          */
         initMDataEvent: function () {
             HHIT_CENTERAPP.controller('mDataCtrl', ['$scope', '$http', function ($scope, $http) {
-            	$(".Jforeman").html("个人资料");
+                $(".Jforeman").html("个人资料");
                 // 加载城市插件
                 $('[data-toggle="distpicker"]').distpicker();
                 /* details */
@@ -219,7 +221,7 @@
          */
         initMWorkEvent: function () {
             HHIT_CENTERAPP.controller('mWorkCtrl', ['$scope', '$http', function ($scope, $http) {
-            	$(".Jforeman").html("我的作品");
+                $(".Jforeman").html("我的作品");
                 /* details */
                 var $dtDiv = $("#works_content_title1 div");
                 var iSpeed = 0;
@@ -325,26 +327,26 @@
                     error: function (data) {
                     }
                 });
-                
+
                 $.ajax({
-	                url: SHOPCURL,
-	                type: "GET",
-	                async: true,
-	                dataType: 'jsonp',
-	                data: {
-	                    shop_id: $.base64.decode($.cookie("userShopId"))
-	                },
-	                success: function (data) {
-	                    if (data && data.code == '000') {
-	                        $("#success_case .now_location .shopname").html(data.data.shop_name);//获取店铺名字      
-	                    } else {
-	                    	layer.alert(data.msg);
-	                    }
-	                },
-	                error: function (data) {
-	                }
-	            });
-                
+                    url: SHOPCURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        shop_id: $.base64.decode($.cookie("userShopId"))
+                    },
+                    success: function (data) {
+                        if (data && data.code == '000') {
+                            $("#success_case .now_location .shopname").html(data.data.shop_name);//获取店铺名字
+                        } else {
+                            layer.alert(data.msg);
+                        }
+                    },
+                    error: function (data) {
+                    }
+                });
+
             }]);
         },
 
@@ -353,7 +355,7 @@
          */
         initMTeamEvent: function () {
             HHIT_CENTERAPP.controller('mTeamCtrl', ['$scope', '$http', function ($scope, $http) {
-            	$(".Jforeman").html("我的团队");
+                $(".Jforeman").html("我的团队");
                 getTeamInfoHandler.getInfoEvent();
             }]);
         },
@@ -542,7 +544,7 @@
          */
         initMShopEvent: function () {
             HHIT_CENTERAPP.controller('mShopCtrl', ['$scope', '$http', function ($scope, $http) {
-            	$(".Jforeman").html("店铺资料");
+                $(".Jforeman").html("店铺资料");
                 getShopInfoHandler.shopInfo();
             }]);
         },
@@ -566,7 +568,7 @@
          */
         initBillEvent: function () {
             HHIT_CENTERAPP.controller('billCtrl', ['$scope', '$http', function ($scope, $http) {
-            	$(".Jforeman").html("我的钱包");
+                $(".Jforeman").html("我的钱包");
                 getWalletData.getMoney();
                 getNearByMonth.fiveMonth();
                 getBillInfoHandler.getInfoEvent();
@@ -577,8 +579,9 @@
          */
         initMOrderEvent: function () {
             HHIT_CENTERAPP.controller('mOrderCtrl', ['$scope', '$http', function ($scope, $http) {
-            	$(".Jforeman").html("我的订单");
+                $(".Jforeman").html("我的订单");
                 orderList.getInfoEvent();
+                orderFilter.getEvent();
             }]);
         },
         /*
@@ -624,7 +627,7 @@
                                     src = BASEURL + v.user_portrait;
                                 }
                             });
-                            $(".owner_content .owner_picture img").attr("src",src);
+                            $(".owner_content .owner_picture img").attr("src", src);
                             $(".owner_summary h3").html(name);
                             $(".owner_summary p span").html(phone);
                             $(".owner_left .area h3 span").html(area);
@@ -649,7 +652,7 @@
          */
         initMsgInfo: function () {
             HHIT_CENTERAPP.controller('msginfoCtrl', ['$scope', '$http', function ($scope, $http) {
-            	$(".Jforeman").html("消息中心");
+                $(".Jforeman").html("消息中心");
                 initInfo.info();
             }]);
         }
@@ -670,6 +673,96 @@
                     obj.style.left = left + "px";
                 }
             }, 30);
+        }
+    };
+
+    /*
+     * 我的订单点击小三角事件
+     */
+    arrowClick = {
+        getEvent: function () {
+            var _arrow = $(".order_title div").eq(6);//全部后面的小三角形
+            var _area = $(".order_content .order_box");//哪一份订单
+            var _arrowcnt = $(".order_title div").eq(6).find("ul");//全部后面的小三角形里的内容
+            $(_arrow).click(function () {
+                $(_arrowcnt).slideDown(500);
+            }, function () {
+                if ($(_arrow).hasClass("item_hover_180")) {
+                    $(_arrow).removeClass("item_hover_180");
+                }
+                else {
+                    $(_arrow).addClass("item_hover_180");
+                }
+                $(_arrowcnt).slideToggle(500);
+            });
+        }
+    };
+
+    /*
+     * 我的订单筛选
+     */
+    orderFilter = {
+        getEvent: function () {
+            var _arrowli = $(".order_title div").eq(6).find("ul li");//全部后面的小三角形里的内容
+            var orderStatus = 0;
+            $(_arrowli).click(function () {
+                if ($(this).html() == '待确认') {
+                    orderStatus = 1;
+                } else if ($(this).html() == '待上门量房') {
+                    orderStatus = 3;
+                } else if ($(this).html() == '待用户预支付') {
+                    orderStatus = 4;
+                } else if ($(this).html() == '订单进行中') {
+                    orderStatus = 5;
+                } else if ($(this).html() == '已完成') {
+                    orderStatus = 6;
+                }
+                console.log(orderStatus);
+                $.ajax({
+                    url: ORDERFILTERURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        shop_id: $.base64.decode($.cookie("userShopId")),
+                        order_status: orderStatus,
+                        page: 1,
+                        limit: 3
+                    },
+                    success: function (data) {
+                        if (data && data.code == '000') {
+                            var vrStr = "";
+                            ORDERFILTERTOTAL = data.data.order_count;
+                            $.each(data.data.order_list, function (i, v) {
+                                if (data.data.order_list[i].order_status == '1') {
+                                    data.data.order_list[i].order_status = '待确认';
+                                } else if (data.data.order_list[i].order_status == '2') {
+                                    data.data.order_list[i].order_status = '待预约';
+                                } else if (data.data.order_list[i].order_status == '3') {
+                                    data.data.order_list[i].order_status = '待上门量房';
+                                } else if (data.data.order_list[i].order_status == '5') {
+                                    data.data.order_list[i].order_status = '订单进行中';
+                                } else if (data.data.order_list[i].order_status == '6') {
+                                    data.data.order_list[i].order_status = '已完成';
+                                }
+                                vrStr += spliceOrderContent.spliceStrEvent(v);
+                                $(".order_wrap").html(vrStr);
+                            });
+                            OrderPageHandler.pageContentEvent(ORDERFILTERTOTAL, ORDERFILTERURL, {
+                                shop_id: $.base64.decode($.cookie("userShopId")),
+                                order_status: orderStatus,
+                                page: 1,
+                                limit: 3
+                            });
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    },
+                    error: function (data) {
+                        layer.alert(data.msg);
+                    }
+                });
+            });
         }
     };
 
@@ -715,7 +808,13 @@
                             $(".order_wrap").html(vrStr);
                         });
 
-                        OrderPageHandler.pageContentEvent();
+                        OrderPageHandler.pageContentEvent(ORDERTOTAL, ORDERURL, {
+                            shop_id: $.base64.decode($.cookie("userShopId")),
+                            page: 1,
+                            limit: 3
+                        });
+                        /* 我的订单点击小三角事件 */
+                        arrowClick.getEvent();
                     } else if (data.code == '205') {
                         $('#orderContent').remove();
                         $('.not_information').show().removeClass('hide');
@@ -1194,7 +1293,7 @@
                                 success: function (data) {
                                     if (data && data.code == '000') {
                                         window.location.href = 'order.html#/order/home';
-                                        sessionStorage.setItem("status", '订单进行中');
+                                        //sessionStorage.setItem("status", '订单进行中');
                                         // if (step == '18') {
                                         //     sessionStorage.setItem("step", 1);//假设赋值
                                         // } else {
@@ -1314,7 +1413,7 @@
                                     list += '</div><div class="number">';
                                     $.each(v.spec, function (m, n) {
                                         list += '<div class="control_number"><span class="minus"></span>';
-                                        list += '<input type="text" value="'+n.num+'" data-id="'+n.id+'"><span class="plus"></span></div>';
+                                        list += '<input type="text" value="' + n.num + '" data-id="' + n.id + '"><span class="plus"></span></div>';
                                     });
                                 } else {
                                     list += '<span class="none"></span>';
@@ -1322,7 +1421,7 @@
                                     list += '<span class="none">' + v.unit + '</span>';
                                     list += '</div><div class="number">';
                                     list += '<div class="control_number none"><span class="minus"></span>';
-                                    list += '<input type="text" value="'+v.spec.num+'" data-id="'+v.spec.id+'"><span class="plus"></span></div>';
+                                    list += '<input type="text" value="' + v.spec.num + '" data-id="' + v.spec.id + '"><span class="plus"></span></div>';
                                 }
                                 list += '</div></div></li>';
                             });
@@ -1376,15 +1475,15 @@
                 var id = [], value = [];
                 var t = 0;
                 for (var i = 0; i < material.length; i++) {
-                	id[i] = material.eq(i).attr("data-id");
-                	if(material.eq(i).val() != Math.ceil(material.eq(i).val())) {
-                		flag = false;
-                	} else {
-                		value[i] = material.eq(i).val();
-                		t++;
-                	}
-                	material_json[id[i]] = value[i];
-               }
+                    id[i] = material.eq(i).attr("data-id");
+                    if (material.eq(i).val() != Math.ceil(material.eq(i).val())) {
+                        flag = false;
+                    } else {
+                        value[i] = material.eq(i).val();
+                        t++;
+                    }
+                    material_json[id[i]] = value[i];
+                }
                 var material_string = JSON.stringify(material_json);
                 if (!flag) {
                     return;
@@ -1852,7 +1951,7 @@
                             $(".page_number").css('opacity', '1');
                         } else {
                             $(".wallet_dl").nextAll().remove();
-                            $(".page_number").css('opacity','0');
+                            $(".page_number").css('opacity', '0');
                             // layer.alert(data.msg);
                             //$('.wallet').remove();
                             $('.not_information').show().removeClass('hide');
@@ -3886,9 +3985,9 @@
 
     /* 我的订单分页 */
     OrderPageHandler = {
-        pageContentEvent: function () {
+        pageContentEvent: function (total, url, data) {
             $(".page_div3").empty().paging({
-                total: Math.ceil(ORDERTOTAL / 3), //全部页数
+                total: Math.ceil(total / 3), //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
                 centerBgColor: "#fff",
                 centerFontColor: "#000",
@@ -3917,12 +4016,8 @@
                 jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
-                url: ORDERURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
-                ajaxData: {
-                    shop_id: $.base64.decode($.cookie("userShopId")),
-                    page: 1,
-                    limit: 3
-                },   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
+                url: url, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
+                ajaxData: data,   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
                 dataOperate: function oprate(data) {
                     $(".order_wrap").empty();
                     var vrStr = "";
