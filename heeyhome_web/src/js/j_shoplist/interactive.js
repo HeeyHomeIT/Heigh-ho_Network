@@ -132,6 +132,7 @@
          * @param {Object} filterObj 筛选条件对象
          */
         listContentEvent: function (filterObj) {
+            var userType = $.cookie('userType');
             console.log(filterObj)
             $.ajax({
                 url: SHOPLISTURL,
@@ -157,7 +158,7 @@
                         $.each(data.data, function (i, v) {
                             var vrStr = spliceShopListContHandler.spliceStrEvent(v);
                             $(".shop_summary").append(vrStr);
-                            if (v.iscollected == '1') {//判断是否已收藏过
+                            if (v.iscollected == '1' && $.base64.decode(userType) == 1) {//判断是否已收藏过
                                 $('.collect_shop').val('已收藏');
                             }
                         });
@@ -171,6 +172,19 @@
                 error: function (data) {
                 }
             });
+
+            /* 点击店铺收藏 */
+            $(document).on('click', '.collect_shop', function () {
+                if ($.base64.decode(userType) == 1) {
+                    if ($(this).val() == '已收藏') {
+                        layer.msg('已收藏过~~');
+                    } else {
+                        layer.alert('您需要进入店铺后才能收藏哦~~');
+                    }
+                } else if ($.base64.decode(userType) == 2) {
+                    layer.alert('工长暂时还不能收藏店铺哦~~');
+                }
+            })
         }
     };
     /**
@@ -294,11 +308,12 @@
                     limit: filterObj.limitVal
                 },   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
                 dataOperate: function oprate(data) {
+                    var userType = $.cookie('userType');
                     $(".shop_summary div").remove();
                     $.each(data.data, function (i, v) {
                         var vrStr = spliceShopListContHandler.spliceStrEvent(v);
                         $(".shop_summary").append(vrStr);
-                        if (v.iscollected == '1') {
+                        if (v.iscollected == '1' && $.base64.decode(userType) == 1) {
                             $('.collect_shop').val('已收藏');
                         }
                     });

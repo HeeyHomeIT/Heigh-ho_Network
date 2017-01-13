@@ -78,7 +78,7 @@
                     shop_id: $("#JdpId").val()
                 },
                 success: function (data) {
-                    if (data.code == '135') {
+                    if (data.code == '135' && $.base64.decode(userType) == 1) {
                         $('#collect_shop i').html('已收藏');
                     }
                 },
@@ -110,8 +110,11 @@
                             }
                         });
                     }
-                } else {
-                    window.location.href = 'register.html';
+                    else if ($.base64.decode(userType) == 2) {
+                        layer.alert('工长暂时还不能收藏店铺哦~~');
+                    } else {
+                        window.location.href = 'register.html';
+                    }
                 }
             });
 
@@ -232,7 +235,7 @@
                     shop_id: shopId
                 },
                 success: function (data) {
-                	$(".sname").html(data.data.shop_name);
+                    $(".sname").html(data.data.shop_name);
                     $("#JgzId").val(data.data.shopper_id);
                     $(".Jmore").attr("href", "successcase.html#/successcase?pos=" + $("#JgzId").val() + "")
                     $(".hd ul").append(sc.spliceHdPictureEvent(data.data));
@@ -675,16 +678,16 @@
          */
         spliceCgInfoEvent: function (value) {
             var vrStr = '';
-        	$.each(value, function (i, v) {
-        		if(i<7){
-        			if (v.img.length != 0) {
-	                    vrStr += '<li class="sd_hexli" data-type="' + v.type + '" ><a><div><img src="http://hyu2387760001.my3w.com/' + v.img[0].case_img + '"><div class="sd_title"><span class="sd_area">' + v.area + '㎡</span></div>';
-	                    vrStr += '<div class="sd_stips"><span>' + v.housetype + '&middot;' + v.style + '</span>';
-	                    vrStr += '</div></div></a></li>';
-	                }
-        		}
+            $.each(value, function (i, v) {
+                if (i < 7) {
+                    if (v.img.length != 0) {
+                        vrStr += '<li class="sd_hexli" data-type="' + v.type + '" ><a><div><img src="http://hyu2387760001.my3w.com/' + v.img[0].case_img + '"><div class="sd_title"><span class="sd_area">' + v.area + '㎡</span></div>';
+                        vrStr += '<div class="sd_stips"><span>' + v.housetype + '&middot;' + v.style + '</span>';
+                        vrStr += '</div></div></a></li>';
+                    }
+                }
             });
-            
+
             return vrStr;
         },
         /**
