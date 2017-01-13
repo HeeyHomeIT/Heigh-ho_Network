@@ -276,12 +276,12 @@
                 success: function (data) {
                     console.log(data)
                     if (data != null && data.code == '000') {
-                        alert(data.msg);
+                        layer.msg(data.msg);
                         CRUDInfoHandler.queryInfoEvent();
                         $(".add_address_wrap").addClass("display").siblings().removeClass("display");
 //						addressWrap.initInputValEvent();
                     } else {
-                        alert(data.msg);
+                        layer.msg(data.msg);
                     }
                 },
                 error: function (data) {
@@ -305,11 +305,11 @@
                 success: function (data) {
                     console.log(data);
                     if (data != null && data.code == '000') {
-                        alert(data.msg);
+                        layer.msg(data.msg);
                         element.remove();
 
                     } else {
-                        alert(data.msg);
+                        layer.msg(data.msg);
                     }
                 },
                 error: function (data) {
@@ -341,12 +341,12 @@
                 success: function (data) {
                     console.log(data)
                     if (data != null && data.code == '000') {
-                        alert(data.msg);
+                        layer.msg(data.msg);
                         CRUDInfoHandler.queryInfoEvent();
                         $(".add_address_wrap").addClass("display").siblings().removeClass("display");
 //						addressWrap.initInputValEvent();
                     } else {
-                        alert(data.msg);
+                        layer.msg(data.msg);
                     }
                 },
                 error: function (data) {

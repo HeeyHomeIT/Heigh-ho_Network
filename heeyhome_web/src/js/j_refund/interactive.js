@@ -67,15 +67,14 @@
                     order_id: order_id
                 },
                 success: function (data) {
-                    console.log(data);
                     if (data != null && data.code == '000') {
                         $('#order_number').html(data.data.order_id);//获取订单编号
-                        if(data.data.order_step=='17'){
+                        if (data.data.order_step == '17') {
                             $('#order_step').html('油漆工完工阶段');//获取订单步骤
                         }
                         $('#order_time').html(data.data.order_time);//获取订单时间
                         $('#order_money').html(-data.data.pay_amount);//获取退款金额
-                    }else{
+                    } else {
                         layer.msg(data.msg);
                     }
                 },

@@ -15,8 +15,8 @@
     var BASEURL = 'http://hyu2387760001.my3w.com/';
 
     var MASTERDATAURL = BASEURL + 'personal/foremaninfo?callback=JSON_CALLBACK'; // 工长个人资料
-    var USERIMGURL = 'http://hyu2387760001.my3w.com/personal/portrait'; // 用户头像
-    var USERIMGEDITURL = 'http://hyu2387760001.my3w.com/personal/portrait/change'; // 编辑用户头像
+    var USERIMGURL = BASEURL + 'personal/portrait'; // 用户头像
+    var USERIMGEDITURL = BASEURL + 'personal/portrait/change'; // 编辑用户头像
     var SAFELEVELURL = BASEURL + 'personal/safe'; // 安全等级
     var TEAMURL = BASEURL + 'myworkers'; // 我的团队
     var WORKERINFOURL = BASEURL + 'myworkers/workerinfo'; // 我的团队-员工详情
@@ -46,6 +46,7 @@
     var NEWSURL = BASEURL + 'personal/message/isnew'; // 读取新消息接口
     var ORDERURL = BASEURL + 'order/shop/list'; // 我的订单
     var ORDERFILTERURL = BASEURL + 'order/shop/listfilter'; // 我的订单筛选
+    var ORDERTOCUSURL = BASEURL + 'order/shop/subupdatemsg'; // 我的订单步骤返回给用户
     var ADDDATEURL = BASEURL + 'order/aeckonandactual/adddate'; // 添加预算单与结算单数据
     var GENERATEURL = BASEURL + 'order/aeckonandactual/generatelist'; // 预算单结算单生成
     var LISTNAMEURL = BASEURL + 'order/aeckonandactual/getlistname?callback=JSON_CALLBACK'; // 获取预算单结算单字段
@@ -598,6 +599,7 @@
         initOrderProcessEvent: function () {
             getOrderProcessHandler.getInfoEvent();
             getOrderBudgetHandler.getInfoEvent();
+            submitOrderProgress.getInfoEvent();
 
         },
         /*
@@ -1350,6 +1352,34 @@
                     });
                 });
             }]);
+        }
+    };
+
+    /* 我的订单步骤返回给用户 */
+    submitOrderProgress = {
+        getInfoEvent: function () {
+            var orderId = sessionStorage.getItem('orderId');
+            $(document).on('click','.order_submit',function () {//点击提交按钮
+                $.ajax({
+                    url: ORDERTOCUSURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        order_id: orderId
+                    },
+                    success: function (data) {
+                        if (data && data.code == '000') {
+                            layer.msg(data.msg);
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    },
+                    error: function (data) {
+                        layer.alert(data.msg);
+                    }
+                });
+            });
         }
     };
 
