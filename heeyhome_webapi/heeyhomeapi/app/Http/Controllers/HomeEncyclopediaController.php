@@ -15,7 +15,7 @@ class HomeEncyclopediaController extends Controller
 {
     public function showcate(){
         $callback=rq('callback');
-        $cates = DB::select('select id,cate_name,cate_describe from hh_jzbkcate order by id desc ');
+        $cates = DB::select('select id,cate_name,cate_describe from hh_jzbkcate order by sort asc ');
         //dd($cates);
         if($cates){
             $arr=array(
