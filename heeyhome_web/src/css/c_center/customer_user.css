@@ -1392,7 +1392,6 @@ a:focus {
 }
 
 .content_wrap {
-    border-radius: 5px;
     height: 898px;
     margin-right: 50px
 }
@@ -2877,11 +2876,19 @@ a:focus {
     height: 300px;
 }
 
+.safe_right_content .not_information {
+    margin-left: -80px;
+}
+
 .not_information .not_information_img {
     width: 160px;
     height: 140px;
     margin: 25px auto;
     margin-top: 100px;
+}
+
+.safe_right_content .not_information .not_information_img {
+    margin-top: 30px;
 }
 
 .not_information .not_information_img img {
