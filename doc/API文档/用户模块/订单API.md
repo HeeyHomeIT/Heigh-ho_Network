@@ -214,3 +214,60 @@ msg           没有订单
 200     没有订单
 
 ```
+
+
+# orderDestroy()
+## 用户取消订单接口
+
+### 接口地址
+
+```
+.../order/client/destory
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+###### Json数据格式
+```
+data
+
+order_id                order_id                订单id
+user_id                 user_id                 用户id
+callback                callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         ""
+msg          订单已取消
+)
+```
+
+```
+失败
+callback(
+code          203
+data          ""
+msg           订单不存在
+)
+```
+
+###### Code值含义
+
+```
+000     订单已取消
+100     订单已取消
+203     订单不存在
+204     订单取消失败
+
+```

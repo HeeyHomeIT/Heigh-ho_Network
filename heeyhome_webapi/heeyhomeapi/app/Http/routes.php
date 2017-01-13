@@ -188,7 +188,7 @@ Route::group(['middleware' => ['web']], function () {
     //店铺订单列表（筛选）
     Route::any('order/shop/listfilter', 'OrderController@orderListFeromanFilter');
     //取消订单
-    Route::any('order/shop/destory', 'OrderController@orderDestroy');
+    Route::any('order/client/destory', 'OrderController@orderDestroy');
     //确认订单
     Route::any('order/shop/confirm', 'OrderController@orderConfirm');
     //生成预算单与结算单
