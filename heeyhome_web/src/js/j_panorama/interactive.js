@@ -152,7 +152,8 @@
 					countPraise.praiseVr();
 					orderModuleHandler.orderClickEvent();
 				}else{
-					$(".content_pic").html('<div class="nullpage"><i>&nbsp;</i><span>暂时还没有,设计师正在加班加点的制作中...</span></div>')
+					$(".content_pic").html('<div class="nullpage"><i>&nbsp;</i><span>暂时还没有,设计师正在加班加点的制作中...</span></div>');
+					$(".page_div3").empty();
 				}
 				
 			});
