@@ -1192,7 +1192,7 @@
                         });
                         judgeNews.isnews();             //已读消息和未读消息的区分
                         readNews.tobeRead();            //查看消息
-                        pageHandler.pageContentEvent(); //分页
+                        infopageHandler.pageContentEvent(); //分页
                         deleteRecord.singleSelection(); //单项删除
                         markRead.checkAll();       //全选标记
                     } else if (data.code == '117') {//信息找不到
