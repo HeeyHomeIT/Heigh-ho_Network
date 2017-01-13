@@ -723,6 +723,10 @@
 	cursor: pointer;
 }
 
+#sdcontent h3> span.s_more a:hover {
+	color: #EEC988;
+}
+
 
 /*#sdcontent .sd_swith {
 	text-align: center;
