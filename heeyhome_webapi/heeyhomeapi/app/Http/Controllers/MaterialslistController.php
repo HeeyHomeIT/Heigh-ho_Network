@@ -39,7 +39,20 @@ class MaterialslistController extends Controller
                 }
                 $elematerialist[$key]->spec = $spec;
             }else{
-                $elematerialist[$key]->spec = array();
+                $spec_id=0;
+                $ids = DB::select('select id from hh_materials where spec_id=? and material_id=?', [$spec_id,$value->material_id]);
+                $num = 0;
+                if ($material_ids) {
+                    $nums = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
+                    foreach ($nums as $ke => $item) {
+                        if ($ids[0]->id == $item->material_name_id) {
+                            $num = $num[$ke]->material_num;
+                        }
+                    }
+                }
+                $elematerialist[$key]->spec =array('spec_id'=>0,
+                   'id'=>$ids[0]->id ,
+                'num'=>$num);
             }
         }
         $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,2]);
@@ -64,7 +77,20 @@ class MaterialslistController extends Controller
                 }
                 $brickmaterialist[$key]->spec = $spec;
             }else{
-                $brickmaterialist[$key]->spec = array();
+                $spec_id=0;
+                $ids = DB::select('select id from hh_materials where spec_id=? and material_id=?', [$spec_id,$value->material_id]);
+                $num = 0;
+                if ($material_ids) {
+                    $nums = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
+                    foreach ($nums as $ke => $item) {
+                        if ($ids[0]->id == $item->material_name_id) {
+                            $num = $num[$ke]->material_num;
+                        }
+                    }
+                }
+                $brickmaterialist[$key]->spec =array('spec_id'=>0,
+                    'id'=>$ids[0]->id ,
+                    'num'=>$num);
             }
         }
         $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,3]);
@@ -89,7 +115,20 @@ class MaterialslistController extends Controller
                 }
                 $woodmaterialist[$key]->spec = $spec;
             }else{
-                $woodmaterialist[$key]->spec = array();
+                $spec_id=0;
+                $ids = DB::select('select id from hh_materials where spec_id=? and material_id=?', [$spec_id,$value->material_id]);
+                $num = 0;
+                if ($material_ids) {
+                    $nums = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
+                    foreach ($nums as $ke => $item) {
+                        if ($ids[0]->id == $item->material_name_id) {
+                            $num = $num[$ke]->material_num;
+                        }
+                    }
+                }
+                $woodmaterialist[$key]->spec =array('spec_id'=>0,
+                    'id'=>$ids[0]->id ,
+                    'num'=>$num);
             }
         }
         $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,4]);
@@ -114,7 +153,20 @@ class MaterialslistController extends Controller
                 }
                 $paintmaterialist[$key]->spec = $spec;
             }else{
-                $paintmaterialist[$key]->spec = array();
+                $spec_id=0;
+                $ids = DB::select('select id from hh_materials where spec_id=? and material_id=?', [$spec_id,$value->material_id]);
+                $num = 0;
+                if ($material_ids) {
+                    $nums = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
+                    foreach ($nums as $ke => $item) {
+                        if ($ids[0]->id == $item->material_name_id) {
+                            $num = $num[$ke]->material_num;
+                        }
+                    }
+                }
+                $paintmaterialist[$key]->spec =array('spec_id'=>0,
+                    'id'=>$ids[0]->id ,
+                'num'=>$num);
             }
         }
         $arr = array("code" => "000",

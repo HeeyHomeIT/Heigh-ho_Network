@@ -1889,13 +1889,17 @@
 .owner_detail > div {
     float: left;
     min-height: 95px;
-    padding: 5px 50px;
+    padding: 5px 40px;
     font-size: 16px;
     border-right: 1px solid #EEC988;
 }
 
 .owner_detail > div:last-child {
     border: 0;
+}
+
+.owner_detail .owner_right p {
+	width: 180px;
 }
 
 .owner_detail > div h3 {
@@ -4185,6 +4189,10 @@ div.clear:after, div.clear:before {
     height: 140px;
     margin: 25px auto;
     margin-top: 100px;
+}
+
+.safe_right .not_information .not_information_img {
+    margin-top: 0;
 }
 
 .not_information .not_information_img img {

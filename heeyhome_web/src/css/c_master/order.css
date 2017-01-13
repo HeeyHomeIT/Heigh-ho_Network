@@ -474,9 +474,13 @@
 .owner_detail > div {
     float: left;
     min-height: 95px;
-    padding: 5px 50px;
+    padding: 5px 40px;
     font-size: 16px;
     border-right: 1px solid #EEC988;
+}
+
+.owner_detail .owner_right p {
+	width: 180px;
 }
 
 .owner_detail > div:last-child {

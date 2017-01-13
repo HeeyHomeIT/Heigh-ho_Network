@@ -93,6 +93,7 @@
                         $(".right_content_wrap").append(load);
                         $(".order_content .right_content").append(load);
                         $(".safe_right_content").append(load);
+                        $(".safe_right_content .loading").css('top','80%');
                     },
                     complete: function () {
                         $(".right_content_wrap .loading").remove(); //关闭加载层
@@ -126,6 +127,7 @@
          */
         initMHomeEvent: function () {
             HHIT_CENTERAPP.controller('homeCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jcenter").html("我的主页");
                 getHomeInfoHandler.getInfoEvent();//获取用户信息
                 getHomeInfoHandler.getImgEvent();//获取用户头像
                 getHomeInfoHandler.getOrderEvent();//获取用户我的订单信息
@@ -138,6 +140,7 @@
          */
         initMDataEvent: function () {
             HHIT_CENTERAPP.controller('mDataCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jcenter").html("个人资料");
                 // 加载城市插件
                 $('[data-toggle="distpicker"]').distpicker();
                 /* details */
@@ -205,6 +208,7 @@
          */
         initMOrderDataEvent: function () {
             HHIT_CENTERAPP.controller('mMorderCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jcenter").html("我的订单");
                 $.ajax({
                     type: "get",
                     url: USERORDERURL,
@@ -231,8 +235,10 @@
                             $(".ordercnt_content .all").on("click", function () {
                                 var shopid = $(this).attr("data-shopid");
                                 var orderid = $(this).attr("data-orderid");
+                                var orderstep = $(this).attr("data-orderstep");
                                 sessionStorage.setItem("shopid", shopid);
                                 sessionStorage.setItem("orderid", orderid);
+                                sessionStorage.setItem("orderstep", orderstep);
                             });
                             OrderPageHandler.pageContentEvent(order_total);
                             /* 我的订单点击小三角事件 */
@@ -255,6 +261,7 @@
          */
         initMCollectionEvent: function () {
             HHIT_CENTERAPP.controller('mCollectionCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jcenter").html("我的收藏");
                 /* 点击我的首页中收藏跳到相应的我的收藏页面 */
                 var left = 30;
                 var hash = location.hash;
@@ -343,6 +350,7 @@
          */
         initMsgInfo: function () {
             HHIT_CENTERAPP.controller('msgCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jcenter").html("消息中心");
                 initInfo.info();
             }]);
         },
@@ -1511,9 +1519,9 @@
                 oInfoObj.user_id = value.user_id;
                 oInfoObj.order_id = value.order_id;
                 $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
-                vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"><a href="reservation.html#/waitcontact?type=1" target="_blank" class="top">查看详情</a>';
+                vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="reservation.html#/waitcontact?type=1" target="_blank" class="top">查看详情</a>';
             } else {
-                vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';
+                vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';
             }
             if (value.order_status == 6) {
                 vrStr += '<a href="javascript:;" class="bottom">确认验货</a>';
@@ -1532,7 +1540,7 @@
                 }
                 // 人工费
                 if (value.order_step == 5 || value.order_step == 9 || value.order_step == 13 || value.order_step == 17) {
-                    vrStr += '<a href="reservation.html#/advancelist?pos=' + value.order_id + '" class="bottom">人工支付</a>';
+                    vrStr += '<a href="reservation.html#/advancelist?pos=' + value.order_id + '"  class="bottom">人工支付</a>'; /*href="refund.html#/refund/home/refund_step_1"*/
                 }
             }
             vrStr += '</div></div>';
@@ -1596,8 +1604,10 @@
                     $(".ordercnt_content .all").on("click", function () {
                         var shopid = $(this).attr("data-shopid");
                         var orderid = $(this).attr("data-orderid");
+                        var orderstep = $(this).attr("data-orderstep");
                         sessionStorage.setItem("shopid", shopid);
                         sessionStorage.setItem("orderid", orderid);
+                        sessionStorage.setItem("orderstep", orderstep);
                     });
                     /* 我的订单点击小三角事件 */
                     arrowClick.getEvent();

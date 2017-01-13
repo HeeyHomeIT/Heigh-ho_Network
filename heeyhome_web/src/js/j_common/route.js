@@ -38,7 +38,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     },
                     resolve: {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['css/c_common/fliter.css', 'css/c_panorama/panorama.css', 'css/c_common/pagewrap.css','lib/layui/css/modules/layer/default/layer.css', 'js/j_panorama/interactive.js'])
+                            return $ocLazyLoad.load(['css/c_common/fliter.css', 'css/c_panorama/panorama.css', 'css/c_common/pagewrap.css', 'lib/layui/css/modules/layer/default/layer.css', 'js/j_panorama/interactive.js'])
                         }]
                     }
 
@@ -90,61 +90,115 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                         }]
                     }
                 })
+                .state("refund", { // 退款
+                    url: "/refund",
+                    views: {
+                        'refund_content': {
+                            templateUrl: 'view/v_refund/refund.html'
+                        }
+                    }
+                })
+                .state("refund.home", { // 退款
+                    url: "/home",
+                    views: {
+                        'my_refund': {
+                            templateUrl: 'view/v_refund/refund_home.html',
+                            controller: 'refund',
+                            controllerAs: 'refund'
+                        }
+                    },
+                    resolve: {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load('js/j_refund/interactive.js')
+                        }]
+                    }
+                })
+                .state("refund.home.refund_step_1", { // 退款
+                    url: "/refund_step_1",
+                    views: {
+                        'refund_head': {
+                            templateUrl: 'view/v_refund/refund_step_1.html',
+                            controller: 'refund',
+                            controllerAs: 'refund'
+                        }
+                    }
+                })
+                .state("refund.home.refund_step_2", { // 退款
+                    url: "/refund_step_2",
+                    views: {
+                        'refund_head': {
+                            templateUrl: 'view/v_refund/refund_step_2.html',
+                            controller: 'refund',
+                            controllerAs: 'refund'
+                        }
+                    }
+                })
+                .state("refund.home.refund_step_3", { // 退款
+                    url: "/refund_step_3",
+                    views: {
+                        'refund_head': {
+                            templateUrl: 'view/v_refund/refund_step_3.html',
+                            controller: 'refund',
+                            controllerAs: 'refund'
+                        }
+                    }
+                })
+
                 .state("forget", { // 忘记密码
-					url: "/forget",
-					views: {
-						'forget_content': {
-							templateUrl: 'view/v_reset/reset.html',
-						}
-					},
-					resolve: {
-						deps: ['$ocLazyLoad', function($ocLazyLoad) {
-							return $ocLazyLoad.load(["css/c_register/loading.css",'lib/layui/css/modules/layer/default/layer.css','js/j_register/interactive.js'])
-						}]
-					}
-				})
-				.state("forget.public", { // 忘记密码-公共部分
-					url: "/public",
-					views: {
-						'forget_public': {
-							templateUrl: 'view/v_reset/reset_password.html',
-						}
-					},
-					
-				})
-				.state("forget.public.process_1", { // 忘记密码-步骤一
-					url: "/process_1",
-					views: {
-						'forget_password': {
-							templateUrl: 'view/v_reset/reset_password_1.html',
-							controller: "processOneCtrl",
-							controllerAs: "process_1"
-						}
-					},
-					
-				})
-				.state("forget.public.process_2", { // 忘记密码-步骤二
-					url: "/process_2",
-					views: {
-						'forget_password': {
-							templateUrl: 'view/v_reset/reset_password_2.html',
-							controller: "processTwoCtrl",
-							controllerAs: "process_2"
-						}
-					},
-					
-				})
-				.state("forget.public.process_3", { // 忘记密码-步骤三
-					url: "/process_3",
-					views: {
-						'forget_password': {
-							templateUrl: 'view/v_reset/reset_password_3.html',
-							controller: "processThreeCtrl",
-							controllerAs: "process_3"
-						}
-					},
-					
-				})
+                    url: "/forget",
+                    views: {
+                        'forget_content': {
+                            templateUrl: 'view/v_reset/reset.html',
+                        }
+                    },
+                    resolve: {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(["css/c_register/loading.css", 'lib/layui/css/modules/layer/default/layer.css', 'js/j_register/interactive.js'])
+                        }]
+                    }
+                })
+                .state("forget.public", { // 忘记密码-公共部分
+                    url: "/public",
+                    views: {
+                        'forget_public': {
+                            templateUrl: 'view/v_reset/reset_password.html',
+                        }
+                    },
+
+                })
+                .state("forget.public.process_1", { // 忘记密码-步骤一
+                    url: "/process_1",
+                    views: {
+                        'forget_password': {
+                            templateUrl: 'view/v_reset/reset_password_1.html',
+                            controller: "processOneCtrl",
+                            controllerAs: "process_1"
+                        }
+                    },
+
+                })
+                .state("forget.public.process_2", { // 忘记密码-步骤二
+                    url: "/process_2",
+                    views: {
+                        'forget_password': {
+                            templateUrl: 'view/v_reset/reset_password_2.html',
+                            controller: "processTwoCtrl",
+                            controllerAs: "process_2"
+                        }
+                    },
+
+                })
+                .state("forget.public.process_3", { // 忘记密码-步骤三
+                    url: "/process_3",
+                    views: {
+                        'forget_password': {
+                            templateUrl: 'view/v_reset/reset_password_3.html',
+                            controller: "processThreeCtrl",
+                            controllerAs: "process_3"
+                        }
+                    },
+
+                })
                 .state("center", { // 用户个人中心
                     url: "/center",
                     views: {
@@ -1280,6 +1334,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                 .when('/order', '/order/home')
                 .when('/budget_sheet', '/budget_sheet/edit_sheet')
                 .when('/bank', '/bank/home')
+                .when('/refund', '/refund/home')
                 .when('/forget', '/forget/public/process_1')
                 /* 用户 */
                 .when('/center/setting/bind', '/center/setting/bind/bind_phone_1')//绑定手机

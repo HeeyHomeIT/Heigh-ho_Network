@@ -48,7 +48,8 @@
                         $scope.names = data.data;
                         /* 右边标题默认出现 */
                         $rH.html(data.data[0].cate_describe);
-
+						sessionStorage.setItem("describe",data.data[0].cate_describe);
+                		sessionStorage.setItem("name",data.data[0].cate_name);
                     } else {  /* 如果失败执行 */
                         alert(data.msg);
                     }
@@ -56,8 +57,8 @@
                 });
                 /* 左边导航栏点击事件 */
                  $scope.barTab = function (describe, id,name) {
-                	var cate_describe = sessionStorage.setItem("describe",describe);
-                	var cate_name = sessionStorage.setItem("name",name);
+                	sessionStorage.setItem("describe",describe);
+                	sessionStorage.setItem("name",name);
                     /* 获取右边文章标题 */
                     $rH.html(describe);
                     /* 获取右边文章列表 */
@@ -74,6 +75,7 @@
             HHIT_NEWAPP.controller('myDetail', ['$scope', '$http', function ($scope, $http) {
             	var cate_describe = sessionStorage.getItem("describe");
                 var cate_name = sessionStorage.getItem("name");
+                console.log(cate_describe)
                 /* 获取文章详情接口 */
                 $http({
                     method: "JSONP",

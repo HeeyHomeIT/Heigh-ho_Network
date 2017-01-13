@@ -150,6 +150,7 @@
                 $.ajaxSetup({//给所有的Ajax加加载层
                     beforeSend: function () {
                         $(".right_content_wrap").append(load);
+                        $(".safe_right .loading").css('top','70%');
                     },
                     complete: function () {
                         $(".right_content_wrap .loading").remove(); //关闭加载层
@@ -182,6 +183,7 @@
          */
         initMHomeEvent: function () {
             HHIT_CENTERAPP.controller('mhomeCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("我的主页");
                 getHomeInfoHandler.getInfoEvent();//获取工长店铺
                 getHomeInfoHandler.getSafeEvent();//获取工长的安全等级
                 getHomeInfoHandler.getEmailEvent();//获取工长的邮箱信息
@@ -192,6 +194,7 @@
          */
         initMDataEvent: function () {
             HHIT_CENTERAPP.controller('mDataCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("个人资料");
                 // 加载城市插件
                 $('[data-toggle="distpicker"]').distpicker();
                 /* details */
@@ -216,6 +219,7 @@
          */
         initMWorkEvent: function () {
             HHIT_CENTERAPP.controller('mWorkCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("我的作品");
                 /* details */
                 var $dtDiv = $("#works_content_title1 div");
                 var iSpeed = 0;
@@ -349,6 +353,7 @@
          */
         initMTeamEvent: function () {
             HHIT_CENTERAPP.controller('mTeamCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("我的团队");
                 getTeamInfoHandler.getInfoEvent();
             }]);
         },
@@ -537,6 +542,7 @@
          */
         initMShopEvent: function () {
             HHIT_CENTERAPP.controller('mShopCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("店铺资料");
                 getShopInfoHandler.shopInfo();
             }]);
         },
@@ -560,6 +566,7 @@
          */
         initBillEvent: function () {
             HHIT_CENTERAPP.controller('billCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("我的钱包");
                 getWalletData.getMoney();
                 getNearByMonth.fiveMonth();
                 getBillInfoHandler.getInfoEvent();
@@ -570,6 +577,7 @@
          */
         initMOrderEvent: function () {
             HHIT_CENTERAPP.controller('mOrderCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("我的订单");
                 orderList.getInfoEvent();
             }]);
         },
@@ -592,6 +600,7 @@
                 var address;
                 var type;
                 var area;
+                var src;
                 $("#menuNavOuter").remove();
                 var orderId = sessionStorage.getItem("orderId");
                 $.ajax({
@@ -612,12 +621,14 @@
                                     address = v.order_address;
                                     type = v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台";
                                     area = v.area;
+                                    src = BASEURL + v.user_portrait;
                                 }
                             });
+                            $(".owner_content .owner_picture img").attr("src",src);
                             $(".owner_summary h3").html(name);
                             $(".owner_summary p span").html(phone);
                             $(".owner_left .area h3 span").html(area);
-                            $(".owner_left .order p").html('1482835234334098');
+                            $(".owner_left .order p").html(orderId);
                             $(".owner_middle .type p").html(type);
                             $(".owner_middle .time p").html(time);
                             $(".owner_right .address p").html(address);
@@ -638,6 +649,7 @@
          */
         initMsgInfo: function () {
             HHIT_CENTERAPP.controller('msginfoCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$(".Jforeman").html("消息中心");
                 initInfo.info();
             }]);
         }
@@ -751,7 +763,7 @@
                     $('.order_wrap input').attr("disabled", "disabled");//不可以编辑，只可以看
                 } else if (status == '待用户预支付') {//未开工状态，只能进行进场准备
                     layer.msg('未开工');
-                    if (houseStyle == '') {//如果装修风格不存在
+                    if (houseStyle == '' || houseStyle == null) {//如果装修风格不存在
                         /* 在没有选择风格之前后面的状态都不能点击 */
                         $('.order_process input').attr("disabled", "disabled");
                         /* 点击选择风格 */
@@ -807,10 +819,10 @@
                         /* 工种 */
                         sessionStorage.setItem("type", $('#order_wrap .process_title').eq(i).attr('typename'));
                     }
-                    var begin = parseInt(step) + 1;
+                    var begin = parseInt(newStep) + 1;
                     var $order_edit_next = $('.order_edit').eq(parseInt(step));
                     if ($order_edit_next.parent().hasClass('hide')) {
-                        begin = parseInt(step) + 2;
+                        begin = parseInt(newStep) + 2;
                     }
                     for (var i = begin; i < 18; i++) {
                         $('.order_edit').eq(i).addClass('determine_process');
@@ -902,6 +914,27 @@
                     $('.wrap').hide();
                 });
 
+                /* 点击查看详情 */
+                $('.detail_a ').click(function () {
+                    if ($(this).hasClass('detail_m')) {
+                        /* 工种 */
+                        sessionStorage.setItem("type", $(this).parent('.order_process').find('.process_title').attr('typename'));
+                        window.open('material.html#/material/list');//跳转到材料单页面
+                    } else {
+                        var NUM = $(this).parent(".order_process");
+                        $('.see_details').show().removeClass('hide');
+                        $('.wrap').show().removeClass('hide');
+                        $('.see_details').css('top', ($(window).height() - NUM.outerHeight()) / 2 + $(document).scrollTop() - 100);
+                    }
+
+                });
+                /* 查看详情关闭 */
+                $('.complete').click(function () {
+                    $('.see_details').hide();
+                    $('.wrap').hide();
+                });
+
+
                 /* 获取业主信息 */
                 $.ajax({
                     type: "get",
@@ -975,10 +1008,12 @@
                             //console.log(data.data);
                             //HOUSESTYLE = data.data.装修风格;
                             //console.log(HOUSESTYLE);
-                            $('.process_style p').html(data.data.装修风格);
-                            $('#confirm_type').hide();//隐藏按钮
-                            $('#testSelect').hide();//隐藏select框
-                            sessionStorage.setItem("houseStyle", data.data.装修风格);
+                            if (data.data.装修风格 != null) {
+                                $('.process_style p').html(data.data.装修风格);
+                                $('#confirm_type').hide();//隐藏按钮
+                                $('#testSelect').hide();//隐藏select框
+                                sessionStorage.setItem("houseStyle", data.data.装修风格);
+                            }
                         }
                     },
                     error: function (data) {
@@ -1264,7 +1299,7 @@
                                     break;
                             }
                             $.each(information, function (i, v) {
-                                list += '<li data-id="' + v.material_id + '"><div class="picture">';
+                                list += '<li><div class="picture">';
                                 list += '<img src="http://hyu2387760001.my3w.com/' + v.img + '"></div>';
                                 list += '<div class="name">' + v.name + '</div>';
                                 list += '<div class="li_right clearfix" id="li_right"><div class="format">';
@@ -1279,7 +1314,7 @@
                                     list += '</div><div class="number">';
                                     $.each(v.spec, function (m, n) {
                                         list += '<div class="control_number"><span class="minus"></span>';
-                                        list += '<input type="text" value="0"><span class="plus"></span></div>';
+                                        list += '<input type="text" value="'+n.num+'" data-id="'+n.id+'"><span class="plus"></span></div>';
                                     });
                                 } else {
                                     list += '<span class="none"></span>';
@@ -1287,7 +1322,7 @@
                                     list += '<span class="none">' + v.unit + '</span>';
                                     list += '</div><div class="number">';
                                     list += '<div class="control_number none"><span class="minus"></span>';
-                                    list += '<input type="text" value="0"><span class="plus"></span></div>';
+                                    list += '<input type="text" value="'+v.spec.num+'" data-id="'+v.spec.id+'"><span class="plus"></span></div>';
                                 }
                                 list += '</div></div></li>';
                             });
@@ -1336,24 +1371,20 @@
         toUser: function () {
             $(".sure_send").on("click", function () {
                 var flag = true;// 判断能不能提交 true：能提交  false： 不能提交
-                var material = $(".material_content li");
+                var material = $(".material_content").find("ul input");
                 var material_json = {};
                 var id = [], value = [];
+                var t = 0;
                 for (var i = 0; i < material.length; i++) {
-                    var t = 0;
-                    id[i] = material.eq(i).attr("data-id");
-                    var ipt = material.eq(i).find(".control_number input");
-                    for (var j = 0; j < ipt.length; j++) {
-                        if (ipt.eq(j).val() != Math.ceil(ipt.eq(j).val())) {
-                            flag = false;
-                        } else {
-                            t += parseInt(ipt.eq(j).val());
-                        }
-                    }
-                    value[i] = t;
-                    console.log(id[i], value[i]);
-                    material_json[id[i]] = value[i];
-                }
+                	id[i] = material.eq(i).attr("data-id");
+                	if(material.eq(i).val() != Math.ceil(material.eq(i).val())) {
+                		flag = false;
+                	} else {
+                		value[i] = material.eq(i).val();
+                		t++;
+                	}
+                	material_json[id[i]] = value[i];
+               }
                 var material_string = JSON.stringify(material_json);
                 if (!flag) {
                     return;

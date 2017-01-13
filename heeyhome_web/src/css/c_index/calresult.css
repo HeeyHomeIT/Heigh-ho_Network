@@ -182,7 +182,7 @@ body #crcontainer {
     margin-bottom: 60px;
 }
 
-#crcontent .cr_condiv > div.cr_btn span {
+#crcontent .cr_condiv > div.cr_btn span,#crcontent .cr_condiv > div.cr_btn a {
     display: inline-block;
     font-family: Arial, sans-serif;
     width: 170px;
@@ -207,10 +207,15 @@ body #crcontainer {
     color: #e69628
 }
 
-#crcontent .cr_condiv > div.cr_btn span.cr_back {
+#crcontent .cr_condiv > div.cr_btn a.cr_back {
     float: right;
     line-height: 95px;
+    cursor: pointer;
     color: #fff
+}
+
+#crcontent .cr_condiv > div.cr_btn a.cr_back:hover {
+    color: #EEC988
 }
 
 #slide_bar {

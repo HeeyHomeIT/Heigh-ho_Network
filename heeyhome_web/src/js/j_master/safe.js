@@ -653,6 +653,7 @@
          */
         initSafeLevelEvent: function () {
             HHIT_CENTERAPP.controller('SettingCtrl', ['$scope', '$http', function ($scope, $http) {
+                $(".Jforeman").html("安全设置");
                 /* 获取用户的安全等级 */
                 $.ajax({
                     dataType: "JSONP",
@@ -693,6 +694,7 @@
                         user_id: $.base64.decode($.cookie("userId"))
                     }
                 }).success(function (data, status) {
+                    console.log(data);
                     /* 如果成功执行 */
                     if (data.code === '000') {
                         /* 获取显示在页面中的数据 */
@@ -712,8 +714,13 @@
                         });
                     }
                     /* 如果失败执行 */
-                    else {
-                        //alert(data.msg);
+                    else if (data.code === '117') {
+                        $('.not_information').show().removeClass('hide');
+                        $('.not_information_text').html('您最近还没有登录过哦~~');
+                        $('.login_note').hide();
+                        $('.login_history p').hide();
+                    } else {
+                        layer.msg(data.msg);
                     }
                 }).error(function (data, status) {
                 });

@@ -193,6 +193,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/shop/confirm', 'OrderController@orderConfirm');
     //生成预算单与结算单
     Route::any('order/aeckonandactual/generatelist', 'OrderOperateController@generateActualListAndReckonList');
+    //生成装修人员订单
+    Route::any('order/generateOrderWorker', 'OrderOperateController@generateOrderWorker');
     //获取预算单结算单字段
     Route::any('order/aeckonandactual/getlistname', 'OrderOperateController@getActualDataAndReckonData');
     //获取预算单结算单字段(分类)
@@ -283,9 +285,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     Route::any('panorama/delall', 'PanoramaController@delall');
     /*家装百科*/
     Route::any('homeencyclopedia', 'HomeEncyclopediaController@index');
-    Route::any('addhomeencyclopediacate', function(){
-        return view('addcate');
-    });
+    Route::any('addhomeencyclopediacate', 'HomeEncyclopediaController@cate');
+    Route::any('homeencyclopediacate/changeorder', 'HomeEncyclopediaController@changeorder');
+    Route::any('homeencyclopediacate/del', 'HomeEncyclopediaController@catedel');
     Route::any('addhomeencyclopediaarticle', 'HomeEncyclopediaController@createarticle');
     Route::any('homeencyclopedia/addcate', 'HomeEncyclopediaController@addcate');
     Route::any('homeencyclopedia/addarticle', 'HomeEncyclopediaController@addarticle');
@@ -333,6 +335,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     Route::any('supplier/add', 'SupplierController@add');
     /*装修订单*/
     Route::any('orderlist', 'OrderController@index');
+    /*退款申请*/
+    Route::any('refundlist', 'RefundController@index');
+    Route::any('refund/info/{id}', 'RefundController@info');
+    Route::any('refund/process/{id}','RefundController@process');
+    Route::any('refund/doprocess','RefundController@doprocess');
 
 });
 

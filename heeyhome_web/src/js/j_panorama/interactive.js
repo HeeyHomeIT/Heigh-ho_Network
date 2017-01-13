@@ -286,8 +286,8 @@
 				vrStr += '<div class="sprite pic_badge" title="点击收藏"></div>';
 				vrStr += '<div class="pic_detail"><p>建筑面积：<em>' + value.panorama_area + '</em>㎡</p><p>' + value.panorama_housetype + '</p></div>';
 				vrStr += '<div class="pic_icon"><div class="pic_view">';
-				vrStr += '<img src="css/img/icon-view.png" title="浏览数"><span>' + value.scan_num + '</span></div>';
-				vrStr += '<div class="pic_praise"><img src="css/img/icon-praise.png" title="点赞数"><span>' + value.like_num + '</span></div></div></div></div>';
+				vrStr += '<i class="iconfont">&#xe620;</i><span>' + value.scan_num + '</span></div>';
+				vrStr += '<div class="pic_praise"><i class="iconfont">&#xe611;</i><span>' + value.like_num + '</span></div></div></div></div>';
 			return vrStr;
 		}
 	};
