@@ -19,6 +19,7 @@
     var MAXROWS; //总页数
 
     var USERID = $.cookie("userId"); // 得到userid
+    var USERTYPE = $.cookie('userType');
     if (USERID != null && USERID != "" && USERID != undefined) {
         USERID = $.base64.decode($.cookie("userId"));
     } else {
@@ -36,7 +37,7 @@
      * pageVal             page  第几页
      * limitVal            limit 每页显示几条数据
      */
-    var filterObj = {
+    var shopListFilterObj = {
         userid: USERID,
         servicearea: 1,
         workernum: 1,
@@ -58,45 +59,55 @@
         initEvent: function () {
             var self = this;
             /* 获取筛选标签内容*/
-            self.initGetTagsEvent();
+            self.initShopListGetTagsEvent();
             /* 获取虚拟现实内容 默认1，1，1，0，1，4*/
-            shopListContHandler.listContentEvent(filterObj);
+           	shopListFilterObj = {
+		        userid: USERID,
+		        servicearea: 1,
+		        workernum: 1,
+		        servicetag: 1,
+		        shopage: 1,
+		        orderKey: 0,
+		        pageVal: 1,
+		        limitVal: 4
+		    };
+            shopListContHandler.listContentEvent(shopListFilterObj);
         },
         /**
          * 获取筛选标签内容
          */
-        initGetTagsEvent: function () {
+        initShopListGetTagsEvent: function () {
             $.ajax({
                 url: TAGSURL,
                 type: "GET",
                 async: true,
                 dataType: 'jsonp',
-                success: function (data) {
-                    if (data != null && data.code == '000') {
-                        $.each(data.data, function (i, v) {
-                            var fliterStr = '<div class="fliter_' + i + '"  data-name=' + i + '  >';
-                            $.each(v, function (item, val) {
-                                switch (item) {
-                                    case 0:
-                                        fliterStr += '<span class="fliter_name">' + val + '</span><ul class="fliter_tab" >';
-                                        break;
-                                    case 1:
-                                        fliterStr += '<li class="active" data-label="' + item + '" >';
-                                        fliterStr += '<a>' + val + '</a></li>';
-                                        break;
-                                    default:
-                                        fliterStr += '<li class="" data-label="' + item + '" >';
-                                        fliterStr += '<a>' + val + '</a></li>';
-                                }
-                            });
-                            fliterStr += '</ul></div>';
-                            $(".fliter").append(fliterStr);
+                complete:function(){
+					$(".fliter").removeClass("loagbg");
+				},
+            }).done(function(data){
+            	if (data != null && data.code == '000') {
+                	var fliterStr = '';
+                    $.each(data.data, function (i, v) {
+                        fliterStr += '<div class="fliter_' + i + '"  data-name=' + i + '  >';
+                        $.each(v, function (item, val) {
+                            switch (item) {
+                                case 0:
+                                    fliterStr += '<span class="fliter_name">' + val + '</span><ul class="fliter_tab" >';
+                                    break;
+                                case 1:
+                                    fliterStr += '<li class="active" data-label="' + item + '" >';
+                                    fliterStr += '<a>' + val + '</a></li>';
+                                    break;
+                                default:
+                                    fliterStr += '<li class="" data-label="' + item + '" >';
+                                    fliterStr += '<a>' + val + '</a></li>';
+                            }
                         });
-                        tabSelectHandler.tabSelectEvent()
-
-                    }
-                },
-                error: function (data) {
+                        fliterStr += '</ul></div>';
+                    });
+                    $(".fliter").html(fliterStr);
+                    shopListTabSelectHandler.tabSelectEvent()
                 }
             });
         }
@@ -104,78 +115,68 @@
     /**
      * 标签切换效果
      */
-    tabSelectHandler = {
+    shopListTabSelectHandler = {
         tabSelectEvent: function () {
             var $fliter = $(".fliter div li");
 
-            $fliter.on("click", function () {
+            $fliter.off().on("click", function () {
                 $(this).addClass("active").siblings().removeClass("active");
                 var $fliterdiv = $(this).closest("div");
                 var $siblingdiv = $fliterdiv.siblings()
 //				// 插入当前点击的筛选内容块名字 对应相应的当前点击的筛选内容id
-                filterObj[$fliterdiv.data("name")] = $(this).data("label");
+                shopListFilterObj[$fliterdiv.data("name")] = $(this).data("label");
                 $.each($siblingdiv, function (i, v) {
                     // 插入当前点击的筛选内容块名字 对应相应的当前点击的筛选内容id
-                    filterObj[$siblingdiv.eq(i).data("name")] = $siblingdiv.eq(i).find("li.active").data("label");
+                    shopListFilterObj[$siblingdiv.eq(i).data("name")] = $siblingdiv.eq(i).find("li.active").data("label");
                 });
-                console.log(filterObj)
-                shopListContHandler.listContentEvent(filterObj);
-                $(".shop_summary div").remove();
-                $(".page_div3 div").remove();
-
+                shopListContHandler.listContentEvent(shopListFilterObj);
             });
         }
     };
     shopListContHandler = {
         /**
          * 获取店铺列表内容
-         * @param {Object} filterObj 筛选条件对象
+         * @param {Object} shopListFilterObj 筛选条件对象
          */
-        listContentEvent: function (filterObj) {
-            var userType = $.cookie('userType');
-            console.log(filterObj)
+        listContentEvent: function (shopListFilterObj) {
+            
+            console.log(shopListFilterObj)
             $.ajax({
                 url: SHOPLISTURL,
                 type: "GET",
                 async: true,
                 dataType: 'jsonp',
                 data: {
-                    user_id: filterObj.userid,
-                    servicearea: filterObj.servicearea,
-                    workernum: filterObj.workernum,
-                    servicetag: filterObj.servicetag,
-                    shopage: filterObj.shopage,
-                    order: filterObj.orderKey,
-                    page: filterObj.pageVal,
-                    limit: filterObj.limitVal
+                    user_id: shopListFilterObj.userid,
+                    servicearea: shopListFilterObj.servicearea,
+                    workernum: shopListFilterObj.workernum,
+                    servicetag: shopListFilterObj.servicetag,
+                    shopage: shopListFilterObj.shopage,
+                    order: shopListFilterObj.orderKey,
+                    page: shopListFilterObj.pageVal,
+                    limit: shopListFilterObj.limitVal
                 },
-                success: function (data) {
-                    if (data && data.code == '000') {
-                        //console.log(data);
-                        TOTAL = data.data[0].total; // 总数
-                        $(".number").text(TOTAL);
-                        $(".shop_summary div").remove();
-                        $.each(data.data, function (i, v) {
-                            var vrStr = spliceShopListContHandler.spliceStrEvent(v);
-                            $(".shop_summary").append(vrStr);
-                            if (v.iscollected == '1' && $.base64.decode(userType) == 1) {//判断是否已收藏过
-                                $('.collect_shop').val('已收藏');
-                            }
-                        });
-                        shopListPageHandler.pageContentEvent();
-                        orderModuleHandler.orderClickEvent();
-                    } else {
-                        $(".number").text(0);
-                        alert(data.msg);
-                    }
-                },
-                error: function (data) {
+                complete:function(){
+					$(".shop_summary").removeClass("vrloagbg");
+				}
+            }).done(function(data){
+            	if (data && data.code == '000') {
+                    //console.log(data);
+                    TOTAL = data.data[0].total; // 总数
+                    $(".number").text(TOTAL);
+					$(".shop_summary").html(spliceShopListContHandler.spliceStrEvent(data.data));
+                    shopListPageHandler.pageContentEvent();
+                    orderModuleHandler.orderClickEvent();
+                } else {
+                    $(".number").text(0);
+                    $(".shop_summary").html('<div class="nullpage"><i>&nbsp;</i><span>店铺消失了,看看其他的店铺...</span></div>');
+					$(".page_div3").empty();
                 }
             });
 
             /* 点击店铺收藏 */
             $(document).on('click', '.collect_shop', function () {
-                if ($.base64.decode(userType) == 1) {
+                if ($.base64.decode(USERTYPE) == 1) {
                     if ($(this).val() == '已收藏') {
                         layer.msg('已收藏过~~');
                     } else {
@@ -196,10 +197,8 @@
             var sortname = $sort.parent().data("name");
             $sort.off("click").on("click", function () {
                 $(this).addClass("active").siblings().removeClass("active");
-                filterObj[sortname] = $(this).data("label");
-                shopListContHandler.listContentEvent(filterObj);
-                $(".shop_summary div").remove();
-                $(".page_div3 div").remove();
+                shopListFilterObj[sortname] = $(this).data("label");
+                shopListContHandler.listContentEvent(shopListFilterObj);
             });
         }
     };
@@ -208,55 +207,58 @@
      */
     spliceShopListContHandler = {
         spliceStrEvent: function (value) {
-            var vrStr = '<div class="shop_box" data-shopid="' + value.shop_id + '" data-shopperid="' + value.shopper_id + '">';
-            vrStr += '	<div class="left_image">';
-            vrStr += '		<a href="#nogo"><img src="http://hyu2387760001.my3w.com/' + value.shop_img + '"></a>';
-            vrStr += '		<div class="image-background_1"></div>';
-            vrStr += '		<div class="image-background_2"></div>';
-            vrStr += '	</div>';
-            vrStr += '	<div class="right_summary">';
-            vrStr += '		<div class="shop_name">';
-            vrStr += '			<h2>' + value.shop_name + '</h2>';
-            $.each(value.authentication, function (i, v) {
-                vrStr += '		<img src="http://hyu2387760001.my3w.com/' + v + '">';
-            });
-            vrStr += '		</div>';
-            vrStr += '		<div class="shop_introduce">';
-            vrStr += '			<p>常住地址: <span>' + value.shop_address + '</span></p>';
-            vrStr += '			<p>服务范围: ';
-            $.each(value.servicearea, function (i, v) {
-                vrStr += '		<span>' + v + '</span>';
-            });
-            vrStr += '			</p>';
-            vrStr += '			<p>擅长风格: ';
-            $.each(value.servicetag, function (i, v) {
-                vrStr += '		<span>' + v + '</span>';
-            });
-            vrStr += '			</p>';
-            vrStr += '			<p>店铺年限：<span>' + value.opentime + '</span>年</p>';
-            vrStr += '		</div>';
-            vrStr += '		<div class="shop_icon clearfix">';
-            vrStr += '			<div>';
-            vrStr += '				<em class="sprite icon_pnumber"></em>';
-            vrStr += '				<span>' + value.shop_scan + '</span>';
-            vrStr += '			</div>';
-            vrStr += '			<div>';
-            vrStr += '				<em class="sprite icon_turnover"></em>';
-            vrStr += '				<span>' + value.shop_volume + '</span>';
-            vrStr += '			</div>';
-            vrStr += '		</div>';
-            vrStr += '		<div class="shop_assess">';
-            vrStr += '			<p>工程质量<span>' + value.shop_score.projectquality + '</span>分</p>';
-            vrStr += '			<p>服务态度<span>' + value.shop_score.serviceattitude + '</span>分</p>';
-            vrStr += '			<p>综合评价<span>' + value.shop_score.overallmerit + '</span>分</p>';
-            vrStr += '		</div>';
-            vrStr += '		<div class="shop_button">';
-            vrStr += '			<input type="button" class="collect_shop" value="收藏">';
-//				vrStr += '			<input type="button" class="enter_shop" value="进入店铺">';
-            vrStr += '			<a class="enter_shop" rel="nofollow" href="view_shop.html#/shopdetails?pos=' + value.shop_id + '" >进入店铺</a>';
-            vrStr += '		</div>';
-            vrStr += '	</div>';
-            vrStr += '</div>';
+        	var vrStr = '';
+        	$.each(value, function (i, v) {
+	            vrStr += '<div class="shop_box" data-shopid="' + v.shop_id + '" data-shopperid="' + v.shopper_id + '">';
+	            vrStr += '	<div class="left_image">';
+	            vrStr += '		<a href="#nogo"><img src="http://hyu2387760001.my3w.com/' + v.shop_img + '"></a>';
+	            vrStr += '		<div class="image-background_1"></div>';
+	            vrStr += '		<div class="image-background_2"></div>';
+	            vrStr += '	</div>';
+	            vrStr += '	<div class="right_summary">';
+	            vrStr += '		<div class="shop_name">';
+	            vrStr += '			<h2>' + v.shop_name + '</h2>';
+	            $.each(v.authentication, function (i1, v1) {
+	                vrStr += '		<img src="http://hyu2387760001.my3w.com/' + v1 + '">';
+	            });
+	            vrStr += '		</div>';
+	            vrStr += '		<div class="shop_introduce">';
+	            vrStr += '			<p>常住地址: <span>' + v.shop_address + '</span></p>';
+	            vrStr += '			<p>服务范围: ';
+	            $.each(v.servicearea, function (i1, v1) {
+	                vrStr += '		<span>' + v1 + '</span>';
+	            });
+	            vrStr += '			</p>';
+	            vrStr += '			<p>擅长风格: ';
+	            $.each(v.servicetag, function (i1, v1) {
+	                vrStr += '		<span>' + v1 + '</span>';
+	            });
+	            vrStr += '			</p>';
+	            vrStr += '			<p>店铺年限：<span>' + v.opentime + '</span>年</p>';
+	            vrStr += '		</div>';
+	            vrStr += '		<div class="shop_icon clearfix">';
+	            vrStr += '			<div>';
+	            vrStr += '				<em class="sprite icon_pnumber"></em>';
+	            vrStr += '				<span>' + v.shop_scan + '</span>';
+	            vrStr += '			</div>';
+	            vrStr += '			<div>';
+	            vrStr += '				<em class="sprite icon_turnover"></em>';
+	            vrStr += '				<span>' + v.shop_volume + '</span>';
+	            vrStr += '			</div>';
+	            vrStr += '		</div>';
+	            vrStr += '		<div class="shop_assess">';
+	            vrStr += '			<p>工程质量<span>' + v.shop_score.projectquality + '</span>分</p>';
+	            vrStr += '			<p>服务态度<span>' + v.shop_score.serviceattitude + '</span>分</p>';
+	            vrStr += '			<p>综合评价<span>' + v.shop_score.overallmerit + '</span>分</p>';
+	            vrStr += '		</div>';
+	            vrStr += '		<div class="shop_button">';
+	            vrStr += '			<input type="button" class="collect_shop" value="' + (v.iscollected == '1' && $.base64.decode(USERTYPE) == 1 ? '已收藏' : '收藏') + '">';
+	            vrStr += '			<a class="enter_shop" rel="nofollow" href="view_shop.html#/shopdetails?pos=' + v.shop_id + '" >进入店铺</a>';
+	            vrStr += '		</div>';
+	            vrStr += '	</div>';
+	            vrStr += '</div>';
+        	});
+            
             return vrStr;
         }
     };
@@ -266,7 +268,7 @@
     shopListPageHandler = {
         pageContentEvent: function () {
             MAXROWS = Math.ceil(TOTAL / 4); // 页数
-            $(".page_div3").empty().paging({
+            $(".page_number>div").append($(".page_div3").empty().paging({
                 total: MAXROWS, //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
                 centerBgColor: "#fff",
@@ -298,27 +300,21 @@
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
                 url: SHOPLISTURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
                 ajaxData: {
-                    user_id: filterObj.userid,
-                    servicearea: filterObj.servicearea,
-                    workernum: filterObj.workernum,
-                    servicetag: filterObj.servicetag,
-                    shopage: filterObj.shopage,
-                    order: filterObj.orderKey,
-                    page: filterObj.pageVal,
-                    limit: filterObj.limitVal
+                    user_id: shopListFilterObj.userid,
+                    servicearea: shopListFilterObj.servicearea,
+                    workernum: shopListFilterObj.workernum,
+                    servicetag: shopListFilterObj.servicetag,
+                    shopage: shopListFilterObj.shopage,
+                    order: shopListFilterObj.orderKey,
+                    page: shopListFilterObj.pageVal,
+                    limit: shopListFilterObj.limitVal
                 },   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
                 dataOperate: function oprate(data) {
                     var userType = $.cookie('userType');
-                    $(".shop_summary div").remove();
-                    $.each(data.data, function (i, v) {
-                        var vrStr = spliceShopListContHandler.spliceStrEvent(v);
-                        $(".shop_summary").append(vrStr);
-                        if (v.iscollected == '1' && $.base64.decode(userType) == 1) {
-                            $('.collect_shop').val('已收藏');
-                        }
-                    });
+                    $(".shop_summary").html(spliceShopListContHandler.spliceStrEvent(data.data));
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
-            });
+            }));
+            
         }
     };
     //入口方法调用 代码只能从这里执行

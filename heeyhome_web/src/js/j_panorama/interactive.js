@@ -52,6 +52,14 @@
 			/* 获取筛选标签内容*/
 			self.initGetTagsEvent();
 			/* 获取虚拟现实内容 默认1，1，1，0，1，4*/
+			filterObj = {
+				area:1,
+				housetype:1,
+				servicetag:1,
+				orderKey:0,
+				pageVal:1,
+				limitVal:4
+			};
 			vrContentHandler.vrContentEvent(filterObj);
 		},
 		/**

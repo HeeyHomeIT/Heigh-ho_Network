@@ -1,3 +1,15 @@
+.loagbg {
+    background-position-y: 32px;
+    height: 170px;
+}
+
+.vrloagbg {
+    width: 950px;
+    background: url(../../image/icon-loading.gif) center no-repeat;
+    background-position-y: 150px;
+    height: 404px;
+}
+
 #foreman_shop {
     position: relative;
     -moz-box-shadow: 0px 0px 8px #939393;
@@ -50,7 +62,7 @@
 #foreman_shop .shop_content .right_recommend {
     width: 216px;
     position: absolute;
-    height: 900px;
+    min-height: 452px;
     background-color: #939393;
     top: 0;
     right: 0
@@ -58,7 +70,6 @@
 
 #foreman_shop .shop_content .shop_summary {
     position: relative;
-    height: 1060px
 }
 
 #foreman_shop .shop_content .shop_summary .shop_box {
@@ -271,6 +282,29 @@
     background-color: #363636
 }
 
-#shop_pagewrap .page_number {
-    margin: 175px 0 100px 0;
+.nullpage {
+    color: #999;
+    font-size: 14px;
+    overflow: hidden;
+    text-align: center;
+    padding: 145px 0 140px 0;
+    width: 950px;
+    margin-top: 20px;
+    border: 1px solid #D7D7D7
+}
+
+.nullpage i {
+	position: relative;
+   	background: url(../img/noinfo.png) no-repeat;
+    width: 86px;
+    height: 85px;
+    display: inline-block;
+    
+}
+
+.nullpage span {
+    display: block;
+    float: left;
+    width: 100%;
+    margin: 10px 0;
 }
