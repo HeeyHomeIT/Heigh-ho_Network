@@ -654,6 +654,7 @@
         initSafeLevelEvent: function () {
             HHIT_CENTERAPP.controller('SettingCtrl', ['$scope', '$http', function ($scope, $http) {
                 $(".Jforeman").html("安全设置");
+                $('.left_ul li').eq(6).addClass('left_active').siblings().removeClass('left_active');
                 /* 获取用户的安全等级 */
                 $.ajax({
                     dataType: "JSONP",

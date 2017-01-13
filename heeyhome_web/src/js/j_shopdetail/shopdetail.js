@@ -147,7 +147,6 @@
         initFloorNavEvent: function () {
             var items = $('.same_class');
             $(".tabUl li").click(function () {
-                //				$(".tabUl").css('position', 'fixed');
                 $(".tabUl").addClass("fixed");
             });
             $(".tabUl li ").click(function (e) {
@@ -163,10 +162,8 @@
                 var oTabUl = $('#tabUl');
                 var curId = '';
                 if (scrollTop >= oTabUl.offset().top) {
-                    //					$('.tabUl').css('position', 'fixed');
                     $(".tabUl").addClass("fixed");
                 } else {
-                    //					$('.tabUl').css('position', 'static');
                     $(".tabUl").removeClass("fixed");
                 }
 
@@ -234,18 +231,29 @@
                 data: {
                     shop_id: shopId
                 },
+                beforeSend:function(){
+                	$(".hd").addClass("loagbg");
+                	$(".bd").addClass("loagbg");
+                	$(".scontent").addClass("loagbg p1");
+                },
                 success: function (data) {
                     $(".sname").html(data.data.shop_name);
                     $("#JgzId").val(data.data.shopper_id);
                     $(".Jmore").attr("href", "successcase.html#/successcase?pos=" + $("#JgzId").val() + "")
-                    $(".hd ul").append(sc.spliceHdPictureEvent(data.data));
-                    $(".bd ul").append(sc.spliceBdPictureEvent(data.data));
-                    $(".scontent").append(sc.spliceShopInfoEvent(data.data));
+                    $(".hd ul").html(sc.spliceHdPictureEvent(data.data));
+                    $(".bd ul").html(sc.spliceBdPictureEvent(data.data));
+                    $(".scontent").html(sc.spliceShopInfoEvent(data.data));
                     $(".manager_introduce").append(sc.spliceManagerInfoEvent(data.data));
                     $(".work_experience ul").append(sc.spliceBeInfoEvent(data.data));
                     $(".decoration_history ul").append(sc.spliceDhInfoEvent(data.data));
                     self.initSuccessCaseDataEvent(data.data.shopper_id);
                     self.initPictureScrollEvent();
+                },
+                complete:function(){
+                	$(".hd").removeClass("loagbg");
+                	$(".bd").removeClass("loagbg");
+                	$(".scontent").removeClass("loagbg p1");
+                	
                 },
                 error: function (data) {
                 }
