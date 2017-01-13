@@ -44,8 +44,8 @@ class OrderPayController extends Controller
                     "msg" => "查询成功",
                     "data" => array(
                         "order_id" => $order_id,
-                        "order_step" => $sel_order_tbl->order_step,
-                        "order_time" => $sel_order_tbl->order_time,
+                        "order_step" => $sel_order_tbl[0]->order_step,
+                        "order_time" => $sel_order_tbl[0]->order_time,
                         "pay_amount" => $sel_pay_each_cj[0]->pay_amount
                     )
                 );

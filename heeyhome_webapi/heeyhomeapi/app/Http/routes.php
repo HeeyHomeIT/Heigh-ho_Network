@@ -185,6 +185,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/client/list', 'OrderController@orderListUser');
     //店铺订单列表
     Route::any('order/shop/list', 'OrderController@orderListFeroman');
+    //店铺订单列表（筛选）
+    Route::any('order/shop/listfilter', 'OrderController@orderListFeromanFilter');
     //取消订单
     Route::any('order/shop/destory', 'OrderController@orderDestroy');
     //确认订单
@@ -227,7 +229,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/style/addhousestyle', 'OrderController@addHouseStyle');
     Route::any('order/shop/destory', 'OrderController@orderDestroy');
     //用户退款信息获取
-    Route::any('order/user/getrefundinfo', 'OrderController@getRefundInfo');
+    Route::any('order/user/getrefundinfo', 'OrderPayController@getRefundInfo');
 
 
     //材料订单

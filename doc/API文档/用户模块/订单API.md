@@ -87,7 +87,7 @@ msg           订单生成失败
 data
 
 user_id                 user_id                 用户id
-order_id                order_id                店铺id
+order_id                order_id                订单id
 callback                callback
 ```
 

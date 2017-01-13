@@ -360,6 +360,66 @@ class OrderController extends Controller
         }
     }
 
+    /*订单列表（店铺筛选）*/
+    public function orderListFeromanFilter()
+    {
+        //店铺ID
+        $shop_id = rq('shop_id');
+        //工长ID
+        $user_id = rq('user_id');
+        $order_status = rq('order_status');
+        $page = ceil(rq('page'));
+        $limit = ceil(rq('limit'));
+        if (!$page) {
+            $page = 1;
+        }
+        if (!$limit) {
+            $limit = 20;
+        }
+        $callback = rq('callback');
+        $page_start = ($page - 1) * $limit;
+        //根据工长ID获取店铺ID
+        if ($user_id && $shop_id == null) {
+            $shop_tbl_shop_id = DB::select('SELECT shop_id FROM hh_shop WHERE shopper_id = ?',
+                [$user_id]);
+            if ($shop_tbl_shop_id) {
+                $shop_id = $shop_tbl_shop_id[0]->shop_id;
+            } else {
+                $arr = array(
+                    "code" => "205",
+                    "msg" => "店铺ID输入错误",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        }
+        $order_tbl_list = DB::select('SELECT * FROM hh_order_new_view WHERE shop_id = ? AND order_status = ? ORDER BY order_time DESC LIMIT ?,?',
+            [$shop_id, $order_status, $page_start, $limit]);
+        foreach ($order_tbl_list as $key => $val) {
+            $portrait = DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?', [$val->user_id]);
+            $order_tbl_list[$key]->user_portrait = $portrait[0]->portrait_img;
+        }
+        $order_tbl_count = DB::select('SELECT COUNT(id) AS order_count FROM hh_order_view WHERE shop_id = ? AND order_status = ?',
+            [$shop_id, $order_status,]);
+        $order_count = $order_tbl_count[0]->order_count;
+        if ($order_tbl_list) {
+            $arr = array("code" => "000",
+                "data" => array("order_list" => $order_tbl_list,
+                    "order_count" => $order_count
+                ),
+                "msg" => "查询成功"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "205",
+                "msg" => "没有订单",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+
     //订单状态步骤查询
     public function orderStatusSel()
     {
