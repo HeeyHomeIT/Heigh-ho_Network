@@ -248,7 +248,10 @@ Route::group(['middleware' => ['web']], function () {
     //材料商更新材料单状态为去配送中
     Route::any('order/material/changeMaterialStatus', 'OrderMaterialController@changeMaterialStatus');
 
-    
+
+    //进度方面
+    //进度开工、改造上传图片内容描述
+    Route::any('order/process/startWork', 'OrderOperateController@startWork');
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web','admin.login']], function()

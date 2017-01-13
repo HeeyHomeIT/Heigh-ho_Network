@@ -1261,7 +1261,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             return $callback . "(" . HHJson($arr) . ")";
         }
         $order_personnel = $order_id;
-        $order_personnel_tbl = DB::insert('INSERT INTO hh_order_personnel(personnel_id, order_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
+        $order_personnel_tbl = DB::insert('INSERT INTO hh_order_personnel(personnel_id, order_id,person1,person2,person3,person4,person5,person6,person7,person8,person9) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
             [$order_personnel, $order_id, $pa[0], $pa[1], $pa[2], $pa[3], $pa[4], $pa[5], $pa[6], $pa[7], $pa[8], $pa[9]]);
         if ($order_personnel_tbl) {
             $arr = array(
@@ -1279,5 +1279,131 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+
+    /*订单进度*/
+    //开工上传图片信息和描述
+    public function startWork()
+    {
+        $callback = rq('callback');
+        $order_id = rq('order_id'); //订单id
+        $order_step = rq('order_step'); //当前装修出于哪一步
+        $content = rq('content'); //描述
+        $time = rq('time'); //开工时间
+
+        $count = rq('count');  //图片数量
+        $files = array();
+        if ($count) {
+            for ($i=0; $i < $count; $i++) { 
+                $fileName = "myfile".$i;
+                if(!Request::hasFile($fileName)){
+                    $arr = array("code" => "121",
+                        "msg" => "没有图片被上传"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+                $files[$i] = Request::file($fileName);
+            }
+        } else {
+            $myfile=Request::file('myfile');
+            if(!Request::hasFile('myfile')){
+                $arr = array("code" => "121",
+                    "msg" => "没有图片被上传"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+            if (! is_array($myfile)) {
+                $files = [$myfile];
+            } else {
+                $files = $myfile;
+            }
+        }
+
+        if (!$order_id || !$time || !$content || !order_step) {
+            $arr = array("code" => "112",
+                "msg" => "信息输入错误"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+
+        //检测图片是否都合法
+        $isvalid=true;
+        foreach($files as $file){
+            if(!$file->isValid()){
+                $isvalid=false;
+                break;
+            }
+        }
+
+        if ($true && count($files)) {
+
+            $detail = DB::select('SELECT id from hh_order_detail WHERE order_id = ? AND order_step = ? ',[$order_id,$order_step]);
+            if ($detail) {
+                $arr = array("code" => "000",
+                    "msg" => "添加成功"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            } else {
+                $case=DB::insert('insert into hh_order_detail(order_id,order_step,img_time,img_content) values(?,?,?,?)',[$order_id,$order_step,$time,$content]);
+                $order_detail_id = DB::select('SELECT id from hh_order_detail WHERE order_id = ? AND order_step = ? ',[$order_id,$order_step]);
+                if (!$order_detail_id) {
+                    $arr = array("code" => "111",
+                        "msg" => "添加失败"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                } 
+                $order_step = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?',[$order_step + 1,$order_id]);
+                $ifinsert=false;
+                foreach($files as $key=>$file){
+                    $clientName = $file -> getClientOriginalName();//文件原名
+                    $entension = $file -> getClientOriginalExtension();//扩展名
+                    $realPath = $file->getRealPath();   //临时文件的绝对路径
+                    $type = $file->getClientMimeType();
+                    $size=$file-> getClientSize();
+                    $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
+                    $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
+                    if($is){
+                        $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
+                        $insert=DB::insert('insert into hh_order_detail_img(order_detail_id,img_url) values (?,?)',[$order_detail_id,$path]);
+                        if($insert){
+                            $ifinsert=true;
+                        }else{
+                            $ifinsert=false;
+                        }
+                    }else{
+                        $arr = array("code" => "131",
+                            "msg" => "上传失败"
+                        );
+                        return $callback . "(" . HHJson($arr) . ")";
+                    }
+                }
+                if($ifinsert){
+                    $arr = array("code" => "000",
+                        "msg" => "添加成功",
+                        "data" =>($order_step + 1)
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }else{
+                    $arr = array("code" => "111",
+                        "msg" => "添加失败"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+            }
+        } else{
+            $arr = array("code" => "132",
+                "msg" => "上传的文件无效"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+         }
+    }
+
+    //查看
+    public function workDetail()
+    {
+
+    }
+
+
+
 
 }
