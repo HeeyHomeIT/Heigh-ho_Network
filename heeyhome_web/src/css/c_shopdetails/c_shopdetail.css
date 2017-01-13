@@ -104,6 +104,7 @@
 
 #selfshop_top .shop_information {
 	float: left;
+	height: 395px;
 	margin-left: 40px;
 	position: relative
 }
@@ -359,7 +360,8 @@
 
 .tabUl li {
 	float: left;
-	width: 160px;
+	/*width: 160px;*/
+	width: 148px;
 	height: 56px;
 	line-height: 56px;
 	text-align: center;
@@ -381,7 +383,7 @@
 }
 
 .tabUl .tab_active {
-	background-color: #666;
+	background-color: #EEC988
 }
 
 .tabUl .tab_active a {
@@ -394,7 +396,7 @@
 
 .tabUl .first_tab,
 .tabUl .last_tab {
-	width: 193px;
+	width: 151px;
 }
 
 .tabUl .first_tab {
@@ -435,7 +437,6 @@
 .ui-tabs-hide {
 	display: none
 }
-
 
 /**
  * 店长信息
@@ -1279,7 +1280,8 @@
 #shop_price {
 	position: relative;
 	width: 1190px;
-	margin: 50px auto;
+	margin: 0 auto;
+	margin-bottom: 50px;
 	clear: both
 }
 
@@ -1303,7 +1305,6 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-	border-bottom: 1px solid #ddd;
 }
 
 #shop_price .con_price li .sdg_price_warp {
@@ -1773,4 +1774,8 @@
     opacity: .5;
     filter: alpha(opacity=50);
     z-index: 100;
+}
+
+.p1 {
+	height: 293px; 
 }
