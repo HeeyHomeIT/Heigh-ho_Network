@@ -3,7 +3,7 @@
 
 
 ```
-.../order/shop/list
+.../order/shop/listfilter
 ```
 
 ### 接口格式

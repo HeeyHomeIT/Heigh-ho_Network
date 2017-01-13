@@ -557,4 +557,42 @@ class OrderController extends Controller
 
     }
 
+    //工长提交订单消息发送给用户
+    public function subOrderUpdateMsg()
+    {
+        $order_id = rq('order_id');
+        $callback = rq('callback');
+        //获取订单信息
+        $sel_order_tbl = DB::select('SELECT * FROM hh_order WHERE order_id = ?',
+            [$order_id]);
+        if ($sel_order_tbl) {
+            $touserid = $sel_order_tbl[0]->user_id;
+            $senduser = "嘿吼网";
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "没有订单",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        $sendtime = date('Y-m-d H:i:s', time());
+        //生成材料订单消息
+        $title = "订单消息";
+        $msgcontent = "工长已经更新您的订单，请进入个人中心进行查看！";
+        $insert = DB::insert('insert into hh_message(msgtitle,msgcontent,senduser,sendtime,receiveuserid) values(?,?,?,?,?)', $title, $msgcontent, $senduser, $sendtime, $touserid);
+        if ($insert) {
+            $arr = array(
+                "code" => "000",
+                "msg" => "发送成功"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "发送失败"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
 }

@@ -191,6 +191,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/client/destory', 'OrderController@orderDestroy');
     //确认订单
     Route::any('order/shop/confirm', 'OrderController@orderConfirm');
+    //工长提交订单消息发送给用户
+    Route::any('order/shop/subupdatemsg', 'OrderController@subOrderUpdateMsg');
     //生成预算单与结算单
     Route::any('order/aeckonandactual/generatelist', 'OrderOperateController@generateActualListAndReckonList');
     //生成装修人员订单
