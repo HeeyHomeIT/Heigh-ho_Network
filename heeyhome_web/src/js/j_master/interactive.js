@@ -186,6 +186,7 @@
         initMHomeEvent: function () {
             HHIT_CENTERAPP.controller('mhomeCtrl', ['$scope', '$http', function ($scope, $http) {
                 $(".Jforeman").html("我的主页");
+                $('.left_ul li').eq(0).addClass('left_active').siblings().removeClass('left_active');
                 getHomeInfoHandler.getInfoEvent();//获取工长店铺
                 getHomeInfoHandler.getSafeEvent();//获取工长的安全等级
                 getHomeInfoHandler.getEmailEvent();//获取工长的邮箱信息
@@ -197,6 +198,7 @@
         initMDataEvent: function () {
             HHIT_CENTERAPP.controller('mDataCtrl', ['$scope', '$http', function ($scope, $http) {
                 $(".Jforeman").html("个人资料");
+                $('.left_ul li').eq(1).addClass('left_active').siblings().removeClass('left_active');
                 // 加载城市插件
                 $('[data-toggle="distpicker"]').distpicker();
                 /* details */
@@ -222,6 +224,7 @@
         initMWorkEvent: function () {
             HHIT_CENTERAPP.controller('mWorkCtrl', ['$scope', '$http', function ($scope, $http) {
                 $(".Jforeman").html("我的作品");
+                $('.left_ul li').eq(4).addClass('left_active').siblings().removeClass('left_active');
                 /* details */
                 var $dtDiv = $("#works_content_title1 div");
                 var iSpeed = 0;
@@ -356,6 +359,7 @@
         initMTeamEvent: function () {
             HHIT_CENTERAPP.controller('mTeamCtrl', ['$scope', '$http', function ($scope, $http) {
                 $(".Jforeman").html("我的团队");
+                $('.left_ul li').eq(5).addClass('left_active').siblings().removeClass('left_active');
                 getTeamInfoHandler.getInfoEvent();
             }]);
         },
@@ -364,7 +368,7 @@
          */
         initTeamDetailEvent: function () {
             HHIT_CENTERAPP.controller('teamDetailCtrl', ['$scope', '$http', function ($scope, $http) {
-                $(".left_ul li").eq(5).addClass("left_active");
+                $('.left_ul li').eq(5).addClass('left_active').siblings().removeClass('left_active');
                 var cate_id = sessionStorage.getItem("cateid");
                 var eleworkernum = sessionStorage.getItem("eleworker_num");
                 var woodworkernum = sessionStorage.getItem("woodworker_num");
@@ -443,7 +447,7 @@
                 /* details */
                 var cate_id = sessionStorage.getItem("cateid");
                 var worker_id = sessionStorage.getItem("userid");
-                $(".left_ul li").eq(5).addClass("left_active");
+                $('.left_ul li').eq(5).addClass('left_active').siblings().removeClass('left_active');
                 $.ajax({
                     type: "get",
                     url: WORKERINFOURL,
@@ -490,6 +494,7 @@
          */
         initTeamEditEvent: function () {
             HHIT_CENTERAPP.controller('teamDetail_editCtrl', ['$scope', '$http', function ($scope, $http) {
+            	$('.left_ul li').eq(5).addClass('left_active').siblings().removeClass('left_active');
                 /* details */
                 //显示价格明细
                 loadDetail.showInformation();
@@ -545,6 +550,7 @@
         initMShopEvent: function () {
             HHIT_CENTERAPP.controller('mShopCtrl', ['$scope', '$http', function ($scope, $http) {
                 $(".Jforeman").html("店铺资料");
+                $('.left_ul li').eq(2).addClass('left_active').siblings().removeClass('left_active');
                 getShopInfoHandler.shopInfo();
             }]);
         },
@@ -569,6 +575,7 @@
         initBillEvent: function () {
             HHIT_CENTERAPP.controller('billCtrl', ['$scope', '$http', function ($scope, $http) {
                 $(".Jforeman").html("我的钱包");
+                $('.left_ul li').eq(8).addClass('left_active').siblings().removeClass('left_active');
                 getWalletData.getMoney();
                 getNearByMonth.fiveMonth();
                 getBillInfoHandler.getInfoEvent();
@@ -580,6 +587,7 @@
         initMOrderEvent: function () {
             HHIT_CENTERAPP.controller('mOrderCtrl', ['$scope', '$http', function ($scope, $http) {
                 $(".Jforeman").html("我的订单");
+                $('.left_ul li').eq(3).addClass('left_active').siblings().removeClass('left_active');
                 orderList.getInfoEvent();
                 orderFilter.getEvent();
             }]);
@@ -653,6 +661,7 @@
         initMsgInfo: function () {
             HHIT_CENTERAPP.controller('msginfoCtrl', ['$scope', '$http', function ($scope, $http) {
                 $(".Jforeman").html("消息中心");
+                $('.left_ul li').eq(7).addClass('left_active').siblings().removeClass('left_active');
                 initInfo.info();
             }]);
         }

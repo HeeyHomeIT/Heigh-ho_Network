@@ -2734,6 +2734,19 @@ a:focus {
     margin: 10px 0 0 75px
 }
 
+.address_cont_line .addBack {
+    display: inline-block;
+    height: 34px;
+    line-height: 34px;
+    color: #fff;
+    background-color: #f36f20;
+    border: none;
+    cursor: pointer;
+    padding: 0 30px;
+    margin: 10px 0 0 10px
+}
+
+
 .add_address_wrap label.error {
     position: relative;
     float: right;

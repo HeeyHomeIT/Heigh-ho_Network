@@ -43,9 +43,11 @@
         initEvent: function () {
             var self = this;
             $(".Jcenter").html("收货地址");
+            $('.left_ul li').eq(6).addClass('left_active').siblings().removeClass('left_active');
             self.initAddressInfoEvent(); // 我的收货地址初始化
             self.addAddressInfoEvent(); // 添加新地址
             self.clickInputBoxEvent(); // 点击input框事件
+            self.backBtnClickEvent(); // 点击返回按钮
         },
         /**
          * input框初始化
@@ -76,6 +78,14 @@
                 self.soeBtnClickEvent(1); // 保存新地址点击事件
                 $('.not_information').hide();
                 $('.not_information_text').html();
+            });
+        },
+         /**
+         * 返回按钮点击事件
+         */
+        backBtnClickEvent: function () {
+            $("#addBack").on("click", function () {
+                $(".add_address_wrap").addClass("display").siblings().removeClass("display");
             });
         },
         /**
@@ -213,7 +223,7 @@
         /**
          * 查询信息
          */
-        queryInfoEvent: function () {
+        queryInfoEvent: function () {        	
             $.ajax({
                 url: READURL,
                 type: "GET",
@@ -412,6 +422,7 @@
     };
     //入口方法调用 代码只能从这里执行
     HHIT_CENTERAPP.controller('mAddressCtrl', ['$scope', '$http', function ($scope, $http) {
+    	
         addressWrap.init();
     }]);
 })();

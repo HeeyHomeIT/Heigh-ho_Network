@@ -128,6 +128,7 @@
         initMHomeEvent: function () {
             HHIT_CENTERAPP.controller('homeCtrl', ['$scope', '$http', function ($scope, $http) {
             	$(".Jcenter").html("我的主页");
+            	$('.left_ul li').eq(0).addClass('left_active').siblings().removeClass('left_active');
                 getHomeInfoHandler.getInfoEvent();//获取用户信息
                 getHomeInfoHandler.getImgEvent();//获取用户头像
                 getHomeInfoHandler.getOrderEvent();//获取用户我的订单信息
@@ -141,6 +142,7 @@
         initMDataEvent: function () {
             HHIT_CENTERAPP.controller('mDataCtrl', ['$scope', '$http', function ($scope, $http) {
             	$(".Jcenter").html("个人资料");
+            	$('.left_ul li').eq(1).addClass('left_active').siblings().removeClass('left_active');
                 // 加载城市插件
                 $('[data-toggle="distpicker"]').distpicker();
                 /* details */
@@ -209,6 +211,7 @@
         initMOrderDataEvent: function () {
             HHIT_CENTERAPP.controller('mMorderCtrl', ['$scope', '$http', function ($scope, $http) {
             	$(".Jcenter").html("我的订单");
+            	$('.left_ul li').eq(2).addClass('left_active').siblings().removeClass('left_active');
                 $.ajax({
                     type: "get",
                     url: USERORDERURL,
@@ -284,6 +287,7 @@
         initMCollectionEvent: function () {
             HHIT_CENTERAPP.controller('mCollectionCtrl', ['$scope', '$http', function ($scope, $http) {
             	$(".Jcenter").html("我的收藏");
+            	$('.left_ul li').eq(3).addClass('left_active').siblings().removeClass('left_active');
                 /* 点击我的首页中收藏跳到相应的我的收藏页面 */
                 var left = 30;
                 var hash = location.hash;
@@ -336,6 +340,7 @@
         initMsgInfo: function () {
             HHIT_CENTERAPP.controller('msgCtrl', ['$scope', '$http', function ($scope, $http) {
             	$(".Jcenter").html("消息中心");
+            	$('.left_ul li').eq(4).addClass('left_active').siblings().removeClass('left_active');
                 initInfo.info();
             }]);
         },
