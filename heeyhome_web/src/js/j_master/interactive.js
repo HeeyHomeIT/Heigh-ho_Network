@@ -600,6 +600,7 @@
                 var address;
                 var type;
                 var area;
+                var src;
                 $("#menuNavOuter").remove();
                 var orderId = sessionStorage.getItem("orderId");
                 $.ajax({
@@ -620,12 +621,14 @@
                                     address = v.order_address;
                                     type = v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台";
                                     area = v.area;
+                                    src = BASEURL + v.user_portrait;
                                 }
                             });
+                            $(".owner_content .owner_picture img").attr("src",src);
                             $(".owner_summary h3").html(name);
                             $(".owner_summary p span").html(phone);
                             $(".owner_left .area h3 span").html(area);
-                            $(".owner_left .order p").html('1482835234334098');
+                            $(".owner_left .order p").html(orderId);
                             $(".owner_middle .type p").html(type);
                             $(".owner_middle .time p").html(time);
                             $(".owner_right .address p").html(address);
@@ -1296,7 +1299,7 @@
                                     break;
                             }
                             $.each(information, function (i, v) {
-                                list += '<li data-id="' + v.material_id + '"><div class="picture">';
+                                list += '<li><div class="picture">';
                                 list += '<img src="http://hyu2387760001.my3w.com/' + v.img + '"></div>';
                                 list += '<div class="name">' + v.name + '</div>';
                                 list += '<div class="li_right clearfix" id="li_right"><div class="format">';
@@ -1311,7 +1314,7 @@
                                     list += '</div><div class="number">';
                                     $.each(v.spec, function (m, n) {
                                         list += '<div class="control_number"><span class="minus"></span>';
-                                        list += '<input type="text" value="0"><span class="plus"></span></div>';
+                                        list += '<input type="text" value="'+n.num+'" data-id="'+n.id+'"><span class="plus"></span></div>';
                                     });
                                 } else {
                                     list += '<span class="none"></span>';
@@ -1319,7 +1322,7 @@
                                     list += '<span class="none">' + v.unit + '</span>';
                                     list += '</div><div class="number">';
                                     list += '<div class="control_number none"><span class="minus"></span>';
-                                    list += '<input type="text" value="0"><span class="plus"></span></div>';
+                                    list += '<input type="text" value="'+v.spec.num+'" data-id="'+v.spec.id+'"><span class="plus"></span></div>';
                                 }
                                 list += '</div></div></li>';
                             });
@@ -1368,24 +1371,20 @@
         toUser: function () {
             $(".sure_send").on("click", function () {
                 var flag = true;// 判断能不能提交 true：能提交  false： 不能提交
-                var material = $(".material_content li");
+                var material = $(".material_content").find("ul input");
                 var material_json = {};
                 var id = [], value = [];
+                var t = 0;
                 for (var i = 0; i < material.length; i++) {
-                    var t = 0;
-                    id[i] = material.eq(i).attr("data-id");
-                    var ipt = material.eq(i).find(".control_number input");
-                    for (var j = 0; j < ipt.length; j++) {
-                        if (ipt.eq(j).val() != Math.ceil(ipt.eq(j).val())) {
-                            flag = false;
-                        } else {
-                            t += parseInt(ipt.eq(j).val());
-                        }
-                    }
-                    value[i] = t;
-                    console.log(id[i], value[i]);
-                    material_json[id[i]] = value[i];
-                }
+                	id[i] = material.eq(i).attr("data-id");
+                	if(material.eq(i).val() != Math.ceil(material.eq(i).val())) {
+                		flag = false;
+                	} else {
+                		value[i] = material.eq(i).val();
+                		t++;
+                	}
+                	material_json[id[i]] = value[i];
+               }
                 var material_string = JSON.stringify(material_json);
                 if (!flag) {
                     return;
