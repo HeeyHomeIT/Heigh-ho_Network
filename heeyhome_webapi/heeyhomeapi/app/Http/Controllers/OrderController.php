@@ -428,7 +428,7 @@ class OrderController extends Controller
         $callback = rq('callback');
         $sql_order_status = DB::select('SELECT * FROM hh_order_status_view WHERE user_id = ? AND order_id = ? ',
             [$user_id, $order_id]);
-        $sel_order_status_time = DB::select('SELECT order_status,status_time FROM hh_order_status_view WHERE order_id = ?',
+        $sel_order_status_time = DB::select('SELECT order_status,status_time FROM hh_order_status_time WHERE order_id = ?',
             [$order_id]);
         if ($sql_order_status) {
             $order_status_id = $sql_order_status[0]->order_status_id;
