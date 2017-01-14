@@ -3349,6 +3349,16 @@ div.clear:after, div.clear:before {
     /*height: 40px*/
 }
 
+.security_top ul li span {
+    width: 56px;
+    height: 18px;
+    color: #4B4948;
+    font-size: 14px;
+    position: absolute;
+    top: 39px;
+    left: 39px
+}
+
 .security_top ul li:nth-child(1) em {
     display: inline-block;
     position: absolute;
@@ -3357,17 +3367,6 @@ div.clear:after, div.clear:before {
     height: 18px;
     margin-right: 12px;
     background: url(../img/icon-id.png)
-}
-
-.security_top ul li:nth-child(1) em:after {
-    content: "身份验证";
-    width: 56px;
-    height: 18px;
-    color: #4B4948;
-    font-size: 14px;
-    position: absolute;
-    top: 0;
-    left: 39px
 }
 
 .security_top ul li:nth-child(2) em {
@@ -3380,17 +3379,6 @@ div.clear:after, div.clear:before {
     background: url(../img/icon-gpassword.png)
 }
 
-.security_top ul li:nth-child(2) em:after {
-    content: "修改密码";
-    width: 56px;
-    height: 18px;
-    color: #4B4948;
-    font-size: 14px;
-    position: absolute;
-    top: 0;
-    left: 39px
-}
-
 .security_top ul li:nth-child(3) em {
     display: inline-block;
     width: 17px;
@@ -3401,17 +3389,6 @@ div.clear:after, div.clear:before {
     background: url(../img/icon-bphone.png)
 }
 
-.security_top ul li:nth-child(3) em:after {
-    content: "绑定手机";
-    width: 56px;
-    height: 18px;
-    color: #4B4948;
-    font-size: 14px;
-    position: absolute;
-    top: 0;
-    left: 39px
-}
-
 .security_top ul li:nth-child(4) em {
     display: inline-block;
     width: 24px;
@@ -3420,17 +3397,6 @@ div.clear:after, div.clear:before {
     top: 40px;
     margin-right: 12px;
     background: url(../img/icon-bemail.png)
-}
-
-.security_top ul li:nth-child(4) em:after {
-    content: "绑定邮箱";
-    width: 56px;
-    height: 18px;
-    color: #4B4948;
-    font-size: 14px;
-    position: absolute;
-    top: 0;
-    left: 39px
 }
 
 .security_top ul li p {

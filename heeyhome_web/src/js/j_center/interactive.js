@@ -454,7 +454,7 @@
                                     var src = BASEURL + data.data[0].shop_img;
                                     $(".order_content_title .order_title_left img").attr("src", src);
                                 } else {
-                                    layer.alert(data.msg);
+                                    layer.msg(data.msg);
                                 }
                             },
                             error: function (data) {
