@@ -534,7 +534,7 @@
                             reader.onload = function (e) {
                                 inputImg.parent().parent().attr("data-flag", "1");
                                 inputImg.parent().parent().addClass('clear');//图片预览时input file 添加opacity样式，设置完全透明
-                                inputImg.parent().parent().css('background', 'url("' + e.target.result + '") no-repeat');//图片设置为$('.showImg')背景图
+                                inputImg.parent().parent().css({'background':'url("' + e.target.result + '") no-repeat','backgroundSize':'100% 100%'});//图片设置为$('.showImg')背景图
                                 var pic = '<img src="' + e.target.result + '">';
                                 myfile.push(pic);
                             }
@@ -602,8 +602,6 @@
         initOrderProcessEvent: function () {
             getOrderProcessHandler.getInfoEvent();
             getOrderBudgetHandler.getInfoEvent();
-            submitOrderProgress.getInfoEvent();
-
         },
         /*
          * 材料清单
@@ -912,6 +910,7 @@
                         $('.order_edit').eq(i).addClass('determine_process');
                         $('.order_increase').eq(i).addClass('add_process');
                     }
+                    submitOrderProgress.getInfoEvent();//点击提交进程按钮
 
                 } else if (status == '订单进行中') {
                     var newStep = step;
@@ -941,6 +940,7 @@
                         $('.order_edit').eq(i).addClass('determine_process');
                         $('.order_increase').eq(i).addClass('add_process');
                     }
+                    submitOrderProgress.getInfoEvent();//点击提交进程按钮
                 } else if (status == '已完成') {
                     step = 17;
                     for (var i = 0; i < step; i++) {
@@ -1118,7 +1118,7 @@
                     },
                     success: function (data) {
                         if (data && data.code == '000') {
-                            //console.log(data.data);
+                            console.log(data.data);
                             //HOUSESTYLE = data.data.装修风格;
                             //console.log(HOUSESTYLE);
                             if (data.data.装修风格 != null) {
@@ -1750,18 +1750,26 @@
                         }
                         $('.personal_user_community').eq(0).addClass('personal_user_first');
                         //获取所在地信息
-                        $('#loc').distpicker({
-                            province: data.data.loc_province,
-                            city: data.data.loc_city,
-                            district: data.data.loc_district
-                        });
+                        if(data.data.loc_province != null && data.data.loc_province != '') {
+                        	$('#loc').distpicker({province: data.data.loc_province});                      	
+                        }
+                        if(data.data.loc_city != null && data.data.loc_city != '') {
+                        	$('#loc').distpicker({city: data.data.loc_city});
+                        }
+                        if(data.data.loc_district != null && data.data.loc_district != '') {
+                        	$('#loc').distpicker({district: data.data.loc_district});
+                        }
 
                         //获取家乡信息
-                        $('#home').distpicker({
-                            province: data.data.home_province,
-                            city: data.data.home_city,
-                            district: data.data.home_district
-                        });
+                        if(data.data.home_province != null && data.data.home_province != '') {
+                        	$('#home').distpicker({province: data.data.home_province});
+                        }
+                        if(data.data.home_city != null && data.data.home_city != '') {
+                        	$('#home').distpicker({city: data.data.home_city});
+                        }
+                        if(data.data.home_district != null && data.data.home_district != '') {
+                        	$('#home').distpicker({district: data.data.home_district});
+                        } 
 
                     }
                     /* 如果失败执行 */
@@ -3545,7 +3553,7 @@
                     });
                 }
 
-                upImg('.add_content');//本店工艺上传图片
+                upImg('.add_picture');//本店工艺上传图片
                 upImg('#renderings_img');//效果图上传图片
 
 
@@ -3571,7 +3579,8 @@
                         url: WORKCURL,
                         params: {
                             foreman_id: USERID,
-                            type: 1
+                            type: 1,
+                            limit:4
                         },
                         beforeSend: function () {
                             $(".complete_before .works_detail").remove();
@@ -3583,7 +3592,7 @@
                     }).success(function (data, status) {
                         /* 如果成功执行 */
                         if (data && data.code === '000') {
-                            //console.log(data.data);
+                            console.log(data.data);
                             if (data.data.length >= 4) {
                                 $scope.works = data.data.slice(0, 4);
                                 $('.new_album').hide();
@@ -3619,10 +3628,11 @@
                             if (data && data.code == '000') {
                                 layer.msg(data.msg);
                                 http();
+                            }else{
+                                layer.msg(data.msg);
                             }
                         },
                         error: function (data) {
-                            layer.msg(data.msg);
                         }
                     });
                 });

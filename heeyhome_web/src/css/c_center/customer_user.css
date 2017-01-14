@@ -572,6 +572,11 @@ a:focus {
     margin-left: 10px;
 }
 
+.personal_form_list .apparent {
+	color: #4B4948;
+	font-size: 14px;
+}
+
 .personal_form_list .personal_tel {
     margin-left: 16px;
     width: auto;
