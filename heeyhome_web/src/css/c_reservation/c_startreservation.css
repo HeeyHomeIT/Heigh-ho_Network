@@ -205,7 +205,8 @@ body {
 	position: relative;
     width: 280px;
     border: 3px solid #d9d9d9;
-    margin-right: 18px;
+    margin-right: 16px;
+    margin-bottom: 10px;
     cursor: pointer;
 }
 
@@ -239,6 +240,13 @@ body {
     padding-bottom: 14px;
     border-bottom: 1px dashed #d9d9d9;
     line-height: 21px;
+    height: 48px;
+    max-height: 48px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    
 }
 
 .inner_bottom {
@@ -304,7 +312,8 @@ body {
 .confirm_info_detail {
     width: 207px;
     height: 140px;
-    margin-right: 38px;
+    margin-right: 30px;
+    margin-bottom: 8px;
     position: relative;
     cursor: pointer;
 }
@@ -766,3 +775,71 @@ body {
     -moz-transition: all .3s linear;
 	border: 1px solid #ff5704 !important
 }
+
+.door_address_content {
+    overflow: hidden;
+}
+
+.door_address  .btndown,.confirm_appointment_info  .btndown{
+    cursor: pointer;
+    color: #ff5704;
+}
+
+.door_address  .pickup,.door_address  .pickdowm,.confirm_appointment_info  .pickup,.confirm_appointment_info  .pickdowm{
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.door_address  .pickup i,.door_address  .pickdowm i,.confirm_appointment_info  .pickup i,.confirm_appointment_info  .pickdowm i{
+	background: url(../img/sprite-icon.png) no-repeat;
+    background-position: -574px -15px;
+    width: 9px;
+    height: 6px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.door_address  .pickdowm i,.confirm_appointment_info  .pickdowm i {
+    background-position: -574px -37px;
+}
+
+.door_address .autoheight {
+    max-height: 143px;
+}
+
+.nullpage {
+    color: #999;
+    font-size: 14px;
+    overflow: hidden;
+    text-align: center;
+    padding: 60px 0 72px 0;
+    border: 1px solid #D7D7D7
+}
+
+.nullpage i {
+	position: relative;
+   	background: url(../img/noinfo.png) no-repeat;
+    width: 86px;
+    height: 85px;
+    display: inline-block;
+    
+}
+
+.nullpage span {
+    display: block;
+    float: left;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.confirm_info_content {
+	overflow: hidden;
+}
+.confirm_appointment_info .autoheight {
+    max-height: 148px;
+}
+

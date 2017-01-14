@@ -75,6 +75,8 @@
 			self.initAddressBoxEvent(); // 添加地址事件和关闭地址事件
 			self.initHomeAddressChangeEvent(); // 上门地址切换
 			self.initPlaceOrderEvent(); // 提交订单
+			/* 展开工种价格明细*/
+            self.initSpriceListEvent();
 		},
 		/**
 		 * 预约人员
@@ -91,27 +93,28 @@
 					dataType: 'jsonp',
 					data: {
 						user_id: rtList.gz
-					},
-					success: function(data) {
+					}
+				}).done(function(data){
+					if(data.code == 000){
 						imgUrl = data.data.user_img;
-					},error: function(data) {}
+						$.ajax({
+							url: FOREMANINFOURL,
+							type: "GET",
+							async: true,
+							dataType: 'jsonp',
+							data: {
+								foreman_id: rtList.gz
+							}
+						}).done(function(data){
+							if(data.code == 000){
+								$(".cards").append(rc.splicePersonDataEvent(imgUrl,data.data));
+						 		$(".explain").html("尊敬的用户，您选择了<span class='col_eec988'>一键预约</span>装修，接下来将有工长全权负责您家房子的装修任务");
+							}
+						});
+					}
+					
 				});
-				$.ajax({
-					url: FOREMANINFOURL,
-					type: "GET",
-					async: true,
-					dataType: 'jsonp',
-					data: {
-						foreman_id: rtList.gz
-					},
-					success: function(data) {
-						console.log(imgUrl)
-						console.log(data.data)
-					 	$(".cards").append(rc.splicePersonDataEvent(imgUrl,data.data));
-					 	$(".explain").html("尊敬的用户，您选择了<span class='col_eec988'>一键预约</span>装修，接下来将有工长全权负责您家房子的装修任务")
-					},
-					error: function(data) {}
-				});
+				
 			}else if(rtList.mark == CHOOSE && TYPE == "2"){
 				$.each(rtList.worker, function(i,v) {
 					$.ajax({
@@ -125,8 +128,6 @@
 							worker_id:v.nid
 						}
 					}).done(function(data){
-						console.log("done");
-						console.log(data);
 						$(".cards").append(rc.spliceWorkerDataEvent(v.ntype,data.data));
 						$(".explain").html("尊敬的用户，您选择了<span class='col_eec988'>自己选工人</span>装修，接下来工长会根据您的需求来负责您家房子的装修任务")
 					});
@@ -199,16 +200,25 @@
 					user_id: UID
 				},
 				success: function(data) {
-					console.log("--------------")
-					console.log(data);
-					$(".confirm_info_content").append(rc.spliceCalRresultDataEvent(data.data.calculator_data));
-					$("#Jarea").prepend(data.data.calculator_data[0].area);
-				 	$("#Jroom").prepend(data.data.calculator_data[0].room);
-				 	$("#Jparlour").prepend(data.data.calculator_data[0].parlour);
-				 	$("#Jtoilet").prepend(data.data.calculator_data[0].toilet);
-				 	$("#Jbalcony").prepend(data.data.calculator_data[0].balcony);
-				 	$("#Jzxzj").prepend(parseFloat(data.data.calculator_data[0].zxzj).toFixed(2));
-				 	$("#c").val(data.data.calculator_data[0].calculator_results_id);
+					if(data.code == 000){
+						$(".Jcal").html(rc.spliceCalRresultDataEvent(data.data.calculator_data));
+						$("#Jarea").prepend(data.data.calculator_data[0].area);
+					 	$("#Jroom").prepend(data.data.calculator_data[0].room);
+					 	$("#Jparlour").prepend(data.data.calculator_data[0].parlour);
+					 	$("#Jtoilet").prepend(data.data.calculator_data[0].toilet);
+					 	$("#Jbalcony").prepend(data.data.calculator_data[0].balcony);
+					 	$("#Jzxzj").prepend(parseFloat(data.data.calculator_data[0].zxzj).toFixed(2));
+					 	$("#c").val(data.data.calculator_data[0].calculator_results_id);
+					}else{
+						$(".Jcal").html('<div class="nullpage"><i>&nbsp;</i><span>你还没收藏计算结果哦，快<a target="_blank" href="index.html#/cal">去看看</a>你家装修需要多少钱吧！~</span></div>');
+						$("#Jarea").prepend("-");
+					 	$("#Jroom").prepend("-");
+					 	$("#Jparlour").prepend("-");
+					 	$("#Jtoilet").prepend("-");
+					 	$("#Jbalcony").prepend("-");
+					 	$("#Jzxzj").prepend("-");
+					}
+					
 				},error: function(data) {}
 			});
 		},
@@ -218,7 +228,6 @@
 		initCalChangeInfoEvent:function(){
 			$(document).on("click",".confirm_info_detail",function(){
 				var cId = $(this).data("cid");
-				console.log("11111111111111111")
 				$.ajax({
 					url: CALRESULTURL,
 					type: "GET",
@@ -229,7 +238,6 @@
 						calculator_results_id:cId
 					},
 					success: function(data) {
-						console.log(data)
 						$("#Jarea").empty().prepend(data.data.area);
 					 	$("#Jroom").empty().prepend(data.data.room);
 					 	$("#Jparlour").empty().prepend(data.data.parlour);
@@ -242,9 +250,11 @@
 				$(this).siblings().find("div.info_detail_triangle").addClass("display");
 				$(this).siblings().find("div.info_detail_top").removeClass("b_eec988");
 				$(this).siblings().find("div.info_detail_bottom").removeClass("bg_eec988");
+				$(this).siblings().find(".area_structure span").removeClass("col_eec988");
 				$(this).find("div.info_detail_triangle").removeClass("display");
 				$(this).find("div.info_detail_top").addClass("b_eec988");
 				$(this).find("div.info_detail_bottom").addClass("bg_eec988");
+				$(this).find(".area_structure span").addClass("col_eec988");
 			});
 		},
 		/**
@@ -331,6 +341,18 @@
 						wObj[i]=v.nid;
 					});
 				}
+				if(addressId ==null || addressId ==""){
+					layer.msg('地址不能不选哦~');
+					return;
+				}
+				if(cId == null || cId == ""){
+					layer.msg('计算结果不能不选哦~');
+					return;
+				}
+				if(tArr.length == 0){
+					layer.msg('上门时间不能不选哦~');
+					return;
+				}
 				
 				$.ajax({
 					url: PRODUCEURL,
@@ -357,7 +379,32 @@
 				});
 						
 			});
-		}
+		},
+		/**
+         * 展开工种价格明细
+         */
+        initSpriceListEvent: function () {
+            $(document).on("click", ".door_address .btndown", function () {
+                if ($(this).hasClass("pickdowm")) {
+                	$(this).find("span").text("展开");
+                    $(this).removeClass("pickdowm").siblings(".door_address_content").addClass("autoheight");
+                    
+                } else {
+                	$(this).find("span").text("收起");
+                    $(this).addClass("pickdowm").siblings(".door_address_content").removeClass("autoheight");
+                }
+            });
+            $(document).on("click", ".confirm_appointment_info .btndown", function () {
+                if ($(this).hasClass("pickdowm")) {
+                	$(this).find("span").text("展开");
+                    $(this).removeClass("pickdowm").siblings(".confirm_info_content ").addClass("autoheight");
+                    
+                } else {
+                	$(this).find("span").text("收起");
+                    $(this).addClass("pickdowm").siblings(".confirm_info_content ").removeClass("autoheight");
+                }
+            });
+        }
 	};
 	/**
 	 * 拼接内容
@@ -370,7 +417,7 @@
 		 */
 		splicePersonDataEvent: function(imgurl,value) {
 			var vrStr = '<div class="card avatar"><img src="http://hyu2387760001.my3w.com/' + imgurl + '"><h1>'+value.foremaninfo_realname+'</h1>';
-				vrStr += '<span>'+value.loc_city+' | '+value.foremaninfo_phone+' | '+value.worktime+'年</span><div class="corner"><div class="corner_logo"><a><img src="css/img/icon-sdg.png"></a></div>';
+				vrStr += '<span>'+((value.loc_city!=null &&value.loc_city!="")?value.loc_city:'中国')+' | '+value.foremaninfo_phone+' | '+((value.worktime!=null &&value.worktime!="")?value.worktime:'0')+'年</span><div class="corner"><div class="corner_logo"><a><img src="css/img/icon-sdg.png"></a></div>';
 				vrStr += '<span class="corner_text">工长</span></div></div>';
 			return vrStr;
 		},
@@ -406,7 +453,7 @@
 		 * @param {Object} value 对象
 		 */
 		spliceAddressDataEvent: function(value) {
-			var vrStr = '';
+			var vrStr = '<div class="door_address_content autoheight clearfix">';
 			$.each(value, function(i, v) {
 				vrStr += '<div class="door_content_detail '+(v.is_default == 1?'on':'')+' fl" data-dz="'+v.id+'">';
 				if(v.is_default == 1){
@@ -416,6 +463,7 @@
 				vrStr += '<div class="door_detail_inner"><div class="inner_top">'+v.address+'</div>';
 				vrStr += '<div class="inner_bottom"><span>'+v.receiver+'</span><a href="javascript:;"><i class="iconfont">&#xe604;</i>'+v.mobile+'</a></div></div></div>';
 			});
+			vrStr += '</div><div class="btndown pickup"><span>展开</span><i></i></div>';
 			return vrStr;
 		},
 		/**
@@ -432,12 +480,13 @@
 		 * @param {Object} value 对象
 		 */
 		spliceCalRresultDataEvent:function(value){
-			var vrStr = '';
+			var vrStr = '<div class="confirm_info_content autoheight clearfix">';
 			$.each(value, function(i, v) {
 				vrStr += '<div class="confirm_info_detail fl" data-cid="'+v.calculator_results_id+'"><div class="info_detail_top '+(i==0? "b_eec988":"")+'"><p class="area_structure"><span class="'+(i==0? "col_eec988":"")+'">&bull;</span>'+v.area+'m<sup>2</sup><span class="'+(i==0? "col_eec988":"")+'">&bull;</span></p>';
 				vrStr += '<p class="area_detail"><span class="room">'+v.room+'</span>室<span class="hall">'+v.parlour+'</span>厅<span class="toilet">'+v.toilet+'</span>卫<span class="balcony">'+v.balcony+'</span>阳台';
-				vrStr += '</p></div><div class="info_detail_bottom '+(i==0? "bg_eec988":"")+'"><span>金额</span><b>'+v.zxzj+'</b></div><div class="info_detail_triangle '+(i!=0? "display":"")+'"><i></i></div></div>';
+				vrStr += '</p></div><div class="info_detail_bottom '+(i==0? "bg_eec988":"")+'"><span>金额</span><b>'+v.zxzj+'</b></div></div>';
 			});
+			vrStr += '</div><div class="btndown pickup"><span>展开</span><i></i></div>';
 			return vrStr;
 			
 		}
@@ -530,11 +579,15 @@
 				},
 				success: function(data) {
 					console.log("用户收藏的地址");
-					console.log(UID)
 					console.log(data);
-					$(".door_address_content div").remove();
-					$(".door_address_content").append(rc.spliceAddressDataEvent(data.data));
-					initInputDataHandler.inputDataEvent(); // input框初始化
+					if(data.code == 000){
+						$(".Jaddress").html(rc.spliceAddressDataEvent(data.data));
+						initInputDataHandler.inputDataEvent(); // input框初始化
+					}else{
+						$(".Jaddress").html('<div class="nullpage"><i>&nbsp;</i><span>暂无收货地址哦，点击按钮可进行添加~</span></div>');
+					}
+					
+					
 				},error: function(data) {}
 			});
 		},
