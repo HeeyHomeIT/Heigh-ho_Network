@@ -5,7 +5,7 @@
     <div class="right_content_wrap" ng-controller="shop">
         <div class="shop_content">
             <div class="shop_detail">
-                <span>用户名</span>
+                <span>店铺名</span>
                 <input id="shop_name" class="shop_name" title="" type="text" placeholder="请输入您的店名">
             </div><!--shop_detail-->
             <div id="shop_certification" class="shop_detail">
@@ -14,13 +14,13 @@
             </div><!--shop_detail-->
             <div class="shop_detail">
                 <span>开店时间</span>
-                <input id="shop_age" class="shop_age" title="" type="text" placeholder="请输入您的开店年限">
+                <input id="shop_age" class="shop_age" title="" type="text" disabled>
             </div><!--shop_detail-->
             <div class="shop_detail">
                 <span>本店工艺</span>
                 <div id="shop_technic" class="renderings_show_wrap clearfix">
                     <div class="renderings_show fl first_renderings_show" ng-repeat="info in infos">
-                        <a class="complete_del" href="javascript:;">
+                        <a id="complete_del" class="complete_del" href="javascript:;" technicsid="{{info.technics_id}}">
                             <img src="css/img/shop_del.png">
                         </a>
                         <img class="craft_img" ng-src="http://hyu2387760001.my3w.com/{{info.technics_img[0].technics_img}}">
@@ -37,7 +37,7 @@
                 <span>效果图展示</span>
                 <div class="renderings_show_wrap clearfix">
                     <div class="renderings_show fl first_renderings_show" ng-repeat="img in imgs">
-                        <a class="complete_del" href="javascript:;">
+                        <a id="img_del" class="complete_del" href="javascript:;" imgid="{{img.id}}">
                             <img src="css/img/shop_del.png">
                         </a>
                         <img ng-src="http://hyu2387760001.my3w.com/{{img.shop_img}}">

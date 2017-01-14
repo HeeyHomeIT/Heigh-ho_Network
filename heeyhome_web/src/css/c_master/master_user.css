@@ -1003,7 +1003,12 @@
 }
 
 .shop_detail .shop_age {
-    width: 152px;
+    width: 100px;
+}
+
+.shop_detail .shop_age:disabled {
+    background-color: white;
+    cursor: not-allowed;
 }
 
 .shop_detail .shop_head {
@@ -1900,7 +1905,7 @@
 }
 
 .owner_detail .owner_right p {
-	width: 180px;
+    width: 180px;
 }
 
 .owner_detail > div h3 {

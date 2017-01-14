@@ -38,6 +38,9 @@
     var PHCODE = BASEURL + 'sendsms'; // 手机验证码
     var TAGURL = BASEURL + 'personal/myshop/stylelist?callback=JSON_CALLBACK';//风格标签
     var MASTERSHOPURL = BASEURL + 'personal/myshop/change';//编辑工长店铺资料
+    var DELTECURL = BASEURL + 'personal/myshop/deltechnics';//删除店铺工艺接口
+    var DELSHOPURL = BASEURL + 'personal/myshop/del';//删除店铺效果图接口
+    var TECURL = BASEURL + 'personal/myshop/technics?callback=JSON_CALLBACK';//显示店铺工艺列表信息接口
     var EDITPERURL = BASEURL + 'personal/foremaninfo/change';//编辑工长信息资料
     var READURL = BASEURL + 'personal/message'; // 读取消息中心信息接口
     var DELETEURL = BASEURL + 'personal/message/del'; // 删除消息中心信息接口
@@ -495,7 +498,7 @@
          */
         initTeamEditEvent: function () {
             HHIT_CENTERAPP.controller('teamDetail_editCtrl', ['$scope', '$http', function ($scope, $http) {
-            	$('.left_ul li').eq(5).addClass('left_active').siblings().removeClass('left_active');
+                $('.left_ul li').eq(5).addClass('left_active').siblings().removeClass('left_active');
                 /* details */
                 //显示价格明细
                 loadDetail.showInformation();
@@ -1359,7 +1362,7 @@
     submitOrderProgress = {
         getInfoEvent: function () {
             var orderId = sessionStorage.getItem('orderId');
-            $(document).on('click','.order_submit',function () {//点击提交按钮
+            $(document).on('click', '.order_submit', function () {//点击提交按钮
                 $.ajax({
                     url: ORDERTOCUSURL,
                     type: "GET",
@@ -2160,7 +2163,7 @@
                     else {
                         var wbank;
                         $.each($scope.wbanks, function (i, val) {
-                            $('.bank :radio').eq(i).data('no',val.bankcardno);
+                            $('.bank :radio').eq(i).data('no', val.bankcardno);
                             if (val.bankcardno == $('.bank :radio:checked').data('no')) {
                                 wbank = val;
                             }
@@ -3184,10 +3187,12 @@
                 }).success(function (data, status) {
                     /* 如果成功执行 */
                     if (data.code === '000') {
-                        //console.log(data);
+                        console.log(data);
+                        var openTime = data.data.opentime;
+                        openTime = openTime.substring(0,10);
                         $('#shop_name').val(data.data.shop_name);//获取店名
                         $('#shop_describe').val(data.data.shop_describe);//获取店铺理念
-                        $('#shop_age').val(data.data.opentime);//获取店铺的开店时间
+                        $('#shop_age').val(openTime);//获取店铺的开店时间
                         $('#shop_ad').val(data.data.shop_address);//获取店铺的地址
                         //获取店铺资料的服务区域
                         var aLen = data.data.servicearea.length;
@@ -3208,9 +3213,11 @@
                         if (data.data.shop_technics.length >= 5) {
                             $scope.infos = data.data.shop_technics.slice(0, 5);
                             $('#technic_add').hide();
+                            $('.detail_p').css('marginTop', '100px');
                         } else {
                             $scope.infos = data.data.shop_technics;
                             $('#technic_add').show();
+                            $('.detail_p').css('marginTop', '5px');
                         }
                         if (data.data.shop_technics.length > 0) {
                             $.each(data.data.shop_technics, function (i, v) {
@@ -3235,6 +3242,8 @@
                     }
                 }).error(function (data, status) {
                 });
+
+
                 /* 擅长工长店铺资料风格标签的编辑*/
                 var $edit = $(".shop_detail_style .edit");
                 var $area_edit = $(".shop_detail_area .area_edit");
@@ -3258,6 +3267,7 @@
                     error: function (data) {
                     }
                 });
+
                 /* 点击添加擅长风格 */
                 $('#personal_style').click(function () {
                     $edit.removeClass("display");
@@ -3358,6 +3368,108 @@
                 });
                 /* 编辑工长店铺资料结束 */
 
+                /* 点击删除本店工艺开始 */
+                $(document).on('click', '#complete_del', function () {
+                    var technicsid = $(this).attr('technicsid');
+                    $.ajax({
+                        url: DELTECURL,
+                        type: "GET",
+                        async: true,
+                        dataType: 'jsonp',
+                        data: {
+                            technics_id: technicsid
+                        },
+                        success: function (data) {
+                            layer.msg(data.msg);
+                            $('.detail_p b').remove();
+                            $http({
+                                method: "JSONP",
+                                url: SHOPCURL,
+                                /* 传参 */
+                                params: {
+                                    shop_id: $.base64.decode($.cookie("userShopId"))
+                                }
+                            }).success(function (data, status) {
+                                /* 如果成功执行 */
+                                if (data.code === '000') {
+                                    //console.log(data);
+                                    //获取店铺资料的本店工艺(最多只显示五张)
+                                    if (data.data.shop_technics.length >= 5) {
+                                        $scope.infos = data.data.shop_technics.slice(0, 5);
+                                        $('#technic_add').hide();
+                                        $('.detail_p').css('marginTop', '100px');
+                                    } else {
+                                        $scope.infos = data.data.shop_technics;
+                                        $('#technic_add').show();
+                                        $('.detail_p').css('marginTop', '5px');
+                                    }
+                                    if (data.data.shop_technics.length > 0) {
+                                        $.each(data.data.shop_technics, function (i, v) {
+                                            $('.detail_p').append('<b>' + v.technics_text + '</b>');
+                                        });
+                                    } else {
+                                        $('.detail_p').append('随便说点什么吧！');
+                                    }
+                                }
+                                /* 如果失败执行 */
+                                else {
+                                    layer.layer.msg(data.msg);
+                                }
+                            }).error(function (data, status) {
+                            });
+                        },
+                        error: function (data) {
+                        }
+                    });
+                });
+                /* 点击删除本店工艺结束 */
+
+                /* 点击删除效果图开始 */
+                $(document).on('click', '#img_del', function () {
+                    var imgid = $(this).attr('imgid');
+                    $.ajax({
+                        url: DELSHOPURL,
+                        type: "GET",
+                        async: true,
+                        dataType: 'jsonp',
+                        data: {
+                            img_id: imgid
+                        },
+                        success: function (data) {
+                            layer.msg(data.msg);
+                            $http({
+                                method: "JSONP",
+                                url: SHOPCURL,
+                                /* 传参 */
+                                params: {
+                                    shop_id: $.base64.decode($.cookie("userShopId"))
+                                }
+                            }).success(function (data, status) {
+                                /* 如果成功执行 */
+                                if (data.code === '000') {
+                                    //console.log(data);
+                                    //获取店铺资料的效果图展示(最多只显示四张)
+                                    if (data.data.shop_imgs.length >= 4) {
+                                        $scope.imgs = data.data.shop_imgs.slice(0, 4);
+                                        $('.renderings_img').hide();
+                                    } else {
+                                        $scope.imgs = data.data.shop_imgs;
+                                        $('.renderings_img').show();
+                                    }
+                                }
+                                /* 如果失败执行 */
+                                else {
+                                    layer.layer.msg(data.msg);
+                                }
+                            }).error(function (data, status) {
+                            });
+                        },
+                        error: function (data) {
+                        }
+                    });
+                });
+                /* 点击删除效果图结束 */
+
                 /* 点击添加工艺弹出弹层 */
                 $('#technic_add').click(function () {
                     var NUM = $(this).parents(".right_content_wrap").next('.add_technology');
@@ -3369,7 +3481,7 @@
                     $add_picture_a.removeClass('opacity');
                     $add_picture.css('background-image', '');
                     $add_picture.find('.close').hide();
-                    $('#textarea').val('');
+                    $('#textarea').html('');
                 });
 
                 /* 点击本店工艺更改弹出弹层 */
