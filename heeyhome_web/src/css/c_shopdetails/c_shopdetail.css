@@ -540,7 +540,9 @@
 }
 
 #manager_information .work_experience ul {
-	margin: 21px 0 0 110px;
+	margin: 20px auto;
+	width: 200px;
+	text-align: center;
 	color: #4B4948;
 	font-family: FZLTZHK;
 	font-size: 14px
