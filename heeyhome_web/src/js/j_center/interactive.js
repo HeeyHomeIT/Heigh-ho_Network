@@ -269,7 +269,7 @@
                                 }
                             });
                             OrderPageHandler.pageContentEvent(order_total);
-                        } else if (data.code == '200') {
+                        } else if (data.code == '205') {
                             $('#orderContent').remove();
                             $('.not_information').show().removeClass('hide');
                             $('.not_information_text').html('您的订单空空如也~~');
@@ -586,7 +586,7 @@
                             error: function (data) {
                             }
                         });
-                    } else if (data.code == '117') {
+                    } else if (data.code == '205') {
                         $('.my_order_content').remove();
                         $('.not_information').show().removeClass('hide');
                         $('.not_information_text').html('您暂时还没有订单消息哦~~');
@@ -869,7 +869,7 @@
     /* 我的收藏成本计算 */
     getBillInfoHandler = {
         billInfoEvent: function () {
-            function ajax() {
+            function ajax1() {
                 $.ajax({
                     url: BILLURL,
                     type: "GET",
@@ -907,9 +907,9 @@
                 });
             }
 
-            ajax();
+            ajax1();
             /* 删除我的收藏成本计算 */
-            $(document).on('click', '.collection_del', function (e) {
+            $(document).off('click','#collection_del').on('click', '#collection_del', function (e) {
                 var calculator_results_id = $(e.target).parents('.check_list').attr('calculator_results_id');
                 $.ajax({
                     url: BILLDELURL,
@@ -922,7 +922,7 @@
                     },
                     success: function (data) {
                         layer.msg(data.msg);
-                        ajax();
+                        ajax1();
                         billPageHandler.pageContentEvent();
                     },
                     error: function (data) {
@@ -975,7 +975,7 @@
                 ajax();
 
                 /* 删除我的收藏店铺列表 */
-                $(document).on('click', '.collection_shop_del', function (e) {
+                $(document).off('click','.collection_shop_del').on('click', '.collection_shop_del', function (e) {
                     var shopId = $(e.target).parents('.collection_shop').attr('shopId');
                     $.ajax({
                         url: DSHOPURL,
@@ -987,13 +987,12 @@
                             shop_id: shopId
                         },
                         success: function (data) {
-                            console.log(shopId);
+                            // console.log(shopId);
                             layer.msg(data.msg);
                             ajax();
-                            shopPageHandler.pageContentEvent();
+                            //shopPageHandler.pageContentEvent();
                         },
                         error: function (data) {
-                            layer.msg(data.msg);
                         }
                     });
                 })
@@ -1039,7 +1038,7 @@
                 }
 
                 http();
-                $(document).on('click', '.complete_del', function () {
+                $(document).off('click','#pic_del').on('click', '#pic_del', function () {
                     var $panorama_id = $(this).parent().attr('panorama_id');
                     $.ajax({
                         url: DPICURL,
@@ -1730,7 +1729,7 @@
     splicePicHandler = {
         spliceStrEvent: function (value) {
             var vrStr = '<div class="works_detail works_detail_first fl complete_img" panorama_id="' + value.panorama_id + '">';
-            vrStr += '	<a class="complete_del" href="javascript:;">';
+            vrStr += '	<a id="pic_del" class="complete_del" href="javascript:;">';
             vrStr += '		<img src="css/img/my_work_del.png">';
             vrStr += '		</a>';
             vrStr += '		<div class="detail_img">';
@@ -1810,7 +1809,7 @@
             vrStr += '	<span class="toilet">卫生间</span>';
             vrStr += '		<span class="balcony">阳台</span>';
             vrStr += '			<span class="clearing_time">结算时间</span>';
-            vrStr += '			<a class="collection_del" href="javascript:;">';
+            vrStr += '			<a id="collection_del" class="collection_del" href="javascript:;">';
             vrStr += '			<img src="css/img/my_work_del.png">';
             vrStr += '			</a>';
             vrStr += '			</div><!--check_list_title-->';
