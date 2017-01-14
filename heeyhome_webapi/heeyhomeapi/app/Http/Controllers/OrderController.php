@@ -428,6 +428,8 @@ class OrderController extends Controller
         $callback = rq('callback');
         $sql_order_status = DB::select('SELECT * FROM hh_order_status_view WHERE user_id = ? AND order_id = ? ',
             [$user_id, $order_id]);
+        $sel_order_status_time = DB::select('SELECT order_status,status_time FROM hh_order_status_view WHERE order_id = ?',
+            [$order_id]);
         if ($sql_order_status) {
             $order_status_id = $sql_order_status[0]->order_status_id;
             if ($sql_order_status[0]->confirm_time == 1) {
@@ -453,6 +455,7 @@ class OrderController extends Controller
                 "order_step_id" => $sql_order_status[0]->order_step_id,
                 "order_status" => $sql_order_status[0]->order_status,
                 "order_step" => $sql_order_status[0]->order_step,
+                "order_status_time" => $sel_order_status_time
             );
             $arr = array(
                 "code" => "000",
