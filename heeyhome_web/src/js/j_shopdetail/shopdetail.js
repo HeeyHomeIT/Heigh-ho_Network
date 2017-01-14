@@ -579,8 +579,11 @@
         initSpriceListEvent: function () {
             $(document).on("click", ".btndown", function () {
                 if ($(this).hasClass("pickdowm")) {
+                	$(this).find("span").text("展开");
                     $(this).removeClass("pickdowm").siblings(".price_list").addClass("autoheight");
+                    
                 } else {
+                	$(this).find("span").text("收起");
                     $(this).addClass("pickdowm").siblings(".price_list").removeClass("autoheight");
                 }
             });
