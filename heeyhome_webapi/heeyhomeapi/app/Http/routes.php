@@ -166,6 +166,7 @@ Route::group(['middleware' => ['web']], function () {
     //材料列表
     Route::any('materials/brands', 'MaterialController@brand');
     Route::any('materials', 'MaterialController@materials');
+    Route::any('shopmaterials', 'MaterialController@materials_price');
 
 
     //成本计算器

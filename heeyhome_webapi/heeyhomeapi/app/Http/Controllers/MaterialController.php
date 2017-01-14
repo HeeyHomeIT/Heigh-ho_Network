@@ -78,5 +78,27 @@ class MaterialController extends Controller
         );
         return $callback . "(" . HHJson($arr) . ")";
     }
-
+    public function materials_price(){
+        $callback=rq('callback');
+        $brand_id=rq('brand_id');
+        $cate_id=rq('cate_id');
+        $where='';
+        $para=array();
+        array_push($para, $cate_id,1);
+        if($brand_id){
+            for ($i=0; $i < count($brand_id); $i++) {
+                if ($i == 0) {
+                    $where=' and brand_id=?';
+                } else {
+                    $where = $where.' or brand_id = ?';
+                }
+                array_push($para, $brand_id[$i]);
+            }
+        }
+        $materialist=DB::select('select * from hh_materials_price_view where cate_id=? and if_show=?'.$where,$para);
+        $arr = array("code" => "000",
+            "data" => $materialist
+        );
+        return $callback . "(" . HHJson($arr) . ")";
+    }
 }
