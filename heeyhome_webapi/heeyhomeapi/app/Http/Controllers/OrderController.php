@@ -580,7 +580,7 @@ class OrderController extends Controller
         //生成材料订单消息
         $title = "订单消息";
         $msgcontent = "工长已经更新您的订单，请进入个人中心进行查看！";
-        $insert = DB::insert('insert into hh_message(msgtitle,msgcontent,senduser,sendtime,receiveuserid) values(?,?,?,?,?)', $title, $msgcontent, $senduser, $sendtime, $touserid);
+        $insert = DB::insert('insert into hh_message(msgtitle,msgcontent,senduser,sendtime,receiveuserid) values(?,?,?,?,?)', [$title, $msgcontent, $senduser, $sendtime, $touserid]);
         if ($insert) {
             $arr = array(
                 "code" => "000",

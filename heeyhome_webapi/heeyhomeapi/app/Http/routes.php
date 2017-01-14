@@ -136,6 +136,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('shoplist', 'ShoplistController@index');
     /*店铺详情*/
     Route::any('shopinfo', 'ShopdetailController@index');
+    /*店铺工价*/
+    Route::any('shopwages', 'ShopWagesController@getShopWages');
     /*添加银行卡*/
     Route::any('bankcard/getname', 'BankCardController@getname');
     Route::any('bankcard/getcardtype', 'BankCardController@getcardtype');

@@ -60,4 +60,14 @@ class OrderPayController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+
+    //提交用户退款信息
+    public function subRefundInfo()
+    {
+        $order_id = rq('order_id');
+        $alipay_account = ('alipay_account');
+        $callback = rq('callback');
+
+    }
+
 }

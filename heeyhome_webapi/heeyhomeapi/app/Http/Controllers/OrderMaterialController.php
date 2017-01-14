@@ -196,7 +196,7 @@ class OrderMaterialController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         if ($sel_material_user) {
-            $arr_data = array("material_info" => $sel_material_list_tbl);
+            $arr_data = array("material_info" => $sel_material_list_tbl[0]);
         } else {
             $arr = array(
                 "code" => "200",
