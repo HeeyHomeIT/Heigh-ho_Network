@@ -16,6 +16,7 @@
     var WORKSURL = "http://hyu2387760001.my3w.com/myworkers"; // 工人列表信息接口
     var WORKINFOURL = "http://hyu2387760001.my3w.com/myworkers/workerinfo"; // 工人详细信息接口
     var SHOPCOLURL = "http://hyu2387760001.my3w.com/shop/collect"; // 获取工长店铺收藏店铺接口
+    var SHOPWAGEURL = "http://hyu2387760001.my3w.com/shopwages"; // 店铺工价接口
 
 	
     var worksObj = {};
@@ -67,6 +68,8 @@
             self.initDeleteMworkEvent();
             /* 去预约*/
             self.initGoReservationEvent();
+            /* 店铺工价*/
+           	self.initArtificialPriceEvent();
             /* 展开工种价格明细*/
             self.initSpriceListEvent();
             /* 收藏店铺*/
@@ -599,6 +602,33 @@
                 }else{
                 	layer.msg('请先登录哦~');
                 }               
+            });
+        },
+        /**
+         * 工人价格
+         */
+        initArtificialPriceEvent:function(){
+        	var shopId = $("#JdpId").val();
+        	$.ajax({
+                url: SHOPWAGEURL,
+                type: "GET",
+                async: true,
+                dataType: 'jsonp',
+                data: {
+                    shop_id: shopId
+                },
+                success: function (data) {
+                	console.log(data);
+                	if(data.code==000){
+                		$.each($(".con_price ul li"),function(item,val){
+                			$.each($(val).find("p"), function(i,v) {
+                				$(v).find("span.Jprice").html(data.data[item+1][i+1])
+                			});
+                		});
+                	}
+                },
+                error: function (data) {
+                }
             });
         },
         /**
