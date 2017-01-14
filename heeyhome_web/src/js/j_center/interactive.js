@@ -481,8 +481,11 @@
 			                	$(".order_cnt_right .operation").attr("href","reservation.html#/materiallist?pos="+data.data.order_list[_new].order_id).html("辅材支付");
 			                }
 			                // 人工费
-			                if (step == 5 || step == 9 || step == 13 || step == 17) {
+			                else if (step == 5 || step == 9 || step == 13 || step == 17) {
 			                	$(".order_cnt_right .operation").attr("href","reservation.html#/advancelist?pos="+data.data.order_list[_new].order_id).html("人工支付");
+			                } else {
+			                	$(".order_cnt_right .operation").remove();
+								$(".order_cnt_right .detail").addClass("one");
 			                }
 			            } else if(status == 6) {
 							$(".order_cnt_right .operation").html("确认验货");
