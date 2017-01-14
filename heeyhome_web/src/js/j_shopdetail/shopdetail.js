@@ -224,7 +224,7 @@
                     $(".scontent").addClass("loagbg p1");
                 },
                 success: function (data) {
-                    $(".sname").html(data.data.shop_name);
+                    $(".sname").html((data.data.shop_name!=null &&data.data.shop_name!="")?data.data.shop_name:"--");
                     $("#JgzId").val(data.data.shopper_id);
                     $(".Jmore").attr("href", "successcase.html#/successcase?pos=" + $("#JgzId").val() + "")
                     $(".hd ul").html(sc.spliceHdPictureEvent(data.data));
@@ -261,8 +261,11 @@
                     shop_id: shopId
                 },
                 success: function (data) {
-                    //console.log(data)
-                    $(".process_content").append(sc.spliceGyInfoEvent(data.data));
+                    if(data.code == 000){
+                    	$(".process_content").append(sc.spliceGyInfoEvent(data.data));
+                    }else{
+                    	$(".process_content").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也...</span></div>');
+                    }
                 },
                 error: function (data) {
                 }
@@ -283,9 +286,11 @@
                     foreman_id: shopperId
                 },
                 success: function (data) {
-                    //console.log("success");
-                    //console.log(data)
-                    $("#sd_hexgrid").append(sc.spliceCgInfoEvent(data.data));
+                    if(data.code == 000){
+                    	$("#sd_hexgrid").append(sc.spliceCgInfoEvent(data.data));	
+                    }else{
+                    	$(".sdcon").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也...</span></div>');
+                    }
                 },
                 error: function (data) {
                 }
@@ -308,15 +313,35 @@
                     shop_id: shopId
                 },
                 success: function (data) {
-                    //console.log(data);
-                    $("#water_electrician .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.eleworker)); //水电工
-                    $("#water_electrician ").append(sc.spliceHidePicEvent(data.data.eleworker)); //水电工隐藏图片
-                    $("#bricklayer .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.brickworker)); //瓦工
-                    $("#bricklayer ").append(sc.spliceHidePicEvent(data.data.brickworker)); //瓦工隐藏图片
-                    $("#woodworking .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.woodworker)); //木工
-                    $("#woodworking ").append(sc.spliceHidePicEvent(data.data.woodworker)); //木工隐藏图片
-                    $("#painter .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.paintworker)); //油漆工
-                    $("#painter ").append(sc.spliceHidePicEvent(data.data.paintworker)); //油漆工隐藏图片
+                    if(data.code == 000){
+                    	if(data.data.eleworker.length != 0){
+                    		$("#water_electrician .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.eleworker)); //水电工
+                    		$("#water_electrician ").append(sc.spliceHidePicEvent(data.data.eleworker)); //水电工隐藏图片
+                    	}else{
+                    		$("#water_electrician .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
+                    	}
+                    	
+                    	if(data.data.brickworker.length != 0){
+                    		$("#bricklayer .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.brickworker)); //瓦工
+                    		$("#bricklayer ").append(sc.spliceHidePicEvent(data.data.brickworker)); //瓦工隐藏图片
+                    	}else{
+                    		$("#bricklayer .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
+                    	}
+                    	
+                    	if(data.data.woodworker.length != 0){
+                    		$("#woodworking .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.woodworker)); //木工
+                    		$("#woodworking ").append(sc.spliceHidePicEvent(data.data.woodworker)); //木工隐藏图片
+                    	}else{
+                    		$("#woodworking .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
+                    	}
+                    	
+                    	if(data.data.paintworker.length != 0){
+                    		$("#painter .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.paintworker)); //油漆工
+                    		$("#painter ").append(sc.spliceHidePicEvent(data.data.paintworker)); //油漆工隐藏图片
+                    	}else{
+                    		$("#painter .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
+                    	}
+                    }
                 },
                 error: function (data) {
                 }
@@ -605,19 +630,30 @@
          * @param {Object} value 对象
          */
         spliceShopInfoEvent: function (value) {
-            var vrStr = '<div class="shop_name"><h2>' + value.shop_name + '</h2>';
+            var vrStr = '<div class="shop_name"><h2>' + ((value.shop_name!=null &&value.shop_name!="")?value.shop_name:'无') + '</h2>';
             $.each(value.authentication, function (i, v) {
                 vrStr += '<img src="http://hyu2387760001.my3w.com/' + v + '">';
             });
-            vrStr += '</div><div class="signature"><h3>' + value.shop_describe + '</h3></div>';
-            vrStr += '<div class="shop_introduce"><p><em class="sprite icon-position"></em>' + value.shop_address + '</p><p class="service_area">服务范围:&nbsp;';
-            $.each(value.servicearea, function (i, v) {
-                vrStr += '<span>' + v + '</span>';
-            });
-            vrStr += '<input type="button" value="查看地图"></p><div class="good_form clearfix"><p class="good_style">擅长风格:</p>';
-            $.each(value.servicetag, function (i, v) {
-                vrStr += '<span>' + v + '</span>';
-            });
+            vrStr += '</div><div class="signature"><h3>' + ((value.shop_describe!=null &&value.shop_describe!="")?value.shop_describe:'无') + '</h3></div>';
+            vrStr += '<div class="shop_introduce"><p><em class="sprite icon-position"></em>' + ((value.shop_address!=null &&value.shop_address!="")?value.shop_address:'无') + '</p><p class="service_area">服务范围:&nbsp;';
+            if(value.servicearea.length!=0){
+            	$.each(value.servicearea, function (i, v) {
+	                vrStr += '<span>' + v + '</span>';
+	            });
+	            vrStr += '<input type="button" value="查看地图">';
+            }else{
+            	vrStr += '<span>无</span>';
+            }
+            
+            vrStr += '</p><div class="good_form clearfix"><p class="good_style">擅长风格:</p>';
+            if(value.servicetag.length!=0){
+            	$.each(value.servicetag, function (i, v) {
+                	vrStr += '<span>' + v + '</span>';
+            	});
+            }else{
+            	vrStr += '<span>--</span>';
+            }
+            
             vrStr += '</div></div><div class="shop_assess clearfix"><div><p>工程质量</p><p><span>' + value.shop_score.projectquality + '</span>分</p></div><div><p>服务态度</p><p><span>' + value.shop_score.serviceattitude + '</span>分</p></div><div><p>综合评价</p><p><span>' + value.shop_score.overallmerit + '</span>分</p></div></div>';
             return vrStr;
         },
@@ -627,7 +663,18 @@
          */
         spliceManagerInfoEvent: function (value) {
             var vrStr = '<div class="icon_head"><img src="http://hyu2387760001.my3w.com/' + value.shopper_info.portrait_img + '"></div>';
-            vrStr += '<div class="manager_detail"><div><span>姓名</span><span>' + value.shopper_info.foremaninfo_realname + '</span></div><div><span>籍贯</span><span>' + value.shopper_info.home_province + value.shopper_info.home_city + '</span></div><div><span>施工团队</span><span>' + value.shop_workernum + '人</span></div><div><span>工龄</span><span>' + value.shopper_info.worktime + '年</span></div><div><span>开店时间</span><span>' + value.opentime + '</span></div><div><span>接单数</span><span>' + value.shopper_info.ordernum + '</span></div></div>';
+            vrStr += '<div class="manager_detail"><div><span>姓名</span><span>' + value.shopper_info.foremaninfo_realname + '</span></div><div><span>籍贯</span><span>';
+            if(value.shopper_info.home_province !=null && value.shopper_info.home_province!=""){
+            	vrStr += value.shopper_info.home_province;
+            }else{
+            	vrStr += "-";
+            }
+            if(value.shopper_info.home_city !=null && value.shopper_info.home_city!=""){
+            	vrStr += value.shopper_info.home_city;
+            }else{
+            	vrStr += "-";
+            }
+            vrStr += '</span></div><div><span>施工团队</span><span>' + value.shop_workernum + '人</span></div><div><span>工龄</span><span>' + ((value.shopper_info.worktime!=null &&value.shopper_info.worktime!="")?value.shopper_info.worktime+"年":'--') + '</span></div><div><span>开店时间</span><span>' + value.opentime + '</span></div><div><span>接单数</span><span>' + value.shopper_info.ordernum + '</span></div></div>';
             return vrStr;
         },
         /**
@@ -636,9 +683,19 @@
          */
         spliceBeInfoEvent: function (value) {
             var vrStr = '';
-            $.each(value.shopper_info.experience, function (i, v) {
-                vrStr += '<li>' + v + '</li>';
-            });
+            if(value.shopper_info.experience.length !=0){
+            	$.each(value.shopper_info.experience, function (i, v) {
+	            	if(v!=null && v!=""){
+	            		vrStr += '<li>' + v + '</li>';
+	            	}else{
+	            		vrStr += '<li>无</li>';
+	            	}
+	                
+	            });
+            }else{
+            	vrStr += '无';
+            }
+            
             return vrStr;
         },
         /**
@@ -647,9 +704,17 @@
          */
         spliceDhInfoEvent: function (value) {
             var vrStr = '';
-            $.each(value.shopper_info.decoratedareas, function (i, v) {
-                vrStr += '<li>' + v + '</li>';
-            });
+            if(value.shopper_info.decoratedareas.length !=0){
+            	$.each(value.shopper_info.decoratedareas, function (i, v) {
+	            	if(v!=null && v!=""){
+	            		vrStr += '<li>' + v + '</li>';
+	            	}else{
+	            		vrStr += '<li>无</li>';
+	            	}
+	            });
+            }else{
+            	vrStr += '无';
+            }
             return vrStr;
         },
         /**
