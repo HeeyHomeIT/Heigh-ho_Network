@@ -727,16 +727,35 @@
                         } else {
                             $('#women').attr('checked', 'checked');
                         }
-                        $(".personal_form_list #province1 option:selected").html(data.data.loc_province).val(data.data.loc_province);
-                        $(".personal_form_list #city1 option:selected").html(data.data.loc_city).val(data.data.loc_city);
-                        $(".personal_form_list #district1 option:selected").html(data.data.loc_district).val(data.data.loc_district);
-                        $(".personal_form_list #province2 option:selected").html(data.data.home_province).val(data.data.home_province);
-                        $(".personal_form_list #city2 option:selected").html(data.data.home_city).val(data.data.home_city);
-                        $(".personal_form_list #district2 option:selected").html(data.data.home_district).val(data.data.home_district);
-                        $(".personal_form_list .personal_area_detail").val(data.data.loc_address);
                         if (data.data.userinfo_email != null && data.data.userinfo_email != '') {
-                            $(".personal_form_list p span").html(data.data.userinfo_email);
+                        	var email = data.data.userinfo_email;
+                        	var length =  data.data.userinfo_email.length;
+                            var abb_email = email.substr(0, 3) + "****" + email.substr(length-3, length);//邮箱中间变成*号
+                            $(".personal_form_list .email").html(abb_email).addClass("apparent");//获取用户的邮箱
+                            $(".personal_form_list p a").html("修改绑定");
+                        } else {
+                        	$(".personal_form_list .email").removeClass("apparent");
+                        	$(".personal_form_list p a").html("绑定邮箱");
                         }
+                        if(data.data.loc_province != null && data.data.loc_province != '') {
+                        	$('#nowAddress').distpicker({province: data.data.loc_province});                      	
+                        }
+                        if(data.data.loc_city != null && data.data.loc_city != '') {
+                        	$('#nowAddress').distpicker({city: data.data.loc_city});
+                        }
+                        if(data.data.loc_district != null && data.data.loc_district != '') {
+                        	$('#nowAddress').distpicker({district: data.data.loc_district});
+                        }
+                        if(data.data.home_province != null && data.data.home_province != '') {
+                        	$('#homeAddress').distpicker({province: data.data.home_province});
+                        }
+                        if(data.data.home_city != null && data.data.home_city != '') {
+                        	$('#homeAddress').distpicker({city: data.data.home_city});
+                        }
+                        if(data.data.home_district != null && data.data.home_district != '') {
+                        	$('#homeAddress').distpicker({district: data.data.home_district});
+                        }                  
+                        $(".personal_form_list .personal_area_detail").val(data.data.loc_address);
                     }
                 },
                 error: function (data) {
