@@ -17,9 +17,22 @@
     var WORKINFOURL = "http://hyu2387760001.my3w.com/myworkers/workerinfo"; // 工人详细信息接口
     var SHOPCOLURL = "http://hyu2387760001.my3w.com/shop/collect"; // 获取工长店铺收藏店铺接口
 
-	var USERTYPE = $.base64.decode($.cookie("userType"));
+	
     var worksObj = {};
-
+	
+	var UID = $.cookie("userId"); // 得到userid
+	var USERTYPE = $.cookie("userType");
+    if(UID!=null && UID !="" && UID !=undefined){
+    	UID = $.base64.decode(UID);
+    }else {
+    	UID = "";
+    }
+    if(USERTYPE!=null && USERTYPE !="" && USERTYPE !=undefined){
+    	USERTYPE = $.base64.decode(USERTYPE);
+    }else {
+    	USERTYPE = "";
+    }
+    
     /*定义一个类*/
     var shopDetailWrap = {
         /**
@@ -537,48 +550,55 @@
         initGoReservationEvent: function () {
             var dpId = $("#JdpId").val(); // 店铺ID
             $(document).on("click", "#JReservation", function () {
-                if(USERTYPE == 2) {
-            		layer.alert("此功能暂时只对用户开放~~");
-            	} else {
-            		var gzId = $("#JgzId").val(); // 工长ID
-	                var reservationObj = {};
-	                reservationObj["dp"] = dpId;
-	                reservationObj["gz"] = gzId;
-	                reservationObj["mark"] = "onekey";
-	                //console.log(reservationObj);
-	                sessionStorage.setItem("rt_list", JSON.stringify(reservationObj));
-	                var url = "reservation.html#/reservation";
-	                window.location.href = url + "?type=1";
-	//				alert(decodeURI("%E8%BF%99%E6%98%AF%E8%B0%81"))
-            	}            	
+                if(UID != ""){
+                	if(USERTYPE == 2){
+                		layer.msg("此功能暂时只对用户开放~~");
+                	}else{
+                		var gzId = $("#JgzId").val(); // 工长ID
+		                var reservationObj = {};
+		                reservationObj["dp"] = dpId;
+		                reservationObj["gz"] = gzId;
+		                reservationObj["mark"] = "onekey";
+		                //console.log(reservationObj);
+		                sessionStorage.setItem("rt_list", JSON.stringify(reservationObj));
+		                var url = "reservation.html#/reservation";
+		                window.location.href = url + "?type=1";
+                	}
+            	}else{
+            		layer.msg('一键预约前请先登录哦~');
+            	}         	
             });
             $(document).on("click", ".settlement-btncon", function () {
-                if(USERTYPE == 2) {
-            		layer.alert("此功能暂时只对用户开放~~");
-            	} else {
-            		var length = $(".h-bd").text();
-	                if (parseInt(length) != 0) {
-	                    var reservationObj = {};
-	                    reservationObj = {
-	                        "dp": 0, // 店铺ID
-	                        "mark": "choose", // 标志位 choose：选择工人 onekey：一键预约
-	                        "worker": [] // 工人数组
-	                    }
-	                    reservationObj["dp"] = dpId;
-	                    $.each($(".selectItemContent>div"), function (i, v) {
-	                        var attributeObj = {};
-	                        attributeObj["nid"] = $(v).find(".Jworker").data("nid"); // 工人id
-	                        attributeObj["ntype"] = $(v).find(".Jworker").data("ntype"); // 工人类型
-	                        reservationObj.worker.push(attributeObj);
-	                    });
-	                    //console.log(reservationObj);
-	                    sessionStorage.setItem("rt_list", JSON.stringify(reservationObj));
-	                    var url = "reservation.html#/reservation";
-	                    window.location.href = url + "?type=2";
-	                } else {
-	                    alert("请选择相应的工人");
-	                }
-            	}               
+                if(UID != ""){
+                	if(USERTYPE == 2){
+                		layer.msg("此功能暂时只对用户开放~~");
+                	}else{
+                		var length = $(".h-bd").text();
+	                	if (parseInt(length) != 0) {
+		                    var reservationObj = {};
+		                    reservationObj = {
+		                        "dp": 0, // 店铺ID
+		                        "mark": "choose", // 标志位 choose：选择工人 onekey：一键预约
+		                        "worker": [] // 工人数组
+		                    }
+		                    reservationObj["dp"] = dpId;
+		                    $.each($(".selectItemContent>div"), function (i, v) {
+		                        var attributeObj = {};
+		                        attributeObj["nid"] = $(v).find(".Jworker").data("nid"); // 工人id
+		                        attributeObj["ntype"] = $(v).find(".Jworker").data("ntype"); // 工人类型
+		                        reservationObj.worker.push(attributeObj);
+		                    });
+		                    //console.log(reservationObj);
+		                    sessionStorage.setItem("rt_list", JSON.stringify(reservationObj));
+		                    var url = "reservation.html#/reservation";
+		                    window.location.href = url + "?type=2";
+		                } else {
+		                    layer.msg('请先选择相应的工人');
+		                }
+                	}
+                }else{
+                	layer.msg('请先登录哦~');
+                }               
             });
         },
         /**
