@@ -1190,7 +1190,7 @@
                         $(".main_contentWrap").empty();
                         TOTAL = data.data[0].total; // 总数
                         $.each(data.data, function (i, v) {
-                            var tipStr = spliceContentHandler.spliceStrEvent(v);
+                            var tipStr = spliceMsgHandler.spliceStrEvent(v);
                             $(".main_contentWrap").append(tipStr);
                         });
                         judgeNews.isnews();             //已读消息和未读消息的区分
@@ -1216,7 +1216,7 @@
      * 消息中心拼接内容
      * @param {Object} value ajax得到的数据对象
      */
-    spliceContentHandler = {
+    spliceMsgHandler = {
         spliceStrEvent: function (value) {
             var vrStr = '<div class="main_content" data-isread="' + value.isread + '" data-id="' + value.id + '">';
             vrStr += '<span class="name">' + value.senduser + '</span>';
