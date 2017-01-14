@@ -208,6 +208,10 @@ body {
     line-height: 32px;
 }
 
+.contact_detail .bookingprocesscon ul li p a {
+	cursor: pointer;
+}
+
 .contact_detail .bookingprocesscon ul li p span.date {
 	margin-left: 5px;
 }
@@ -219,5 +223,13 @@ body {
 .contact_detail .bookingprocesscon ul li div {
 	margin-left: 5px;
 	color: #999;
+}
+
+.contact_detail .bookingprocesscon ul li div a {
+	cursor: pointer;
+}
+
+.loagbg {
+    height: 266px;
 }
 
