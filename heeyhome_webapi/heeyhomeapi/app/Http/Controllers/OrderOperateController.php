@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 
 class OrderOperateController extends Controller
 {
@@ -1289,19 +1290,19 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         $order_step = rq('order_step'); //当前装修出于哪一步
         $content = rq('content'); //描述
         $time = rq('time'); //开工时间
-
         $count = rq('count');  //图片数量
         $files = array();
         if ($count) {
             for ($i=0; $i < $count; $i++) { 
-                $fileName = "myfile".$i;
-                if(!Request::hasFile($fileName)){
+                $filename = "myfile".$i;
+                if(!Request::hasFile($filename)){
                     $arr = array("code" => "121",
                         "msg" => "没有图片被上传"
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }
-                $files[$i] = Request::file($fileName);
+                $myfile = Request::file($filename);
+                $files[$i] = $myfile;
             }
         } else {
             $myfile=Request::file('myfile');
@@ -1318,7 +1319,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             }
         }
 
-        if (!$order_id || !$time || !$content || !order_step) {
+        if (!$order_id || !$time || !$content || !$order_step) {
             $arr = array("code" => "112",
                 "msg" => "信息输入错误"
             );
@@ -1334,15 +1335,16 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             }
         }
 
-        if ($true && count($files)) {
+        if ($isvalid && count($files)) {
 
             $detail = DB::select('SELECT id from hh_order_detail WHERE order_id = ? AND order_step = ? ',[$order_id,$order_step]);
             if ($detail) {
                 $arr = array("code" => "000",
-                    "msg" => "添加成功"
+                    "msg" => "重复添加"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             } else {
+
                 $case=DB::insert('insert into hh_order_detail(order_id,order_step,img_time,img_content) values(?,?,?,?)',[$order_id,$order_step,$time,$content]);
                 $order_detail_id = DB::select('SELECT id from hh_order_detail WHERE order_id = ? AND order_step = ? ',[$order_id,$order_step]);
                 if (!$order_detail_id) {
@@ -1351,7 +1353,8 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 } 
-                $order_step = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?',[$order_step + 1,$order_id]);
+                $step = $order_step++;
+                $order_step = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?',[$step,$order_id]);
                 $ifinsert=false;
                 foreach($files as $key=>$file){
                     $clientName = $file -> getClientOriginalName();//文件原名
@@ -1363,7 +1366,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
                     if($is){
                         $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
-                        $insert=DB::insert('insert into hh_order_detail_img(order_detail_id,img_url) values (?,?)',[$order_detail_id,$path]);
+                        $insert=DB::insert('insert into hh_order_detail_img(order_detail_id,img_url) values (?,?)',[$order_detail_id[0]->id,$path]);
                         if($insert){
                             $ifinsert=true;
                         }else{
@@ -1400,6 +1403,35 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
     //查看
     public function workDetail()
     {
+        $callback = rq('callback');
+        $order_id = rq('order_id');
+        $order_step = rq('order_step');
+
+        $order = DB::select('SELECT * FROM hh_order_detail WHERE order_id = ? AND order_step = ?',[$order_id,$order_step]);
+        if ($order) {
+            $order_img_id = $order[0]->id;
+            $imgArr = DB::select('SELECT img_url FROM hh_order_detail_img WHERE order_detail_id = ?',[$order_img_id]);
+            if ($imgArr) {
+                $arr = array("code" => "000",
+                    "data" => array("time"=>$order[0]->img_time,
+                                    "content"=>$order[0]->img_content,
+                                    "imgs"=>$imgArr
+                        )
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+
+            } else {
+                $arr = array("code" => "130",
+                    "msg" => "没有数据"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        } else {
+            $arr = array("code" => "132",
+                "msg" => "没有该订单"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
 
     }
 

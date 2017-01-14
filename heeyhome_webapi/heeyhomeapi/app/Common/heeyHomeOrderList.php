@@ -22,7 +22,7 @@ function isOrder($order_id, $user_id)
 //查询订单是否存在
 function isOrder_OrderID($order_id)
 {
-    $order_tbl_isdestroy = DB::select('SELECT order_status FROM hh_order WHERE $order_id = ?',
+    $order_tbl_isdestroy = DB::select('SELECT order_status FROM hh_order WHERE order_id = ?',
         [$order_id]);
     if ($order_tbl_isdestroy) {
         return true;
