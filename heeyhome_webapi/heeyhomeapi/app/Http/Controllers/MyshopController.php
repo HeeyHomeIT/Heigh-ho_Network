@@ -36,7 +36,7 @@ class MyshopController extends Controller
         if($select){
             $img=DB::select('select id,shop_img,is_face from hh_shop_img where shop_id=? order by id desc',[$shop_id]);
             $select[0]->shop_imgs=$img;
-            $technics=DB::select('select technics_id,technics_text from hh_shop_technics where shop_id=? order by id desc limit ?,?',[$shop_id,0,2]);
+            $technics=DB::select('select technics_id,technics_text from hh_shop_technics where shop_id=? order by id desc limit ?,?',[$shop_id,0,5]);
             foreach($technics as $key=>$value){
                 $technicsimg=DB::select('select img_id,technics_img from hh_technics_img where technics_id=?',[$value->technics_id]);
                 $technics[$key]->technics_img=$technicsimg;
