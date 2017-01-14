@@ -67,26 +67,13 @@
         initCollectionEvent: function () {
             var userType = $.cookie('userType');
             var USERID = $.base64.decode($.cookie("userId")); // 得到userid
-            /* 初始化判断有没有收藏过 */
-            $.ajax({
-                url: SHOPCOLURL,
-                type: "GET",
-                async: true,
-                dataType: 'jsonp',
-                data: {
-                    user_id: USERID,
-                    shop_id: $("#JdpId").val()
-                },
-                success: function (data) {
-                    if (data.code == '135' && $.base64.decode(userType) == 1) {
-                        $('#collect_shop i').html('已收藏');
-                    }
-                },
-                error: function (data) {
-                    layer.msg(data.msg);
-                }
-            });
 
+            /* 初始化判断有没有收藏过 */
+            var iscollected = sessionStorage.getItem('iscollected');
+            if (iscollected == '1') {
+                $('#collect_shop i').html('已收藏');
+            }
+            /* 点击收藏按钮 */
             $(document).on('click', '#collect_shop', function (e) {
                 if (USERID != null && USERID != "" && USERID != undefined) {
                     if ($.base64.decode(userType) == 1) {
@@ -231,10 +218,10 @@
                 data: {
                     shop_id: shopId
                 },
-                beforeSend:function(){
-                	$(".hd").addClass("loagbg");
-                	$(".bd").addClass("loagbg");
-                	$(".scontent").addClass("loagbg p1");
+                beforeSend: function () {
+                    $(".hd").addClass("loagbg");
+                    $(".bd").addClass("loagbg");
+                    $(".scontent").addClass("loagbg p1");
                 },
                 success: function (data) {
                     $(".sname").html(data.data.shop_name);
@@ -249,11 +236,11 @@
                     self.initSuccessCaseDataEvent(data.data.shopper_id);
                     self.initPictureScrollEvent();
                 },
-                complete:function(){
-                	$(".hd").removeClass("loagbg");
-                	$(".bd").removeClass("loagbg");
-                	$(".scontent").removeClass("loagbg p1");
-                	
+                complete: function () {
+                    $(".hd").removeClass("loagbg");
+                    $(".bd").removeClass("loagbg");
+                    $(".scontent").removeClass("loagbg p1");
+
                 },
                 error: function (data) {
                 }

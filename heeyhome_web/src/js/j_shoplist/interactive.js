@@ -25,7 +25,6 @@
     } else {
         USERID = "";
     }
-
     /**
      * 筛选条件初始化
      * userid              userid 默认空
@@ -61,16 +60,16 @@
             /* 获取筛选标签内容*/
             self.initShopListGetTagsEvent();
             /* 获取虚拟现实内容 默认1，1，1，0，1，4*/
-           	shopListFilterObj = {
-		        userid: USERID,
-		        servicearea: 1,
-		        workernum: 1,
-		        servicetag: 1,
-		        shopage: 1,
-		        orderKey: 0,
-		        pageVal: 1,
-		        limitVal: 4
-		    };
+            shopListFilterObj = {
+                userid: USERID,
+                servicearea: 1,
+                workernum: 1,
+                servicetag: 1,
+                shopage: 1,
+                orderKey: 0,
+                pageVal: 1,
+                limitVal: 4
+            };
             shopListContHandler.listContentEvent(shopListFilterObj);
         },
         /**
@@ -82,12 +81,12 @@
                 type: "GET",
                 async: true,
                 dataType: 'jsonp',
-                complete:function(){
-					$(".fliter").removeClass("loagbg");
-				},
-            }).done(function(data){
-            	if (data != null && data.code == '000') {
-                	var fliterStr = '';
+                complete: function () {
+                    $(".fliter").removeClass("loagbg");
+                },
+            }).done(function (data) {
+                if (data != null && data.code == '000') {
+                    var fliterStr = '';
                     $.each(data.data, function (i, v) {
                         fliterStr += '<div class="fliter_' + i + '"  data-name=' + i + '  >';
                         $.each(v, function (item, val) {
@@ -139,7 +138,7 @@
          * @param {Object} shopListFilterObj 筛选条件对象
          */
         listContentEvent: function (shopListFilterObj) {
-            
+
             console.log(shopListFilterObj)
             $.ajax({
                 url: SHOPLISTURL,
@@ -156,21 +155,21 @@
                     page: shopListFilterObj.pageVal,
                     limit: shopListFilterObj.limitVal
                 },
-                complete:function(){
-					$(".shop_summary").removeClass("vrloagbg");
-				}
-            }).done(function(data){
-            	if (data && data.code == '000') {
+                complete: function () {
+                    $(".shop_summary").removeClass("vrloagbg");
+                }
+            }).done(function (data) {
+                if (data && data.code == '000') {
                     //console.log(data);
                     TOTAL = data.data[0].total; // 总数
                     $(".number").text(TOTAL);
-					$(".shop_summary").html(spliceShopListContHandler.spliceStrEvent(data.data));
+                    $(".shop_summary").html(spliceShopListContHandler.spliceStrEvent(data.data));
                     shopListPageHandler.pageContentEvent();
                     orderModuleHandler.orderClickEvent();
                 } else {
                     $(".number").text(0);
                     $(".shop_summary").html('<div class="nullpage"><i>&nbsp;</i><span>店铺消失了,看看其他的店铺...</span></div>');
-					$(".page_div3").empty();
+                    $(".page_div3").empty();
                 }
             });
 
@@ -182,9 +181,13 @@
                     } else {
                         layer.alert('您需要进入店铺后才能收藏哦~~');
                     }
-                } else if ($.base64.decode(userType) == 2) {
+                } else if ($.base64.decode(USERTYPE) == 2) {
                     layer.alert('工长暂时还不能收藏店铺哦~~');
                 }
+            });
+            /* 点击进入店铺 */
+            $(document).on('click', '.enter_shop', function () {
+                sessionStorage.setItem('iscollected', $(this).attr('iscollected'));
             })
         }
     };
@@ -207,58 +210,58 @@
      */
     spliceShopListContHandler = {
         spliceStrEvent: function (value) {
-        	var vrStr = '';
-        	$.each(value, function (i, v) {
-	            vrStr += '<div class="shop_box" data-shopid="' + v.shop_id + '" data-shopperid="' + v.shopper_id + '">';
-	            vrStr += '	<div class="left_image">';
-	            vrStr += '		<a href="#nogo"><img src="http://hyu2387760001.my3w.com/' + v.shop_img + '"></a>';
-	            vrStr += '		<div class="image-background_1"></div>';
-	            vrStr += '		<div class="image-background_2"></div>';
-	            vrStr += '	</div>';
-	            vrStr += '	<div class="right_summary">';
-	            vrStr += '		<div class="shop_name">';
-	            vrStr += '			<h2>' + v.shop_name + '</h2>';
-	            $.each(v.authentication, function (i1, v1) {
-	                vrStr += '		<img src="http://hyu2387760001.my3w.com/' + v1 + '">';
-	            });
-	            vrStr += '		</div>';
-	            vrStr += '		<div class="shop_introduce">';
-	            vrStr += '			<p>常住地址: <span>' + v.shop_address + '</span></p>';
-	            vrStr += '			<p>服务范围: ';
-	            $.each(v.servicearea, function (i1, v1) {
-	                vrStr += '		<span>' + v1 + '</span>';
-	            });
-	            vrStr += '			</p>';
-	            vrStr += '			<p>擅长风格: ';
-	            $.each(v.servicetag, function (i1, v1) {
-	                vrStr += '		<span>' + v1 + '</span>';
-	            });
-	            vrStr += '			</p>';
-	            vrStr += '			<p>店铺年限：<span>' + v.opentime + '</span>年</p>';
-	            vrStr += '		</div>';
-	            vrStr += '		<div class="shop_icon clearfix">';
-	            vrStr += '			<div>';
-	            vrStr += '				<em class="sprite icon_pnumber"></em>';
-	            vrStr += '				<span>' + v.shop_scan + '</span>';
-	            vrStr += '			</div>';
-	            vrStr += '			<div>';
-	            vrStr += '				<em class="sprite icon_turnover"></em>';
-	            vrStr += '				<span>' + v.shop_volume + '</span>';
-	            vrStr += '			</div>';
-	            vrStr += '		</div>';
-	            vrStr += '		<div class="shop_assess">';
-	            vrStr += '			<p>工程质量<span>' + v.shop_score.projectquality + '</span>分</p>';
-	            vrStr += '			<p>服务态度<span>' + v.shop_score.serviceattitude + '</span>分</p>';
-	            vrStr += '			<p>综合评价<span>' + v.shop_score.overallmerit + '</span>分</p>';
-	            vrStr += '		</div>';
-	            vrStr += '		<div class="shop_button">';
-	            vrStr += '			<input type="button" class="collect_shop" value="' + (v.iscollected == '1' && $.base64.decode(USERTYPE) == 1 ? '已收藏' : '收藏') + '">';
-	            vrStr += '			<a class="enter_shop" rel="nofollow" href="view_shop.html#/shopdetails?pos=' + v.shop_id + '" >进入店铺</a>';
-	            vrStr += '		</div>';
-	            vrStr += '	</div>';
-	            vrStr += '</div>';
-        	});
-            
+            var vrStr = '';
+            $.each(value, function (i, v) {
+                vrStr += '<div class="shop_box" data-shopid="' + v.shop_id + '" data-shopperid="' + v.shopper_id + '">';
+                vrStr += '	<div class="left_image">';
+                vrStr += '		<a href="#nogo"><img src="http://hyu2387760001.my3w.com/' + v.shop_img + '"></a>';
+                vrStr += '		<div class="image-background_1"></div>';
+                vrStr += '		<div class="image-background_2"></div>';
+                vrStr += '	</div>';
+                vrStr += '	<div class="right_summary">';
+                vrStr += '		<div class="shop_name">';
+                vrStr += '			<h2>' + v.shop_name + '</h2>';
+                $.each(v.authentication, function (i1, v1) {
+                    vrStr += '		<img src="http://hyu2387760001.my3w.com/' + v1 + '">';
+                });
+                vrStr += '		</div>';
+                vrStr += '		<div class="shop_introduce">';
+                vrStr += '			<p>常住地址: <span>' + v.shop_address + '</span></p>';
+                vrStr += '			<p>服务范围: ';
+                $.each(v.servicearea, function (i1, v1) {
+                    vrStr += '		<span>' + v1 + '</span>';
+                });
+                vrStr += '			</p>';
+                vrStr += '			<p>擅长风格: ';
+                $.each(v.servicetag, function (i1, v1) {
+                    vrStr += '		<span>' + v1 + '</span>';
+                });
+                vrStr += '			</p>';
+                vrStr += '			<p>店铺年限：<span>' + v.opentime + '</span>年</p>';
+                vrStr += '		</div>';
+                vrStr += '		<div class="shop_icon clearfix">';
+                vrStr += '			<div>';
+                vrStr += '				<em class="sprite icon_pnumber"></em>';
+                vrStr += '				<span>' + v.shop_scan + '</span>';
+                vrStr += '			</div>';
+                vrStr += '			<div>';
+                vrStr += '				<em class="sprite icon_turnover"></em>';
+                vrStr += '				<span>' + v.shop_volume + '</span>';
+                vrStr += '			</div>';
+                vrStr += '		</div>';
+                vrStr += '		<div class="shop_assess">';
+                vrStr += '			<p>工程质量<span>' + v.shop_score.projectquality + '</span>分</p>';
+                vrStr += '			<p>服务态度<span>' + v.shop_score.serviceattitude + '</span>分</p>';
+                vrStr += '			<p>综合评价<span>' + v.shop_score.overallmerit + '</span>分</p>';
+                vrStr += '		</div>';
+                vrStr += '		<div class="shop_button">';
+                vrStr += '			<input type="button" class="collect_shop" value="' + (v.iscollected == '1' && $.base64.decode(USERTYPE) == 1 ? '已收藏' : '收藏') + '">';
+                vrStr += '			<a class="enter_shop" rel="nofollow" href="view_shop.html#/shopdetails?pos=' + v.shop_id + '" iscollected="' + v.iscollected + '">进入店铺</a>';
+                vrStr += '		</div>';
+                vrStr += '	</div>';
+                vrStr += '</div>';
+            });
+
             return vrStr;
         }
     };
@@ -314,7 +317,7 @@
                     $(".shop_summary").html(spliceShopListContHandler.spliceStrEvent(data.data));
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
             }));
-            
+
         }
     };
     //入口方法调用 代码只能从这里执行
