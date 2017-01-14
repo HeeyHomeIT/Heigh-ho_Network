@@ -33,6 +33,7 @@
 		initEvent: function() {
 			var self = this;
 			self.initWebDataEvent(); // 页面数据初始化
+			self.initOnLoadWebEvent(); //页面进行刷新
 			
 		},
 		/**
@@ -83,14 +84,42 @@
 					console.log("1111")
 					console.log(data);
 					$("#JcreateTime").prepend(data.data.order_time);
-					$("#Jday1").prepend(data.data.order_time.split(" ")[0]);
-					$("#Jtime1").prepend(data.data.order_time.split(" ")[1]);
-					$("#Jday2").prepend(data.data.order_time.split(" ")[0]);
-					$("#Jtime2").prepend(data.data.order_time.split(" ")[1]);
+//					$("#Jday1").prepend(data.data.order_time.split(" ")[0]);
+//					$("#Jtime1").prepend(data.data.order_time.split(" ")[1]);
+//					$("#Jday2").prepend(data.data.order_time.split(" ")[0]);
+//					$("#Jtime2").prepend(data.data.order_time.split(" ")[1]);
 					$("#Jul").append(wc.spliceorderStatusDataEvent(data.data));
 				},complete:function(){
 					$("#Jul").removeClass("loagbg");
 				},error: function(data) {}
+			});
+		},
+		/**
+		 * 页面进行刷新
+		 */
+		initOnLoadWebEvent:function(){
+			var self = this;
+			var wc = spliceWaitcontactContHandler;
+			$(document).on("click",".change",function(){
+				$("#Jul").empty();
+				$.ajax({
+					url: SELSTATUSURL,
+					type: "GET",
+					async: true,
+					dataType: 'jsonp',
+					data: {
+						user_id: oInfoObj.user_id,
+						order_id:oInfoObj.order_id
+					},
+					beforeSend:function(){
+						$("#Jul").addClass("loagbg");
+					},
+					success: function(data) {
+						$("#Jul").append(wc.spliceorderStatusDataEvent(data.data));
+					},complete:function(){
+						$("#Jul").removeClass("loagbg");
+					},error: function(data) {}
+				});
 			});
 		}
 	};
@@ -110,7 +139,7 @@
 			var vrStr7 = '';
 			var vrStr8 = '';
 			// 测试数据 start
-//			value.order_status_id = "5";
+//			value.order_status_id = "8";
 //			value.reservation_time = "2016-12-28 18:40:32";
 //			value.order_confirmation_time = "2016-12-27 20:40:32";
 //			console.log("`````````````11111`````");
@@ -140,6 +169,8 @@
 					vrStr3 += '<div>请等待工长上门量房</div></li> ';
 				case "1":
 					var newTime = getTimeHandler.getTimeEvent(value.order_time,8);
+					vrStr1 += '<li class="detail_active"><em></em><p><span id="Jday1" class="date">'+value.order_time.split(" ")[0]+'</span><span id="Jtime1" class="time">'+value.order_time.split(" ")[1]+'</span><span class="detail_text">您的需求已提交给店小二</span>';
+					vrStr1 += '</p></li><li class="detail_active"><em></em><p><span id="Jday2" class="date">'+value.order_time.split(" ")[0]+'</span><span id="Jtime2" class="time">'+value.order_time.split(" ")[1]+'</span><span class="detail_text">店小二正在确认您的预约需求并会联系您，请您耐心等待</span></p></li>';
 					vrStr1 += '<li class="'+(value.order_status_id != 1?'detail_active':'')+'"><em></em><p><span id="Jday3" class="date">'+value.order_time.split(" ")[0]+'</span>';
 					vrStr1 += ' <span id="Jtime3" class="time">'+value.order_time.split(" ")[1]+'</span>';
 					vrStr1 += ' <span class="detail_text">预计&nbsp;<i>'+newTime+'</i>&nbsp;前会确定您的预定信息,当前预定信息会在<a href="center.html#/center/morder" target="_blank" >我的订单</a>中呈现</span></p>';

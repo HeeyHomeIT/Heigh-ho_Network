@@ -142,6 +142,18 @@ body {
     color: #333333;
 }
 
+.contact_detail .bookingprocesscon h4 span.change{
+    background: url(../img/icon-shuaxin.png) no-repeat;
+    height: 20px;
+    color: #0185c6;
+    font-size: 14px;
+    padding-left: 30px;
+    cursor: pointer;
+    line-height: 23px;
+    margin-right: 40px;
+    float: right;
+}
+
 .contact_detail .bookingprocesscon ul {
     padding: 25px 0 0 10px;
     border-top: 1px solid #f4f4f4;
