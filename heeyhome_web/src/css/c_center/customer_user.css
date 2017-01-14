@@ -2747,7 +2747,6 @@ a:focus {
     margin: 10px 0 0 10px
 }
 
-
 .add_address_wrap label.error {
     position: relative;
     float: right;
@@ -2817,4 +2816,12 @@ a:focus {
 .loading img {
     width: 100%;
     height: 100%;
+}
+
+.home_not .not_information .not_information_img {
+    margin-top: 0;
+}
+
+.home_not .not_information {
+    height: auto;
 }
