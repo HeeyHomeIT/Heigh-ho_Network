@@ -70,7 +70,7 @@
 
             /* 初始化判断有没有收藏过 */
             var iscollected = sessionStorage.getItem('iscollected');
-            if (iscollected == '1') {
+            if (iscollected == '1' && $.base64.decode(userType) == 1) {
                 $('#collect_shop i').html('已收藏');
             }
             /* 点击收藏按钮 */
