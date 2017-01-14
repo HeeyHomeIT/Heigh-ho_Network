@@ -54,17 +54,25 @@ class WalletController extends Controller
         $bankname=rq('bankname');
         $cardtype=rq('cardtype');
         $bankcard='银行卡'.$bankcardno;
-        $time=date('Y-m-d H:i:s', time());
-        $is=DB::select('select id from hh_bankcard where bank_userid=? and bankcardno=?',[$user_id,$bankcardno]);
-        if($is){
-            $insert=DB::insert('insert into hh_withdrawapply(apply_userid,money,payment,apply_time) values(?,?,?,?)',[$user_id,$money,$bankcard,$time]);
-            $arr = array("code" => "000",
-                "msg" => "申请提现成功，银行处理中"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
+        $select=DB::select('select id from hh_wallet_balance where available_total>=? and user_id=?',[$money,$user_id]);
+        if($select) {
+            $time = date('Y-m-d H:i:s', time());
+            $is = DB::select('select id from hh_bankcard where bank_userid=? and bankcardno=?', [$user_id, $bankcardno]);
+            if ($is) {
+                $insert = DB::insert('insert into hh_withdrawapply(apply_userid,money,payment,apply_time) values(?,?,?,?)', [$user_id, $money, $bankcard, $time]);
+                $arr = array("code" => "000",
+                    "msg" => "申请提现成功，银行处理中"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            } else {
+                $arr = array("code" => "111",
+                    "msg" => "申请提现失败，该银行卡未绑定"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
         }else{
-            $arr = array("code" => "111",
-                "msg" => "申请提现失败，该银行卡未绑定"
+            $arr = array("code" => "131",
+                "msg" => "申请提现失败，余额不足"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }

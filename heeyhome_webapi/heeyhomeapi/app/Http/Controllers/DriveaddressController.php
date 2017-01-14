@@ -31,7 +31,7 @@ class DriveaddressController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         } else {
-            $arr = array("code" => "111",
+            $arr = array("code" => "117",
                 "msg" => "未找到信息"
             );
             return $callback . "(" . HHJson($arr) . ")";

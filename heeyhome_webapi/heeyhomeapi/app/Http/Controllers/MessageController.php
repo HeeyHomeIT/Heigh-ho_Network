@@ -85,10 +85,10 @@ class MessageController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
-    public function send($title,$content,$type,$touserid){
+    public function send($title,$content,$touserid){
         $callback=rq('callback');
         $sendtime=date('Y-m-d H:i:s', time());
-        $insert=DB::insert('insert into hh_message(msgtitle,msgcontent,msgtype,sendtime,receiveuserid) values(?,?,?,?,?)',$title,$content,$type,$sendtime,$touserid);
+        $insert=DB::insert('insert into hh_message(msgtitle,msgcontent,sendtime,receiveuserid) values(?,?,?,?)',$title,$content,$sendtime,$touserid);
         if($insert){
             $arr=array(
                 "code"=>"000",

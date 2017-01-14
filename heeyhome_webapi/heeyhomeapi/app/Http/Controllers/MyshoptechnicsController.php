@@ -133,10 +133,10 @@ class MyshoptechnicsController extends  Controller
 
     public function del(){
         $callback=rq('callback');
-        $technic_id=rq('technic_id');
-        $del=DB::delete('delete from hh_shop_technics where technics_id=?',[$technic_id]);
+        $technics_id=rq('technics_id');
+        $del=DB::delete('delete from hh_shop_technics where technics_id=?',[$technics_id]);
         if($del){
-            $delimgs=DB::delete('delete from hh_technics_img where technics_id=?',[$technic_id]);
+            $delimgs=DB::delete('delete from hh_technics_img where technics_id=?',[$technics_id]);
             $arr = array("code" => "000",
                 "msg" => "删除成功"
             );
