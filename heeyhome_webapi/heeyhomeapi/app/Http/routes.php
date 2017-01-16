@@ -237,6 +237,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/shop/destory', 'OrderController@orderDestroy');
     //用户退款信息获取
     Route::any('order/user/getrefundinfo', 'OrderPayController@getRefundInfo');
+    //提交用户退款信息
+    Route::any('order/user/subrefundinfo', 'OrderPayController@subRefundInfo');
 
 
     //材料订单

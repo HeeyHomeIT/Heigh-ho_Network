@@ -62,7 +62,7 @@
                     $("#orderFrom").attr("action", PAYURL);
                     $("#orderFrom").submit();
                 } else {
-                    alert("请先仔细阅读合同条款并勾选确认");
+                    layer.msg("请先仔细阅读合同条款并勾选确认");
                 }
 
             });
@@ -70,7 +70,7 @@
                 if ($("#checkYt").is(':checked')) {
                     window.open('refund.html#/refund/home/refund_step_1');
                 } else {
-                    alert("请先仔细阅读合同条款并勾选确认");
+                    layer.msg("请先仔细阅读合同条款并勾选确认");
                 }
 
             });
@@ -90,18 +90,19 @@
                 dataType: 'jsonp',
                 data: {
                     order_id: orderId
-                },
-                success: function (data) {
-                }, error: function (data) {
                 }
             }).done(function (data) {
                 console.log(data);
-                pc.splicePayDetailsDataEvent(data.data.data_list, "工长");
-                pc.splicePayMoneyDataEvent(data.data.data_list["需付款"]);
-                $(document).on("click", ".titlelist li", function () {
-                    pc.splicePayDetailsDataEvent(data.data.data_list, $(this).find("a").text());
-                    $(this).addClass("payment_on").siblings().removeClass("payment_on");
-                });
+                if(data.code == 000){
+                	pc.splicePayDetailsDataEvent(data.data.data_list, "工长");
+	                pc.splicePayMoneyDataEvent(data.data.data_list["需付款"]);
+	                $(document).on("click", ".titlelist li", function () {
+	                    pc.splicePayDetailsDataEvent(data.data.data_list, $(this).find("a").text());
+	                    $(this).addClass("payment_on").siblings().removeClass("payment_on");
+	                });
+                }else{
+                	$(".paymentList_wrap ").html('<div class="nullpage"><i>&nbsp;</i><span>订单号不存在~</span></div>');
+                }
             });
         }
     };

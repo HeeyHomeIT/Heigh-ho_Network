@@ -616,11 +616,11 @@
 				success: function(data) {
 					console.log(data)
 					if(data != null && data.code == '000') {
-						alert(data.msg);
+                        layer.alert(data.msg);
 						self.queryInfoEvent();
 						$("#addaddress").addClass("display");
 					}else{
-						alert(data.msg);
+                        layer.alert(data.msg);
 					}
 				},
 				error: function(data) {}

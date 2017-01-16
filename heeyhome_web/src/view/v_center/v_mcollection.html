@@ -11,11 +11,13 @@
                 <div id="title_active" class="title_active"></div><!--title_active-->
             </div><!--works_content_title-->
             <div class="works_complete_wrap" id="works_complete_wrap">
-                <div class="complete_before clearfix" ng-controller="panoramaController">
+                <div class="complete_before clearfix"><!-- ng-controller="panoramaController"-->
                     <div class="img_wrap">
-                        <!--具体内容-->
-                        <div style="height: auto" class="clearfix picWrap"></div><!--picWrap-->
-                        <!--具体内容-->
+                        <div class="fix_height">
+                            <!--具体内容-->
+                            <div style="height: auto" class="clearfix picWrap"></div><!--picWrap-->
+                            <!--具体内容-->
+                        </div><!--fix_height-->
                         <!-- 页码start -->
                         <div class="page_number">
                             <div style="display: inline-block;text-align: left">
@@ -33,9 +35,11 @@
                 </div><!--complete_before-->
                 <div class="check_list_wrap hide">
                     <div class="check_wrap">
-                        <!--具体内容-->
-                        <div class="billWrap"></div><!--billWrap-->
-                        <!--具体内容-->
+                        <div class="fix_height">
+                            <!--具体内容-->
+                            <div class="billWrap"></div><!--billWrap-->
+                            <!--具体内容-->
+                        </div><!--fix_height-->
                         <!-- 页码start -->
                         <div class="page_number">
                             <div style="display: inline-block;text-align: left">
@@ -51,7 +55,7 @@
                         <div class="not_information_text"></div><!--not_information_text-->
                     </div><!--not_information-->
                 </div><!--check_list_wrap-->
-                <div class="collection_shop_wrap hide" ng-controller="collectionController">
+                <div class="collection_shop_wrap hide"> <!--ng-controller="collectionController"-->
                     <div class="shop_wrap">
                         <div class="fix_height">
                             <!--具体内容-->

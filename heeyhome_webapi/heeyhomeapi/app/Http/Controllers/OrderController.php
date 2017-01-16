@@ -430,6 +430,8 @@ class OrderController extends Controller
             [$user_id, $order_id]);
         $sel_order_status_time = DB::select('SELECT order_status,status_time FROM hh_order_status_time WHERE order_id = ?',
             [$order_id]);
+        $sel_order_status_count = DB::select('SELECT COUNT(order_status) AS status_count FROM hh_order_status_time WHERE order_id = ?',
+            [$order_id]);
         if ($sql_order_status) {
             $order_status_id = $sql_order_status[0]->order_status_id;
             if ($sql_order_status[0]->confirm_time == 1) {
@@ -439,23 +441,28 @@ class OrderController extends Controller
             }
             $reservation_time_user = array('reservation_time1' => $sql_order_status[0]->reservation_time1,
                 'reservation_time2' => $sql_order_status[0]->reservation_time2,);
-            if ($sql_order_status[0]->order_status_id == 1) {
-                $order_confirmation_time = "";
+            if ($sql_order_status[0]->order_status_id == 1)
                 $reservation_time = "";
-            } elseif ($order_status_id != 7 || $order_status_id != 8) {
-                $order_confirmation_time = $sql_order_status[0]->order_confirmation_time;
+            $status_count_arr = array();
+            if ($sel_order_status_count) {
+                $num = $sel_order_status_count[0]->status_count;
+                while ($num > 0) {
+                    $key = $sel_order_status_time[$num - 1]->order_status;
+                    $val = $sel_order_status_time[$num - 1]->status_time;
+                    $status_count_arr[$key] = $val;
+                    $num--;
+                }
             }
             $data = array(
                 "order_id" => $sql_order_status[0]->order_id,
                 "order_time" => $sql_order_status[0]->order_time,
-                "order_confirmation_time" => $order_confirmation_time,
                 "reservation_time" => $reservation_time,
                 "reservation_time_user" => $reservation_time_user,
                 "order_status_id" => $order_status_id,
                 "order_step_id" => $sql_order_status[0]->order_step_id,
                 "order_status" => $sql_order_status[0]->order_status,
                 "order_step" => $sql_order_status[0]->order_step,
-                "order_status_time" => $sel_order_status_time
+                "order_status_time" => $status_count_arr
             );
             $arr = array(
                 "code" => "000",

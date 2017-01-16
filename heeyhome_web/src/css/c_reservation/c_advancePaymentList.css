@@ -156,13 +156,13 @@ body {
 }
 
 .paymentList_wrap .paymentList_cont .paylist h5>i.icon-splitL {
-    margin-right: 7px;
-    background: url(../img/icon-splitL.png) no-repeat;
+    margin-right: 9px;
+    background-position: -8px -437px;
 }
 
 .paymentList_wrap .paymentList_cont .paylist h5>i.icon-splitR {
-        margin-left: 10px;
-    background: url(../img/icon-splitR.png) no-repeat;
+    margin-left: 10px;
+    background-position: -8px -408px;
 }
 
 .paymentList_wrap .paylist .paylist_cardtable table {
@@ -296,5 +296,30 @@ body {
 
 .paymentList_wrap .paylist .orderInfo dl dd .contract_info .contract_txt_bold {
     font-weight: 700
+}
+
+.nullpage {
+    color: #999;
+    font-size: 14px;
+    overflow: hidden;
+    text-align: center;
+    padding: 60px 0 72px 0;
+    border: 1px solid #D7D7D7
+}
+
+.nullpage i {
+	position: relative;
+   	background: url(../img/noinfo.png) no-repeat;
+    width: 86px;
+    height: 85px;
+    display: inline-block;
+    
+}
+
+.nullpage span {
+    display: block;
+    float: left;
+    width: 100%;
+    margin: 10px 0;
 }
 

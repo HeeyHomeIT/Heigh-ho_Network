@@ -62,7 +62,7 @@ define(['app'], function(app) {
 							for(var i = 0; i< 6; i++) {
 								panorama += '<div class="box_picture clearfix"><a href="'+data.data[i].panorama_url+'" target="_blank">';
 								panorama += '<img src="http://hyu2387760001.my3w.com/'+data.data[i].panorama_img+'"><div class="pic_content">';
-								panorama += '<div class="pic_icon"><img src="css/img/icon-tovr.png"></div>';
+								panorama += '<div class="sprite-image pic_icon"></div>';
 								panorama += '<div class="pic_title"><h3>'+data.data[i].panorama_area+'㎡</h3></div>';
 								panorama += ' <div class="pic_name">'+data.data[i].panorama_style+'</div></div></a></div>';
 							}
