@@ -308,3 +308,59 @@ msg           "没有金额"
 
 ```
 ```
+# materialer() #
+##材料商获取我的资产，今日收益接口
+
+
+### 接口地址
+
+
+```
+.../mywallet/materialer
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET POST
+```
+
+###### Json数据格式
+```
+data
+user_id             user_id 
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                total             我的资产
+                todaytotal        今日收益
+                process_type      存不存在提现申请 true:存在 flase:不存在
+            }
+
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           ""
+)
+```
+
+###### Code值含义
+
+```
+```

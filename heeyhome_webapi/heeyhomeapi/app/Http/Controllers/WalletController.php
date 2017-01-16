@@ -119,4 +119,34 @@ class WalletController extends Controller
         );
         return $callback . "(" . HHJson($arr) . ")";
     }
+    public function materialer(){
+        $callback=rq('callback');
+        $user_id=rq('user_id');
+        $today=date('Y-m-d', time());
+        $ttotal=DB::select('select sum(money) as total from hh_wallet_detail where user_id=? and time like "'.$today.'%"',[$user_id]);
+        if($ttotal){
+            $todaytotal=$ttotal[0]->total;
+        }else{
+            $todaytotal=0;
+        }
+        $money = DB::select('select total from hh_wallet_balance where user_id =?',[$user_id]);
+        if($money){
+            $total=$money[0]->total;
+        }else{
+            $total=0;
+        }
+        $isapply=DB::select('select process_type from hh_withdrawapply where apply_userid=?',[$user_id]);
+        if($isapply) {
+                $process_type = false;
+        }
+        else{
+            $process_type=true;
+        }
+        $arr = array("code" => "000",
+            "data" => array("total"=>$total,
+                "todaytotal"=>floatval($todaytotal),
+            "process_type"=>$process_type),
+        );
+        return $callback . "(" . HHJson($arr) . ")";
+    }
 }
