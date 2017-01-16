@@ -85,23 +85,23 @@ class MessageController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
-    public function send($title,$content,$touserid){
+    public function send($fromuser,$title,$content,$touserid){
         $callback=rq('callback');
         $sendtime=date('Y-m-d H:i:s', time());
-        $insert=DB::insert('insert into hh_message(msgtitle,msgcontent,sendtime,receiveuserid) values(?,?,?,?)',$title,$content,$sendtime,$touserid);
-        if($insert){
-            $arr=array(
-                "code"=>"000",
-                "msg"=>"发送成功"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }else{
-            $arr=array(
-                "code"=>"111",
-                "msg"=>"发送失败"
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
+        $insert=DB::insert('insert into hh_message(msgtitle,msgcontent,sendtime,senduser,receiveuserid) values(?,?,?,?,?)',[$title,$content,$sendtime,$fromuser,$touserid]);
+//    if($insert){
+//        $arr=array(
+//            "code"=>"000",
+//            "msg"=>"发送成功"
+//        );
+//        return $callback . "(" . HHJson($arr) . ")";
+//    }else{
+//        $arr=array(
+//            "code"=>"111",
+//            "msg"=>"发送失败"
+//        );
+//        return $callback . "(" . HHJson($arr) . ")";
+//    }
     }
     public function isnew(){
         $callback=rq('callback');
