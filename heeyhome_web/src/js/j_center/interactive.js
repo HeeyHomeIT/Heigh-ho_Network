@@ -1264,7 +1264,6 @@
     infopageHandler = {
         pageContentEvent: function () {
             MAXROWS = Math.ceil(TOTAL / 4); // 页数
-            console.log(TOTAL);
             $(".page_div2").empty().paging({
                 total: MAXROWS, //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
@@ -1304,7 +1303,7 @@
                 dataOperate: function oprate(data) {
                     $(".main_contentWrap").empty();
                     $.each(data.data, function (i, v) {
-                        var tipStr = spliceContentHandler.spliceStrEvent(v);
+                        var tipStr = spliceMsgHandler.spliceStrEvent(v);
                         $(".main_contentWrap").append(tipStr);
                     });
                     judgeNews.isnews();

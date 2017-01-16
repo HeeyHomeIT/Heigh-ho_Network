@@ -86,6 +86,7 @@
         backBtnClickEvent: function () {
             $("#addBack").on("click", function () {
                 $(".add_address_wrap").addClass("display").siblings().removeClass("display");
+                CRUDInfoHandler.queryInfoEvent(); // 查询信息初始化
             });
         },
         /**
