@@ -86,7 +86,7 @@
                         calculator_result_json: JSON.stringify(collectionObj)
                     },
                     success: function (data) {
-                        alert(data.msg);
+                        layer.alert(data.msg);
                     },
                     error: function (data) {
                     }
