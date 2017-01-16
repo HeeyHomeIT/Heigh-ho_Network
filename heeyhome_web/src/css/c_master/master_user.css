@@ -35,6 +35,10 @@
     padding-left: 20px
 }
 
+.sprite-details {
+	background: url(../img/sprite-details.png) no-repeat;
+}
+
 /* 私有样式 */
 /* 左边导航开始 */
 #selfcenter_top .now_location {
@@ -293,10 +297,19 @@
     border-right: 1px solid #d9d9d9;
 }
 
-.title_right img {
-    width: 43px;
-    height: 43px;
+.title_right em {
+	display: inline-block;
+    width: 45px;
+    height: 45px;
     margin-right: 10px;
+}
+
+.title_right em.icon-email {
+	background-position: -333px -112px;
+}
+
+.title_right em.icon-tel {
+	background-position: -422px -85px;
 }
 
 .email_bind {
@@ -791,11 +804,14 @@
     border-radius: 4px;
 }
 
-.local_update .update_img img {
+.local_update .update_img em {
+    display: inline-block;
     width: 23px;
     height: 17px;
+    background-position: -481px -16px;
     vertical-align: middle;
     margin-right: 10px;
+    margin-top: -5px;
 }
 
 .local_update .spot_shoot {
@@ -1152,9 +1168,11 @@
     line-height: 15px;
 }
 
-.renderings_show .complete_del img {
-    width: 13px;
-    height: 13px;
+.complete_del em {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background-position: -504px -109px;
 }
 
 .renderings_show:hover .show_bg, .renderings_show:hover .complete_del, .renderings_show:hover .renderings_show_a {
@@ -3397,7 +3415,7 @@ div.clear:after, div.clear:before {
     width: 24px;
     height: 18px;
     margin-right: 12px;
-    background: url(../img/icon-id.png)
+    background-position: -562px -47px;
 }
 
 .security_top ul li:nth-child(2) em {
@@ -3407,7 +3425,7 @@ div.clear:after, div.clear:before {
     width: 18px;
     height: 24px;
     margin-right: 18px;
-    background: url(../img/icon-gpassword.png)
+    background-position: -561px -205px;
 }
 
 .security_top ul li:nth-child(3) em {
@@ -3417,7 +3435,7 @@ div.clear:after, div.clear:before {
     position: absolute;
     top: 32px;
     margin-right: 19px;
-    background: url(../img/icon-bphone.png)
+    background-position: -562px -99px
 }
 
 .security_top ul li:nth-child(4) em {
@@ -3427,7 +3445,7 @@ div.clear:after, div.clear:before {
     position: absolute;
     top: 40px;
     margin-right: 12px;
-    background: url(../img/icon-bemail.png)
+    background-position: -562px -156px
 }
 
 .security_top ul li p {

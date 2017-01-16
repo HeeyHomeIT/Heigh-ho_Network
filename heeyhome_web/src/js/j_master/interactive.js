@@ -1589,7 +1589,8 @@
                 success: function (data) {
                     if (data && data.code == '000') {
                         //console.log(data.data);
-                        $('.head img').attr('src', 'http://hyu2387760001.my3w.com/' + data.data.foremanimg + '');//获取头像
+                        $(".head").html('<img src="http://hyu2387760001.my3w.com/'+data.data.foremanimg+'">');//获取头像
+//                      $('.head img').attr('src', 'http://hyu2387760001.my3w.com/' + data.data.foremanimg + '');//获取头像
                         $('#shop_name').html(data.data.shop_name);//获取店铺名字
                         $('#real_name').attr('src', 'http://hyu2387760001.my3w.com/' + data.data.authentication[0] + '');//获取安全认证图片
                         $('#safe_name').attr('src', 'http://hyu2387760001.my3w.com/' + data.data.authentication[1] + '');//获取安全认证图片
