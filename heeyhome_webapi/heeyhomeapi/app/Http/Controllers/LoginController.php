@@ -55,7 +55,12 @@ class LoginController extends Controller
             /*登录成功返回用户信息*/
             if($pwd[0]->user_type==1){
                 $nickname=DB::select('select userinfo_nickname from hh_userinfo where userinfo_userid=?',[$pwd[0]->user_id]);
-                $pwd[0]->nickname=$nickname[0]->userinfo_nickname;
+                if($nickname){
+                    $pwd[0]->nickname=$nickname[0]->userinfo_nickname;
+                }else{
+                    $pwd[0]->nickname = null;
+                }
+
             }
             if($pwd[0]->user_type==2){
                 $shop_id=DB::select('select shop_id from hh_shop where shopper_id=?',[$pwd[0]->user_id]);

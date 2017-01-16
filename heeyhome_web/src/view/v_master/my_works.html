@@ -36,7 +36,7 @@
                     <div class="works_detail fl complete_img" ng-repeat="work in works">
                         <a class="bg" href="success_case.html#/success" target="_blank"
                            ng-click="session(work.case_id)">
-                            <a class="complete_del" href="javascript:;">
+                            <a class="complete_del" href="javascript:;" caseid="{{work.case_id}}">
                                 <img src="css/img/my_work_del.png">
                             </a>
                             <div class="detail_img">

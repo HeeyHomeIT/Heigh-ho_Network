@@ -142,6 +142,18 @@ body {
     color: #333333;
 }
 
+.contact_detail .bookingprocesscon h4 span.change{
+    background: url(../img/icon-shuaxin.png) no-repeat;
+    height: 20px;
+    color: #0185c6;
+    font-size: 14px;
+    padding-left: 30px;
+    cursor: pointer;
+    line-height: 23px;
+    margin-right: 40px;
+    float: right;
+}
+
 .contact_detail .bookingprocesscon ul {
     padding: 25px 0 0 10px;
     border-top: 1px solid #f4f4f4;
@@ -208,6 +220,10 @@ body {
     line-height: 32px;
 }
 
+.contact_detail .bookingprocesscon ul li p a {
+	cursor: pointer;
+}
+
 .contact_detail .bookingprocesscon ul li p span.date {
 	margin-left: 5px;
 }
@@ -219,5 +235,13 @@ body {
 .contact_detail .bookingprocesscon ul li div {
 	margin-left: 5px;
 	color: #999;
+}
+
+.contact_detail .bookingprocesscon ul li div a {
+	cursor: pointer;
+}
+
+.loagbg {
+    height: 266px;
 }
 

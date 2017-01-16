@@ -294,7 +294,7 @@
 				vrStr += '<div class="pic_box" data-id="' + v.panorama_id + '"><div class="vr_pic">';
 				vrStr += '<a href="' + v.panorama_url + '"><img src="http://hyu2387760001.my3w.com/' + v.panorama_img + '" class="now">';
 				vrStr += '<div class="bg_mongolia">';
-				vrStr += '<div class="pic_hover"><img src="css/img/icon-tovr.png"></div></div></a></div>';
+				vrStr += '<div class="sprite-image pic_hover"></div></div></a></div>';
 				vrStr += '<div class="pic_introduce">';
 				vrStr += '<div class="pic_style clearfix"><h2>' + v.panorama_style + '</h2></div>';
 				vrStr += '<div class="sprite pic_badge" title="点击收藏"></div>';

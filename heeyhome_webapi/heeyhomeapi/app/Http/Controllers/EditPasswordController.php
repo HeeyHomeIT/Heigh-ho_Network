@@ -20,7 +20,7 @@ class EditPasswordController extends Controller
         $phone=rq('phone');
         $captcha=rq('captcha');
         /*检查手机号码匹不匹配*/
-        $isphone=DB::select('select user_phone from hh_user where user_id=? and user_phone=?',[$user_id,$phone]);
+        $isphone=DB::select('select id from hh_user where user_id=? and user_phone=?',[$user_id,$phone]);
         if($phone){
              /*检查短信验证码*/
             if (!smsverify($phone, $captcha)) {
@@ -106,17 +106,10 @@ class EditPasswordController extends Controller
         if($sql) {
             $new_password = HHEncryption(rq('new_password'));
             $update = DB::update('update hh_user set user_password=? where user_id=?', [$new_password, $user_id]);
-            if ($update) {
                 $arr = array("code" => "000",
                     "msg" => "密码修改成功"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
-            } else {
-                $arr = array("code" => "114",
-                    "msg" => "修改失败,用户不存在"
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-            }
         }else{
             $arr = array("code" => "126",
                 "msg" => "信息不匹配"

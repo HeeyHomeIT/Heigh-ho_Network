@@ -32,16 +32,16 @@
                         </div><!--personal_form_list-->
                         <div class="personal_form_list">
                             <span>邮箱</span>
-                            <p><i>您还没有绑定邮箱，点击去</i><a href="#/center/setting/email/email_1">绑定邮箱</a></p>
+                            <p><i class="email">您还没有绑定邮箱，点击去</i><a href="#/center/setting/email/email_1">绑定邮箱</a></p>
                         </div><!--personal_form_list-->
                         <div class="personal_form_list">
                             <span>联系电话</span>
                             <span class="personal_tel">152****1234</span>
                             <a href="#/center/setting/bind/bind_phone_1">修改绑定</a>
                         </div><!--personal_form_list-->
-                        <div class="personal_form_list clearfix">
+                        <div class="personal_form_list clearfix" id="nowAddress">
                             <span class="fl">所在城市</span>
-                            <div data-toggle="distpicker" class="distpickerDiv clearfix fl">
+                            <div data-toggle="distpicker" class="distpickerDiv clearfix fl" >
                                 <div class="form-group fl">
                                     <label class="sr-only" for="province1">Province</label>
                                     <select class="form-control" id="province1"></select>
@@ -60,7 +60,7 @@
                             <span>详细住址</span>
                             <input class="personal_area_detail" title="" type="text" placeholder="请输入您的详细住址">
                         </div><!--personal_form_list-->
-                        <div class="personal_form_list clearfix">
+                        <div class="personal_form_list clearfix" id="homeAddress">
                             <span class="fl">家乡</span>
                             <div data-toggle="distpicker" class="distpickerDiv clearfix fl">
                                 <div class="form-group fl">
@@ -100,39 +100,6 @@
                             <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+">
                             <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-">
                         </div><!--local_update-->
-                        <p class="recommend_head">推荐头像</p>
-                        <div class="head_wrap clearfix">
-                            <a class="fl" href="javascript:;">
-                                <img src="css/img/head1.png">
-                            </a>
-                            <a class="fl" href="javascript:;">
-                                <img src="css/img/head2.png">
-                            </a>
-                            <a class="fl" href="javascript:;">
-                                <img src="css/img/head3.png">
-                            </a>
-                            <a class="fl" href="javascript:;">
-                                <img src="css/img/head4.png">
-                            </a>
-                            <a class="fl" href="javascript:;">
-                                <img src="css/img/head5.png">
-                            </a>
-                            <a class="fl" href="javascript:;">
-                                <img src="css/img/head6.png">
-                            </a>
-                            <a class="fl" href="javascript:;">
-                                <img src="css/img/head7.png">
-                            </a>
-                            <a class="fl" href="javascript:;">
-                                <img src="css/img/head8.png">
-                            </a>
-                            <a class="fl" href="javascript:;">
-                                <img src="css/img/head9.png">
-                            </a>
-                            <a class="fl" href="javascript:;">
-                                <img src="css/img/head10.png">
-                            </a>
-                        </div><!--head_wrap-->
                         <a class="head_submit" href="javascript:;">提交</a>
                     </form>
                 </div><!--update_head_left-->

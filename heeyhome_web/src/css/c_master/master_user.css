@@ -743,6 +743,16 @@
     margin-bottom: 20px;
 }
 
+.personal_submit:hover {
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+}
+
 .personal_content_title {
     margin-top: 28px;
 }
@@ -821,8 +831,8 @@
 
 .container .only_support {
     color: #737373;
-    margin-top: 15px;
-    margin-bottom: 23px;
+    margin-top: 30px;
+    margin-bottom: 40px;
 }
 
 .update_head_left .imgWrap {
@@ -831,6 +841,7 @@
     border: 1px solid #b2b2b2;
     background: url("../../css/img/imgWrap_bg.png") no-repeat 99px 50px;
     margin-bottom: 10px;
+    margin-top: 50px;
 }
 
 .container .recommend_head {
@@ -867,7 +878,17 @@
     background-color: #3d3d3d;
     color: white;
     border-radius: 4px;
-    margin-top: 38px;
+    margin-top: 150px;
+}
+
+.head_submit:hover {
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
 }
 
 .update_head_right {
@@ -1179,11 +1200,13 @@
     border-radius: 0;
     font-size: 80px;
     text-align: center;
+    cursor: pointer;
 }
 
 .renderings_show_wrap .renderings_img input {
     width: 86px;
     height: 86px;
+    font-size: 0;
 }
 
 #renderings_img {
@@ -1249,6 +1272,16 @@
     border-radius: 4px;
     margin-top: 25px;
     margin-left: 20px;
+}
+
+.shop_save:hover {
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
 }
 
 .shop_detail_style .edit, .shop_detail_area .area_edit, .personal_area_list .area_edit {
@@ -1441,6 +1474,7 @@
     position: absolute;
     right: 0;
     top: 0;
+    font-size: 32px;
 }
 
 .add_technologycnt .do_please {
@@ -4198,5 +4232,9 @@ div.clear:after, div.clear:before {
     color: white;
 }
 
-
-
+.layui-layer-content p {
+	color: #4B4948;
+	font-size: 14px;
+	font-family: FZLTHJW;
+	padding: 15px;
+}

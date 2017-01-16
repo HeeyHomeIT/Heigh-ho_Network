@@ -572,6 +572,11 @@ a:focus {
     margin-left: 10px;
 }
 
+.personal_form_list .apparent {
+    color: #4B4948;
+    font-size: 14px;
+}
+
 .personal_form_list .personal_tel {
     margin-left: 16px;
     width: auto;
@@ -675,6 +680,16 @@ a:focus {
     margin-top: 50px;
 }
 
+.personal_submit:hover {
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+}
+
 .personal_content_title {
     margin-top: 28px;
 }
@@ -753,8 +768,8 @@ a:focus {
 
 .container .only_support {
     color: #737373;
-    margin-top: 15px;
-    margin-bottom: 23px;
+    margin-top: 30px;
+    margin-bottom: 40px;
 }
 
 .update_head_left .imgWrap {
@@ -763,6 +778,7 @@ a:focus {
     border: 1px solid #b2b2b2;
     background: url("../../css/img/imgWrap_bg.png") no-repeat 99px 50px;
     margin-bottom: 10px;
+    margin-top: 50px;
 }
 
 .container .recommend_head {
@@ -799,7 +815,17 @@ a:focus {
     background-color: #3d3d3d;
     color: white;
     border-radius: 4px;
-    margin-top: 38px;
+    margin-top: 150px;
+}
+
+.head_submit:hover {
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
 }
 
 .update_head_right {
@@ -1138,7 +1164,7 @@ a:focus {
     margin-top: -27px;
 }
 
-.collection_shop_wrap .page_number {
+.collection_shop_wrap .page_number, .check_wrap .page_number {
     margin: 25px 0 0 0;
 }
 
@@ -1779,6 +1805,11 @@ a:focus {
 .default_address:hover {
     background-color: #eec988;
     color: white;
+}
+
+.auto_address {
+    min-height: 845px;
+    height: auto;
 }
 
 .address_add a {
@@ -2790,4 +2821,15 @@ a:focus {
 
 .home_not .not_information {
     height: auto;
+}
+
+.img_wrap .page_number {
+    margin: 40px 0 80px 0;
+}
+
+.layui-layer-content p {
+	color: #4B4948;
+	font-size: 14px;
+	font-family: FZLTHJW;
+	padding: 15px;
 }

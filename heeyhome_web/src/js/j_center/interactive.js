@@ -727,16 +727,35 @@
                         } else {
                             $('#women').attr('checked', 'checked');
                         }
-                        $(".personal_form_list #province1 option:selected").html(data.data.loc_province).val(data.data.loc_province);
-                        $(".personal_form_list #city1 option:selected").html(data.data.loc_city).val(data.data.loc_city);
-                        $(".personal_form_list #district1 option:selected").html(data.data.loc_district).val(data.data.loc_district);
-                        $(".personal_form_list #province2 option:selected").html(data.data.home_province).val(data.data.home_province);
-                        $(".personal_form_list #city2 option:selected").html(data.data.home_city).val(data.data.home_city);
-                        $(".personal_form_list #district2 option:selected").html(data.data.home_district).val(data.data.home_district);
-                        $(".personal_form_list .personal_area_detail").val(data.data.loc_address);
                         if (data.data.userinfo_email != null && data.data.userinfo_email != '') {
-                            $(".personal_form_list p span").html(data.data.userinfo_email);
+                        	var email = data.data.userinfo_email;
+                        	var length =  data.data.userinfo_email.length;
+                            var abb_email = email.substr(0, 3) + "****" + email.substr(length-3, length);//邮箱中间变成*号
+                            $(".personal_form_list .email").html(abb_email).addClass("apparent");//获取用户的邮箱
+                            $(".personal_form_list p a").html("修改绑定");
+                        } else {
+                        	$(".personal_form_list .email").removeClass("apparent");
+                        	$(".personal_form_list p a").html("绑定邮箱");
                         }
+                        if(data.data.loc_province != null && data.data.loc_province != '') {
+                        	$('#nowAddress').distpicker({province: data.data.loc_province});                      	
+                        }
+                        if(data.data.loc_city != null && data.data.loc_city != '') {
+                        	$('#nowAddress').distpicker({city: data.data.loc_city});
+                        }
+                        if(data.data.loc_district != null && data.data.loc_district != '') {
+                        	$('#nowAddress').distpicker({district: data.data.loc_district});
+                        }
+                        if(data.data.home_province != null && data.data.home_province != '') {
+                        	$('#homeAddress').distpicker({province: data.data.home_province});
+                        }
+                        if(data.data.home_city != null && data.data.home_city != '') {
+                        	$('#homeAddress').distpicker({city: data.data.home_city});
+                        }
+                        if(data.data.home_district != null && data.data.home_district != '') {
+                        	$('#homeAddress').distpicker({district: data.data.home_district});
+                        }                  
+                        $(".personal_form_list .personal_area_detail").val(data.data.loc_address);
                     }
                 },
                 error: function (data) {
@@ -787,7 +806,7 @@
                         if (data != null || data.code == '000') {
                             layer.msg(data.msg);
                         } else {
-                            alert(data.msg)
+                            layer.msg(data.msg)
                         }
                     },
                     complete: function () {
@@ -1151,7 +1170,12 @@
         tobeRead: function () {
             $(".main_content .content").on("click", function () {
                 var cnt = $(this).siblings(".cnt").html();
-                layer.alert(cnt);
+                layer.open({
+					type: 1,
+					skin: 'layui-layer-rim', //加上边框
+					area: ['420px', '240px'], //宽高
+					content: '<p>'+cnt+'</p>'
+				});
                 if ($(this).parent().attr("data-isread") == "0") { //未读消息
                     var id = $(this).parent().attr("data-id");
                     var $now = $(this).parent();
@@ -1245,7 +1269,6 @@
     infopageHandler = {
         pageContentEvent: function () {
             MAXROWS = Math.ceil(TOTAL / 4); // 页数
-            console.log(TOTAL);
             $(".page_div2").empty().paging({
                 total: MAXROWS, //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
@@ -1285,13 +1308,13 @@
                 dataOperate: function oprate(data) {
                     $(".main_contentWrap").empty();
                     $.each(data.data, function (i, v) {
-                        var tipStr = spliceContentHandler.spliceStrEvent(v);
+                        var tipStr = spliceMsgHandler.spliceStrEvent(v);
                         $(".main_contentWrap").append(tipStr);
                     });
                     judgeNews.isnews();
                     readNews.tobeRead();
                     deleteRecord.singleSelection();
-                    markRead.checkAll();
+//                  markRead.checkAll();
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
             });
         }

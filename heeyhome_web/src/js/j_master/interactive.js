@@ -524,7 +524,7 @@
                         if (!/image\/\w+/.test(file.type)) {
                             inputImg.parent().parent().css('background', '');
                             inputImg.parent().parent().removeClass('clear');
-                            alert("请确保文件为图像类型");
+                            layer.alert("请确保文件为图像类型");
                             //alertError(swal);//弹出文件格式错误通知
                             inputImg.val('');//清空file选择的文件
                             return false;
@@ -534,7 +534,7 @@
                             reader.onload = function (e) {
                                 inputImg.parent().parent().attr("data-flag", "1");
                                 inputImg.parent().parent().addClass('clear');//图片预览时input file 添加opacity样式，设置完全透明
-                                inputImg.parent().parent().css('background', 'url("' + e.target.result + '") no-repeat');//图片设置为$('.showImg')背景图
+                                inputImg.parent().parent().css({'background':'url("' + e.target.result + '") no-repeat','backgroundSize':'100% 100%'});//图片设置为$('.showImg')背景图
                                 var pic = '<img src="' + e.target.result + '">';
                                 myfile.push(pic);
                             }
@@ -602,8 +602,6 @@
         initOrderProcessEvent: function () {
             getOrderProcessHandler.getInfoEvent();
             getOrderBudgetHandler.getInfoEvent();
-            submitOrderProgress.getInfoEvent();
-
         },
         /*
          * 材料清单
@@ -912,6 +910,7 @@
                         $('.order_edit').eq(i).addClass('determine_process');
                         $('.order_increase').eq(i).addClass('add_process');
                     }
+                    submitOrderProgress.getInfoEvent();//点击提交进程按钮
 
                 } else if (status == '订单进行中') {
                     var newStep = step;
@@ -941,6 +940,7 @@
                         $('.order_edit').eq(i).addClass('determine_process');
                         $('.order_increase').eq(i).addClass('add_process');
                     }
+                    submitOrderProgress.getInfoEvent();//点击提交进程按钮
                 } else if (status == '已完成') {
                     step = 17;
                     for (var i = 0; i < step; i++) {
@@ -1118,7 +1118,7 @@
                     },
                     success: function (data) {
                         if (data && data.code == '000') {
-                            //console.log(data.data);
+                            console.log(data.data);
                             //HOUSESTYLE = data.data.装修风格;
                             //console.log(HOUSESTYLE);
                             if (data.data.装修风格 != null) {
@@ -1720,7 +1720,9 @@
                         $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
                         email = data.data.foremaninfo_email; //获取工长的邮箱
                         if (email != null) {//判断邮箱是否为空
-                            $('#email_p').html(email + '<a href="#/master/setting/email/email_1">修改绑定</a>')
+                        	var length =  email.length;
+                        	var abb_email = email.substr(0, 3) + "****" + email.substr(length-3, length);//邮箱中间变成*号                      	 
+                            $('#email_p').html('<span>'+abb_email+'</span><a href="#/master/setting/email/email_1">修改绑定</a>')
                         }
                         $('.personal_user_name').val($.base64.decode($.cookie("userName"))); //获取工长的用户名
                         //判断工长的性别
@@ -1750,18 +1752,26 @@
                         }
                         $('.personal_user_community').eq(0).addClass('personal_user_first');
                         //获取所在地信息
-                        $('#loc').distpicker({
-                            province: data.data.loc_province,
-                            city: data.data.loc_city,
-                            district: data.data.loc_district
-                        });
+                        if(data.data.loc_province != null && data.data.loc_province != '') {
+                        	$('#loc').distpicker({province: data.data.loc_province});                      	
+                        }
+                        if(data.data.loc_city != null && data.data.loc_city != '') {
+                        	$('#loc').distpicker({city: data.data.loc_city});
+                        }
+                        if(data.data.loc_district != null && data.data.loc_district != '') {
+                        	$('#loc').distpicker({district: data.data.loc_district});
+                        }
 
                         //获取家乡信息
-                        $('#home').distpicker({
-                            province: data.data.home_province,
-                            city: data.data.home_city,
-                            district: data.data.home_district
-                        });
+                        if(data.data.home_province != null && data.data.home_province != '') {
+                        	$('#home').distpicker({province: data.data.home_province});
+                        }
+                        if(data.data.home_city != null && data.data.home_city != '') {
+                        	$('#home').distpicker({city: data.data.home_city});
+                        }
+                        if(data.data.home_district != null && data.data.home_district != '') {
+                        	$('#home').distpicker({district: data.data.home_district});
+                        } 
 
                     }
                     /* 如果失败执行 */
@@ -2466,33 +2476,33 @@
                 success: function (data) {
                     if (data != null && data.code == '000') {
                         if ($(".staff_picture .add_picture").attr("data-flag") == '0') {
-                            alert("头像格式不正确");
+                            layer.alert("头像格式不正确");
                             flag = false;
                         } else if ($name == "" || $name == null) {
-                            alert("姓名不能为空");
+                            layer.alert("姓名不能为空");
                             flag = false;
                         } else if ($age == "" || $age == null) {
-                            alert("年龄不能为空");
+                            layer.alert("年龄不能为空");
                             flag = false;
                         } else if ($worktime == "" || $worktime == null) {
-                            alert("从业时间不能为空");
+                            layer.alert("从业时间不能为空");
                             flag = false;
                         } else if ($phone == "" || $phone == null) {
-                            alert("手机号不能为空");
+                            layer.alert("手机号不能为空");
                             flag = false;
                         } else if ($idcard == "" || $idcard == null) {
-                            alert("身份证号不能为空");
+                            layer.alert("身份证号不能为空");
                             flag = false;
                         } else if ($bankname == "" || $bankname == null) {
-                            alert("开户银行不能为空");
+                            layer.alert("开户银行不能为空");
                             flag = false;
                         } else if ($bankcard == "" || $bankcard == null) {
-                            alert("银行卡号不能为空");
+                            layer.alert("银行卡号不能为空");
                             flag = false;
                         }
                         for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                             if ($(".edit_bottom li input").eq(i).val() == "" || $(".edit_bottom li input").eq(i).val() == null) {
-                                alert("价格明细表有项未填");
+                                layer.alert("价格明细表有项未填");
                                 flag = false;
                                 break;
                             }
@@ -2542,10 +2552,10 @@
                                     },
                                     success: function (data) {
                                         if (data != null && data.code == '000') {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                             window.location.href = "#/master/mteam";
                                         } else {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                         }
                                     }
                                 });
@@ -2576,10 +2586,10 @@
                                     },
                                     success: function (data) {
                                         if (data != null && data.code == '000') {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                             window.location.href = "#/master/mteam";
                                         } else {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                         }
                                     }
                                 });
@@ -2632,10 +2642,10 @@
                                     },
                                     success: function (data) {
                                         if (data != null && data.code == '000') {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                             window.location.href = "#/master/mteam";
                                         } else {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                         }
                                     }
                                 });
@@ -2676,10 +2686,10 @@
                                     },
                                     success: function (data) {
                                         if (data != null && data.code == '000') {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                             window.location.href = "#/master/mteam";
                                         } else {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                         }
                                     }
                                 });
@@ -2718,10 +2728,10 @@
                                     },
                                     success: function (data) {
                                         if (data != null && data.code == '000') {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                             window.location.href = "#/master/mteam";
                                         } else {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                         }
                                     }
                                 });
@@ -3068,7 +3078,7 @@
                             if (!/image\/\w+/.test(file.type)) {
                                 inputImg.parent().parent().css('background', '');
                                 inputImg.parent().parent().removeClass('clear');
-                                alert("请确保文件为图像类型");
+                                layer.alert("请确保文件为图像类型");
                                 //alertError(swal);//弹出文件格式错误通知
                                 inputImg.val('');//清空file选择的文件
                                 return false;
@@ -3545,7 +3555,7 @@
                     });
                 }
 
-                upImg('.add_content');//本店工艺上传图片
+                upImg('.add_picture');//本店工艺上传图片
                 upImg('#renderings_img');//效果图上传图片
 
 
@@ -3571,7 +3581,8 @@
                         url: WORKCURL,
                         params: {
                             foreman_id: USERID,
-                            type: 1
+                            type: 1,
+                            limit:4
                         },
                         beforeSend: function () {
                             $(".complete_before .works_detail").remove();
@@ -3583,7 +3594,7 @@
                     }).success(function (data, status) {
                         /* 如果成功执行 */
                         if (data && data.code === '000') {
-                            //console.log(data.data);
+                            console.log(data.data);
                             if (data.data.length >= 4) {
                                 $scope.works = data.data.slice(0, 4);
                                 $('.new_album').hide();
@@ -3619,10 +3630,11 @@
                             if (data && data.code == '000') {
                                 layer.msg(data.msg);
                                 http();
+                            }else{
+                                layer.msg(data.msg);
                             }
                         },
                         error: function (data) {
-                            layer.msg(data.msg);
                         }
                     });
                 });
@@ -3957,7 +3969,12 @@
         tobeRead: function () {
             $(".main_content .content").on("click", function () {
                 var cnt = $(this).siblings(".cnt").html();
-                layer.alert(cnt);
+                layer.open({
+					type: 1,
+					skin: 'layui-layer-rim', //加上边框
+					area: ['420px', '240px'], //宽高
+					content: '<p>'+cnt+'</p>'
+				});
                 if ($(this).parent().attr("data-isread") == "0") { //未读消息
                     var id = $(this).parent().attr("data-id");
                     var $now = $(this).parent();
@@ -4091,7 +4108,7 @@
                     judgeNews.isnews();
                     readNews.tobeRead();
                     deleteRecord.singleSelection();
-                    markRead.checkAll();
+                    //markRead.checkAll();
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
             });
         }

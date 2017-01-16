@@ -84,19 +84,19 @@
             self.initPasswordAuthEvent();
 
             //原手机号点击验证码事件
-            $(document).on('click', '#oldPhoneCaptcha', function () {
+            $(document).off('click', '#oldPhoneCaptcha').on('click', '#oldPhoneCaptcha', function () {
                 self.sendCaptcha(SENDSMSURL, {phone: phone}, $('#oldPhoneCaptcha'));
             });
             //新手机号点击验证码事件
-            $(document).on('click', '#code_button', function () {
+            $(document).off('click', '#code_button').on('click', '#code_button', function () {
                 self.sendCaptcha(SENDSMSURL, {phone: $('#newphone_num1').val()}, $('#code_button'));
             });
             //修改密码点击验证码事件
-            $(document).on('click', '#resetCaptcha', function () {
+            $(document).off('click', '#resetCaptcha').on('click', '#resetCaptcha', function () {
                 self.sendCaptcha(SENDSMSURL, {phone: phone}, $('#resetCaptcha'));
             });
             //新邮箱点击验证码事件
-            $(document).on('click', '#email_code', function () {
+            $(document).off('click', '#email_code').on('click', '#email_code', function () {
                 if ($('#new_email').val() == '') {
                     layer.alert(MSG8);
                 } else if (EMAILREG.test($('#new_email').val())) {
@@ -134,7 +134,7 @@
          */
         initAuthenticationEvent: function () {
             /* 身份验证第一步：输入姓名与身份证号 */
-            $(document).on('click', '.next_auth', function () {
+            $(document).off('click', '.next_auth').on('click', '.next_auth', function () {
                 if ($('#rel_name').val() == "" || $('#id_code').val() == "") {
                     layer.alert(MSG10);
                 } else if (isIDCard1.test($('#id_code').val())) {
@@ -288,7 +288,7 @@
                     var abb_phone = phone.substr(0, 3) + "****" + phone.substr(7, 11);//手机号中间四位变成*号
                     $('#old_phone').html(abb_phone);//身份验证中原绑定手机号
                     //绑定手机号下一步点击事件
-                    $(document).on('click', '#next1', function () {
+                    $(document).off('click', '#next1').on('click', '#next1', function () {
                         if ($('#confirm_code1').val() != '') {//判断验证码不为空
                             $.ajax({
                                 url: PHONEVERIFYURL,
@@ -329,7 +329,7 @@
             HHIT_CENTERAPP.controller('bind_phone2', ['$scope', '$state', function ($scope, $state) {
                 $(".revise_process a").eq(1).addClass("active").siblings().removeClass("active");
                 //绑定手机号下一步点击事件
-                $(document).on('click', '#next2', function () {
+                $(document).off('click', '#next2').on('click', '#next2', function () {
                     $.ajax({
                         url: PHONECHANGEURL,
                         type: "GET",
@@ -357,8 +357,9 @@
             /* 绑定手机第三步，完成后跳转到安全设置 */
             HHIT_CENTERAPP.controller('bind_phone3', ['$scope', '$state', function ($scope, $state) {
                 $(".revise_process a").eq(2).addClass("active").siblings().removeClass("active");
-                $(document).on('click', '#back', function () {
+                $(document).off('click', '#back').on('click', '#back', function () {
                     window.location.href = '#/master/setting';
+                    location.reload(true);
                 });
             }]);
         },
@@ -382,7 +383,7 @@
                     var abb_phone = phone.substr(0, 3) + "****" + phone.substr(7, 11);//手机号中间四位变成*号
                     $('#old_phone').html(abb_phone);//身份验证中原绑定手机号
                     //绑定邮箱下一步点击事件
-                    $(document).on('click', '#next_email1', function () {
+                    $(document).off('click', '#next_email1').on('click', '#next_email1', function () {
                         if ($('#confirm_code').val() != '') {//判断验证码不为空
                             $.ajax({
                                 url: EMAILURL,
@@ -424,7 +425,7 @@
             HHIT_CENTERAPP.controller('emailTwo', ['$scope', '$state', function ($scope, $state) {
                 $(".revise_process a").eq(1).addClass("active").siblings().removeClass("active");
                 //绑定邮箱下一步点击事件
-                $(document).on('click', '#next_email2', function () {
+                $(document).off('click', '#next_email2').on('click', '#next_email2', function () {
                     $.ajax({
                         url: NEWEMAILURL,
                         type: "GET",
@@ -452,7 +453,7 @@
             /* 绑定邮箱第三步，完成 */
             HHIT_CENTERAPP.controller('emailThree', ['$scope', '$state', function ($scope, $state) {
                 $(".revise_process a").eq(2).addClass("active").siblings().removeClass("active");
-                $(document).on('click', '#back', function () {
+                $(document).off('click', '#back').on('click', '#back', function () {
                     window.location.href = '#/master/setting';
                 });
             }]);
@@ -466,10 +467,10 @@
             HHIT_CENTERAPP.controller('reset1', ['$scope', '$state', function ($scope, $state) {
                 $(".revise_process a").eq(0).addClass("active").siblings().removeClass("active");
                 //点击选择何种方式身份验证
-                $(document).on('click', '#message', function () {//短信验证码方式
+                $(document).off('click', '#message').on('click', '#message', function () {//短信验证码方式
                     window.location.href = '#/master/setting/reset/reset_2';
                 });
-                $(document).on('click', '#password', function () {//登录密码方式
+                $(document).off('click', '#password').on('click', '#password', function () {//登录密码方式
                     window.location.href = '#/master/setting/reset/reset_3';
                 });
             }]);
@@ -479,11 +480,11 @@
                     $(".revise_process a").eq(0).addClass("active").siblings().removeClass("active");
                     var abb_phone = phone.substr(0, 3) + "****" + phone.substr(7, 11);//手机号中间四位变成*号
                     $('#old_phone').html(abb_phone);//身份验证中原绑定手机号
-                    $(document).on('click', '#re_select', function () {//跳回到选择何种方式页面
+                    $(document).off('click', '#re_select').on('click', '#re_select', function () {//跳回到选择何种方式页面
                         window.location.href = '#/master/setting/reset/reset_1';
                     });
                     /* 短信身份验证 */
-                    $(document).on('click', '#next_message1', function () {//点击下一步事件
+                    $(document).off('click', '#next_message1').on('click', '#next_message1', function () {//点击下一步事件
                         $.ajax({
                             url: PASSWORDMSURL,
                             type: "GET",
@@ -517,11 +518,11 @@
             /* 修改密码第一步登录密码验证身份 */
             HHIT_CENTERAPP.controller('reset3', ['$scope', '$state', function ($scope, $state) {
                 $(".revise_process a").eq(0).addClass("active").siblings().removeClass("active");
-                $(document).on('click', '#re_select', function () {//跳回到选择何种方式页面
+                $(document).off('click', '#re_select').on('click', '#re_select', function () {//跳回到选择何种方式页面
                     window.location.href = '#/master/setting/reset/reset_1';
                 });
                 /* 密码身份验证 */
-                $(document).on('click', '#next_password1', function () {//判断输入登录密码是否正确决定要不要调转到下一步
+                $(document).off('click', '#next_password1').on('click', '#next_password1', function () {//判断输入登录密码是否正确决定要不要调转到下一步
                     if ($('#login_code').val() == '') {
                         layer.alert(MSG3);
                     } else {
@@ -552,7 +553,7 @@
             /* 修改密码第二步短信验证身份后设置密码 */
             HHIT_CENTERAPP.controller('reset4', ['$scope', '$state', function ($scope, $state) {
                 $(".revise_process a").eq(1).addClass("active").siblings().removeClass("active");
-                $(document).on('click', '#next_reset2', function () {//判断输入新密码两次是否一样
+                $(document).off('click', '#next_reset2').on('click', '#next_reset2', function () {//判断输入新密码两次是否一样
                     if ($('#new_password1').val() == '' || $('#new_password2').val() == '') {
                         layer.alert(MSG3);
                     } else if (!PSWREG.test($('#new_password1').val())) {
@@ -589,7 +590,7 @@
             /* 修改密码第二步登录密码验证身份后设置密码 */
             HHIT_CENTERAPP.controller('reset6', ['$scope', '$state', function ($scope, $state) {
                 $(".revise_process a").eq(1).addClass("active").siblings().removeClass("active");
-                $(document).on('click', '#ms_reset2', function () {//判断输入新密码两次是否一样
+                $(document).off('click', '#ms_reset2').on('click', '#ms_reset2', function () {//判断输入新密码两次是否一样
                     if ($('#new_password1').val() == '' || $('#new_password2').val() == '') {
                         layer.alert(MSG3);
                     } else if (!PSWREG.test($('#new_password1').val())) {
@@ -626,7 +627,7 @@
             /* 修改密码第三步完成 */
             HHIT_CENTERAPP.controller('reset5', ['$scope', '$state', function ($scope, $state) {
                 $(".revise_process a").eq(2).addClass("active").siblings().removeClass("active");
-                $(document).on('click', '#password_button', function () {//修改密码成功后重新登录
+                $(document).off('click', '#password_button').on('click', '#password_button', function () {//修改密码成功后重新登录
                     window.location.href = 'register.html';
                 });
                 /* 5秒倒计时之后页面自动跳转到登录页面 */

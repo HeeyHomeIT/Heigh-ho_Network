@@ -11,7 +11,7 @@ body {
 .materialList_wrap .materialList_cont {
     border: 1px solid #eee;
     background-color: #fff;
-    min-height: 680px;
+    min-height: 880px;
     padding: 20px 18px;
         margin-top: 49px;
             -moz-user-select: none;
@@ -41,13 +41,13 @@ body {
 }
 
 .materialList_wrap .materialList_cont .materialPaylist  h5>i.icon-splitL {
-    margin-right: 7px;
-    background: url(../img/icon-splitL.png) no-repeat;
+    margin-right: 9px;
+    background-position: -8px -437px;
 }
 
 .materialList_wrap .materialList_cont .materialPaylist  h5>i.icon-splitR {
         margin-left: 10px;
-    background: url(../img/icon-splitR.png) no-repeat;
+        background-position: -8px -408px;
 }
 
 .materialList_wrap .materialList_cont .titlelist {
@@ -389,3 +389,4 @@ body {
     background: url(../img/verify_img.png) 2px 0px no-repeat;
     border: 1px solid #8ab923;
 }
+
