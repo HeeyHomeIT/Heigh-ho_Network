@@ -1720,7 +1720,9 @@
                         $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
                         email = data.data.foremaninfo_email; //获取工长的邮箱
                         if (email != null) {//判断邮箱是否为空
-                            $('#email_p').html(email + '<a href="#/master/setting/email/email_1">修改绑定</a>')
+                        	var length =  email.length;
+                        	var abb_email = email.substr(0, 3) + "****" + email.substr(length-3, length);//邮箱中间变成*号                      	 
+                            $('#email_p').html('<span>'+abb_email+'</span><a href="#/master/setting/email/email_1">修改绑定</a>')
                         }
                         $('.personal_user_name').val($.base64.decode($.cookie("userName"))); //获取工长的用户名
                         //判断工长的性别
