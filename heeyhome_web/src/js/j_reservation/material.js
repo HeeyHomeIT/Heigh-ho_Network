@@ -58,8 +58,12 @@
 				data: {
 					order_id: orderId
 				},
-				success: function(data) {},
-				error: function(data) {}
+				beforeSend:function(){
+					$("#itemlists").addClass("loagbg");
+				},
+				complete:function(){
+					$("#itemlists").removeClass("loagbg");
+				}
 			}).done(function(data) {
 				console.log(data);
 				if(data.data.order_pay_type == 0){ // 未支付 订单未产生需要支付环节（材料可以选择，可以选择自行购买或平台支付）
@@ -92,7 +96,7 @@
 						$this.parents("li").siblings().find("i").removeClass("rep_radiao_check")
 						$this.siblings("i").addClass("rep_radiao_check");
 					});
-                    layer.alert("材料不可选择，可以选择自行购买或平台支付");
+                    layer.msg("材料不可选择，可以选择自行购买或平台支付");
 					self.initTotalSumEvent(); // 求总价
 				}else if (data.data.order_pay_type == 3){ // 支付成功（材料不可选择，不可选择自行购买或平台支付）
 					$("#Jpayment").val("已支付").addClass("alreadyPaid");
@@ -147,7 +151,7 @@
 					$("#meterialFrom").attr("action", PAYURL);
 					$("#meterialFrom").submit();
 				} else {
-                    layer.alert("请先仔细阅读合同条款并勾选确认");
+                    layer.msg("请先仔细阅读合同条款并勾选确认");
 				}
 
 			});
