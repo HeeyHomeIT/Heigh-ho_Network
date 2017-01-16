@@ -673,15 +673,23 @@
                     success: function (data) {
                         if (data && data.code == '000') {
                             //console.log(data.data);
-                            if (parseInt(data.data.score) > 0 && parseInt(data.data.score) <= 3.3) {
+                            if (parseInt(data.data.score) == 2) {
+                                for (var i = 0; i < 1; i++) {
+                                    $('.star i').eq(i).addClass('active_i');
+                                }
+                            } else if (parseInt(data.data.score) == 4) {
                                 for (var i = 0; i < 2; i++) {
                                     $('.star i').eq(i).addClass('active_i');
                                 }
-                            } else if (parseInt(data.data.score) > 3.3 && parseInt(data.data.score) <= 6.7) {
+                            } else if (parseInt(data.data.score) == 6) {
+                                for (var i = 0; i < 3; i++) {
+                                    $('.star i').eq(i).addClass('active_i');
+                                }
+                            } else if (parseInt(data.data.score) == 8) {
                                 for (var i = 0; i < 4; i++) {
                                     $('.star i').eq(i).addClass('active_i');
                                 }
-                            } else {
+                            } else if (parseInt(data.data.score) == 10) {
                                 for (var i = 0; i < 5; i++) {
                                     $('.star i').eq(i).addClass('active_i');
                                 }
