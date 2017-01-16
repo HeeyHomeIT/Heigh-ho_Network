@@ -1309,7 +1309,7 @@
                     judgeNews.isnews();
                     readNews.tobeRead();
                     deleteRecord.singleSelection();
-                    markRead.checkAll();
+//                  markRead.checkAll();
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
             });
         }
