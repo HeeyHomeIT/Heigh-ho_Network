@@ -161,6 +161,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('mywallet/bill', 'WalletController@bill');
     /*单条明细删除*/
     Route::any('mywallet/bill/del', 'WalletController@del');
+    /*我的资产，今日收益*/
+    Route::any('mywallet/materialer', 'WalletController@materialer');
 
     /*材料*/
     //材料列表
