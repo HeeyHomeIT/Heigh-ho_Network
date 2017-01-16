@@ -327,11 +327,14 @@
                         pageHandler.pageContentEvent();
                         billPageHandler.pageContentEvent();
                         shopPageHandler.pageContentEvent();
+                        getPicInfoHandler.picInfo();//获取全景图列表
+                        getBillInfoHandler.billInfoEvent();//获取成本计算列表
+                        getShopInfoHandler.shopInfo();//获取店铺收藏列表
                     }
                 }
-                getShopInfoHandler.shopInfo();//获取店铺收藏列表
                 getPicInfoHandler.picInfo();//获取全景图列表
                 getBillInfoHandler.billInfoEvent();//获取成本计算列表
+                getShopInfoHandler.shopInfo();//获取店铺收藏列表
             }]);
         },
 
@@ -728,33 +731,33 @@
                             $('#women').attr('checked', 'checked');
                         }
                         if (data.data.userinfo_email != null && data.data.userinfo_email != '') {
-                        	var email = data.data.userinfo_email;
-                        	var length =  data.data.userinfo_email.length;
-                            var abb_email = email.substr(0, 3) + "****" + email.substr(length-3, length);//邮箱中间变成*号
+                            var email = data.data.userinfo_email;
+                            var length = data.data.userinfo_email.length;
+                            var abb_email = email.substr(0, 3) + "****" + email.substr(length - 3, length);//邮箱中间变成*号
                             $(".personal_form_list .email").html(abb_email).addClass("apparent");//获取用户的邮箱
                             $(".personal_form_list p a").html("修改绑定");
                         } else {
-                        	$(".personal_form_list .email").removeClass("apparent");
-                        	$(".personal_form_list p a").html("绑定邮箱");
+                            $(".personal_form_list .email").removeClass("apparent");
+                            $(".personal_form_list p a").html("绑定邮箱");
                         }
-                        if(data.data.loc_province != null && data.data.loc_province != '') {
-                        	$('#nowAddress').distpicker({province: data.data.loc_province});                      	
+                        if (data.data.loc_province != null && data.data.loc_province != '') {
+                            $('#nowAddress').distpicker({province: data.data.loc_province});
                         }
-                        if(data.data.loc_city != null && data.data.loc_city != '') {
-                        	$('#nowAddress').distpicker({city: data.data.loc_city});
+                        if (data.data.loc_city != null && data.data.loc_city != '') {
+                            $('#nowAddress').distpicker({city: data.data.loc_city});
                         }
-                        if(data.data.loc_district != null && data.data.loc_district != '') {
-                        	$('#nowAddress').distpicker({district: data.data.loc_district});
+                        if (data.data.loc_district != null && data.data.loc_district != '') {
+                            $('#nowAddress').distpicker({district: data.data.loc_district});
                         }
-                        if(data.data.home_province != null && data.data.home_province != '') {
-                        	$('#homeAddress').distpicker({province: data.data.home_province});
+                        if (data.data.home_province != null && data.data.home_province != '') {
+                            $('#homeAddress').distpicker({province: data.data.home_province});
                         }
-                        if(data.data.home_city != null && data.data.home_city != '') {
-                        	$('#homeAddress').distpicker({city: data.data.home_city});
+                        if (data.data.home_city != null && data.data.home_city != '') {
+                            $('#homeAddress').distpicker({city: data.data.home_city});
                         }
-                        if(data.data.home_district != null && data.data.home_district != '') {
-                        	$('#homeAddress').distpicker({district: data.data.home_district});
-                        }                  
+                        if (data.data.home_district != null && data.data.home_district != '') {
+                            $('#homeAddress').distpicker({district: data.data.home_district});
+                        }
                         $(".personal_form_list .personal_area_detail").val(data.data.loc_address);
                     }
                 },
@@ -897,7 +900,7 @@
                     data: {
                         user_id: USERID,
                         page: 1,
-                        limit: 2
+                        limit: 4
                     },
                     success: function (data) {
                         //console.log(data.data);
@@ -928,7 +931,7 @@
 
             ajax1();
             /* 删除我的收藏成本计算 */
-            $(document).off('click','#collection_del').on('click', '#collection_del', function (e) {
+            $(document).off('click', '#collection_del').on('click', '#collection_del', function (e) {
                 var calculator_results_id = $(e.target).parents('.check_list').attr('calculator_results_id');
                 $.ajax({
                     url: BILLDELURL,
@@ -955,87 +958,84 @@
     /* 获取我的收藏店铺列表 */
     getShopInfoHandler = {
         shopInfo: function () {
-            HHIT_CENTERAPP.controller('collectionController', ['$scope', '$http', function ($scope, $http) {
-                function ajax() {
-                    $.ajax({
-                        url: SHOPCURL,
-                        type: "GET",
-                        async: true,
-                        dataType: 'jsonp',
-                        data: {
-                            user_id: USERID,
-                            page: 1,
-                            limit: 4
-                        },
-                        success: function (data) {
-                            //console.log(data.data);
-                            //data.code = 117;
-                            if (data != null && data.code == '000') {
-                                shop_total = data.data[0].total;
+            function ajax() {
+                $.ajax({
+                    url: SHOPCURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        user_id: USERID,
+                        page: 1,
+                        limit: 4
+                    },
+                    success: function (data) {
+                        //console.log(data.data);
+                        //data.code = 117;
+                        if (data != null && data.code == '000') {
+                            shop_total = data.data[0].total;
 
-                                var vrStr = "";
-                                $.each(data.data, function (i, v) {
-                                    vrStr += spliceShopHandler.spliceStrEvent(v);
-                                });
+                            var vrStr = "";
+                            $.each(data.data, function (i, v) {
+                                vrStr += spliceShopHandler.spliceStrEvent(v);
+                            });
 
-                                $(".shopWrap").html(vrStr);
-                                shopPageHandler.pageContentEvent();
-                            } else if (data.code == '117') {
-                                $('.shop_wrap').remove();
-                                $('.collection_shop_wrap .not_information').show().removeClass('hide');
-                                $('.collection_shop_wrap .not_information_text').html('您现在还没有收藏店铺哦~~');
-                            }
-                        },
-                        error: function (data) {
+                            $(".shopWrap").html(vrStr);
+                            shopPageHandler.pageContentEvent();
+                        } else if (data.code == '117') {
+                            $('.shop_wrap').remove();
+                            $('.collection_shop_wrap .not_information').show().removeClass('hide');
+                            $('.collection_shop_wrap .not_information_text').html('您现在还没有收藏店铺哦~~');
                         }
-                    });
-                }
+                    },
+                    error: function (data) {
+                    }
+                });
+            }
 
-                ajax();
+            ajax();
 
-                /* 删除我的收藏店铺列表 */
-                $(document).off('click','.collection_shop_del').on('click', '.collection_shop_del', function (e) {
-                    var shopId = $(e.target).parents('.collection_shop').attr('shopId');
-                    $.ajax({
-                        url: DSHOPURL,
-                        type: "GET",
-                        async: true,
-                        dataType: 'jsonp',
-                        data: {
-                            user_id: USERID,
-                            shop_id: shopId
-                        },
-                        success: function (data) {
-                            // console.log(shopId);
-                            layer.msg(data.msg);
-                            ajax();
-                            //shopPageHandler.pageContentEvent();
-                        },
-                        error: function (data) {
-                        }
-                    });
-                })
+            /* 删除我的收藏店铺列表 */
+            $(document).off('click', '.collection_shop_del').on('click', '.collection_shop_del', function (e) {
+                var shopId = $(e.target).parents('.collection_shop').attr('shopId');
+                $.ajax({
+                    url: DSHOPURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        user_id: USERID,
+                        shop_id: shopId
+                    },
+                    success: function (data) {
+                        // console.log(shopId);
+                        layer.msg(data.msg);
+                        ajax();
+                        //shopPageHandler.pageContentEvent();
+                    },
+                    error: function (data) {
+                    }
+                });
+            })
 
-            }]);
         }
     };
 
     /* 获取我的收藏全景图列表 */
     getPicInfoHandler = {
         picInfo: function () {
-            HHIT_CENTERAPP.controller('panoramaController', ['$scope', '$http', function ($scope, $http) {
-                function http() {
-                    $http({
-                        method: "JSONP",
-                        url: PANORAMAURL,
-                        params: {
-                            user_id: USERID,
-                            page: 1,
-                            limit: 2
-                        }
-                    }).success(function (data, status) {
-                        /* 如果成功执行 */
-                        //data.code = 117;
+            function ajaxImg() {
+                $.ajax({
+                    url: PANORAMAURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        user_id: USERID,
+                        page: 1,
+                        limit: 12
+                    },
+                    success: function (data) {
                         if (data && data.code === '000') {
                             //console.log(data.data);
                             pic_total = data.data[0].total;//获取总数据
@@ -1052,35 +1052,37 @@
                             $('.complete_before .not_information').show().removeClass('hide');
                             $('.complete_before .not_information_text').html('您现在还没有收藏全景图哦~~');
                         }
-                    }).error(function (data, status) {
-                    });
-                }
-
-                http();
-                $(document).off('click','#pic_del').on('click', '#pic_del', function () {
-                    var $panorama_id = $(this).parent().attr('panorama_id');
-                    $.ajax({
-                        url: DPICURL,
-                        type: "GET",
-                        async: true,
-                        dataType: 'jsonp',
-                        data: {
-                            user_id: USERID,
-                            panorama_id: $panorama_id
-                        },
-                        success: function (data) {
-                            if (data && data.code == '000') {
-                                layer.msg(data.msg);
-                                http();
-                                pageHandler.pageContentEvent();
-                            }
-                        },
-                        error: function (data) {
-                            layer.msg(data.msg);
-                        }
-                    });
+                    },
+                    error: function (data) {
+                        layer.msg(data.msg);
+                    }
                 });
-            }]);
+            }
+
+            ajaxImg();
+            $(document).off('click', '#pic_del').on('click', '#pic_del', function () {
+                var $panorama_id = $(this).parent().attr('panorama_id');
+                $.ajax({
+                    url: DPICURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        user_id: USERID,
+                        panorama_id: $panorama_id
+                    },
+                    success: function (data) {
+                        if (data && data.code == '000') {
+                            layer.msg(data.msg);
+                            ajaxImg();
+                            pageHandler.pageContentEvent();
+                        }
+                    },
+                    error: function (data) {
+                        layer.msg(data.msg);
+                    }
+                });
+            });
         }
     };
 
@@ -1171,11 +1173,11 @@
             $(".main_content .content").on("click", function () {
                 var cnt = $(this).siblings(".cnt").html();
                 layer.open({
-					type: 1,
-					skin: 'layui-layer-rim', //加上边框
-					area: ['420px', '240px'], //宽高
-					content: '<p>'+cnt+'</p>'
-				});
+                    type: 1,
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['420px', '240px'], //宽高
+                    content: '<p>' + cnt + '</p>'
+                });
                 if ($(this).parent().attr("data-isread") == "0") { //未读消息
                     var id = $(this).parent().attr("data-id");
                     var $now = $(this).parent();
@@ -1700,7 +1702,7 @@
     pageHandler = {
         pageContentEvent: function () {
             $(".page_div3").empty().paging({
-                total: Math.ceil(pic_total / 2), //全部页数
+                total: Math.ceil(pic_total / 12), //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
                 centerBgColor: "#fff",
                 centerFontColor: "#000",
@@ -1733,7 +1735,7 @@
                 ajaxData: {
                     user_id: USERID,
                     page: 1,
-                    limit: 2
+                    limit: 12
                 },   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
                 dataOperate: function oprate(data) {
                     var vrStr = '';
@@ -1767,12 +1769,12 @@
     };
 
     /**
-     * 我的收藏结算清单分页
+     * 我的收藏成本计算分页
      */
     billPageHandler = {
         pageContentEvent: function () {
             $(".page_div").empty().paging({
-                total: Math.ceil(bill_total / 2), //全部页数
+                total: Math.ceil(bill_total / 4), //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
                 centerBgColor: "#fff",
                 centerFontColor: "#000",
@@ -1805,7 +1807,7 @@
                 ajaxData: {
                     user_id: USERID,
                     page: 1,
-                    limit: 2
+                    limit: 4
                 },   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
                 dataOperate: function oprate(data) {
                     var vrStr = '';
@@ -1819,7 +1821,7 @@
     };
 
     /**
-     * 我的收藏结算清单拼接内容
+     * 我的收藏成本计算拼接内容
      */
     spliceBillHandler = {
         spliceStrEvent: function (value) {
