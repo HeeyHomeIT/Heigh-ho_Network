@@ -304,11 +304,10 @@
                     id: id
                 },
                 success: function (data) {
-                    console.log(data);
                     if (data != null && data.code == '000') {
                         layer.msg(data.msg);
                         element.remove();
-
+						CRUDInfoHandler.queryInfoEvent(); // 查询信息初始化		
                     } else {
                         layer.msg(data.msg);
                     }
