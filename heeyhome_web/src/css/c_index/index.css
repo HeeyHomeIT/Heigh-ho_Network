@@ -240,9 +240,9 @@
 }
 
 .pic_content .pic_icon {
-	width: 60px;
-	height: 60px;
-	border-radius: 50%
+	background-position: -72px -7px;
+	width: 54px;
+    height: 54px;
 }
 
 .box_picture_1 .pic_icon {
