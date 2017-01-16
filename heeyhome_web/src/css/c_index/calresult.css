@@ -63,8 +63,18 @@ body #crcontainer {
     width: 45px;
     height: 58px;
     text-indent: -999px;
-    /* background: url(../img/icon_cal.png) no-repeat; */
-    background: #fff
+}
+
+#crcontent .cr_condiv > div.cr_content > div.cr_title > a > em.icon-rg {
+	background-position: -11px -99px;
+}
+
+#crcontent .cr_condiv > div.cr_content > div.cr_title > a > em.icon-fc {
+	background-position: -81px -105px;
+}
+
+#crcontent .cr_condiv > div.cr_content > div.cr_title > a > em.icon-zc {
+	background-position: -11px -176px;
 }
 
 #crcontent .cr_condiv > div.cr_content > div.cr_title > a > dl {
@@ -105,8 +115,8 @@ body #crcontainer {
 #crcontent .cr_condiv > div.cr_content > div.cr_con .plan_one > i {
     width: 12px;
     height: 12px;
-    background: url(../img/tc_newDetail.png) no-repeat;
-    background-position: -8px -448px;
+    background: url(../img/sprite-img.png) no-repeat;
+    background-position: -69px -273px;
     margin: 0 7px -1px 20px;
     position: relative;
     z-index: 999
@@ -254,9 +264,15 @@ body #crcontainer {
     height: 118px;
     display: block;
     text-align: center;
-    background-image: url("../../css/img/calresult_arrow.png");
-    background-repeat: no-repeat;
-    background-position: 15px 90px;
+}
+
+.sl_wcontent .wcontent_title em {
+	width: 22px;
+    height: 22px;
+    background-position: -332px -12px;
+    display: block;
+    margin: auto;
+    margin-top: 5px;
 }
 
 .sl_wcontent .wcontent_detail {
@@ -304,16 +320,16 @@ body #crcontainer {
     -moz-transition: all .3s linear;
 }
 
-.sl_wcontentActive .wcontent_title {
-    background-image: url("../../css/img/calresult_arrowactive.png");
+.sl_wcontentActive .wcontent_title em {
+    background-position: -282px -12px;
 }
 
 .sl_wcontentActive .wcontent_title span {
     color: white;
 }
 
-.sl_wcontent .wcontent_title:hover {
-    background-image: url("../../css/img/calresult_arrowactive.png");
+.sl_wcontent .wcontent_title:hover em {
+    background-position: -282px -12px;
 }
 
 .sl_wcontent .wcontent_title:hover span {
@@ -348,47 +364,47 @@ body #crcontainer {
 }
 
 .sl_wcontent .wcontent_detail1 {
-    background: url("../../css/img/calresult_foreman.png") no-repeat center center;
+    background-position: -200px -216px;
 }
 
 .sl_wcontent .wcontent_detail2 {
-    background: url("../../css/img/calresult_ele.png") no-repeat center center;
+    background-position: -200px -113px;
 }
 
 .sl_wcontent .wcontent_detail3 {
-    background: url("../../css/img/calresult_bri.png") no-repeat center center;
+    background-position: -202px -57px;
 }
 
 .sl_wcontent .wcontent_detail4 {
-    background: url("../../css/img/calresult_wood.png") no-repeat center center;
+    background-position: -152px -7px;
 }
 
 .sl_wcontent .wcontent_detail5 {
-    background: url("../../css/img/calresult_painter.png") no-repeat center center;
+    background-position: -146px -112px;
 }
 
 .sl_wcontent .wcontent_detail6 {
-    background: url("../../css/img/calresult_hand.png") no-repeat center center;
+    background-position: -145px -214px;
 }
 
 .sl_wcontent .wcontent_detail7 {
-    background: url("../../css/img/calresult_elematerial.png") no-repeat center center;
+    background-position: 1px -257px;
 }
 
 .sl_wcontent .wcontent_detail8 {
-    background: url("../../css/img/calresult_elematerial1.png") no-repeat center center;
+    background-position: -200px -157px;
 }
 
 .sl_wcontent .wcontent_detail9 {
-    background: url("../../css/img/calresult_brimaterial.png") no-repeat center center;
+    background-position: -143px -156px;
 }
 
 .sl_wcontent .wcontent_detail10 {
-    background: url("../../css/img/calresult_woodmaterial.png") no-repeat center center;
+    background-position: -203px -3px;
 }
 
 .sl_wcontent .wcontent_detail11 {
-    background: url("../../css/img/calresult_paintermaterial.png") no-repeat center center;
+    background-position: -149px -50px;
 }
 
 .slide_content {
