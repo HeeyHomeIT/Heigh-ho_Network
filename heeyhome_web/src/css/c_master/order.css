@@ -148,7 +148,17 @@
     margin: 0 auto;
     border-radius: 2px;
     margin-bottom: 180px;
+    margin-top: 60px;
+}
+
+.order_submit:hover {
     box-shadow: 2px 2px 4px #999;
+    color: white;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
 }
 
 .wrap {
@@ -481,7 +491,7 @@
 }
 
 .owner_detail .owner_right p {
-	width: 180px;
+    width: 180px;
 }
 
 .owner_detail > div:last-child {

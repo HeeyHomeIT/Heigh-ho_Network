@@ -573,8 +573,8 @@ a:focus {
 }
 
 .personal_form_list .apparent {
-	color: #4B4948;
-	font-size: 14px;
+    color: #4B4948;
+    font-size: 14px;
 }
 
 .personal_form_list .personal_tel {
@@ -678,6 +678,16 @@ a:focus {
     display: block;
     font-size: 14px;
     margin-top: 50px;
+}
+
+.personal_submit:hover {
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
 }
 
 .personal_content_title {
@@ -805,6 +815,16 @@ a:focus {
     color: white;
     border-radius: 4px;
     margin-top: 38px;
+}
+
+.head_submit:hover {
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
 }
 
 .update_head_right {
