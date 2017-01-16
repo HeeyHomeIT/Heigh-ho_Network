@@ -135,8 +135,8 @@
                 e.stopPropagation();//阻止冒泡事件
             });
             /* 点击页面中的a链接 */
-            $('.wages a').click(function (e) {
-                var i = $('.wages a').index($(this));
+            $('.content_materials').click(function (e) {
+                var i = $('.content_materials').index($(this));
                 var $nslideBar = $(this).parents('#crcontainer').next("#slide_bar");
                 var $sl_wcontent = $nslideBar.find('.sl_wcontent');
                 $sl_wcontent.removeClass('sl_wcontentActive');

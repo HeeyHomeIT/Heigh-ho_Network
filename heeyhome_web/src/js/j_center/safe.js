@@ -730,6 +730,27 @@
                     }
                 }).error(function (data, status) {
                 });
+                /* 判断用户有没有绑定邮箱 */
+                $.ajax({
+                    url: USERDATAURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        user_id: $.base64.decode($.cookie("userId"))
+                    },
+                    success: function (data) {
+                        if (data && data.code == '000') {
+                            console.log(data.data);
+                            email = data.data.userinfo_email; //获取用户的邮箱
+                            if (email != null) {
+                                $('#email').html('立即修改');
+                            }
+                        }
+                    },
+                    error: function (data) {
+                    }
+                });
             }]);
         }
     };
