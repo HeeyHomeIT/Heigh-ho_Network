@@ -773,11 +773,14 @@ a:focus {
     border-radius: 4px;
 }
 
-.local_update .update_img img {
+.local_update .update_img em {
+	display: inline-block;
     width: 23px;
     height: 17px;
+    background-position: -481px -16px;
     vertical-align: middle;
     margin-right: 10px;
+    margin-top: -5px;
 }
 
 .local_update .spot_shoot {
@@ -821,7 +824,6 @@ a:focus {
     width: 304px;
     height: 207px;
     border: 1px solid #b2b2b2;
-    background: url("../../css/img/imgWrap_bg.png") no-repeat 99px 50px;
     margin-bottom: 10px;
     margin-top: 50px;
 }
@@ -1014,6 +1016,13 @@ a:focus {
     opacity: 0;
 }
 
+.complete_del em {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background-position: -504px -109px;
+}
+
 .detail_img, .detail_img img, .detail_bg {
     width: 178px;
     height: 178px;
@@ -1165,11 +1174,13 @@ a:focus {
     margin-left: 30px;
 }
 
-.check_list_title .collection_del img {
-    width: 17px;
-    height: 17px;
+.check_list_title .collection_del em {
     vertical-align: middle;
     margin-top: -4px;
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background-position: -504px -109px;
 }
 
 .check_list_content {
@@ -1256,6 +1267,13 @@ a:focus {
 
 .shop_evaluation a {
     color: #a5a5a5;
+}
+
+.shop_evaluation a em {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    background-position: -466px -197px;
 }
 
 .shop_evaluation a span {
@@ -1421,8 +1439,11 @@ a:focus {
     margin-left: 15px;
 }
 
-.delete img {
-    vertical-align: inherit;
+.delete em {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    background-position: -465px -156px;
 }
 
 .information_choose {
@@ -1559,7 +1580,7 @@ a:focus {
     width: 24px;
     height: 18px;
     margin-right: 12px;
-    background: url(../img/icon-id.png)
+    background-position: -562px -47px;
 }
 
 .security_top ul li:nth-child(2) em {
@@ -1569,7 +1590,7 @@ a:focus {
     width: 18px;
     height: 24px;
     margin-right: 18px;
-    background: url(../img/icon-gpassword.png)
+    background-position: -561px -205px;
 }
 
 .security_top ul li:nth-child(3) em {
@@ -1579,7 +1600,7 @@ a:focus {
     position: absolute;
     top: 32px;
     margin-right: 19px;
-    background: url(../img/icon-bphone.png)
+    background-position: -562px -99px
 }
 
 .security_top ul li:nth-child(4) em {
@@ -1589,7 +1610,7 @@ a:focus {
     position: absolute;
     top: 40px;
     margin-right: 12px;
-    background: url(../img/icon-bemail.png)
+    background-position: -562px -156px
 }
 
 .security_top ul li p {
@@ -1869,10 +1890,13 @@ a:focus {
     margin-top: 36px;
 }
 
-.address_add a img {
+.address_add a em {
     vertical-align: middle;
-    margin-right: 9px;
     margin-left: 8px;
+    display: inline-block;
+    width: 24px;
+    height: 18px;
+    background-position: -486px -65px
 }
 
 .address_add a:hover {
@@ -2519,11 +2543,12 @@ a:focus {
 
 .order_content .order_box .ordercnt_title span:nth-child(5):before {
     position: absolute;
-    content: url(../img/icon-store.png);
+    content: '';
+    background: url(../img/sprite-details.png) -522px -21px no-repeat;
     width: 14px;
     height: 12px;
     left: -22px;
-    top: 1px;
+    top: 11px;
     display: block
 }
 

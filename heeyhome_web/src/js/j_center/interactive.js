@@ -1275,7 +1275,7 @@
             vrStr += '<span class="content">' + value.msgtitle + '</span>';
             vrStr += '<span class="time">' + value.sendtime + '</span>';
             vrStr += '<span class="cnt">' + value.msgcontent + '</span>';
-            vrStr += '<a class="delete" href="javascript:;"><img src="css/img/delete.png"></a>';
+            vrStr += '<a class="delete" href="javascript:;"><em class="sprite-details"></em></a>';
             vrStr += '</div>';
             return vrStr;
         }
@@ -1771,7 +1771,7 @@
         spliceStrEvent: function (value) {
             var vrStr = '<div class="works_detail works_detail_first fl complete_img" panorama_id="' + value.panorama_id + '">';
             vrStr += '	<a id="pic_del" class="complete_del" href="javascript:;">';
-            vrStr += '		<img src="css/img/my_work_del.png">';
+            vrStr += '		<em class="sprite-details"></em>';
             vrStr += '		</a>';
             vrStr += '		<div class="detail_img">';
             vrStr += '	<img src="http://hyu2387760001.my3w.com/' + value.panorama_img + '">';
@@ -1851,7 +1851,7 @@
             vrStr += '		<span class="balcony">阳台</span>';
             vrStr += '			<span class="clearing_time">结算时间</span>';
             vrStr += '			<a id="collection_del" class="collection_del" href="javascript:;">';
-            vrStr += '			<img src="css/img/my_work_del.png">';
+            vrStr += '			<em class="sprite-details"></em>';
             vrStr += '			</a>';
             vrStr += '			</div><!--check_list_title-->';
             vrStr += '			<div class="check_list_content">';
@@ -1960,7 +1960,7 @@
             vrStr += '			<p>综合评价<span>' + value.shop_score.overallmerit + '</span>分</p>';
             vrStr += '			</div><!--shop_quality_wrap-->';
             vrStr += '			<a class="collection_shop_del fl" href="javascript:;">';
-            vrStr += '			<img src="css/img/collection_shop_del.png">';
+            vrStr += '			<em class="sprite-details"></em>';
             vrStr += '			</a>';
             vrStr += '			</div><!--collection_shop_right-->';
             vrStr += '			</div><!--collection_shop-->';
