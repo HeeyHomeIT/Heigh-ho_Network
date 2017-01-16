@@ -3334,9 +3334,6 @@ div.clear:after, div.clear:before {
     padding-left: 8px;
 }
 
-/*.security_top .security_score i:last-of-type {*/
-/*background: url(../img/icon-astar.png);*/
-/*}*/
 .security_top .security_score .active_i {
     color: #eec988;
 }
