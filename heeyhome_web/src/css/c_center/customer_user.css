@@ -495,7 +495,6 @@ a:focus {
 .rendering b i, .bill b i, .store b i {
     font-size: 18px;
     font-weight: bold;
-    vertical-align: middle;
 }
 
 /* 个人资料样式 */
@@ -2832,4 +2831,8 @@ a:focus {
 	font-size: 14px;
 	font-family: FZLTHJW;
 	padding: 15px;
+}
+
+.loagbg {
+	height: 202px;
 }

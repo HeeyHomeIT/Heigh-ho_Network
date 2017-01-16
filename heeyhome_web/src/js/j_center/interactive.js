@@ -420,7 +420,7 @@
                 success: function (data) {
                     if (data && data.code == '000') {
                         //console.log(data.data);
-                        $('.left_img img').attr('src', 'http://hyu2387760001.my3w.com/' + data.data.user_img);
+                        $(".left_img").html('<img src="http://hyu2387760001.my3w.com/'+data.data.user_img+'">');
                     }
                 },
                 error: function (data) {
@@ -436,6 +436,11 @@
                 dataType: "jsonp",
                 data: {
                     user_id: USERID
+                },
+                beforeSend:function(){
+                	$(".my_order_content").addClass("loagbg");
+                	$(".order_content_title ").addClass("display");
+                	$(".order_content_cnt ").addClass("display");
                 },
                 success: function (data) {
                     //data.code = 117;
@@ -455,7 +460,7 @@
                             success: function (data) {
                                 if (data && data.code == '000') {
                                     var src = BASEURL + data.data[0].shop_img;
-                                    $(".order_content_title .order_title_left img").attr("src", src);
+                                    $(".order_content_title .order_title_left .order_title_left_img").html('<img src="'+src+'">');
                                 } else {
                                     layer.msg(data.msg);
                                 }
@@ -596,6 +601,11 @@
                     } else {
                         layer.alert(data.msg);
                     }
+                },
+                complete:function(){
+                	$(".my_order_content").removeClass("loagbg");
+                	$(".order_content_title ").removeClass("display");
+                	$(".order_content_cnt ").removeClass("display");
                 },
                 error: function (data) {
                 }
