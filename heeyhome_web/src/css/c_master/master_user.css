@@ -831,8 +831,8 @@
 
 .container .only_support {
     color: #737373;
-    margin-top: 15px;
-    margin-bottom: 23px;
+    margin-top: 30px;
+    margin-bottom: 40x;
 }
 
 .update_head_left .imgWrap {
@@ -841,6 +841,7 @@
     border: 1px solid #b2b2b2;
     background: url("../../css/img/imgWrap_bg.png") no-repeat 99px 50px;
     margin-bottom: 10px;
+    margin-top: 50px;
 }
 
 .container .recommend_head {
@@ -877,7 +878,7 @@
     background-color: #3d3d3d;
     color: white;
     border-radius: 4px;
-    margin-top: 38px;
+    margin-top: 150px;
 }
 
 .head_submit:hover {
