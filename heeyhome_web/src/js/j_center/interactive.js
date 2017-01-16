@@ -324,17 +324,19 @@
                         $(".check_list_wrap").hide();
                         $(".collection_shop_wrap").hide();
                         $(".works_complete_wrap >div:eq(" + ($(this).index()) + ")").show().removeClass('hide');
-                        pageHandler.pageContentEvent();
-                        billPageHandler.pageContentEvent();
-                        shopPageHandler.pageContentEvent();
-                        getPicInfoHandler.picInfo();//获取全景图列表
-                        getBillInfoHandler.billInfoEvent();//获取成本计算列表
-                        getShopInfoHandler.shopInfo();//获取店铺收藏列表
+                        if($(this).index() == 0) {
+                        	getPicInfoHandler.picInfo();//获取全景图列表
+                        } else if($(this).index() == 1) {
+                        	getBillInfoHandler.billInfoEvent();//获取成本计算列表
+                        } else if($(this).index() == 2) {
+                        	getShopInfoHandler.shopInfo();//获取店铺收藏列表
+                        }
+//                      getPicInfoHandler.picInfo();//获取全景图列表
+//                      getBillInfoHandler.billInfoEvent();//获取成本计算列表
+//                      getShopInfoHandler.shopInfo();//获取店铺收藏列表
                     }
                 }
                 getPicInfoHandler.picInfo();//获取全景图列表
-                getBillInfoHandler.billInfoEvent();//获取成本计算列表
-                getShopInfoHandler.shopInfo();//获取店铺收藏列表
             }]);
         },
 
@@ -991,6 +993,10 @@
                             });
 
                             $(".shopWrap").html(vrStr);
+                            $(".shopWrap .collection_shop").on("click",function() {
+                            	var pos = $(this).attr("shopid");
+                            	window.location.href = "view_shop.html#/shopdetails?pos=" + pos;
+                            });
                             shopPageHandler.pageContentEvent();
                         } else if (data.code == '117') {
                             $('.shop_wrap').remove();
@@ -1909,6 +1915,10 @@
                         vrStr += spliceShopHandler.spliceStrEvent(v);
                     });
                     $(".shopWrap").html(vrStr);
+                    $(".shopWrap .collection_shop").on("click",function() {
+                        var pos = $(this).attr("shopid");
+                        window.location.href = "view_shop.html#/shopdetails?pos=" + pos;
+                    });
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
             });
         }
