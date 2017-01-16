@@ -743,6 +743,16 @@
     margin-bottom: 20px;
 }
 
+.personal_submit:hover {
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+}
+
 .personal_content_title {
     margin-top: 28px;
 }
@@ -868,6 +878,16 @@
     color: white;
     border-radius: 4px;
     margin-top: 38px;
+}
+
+.head_submit:hover {
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
 }
 
 .update_head_right {
@@ -1251,6 +1271,16 @@
     border-radius: 4px;
     margin-top: 25px;
     margin-left: 20px;
+}
+
+.shop_save:hover {
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
 }
 
 .shop_detail_style .edit, .shop_detail_area .area_edit, .personal_area_list .area_edit {
