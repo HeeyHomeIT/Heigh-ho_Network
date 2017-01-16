@@ -1179,11 +1179,13 @@
     border-radius: 0;
     font-size: 80px;
     text-align: center;
+    cursor: pointer;
 }
 
 .renderings_show_wrap .renderings_img input {
     width: 86px;
     height: 86px;
+    font-size: 0;
 }
 
 #renderings_img {
@@ -1441,6 +1443,7 @@
     position: absolute;
     right: 0;
     top: 0;
+    font-size: 32px;
 }
 
 .add_technologycnt .do_please {
