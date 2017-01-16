@@ -993,10 +993,10 @@
                             });
 
                             $(".shopWrap").html(vrStr);
-                            $(".shopWrap .collection_shop").on("click",function() {
-                            	var pos = $(this).attr("shopid");
-                            	window.location.href = "view_shop.html#/shopdetails?pos=" + pos;
-                            });
+                            $(".shopWrap .collection_shop .left_img").on("click",function() {
+		                        var pos = $(this).parent().attr("shopid");
+		                        window.location.href = "view_shop.html#/shopdetails?pos=" + pos;
+		                    });
                             shopPageHandler.pageContentEvent();
                         } else if (data.code == '117') {
                             $('.shop_wrap').remove();
@@ -1915,8 +1915,8 @@
                         vrStr += spliceShopHandler.spliceStrEvent(v);
                     });
                     $(".shopWrap").html(vrStr);
-                    $(".shopWrap .collection_shop").on("click",function() {
-                        var pos = $(this).attr("shopid");
+                    $(".shopWrap .collection_shop .left_img").on("click",function() {
+                        var pos = $(this).parent().attr("shopid");
                         window.location.href = "view_shop.html#/shopdetails?pos=" + pos;
                     });
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
@@ -1929,7 +1929,7 @@
      */
     spliceShopHandler = {
         spliceStrEvent: function (value) {
-            var vrStr = '<div class="collection_shop clearfix" shopId="' + value.shop_id + '">';
+            var vrStr = '<div class="collection_shop clearfix" shopId="' + value.shop_id + '" title="点击头像进入店铺">';
             vrStr += '	<div class="left_img fl">';
             vrStr += '	<img src="http://hyu2387760001.my3w.com/' + value.img + '">';
             vrStr += '		</div><!--left_img-->';
