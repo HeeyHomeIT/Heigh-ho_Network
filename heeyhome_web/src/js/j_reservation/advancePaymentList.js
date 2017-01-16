@@ -62,7 +62,7 @@
                     $("#orderFrom").attr("action", PAYURL);
                     $("#orderFrom").submit();
                 } else {
-                    alert("请先仔细阅读合同条款并勾选确认");
+                    layer.alert("请先仔细阅读合同条款并勾选确认");
                 }
 
             });
@@ -70,7 +70,7 @@
                 if ($("#checkYt").is(':checked')) {
                     window.open('refund.html#/refund/home/refund_step_1');
                 } else {
-                    alert("请先仔细阅读合同条款并勾选确认");
+                    layer.alert("请先仔细阅读合同条款并勾选确认");
                 }
 
             });

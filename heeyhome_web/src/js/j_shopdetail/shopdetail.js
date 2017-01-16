@@ -399,7 +399,7 @@
                 });
                 if ($.inArray(ucateid, tempArr) + 1) { // 工种类型存在
                     if ($.inArray(uid, Object.keys(worksObj)) + 1) { // 添加的用户存在
-                        alert("该用户已经添加在你的购物车里了，请不要重复添加");
+                        layer.alert("该用户已经添加在你的购物车里了，请不要重复添加");
                         return;
                     }
                     $("#cata" + ucateid + " .needclist").append(self.spliceWdataEvent(ucateid, uid, uinfo));
@@ -472,7 +472,7 @@
          */
         initDeleteMworkEvent: function () {
             $(document).on("click", ".needclose", function () {
-                alert($(this).parents(".needclist").children("div").length);
+                layer.alert($(this).parents(".needclist").children("div").length);
                 var _wObj = JSON.parse(sessionStorage.getItem("wObj"));
                 var id = $(this).parent().data("nid");
                 delete _wObj[id];//删除属性

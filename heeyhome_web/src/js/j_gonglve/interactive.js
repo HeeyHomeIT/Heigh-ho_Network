@@ -51,7 +51,7 @@
 						sessionStorage.setItem("describe",data.data[0].cate_describe);
                 		sessionStorage.setItem("name",data.data[0].cate_name);
                     } else {  /* 如果失败执行 */
-                        alert(data.msg);
+                        layer.alert(data.msg);
                     }
                 }).error(function (data, status) {
                 });
@@ -94,7 +94,7 @@
                         $('.gonglve_title').html(data.data.article_title);
                         $('.gonglve_content').html(data.data.article_content);
                     } else {  /* 如果失败执行 */
-                        alert(data.msg);
+                        layer.alert(data.msg);
                     }
                 }).error(function (data, status) {
                 });
@@ -128,7 +128,7 @@
                     $(".right_wrap").html(vrStr);
                     pageHandler.pageContentEvent(id);
                 } else {  /* 如果失败执行 */
-                    alert(data.msg);
+                    layer.alert(data.msg);
                 }
             }).error(function (data, status) {
             });

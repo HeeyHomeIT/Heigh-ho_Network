@@ -806,7 +806,7 @@
                         if (data != null || data.code == '000') {
                             layer.msg(data.msg);
                         } else {
-                            alert(data.msg)
+                            layer.msg(data.msg)
                         }
                     },
                     complete: function () {

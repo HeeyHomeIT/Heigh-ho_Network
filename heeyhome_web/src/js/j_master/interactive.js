@@ -524,7 +524,7 @@
                         if (!/image\/\w+/.test(file.type)) {
                             inputImg.parent().parent().css('background', '');
                             inputImg.parent().parent().removeClass('clear');
-                            alert("请确保文件为图像类型");
+                            layer.alert("请确保文件为图像类型");
                             //alertError(swal);//弹出文件格式错误通知
                             inputImg.val('');//清空file选择的文件
                             return false;
@@ -2476,33 +2476,33 @@
                 success: function (data) {
                     if (data != null && data.code == '000') {
                         if ($(".staff_picture .add_picture").attr("data-flag") == '0') {
-                            alert("头像格式不正确");
+                            layer.alert("头像格式不正确");
                             flag = false;
                         } else if ($name == "" || $name == null) {
-                            alert("姓名不能为空");
+                            layer.alert("姓名不能为空");
                             flag = false;
                         } else if ($age == "" || $age == null) {
-                            alert("年龄不能为空");
+                            layer.alert("年龄不能为空");
                             flag = false;
                         } else if ($worktime == "" || $worktime == null) {
-                            alert("从业时间不能为空");
+                            layer.alert("从业时间不能为空");
                             flag = false;
                         } else if ($phone == "" || $phone == null) {
-                            alert("手机号不能为空");
+                            layer.alert("手机号不能为空");
                             flag = false;
                         } else if ($idcard == "" || $idcard == null) {
-                            alert("身份证号不能为空");
+                            layer.alert("身份证号不能为空");
                             flag = false;
                         } else if ($bankname == "" || $bankname == null) {
-                            alert("开户银行不能为空");
+                            layer.alert("开户银行不能为空");
                             flag = false;
                         } else if ($bankcard == "" || $bankcard == null) {
-                            alert("银行卡号不能为空");
+                            layer.alert("银行卡号不能为空");
                             flag = false;
                         }
                         for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                             if ($(".edit_bottom li input").eq(i).val() == "" || $(".edit_bottom li input").eq(i).val() == null) {
-                                alert("价格明细表有项未填");
+                                layer.alert("价格明细表有项未填");
                                 flag = false;
                                 break;
                             }
@@ -2552,10 +2552,10 @@
                                     },
                                     success: function (data) {
                                         if (data != null && data.code == '000') {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                             window.location.href = "#/master/mteam";
                                         } else {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                         }
                                     }
                                 });
@@ -2586,10 +2586,10 @@
                                     },
                                     success: function (data) {
                                         if (data != null && data.code == '000') {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                             window.location.href = "#/master/mteam";
                                         } else {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                         }
                                     }
                                 });
@@ -2642,10 +2642,10 @@
                                     },
                                     success: function (data) {
                                         if (data != null && data.code == '000') {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                             window.location.href = "#/master/mteam";
                                         } else {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                         }
                                     }
                                 });
@@ -2686,10 +2686,10 @@
                                     },
                                     success: function (data) {
                                         if (data != null && data.code == '000') {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                             window.location.href = "#/master/mteam";
                                         } else {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                         }
                                     }
                                 });
@@ -2728,10 +2728,10 @@
                                     },
                                     success: function (data) {
                                         if (data != null && data.code == '000') {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                             window.location.href = "#/master/mteam";
                                         } else {
-                                            alert(data.msg);
+                                            layer.alert(data.msg);
                                         }
                                     }
                                 });
@@ -3078,7 +3078,7 @@
                             if (!/image\/\w+/.test(file.type)) {
                                 inputImg.parent().parent().css('background', '');
                                 inputImg.parent().parent().removeClass('clear');
-                                alert("请确保文件为图像类型");
+                                layer.alert("请确保文件为图像类型");
                                 //alertError(swal);//弹出文件格式错误通知
                                 inputImg.val('');//清空file选择的文件
                                 return false;
