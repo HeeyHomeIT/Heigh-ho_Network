@@ -1929,7 +1929,7 @@
      */
     spliceShopHandler = {
         spliceStrEvent: function (value) {
-            var vrStr = '<div class="collection_shop clearfix" shopId="' + value.shop_id + '" title="点击头像进入店铺">';
+            var vrStr = '<div class="collection_shop clearfix" shopId="' + value.shop_id + '">';
             vrStr += '	<div class="left_img fl">';
             vrStr += '	<img src="http://hyu2387760001.my3w.com/' + value.img + '">';
             vrStr += '		</div><!--left_img-->';
