@@ -35,6 +35,7 @@ data         {
                     order_step      订单步骤    
                     order_time      订单事件
                     pay_amount      金额
+                    refund_status   退款状态（0：未提交退款信息，1：等待退款，2：退款成功）
              }
 msg          查询成功
 )
