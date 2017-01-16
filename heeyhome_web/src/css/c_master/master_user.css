@@ -4232,4 +4232,9 @@ div.clear:after, div.clear:before {
     color: white;
 }
 
-
+.layui-layer-content p {
+	color: #4B4948;
+	font-size: 14px;
+	font-family: FZLTHJW;
+	padding: 15px;
+}

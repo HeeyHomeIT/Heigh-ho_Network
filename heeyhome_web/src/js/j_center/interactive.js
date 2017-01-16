@@ -1170,7 +1170,12 @@
         tobeRead: function () {
             $(".main_content .content").on("click", function () {
                 var cnt = $(this).siblings(".cnt").html();
-                layer.alert(cnt);
+                layer.open({
+					type: 1,
+					skin: 'layui-layer-rim', //加上边框
+					area: ['420px', '240px'], //宽高
+					content: '<p>'+cnt+'</p>'
+				});
                 if ($(this).parent().attr("data-isread") == "0") { //未读消息
                     var id = $(this).parent().attr("data-id");
                     var $now = $(this).parent();

@@ -2826,3 +2826,10 @@ a:focus {
 .img_wrap .page_number {
     margin: 40px 0 80px 0;
 }
+
+.layui-layer-content p {
+	color: #4B4948;
+	font-size: 14px;
+	font-family: FZLTHJW;
+	padding: 15px;
+}
