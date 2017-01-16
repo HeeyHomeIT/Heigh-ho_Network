@@ -117,9 +117,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     url: "/refund_step_1",
                     views: {
                         'refund_head': {
-                            templateUrl: 'view/v_refund/refund_step_1.html',
-                            controller: 'refund',
-                            controllerAs: 'refund'
+                            templateUrl: 'view/v_refund/refund_step_1.html'
                         }
                     }
                 })
@@ -127,9 +125,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     url: "/refund_step_2",
                     views: {
                         'refund_head': {
-                            templateUrl: 'view/v_refund/refund_step_2.html',
-                            controller: 'refund',
-                            controllerAs: 'refund'
+                            templateUrl: 'view/v_refund/refund_step_2.html'
                         }
                     }
                 })
@@ -137,9 +133,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     url: "/refund_step_3",
                     views: {
                         'refund_head': {
-                            templateUrl: 'view/v_refund/refund_step_3.html',
-                            controller: 'refund',
-                            controllerAs: 'refund'
+                            templateUrl: 'view/v_refund/refund_step_3.html'
                         }
                     }
                 })

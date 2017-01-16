@@ -25,6 +25,7 @@
             var self = this;
             self.initWebDataEvent(); // 页面数据初始化
             self.initPaySumbitEvent(); // 支付
+            self.initRefundEvent(); // 退款
 
         },
         /**
@@ -74,6 +75,19 @@
                 }
 
             });
+        },
+        /**
+         * 退款
+         */
+        initRefundEvent: function () {
+            $(document).off("click", "#Rsubmit").on("click", "#Rsubmit", function () {
+                if ($("#checkYt").is(':checked')) {
+                    window.open('refund.html#/refund/home/refund_step_1');
+                } else {
+                    layer.msg("请先仔细阅读合同条款并勾选确认");
+                }
+
+            });
         }
     };
     getDataForAjaxHandler = {
@@ -93,15 +107,15 @@
                 }
             }).done(function (data) {
                 console.log(data);
-                if(data.code == 000){
-                	pc.splicePayDetailsDataEvent(data.data.data_list, "工长");
-	                pc.splicePayMoneyDataEvent(data.data.data_list["需付款"]);
-	                $(document).on("click", ".titlelist li", function () {
-	                    pc.splicePayDetailsDataEvent(data.data.data_list, $(this).find("a").text());
-	                    $(this).addClass("payment_on").siblings().removeClass("payment_on");
-	                });
-                }else{
-                	$(".paymentList_wrap ").html('<div class="nullpage"><i>&nbsp;</i><span>订单号不存在~</span></div>');
+                if (data.code == 000) {
+                    pc.splicePayDetailsDataEvent(data.data.data_list, "工长");
+                    pc.splicePayMoneyDataEvent(data.data.data_list["需付款"]);
+                    $(document).on("click", ".titlelist li", function () {
+                        pc.splicePayDetailsDataEvent(data.data.data_list, $(this).find("a").text());
+                        $(this).addClass("payment_on").siblings().removeClass("payment_on");
+                    });
+                } else {
+                    $(".paymentList_wrap ").html('<div class="nullpage"><i>&nbsp;</i><span>订单号不存在~</span></div>');
                 }
             });
         }
@@ -172,7 +186,7 @@
                     vrStr += '</tr>';
                 }
             });
-            if (order_step == '17'&& value['总计/元'] < 0) { //如果到油漆工完工阶段且金额为负，则可以退款
+            if (order_step == '17' && value['总计/元'] < 0) { //如果到油漆工完工阶段且金额为负，则可以退款
                 vrStr += '<tr><td colspan="2" class="border_eee"><label for="checkYt" class="lookit_default"><input id="checkYt" class="display" type="checkbox" /><em class=""></em><span>请仔细核对线下填写预算单上的金额并已认真阅读和同意以下条款之后在退款</span></label><span id="nocheck" class="err_check">请仔细阅读合同条款并勾选确认</span></td><td><a id="Rsubmit" class="submit" type="button" data-submit="order">退款</a></td></tr>';
             } else {
                 vrStr += '<tr><td colspan="2" class="border_eee"><label for="checkYt" class="lookit_default"><input id="checkYt" class="display" type="checkbox" /><em class=""></em><span>请仔细核对线下填写预算单上的金额并已认真阅读和同意以下条款之后在支付</span></label><span id="nocheck" class="err_check">请仔细阅读合同条款并勾选确认</span></td><td><input id="Jsubmit" class="submit" type="button" data-submit="order" value="支付"></td></tr>';
