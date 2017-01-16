@@ -1786,6 +1786,11 @@ a:focus {
     color: white;
 }
 
+.auto_address {
+	min-height: 845px;
+	height: auto;
+}
+
 .address_add a {
     width: 114px;
     height: 32px;
