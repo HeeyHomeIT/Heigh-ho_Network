@@ -324,17 +324,19 @@
                         $(".check_list_wrap").hide();
                         $(".collection_shop_wrap").hide();
                         $(".works_complete_wrap >div:eq(" + ($(this).index()) + ")").show().removeClass('hide');
-                        pageHandler.pageContentEvent();
-                        billPageHandler.pageContentEvent();
-                        shopPageHandler.pageContentEvent();
-                        getPicInfoHandler.picInfo();//获取全景图列表
-                        getBillInfoHandler.billInfoEvent();//获取成本计算列表
-                        getShopInfoHandler.shopInfo();//获取店铺收藏列表
+                        if($(this).index() == 0) {
+                        	getPicInfoHandler.picInfo();//获取全景图列表
+                        } else if($(this).index() == 1) {
+                        	getBillInfoHandler.billInfoEvent();//获取成本计算列表
+                        } else if($(this).index() == 2) {
+                        	getShopInfoHandler.shopInfo();//获取店铺收藏列表
+                        }
+//                      getPicInfoHandler.picInfo();//获取全景图列表
+//                      getBillInfoHandler.billInfoEvent();//获取成本计算列表
+//                      getShopInfoHandler.shopInfo();//获取店铺收藏列表
                     }
                 }
                 getPicInfoHandler.picInfo();//获取全景图列表
-                getBillInfoHandler.billInfoEvent();//获取成本计算列表
-                getShopInfoHandler.shopInfo();//获取店铺收藏列表
             }]);
         },
 
@@ -420,7 +422,7 @@
                 success: function (data) {
                     if (data && data.code == '000') {
                         //console.log(data.data);
-                        $('.left_img img').attr('src', 'http://hyu2387760001.my3w.com/' + data.data.user_img);
+                        $(".left_img").html('<img src="http://hyu2387760001.my3w.com/'+data.data.user_img+'">');
                     }
                 },
                 error: function (data) {
@@ -436,6 +438,11 @@
                 dataType: "jsonp",
                 data: {
                     user_id: USERID
+                },
+                beforeSend:function(){
+                	$(".my_order_content").addClass("loagbg");
+                	$(".order_content_title ").addClass("display");
+                	$(".order_content_cnt ").addClass("display");
                 },
                 success: function (data) {
                     //data.code = 117;
@@ -455,7 +462,7 @@
                             success: function (data) {
                                 if (data && data.code == '000') {
                                     var src = BASEURL + data.data[0].shop_img;
-                                    $(".order_content_title .order_title_left img").attr("src", src);
+                                    $(".order_content_title .order_title_left .order_title_left_img").html('<img src="'+src+'">');
                                 } else {
                                     layer.msg(data.msg);
                                 }
@@ -596,6 +603,11 @@
                     } else {
                         layer.alert(data.msg);
                     }
+                },
+                complete:function(){
+                	$(".my_order_content").removeClass("loagbg");
+                	$(".order_content_title ").removeClass("display");
+                	$(".order_content_cnt ").removeClass("display");
                 },
                 error: function (data) {
                 }
@@ -981,6 +993,10 @@
                             });
 
                             $(".shopWrap").html(vrStr);
+                            $(".shopWrap .collection_shop .left_img").on("click",function() {
+		                        var pos = $(this).parent().attr("shopid");
+		                        window.location.href = "view_shop.html#/shopdetails?pos=" + pos;
+		                    });
                             shopPageHandler.pageContentEvent();
                         } else if (data.code == '117') {
                             $('.shop_wrap').remove();
@@ -1899,6 +1915,10 @@
                         vrStr += spliceShopHandler.spliceStrEvent(v);
                     });
                     $(".shopWrap").html(vrStr);
+                    $(".shopWrap .collection_shop .left_img").on("click",function() {
+                        var pos = $(this).parent().attr("shopid");
+                        window.location.href = "view_shop.html#/shopdetails?pos=" + pos;
+                    });
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
             });
         }
@@ -1909,7 +1929,7 @@
      */
     spliceShopHandler = {
         spliceStrEvent: function (value) {
-            var vrStr = '<div class="collection_shop clearfix" shopId="' + value.shop_id + '">';
+            var vrStr = '<div class="collection_shop clearfix" shopId="' + value.shop_id + '" title="点击头像进入店铺">';
             vrStr += '	<div class="left_img fl">';
             vrStr += '	<img src="http://hyu2387760001.my3w.com/' + value.img + '">';
             vrStr += '		</div><!--left_img-->';

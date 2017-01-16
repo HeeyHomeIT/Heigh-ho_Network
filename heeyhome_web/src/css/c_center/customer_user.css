@@ -177,6 +177,9 @@ a:focus {
 }
 
 /* 我的主页样式 */
+.sprite-details {
+	background: url(../img/sprite-details.png) no-repeat;
+}
 .left_img {
     width: 98px;
     height: 98px;
@@ -256,10 +259,23 @@ a:focus {
     border-right: 1px solid #d9d9d9;
 }
 
-.title_right img {
+/*.title_right img {
     width: 43px;
     height: 43px;
     margin-right: 10px;
+}*/
+
+.title_right em {
+	display: inline-block;
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+}
+.title_right em.icon-email {
+	background-position: -333px -112px;
+}
+.title_right em.icon-tel {
+	background-position: -422px -85px;
 }
 
 .email_bind {
@@ -339,6 +355,16 @@ a:focus {
 
 .order_content_title .order_title_right {
     float: right;
+}
+
+.order_content_title .order_title_right em {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    background-position: -422px -19px;
+    float: left;
+    margin-top: 11px;
+    margin-right: 5px;
 }
 
 .order_content_cnt {
@@ -464,21 +490,41 @@ a:focus {
     margin-left: 20px;
 }
 
-.rendering .render_img, .bill .render_img, .store .render_img {
+.my_collection_content em {
+    display: inline-block;
     width: 62px;
     height: 58px;
     margin-left: 68px;
     margin-top: 25px;
     margin-bottom: 10px;
 }
+.my_collection_content em.icon-rendering {
+	background-position: -226px -112px;
+}
+.my_collection_content em.icon-bill {
+	background-position: -238px -19px;
+}
+.my_collection_content em.icon-store {
+	background-position: -333px -19px;
+}
 
-.rendering .line_img, .bill .line_img, .store .line_img {
+.my_collection_content i.icon-inline {
+    display: inline-block;
+    background-position: -220px -197px;
     width: 135px;
     height: 8px;
     margin-left: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+/*.rendering .line_img, .bill .line_img, .store .line_img {
+    width: 135px;
+    height: 8px;
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}*/
 
 .rendering span, .rendering b, .bill span, .bill b, .store span, .store b {
     width: 194px;
@@ -495,7 +541,6 @@ a:focus {
 .rendering b i, .bill b i, .store b i {
     font-size: 18px;
     font-weight: bold;
-    vertical-align: middle;
 }
 
 /* 个人资料样式 */
@@ -2832,4 +2877,8 @@ a:focus {
 	font-size: 14px;
 	font-family: FZLTHJW;
 	padding: 15px;
+}
+
+.loagbg {
+	height: 202px;
 }

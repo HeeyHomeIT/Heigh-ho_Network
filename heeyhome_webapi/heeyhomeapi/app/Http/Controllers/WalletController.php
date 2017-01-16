@@ -53,7 +53,7 @@ class WalletController extends Controller
         $bankcardno=rq('bankcardno');
         $bankname=rq('bankname');
         $cardtype=rq('cardtype');
-        $bankcard='银行卡'.$bankcardno;
+        $bankcard=$bankname.$bankcardno;
         $select=DB::select('select id from hh_wallet_balance where available_total>=? and user_id=?',[$money,$user_id]);
         if($select) {
             $time = date('Y-m-d H:i:s', time());
