@@ -257,6 +257,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/process/startWork', 'OrderOperateController@startWork');
     //查看进度详情
     Route::any('order/process/lookWork', 'OrderOperateController@workDetail');
+    //进度提交材料
+    Route::get('order/progress/material/produce', 'OrderMaterialController@progressOrderMaterial');
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web','admin.login']], function()

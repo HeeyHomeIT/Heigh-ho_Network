@@ -1353,7 +1353,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 } 
-                $step = $order_step++;
+                $step = $order_step+1;
                 $order_step = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?',[$step,$order_id]);
                 $ifinsert=false;
                 foreach($files as $key=>$file){
@@ -1382,7 +1382,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 if($ifinsert){
                     $arr = array("code" => "000",
                         "msg" => "添加成功",
-                        "data" =>($order_step + 1)
+                        "data" => $step
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }else{
