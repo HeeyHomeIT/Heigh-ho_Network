@@ -299,7 +299,7 @@
                 async: true,
                 dataType: 'jsonp',
                 data: {
-                    foreman_id: shopperId
+                    foreman_id: shopperId,
                 },
                 success: function (data) {
                     if(data.code == 000){
@@ -310,6 +310,22 @@
                 },
                 error: function (data) {
                 }
+            });
+            $(document).on("click","#sd_hexgrid li",function() {
+            	var type = $(this).attr("data-type");
+				var id = $(this).attr("data-id");				
+				if(type == 1) {		
+					sessionStorage.setItem("case_id", id);
+					window.location.href = "success_case.html#/success/success_case";
+				} else {
+					sessionStorage.setItem("orderid", id);
+					window.location.href = "order_detail.html#/morder_wrap/morder_detail";
+				}
+            });
+            $("#sdcontent .s_more").on("click",function() {
+            	var url = window.location.hash;
+            	var pos = url.split("=")[1];
+            	sessionStorage.setItem("shopid",pos);
             });
         },
         /**
@@ -802,7 +818,7 @@
             $.each(value, function (i, v) {
                 if (i < 7) {
                     if (v.img.length != 0) {
-                        vrStr += '<li class="sd_hexli" data-type="' + v.type + '" ><a><div><img src="http://hyu2387760001.my3w.com/' + v.img[0].case_img + '"><div class="sd_title"><span class="sd_area">' + v.area + '㎡</span></div>';
+                        vrStr += '<li class="sd_hexli" data-type="' + v.type + '" data-id="' + v.case_id + '"><a><div><img src="http://hyu2387760001.my3w.com/' + v.img[0].case_img + '"><div class="sd_title"><span class="sd_area">' + v.area + '㎡</span></div>';
                         vrStr += '<div class="sd_stips"><span>' + v.housetype + '&middot;' + v.style + '</span>';
                         vrStr += '</div></div></a></li>';
                     }
