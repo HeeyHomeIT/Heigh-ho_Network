@@ -95,7 +95,7 @@ a:focus {
     width: 30px;
     height: 30px;
     color: #FFFFFF;
-    background-color: #C9302C;
+    background-color: #EE524D;
     line-height: 30px;
     text-align: center;
     cursor: pointer;
@@ -540,7 +540,8 @@ a:focus {
 
 .rendering b i, .bill b i, .store b i {
     font-size: 18px;
-    font-weight: bold;
+    margin-right: 3px;
+    font-weight: 700;
 }
 
 /* 个人资料样式 */
