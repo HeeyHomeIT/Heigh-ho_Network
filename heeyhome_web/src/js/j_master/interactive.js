@@ -412,7 +412,7 @@
                         if (data != null && data.code == '000') {
                             var worker = '<div class="team_detail_content clearfix">';
                             $.each(data.data, function (i, v) {
-                                worker += '<div class="worker_box" data-id="' + v.userid + '" data-action="edit"><a href="#/master/teamDetail_list">';
+                                worker += '<div class="worker_box sprite_team" data-id="' + v.userid + '" data-action="edit"><a href="#/master/teamDetail_list">';
                                 worker += '<div class="head_picture"><img src="http://hyu2387760001.my3w.com/' + v.portrait_img + '"></div>';
                                 worker += '<div class="worker_content"><h3><span class="name">' + v.name + '</span>';
                                 worker += '<span class="age">' + v.age + '岁</span></h3>';
@@ -425,7 +425,7 @@
                                 worker += '<li><span class="span_left">银行卡号</span><span class="span_right">' + v.bankcard + '</span></li>';
                                 worker += '</ul></div></a></div>';
                             });
-                            worker += '<div class="worker_box worker_add" data-action="add"><a href="#/master/teamDetail_edit"></a></div></div>';
+                            worker += '<div class="worker_box sprite_team worker_add" data-action="add"><a href="#/master/teamDetail_edit"></a></div></div>';
                             $(".team_detail_wrap .page_number").before(worker);
                             $(".team_detail_content .worker_box").on("click", function () {
                                 var id = $(this).attr("data-id");
@@ -918,7 +918,7 @@
                         newStep = step - 1;
                     }
                     for (var i = 0; i < newStep; i++) {
-                        $('.process_center').eq(i).find('img').attr('src', 'css/img/order_success.png');
+                        $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
                         $('.order_increase').eq(i).hide();
                         $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
                         if (budgetState == '0' || statementStatus == '0') {
@@ -944,7 +944,7 @@
                 } else if (status == '已完成') {
                     step = 17;
                     for (var i = 0; i < step; i++) {
-                        $('.process_center').eq(i).find('img').attr('src', 'css/img/order_success.png');
+                        $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
                         $('.order_increase').eq(i).hide();
                         $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
                         if (budgetState == '0' || statementStatus == '0') {
@@ -961,7 +961,7 @@
 
                 // if (step != '18') {
                 //     for (var i = 0; i < step; i++) {
-                //         $('.process_center').eq(i).find('img').attr('src', 'css/img/order_success.png');
+                //         $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
                 //         $('.order_increase').eq(i).hide();
                 //         $('.detail_a').eq(i).show().removeClass('hide');
                 //         $('.order_edit ').eq(i).addClass('new_edit');
@@ -2038,7 +2038,7 @@
                         $(".wallet_dl").nextAll().remove();
                         $(".wallet_bottom_content").append(bill);
                         BillDelete.deleteRecord();
-                        BillPageHandler.pageContentEvent(total, time);
+                        BillPageHandler.pageContentEvent(total, str);
                     } else {
                         $(".wallet_dl").nextAll().remove();
                         $(".page_number").css('opacity', '0');
@@ -2097,13 +2097,11 @@
                 dataOperate: function oprate(data) {
                     $(".wallet_dl").nextAll().remove();
                     var bill = "";
-                    var total = data.data[0].total;
                     $.each(data.data, function (i, v) {
                         bill += spliceBillContent.spliceStrEvent(v);
                     });
                     $(".wallet_dl").nextAll().remove();
                     $(".wallet_bottom_content").append(bill);
-                    BillPageHandler.pageContentEvent(total, time);
                     BillDelete.deleteRecord();
                     $('.not_information').hide();
                     $('.not_information_text').html();
@@ -2122,7 +2120,7 @@
             vrStr += '<span class="wallet_coin">' + value.money + '</span>';
             vrStr += '<span class="wallet_cash">支付成功</span>';
             vrStr += '<a href="javascript:;" class="dd_opera">';
-            vrStr += '<img src="css/img/wallet_del.png">';
+            vrStr += '<em class="sprite_team"></em>';
             vrStr += '</a></div>';
             return vrStr;
         }
@@ -4305,9 +4303,9 @@
             vrStr += '<img src="css/img/my_work1.jpg">';
             vrStr += '</div><!--detail_img-->';
             vrStr += '<div class="pending_font undone clearfix">';
-            vrStr += '<img class="pendingAddress_img fl" src="css/img/work_address.png"><p class="pending_address fl">' + value.address + '</p>';
-            vrStr += '<p class="pending_name fl"><img src="css/img/work_area.png">' + value.area + '</p>';
-            vrStr += '<p class="pending_tel fl"><img src="css/img/work_unit.png">' + value.housetype + '</p>';
+            vrStr += '<em class="address_em sprite_team fl"></em><p class="pending_address fl">' + value.address + '</p>';
+            vrStr += '<p class="pending_name fl"><em class="sprite_team"></em>' + value.area + '</p>';
+            vrStr += '<p class="pending_tel fl"><em class="sprite_team"></em>' + value.housetype + '</p>';
             vrStr += '</div><!--pending_font-->';
             vrStr += '<div class="bg undone"></div>';
             vrStr += '</div><!--works_detail-->';

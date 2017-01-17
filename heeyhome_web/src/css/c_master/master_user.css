@@ -36,7 +36,15 @@
 }
 
 .sprite-details {
-	background: url(../img/sprite-details.png) no-repeat;
+    background: url(../img/sprite-details.png) no-repeat;
+}
+
+.sprite_home {
+    background: url(../img/sprite_home.png) no-repeat;
+}
+
+.sprite_team {
+    background: url(../img/sprite_team.png) no-repeat;
 }
 
 /* 私有样式 */
@@ -104,13 +112,14 @@
     width: 30px;
     height: 30px;
     color: #FFFFFF;
+    /*background-color: #EE524D;*/
     background-color: #F80000;
     line-height: 30px;
     text-align: center;
     cursor: pointer;
-     -webkit-box-shadow: 0px 0px 4px #000000; 
-    -moz-box-shadow: 0px 0px 4px #000000;
-    box-shadow: 0px 0px 4px #000000;
+    -webkit-box-shadow: 0 0 4px #000000;
+    -moz-box-shadow: 0 0 4px #000000;
+    box-shadow: 0 0 4px #000000;
 }
 
 .left_ul li a:hover {
@@ -301,18 +310,18 @@
 }
 
 .title_right em {
-	display: inline-block;
+    display: inline-block;
     width: 45px;
     height: 45px;
     margin-right: 10px;
 }
 
 .title_right em.icon-email {
-	background-position: -333px -112px;
+    background-position: -333px -112px;
 }
 
 .title_right em.icon-tel {
-	background-position: -422px -85px;
+    background-position: -422px -85px;
 }
 
 .email_bind {
@@ -406,6 +415,40 @@
     opacity: 0.5;
 }
 
+.engine1 {
+    width: 52px;
+    height: 36px;
+    background-position: -159px -362px;
+}
+
+.engine2 {
+    width: 38px;
+    height: 42px;
+    background-position: -231px -356px;
+}
+
+.engine3 {
+    width: 42px;
+    height: 36px;
+    background-position: -290px -362px;
+}
+
+.engine4 {
+    width: 49px;
+    height: 35px;
+    background-position: -349px -362px;
+}
+
+.engine5 {
+    width: 40px;
+    height: 36px;
+    background-position: -415px -361px;
+}
+
+.engine_img em {
+    display: inline-block;
+}
+
 .engineering {
     width: 141px;
     height: 158px;
@@ -472,14 +515,14 @@
 .bottom_team {
     width: 363px;
     height: 269px;
-    background: url("../../css/img/bottom_team_bg.png") no-repeat -40px 100px;
+    background-position: -40px 100px;
     margin-left: 43px;
     box-shadow: 0 0 16px #939393;
     border: 1px solid white;
 }
 
 .bottom_order {
-    background: url("../../css/img/bottom_order_bg.png") no-repeat 225px 120px;
+    background-position: 223px -304px;
     margin-left: 53px;
 }
 
@@ -1176,6 +1219,12 @@
     width: 17px;
     height: 17px;
     background-position: -504px -109px;
+}
+
+#complete_del em, #img_del em {
+    width: 100%;
+    height: 100%;
+    background-position: -479px -362px;
 }
 
 .renderings_show:hover .show_bg, .renderings_show:hover .complete_del, .renderings_show:hover .renderings_show_a {
@@ -2347,6 +2396,57 @@
     /*left: 10%;*/
 }
 
+.complete_img .pending_font em {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    vertical-align: middle;
+}
+
+.team_img em {
+    display: inline-block;
+    width: 74px;
+    height: 74px;
+}
+
+.team_img .ele_icon {
+    background-position: -8px 0;
+}
+
+.team_img .wood_icon {
+    background-position: -96px 0;
+}
+
+.team_img .bri_icon {
+    background-position: -192px 0;
+}
+
+.team_img .painter_icon {
+    background-position: -292px 0;
+}
+
+.team_img .mix_icon {
+    background-position: -389px 0;
+}
+
+.complete_img .pending_font .address_em {
+    background-position: -96px -182px;
+    margin-left: 20px;
+    margin-right: 8px;
+}
+
+.complete_img .pending_font .pending_name em {
+    background-position: -129px -182px;
+    margin-left: 20px;
+    margin-right: 8px;
+}
+
+.complete_img .pending_font .pending_tel em {
+    background-position: -162px -182px;
+    margin-left: 20px;
+    margin-right: 8px;
+}
+
 .complete_img {
     position: relative;
 }
@@ -2879,7 +2979,7 @@
     float: left;
     position: relative;
     height: 335px;
-    background: url(../img/worker-card.jpg) no-repeat;
+    background-position: -279px -83px;
 }
 
 .worker_box:nth-child(3n+1) {
@@ -3712,7 +3812,7 @@ div.clear:after, div.clear:before {
     height: 140px;
     box-shadow: 0 0 16px #939393;
     margin-top: 47px;
-    background: url("../../css/img/wallet_bg.png") no-repeat 655px -15px;
+    background-position: 220px -418px;
 }
 
 .wallet_content_top ul {
@@ -3881,6 +3981,13 @@ div.clear:after, div.clear:before {
     font-size: 14px;
     color: #e88226;
     width: 80px;
+}
+
+.wallet_dd .dd_opera em {
+    display: inline-block;
+    background-position: -192px -188px;
+    width: 15px;
+    height: 15px;
 }
 
 .wallet_dd .dd_opera i {
@@ -4251,8 +4358,8 @@ div.clear:after, div.clear:before {
 }
 
 .layui-layer-content p {
-	color: #4B4948;
-	font-size: 14px;
-	font-family: FZLTHJW;
-	padding: 15px;
+    color: #4B4948;
+    font-size: 14px;
+    font-family: FZLTHJW;
+    padding: 15px;
 }

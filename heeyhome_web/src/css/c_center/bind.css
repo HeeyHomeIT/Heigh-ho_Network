@@ -516,6 +516,25 @@
     margin-left: 20px;
 }
 
+.message_fl em {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+.message_mes {
+    background-position: -8px -181px;
+    width: 35px;
+    height: 22px;
+}
+
+.message_lock {
+    background-position: -56px -181px;
+    width: 26px;
+    height: 34px;
+    margin-top: -5px;
+}
+
 .message_fl span {
     font-size: 16px;
     color: #4b4948;
