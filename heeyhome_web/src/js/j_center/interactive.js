@@ -235,14 +235,14 @@
                                     $(this).find(".all .top").addClass("one");
                                 }
                             });
-                            $(".ordercnt_content .all").on("click", function () {
+                            $(document).on("click",".ordercnt_content .all",function () {
                                 var shopid = $(this).attr("data-shopid");
                                 var orderid = $(this).attr("data-orderid");
                                 var orderstep = $(this).attr("data-orderstep");
                                 sessionStorage.setItem("shopid", shopid);
                                 sessionStorage.setItem("orderid", orderid);
                                 sessionStorage.setItem("orderstep", orderstep);
-                                if ($(".ordercnt_content .all .bottom").html() == "取消订单") {
+                                if ($(this).children(".bottom").html() == "取消订单") {
                                     $.ajax({
                                         type: "get",
                                         url: CANCELORDERURL,
@@ -254,8 +254,8 @@
                                         },
                                         success: function (data) {
                                             if (data && data.code == '000') {
-                                                layer.alert(data.msg);
-                                                centerWrap.initMOrderDataEvent();
+                                                layer.alert(data.msg);         
+                                                $(this).siblings(".trade_stage").children().html("已取消");
                                                 $(".ordercnt_content .all .bottom").css("cursor", "not-allowed");
                                             } else {
                                                 layer.alert(data.msg);
@@ -264,7 +264,7 @@
                                         error: function (data) {
                                         }
                                     });
-                                } else if ($(".ordercnt_content .all .bottom").html() == "确认验货") {
+                                } else if ($(this).children(".bottom").html() == "确认验货") {
                                     layer.alert("订单已完成");
                                 }
                             });
@@ -505,6 +505,8 @@
                             $(".order_cnt_right .operation").on("click", function () {
                                 layer.alert("订单已完成");
                             });
+                        } else if (status == 4) {
+                            $(".order_cnt_right .operation").attr("href", "reservation.html#/advancelist?pos=" + data.data.order_list[_new].order_id).html("人工支付");
                         } else if (status == 1) {
                             $(".order_cnt_right .operation").html("取消订单");
                             /* 取消订单 */
@@ -1599,6 +1601,9 @@
             if (value.order_status == 1) {
                 vrStr += '<a href="javascript:;" class="bottom">取消订单</a>';
             }
+            if (value.order_status == 4) {
+                vrStr += '<a href="reservation.html#/advancelist?pos=' + value.order_id + '"  class="bottom">人工支付</a>';
+            }
 //          if(value.order_status == 4) {
 //              vrStr += '<a href="success_pay.html#/success_pay/pay_end" class="bottom">支付</a>';
 //          }
@@ -1675,14 +1680,39 @@
                             $(this).find(".all .top").addClass("one");
                         }
                     });
-                    $(".ordercnt_content .all").on("click", function () {
+                    $(document).on("click",".ordercnt_content .all",function () {
                         var shopid = $(this).attr("data-shopid");
                         var orderid = $(this).attr("data-orderid");
                         var orderstep = $(this).attr("data-orderstep");
                         sessionStorage.setItem("shopid", shopid);
                         sessionStorage.setItem("orderid", orderid);
                         sessionStorage.setItem("orderstep", orderstep);
-                    });
+                        if ($(this).children(".bottom").html() == "取消订单") {
+                            $.ajax({
+                                type: "get",
+                                url: CANCELORDERURL,
+                                async: true,
+                                dataType: "jsonp",
+                                data: {
+                                    user_id: USERID,
+                                    order_id: orderid
+                                },
+                                success: function (data) {
+                                    if (data && data.code == '000') {
+                                        layer.alert(data.msg);         
+                                        $(this).siblings(".trade_stage").children().html("已取消");
+                                        $(".ordercnt_content .all .bottom").css("cursor", "not-allowed");
+                                    } else {
+                                        layer.alert(data.msg);
+                                    }
+                                },
+                                error: function (data) {
+                                }
+                         	});
+                        } else if ($(this).children(".bottom").html() == "确认验货") {
+                            layer.alert("订单已完成");
+                        }
+                	});
                     /* 我的订单点击小三角事件 */
                     arrowClick.getEvent();
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
