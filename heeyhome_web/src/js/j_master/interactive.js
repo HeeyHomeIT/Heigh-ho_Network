@@ -1401,7 +1401,6 @@
                 } else if (type == '油漆') {
                     type = "paint";
                 }
-                //var type = "paint";
                 $.ajax({
                     type: "get",
                     url: MATERIALLISTURL,
@@ -1416,25 +1415,25 @@
                             switch (type) {
                                 case "ele":
                                     var information = data.data.ele;
-                                    $(".title_picture img").attr("src", "css/img/plumber-material.png");
+                                    $(".title_picture em").css("background-position", "-286px -261px");
                                     $(".type_cname").html("水电工");
                                     $(".type_ename").html("PLUMBER");
                                     break;
                                 case "brick":
                                     var information = data.data.brick;
-                                    $(".title_picture img").attr("src", "css/img/bricklayer-material.png");
+                                    $(".title_picture em").css("background-position", "-30px -261px");
                                     $(".type_cname").html("瓦工");
                                     $(".type_ename").html("BRICKLAYER");
                                     break;
                                 case "wood":
                                     var information = data.data.wood;
-                                    $(".title_picture img").attr("src", "css/img/woodworking-material.png");
+                                    $(".title_picture em").css("background-position", "-418px -261px");
                                     $(".type_cname").html("木工");
                                     $(".type_ename").html("WOODWORKING");
                                     break;
                                 case "paint":
                                     var information = data.data.paint;
-                                    $(".title_picture img").attr("src", "css/img/painter-material.png");
+                                    $(".title_picture em").css("background-position", "-155px -261px");
                                     $(".type_cname").html("油漆工");
                                     $(".type_ename").html("PAINTER");
                                     break;

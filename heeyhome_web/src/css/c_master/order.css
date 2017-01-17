@@ -15,6 +15,10 @@
     display: block;
 }
 
+.sprite_order {
+    background: url(../img/sprite_order.png) no-repeat;
+}
+
 .bankWrap {
     /*width: 1190px;*/
     height: auto;
@@ -191,10 +195,18 @@
     height: 46px;
 }
 
-.add_close img {
+.add_close em {
     position: absolute;
     top: -5px;
     right: -8px;
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    background-position: -944px -372px;
+}
+
+.add_close em:hover {
+    cursor: pointer;
 }
 
 .add_technology .add-bg, .see_details .add-bg {
@@ -235,7 +247,7 @@
 
 .see_details .start_date_title {
     border-left: none;
-    background: url("../../css/img/order_point.png") no-repeat 0 2px;
+    background-position: -864px -433px;
     text-align: right;
 }
 
@@ -464,11 +476,14 @@
     text-align: center;
 }
 
-.owner_summary p img {
-    display: block;
+.owner_summary p em {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
     position: absolute;
     top: 3px;
     left: 3px;
+    background-position: -817px -435px;
 }
 
 .owner_summary p span {

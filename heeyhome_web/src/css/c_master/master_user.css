@@ -47,6 +47,10 @@
     background: url(../img/sprite_team.png) no-repeat;
 }
 
+.sprite_order {
+    background: url(../img/sprite_order.png) no-repeat;
+}
+
 /* 私有样式 */
 /* 左边导航开始 */
 #selfcenter_top .now_location {
@@ -1978,11 +1982,14 @@
     text-align: center;
 }
 
-.owner_summary p img {
-    display: block;
+.owner_summary p em {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
     position: absolute;
     top: 3px;
     left: 3px;
+    background-position: -817px -435px;
 }
 
 .owner_summary p span {
@@ -2035,8 +2042,8 @@
 }
 
 .title_picture {
-    width: 80px;
-    height: 80px;
+    width: 111px;
+    height: 111px;
     margin: 0 auto;
     border-radius: 50%;
 }
@@ -2044,6 +2051,22 @@
 .title_picture img {
     width: 100%;
     height: 100%;
+}
+
+.material_title em {
+    display: inline-block;
+}
+
+.title_picture em {
+    width: 100%;
+    height: 100%;
+    background-position: -286px -261px;
+}
+
+.staff_sprite_order {
+    width: 194px;
+    height: 7px;
+    background-position: -58px -569px;
 }
 
 .material_title span {
@@ -3939,12 +3962,14 @@ div.clear:after, div.clear:before {
     color: #4b4948;
 }
 
-.bottom_title_right .check_detail img {
+.bottom_title_right .check_detail em {
     width: 14px;
-    height: 14px;
+    height: 15px;
     margin-left: 8px;
     vertical-align: top;
     margin-top: 2px;
+    display: inline-block;
+    background-position: -862px -502px;
 }
 
 .wallet_bottom_content {

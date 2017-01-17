@@ -15,6 +15,10 @@
     display: block;
 }
 
+.sprite_order {
+    background: url(../img/sprite_order.png) no-repeat;
+}
+
 #pageheader {
     margin-bottom: 40px;
     margin-top: 10px;
@@ -133,8 +137,27 @@
     margin-bottom: 50px;
 }
 
-.add_bank_title img {
+.add_bank_title em {
+    display: inline-block;
+    width: 842px;
+    height: 35px;
     margin-left: 175px;
+}
+
+.add_bank_1 {
+    background-position: -14px -22px;
+}
+
+.add_bank_2 {
+    background-position: -14px -77px;
+}
+
+.add_bank_3 {
+    background-position: -14px -131px;
+}
+
+.add_bank_4 {
+    background-position: -14px -187px;
 }
 
 .cardholder, .cardnumber {
@@ -236,7 +259,14 @@
 .add_process3 p img {
     margin-right: 10px;
 }
-
+.add_process3 p em {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-position: -817px -391px;
+    margin-right: 11px;
+    vertical-align: middle;
+}
 .cardtype {
     margin-top: 15px;
 }

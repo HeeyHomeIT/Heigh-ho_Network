@@ -15,6 +15,10 @@
     display: block;
 }
 
+.sprite_order {
+    background: url(../img/sprite_order.png) no-repeat;
+}
+
 #pageheader {
     margin-bottom: 40px;
     margin-top: 10px;
@@ -195,10 +199,14 @@
     margin-right: 25px;
 }
 
-.bank_fr a img {
+.bank_fr a em {
+    display: inline-block;
     margin-left: 5px;
     vertical-align: top;
     margin-top: 16px;
+    width: 17px;
+    height: 17px;
+    background-position: -817px -502px;
 }
 
 #cash_confirm {
@@ -231,6 +239,15 @@
 
 .withdraw_complete .success img {
     margin-right: 11px;
+}
+
+.withdraw_complete .success em {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-position: -817px -391px;
+    margin-right: 11px;
+    vertical-align: middle;
 }
 
 #cash_back {
