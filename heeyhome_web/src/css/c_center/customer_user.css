@@ -95,10 +95,13 @@ a:focus {
     width: 30px;
     height: 30px;
     color: #FFFFFF;
-    background-color: #EE524D;
+    background-color: #F80000;
     line-height: 30px;
     text-align: center;
     cursor: pointer;
+     -webkit-box-shadow: 0px 0px 4px #000000; 
+    -moz-box-shadow: 0px 0px 4px #000000;
+    box-shadow: 0px 0px 4px #000000;
 }
 
 .left_ul li:last-child {
