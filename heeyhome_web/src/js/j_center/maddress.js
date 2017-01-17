@@ -203,8 +203,8 @@
             vrStr += '<span class="address_code">邮编</span>';
             vrStr += '<span class="address_tel">电话/手机</span>';
             vrStr += '<div class="editor_del"><a class="address_editor" href="javascript:;">';
-            vrStr += '<img src="css/img/address_editor.png"></a><a class="address_del" href="javascript:;">';
-            vrStr += '<img src="css/img/address_del.png"></a></div></div>';
+            vrStr += '<em class="sprite_order"></em></a><a class="address_del" href="javascript:;">';
+            vrStr += '<em class="sprite_order"></em></a></div></div>';
             vrStr += '<div class="address_list_content" >';
             vrStr += '<span class="recipient">' + value.receiver + '</span>';
             vrStr += '<span class="in_area">' + value.province + value.city + value.district + value.street + '</span>';

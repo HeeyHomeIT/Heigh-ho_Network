@@ -1625,10 +1625,18 @@
     height: 46px;
 }
 
-.add_close img {
+.add_close em {
     position: absolute;
     top: -5px;
     right: -8px;
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    background-position: -944px -372px;
+}
+
+.add_close em:hover {
+    cursor: pointer;
 }
 
 /* 我的订单 */
@@ -3181,17 +3189,6 @@
     margin: 0 auto;
 }
 
-.staff_bottom_title {
-    width: 194px;
-    height: 32px;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 14px;
-    color: #4b4948;
-    background: url("../../css/img/staff_bottom_title.png") no-repeat 0 25px;
-    margin-bottom: 12px;
-}
-
 .staff_bottom_content li {
     height: 35px;
     line-height: 35px;
@@ -3330,17 +3327,6 @@
     height: auto;
     margin: 0 auto;
     margin-top: 45px;
-}
-
-.staff_bottom_title {
-    width: 194px;
-    height: 32px;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 14px;
-    color: #4b4948;
-    background: url("../../css/img/staff_bottom_title.png") no-repeat 0 25px;
-    margin-bottom: 12px;
 }
 
 .edit_bottom li {
@@ -4125,17 +4111,6 @@ div.clear:after, div.clear:before {
     margin: 0 auto;
 }
 
-.staff_bottom_title {
-    width: 194px;
-    height: 32px;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 14px;
-    color: #4b4948;
-    background: url("../../css/img/staff_bottom_title.png") no-repeat 0 25px;
-    margin-bottom: 12px;
-}
-
 .staff_bottom_content li {
     height: 35px;
     line-height: 35px;
@@ -4261,7 +4236,7 @@ div.clear:after, div.clear:before {
     text-align: center;
     font-size: 14px;
     color: #4b4948;
-    background: url("../../css/img/staff_bottom_title.png") no-repeat 0 25px;
+    background: url("../img/sprite_order.png") no-repeat -58px -548px;
     margin-bottom: 12px;
 }
 

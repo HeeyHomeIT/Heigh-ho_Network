@@ -42,6 +42,14 @@ a:focus {
     text-decoration: none !important;
 }
 
+.sprite_order {
+    background: url(../img/sprite_order.png) no-repeat;
+}
+
+.sprite_team {
+    background: url(../img/sprite_team.png) no-repeat;
+}
+
 /* 私有样式 */
 #selfcenter_top .now_location {
     width: 1190px;
@@ -99,7 +107,7 @@ a:focus {
     line-height: 30px;
     text-align: center;
     cursor: pointer;
-     -webkit-box-shadow: 0px 0px 4px #000000; 
+    -webkit-box-shadow: 0px 0px 4px #000000;
     -moz-box-shadow: 0px 0px 4px #000000;
     box-shadow: 0px 0px 4px #000000;
 }
@@ -181,8 +189,9 @@ a:focus {
 
 /* 我的主页样式 */
 .sprite-details {
-	background: url(../img/sprite-details.png) no-repeat;
+    background: url(../img/sprite-details.png) no-repeat;
 }
+
 .left_img {
     width: 98px;
     height: 98px;
@@ -269,16 +278,18 @@ a:focus {
 }*/
 
 .title_right em {
-	display: inline-block;
+    display: inline-block;
     width: 45px;
     height: 45px;
     margin-right: 10px;
 }
+
 .title_right em.icon-email {
-	background-position: -333px -112px;
+    background-position: -333px -112px;
 }
+
 .title_right em.icon-tel {
-	background-position: -422px -85px;
+    background-position: -422px -85px;
 }
 
 .email_bind {
@@ -501,14 +512,17 @@ a:focus {
     margin-top: 25px;
     margin-bottom: 10px;
 }
+
 .my_collection_content em.icon-rendering {
-	background-position: -226px -112px;
+    background-position: -226px -112px;
 }
+
 .my_collection_content em.icon-bill {
-	background-position: -238px -19px;
+    background-position: -238px -19px;
 }
+
 .my_collection_content em.icon-store {
-	background-position: -333px -19px;
+    background-position: -333px -19px;
 }
 
 .my_collection_content i.icon-inline {
@@ -778,7 +792,7 @@ a:focus {
 }
 
 .local_update .update_img em {
-	display: inline-block;
+    display: inline-block;
     width: 23px;
     height: 17px;
     background-position: -481px -16px;
@@ -1822,9 +1836,20 @@ a:focus {
     vertical-align: middle;
 }
 
-.address_editor img, .address_del img {
+.address_editor em, .address_del em {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
     margin-top: -5px;
     vertical-align: inherit;
+}
+
+.address_editor em {
+    background-position: -817px -467px;
+}
+
+.address_del em {
+    background-position: -862px -467px;
 }
 
 .address_editor {
@@ -2899,12 +2924,12 @@ a:focus {
 }
 
 .layui-layer-content p {
-	color: #4B4948;
-	font-size: 14px;
-	font-family: FZLTHJW;
-	padding: 15px;
+    color: #4B4948;
+    font-size: 14px;
+    font-family: FZLTHJW;
+    padding: 15px;
 }
 
 .loagbg {
-	height: 202px;
+    height: 202px;
 }
