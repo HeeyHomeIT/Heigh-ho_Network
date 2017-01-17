@@ -74,9 +74,20 @@
             self.initSpriceListEvent();
             /* 收藏店铺*/
             self.initCollectionEvent();
+            /* 回到顶部 */
+           self.initBackTopEvent();
 
         },
 
+		/**
+		 * 页面滑动后回到顶部
+		 */
+		initBackTopEvent : function () {
+			$(".mui-mbar-tabs .gotop").on("click",function() {
+				$("body,html").animate({scrollTop: 0},200);
+				return false;
+			});
+		},
         /**
          * 显示是否已收藏店铺
          */
