@@ -2114,7 +2114,7 @@
     display: inline-block;
     width: 50px;
     text-align: center;
-    margin: 0 50px;
+    margin: 0 59px;
 }
 
 .material_content li {
@@ -2163,7 +2163,7 @@
 }
 
 .material_content li .format span {
-    width: 50px;
+    width: 100px;
     line-height: 30px;
     height: 30px;
     display: block;
