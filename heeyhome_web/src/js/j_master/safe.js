@@ -485,28 +485,32 @@
                     });
                     /* 短信身份验证 */
                     $(document).off('click', '#next_message1').on('click', '#next_message1', function () {//点击下一步事件
-                        $.ajax({
-                            url: PASSWORDMSURL,
-                            type: "GET",
-                            async: true,
-                            dataType: 'jsonp',
-                            data: {
-                                user_id: $.base64.decode($.cookie("userId")),
-                                phone: phone,
-                                captcha: $('#password_code').val()
-                            },
-                            success: function (data) {
-                                if (data.code == '000') {
-                                    new_flag = data.data.flag;
-                                    //console.log(password_flag);
-                                    window.location.href = '#/master/setting/reset/reset_6';
-                                } else {
-                                    layer.alert(data.msg);
+                        if ($('#password_code').val() != '') {
+                            $.ajax({
+                                url: PASSWORDMSURL,
+                                type: "GET",
+                                async: true,
+                                dataType: 'jsonp',
+                                data: {
+                                    user_id: $.base64.decode($.cookie("userId")),
+                                    phone: phone,
+                                    captcha: $('#password_code').val()
+                                },
+                                success: function (data) {
+                                    if (data.code == '000') {
+                                        new_flag = data.data.flag;
+                                        //console.log(password_flag);
+                                        window.location.href = '#/center/setting/reset/reset_6';
+                                    } else {
+                                        layer.alert(data.msg);
+                                    }
+                                },
+                                error: function (data) {
                                 }
-                            },
-                            error: function (data) {
-                            }
-                        });
+                            });
+                        }else{
+                            layer.alert(MSG7);
+                        }
                     });
                 };
                 if (!phone) {
