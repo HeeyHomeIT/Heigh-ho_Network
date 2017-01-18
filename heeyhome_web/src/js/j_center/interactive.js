@@ -254,11 +254,10 @@
                                         },
                                         success: function (data) {
                                             if (data && data.code == '000') {
-                                                layer.alert(data.msg);
-                                                $(this).siblings(".trade_stage").children().html("已取消");
-                                                $(".ordercnt_content .all .bottom").remove();
+                                                layer.alert(data.code);
+                                                location.reload(true);
                                             } else {
-                                                layer.alert(data.msg);
+                                                layer.alert(data.code);
                                             }
                                         },
                                         error: function (data) {
@@ -1699,10 +1698,9 @@
                                 success: function (data) {
                                     if (data && data.code == '000') {
                                         layer.alert(data.msg);
-                                        $(this).siblings(".trade_stage").children().html("已取消");
-                                        $(".ordercnt_content .all .bottom").remove();
+                                        location.reload(true);
                                     } else {
-                                        layer.alert(data.msg);
+                                        layer.alert(data.code);
                                     }
                                 },
                                 error: function (data) {
