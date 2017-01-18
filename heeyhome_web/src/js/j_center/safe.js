@@ -212,9 +212,6 @@
                 $(document).ready(function () {
                     $('.next_confirm').click(function () {
                         setTimeout(function () {
-                            var iframe = document.getElementById('if');//获取那个iframe，也可以用$('#iframe')[0]替代
-                            var iframeWindow = iframe.contentWindow;//获取iframe里的window对象
-                            var $c = $(iframeWindow);//获取iframe中的jquery对象
                             console.log($(document.getElementById('if').contentWindow.document.body).html());
                         },3000);
                     });
@@ -234,11 +231,7 @@
                         processData: false,
                         contentType: false,
                         success: function (data) {
-                            if (data.code == '131') {
-                                //console.log(data);
-                            } else {
-                                layer.alert(data.msg);
-                            }
+                            console.log(data.data);
                         },
                         error: function (data) {
                         }
