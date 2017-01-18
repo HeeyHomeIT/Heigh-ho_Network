@@ -1,8 +1,11 @@
-.fl{
-	float: left;
+
+
+.fl {
+    float: left;
 }
+
 .sc_content {
-	position: relative;
+    position: relative;
 }
 
 .sc_content .main_content {
@@ -10,8 +13,8 @@
     margin: 0 auto;
 }
 
-.sc_content .main_content .sc_title{
-	width: 384px;
+.sc_content .main_content .sc_title {
+    width: 384px;
     line-height: 41px;
     margin: 0 auto;
     position: relative;
@@ -36,8 +39,8 @@
 }
 
 .sc_content .main_content .sc_contents {
- 	width: 1190px;
- 	    margin-top: 32px;
+    width: 1190px;
+    margin-top: 32px;
 }
 
 .sc_content .main_content .sc_contents .product-3 {
@@ -46,12 +49,12 @@
 }
 
 .sc_content .main_content .sc_contents .product-3 ul {
-        margin: 0;
+    margin: 0;
     padding: 0;
     display: block;
 }
 
-.sc_content .main_content .sc_contents .product-3 ul:before,.sc_content .main_content .sc_contents .product-3 ul:after {
+.sc_content .main_content .sc_contents .product-3 ul:before, .sc_content .main_content .sc_contents .product-3 ul:after {
     clear: both;
     content: "";
     display: block;
@@ -63,8 +66,8 @@
     width: 295px;
     /*height: 240px;*/
     margin: 0 6px;
-        border: 1px solid #ddd;
-            margin-bottom: 12px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
 }
 
 .sc_content .main_content .sc_contents .product-3 li .image {
@@ -78,32 +81,32 @@
     -webkit-transition: all 0.5s ease 0s;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .image .image_title{
+.sc_content .main_content .sc_contents .product-3 li .image .image_title {
     position: absolute;
     left: 0;
     width: 100%;
     height: 35px;
     padding-right: 10px;
     padding-left: 10px;
-    background-color: rgba(0,0,0,.2);
+    background-color: rgba(0, 0, 0, .2);
     color: #fff;
     bottom: 0;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .image .image_title .roomtype{
+.sc_content .main_content .sc_contents .product-3 li .image .image_title .roomtype {
     display: inline-block;
     height: 35px;
     line-height: 35px;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .image .image_title .roomicon{
+.sc_content .main_content .sc_contents .product-3 li .image .image_title .roomicon {
     float: right;
     height: 35px;
     margin-left: 20px;
     line-height: 35px;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .image .image_title .roomicon em{
+.sc_content .main_content .sc_contents .product-3 li .image .image_title .roomicon em {
     position: relative;
     display: inline-block;
     font-size: 0;
@@ -114,21 +117,21 @@
     vertical-align: middle;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .image .image_title .roomicon em.sc_icon_love{
+.sc_content .main_content .sc_contents .product-3 li .image .image_title .roomicon em.sc_icon_love {
     background-position: -40px -45px;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .image .image_title .roomicon em.sc_icon_look{
+.sc_content .main_content .sc_contents .product-3 li .image .image_title .roomicon em.sc_icon_look {
     background-position: -40px -13px;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .introduce{
+.sc_content .main_content .sc_contents .product-3 li .introduce {
     font-size: 12px;
     padding: 8px;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .introduce strong{
-       font-size: 16px;
+.sc_content .main_content .sc_contents .product-3 li .introduce strong {
+    font-size: 16px;
     display: inline-block;
     margin-bottom: 5px;
     position: relative;
@@ -139,7 +142,7 @@
     color: #4b4948;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .introduce p{
+.sc_content .main_content .sc_contents .product-3 li .introduce p {
     line-height: 180%;
     color: #545454;
     height: 42px;
@@ -148,16 +151,16 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-        margin-bottom: 6px;
+    margin-bottom: 6px;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon{
+.sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon {
     height: 24px;
     line-height: 24px;
     color: #545454;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon em{
+.sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon em {
     position: relative;
     display: inline-block;
     font-size: 0;
@@ -168,10 +171,10 @@
     vertical-align: middle;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon em.sc_icon_address{
+.sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon em.sc_icon_address {
     background-position: -8px -13px;
 }
 
-.sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon em.sc_icon_time{
+.sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon em.sc_icon_time {
     background-position: -8px -45px;
 }

@@ -606,7 +606,7 @@ label.error.roomerror{
 
 .now_location em {
 	display: inline-block;
-        width: 19px;
+    width: 19px;
     height: 20px;
     vertical-align: middle;
     background: url(../img/icon-toindex.png) no-repeat;

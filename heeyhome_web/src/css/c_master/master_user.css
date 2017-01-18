@@ -51,6 +51,14 @@
     background: url(../img/sprite_order.png) no-repeat;
 }
 
+.sprite_total {
+    background: url(../img/sprite_total.png) no-repeat;
+}
+
+.sprite_remain {
+    background: url(../img/sprite_remain.png) no-repeat;
+}
+
 /* 私有样式 */
 /* 左边导航开始 */
 #selfcenter_top .now_location {
@@ -261,17 +269,12 @@
 }
 
 .store_name .real_name {
-    /*width: 19px;*/
-    /*height: 18px;*/
-    /*background: url("../../css/img/real_name.png") no-repeat;*/
     margin-left: 13px;
     margin-right: 15px;
 }
 
 .store_name .safe_name {
-    /*width: 16px;*/
-    /*height: 20px;*/
-    /*background: url("../../css/img/safe_name.png") no-repeat;*/
+
 }
 
 .enter_storeWrap {
@@ -535,8 +538,18 @@
     text-align: center;
 }
 
-.bottom_team .home_team_img img {
+.bottom_team .home_team_img em {
+    display: inline-block;
+    width: 78px;
+    height: 9px;
+}
 
+.bottom_team .home_team_img .sprite_left {
+    background-position: -82px -325px;
+}
+
+.bottom_team .home_team_img .sprite_right {
+    background-position: -181px -325px;
 }
 
 .bottom_team .home_team_img span {
@@ -571,7 +584,7 @@
     margin-left: 71px;
     margin-top: 35px;
     text-align: center;
-    background: url("../../css/img/line_order.png") no-repeat right top;
+    background: url("../../css/img/sprite_remain.png") no-repeat 106px 0;
     padding-top: 14px;
     box-sizing: border-box;
 }
@@ -1492,6 +1505,13 @@
 .add_technologycnt .add_content .picture_cnt .close img {
     width: 100%;
     height: 100%;
+}
+
+.close em {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-position: -314px -493px;
 }
 
 .add_technologycnt .add_content .picture_cnt a img {
@@ -2684,15 +2704,16 @@
 }
 
 .new_stylecnt span.active:after {
-    content: url(../img/icon-selected.png);
+    content: '';
     display: block;
     position: absolute;
-    background-color: #FFFFFF;
     width: 16px;
-    height: 16px;
+    height: 17px;
     line-height: 16px;
     right: -7px;
     bottom: -4px;
+    background: url(../img/sprite_remain.png) no-repeat -376px -182px;
+    background-color: #FFFFFF !important;
 }
 
 .new_stylecnt span:hover {
@@ -2962,6 +2983,16 @@
     margin-bottom: 16px;
 }
 
+.new_album em {
+    display: inline-block;
+    width: 54px;
+    height: 55px;
+    background-position: -220px -387px;
+    margin-top: 46px;
+    margin-left: 61px;
+    margin-bottom: 16px;
+}
+
 .new_album p {
     font-size: 14px;
     color: #c8c8c8;
@@ -3156,6 +3187,13 @@
     position: absolute;
     right: -5px;
     bottom: 0;
+}
+
+.staff_img em {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-position: -28px -487px;
 }
 
 .staff_top_info {
@@ -3778,8 +3816,11 @@ div.clear:after, div.clear:before {
     margin-left: 15px;
 }
 
-.delete img {
-    vertical-align: inherit;
+.delete em {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    background-position: -465px -156px;
 }
 
 .information_choose {
@@ -4109,16 +4150,6 @@ div.clear:after, div.clear:before {
     width: 545px;
     height: auto;
     margin: 0 auto;
-}
-
-.staff_bottom_content li {
-    height: 35px;
-    line-height: 35px;
-    background: url("../../css/img/staff_line.png") no-repeat 0 33px;
-}
-
-.staff_bottom_content li:last-child {
-    background: none;
 }
 
 .staff_bottom_content span {
