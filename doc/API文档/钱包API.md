@@ -106,7 +106,7 @@ callback            callback
 callback(
 code         000
 data         ""
-msg          "申请提现成功，银行处理中"
+msg          ""
 )
 ```
 
@@ -115,13 +115,17 @@ msg          "申请提现成功，银行处理中"
 callback(
 code          111
 data          ""
-msg           "申请提现失败，该银行卡未绑定"
+msg           ""
 )
 ```
 
 ###### Code值含义
 
 ```
+000          申请提现成功，银行处理中
+111          申请提现失败，该银行卡未绑定
+131          申请提现失败，余额不足
+132          申请提现失败，有提现尚未处理
 ```
 # bill() #
 ##账单明细接口
@@ -343,9 +347,10 @@ callback            callback
 callback(
 code         000
 data         {
-                total             我的资产
-                todaytotal        今日收益
-                process_type      存不存在提现申请 true:存在 flase:不存在
+                total              我的资产
+                todaytotal         今日收益
+                available_total    可提现金额
+                process_type       存不存在提现申请 true:存在 flase:不存在
             }
 
 )

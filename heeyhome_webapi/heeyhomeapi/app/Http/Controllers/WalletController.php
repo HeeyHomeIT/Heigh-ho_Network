@@ -54,25 +54,43 @@ class WalletController extends Controller
         $bankname=rq('bankname');
         $cardtype=rq('cardtype');
         $bankcard=$bankname.$bankcardno;
-        $select=DB::select('select id from hh_wallet_balance where available_total>=? and user_id=?',[$money,$user_id]);
-        if($select) {
-            $time = date('Y-m-d H:i:s', time());
-            $is = DB::select('select id from hh_bankcard where bank_userid=? and bankcardno=?', [$user_id, $bankcardno]);
-            if ($is) {
-                $insert = DB::insert('insert into hh_withdrawapply(apply_userid,money,payment,apply_time) values(?,?,?,?)', [$user_id, $money, $bankcard, $time]);
-                $arr = array("code" => "000",
-                    "msg" => "申请提现成功，银行处理中"
-                );
-                return $callback . "(" . HHJson($arr) . ")";
-            } else {
-                $arr = array("code" => "111",
-                    "msg" => "申请提现失败，该银行卡未绑定"
+        $isapply=DB::select('select process_type from hh_withdrawapply where apply_userid=?',[$user_id]);
+        if($isapply) {
+            if($isapply[0]->process_type){
+                $process_type=true;
+            }else{
+                $process_type = false;
+            }
+        }
+        else{
+            $process_type=true;
+        }
+        if($process_type){
+            $select=DB::select('select id from hh_wallet_balance where available_total>=? and user_id=?',[$money,$user_id]);
+            if($select) {
+                $time = date('Y-m-d H:i:s', time());
+                $is = DB::select('select id from hh_bankcard where bank_userid=? and bankcardno=?', [$user_id, $bankcardno]);
+                if ($is) {
+                    $insert = DB::insert('insert into hh_withdrawapply(apply_userid,money,payment,apply_time) values(?,?,?,?)', [$user_id, $money, $bankcard, $time]);
+                    $arr = array("code" => "000",
+                        "msg" => "申请提现成功，银行处理中"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                } else {
+                    $arr = array("code" => "111",
+                        "msg" => "申请提现失败，该银行卡未绑定"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+            }else{
+                $arr = array("code" => "131",
+                    "msg" => "申请提现失败，余额不足"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
         }else{
-            $arr = array("code" => "131",
-                "msg" => "申请提现失败，余额不足"
+            $arr = array("code" => "132",
+                "msg" => "申请提现失败，有提现尚未处理"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
@@ -129,15 +147,16 @@ class WalletController extends Controller
         }else{
             $todaytotal=0;
         }
-        $money = DB::select('select total from hh_wallet_balance where user_id =?',[$user_id]);
-        if($money){
-            $total=$money[0]->total;
-        }else{
-            $total=0;
-        }
+        $money = DB::select('select total,available_total from hh_wallet_balance where user_id =?',[$user_id]);
+        $total=$money[0]->total;
+        $available_total=$money[0]->available_total;
         $isapply=DB::select('select process_type from hh_withdrawapply where apply_userid=?',[$user_id]);
         if($isapply) {
-                $process_type = false;
+                if($isapply[0]->process_type){
+                    $process_type=true;
+                }else{
+                    $process_type = false;
+                }
         }
         else{
             $process_type=true;
@@ -145,6 +164,7 @@ class WalletController extends Controller
         $arr = array("code" => "000",
             "data" => array("total"=>$total,
                 "todaytotal"=>floatval($todaytotal),
+                "available_total"=>$available_total,
             "process_type"=>$process_type),
         );
         return $callback . "(" . HHJson($arr) . ")";
