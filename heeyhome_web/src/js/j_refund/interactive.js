@@ -108,6 +108,7 @@
                             window.location.href = 'refund.html#/refund/home/refund_step_3';
                             $('.title_detail').eq(0).removeClass('active');
                             $('.title_detail').eq(2).addClass('active');
+                            $('#wait span').html(data.data.refund_account);//退款成功获取用户的支付宝账户显示在页面中
                         }
                     } else {
                         layer.msg(data.msg);
