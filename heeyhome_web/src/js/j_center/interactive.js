@@ -235,7 +235,7 @@
                                     $(this).find(".all .top").addClass("one");
                                 }
                             });
-                            $(document).on("click",".ordercnt_content .all",function () {
+                            $(document).off("click",".ordercnt_content .all").on("click",".ordercnt_content .all",function () {
                                 var shopid = $(this).attr("data-shopid");
                                 var orderid = $(this).attr("data-orderid");
                                 var orderstep = $(this).attr("data-orderstep");
@@ -254,9 +254,9 @@
                                         },
                                         success: function (data) {
                                             if (data && data.code == '000') {
-                                                layer.alert(data.msg);         
+                                                layer.alert(data.msg);    
                                                 $(this).siblings(".trade_stage").children().html("已取消");
-                                                $(".ordercnt_content .all .bottom").css("cursor", "not-allowed");
+                                                $(".ordercnt_content .all .bottom").remove();
                                             } else {
                                                 layer.alert(data.msg);
                                             }
@@ -510,7 +510,7 @@
                         } else if (status == 1) {
                             $(".order_cnt_right .operation").html("取消订单");
                             /* 取消订单 */
-                            $(".order_cnt_right .operation").on("click", function () {
+                            $(".order_cnt_right .operation").off("click",".order_cnt_right .operation").on("click", function () {
                                 $.ajax({
                                     type: "get",
                                     url: CANCELORDERURL,
@@ -523,8 +523,8 @@
                                     success: function (data) {
                                         if (data && data.code == '000') {
                                             layer.alert(data.msg);
-                                            getHomeInfoHandler.getOrderEvent();
                                             $(".order_cnt_right .operation").css("cursor", "not-allowed");
+                                            getHomeInfoHandler.getOrderEvent();                                           
                                         } else {
                                             layer.alert(data.msg);
                                         }
@@ -1680,7 +1680,7 @@
                             $(this).find(".all .top").addClass("one");
                         }
                     });
-                    $(document).on("click",".ordercnt_content .all",function () {
+                    $(document).off("click",".ordercnt_content .all").on("click",".ordercnt_content .all",function () {
                         var shopid = $(this).attr("data-shopid");
                         var orderid = $(this).attr("data-orderid");
                         var orderstep = $(this).attr("data-orderstep");
@@ -1701,7 +1701,7 @@
                                     if (data && data.code == '000') {
                                         layer.alert(data.msg);         
                                         $(this).siblings(".trade_stage").children().html("已取消");
-                                        $(".ordercnt_content .all .bottom").css("cursor", "not-allowed");
+                                        $(".ordercnt_content .all .bottom").remove();
                                     } else {
                                         layer.alert(data.msg);
                                     }
