@@ -460,8 +460,8 @@
                             },
                             success: function (data) {
                                 if (data && data.code == '000') {
-                                    var src = BASEURL + data.data[0].shop_img;
-                                    $(".order_content_title .order_title_left .order_title_left_img").html('<img src="' + src + '">');
+                                    var src = data.data[0].shop_img;
+                                    $(".order_content_title .order_title_left .order_title_left_img").html('<img src="http://www.heeyhome.com/' + src + '">');
                                 } else {
                                     layer.msg(data.msg);
                                 }
