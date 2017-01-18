@@ -1263,7 +1263,8 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         }
         $order_personnel = $order_id;
         $order_personnel_tbl = DB::insert('INSERT INTO hh_order_personnel(personnel_id, order_id,person1,person2,person3,person4,person5,person6,person7,person8,person9) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
-            [$order_personnel, $order_id, $pa[0], $pa[1], $pa[2], $pa[3], $pa[4], $pa[5], $pa[6], $pa[7], $pa[8], $pa[9]]);
+            [$order_personnel, $order_id, $pa[0], $pa[1],$pa[2],$pa[3],$pa[4],$pa[5], $pa[6], $pa[7], $pa[8]]);
+
         if ($order_personnel_tbl) {
             $arr = array(
                 "code" => "000",
@@ -1279,6 +1280,42 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+    }
+
+    //查询装修人员
+    public function getDecorationWorker()
+    {
+        $order_id = rq('order_id');
+        $callback = rq('callback');
+        $result = DB::select('SELECT * from hh_order_personnel WHERE personnel_id = ? AND order_id = ?',[$order_id,$order_id]);
+        if ($result) {
+            $order_person = $result[0];
+            $personArr = array();
+
+            for ($i=1; $i <= 9 ; $i++) { 
+                $personId = 'person'.$i;
+                $user_id = $order_person->$personId;
+                if ($user_id) {
+                    $user = personal($user_id);
+                    array_push($personArr, $user);
+                }
+            }
+
+            $arr = array(
+                "code" => "000",
+                "data" => $personArr
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "208",
+                "msg" => "没有装修人员",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+
+        
     }
 
     /*订单进度*/

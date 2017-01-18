@@ -202,6 +202,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/aeckonandactual/generatelist', 'OrderOperateController@generateActualListAndReckonList');
     //生成装修人员订单
     Route::any('order/generateOrderWorker', 'OrderOperateController@generateOrderWorker');
+    //查询装修人员
+    Route::any('order/getDecorationWorker', 'OrderOperateController@getDecorationWorker');
     //获取预算单结算单字段
     Route::any('order/aeckonandactual/getlistname', 'OrderOperateController@getActualDataAndReckonData');
     //获取预算单结算单字段(分类)
