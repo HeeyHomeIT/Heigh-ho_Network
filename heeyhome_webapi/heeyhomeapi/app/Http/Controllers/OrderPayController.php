@@ -44,6 +44,7 @@ class OrderPayController extends Controller
                     [$order_id]);
                 if ($sel_refund_info) {
                     $refund_status = $sel_refund_info[0]->account_type;
+                    $refund_account = $sel_refund_info[0]->refund_account;
                 } else {
                     $refund_status = 0;
                 }
@@ -55,7 +56,8 @@ class OrderPayController extends Controller
                         "order_step" => $sel_order_tbl[0]->order_step,
                         "order_time" => $sel_order_tbl[0]->order_time,
                         "pay_amount" => $sel_pay_each_cj[0]->pay_amount,
-                        "refund_status" => $refund_status
+                        "refund_status" => $refund_status,
+                        "refund_account" => $refund_account
                     )
                 );
                 return $callback . "(" . HHJson($arr) . ")";
@@ -94,7 +96,7 @@ class OrderPayController extends Controller
         $refund_amount = abs($pay_amount);
         $refund_account = $alipay_account;
         $refund_submit_time = date('Y-m-d H:i:s', time());
-        $ins_refund_info = DB::insert('INSERT INTO hh_refund_info (order_id,$refund_submit_time,$refund_amount,$refund_status,$refund_account,$account_type)',
+        $ins_refund_info = DB::insert('INSERT INTO hh_refund_info (order_id,refund_submit_time,refund_amount,refund_status,refund_account,account_type) VALUES (?,?,?,?,?,?)',
             [$order_id, $refund_submit_time, $refund_amount, 1, $refund_account, $account_type]);
         if ($ins_refund_info) {
             $arr = array(
