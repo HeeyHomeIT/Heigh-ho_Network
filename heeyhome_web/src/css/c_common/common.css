@@ -609,7 +609,7 @@ label.error.roomerror{
     width: 19px;
     height: 20px;
     vertical-align: middle;
-    background: url(../img/icon-toindex.png) no-repeat;
+    background: url(../img/sprite_remain.png) no-repeat -442px -161px;
 }
 
 #footer {

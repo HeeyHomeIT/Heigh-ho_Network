@@ -406,6 +406,7 @@
     margin: 15px 0 0 20px;
     padding-bottom: 15px;
     background-position: -392px -289px;
+    /*background: url(../img/icon-service.png) no-repeat*/
 }
 
 .appointment_decoration .right_bar .right_bar_2 {
@@ -415,6 +416,7 @@
     margin: 15px 0 0 20px;
     padding-bottom: 15px;
     background-position: -244px -297px;
+    /*background: url(../img/icon-feedback.png) no-repeat*/
 }
 
 .appointment_decoration .right_bar .right_bar_3 {
@@ -424,10 +426,15 @@
     margin: 15px 0 0 20px;
     padding-bottom: 15px;
     background-position: -98px -297px;
+    /*background: url(../img/icon-scan.png) no-repeat*/
 }
 
 .sprite_total {
     background: url(../img/sprite_total.png) no-repeat;
+}
+
+.sprite_remain {
+    background: url(../img/sprite_remain.png) no-repeat;
 }
 
 .appointment_decoration .right_bar .right_bar_4 {
@@ -437,6 +444,7 @@
     margin: 15px 0 0 20px;
     padding-bottom: 15px;
     background-position: -314px -297px;
+    /*background: url(../img/icon-floader.png) no-repeat*/
 }
 
 .appointment_decoration .right_bar .right_bar_5 {
@@ -445,8 +453,8 @@
     height: 34px;
     margin: 15px 0 0 20px;
     padding-bottom: 15px;
-
-    background: url(../img/icon-totop.png) no-repeat
+    background-position: -332px -398px;
+    /*background: url(../img/icon-totop.png) no-repeat*/
 }
 
 
