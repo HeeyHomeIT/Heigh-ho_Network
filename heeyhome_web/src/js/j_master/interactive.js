@@ -534,7 +534,10 @@
                             reader.onload = function (e) {
                                 inputImg.parent().parent().attr("data-flag", "1");
                                 inputImg.parent().parent().addClass('clear');//图片预览时input file 添加opacity样式，设置完全透明
-                                inputImg.parent().parent().css({'background':'url("' + e.target.result + '") no-repeat','backgroundSize':'100% 100%'});//图片设置为$('.showImg')背景图
+                                inputImg.parent().parent().css({
+                                    'background': 'url("' + e.target.result + '") no-repeat',
+                                    'backgroundSize': '100% 100%'
+                                });//图片设置为$('.showImg')背景图
                                 var pic = '<img src="' + e.target.result + '">';
                                 myfile.push(pic);
                             }
@@ -1588,7 +1591,7 @@
                 success: function (data) {
                     if (data && data.code == '000') {
                         //console.log(data.data);
-                        $(".head").html('<img src="http://hyu2387760001.my3w.com/'+data.data.foremanimg+'">');//获取头像
+                        $(".head").html('<img src="http://hyu2387760001.my3w.com/' + data.data.foremanimg + '">');//获取头像
 //                      $('.head img').attr('src', 'http://hyu2387760001.my3w.com/' + data.data.foremanimg + '');//获取头像
                         $('#shop_name').html(data.data.shop_name);//获取店铺名字
                         $('#real_name').attr('src', 'http://hyu2387760001.my3w.com/' + data.data.authentication[0] + '');//获取安全认证图片
@@ -1720,9 +1723,9 @@
                         $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
                         email = data.data.foremaninfo_email; //获取工长的邮箱
                         if (email != null) {//判断邮箱是否为空
-                        	var length =  email.length;
-                        	var abb_email = email.substr(0, 3) + "****" + email.substr(length-3, length);//邮箱中间变成*号                      	 
-                            $('#email_p').html('<span>'+abb_email+'</span><a href="#/master/setting/email/email_1">修改绑定</a>')
+                            var length = email.length;
+                            var abb_email = email.substr(0, 3) + "****" + email.substr(length - 3, length);//邮箱中间变成*号
+                            $('#email_p').html('<span>' + abb_email + '</span><a href="#/master/setting/email/email_1">修改绑定</a>')
                         }
                         $('.personal_user_name').val($.base64.decode($.cookie("userName"))); //获取工长的用户名
                         //判断工长的性别
@@ -1752,26 +1755,26 @@
                         }
                         $('.personal_user_community').eq(0).addClass('personal_user_first');
                         //获取所在地信息
-                        if(data.data.loc_province != null && data.data.loc_province != '') {
-                        	$('#loc').distpicker({province: data.data.loc_province});                      	
+                        if (data.data.loc_province != null && data.data.loc_province != '') {
+                            $('#loc').distpicker({province: data.data.loc_province});
                         }
-                        if(data.data.loc_city != null && data.data.loc_city != '') {
-                        	$('#loc').distpicker({city: data.data.loc_city});
+                        if (data.data.loc_city != null && data.data.loc_city != '') {
+                            $('#loc').distpicker({city: data.data.loc_city});
                         }
-                        if(data.data.loc_district != null && data.data.loc_district != '') {
-                        	$('#loc').distpicker({district: data.data.loc_district});
+                        if (data.data.loc_district != null && data.data.loc_district != '') {
+                            $('#loc').distpicker({district: data.data.loc_district});
                         }
 
                         //获取家乡信息
-                        if(data.data.home_province != null && data.data.home_province != '') {
-                        	$('#home').distpicker({province: data.data.home_province});
+                        if (data.data.home_province != null && data.data.home_province != '') {
+                            $('#home').distpicker({province: data.data.home_province});
                         }
-                        if(data.data.home_city != null && data.data.home_city != '') {
-                        	$('#home').distpicker({city: data.data.home_city});
+                        if (data.data.home_city != null && data.data.home_city != '') {
+                            $('#home').distpicker({city: data.data.home_city});
                         }
-                        if(data.data.home_district != null && data.data.home_district != '') {
-                        	$('#home').distpicker({district: data.data.home_district});
-                        } 
+                        if (data.data.home_district != null && data.data.home_district != '') {
+                            $('#home').distpicker({district: data.data.home_district});
+                        }
 
                     }
                     /* 如果失败执行 */
@@ -2152,7 +2155,9 @@
                     }
                     /* 如果失败执行 */
                     else {
-                        layer.alert(data.msg);
+                        //layer.alert(data.msg);
+                        $("#choose_bank").append('<div class="not_bank fl"> <span>您还没有绑定银行卡哦~~ 点击去</span><a href="bank.html#/bank/home"> 绑定 </a> </div><!--not_bank-->');
+
                     }
                 }).error(function (data, status) {
                 });
@@ -3197,7 +3202,7 @@
                     if (data.code === '000') {
                         console.log(data);
                         var openTime = data.data.opentime;
-                        openTime = openTime.substring(0,10);
+                        openTime = openTime.substring(0, 10);
                         $('#shop_name').val(data.data.shop_name);//获取店名
                         $('#shop_describe').val(data.data.shop_describe);//获取店铺理念
                         $('#shop_age').val(openTime);//获取店铺的开店时间
@@ -3580,7 +3585,7 @@
                         params: {
                             foreman_id: USERID,
                             type: 1,
-                            limit:4
+                            limit: 4
                         },
                         beforeSend: function () {
                             $(".complete_before .works_detail").remove();
@@ -3628,7 +3633,7 @@
                             if (data && data.code == '000') {
                                 layer.msg(data.msg);
                                 http();
-                            }else{
+                            } else {
                                 layer.msg(data.msg);
                             }
                         },
@@ -3968,11 +3973,11 @@
             $(".main_content .content").on("click", function () {
                 var cnt = $(this).siblings(".cnt").html();
                 layer.open({
-					type: 1,
-					skin: 'layui-layer-rim', //加上边框
-					area: ['420px', '240px'], //宽高
-					content: '<p>'+cnt+'</p>'
-				});
+                    type: 1,
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['420px', '240px'], //宽高
+                    content: '<p>' + cnt + '</p>'
+                });
                 if ($(this).parent().attr("data-isread") == "0") { //未读消息
                     var id = $(this).parent().attr("data-id");
                     var $now = $(this).parent();
