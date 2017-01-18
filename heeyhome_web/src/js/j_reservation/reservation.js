@@ -416,7 +416,7 @@
 		 * @param {Object} value 对象
 		 */
 		splicePersonDataEvent: function(imgurl,value) {
-			var vrStr = '<div class="card avatar"><img src="http://www.heeyhome.com/api/public/' + imgurl + '"><h1>'+value.foremaninfo_realname+'</h1>';
+			var vrStr = '<div class="card avatar"><img src="http://www.heeyhome.com/' + imgurl + '"><h1>'+value.foremaninfo_realname+'</h1>';
 				vrStr += '<span>'+((value.loc_city!=null &&value.loc_city!="")?value.loc_city:'中国')+' | '+value.foremaninfo_phone+' | '+((value.worktime!=null &&value.worktime!="")?value.worktime:'0')+'年</span><div class="corner"><div class="corner_logo"><a><em class="sprite_remain"></em></a></div>';
 				vrStr += '<span class="corner_text">工长</span></div></div>';
 			return vrStr;
@@ -427,7 +427,7 @@
 		 * @param {Object} value 对象
 		 */
 		spliceWorkerDataEvent:function(ntype,value){
-			var vrStr = '<div class="card avatar"><img src="http://www.heeyhome.com/api/public/' + value.portrait_img + '"><h1>'+value.name+'</h1>';
+			var vrStr = '<div class="card avatar"><img src="http://www.heeyhome.com/' + value.portrait_img + '"><h1>'+value.name+'</h1>';
 			vrStr += '<span>'+value.birthplace+' | '+value.phone+' | '+value.worktime+'年</span><div class="corner"><div class="corner_logo"><a><em class="sprite_remain"></em></a></div>';
 			switch(ntype){
 				case 1:

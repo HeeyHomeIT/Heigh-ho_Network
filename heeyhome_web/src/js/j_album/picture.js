@@ -55,9 +55,9 @@ var picList = [];
 								var pObj = {
 									"picPos": item+1,
 									"pid": val.img_id,
-									"bigPic": "http://www.heeyhome.com/api/public/"+val.technics_img,
-									"bigPic": "http://www.heeyhome.com/api/public/"+val.technics_img,
-									"thumbPic": "http://www.heeyhome.com/api/public/"+val.technics_img
+									"bigPic": "http://www.heeyhome.com/"+val.technics_img,
+									"bigPic": "http://www.heeyhome.com/"+val.technics_img,
+									"thumbPic": "http://www.heeyhome.com/"+val.technics_img
 								};
 								picList.push(pObj);
 							});
@@ -180,7 +180,7 @@ var picList = [];
 		 */
 		spliceBigPicEvent:function(value,pn) {
 			console.log(value)
-			var vrStr = '<img id="mainPic" src="http://www.heeyhome.com/api/public/'+value.technics_img[pn-1].technics_img+'" />';
+			var vrStr = '<img id="mainPic" src="http://www.heeyhome.com/'+value.technics_img[pn-1].technics_img+'" />';
 			return vrStr;
 		},
 		/**
@@ -190,7 +190,7 @@ var picList = [];
 		spliceSmallPicEvent:function(value) {
 			var vrStr = '';
 			$.each(value.technics_img, function(i,v) {
-				vrStr += '<li id="tu_'+(i+1)+'"><span></span><a href="javascript:void(0);"><img src="http://www.heeyhome.com/api/public/'+v.technics_img+'" /></a></li>';
+				vrStr += '<li id="tu_'+(i+1)+'"><span></span><a href="javascript:void(0);"><img src="http://www.heeyhome.com/'+v.technics_img+'" /></a></li>';
 			});
 			return vrStr;
 		}

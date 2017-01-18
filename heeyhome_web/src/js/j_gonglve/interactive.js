@@ -194,7 +194,7 @@
             var vrStr = '<div id="rightDetail" rid="' + value.id + '">';
             vrStr += '<a class="right_detail clearfix" href="gonglve_detail.html#/detail?id=' + value.id + '" target="_blank">';
             vrStr += '	<div class="right_img">';
-            vrStr += '		<img src="http://www.heeyhome.com/api/public/' + value.img + '">';
+            vrStr += '		<img src="http://www.heeyhome.com/' + value.img + '">';
             vrStr += '		<div class="img_background_1"></div>';
             vrStr += '		<div class="img_background_2"></div>';
             vrStr += '	</div><!--right_img-->';

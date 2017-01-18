@@ -214,7 +214,7 @@
             $.each(value, function (i, v) {
                 vrStr += '<div class="shop_box" data-shopid="' + v.shop_id + '" data-shopperid="' + v.shopper_id + '">';
                 vrStr += '	<div class="left_image">';
-                vrStr += '		<a href="#nogo"><img src="http://www.heeyhome.com/api/public/' + v.shop_img + '"></a>';
+                vrStr += '		<a href="#nogo"><img src="http://www.heeyhome.com/' + v.shop_img + '"></a>';
                 vrStr += '		<div class="image-background_1"></div>';
                 vrStr += '		<div class="image-background_2"></div>';
                 vrStr += '	</div>';
@@ -222,7 +222,7 @@
                 vrStr += '		<div class="shop_name">';
                 vrStr += '			<h2>' + v.shop_name + '</h2>';
                 $.each(v.authentication, function (i1, v1) {
-                    vrStr += '		<img src="http://www.heeyhome.com/api/public/' + v1 + '">';
+                    vrStr += '		<img src="http://www.heeyhome.com/' + v1 + '">';
                 });
                 vrStr += '		</div>';
                 vrStr += '		<div class="shop_introduce">';

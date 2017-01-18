@@ -292,7 +292,7 @@
 			var vrStr = '';
 			$.each(value, function(i, v) {
 				vrStr += '<div class="pic_box" data-id="' + v.panorama_id + '"><div class="vr_pic">';
-				vrStr += '<a href="' + v.panorama_url + '"><img src="http://www.heeyhome.com/api/public/' + v.panorama_img + '" class="now">';
+				vrStr += '<a href="' + v.panorama_url + '"><img src="http://www.heeyhome.com/' + v.panorama_img + '" class="now">';
 				vrStr += '<div class="bg_mongolia">';
 				vrStr += '<div class="sprite-image pic_hover"></div></div></a></div>';
 				vrStr += '<div class="pic_introduce">';
