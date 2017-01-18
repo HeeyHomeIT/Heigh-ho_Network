@@ -3866,7 +3866,7 @@
                     reader.onload = function (e) {
                         var pic = '<div class="picture_cnt fl">';
                         pic += '<a href="javascript:;"><img src="' + e.target.result + '"></a>';
-                        pic += '<div class="close"><img src="css/img/auth_del.png"></div></div>';
+                        pic += '<div class="close"><em class="sprite_total"></em></div></div>';
                         inputImg.parent().parent().before(pic);//新图片显示
                         var pic = '<img src="' + e.target.result + '">';
                         myfile.push(pic);
@@ -4051,7 +4051,7 @@
             vrStr += '<span class="content">' + value.msgtitle + '</span>';
             vrStr += '<span class="time">' + value.sendtime + '</span>';
             vrStr += '<span class="cnt">' + value.msgcontent + '</span>';
-            vrStr += '<a class="delete" href="javascript:;"><img src="css/img/delete.png"></a>';
+            vrStr += '<a class="delete" href="javascript:;"><em class="sprite-details"></em></a>';
             vrStr += '</div>';
             return vrStr;
         }
