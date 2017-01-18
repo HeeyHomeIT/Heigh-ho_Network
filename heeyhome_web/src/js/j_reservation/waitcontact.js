@@ -10,8 +10,8 @@
 	 */
 	var HHIT_WAITCONTACTAPP = angular.module('heeyhomeApp');
 
-	var SHOPINFOURL = "http://hyu2387760001.my3w.com/shopinfo"; // 店铺详情信息接口
-	var SELSTATUSURL = "http://hyu2387760001.my3w.com/order/client/selstatus"; // 查询订单状态及步骤接口
+	var SHOPINFOURL = "http://www.heeyhome.com/api/public/shopinfo"; // 店铺详情信息接口
+	var SELSTATUSURL = "http://www.heeyhome.com/api/public/order/client/selstatus"; // 查询订单状态及步骤接口
     
     var oInfoObj =$.cookie("dd"); // 得到预订消息
     if(oInfoObj!=null && oInfoObj !="" && oInfoObj !=undefined){

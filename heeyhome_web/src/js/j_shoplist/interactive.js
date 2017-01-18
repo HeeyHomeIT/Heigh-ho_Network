@@ -12,8 +12,8 @@
      */
     var HHIT_SHOPLISTAPP = angular.module('heeyhomeApp');
 
-    var TAGSURL = "http://hyu2387760001.my3w.com/shoplist/gettags"; // 获取工长店铺筛选接口
-    var SHOPLISTURL = "http://hyu2387760001.my3w.com/shoplist"; // 获取工长店铺列表信息接口
+    var TAGSURL = "http://www.heeyhome.com/api/public/shoplist/gettags"; // 获取工长店铺筛选接口
+    var SHOPLISTURL = "http://www.heeyhome.com/api/public/shoplist"; // 获取工长店铺列表信息接口
 
     var TOTAL; // 后台数据总数
     var MAXROWS; //总页数
@@ -214,7 +214,7 @@
             $.each(value, function (i, v) {
                 vrStr += '<div class="shop_box" data-shopid="' + v.shop_id + '" data-shopperid="' + v.shopper_id + '">';
                 vrStr += '	<div class="left_image">';
-                vrStr += '		<a href="#nogo"><img src="http://hyu2387760001.my3w.com/' + v.shop_img + '"></a>';
+                vrStr += '		<a href="#nogo"><img src="http://www.heeyhome.com/api/public/' + v.shop_img + '"></a>';
                 vrStr += '		<div class="image-background_1"></div>';
                 vrStr += '		<div class="image-background_2"></div>';
                 vrStr += '	</div>';
@@ -222,7 +222,7 @@
                 vrStr += '		<div class="shop_name">';
                 vrStr += '			<h2>' + v.shop_name + '</h2>';
                 $.each(v.authentication, function (i1, v1) {
-                    vrStr += '		<img src="http://hyu2387760001.my3w.com/' + v1 + '">';
+                    vrStr += '		<img src="http://www.heeyhome.com/api/public/' + v1 + '">';
                 });
                 vrStr += '		</div>';
                 vrStr += '		<div class="shop_introduce">';

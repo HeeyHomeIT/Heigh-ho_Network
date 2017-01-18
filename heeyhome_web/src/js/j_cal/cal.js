@@ -1,6 +1,6 @@
 var resObj = {};
 var roomPlanObj = {};
-var COUNTURL = 'http://hyu2387760001.my3w.com/costcalculator/count'; // 成本计算器接口
+var COUNTURL = 'http://www.heeyhome.com/api/public/costcalculator/count'; // 成本计算器接口
 
 var heeyhomeCal = {
 	init: function() {

@@ -9,7 +9,7 @@
      */
     var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-    var BASEURL = 'http://hyu2387760001.my3w.com/';
+    var BASEURL = 'http://www.heeyhome.com/api/public/';
 
     var USERDATAURL = BASEURL + 'personal/userinfo'; // 用户个人资料
     var EDITUSERDATAURL = BASEURL + 'personal/userinfo/change'; // 编辑用户个人资料
@@ -183,7 +183,7 @@
                         if (data != null && data.code == '000') {
                             $.each(data.data.order_list, function (i, v) {
                                 if (v.order_id == order_id) {
-                                    $(".owner_picture img").attr("src", "http://hyu2387760001.my3w.com/" + v.user_portrait);
+                                    $(".owner_picture img").attr("src", "http://www.heeyhome.com/api/public/" + v.user_portrait);
                                     $(".owner_summary h3").html(v.user_realname);
                                     $(".owner_summary p span").html(v.user_phone);
                                     $(".owner_left .area p span").html(v.area);
@@ -422,7 +422,7 @@
                 success: function (data) {
                     if (data && data.code == '000') {
                         //console.log(data.data);
-                        $(".left_img").html('<img src="http://hyu2387760001.my3w.com/'+data.data.user_img+'">');
+                        $(".left_img").html('<img src="http://www.heeyhome.com/api/public/'+data.data.user_img+'">');
                     }
                 },
                 error: function (data) {
@@ -862,7 +862,7 @@
                             if (data.data.now_order_step != 1) {
                                 $.each(data.data.worker, function (i, v) {
                                     work += '<div class="worker">';
-                                    work += '<img src="http://hyu2387760001.my3w.com/' + v.portrait + '">';
+                                    work += '<img src="http://www.heeyhome.com/api/public/' + v.portrait + '">';
                                     work += '<p><span class="worker_cname">' + v.name + '</span>';
                                     work += '</p></div>';
                                 });
@@ -1545,7 +1545,7 @@
             vrStr += '<div class="stage_pic clearfix">';
             $.each(value.img, function (m, n) {
                 vrStr += '<div class="pic">';
-                vrStr += '<img src="http://hyu2387760001.my3w.com/' + n.img_url + '">';
+                vrStr += '<img src="http://www.heeyhome.com/api/public/' + n.img_url + '">';
                 vrStr += '</div>';
             });
             vrStr += '</div>';
@@ -1804,7 +1804,7 @@
             vrStr += '		<em class="sprite-details"></em>';
             vrStr += '		</a>';
             vrStr += '		<div class="detail_img">';
-            vrStr += '	<img src="http://hyu2387760001.my3w.com/' + value.panorama_img + '">';
+            vrStr += '	<img src="http://www.heeyhome.com/api/public/' + value.panorama_img + '">';
             vrStr += '	</div><!--detail_img-->';
             vrStr += '		<a href="' + value.panorama_url + '" class="complete_bg"></a><!--complete_bg-->';
             vrStr += '			<span>' + value.panorama_style + '</span>';
@@ -1961,12 +1961,12 @@
         spliceStrEvent: function (value) {
             var vrStr = '<div class="collection_shop clearfix" shopId="' + value.shop_id + '">';
             vrStr += '	<div class="left_img fl">';
-            vrStr += '	<img src="http://hyu2387760001.my3w.com/' + value.img + '">';
+            vrStr += '	<img src="http://www.heeyhome.com/api/public/' + value.img + '">';
             vrStr += '		</div><!--left_img-->';
             vrStr += '		<div class="left_detail fl">';
             vrStr += '	<p class="manager_shop">' + value.shop_name + '<i class="iconfont first_i">';
             $.each(value.authentication, function (s, r) {
-                vrStr += '<img src="http://hyu2387760001.my3w.com/' + r + '">';
+                vrStr += '<img src="http://www.heeyhome.com/api/public/' + r + '">';
             });
             vrStr += '	</i></p>';
             vrStr += '	<p>常驻地址：<span>' + value.shop_address + '</span></p>';

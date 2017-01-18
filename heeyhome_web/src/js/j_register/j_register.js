@@ -4,11 +4,11 @@
 (function(){
 	
 	var HASH = window.location.hash; // 获取 href 属性中在井号“#”后面的分段
-	var REGISTERURL = "http://hyu2387760001.my3w.com/register/user_register"; // 获取注册接口
-	var LOGINURL = "http://hyu2387760001.my3w.com/login/login"; // 获取登录接口
-	var CODEURL = "http://hyu2387760001.my3w.com/sendsms"; // 获取验证码接口 
-	var QQLOGINURL = "http://hyu2387760001.my3w.com/qqlogin"; // QQ登录接口
-	var WXLOGINURL = "http://hyu2387760001.my3w.com/wxlogin"; // 微信登录接口
+	var REGISTERURL = "http://www.heeyhome.com/api/public/register/user_register"; // 获取注册接口
+	var LOGINURL = "http://www.heeyhome.com/api/public/login/login"; // 获取登录接口
+	var CODEURL = "http://www.heeyhome.com/api/public/sendsms"; // 获取验证码接口 
+	var QQLOGINURL = "http://www.heeyhome.com/api/public/qqlogin"; // QQ登录接口
+	var WXLOGINURL = "http://www.heeyhome.com/api/public/wxlogin"; // 微信登录接口
 	/**
 	* 移动号码归属地支持号段:134 135 136 137 138 139 147 150 151 152 157 158 159 178  182 183 184 187 188
 	* 联通号码归属地支持号段:130 131 132  145 155 156 176  186 

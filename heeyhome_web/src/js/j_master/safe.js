@@ -9,7 +9,7 @@
      */
     var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-    var BASEURL = 'http://hyu2387760001.my3w.com/';
+    var BASEURL = 'http://www.heeyhome.com/api/public/';
 
     var FOREMANURL = BASEURL + 'personal/foremaninfo'; // 工长个人资料
     var SAFELEVELURL = BASEURL + 'personal/safe'; // 安全等级

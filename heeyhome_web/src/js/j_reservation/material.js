@@ -10,9 +10,9 @@
 	 */
 	var HHIT_MATERIALAPP = angular.module('heeyhomeApp');
 
-	var USERGETURL = "http://hyu2387760001.my3w.com/order/material/userget"; // 用户材料订单数据获取API
-	var PAYURL = "http://hyu2387760001.my3w.com/alipay/pay"; // 支付宝支付
-	var OUTURL = "http://hyu2387760001.my3w.com/order/material/outMaterialByUser"; // 用户确认材料单线下购买
+	var USERGETURL = "http://www.heeyhome.com/api/public/order/material/userget"; // 用户材料订单数据获取API
+	var PAYURL = "http://www.heeyhome.com/api/public/alipay/pay"; // 支付宝支付
+	var OUTURL = "http://www.heeyhome.com/api/public/order/material/outMaterialByUser"; // 用户确认材料单线下购买
 
 	/*定义一个类*/
 	var materialListWrap = {
@@ -251,7 +251,7 @@
 							$.each(v, function(item, val) {
 								$.each(val, function(item1, val1) {
 									vrStr += '<tr class="shows">';
-									vrStr += '<td rowspan="' + val1.data.length + '" class="border_eee"><img src="http://hyu2387760001.my3w.com/' + val1.img + '"></td>';
+									vrStr += '<td rowspan="' + val1.data.length + '" class="border_eee"><img src="http://www.heeyhome.com/api/public/' + val1.img + '"></td>';
 									vrStr += '<td rowspan="' + val1.data.length + '" class="border_eee">' + val1.name + '</td>';
 									$.each(val1.data, function(item2, val2) {
 										if(item2 != 0) {
@@ -286,7 +286,7 @@
 							$.each(v, function(item, val) {
 								$.each(val, function(item1, val1) {
 									vrStr += '<tr class="shows">';
-									vrStr += '<td rowspan="' + val1.data.length + '" class="border_eee"><img src="http://hyu2387760001.my3w.com/' + val1.img + '"></td>';
+									vrStr += '<td rowspan="' + val1.data.length + '" class="border_eee"><img src="http://www.heeyhome.com/api/public/' + val1.img + '"></td>';
 									vrStr += '<td rowspan="' + val1.data.length + '" class="border_eee">' + val1.name + '</td>';
 									$.each(val1.data, function(item2, val2) {
 										if(item2 != 0) {
@@ -329,7 +329,7 @@
 						}
 						$.each(Object.values(v)[0], function(item, val) {
 							vrStr += '<tr class="shows">';
-							vrStr += '<td rowspan="' + val.data.length + '" class="border_eee"><img src="http://hyu2387760001.my3w.com/' + val.img + '"></td>';
+							vrStr += '<td rowspan="' + val.data.length + '" class="border_eee"><img src="http://www.heeyhome.com/api/public/' + val.img + '"></td>';
 							vrStr += '<td rowspan="' + val.data.length + '" class="border_eee">' + val.name + '</td>';
 							$.each(val.data, function(item2, val2) {
 								if(item2 != 0) {
@@ -382,7 +382,7 @@
 							}
 							$.each(val, function(item, val) {
 								vrStr += '<tr>';
-								vrStr += '<td rowspan="' + val.data.length + '" class="border_eee"><img src="http://hyu2387760001.my3w.com/' + val.img + '"></td>';
+								vrStr += '<td rowspan="' + val.data.length + '" class="border_eee"><img src="http://www.heeyhome.com/api/public/' + val.img + '"></td>';
 								vrStr += '<td rowspan="' + val.data.length + '" class="border_eee">' + val.name + '</td>';
 								$.each(val.data, function(item2, val2) {
 									if(item2 != 0) {

@@ -9,10 +9,10 @@
      */
     var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-    var BASEURL = 'http://hyu2387760001.my3w.com/';
+    var BASEURL = 'http://www.heeyhome.com/api/public/';
 
     var USERDATAURL = BASEURL + 'personal/userinfo'; // 用户个人资料
-    var SAFELEVELURL = 'http://hyu2387760001.my3w.com/personal/safe'; // 安全等级
+    var SAFELEVELURL = 'http://www.heeyhome.com/api/public/personal/safe'; // 安全等级
     var AUTHVERIFYURL = BASEURL + 'personal/safe/authverify'; // 身份验证
     var AUTHURL = BASEURL + 'personal/safe/auth'; // 获取身份验证状态
     var PASSWORDURL = BASEURL + 'editpassword'; // 修改密码

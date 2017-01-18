@@ -12,13 +12,13 @@
 	 */
 	var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-	var CONFIRM = 'http://hyu2387760001.my3w.com/verification/confirm'; // 确认账号
-	var INFORMATION = 'http://hyu2387760001.my3w.com/personal/userinfo'; // 用户信息
-	var RESET = 'http://hyu2387760001.my3w.com/resetpassword'; // 重置密码
-	var PHONE = 'http://hyu2387760001.my3w.com/verification/phoneverify'; // 手机验证
-	var EMAIL = 'http://hyu2387760001.my3w.com/verification/emailverify'; // 邮箱验证
-	var PHCODE = 'http://hyu2387760001.my3w.com/sendsms'; // 手机验证码
-	var EMCODE = 'http://hyu2387760001.my3w.com/sendmail'; // 邮箱验证码
+	var CONFIRM = 'http://www.heeyhome.com/api/public/verification/confirm'; // 确认账号
+	var INFORMATION = 'http://www.heeyhome.com/api/public/personal/userinfo'; // 用户信息
+	var RESET = 'http://www.heeyhome.com/api/public/resetpassword'; // 重置密码
+	var PHONE = 'http://www.heeyhome.com/api/public/verification/phoneverify'; // 手机验证
+	var EMAIL = 'http://www.heeyhome.com/api/public/verification/emailverify'; // 邮箱验证
+	var PHCODE = 'http://www.heeyhome.com/api/public/sendsms'; // 手机验证码
+	var EMCODE = 'http://www.heeyhome.com/api/public/sendmail'; // 邮箱验证码
 	/**
 	* 移动号码归属地支持号段:134 135 136 137 138 139 147 150 151 152 157 158 159 178  182 183 184 187 188
 	* 联通号码归属地支持号段:130 131 132  145 155 156 176  186 

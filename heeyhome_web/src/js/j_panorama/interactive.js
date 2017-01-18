@@ -12,11 +12,11 @@
 	 */
 	var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-	var TAGSURL = 'http://hyu2387760001.my3w.com/panorama/gettags'; // 筛选条件标签显示
-	var VRCONTENTURL = 'http://hyu2387760001.my3w.com/panorama'; // 虚拟现实
-	var VRVIEWURL = 'http://hyu2387760001.my3w.com/panorama/scan'; // 虚拟现实浏览量
-	var VRLIKEURL = 'http://hyu2387760001.my3w.com/panorama/like'; // 虚拟现实点赞量
-	var VRCOLLECTURL = 'http://hyu2387760001.my3w.com/panorama/collect'; // 虚拟现实收藏
+	var TAGSURL = 'http://www.heeyhome.com/api/public/panorama/gettags'; // 筛选条件标签显示
+	var VRCONTENTURL = 'http://www.heeyhome.com/api/public/panorama'; // 虚拟现实
+	var VRVIEWURL = 'http://www.heeyhome.com/api/public/panorama/scan'; // 虚拟现实浏览量
+	var VRLIKEURL = 'http://www.heeyhome.com/api/public/panorama/like'; // 虚拟现实点赞量
+	var VRCOLLECTURL = 'http://www.heeyhome.com/api/public/panorama/collect'; // 虚拟现实收藏
 	
 	var TOTAL; // 后台数据总数
 	var MAXROWS; //总页数
@@ -292,7 +292,7 @@
 			var vrStr = '';
 			$.each(value, function(i, v) {
 				vrStr += '<div class="pic_box" data-id="' + v.panorama_id + '"><div class="vr_pic">';
-				vrStr += '<a href="' + v.panorama_url + '"><img src="http://hyu2387760001.my3w.com/' + v.panorama_img + '" class="now">';
+				vrStr += '<a href="' + v.panorama_url + '"><img src="http://www.heeyhome.com/api/public/' + v.panorama_img + '" class="now">';
 				vrStr += '<div class="bg_mongolia">';
 				vrStr += '<div class="sprite-image pic_hover"></div></div></a></div>';
 				vrStr += '<div class="pic_introduce">';
@@ -343,7 +343,7 @@
 				jumpHoverBorder: "1px solid #eec988",
 				submitType: "get", //注明是通过get方式访问还是post方式访问
 				idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
-				url: "http://hyu2387760001.my3w.com/panorama", //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
+				url: "http://www.heeyhome.com/api/public/panorama", //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
 				ajaxData: {
 					area:filterObj.area,
 					housetype:filterObj.housetype,
