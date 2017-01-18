@@ -208,6 +208,19 @@
                     $(this).parent().css('background-image', '');
                     $(this).hide();
                 });
+
+                $(document).ready(function () {
+                    $('.next_confirm').click(function () {
+                        setTimeout(function () {
+                            var iframe = document.getElementById('if');//获取那个iframe，也可以用$('#iframe')[0]替代
+                            var iframeWindow = iframe.contentWindow;//获取iframe里的window对象
+                            var $c = $(iframeWindow);//获取iframe中的jquery对象
+                            $c('body');//获取iframe中body元素，其他的话自己用$c('#aaa')去获取吧
+                        }, 3000);
+                    });
+
+                });
+
                 $("#if").load(function () {
                     $.ajax({
                         url: AUTHURL,
@@ -510,7 +523,7 @@
                                 error: function (data) {
                                 }
                             });
-                        }else{
+                        } else {
                             layer.alert(MSG7);
                         }
                     });
