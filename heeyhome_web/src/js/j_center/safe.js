@@ -9,10 +9,10 @@
      */
     var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-    var BASEURL = 'http://hyu2387760001.my3w.com/';
+    var BASEURL = 'http://www.heeyhome.com/api/public/';
 
     var USERDATAURL = BASEURL + 'personal/userinfo'; // 用户个人资料
-    var SAFELEVELURL = 'http://hyu2387760001.my3w.com/personal/safe'; // 安全等级
+    var SAFELEVELURL = 'http://www.heeyhome.com/api/public/personal/safe'; // 安全等级
     var AUTHVERIFYURL = BASEURL + 'personal/safe/authverify'; // 身份验证
     var AUTHURL = BASEURL + 'personal/safe/auth'; // 获取身份验证状态
     var PASSWORDURL = BASEURL + 'editpassword'; // 修改密码
@@ -487,28 +487,32 @@
                     });
                     /* 短信身份验证 */
                     $(document).off('click', '#next_message1').on('click', '#next_message1', function () {//点击下一步事件
-                        $.ajax({
-                            url: PASSWORDMSURL,
-                            type: "GET",
-                            async: true,
-                            dataType: 'jsonp',
-                            data: {
-                                user_id: $.base64.decode($.cookie("userId")),
-                                phone: phone,
-                                captcha: $('#password_code').val()
-                            },
-                            success: function (data) {
-                                if (data.code == '000') {
-                                    new_flag = data.data.flag;
-                                    //console.log(password_flag);
-                                    window.location.href = '#/center/setting/reset/reset_6';
-                                } else {
-                                    layer.alert(data.msg);
+                        if ($('#password_code').val() != '') {
+                            $.ajax({
+                                url: PASSWORDMSURL,
+                                type: "GET",
+                                async: true,
+                                dataType: 'jsonp',
+                                data: {
+                                    user_id: $.base64.decode($.cookie("userId")),
+                                    phone: phone,
+                                    captcha: $('#password_code').val()
+                                },
+                                success: function (data) {
+                                    if (data.code == '000') {
+                                        new_flag = data.data.flag;
+                                        //console.log(password_flag);
+                                        window.location.href = '#/center/setting/reset/reset_6';
+                                    } else {
+                                        layer.alert(data.msg);
+                                    }
+                                },
+                                error: function (data) {
                                 }
-                            },
-                            error: function (data) {
-                            }
-                        });
+                            });
+                        }else{
+                            layer.alert(MSG7);
+                        }
                     });
                 };
                 if (!phone) {

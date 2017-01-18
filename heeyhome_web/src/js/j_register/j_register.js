@@ -4,11 +4,11 @@
 (function(){
 	
 	var HASH = window.location.hash; // 获取 href 属性中在井号“#”后面的分段
-	var REGISTERURL = "http://hyu2387760001.my3w.com/register/user_register"; // 获取注册接口
-	var LOGINURL = "http://hyu2387760001.my3w.com/login/login"; // 获取登录接口
-	var CODEURL = "http://hyu2387760001.my3w.com/sendsms"; // 获取验证码接口 
-	var QQLOGINURL = "http://hyu2387760001.my3w.com/qqlogin"; // QQ登录接口
-	var WXLOGINURL = "http://hyu2387760001.my3w.com/wxlogin"; // 微信登录接口
+	var REGISTERURL = "http://www.heeyhome.com/api/public/register/user_register"; // 获取注册接口
+	var LOGINURL = "http://www.heeyhome.com/api/public/login/login"; // 获取登录接口
+	var CODEURL = "http://www.heeyhome.com/api/public/sendsms"; // 获取验证码接口 
+	var QQLOGINURL = "http://www.heeyhome.com/api/public/qqlogin"; // QQ登录接口
+	var WXLOGINURL = "http://www.heeyhome.com/api/public/wxlogin"; // 微信登录接口
 	/**
 	* 移动号码归属地支持号段:134 135 136 137 138 139 147 150 151 152 157 158 159 178  182 183 184 187 188
 	* 联通号码归属地支持号段:130 131 132  145 155 156 176  186 
@@ -168,14 +168,14 @@
 				$main.find(".login,.third_login").removeClass("display"); // 登录内容和第三方登录内容显示
 				$main.find(".register").addClass("display"); // 注册内容隐藏
 				$tab.find(".tab_click_login").addClass("active").siblings(".tab_click_register").removeClass("active"); // 登录标签添加样式,注册标签删掉样式
-				$main.children(".logo_title").find("img").attr("src","image/register.png"); // 内容标签图标修改
+				$main.children(".logo_title").find("img").attr("src","image/login.png"); // 内容标签图标修改
 				$main.find(".promptly_do").removeClass("margin_top_1").addClass("margin_top_2").attr("value","立即登录"); // 立即注册按钮改变
 				window.location.hash = "#dl"; // 设置 href属性中在井号'#'后面的分段为dl
 			}else {
 				$main.find(".register").removeClass("display"); // 注册内容显示
 				$main.find(".login,.third_login").addClass("display"); // 登录内容和第三方登录内容隐藏
 				$tab.find(".tab_click_register").addClass("active").siblings(".tab_click_login").removeClass("active"); // 注册标签添加样式,登录标签删掉样式
-				$main.children(".logo_title").find("img").attr("src","image/login.png"); // 内容标签图标修改
+				$main.children(".logo_title").find("img").attr("src","image/register.png"); // 内容标签图标修改
 				$main.find(".promptly_do").removeClass("margin_top_2").addClass("margin_top_1").attr("value","立即注册"); // 立即注册按钮改变
 				window.location.hash = "#zc"; // 设置 href属性中在井号'#'后面的分段zc
 			}

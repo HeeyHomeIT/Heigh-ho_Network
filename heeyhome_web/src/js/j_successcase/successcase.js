@@ -10,7 +10,7 @@
 	 */
 	var HHIT_SUCCESSCASEAPP = angular.module('heeyhomeApp');
 
-	var SUCCESSURL = "http://hyu2387760001.my3w.com/myworkcase"; // 显示工长添加的案例列表信息接口
+	var SUCCESSURL = "http://www.heeyhome.com/api/public/myworkcase"; // 显示工长添加的案例列表信息接口
 
 	var worksObj = {};
 
@@ -172,7 +172,7 @@
 			var vrStr = '';
 			$.each(value, function(i, v) {
 				if(v.img.length != 0) {
-					vrStr += '<li><div class="image" data-type="'+v.type+'" data-id="'+v.case_id+'"><a href="javascript:void(0)"><img src="http://hyu2387760001.my3w.com/' + v.img[0].case_img + '"></a>';
+					vrStr += '<li><div class="image" data-type="'+v.type+'" data-id="'+v.case_id+'"><a href="javascript:void(0)"><img src="http://www.heeyhome.com/' + v.img[0].case_img + '"></a>';
 					vrStr += '<div class="image_title"><div class="roomtype">' + v.housetype + '</div><div class="roomicon"><em class="sprite-image sc_icon_love"></em><span>' + v.like_num + '</span></div>';
 					vrStr += '<div class="roomicon"><em class="sprite-image sc_icon_look"></em><span>' + v.scan_num + '</span></div></div></div>';
 					vrStr += '<div class="introduce"><strong>' + v.style + '&nbsp;' + v.area + 'm<sup>2</sup></strong>';

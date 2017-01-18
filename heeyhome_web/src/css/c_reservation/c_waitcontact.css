@@ -143,7 +143,7 @@ body {
 }
 
 .contact_detail .bookingprocesscon h4 span.change{
-    background: url(../img/icon-shuaxin.png) no-repeat;
+    background: url(../img/sprite_total.png) no-repeat -36px -371px;
     height: 20px;
     color: #0185c6;
     font-size: 14px;
@@ -152,6 +152,7 @@ body {
     line-height: 23px;
     margin-right: 40px;
     float: right;
+    display: inline-block;
 }
 
 .contact_detail .bookingprocesscon ul {

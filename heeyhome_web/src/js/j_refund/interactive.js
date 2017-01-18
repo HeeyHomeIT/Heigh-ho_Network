@@ -15,8 +15,8 @@
      */
     var HHIT_SHOPLISTAPP = angular.module('heeyhomeApp');
 
-    var GETREFUNDINFOURL = "http://hyu2387760001.my3w.com/order/user/getrefundinfo"; // 用户退款信息获取
-    var SUBREFUNDINFOURL = "http://hyu2387760001.my3w.com/order/user/subrefundinfo"; // 用户退款信息获取
+    var GETREFUNDINFOURL = "http://www.heeyhome.com/api/public/order/user/getrefundinfo"; // 用户退款信息获取
+    var SUBREFUNDINFOURL = "http://www.heeyhome.com/api/public/order/user/subrefundinfo"; // 用户退款信息获取
 
     var PHONEREG = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/; // 验证手机号正则表达式
     var EMAILREG = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;//验证邮箱的正则表达式
@@ -108,6 +108,7 @@
                             window.location.href = 'refund.html#/refund/home/refund_step_3';
                             $('.title_detail').eq(0).removeClass('active');
                             $('.title_detail').eq(2).addClass('active');
+                            $('#wait span').html(data.data.refund_account);//退款成功获取用户的支付宝账户显示在页面中
                         }
                     } else {
                         layer.msg(data.msg);

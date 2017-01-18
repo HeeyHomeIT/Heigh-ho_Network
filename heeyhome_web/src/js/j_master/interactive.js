@@ -12,7 +12,7 @@
      */
     var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-    var BASEURL = 'http://hyu2387760001.my3w.com/';
+    var BASEURL = 'http://www.heeyhome.com/api/public/';
 
     var MASTERDATAURL = BASEURL + 'personal/foremaninfo?callback=JSON_CALLBACK'; // 工长个人资料
     var USERIMGURL = BASEURL + 'personal/portrait'; // 用户头像
@@ -319,7 +319,7 @@
                                     $(".content_bottom .address").html(v.address);
                                     var img = '<ul>';
                                     $.each(v.img, function (m, n) {
-                                        img += '<li><img src="http://hyu2387760001.my3w.com/' + n.case_img + '"></li>';
+                                        img += '<li><img src="http://www.heeyhome.com/' + n.case_img + '"></li>';
                                     });
                                     img += '</ul>';
                                     $(".bg_picture").append(img);
@@ -413,7 +413,7 @@
                             var worker = '<div class="team_detail_content clearfix">';
                             $.each(data.data, function (i, v) {
                                 worker += '<div class="worker_box sprite_team" data-id="' + v.userid + '" data-action="edit"><a href="#/master/teamDetail_list">';
-                                worker += '<div class="head_picture"><img src="http://hyu2387760001.my3w.com/' + v.portrait_img + '"></div>';
+                                worker += '<div class="head_picture"><img src="http://www.heeyhome.com/' + v.portrait_img + '"></div>';
                                 worker += '<div class="worker_content"><h3><span class="name">' + v.name + '</span>';
                                 worker += '<span class="age">' + v.age + '岁</span></h3>';
                                 worker += '<ul class="worker_information"><li>';
@@ -463,7 +463,7 @@
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
-                            $(".staff_bg img").attr("src", "http://hyu2387760001.my3w.com/" + data.data.portrait_img + "");
+                            $(".staff_bg img").attr("src", "http://www.heeyhome.com/" + data.data.portrait_img + "");
                             $(".staff_top_info .wname .span_val").html(data.data.name);
                             $(".staff_top_info .wage .span_val").html(data.data.age);
                             $(".staff_top_info .wplace .span_val").html(data.data.birthplace);
@@ -534,7 +534,10 @@
                             reader.onload = function (e) {
                                 inputImg.parent().parent().attr("data-flag", "1");
                                 inputImg.parent().parent().addClass('clear');//图片预览时input file 添加opacity样式，设置完全透明
-                                inputImg.parent().parent().css({'background':'url("' + e.target.result + '") no-repeat','backgroundSize':'100% 100%'});//图片设置为$('.showImg')背景图
+                                inputImg.parent().parent().css({
+                                    'background': 'url("' + e.target.result + '") no-repeat',
+                                    'backgroundSize': '100% 100%'
+                                });//图片设置为$('.showImg')背景图
                                 var pic = '<img src="' + e.target.result + '">';
                                 myfile.push(pic);
                             }
@@ -1067,7 +1070,7 @@
                                     address = v.order_address;
                                     type = v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台";
                                     area = v.area;
-                                    $(".owner_picture img").attr("src", "http://hyu2387760001.my3w.com/" + v.user_portrait);
+                                    $(".owner_picture img").attr("src", "http://www.heeyhome.com/" + v.user_portrait);
                                 }
                             });
                             $(".owner_summary h3").html(name);
@@ -1440,7 +1443,7 @@
                             }
                             $.each(information, function (i, v) {
                                 list += '<li><div class="picture">';
-                                list += '<img src="http://hyu2387760001.my3w.com/' + v.img + '"></div>';
+                                list += '<img src="http://www.heeyhome.com/' + v.img + '"></div>';
                                 list += '<div class="name">' + v.name + '</div>';
                                 list += '<div class="li_right clearfix" id="li_right"><div class="format">';
                                 if (v.spec.length > 1) {
@@ -1588,11 +1591,11 @@
                 success: function (data) {
                     if (data && data.code == '000') {
                         //console.log(data.data);
-                        $(".head").html('<img src="http://hyu2387760001.my3w.com/'+data.data.foremanimg+'">');//获取头像
-//                      $('.head img').attr('src', 'http://hyu2387760001.my3w.com/' + data.data.foremanimg + '');//获取头像
+                        $(".head").html('<img src="http://www.heeyhome.com/' + data.data.foremanimg + '">');//获取头像
+//                      $('.head img').attr('src', 'http://www.heeyhome.com/' + data.data.foremanimg + '');//获取头像
                         $('#shop_name').html(data.data.shop_name);//获取店铺名字
-                        $('#real_name').attr('src', 'http://hyu2387760001.my3w.com/' + data.data.authentication[0] + '');//获取安全认证图片
-                        $('#safe_name').attr('src', 'http://hyu2387760001.my3w.com/' + data.data.authentication[1] + '');//获取安全认证图片
+                        $('#real_name').attr('src', 'http://www.heeyhome.com/' + data.data.authentication[0] + '');//获取安全认证图片
+                        $('#safe_name').attr('src', 'http://www.heeyhome.com/' + data.data.authentication[1] + '');//获取安全认证图片
                         $('#team_person').html(data.data.shop_workernum);//获取我的团队总人数
                         $('#shop_scan').html(data.data.shop_scan);//获取浏览量
                         $('#projectquality').html(data.data.shop_score.projectquality);//获取工程质量
@@ -1720,9 +1723,9 @@
                         $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
                         email = data.data.foremaninfo_email; //获取工长的邮箱
                         if (email != null) {//判断邮箱是否为空
-                        	var length =  email.length;
-                        	var abb_email = email.substr(0, 3) + "****" + email.substr(length-3, length);//邮箱中间变成*号                      	 
-                            $('#email_p').html('<span>'+abb_email+'</span><a href="#/master/setting/email/email_1">修改绑定</a>')
+                            var length = email.length;
+                            var abb_email = email.substr(0, 3) + "****" + email.substr(length - 3, length);//邮箱中间变成*号
+                            $('#email_p').html('<span>' + abb_email + '</span><a href="#/master/setting/email/email_1">修改绑定</a>')
                         }
                         $('.personal_user_name').val($.base64.decode($.cookie("userName"))); //获取工长的用户名
                         //判断工长的性别
@@ -1752,26 +1755,26 @@
                         }
                         $('.personal_user_community').eq(0).addClass('personal_user_first');
                         //获取所在地信息
-                        if(data.data.loc_province != null && data.data.loc_province != '') {
-                        	$('#loc').distpicker({province: data.data.loc_province});                      	
+                        if (data.data.loc_province != null && data.data.loc_province != '') {
+                            $('#loc').distpicker({province: data.data.loc_province});
                         }
-                        if(data.data.loc_city != null && data.data.loc_city != '') {
-                        	$('#loc').distpicker({city: data.data.loc_city});
+                        if (data.data.loc_city != null && data.data.loc_city != '') {
+                            $('#loc').distpicker({city: data.data.loc_city});
                         }
-                        if(data.data.loc_district != null && data.data.loc_district != '') {
-                        	$('#loc').distpicker({district: data.data.loc_district});
+                        if (data.data.loc_district != null && data.data.loc_district != '') {
+                            $('#loc').distpicker({district: data.data.loc_district});
                         }
 
                         //获取家乡信息
-                        if(data.data.home_province != null && data.data.home_province != '') {
-                        	$('#home').distpicker({province: data.data.home_province});
+                        if (data.data.home_province != null && data.data.home_province != '') {
+                            $('#home').distpicker({province: data.data.home_province});
                         }
-                        if(data.data.home_city != null && data.data.home_city != '') {
-                        	$('#home').distpicker({city: data.data.home_city});
+                        if (data.data.home_city != null && data.data.home_city != '') {
+                            $('#home').distpicker({city: data.data.home_city});
                         }
-                        if(data.data.home_district != null && data.data.home_district != '') {
-                        	$('#home').distpicker({district: data.data.home_district});
-                        } 
+                        if (data.data.home_district != null && data.data.home_district != '') {
+                            $('#home').distpicker({district: data.data.home_district});
+                        }
 
                     }
                     /* 如果失败执行 */
@@ -2152,7 +2155,9 @@
                     }
                     /* 如果失败执行 */
                     else {
-                        layer.alert(data.msg);
+                        //layer.alert(data.msg);
+                        $("#choose_bank").append('<div class="not_bank fl"> <span>您还没有绑定银行卡哦~~ 点击去</span><a href="bank.html#/bank/home"> 绑定 </a> </div><!--not_bank-->');
+
                     }
                 }).error(function (data, status) {
                 });
@@ -2442,11 +2447,11 @@
                             sessionStorage.setItem("cateid", cateid);
                         });
 
-                        wrap.eq(0).css('background', 'url(http://hyu2387760001.my3w.com/' + data.data.eleworker[0].portrait_img + ')');
-                        wrap.eq(1).css('background', 'url(http://hyu2387760001.my3w.com/' + data.data.woodworker[0].portrait_img + ')');
-                        wrap.eq(2).css('background', 'url(http://hyu2387760001.my3w.com/' + data.data.brickworker[0].portrait_img + ')');
-                        wrap.eq(3).css('background', 'url(http://hyu2387760001.my3w.com/' + data.data.paintworker[0].portrait_img + ')');
-                        wrap.eq(4).css('background', 'url(http://hyu2387760001.my3w.com/' + data.data.mixworker[0].portrait_img + ')');
+                        wrap.eq(0).css('background', 'url(http://www.heeyhome.com/' + data.data.eleworker[0].portrait_img + ')');
+                        wrap.eq(1).css('background', 'url(http://www.heeyhome.com/' + data.data.woodworker[0].portrait_img + ')');
+                        wrap.eq(2).css('background', 'url(http://www.heeyhome.com/' + data.data.brickworker[0].portrait_img + ')');
+                        wrap.eq(3).css('background', 'url(http://www.heeyhome.com/' + data.data.paintworker[0].portrait_img + ')');
+                        wrap.eq(4).css('background', 'url(http://www.heeyhome.com/' + data.data.mixworker[0].portrait_img + ')');
                     }
                 },
                 error: function (data) {
@@ -3036,7 +3041,7 @@
                         var cost = [], k = 0;
                         var length = $(".edit_bottom li").length;
                         $(".staff_picture .add_picture").attr("data-flag", "1").addClass("clear").css({
-                            'background': 'url("http://hyu2387760001.my3w.com/' + data.data.portrait_img + '") no-repeat',
+                            'background': 'url("http://www.heeyhome.com/' + data.data.portrait_img + '") no-repeat',
                             'backgroundSize': '100% 100%'
                         });
                         $(".staff_name .name").val(data.data.name);//工人姓名
@@ -3099,7 +3104,7 @@
                         });
                         if (count == 1) {
                             $(".staff_confirm").on("click", function () {
-                                var pic = '<img src="http://hyu2387760001.my3w.com/' + data.data.portrait_img + '">';
+                                var pic = '<img src="http://www.heeyhome.com/' + data.data.portrait_img + '">';
                                 myfile.push(pic);
                                 console.log(myfile);
                                 workerAction.editWorker($name, $sex, $age, $birthplace, $worktime, $idcard, $bankcard, $phone, $bankname, myfile); //编辑工人
@@ -3197,7 +3202,7 @@
                     if (data.code === '000') {
                         console.log(data);
                         var openTime = data.data.opentime;
-                        openTime = openTime.substring(0,10);
+                        openTime = openTime.substring(0, 10);
                         $('#shop_name').val(data.data.shop_name);//获取店名
                         $('#shop_describe').val(data.data.shop_describe);//获取店铺理念
                         $('#shop_age').val(openTime);//获取店铺的开店时间
@@ -3215,7 +3220,7 @@
                         //获取店铺资料的店铺认证
                         var hLen = data.data.authentication.length;
                         for (var i = 0; i < hLen; i++) {
-                            $('#shop_head').append('<img class="fl" src="http://hyu2387760001.my3w.com/' + data.data.authentication[i] + '">');
+                            $('#shop_head').append('<img class="fl" src="http://www.heeyhome.com/' + data.data.authentication[i] + '">');
                         }
                         //获取店铺资料的本店工艺(最多只显示五张)
                         if (data.data.shop_technics.length >= 5) {
@@ -3514,7 +3519,7 @@
                     var imgs = $img.data('imgs');
                     $.each(imgs, function (i, v) {
                         $add_picture_a.eq(i).addClass('opacity');//图片预览时input file 添加opacity样式，设置完全透明
-                        $add_picture.eq(i).css('background-image', 'url(http://hyu2387760001.my3w.com/' + v.technics_img + ')');//图片设置为$('.showImg')背景图
+                        $add_picture.eq(i).css('background-image', 'url(http://www.heeyhome.com/' + v.technics_img + ')');//图片设置为$('.showImg')背景图
                         $add_picture.eq(i).find('.close').show();
 
                     });
@@ -3580,7 +3585,7 @@
                         params: {
                             foreman_id: USERID,
                             type: 1,
-                            limit:4
+                            limit: 4
                         },
                         beforeSend: function () {
                             $(".complete_before .works_detail").remove();
@@ -3628,7 +3633,7 @@
                             if (data && data.code == '000') {
                                 layer.msg(data.msg);
                                 http();
-                            }else{
+                            } else {
                                 layer.msg(data.msg);
                             }
                         },
@@ -3866,7 +3871,7 @@
                     reader.onload = function (e) {
                         var pic = '<div class="picture_cnt fl">';
                         pic += '<a href="javascript:;"><img src="' + e.target.result + '"></a>';
-                        pic += '<div class="close"><img src="css/img/auth_del.png"></div></div>';
+                        pic += '<div class="close"><em class="sprite_total"></em></div></div>';
                         inputImg.parent().parent().before(pic);//新图片显示
                         var pic = '<img src="' + e.target.result + '">';
                         myfile.push(pic);
@@ -3968,11 +3973,11 @@
             $(".main_content .content").on("click", function () {
                 var cnt = $(this).siblings(".cnt").html();
                 layer.open({
-					type: 1,
-					skin: 'layui-layer-rim', //加上边框
-					area: ['420px', '240px'], //宽高
-					content: '<p>'+cnt+'</p>'
-				});
+                    type: 1,
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['420px', '240px'], //宽高
+                    content: '<p>' + cnt + '</p>'
+                });
                 if ($(this).parent().attr("data-isread") == "0") { //未读消息
                     var id = $(this).parent().attr("data-id");
                     var $now = $(this).parent();
@@ -4051,7 +4056,7 @@
             vrStr += '<span class="content">' + value.msgtitle + '</span>';
             vrStr += '<span class="time">' + value.sendtime + '</span>';
             vrStr += '<span class="cnt">' + value.msgcontent + '</span>';
-            vrStr += '<a class="delete" href="javascript:;"><img src="css/img/delete.png"></a>';
+            vrStr += '<a class="delete" href="javascript:;"><em class="sprite-details"></em></a>';
             vrStr += '</div>';
             return vrStr;
         }
@@ -4225,7 +4230,7 @@
         spliceStrEvent: function (value) {
             var vrStr = '<div class="works_detail fl works_bg">';
             vrStr += '<div class="detail_img">';
-            vrStr += '<img src="http://hyu2387760001.my3w.com/' + value.img[0].case_img + '">';
+            vrStr += '<img src="http://www.heeyhome.com/' + value.img[0].case_img + '">';
             vrStr += '</div><!--detail_img-->';
             vrStr += '<div id="detail_bg" class="detail_bg clearfix" step ="' + value.order_step + '" orderId ="' + value.case_id + '">';
             vrStr += '<div class="detail_bg_div">';

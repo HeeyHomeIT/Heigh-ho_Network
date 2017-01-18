@@ -12,9 +12,9 @@
     var dHash = window.location.hash;//这里用search获取不到值，因为？前面有#号，所以用字符串截取hash的办法
     var idHash = dHash.substring(12, dHash.length);//截取字符串?后面的值
 
-    var CATEURL = "http://hyu2387760001.my3w.com/jzbk/cate?callback=JSON_CALLBACK"; // 获取家装百科分类接口
-    var ARTICLE = "http://hyu2387760001.my3w.com/jzbk/article?callback=JSON_CALLBACK"; // 获取文章列表接口
-    var DETAILURL = "http://hyu2387760001.my3w.com/jzbk/info?callback=JSON_CALLBACK"; // 获取文章详情接口
+    var CATEURL = "http://www.heeyhome.com/api/public/jzbk/cate?callback=JSON_CALLBACK"; // 获取家装百科分类接口
+    var ARTICLE = "http://www.heeyhome.com/api/public/jzbk/article?callback=JSON_CALLBACK"; // 获取文章列表接口
+    var DETAILURL = "http://www.heeyhome.com/api/public/jzbk/info?callback=JSON_CALLBACK"; // 获取文章详情接口
 
     /*定义一个类*/
     var wikipedia = {
@@ -194,7 +194,7 @@
             var vrStr = '<div id="rightDetail" rid="' + value.id + '">';
             vrStr += '<a class="right_detail clearfix" href="gonglve_detail.html#/detail?id=' + value.id + '" target="_blank">';
             vrStr += '	<div class="right_img">';
-            vrStr += '		<img src="http://hyu2387760001.my3w.com/' + value.img + '">';
+            vrStr += '		<img src="http://www.heeyhome.com/' + value.img + '">';
             vrStr += '		<div class="img_background_1"></div>';
             vrStr += '		<div class="img_background_2"></div>';
             vrStr += '	</div><!--right_img-->';

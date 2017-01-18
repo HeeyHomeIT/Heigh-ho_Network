@@ -1981,7 +1981,7 @@ a:focus {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: url(../img/icon-i.png) no-repeat
+    background: url(../img/sprite_remain.png) no-repeat -220px -182px
 }
 
 #time_axis em {
@@ -1990,7 +1990,7 @@ a:focus {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: url(../img/icon-em.png)
+    background: url(../img/sprite_remain.png) no-repeat -542px -310px
 }
 
 #time_axis b {
@@ -1999,7 +1999,7 @@ a:focus {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: url(../img/icon-b.png)
+    background: url(../img/sprite_remain.png) no-repeat -548px -210px;
 }
 
 #time_axis p {
@@ -2336,6 +2336,16 @@ a:focus {
     position: absolute;
     top: 3px;
     left: 3px;
+}
+
+.owner_summary p em {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    background-position: -817px -435px;
 }
 
 .owner_summary p span {

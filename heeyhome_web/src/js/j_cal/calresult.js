@@ -10,7 +10,7 @@
      */
     var HHIT_CALRESULTAPP = angular.module('heeyhomeApp');
 
-    var COLLECTIONURL = "http://hyu2387760001.my3w.com/costcalculator/result/collect"; // 收藏成本计算器结果接口
+    var COLLECTIONURL = "http://www.heeyhome.com/api/public/costcalculator/result/collect"; // 收藏成本计算器结果接口
 
     var UID = $.cookie("userId"); // 得到userid
     if (UID != null && UID != "" && UID != undefined) {

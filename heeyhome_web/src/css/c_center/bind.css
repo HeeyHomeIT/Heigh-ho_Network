@@ -280,12 +280,13 @@
 }
 
 .success span:before {
-    content: url(../img/icon-success.png);
+    content: '';
     width: 28px;
     height: 28px;
     display: block;
     position: absolute;
-    left: -45px
+    left: -45px;
+    background: url("../img/sprite_remain.png") no-repeat -280px -182px;
 }
 
 .success a {
@@ -441,6 +442,10 @@
 .file .auth_plus {
     margin-left: 88px;
     margin-top: 50px;
+    display: inline-block;
+    height: 85px;
+    width: 85px;
+    background-position: -13px -14px;
 }
 
 .file input {
@@ -489,6 +494,13 @@
     line-height: 20px;
     text-align: center;
     display: none;
+}
+
+.close em {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-position: -314px -493px;
 }
 
 .bind_phone .confirm_code #id_code {
@@ -590,5 +602,13 @@
 
 .success #password_button {
     margin-left: 5px;
+}
+
+.sprite_total {
+    background: url(../img/sprite_total.png) no-repeat;
+}
+
+.sprite_remain {
+    background: url(../img/sprite_remain.png) no-repeat;
 }
 

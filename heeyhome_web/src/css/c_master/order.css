@@ -19,6 +19,10 @@
     background: url(../img/sprite_order.png) no-repeat;
 }
 
+.sprite_total {
+    background: url(../img/sprite_total.png) no-repeat;
+}
+
 .bankWrap {
     /*width: 1190px;*/
     height: auto;
@@ -322,6 +326,13 @@
 .add_picture .close img {
     width: 100%;
     height: 100%;
+}
+
+.close em {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-position: -314px -493px;
 }
 
 .message_input {
