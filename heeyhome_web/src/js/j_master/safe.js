@@ -192,7 +192,6 @@
                     // onload是异步操作
                     else {
                         reader.onload = function (e) {
-                            console.log(e);
                             inputImg.parent().addClass('opacity');//图片预览时input file 添加opacity样式，设置完全透明
                             inputImg.parent().parent().css('background-image', 'url("' + e.target.result + '")');//图片设置为$('.showImg')背景图
                             inputImg.parent().parent().find('.close').show();
@@ -206,6 +205,17 @@
                     $(this).parent().css('background-image', '');
                     $(this).hide();
                 });
+
+                $(document).ready(function () {
+                    $('.next_confirm').click(function () {
+                        setTimeout(function () {
+                            console.log($(document.getElementById('if').contentWindow.document.body).html());
+                        },3000);
+                    });
+
+                });
+
+
                 $("#if").load(function () {
                     $.ajax({
                         url: AUTHURL,
@@ -219,11 +229,7 @@
                         processData: false,
                         contentType: false,
                         success: function (data) {
-                            if (data.code == '131') {
-                                //console.log(data);
-                            } else {
-                                layer.alert(data.msg);
-                            }
+                            console.log(data);
                         },
                         error: function (data) {
                         }

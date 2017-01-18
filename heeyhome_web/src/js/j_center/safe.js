@@ -231,7 +231,7 @@
                         processData: false,
                         contentType: false,
                         success: function (data) {
-                            console.log(data.data);
+                            console.log(data);
                         },
                         error: function (data) {
                         }

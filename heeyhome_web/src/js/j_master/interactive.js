@@ -638,7 +638,7 @@
                                     address = v.order_address;
                                     type = v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台";
                                     area = v.area;
-                                    src = BASEURL + v.user_portrait;
+                                    src = 'http://www.heeyhome.com/'+ v.user_portrait;
                                 }
                             });
                             $(".owner_content .owner_picture img").attr("src", src);
