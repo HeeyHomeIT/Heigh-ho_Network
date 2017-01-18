@@ -168,14 +168,14 @@
 				$main.find(".login,.third_login").removeClass("display"); // 登录内容和第三方登录内容显示
 				$main.find(".register").addClass("display"); // 注册内容隐藏
 				$tab.find(".tab_click_login").addClass("active").siblings(".tab_click_register").removeClass("active"); // 登录标签添加样式,注册标签删掉样式
-				$main.children(".logo_title").find("img").attr("src","image/register.png"); // 内容标签图标修改
+				$main.children(".logo_title").find("img").attr("src","image/login.png"); // 内容标签图标修改
 				$main.find(".promptly_do").removeClass("margin_top_1").addClass("margin_top_2").attr("value","立即登录"); // 立即注册按钮改变
 				window.location.hash = "#dl"; // 设置 href属性中在井号'#'后面的分段为dl
 			}else {
 				$main.find(".register").removeClass("display"); // 注册内容显示
 				$main.find(".login,.third_login").addClass("display"); // 登录内容和第三方登录内容隐藏
 				$tab.find(".tab_click_register").addClass("active").siblings(".tab_click_login").removeClass("active"); // 注册标签添加样式,登录标签删掉样式
-				$main.children(".logo_title").find("img").attr("src","image/login.png"); // 内容标签图标修改
+				$main.children(".logo_title").find("img").attr("src","image/register.png"); // 内容标签图标修改
 				$main.find(".promptly_do").removeClass("margin_top_2").addClass("margin_top_1").attr("value","立即注册"); // 立即注册按钮改变
 				window.location.hash = "#zc"; // 设置 href属性中在井号'#'后面的分段zc
 			}
