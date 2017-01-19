@@ -21,12 +21,14 @@ class IDCardController extends Controller
         if($sel){
             if($sel[0]->isverify==0){
                 $arr = array("code" => "130",
+                    "data" => $sel[0],
                     "msg" => "正在审核中"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
             if($sel[0]->isverify==2){
                 $arr = array("code" => "131",
+                    "data" => $sel[0],
                     "msg" => "审核未通过"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
