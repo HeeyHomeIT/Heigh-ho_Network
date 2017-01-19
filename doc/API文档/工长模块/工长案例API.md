@@ -108,6 +108,7 @@ msg           失败
 data
 foreman_id             foreman_id              //工长id
 housetype              housetype               //户型       eg:1室1厅1卫1阳
+area                   area                    //面积
 style                  style                   //装修风格   eg:现代风格
 timelong               timelong                //工期       eg:2016.12.22-2016.12.25
 address                address                 //房屋地址   

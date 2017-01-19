@@ -247,9 +247,9 @@ class WorkerController extends Controller
                         //dd($size);
                         $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
                         /*上传图片大小不能超过2M*/
-                        if($size>2*1024*1024) {
+                        if($size>4*1024*1024) {
                             $arr = array("code" => "123",
-                                "msg" => "图片上传出错,不能大于2M"
+                                "msg" => "图片上传出错,不能大于4M"
                             );
                             return $callback . "(" . HHJson($arr) . ")";
                         }
@@ -289,9 +289,9 @@ class WorkerController extends Controller
                         //dd($size);
                         $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
                         /*上传图片大小不能超过2M*/
-                        if($size>2*1024*1024) {
+                        if($size>4*1024*1024) {
                             $arr = array("code" => "123",
-                                "msg" => "图片上传出错,不能大于2M"
+                                "msg" => "图片上传出错,不能大于4M"
                             );
                             return $callback . "(" . HHJson($arr) . ")";
                         }
@@ -352,9 +352,9 @@ class WorkerController extends Controller
                         //dd($size);
                         $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
                         /*上传图片大小不能超过2M*/
-                        if($size>2*1024*1024) {
+                        if($size>4*1024*1024) {
                             $arr = array("code" => "123",
-                                "msg" => "图片上传出错,不能大于2M"
+                                "msg" => "图片上传出错,不能大于4M"
                             );
                             return $callback . "(" . HHJson($arr) . ")";
                         }
@@ -404,9 +404,9 @@ class WorkerController extends Controller
                         //dd($size);
                         $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
                         /*上传图片大小不能超过2M*/
-                        if($size>2*1024*1024) {
+                        if($size>4*1024*1024) {
                             $arr = array("code" => "123",
-                                "msg" => "图片上传出错,不能大于2M"
+                                "msg" => "图片上传出错,不能大于4M"
                             );
                             return $callback . "(" . HHJson($arr) . ")";
                         }
@@ -454,9 +454,9 @@ class WorkerController extends Controller
                         //dd($size);
                         $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
                         /*上传图片大小不能超过2M*/
-                        if($size>2*1024*1024) {
+                        if($size>4*1024*1024) {
                             $arr = array("code" => "123",
-                                "msg" => "图片上传出错,不能大于2M"
+                                "msg" => "图片上传出错,不能大于4M"
                             );
                             return $callback . "(" . HHJson($arr) . ")";
                         }
