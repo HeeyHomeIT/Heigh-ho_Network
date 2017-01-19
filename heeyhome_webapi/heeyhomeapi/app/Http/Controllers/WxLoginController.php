@@ -15,7 +15,7 @@ class WxLoginController extends Controller
 {
     public function wxlogin(){
        $appid = 'wx14540838030ba43a';
-       header('location:https://open.weixin.qq.com/connect/qrconnect?appid='.$appid.'&redirect_uri=http://hyu2387760001.my3w.com/wxcallback&response_type=code&scope=snsapi_login&state=state#wechat_redirect');
+       header('location:https://open.weixin.qq.com/connect/qrconnect?appid='.$appid.'&redirect_uri=http://www.heeyhome.com/api/public/wxcallback&response_type=code&scope=snsapi_login&state=state#wechat_redirect');
     }
     public function wxcallback(){
         $callback=rq('callback');

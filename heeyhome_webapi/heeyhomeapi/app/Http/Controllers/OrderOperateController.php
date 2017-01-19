@@ -1472,7 +1472,120 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
 
     }
 
+    //进度 编辑或者新增金额结算单
+    public function AddOrEditbalance()
+    {
+        $order_id = rq('order_id');
+        $order_personnel = $order_id;
+        $callback = rq('callback');
+        $list_data_json = rq('list_data_json');
+        $list_dataArr = array_values(json_decode($list_data_json, true));
+        $remark = rq('remark');
+        if (!$remark) {
+            $remark = '';
+        }
+        
+        $count = count($list_dataArr);
+        $list_data_arr = array();
+        $dataCount = 0;
+        for ($i=0; $i < 63; $i++) { 
+            if ($i < $count) {
+                array_push($list_data_arr, $list_dataArr[$i]);
+            } else {
+                array_push($list_data_arr, $dataCount);
+            }
+        }
 
+        //查看订单是否存在
+        $sel_order_tbl = DB::select('SELECT * FROM hh_order_actual_list WHERE order_id = ?',[$order_id]);
 
+        if (!$sel_order_tbl) { //添加
+            $reckon_list_tbl = DB::insert('INSERT INTO hh_order_actual_list(order_id,order_personnel,service1,service2,service3,service4,service5,service6,service7,service8,service9,service10,service11,service12,service13,service14,service15,service16,service17,service18,service19,service20,service21,service22,service23,service24,service25,service26,service27,service28,service29,service30,service31,service32,service33,service34,service35,service36,service37,service38,service39,service40,service41,service42,service43,service44,service45,service46,service47,service48,service49,service50,service51,service52,service53,service54,service55,service56,service57,service58,service59,service60,service61,service62,service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                [$order_id, $order_personnel, $list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6],
+                    $list_data_arr[7], $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14],
+                    $list_data_arr[15], $list_data_arr[16], $list_data_arr[17], $list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22],
+                    $list_data_arr[23], $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30],
+                    $list_data_arr[31], $list_data_arr[32], $list_data_arr[33], $list_data_arr[34], $list_data_arr[35], $list_data_arr[36], $list_data_arr[37], $list_data_arr[38],
+                    $list_data_arr[39], $list_data_arr[40], $list_data_arr[41], $list_data_arr[42], $list_data_arr[43], $list_data_arr[44], $list_data_arr[45], $list_data_arr[46],
+                    $list_data_arr[47], $list_data_arr[48], $list_data_arr[49], $list_data_arr[50], $list_data_arr[51], $list_data_arr[52], $list_data_arr[53], $list_data_arr[54],
+                    $list_data_arr[55], $list_data_arr[56], $list_data_arr[57], $list_data_arr[58], $list_data_arr[59], $list_data_arr[60], $list_data_arr[61], $list_data_arr[62], 1]);
 
+            if ($reckon_list_tbl) {
+                $arr = array(
+                    "code" => "000",
+                    "msg" => "插入成功",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            } else {
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "插入失败",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        } else { //更新
+            //获取当前时间转化为mysql时间戳格式
+            $timenow = strtotime(date('Y-m-d H:i:s', time()));
+            //判断订单步骤 控制结算单更改字段
+            //获取订单步骤
+            $sel_order_step = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?',
+                [$order_id]);
+            if ($sel_order_step) {
+                $order_step = $sel_order_step[0]->order_step;
+                switch ($order_step) {
+                    case 5:
+                        //杂工及水电工结算单数据修改
+                        $actual_list_tbl = DB::update('update hh_order_actual_list SET service1 = ? ,service2 = ? ,service3 = ? ,service4 = ? ,service5 = ? ,service6 = ? ,service7 = ? ,service8 = ? ,service9 = ? ,service10 = ? ,service11 = ? ,service12 = ? ,service13 = ? ,service14 = ? ,service15 = ? ,service16 = ? ,service17 = ? ,service18 = ? ,remark = ? ,update_time = ? WHERE order_id = ?',
+                            [$list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6], $list_data_arr[7],
+                                $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14], $list_data_arr[15],
+                                $list_data_arr[16], $list_data_arr[17], $remark, $timenow, $order_id]);
+                        break;
+                    case 9:
+                        //瓦工结算单数据修改
+                        $actual_list_tbl = DB::update('UPDATE hh_order_actual_list SET service19 = ? ,service20 = ? ,service21 = ? ,service22 = ? ,service23 = ? ,service24 = ? ,service25 = ? ,service26 = ? ,service27 = ? ,service28 = ? ,service29 = ? ,service30 = ? ,service31 = ? ,service32 = ? ,service33 = ? ,service34 = ? ,service35 = ? ,service36 = ? ,service37 = ? ,service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,remark = ? ,update_time = ? WHERE order_id = ?',
+                            [$list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22], $list_data_arr[23],
+                                $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30], $list_data_arr[31],
+                                $list_data_arr[32], $list_data_arr[33], $list_data_arr[34], $list_data_arr[35], $list_data_arr[36], $list_data_arr[37], $list_data_arr[38], $list_data_arr[39],
+                                $list_data_arr[40], $remark, $timenow, $order_id]);
+                        break;
+                    case 13:
+                        //木工结算单数据修改
+                        $actual_list_tbl = DB::update('UPDATE hh_order_actual_list SET service42 = ? ,service43 = ? ,service44 = ? ,service45 = ? ,service46 = ? ,service47 = ? ,service48 = ? ,service49 = ? ,service50 = ? ,service51 = ? ,service52 = ? ,service53 = ? ,remark = ? ,update_time = ? WHERE order_id = ?',
+                            [$list_data_arr[41], $list_data_arr[42], $list_data_arr[43], $list_data_arr[44], $list_data_arr[45], $list_data_arr[46], $list_data_arr[47],
+                                $list_data_arr[48], $list_data_arr[49], $list_data_arr[50], $list_data_arr[51], $list_data_arr[52], $remark, $timenow, $order_id]);
+                        break;
+                    case 17:
+                        $actual_list_tbl = DB::update('UPDATE hh_order_actual_list SET service54 = ? ,service55 = ? ,service56 = ? ,service57 = ? ,service58 = ? ,service59 = ? ,service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_time = ? WHERE order_id = ?',
+                            [$list_data_arr[53], $list_data_arr[54], $list_data_arr[55],
+                                $list_data_arr[56], $list_data_arr[57], $list_data_arr[58], $list_data_arr[59], $list_data_arr[60], $list_data_arr[61], $list_data_arr[62], $remark, $timenow, $order_id]);
+                        break;
+                    default:
+                        $arr = array(
+                            "code" => "200",
+                            "msg" => "订单当前状态无法修改结算单",
+                            "data" => ""
+                        );
+                        return $callback . "(" . HHJson($arr) . ")";
+                }
+            }
+            if ($actual_list_tbl) {
+                $arr = array(
+                    "code" => "000",
+                    "msg" => "插入成功",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            } else {
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "插入失败",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        }
+    }
+    
 }
