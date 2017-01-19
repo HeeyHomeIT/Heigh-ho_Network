@@ -228,7 +228,7 @@
                             } else if (data.code == '131') {//审核未通过
                                 $('.revise_process').hide();
                                 $('.bind_phonecnt').hide();
-                                $('#new_info').append('<div id="face" class="showImg fl"><img src=""> </div><!--showImg--><div id="back" class="showImg fl"><img src=""></div><!--showImg--><div class="deal_wrap clearfix fl"> <div class="deal_left fl"> <i class="iconfont">&#xe625;</i> </div><!--deal_left--> <div class="deal_right fl"> <p class="process">您的审核尚未通过！</p> <p class="wait">请点击<a id="new_upload" href="javascript:;">重新上传信息~~</a></p> </div><!--deal_left--> </div><!--deal_wrap-->');
+                                $('#new_info').append('<div id="wrap"><div id="face" class="showImg fl"><img src=""> </div><!--showImg--><div id="back" class="showImg fl"><img src=""></div><!--showImg--><div class="deal_wrap clearfix fl"> <div class="deal_left fl"> <i class="iconfont">&#xe625;</i> </div><!--deal_left--> <div class="deal_right fl"> <p class="process">您的审核尚未通过！</p> <p class="wait">请点击<a id="new_upload" href="javascript:;">重新上传信息~~</a></p> </div><!--deal_left--> </div><!--deal_wrap--></div>');
                                 $('.content_wrap').css('height', '898px');
                                 $('#face img').attr('src', 'http://www.heeyhome.com/' + data.data.facephoto);
                                 $('#back img').attr('src', 'http://www.heeyhome.com/' + data.data.backphoto);
@@ -250,7 +250,7 @@
 
                 /* 审核失败点击重新上传信息 */
                 $(document).on('click', '#new_upload', function () {
-                    $('#new_info').remove();
+                    $('#new_info #wrap').remove();
                     $('.revise_process').show();
                     $('.bind_phonecnt').show();
                 });
