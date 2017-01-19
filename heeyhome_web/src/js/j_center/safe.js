@@ -263,7 +263,6 @@
                 });
 
                 $(document).on('click', '.next_confirm', function () {
-                    location.reload(true);
                     $.ajax({
                         url: AUTHURL,
                         type: "GET",
@@ -281,6 +280,7 @@
                                 $('.content_wrap').css('height', '898px');
                                 $('#face img').attr('src', 'http://www.heeyhome.com/' + data.data.facephoto);
                                 $('#back img').attr('src', 'http://www.heeyhome.com/' + data.data.backphoto);
+                                location.reload(true);
                             } else if (data.code == '131') {//审核未通过
                                 $('.revise_process').hide();
                                 $('.bind_phonecnt').hide();
@@ -288,6 +288,7 @@
                                 $('.content_wrap').css('height', '898px');
                                 $('#face img').attr('src', 'http://www.heeyhome.com/' + data.data.facephoto);
                                 $('#back img').attr('src', 'http://www.heeyhome.com/' + data.data.backphoto);
+                                location.reload(true);
                             } else if (data.code == '000') {//审核通过
                                 $('.revise_process').remove();
                                 $('.bind_phonecnt').remove();
@@ -295,8 +296,10 @@
                                 $('.content_wrap').css('height', '898px');
                                 $('#face img').attr('src', 'http://www.heeyhome.com/' + data.data.facephoto);
                                 $('#back img').attr('src', 'http://www.heeyhome.com/' + data.data.backphoto);
+                                location.reload(true);
                             } else {
                                 layer.alert('图片上传出错');
+                                location.reload(true);
                             }
                         },
                         error: function (data) {
