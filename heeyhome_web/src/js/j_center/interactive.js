@@ -1710,34 +1710,10 @@
                             layer.alert("订单已完成");
                         }
                     });
-                    /* 我的订单点击小三角事件 */
-                    arrowClick.getEvent();
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
             });
         }
     };
-    /*
-     * 我的订单点击小三角事件
-     */
-    arrowClick = {
-        getEvent: function () {
-            var _arrow = $(".order_title div").eq(6);//全部后面的小三角形
-            var _area = $(".order_content .order_box");//哪一份订单
-            var _arrowcnt = $(".order_title div").eq(6).find("ul");//全部后面的小三角形里的内容
-            $(_arrow).click(function () {
-                $(_arrowcnt).slideDown(500);
-            }, function () {
-                if ($(_arrow).hasClass("item_hover_180")) {
-                    $(_arrow).removeClass("item_hover_180");
-                }
-                else {
-                    $(_arrow).addClass("item_hover_180");
-                }
-                $(_arrowcnt).slideToggle(500);
-            });
-        }
-    };
-
 
     /**
      * 我的收藏全景图分页
