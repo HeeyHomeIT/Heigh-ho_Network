@@ -256,6 +256,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/material/getOrderMaterialDetails', 'OrderMaterialController@getOrderMaterial');
     //材料商更新材料单状态为去配送中
     Route::any('order/material/changeMaterialStatus', 'OrderMaterialController@changeMaterialStatus');
+    //材料商月度报表
+    Route::any('supplier/monthlyReport', 'MaterialsupplierReportsController@monthlyReport');
 
 
     //进度方面

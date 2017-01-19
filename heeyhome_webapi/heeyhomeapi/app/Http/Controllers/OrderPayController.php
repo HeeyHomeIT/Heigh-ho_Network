@@ -43,7 +43,7 @@ class OrderPayController extends Controller
                 $sel_refund_info = DB::select('SELECT * FROM hh_refund_info WHERE order_id = ?',
                     [$order_id]);
                 if ($sel_refund_info) {
-                    $refund_status = $sel_refund_info[0]->account_type;
+                    $refund_status = $sel_refund_info[0]->refund_status;
                     $refund_account = $sel_refund_info[0]->refund_account;
                 } else {
                     $refund_status = 0;
