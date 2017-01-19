@@ -59,7 +59,7 @@ class MyshopimgController extends Controller
                 $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
                 $insert=DB::insert('insert into hh_shop_img(shop_id,shop_img) values (?,?)',[$shop_id,$path]);
                 if($insert){
-                    $shop_imgs=DB::select('select id,shop_img from hh_shop_img where shop_id=?',$shop_id);
+                    $shop_imgs=DB::select('select id,shop_img from hh_shop_img where shop_id=?',[$shop_id]);
                     $arr = array("code" => "000",
                         "msg" => "上传成功",
                         "data"=>$shop_imgs
