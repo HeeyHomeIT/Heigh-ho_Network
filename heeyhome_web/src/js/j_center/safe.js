@@ -209,16 +209,8 @@
                     $(this).hide();
                 });
 
-                $(document).ready(function () {
-                    $('.next_confirm').click(function () {
-                        setTimeout(function () {
-                            console.log($(document.getElementById('if').contentWindow.document.body).html());
-                        },3000);
-                    });
-
-                });
-
-                $("#if").load(function () {
+                /* 初始化判断身份验证的状态 */
+                function upload() {
                     $.ajax({
                         url: AUTHURL,
                         type: "GET",
@@ -227,16 +219,64 @@
                         data: {
                             user_id: $.base64.decode($.cookie("userId"))
                         },
-                        cache: false,
-                        processData: false,
-                        contentType: false,
                         success: function (data) {
                             console.log(data);
+                            if (data.code == '130') {//正在审核中
+                                $('.revise_process').remove();
+                                $('.bind_phonecnt').remove();
+                                $('#new_info').append('<div id="face" class="showImg fl"><img src=""> </div><!--showImg--><div id="back" class="showImg fl"><img src=""></div><!--showImg--><div class="deal_wrap clearfix fl"> <div class="deal_left fl"> <i class="iconfont">&#xe67c;</i> </div><!--deal_left--> <div class="deal_right fl"> <p class="process">身份正在验证中...</p> <p class="wait">请耐心等待</p> </div><!--deal_left--> </div><!--deal_wrap-->');
+                                $('.content_wrap').css('height', '898px');
+                                $('#face img').attr('src', 'http://www.heeyhome.com/' + data.data.facephoto);
+                                $('#back img').attr('src', 'http://www.heeyhome.com/' + data.data.backphoto);
+                            } else if (data.code == '131') {//审核未通过
+                                $('.revise_process').hide();
+                                $('.bind_phonecnt').hide();
+                                $('#new_info').append('<div id="wrap"><div id="face" class="showImg fl"><img src=""> </div><!--showImg--><div id="back" class="showImg fl"><img src=""></div><!--showImg--><div class="deal_wrap clearfix fl"> <div class="deal_left fl"> <i class="iconfont">&#xe625;</i> </div><!--deal_left--> <div class="deal_right fl"> <p class="process">您的审核尚未通过！</p> <p class="wait">请点击<a id="new_upload" href="javascript:;">重新上传信息~~</a></p> </div><!--deal_left--> </div><!--deal_wrap--></div>');
+                                $('.content_wrap').css('height', '898px');
+                                $('#face img').attr('src', 'http://www.heeyhome.com/' + data.data.facephoto);
+                                $('#back img').attr('src', 'http://www.heeyhome.com/' + data.data.backphoto);
+                            } else if (data.code == '000') {//审核通过
+                                $('.revise_process').remove();
+                                $('.bind_phonecnt').remove();
+                                $('#new_info').append('<div id="face" class="showImg fl"><img src=""> </div><!--showImg--><div id="back" class="showImg fl"><img src=""></div><!--showImg--><div class="deal_wrap clearfix fl"> <div class="deal_left fl"> <i class="iconfont">&#xe615;</i> </div><!--deal_left--> <div class="deal_right fl"> <p class="process complete_process">您的审核已通过！</p></div><!--deal_left--> </div><!--deal_wrap-->');
+                                $('.content_wrap').css('height', '898px');
+                                $('#face img').attr('src', 'http://www.heeyhome.com/' + data.data.facephoto);
+                                $('#back img').attr('src', 'http://www.heeyhome.com/' + data.data.backphoto);
+                            }
                         },
                         error: function (data) {
                         }
                     });
+                }
+
+                upload();
+
+                /* 审核失败点击重新上传信息 */
+                $(document).on('click', '#new_upload', function () {
+                    $('#new_info #wrap').remove();
+                    $('.revise_process').show();
+                    $('.bind_phonecnt').show();
                 });
+
+                /* 点击确认按钮上传信息 */
+                $(document).ready(function () {
+                    var str1 = '';
+                    $('.next_confirm').click(function () {
+                        setTimeout(function () {
+                            str1 = $(document.getElementById('if').contentWindow.document.body).html();//获取iframe中的值
+                            var str2 = str1.substring(str1.indexOf("(") + 1, str1.indexOf(")"));
+                            var user = JSON.parse(str2);//转成json格式
+                            if (user.code == '000') {
+                                upload();
+                            } else if (user.code == '000') {
+                                layer.alert('信息上传失败~~');
+                            } else {
+                                layer.alert('图片上传出错~~');
+                            }
+                        }, 1000);
+                    });
+                });
+
             }]);
         },
 

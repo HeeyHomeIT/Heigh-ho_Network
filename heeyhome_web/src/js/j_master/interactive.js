@@ -1125,11 +1125,11 @@
                             console.log(data.data);
                             //HOUSESTYLE = data.data.装修风格;
                             //console.log(HOUSESTYLE);
-                            if (data.data.装修风格 != null) {
-                                $('.process_style p').html(data.data.装修风格);
+                            if (data.data['装修风格'] != null) {
+                                $('.process_style p').html(data.data['装修风格']);
                                 $('#confirm_type').hide();//隐藏按钮
                                 $('#testSelect').hide();//隐藏select框
-                                sessionStorage.setItem("houseStyle", data.data.装修风格);
+                                sessionStorage.setItem("houseStyle", data.data['装修风格']);
                             }
                         }
                     },
@@ -4389,7 +4389,7 @@
                             initInfo.info();
                             layer.msg(data.msg);
                         } else {
-                            errorMsgHendler.remindBox(data.msg)
+                            layer.alert(data.msg)
                         }
                     },
                     error: function (data) {
@@ -4418,37 +4418,15 @@
                                 $(".main_content").attr("data-isread", "1").removeClass("isnews");
                                 $(".left_ul li i").remove();
                             } else {
-                                errorMsgHendler.remindBox(data.msg)
+                                layer.alert(data.msg)
                             }
                         },
                         error: function (data) {
                         }
                     });
                 } else {
-                    errorMsgHendler.remindBox("请先选中全选按钮");
+                    layer.alert("请先选中全选按钮");
                 }
-            });
-        }
-    };
-
-    /* 消息中心提示框函数*/
-    errorMsgHendler = {
-        remindBox: function (msg) {
-            var $reminderBox = $("#ReminderBox");
-            var $rb = $(".remindebox");
-            $reminderBox.removeClass("display");
-            $(".info_header span").text(msg);
-            $rb.stop().animate({
-                "margin-top": "-150px",
-                opacity: 1,
-            }, 500);
-            $(".remindemodel_ok").on("click", function () { // 点击'好的'关闭提示弹出框
-                $rb.stop().animate({
-                    "margin-top": "-40px",
-                    opacity: 0
-                }, 500, function () {
-                    $reminderBox.addClass("display");
-                });
             });
         }
     };

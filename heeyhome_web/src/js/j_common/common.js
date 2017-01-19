@@ -20,7 +20,6 @@ define(['app', 'base64', 'cookie'], function (app) {
              * 导航栏切换
              */
             initNavigationSelectEvent: function () {
-                console.log($("#header").parents("div"))
                 var $Jheader = $("#header").parents("div");
                 var JdivId = $Jheader.attr("id");
                 if (JdivId != "index_header") {

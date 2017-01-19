@@ -1,3 +1,64 @@
+@font-face {
+    font-family: 'iconfont';  /* project id 158259 */
+    src: url('//at.alicdn.com/t/font_5p7u94kkzdijxlxr.eot');
+    src: url('//at.alicdn.com/t/font_5p7u94kkzdijxlxr.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_5p7u94kkzdijxlxr.woff') format('woff'),
+    url('//at.alicdn.com/t/font_5p7u94kkzdijxlxr.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_5p7u94kkzdijxlxr.svg#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: "iconfont";
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+    padding-right: 6px;
+}
+
+.deal_left .iconfont {
+    font-size: 46px;
+    color: #EEC988;
+}
+
+.deal_right {
+    margin-left: 15px;
+}
+
+.deal_right .process {
+    line-height: 25px;
+    font-size: 16px;
+}
+
+.deal_right .complete_process {
+    line-height: 42px;
+    font-size: 16px;
+}
+
+.deal_right .wait {
+    font-size: 14px;
+    line-height: 25px;
+}
+
+.deal_left {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.deal_wrap {
+    margin-top: 80px;
+    margin-left: 200px;
+}
+
+#new_upload {
+    color: #E88226;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
 /* 绑定手机 */
 #user_right {
     float: right
@@ -612,3 +673,11 @@
     background: url(../img/sprite_remain.png) no-repeat;
 }
 
+.safe_right_content .showImg {
+    border: 1px solid #ddd;
+}
+
+.safe_right_content .showImg img {
+    width: 270px;
+    height: 190px;
+}
