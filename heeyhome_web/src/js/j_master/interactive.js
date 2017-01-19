@@ -1098,12 +1098,13 @@
                         order_id: orderId
                     },
                     success: function (data) {
+                        console.log(data);
                         if (data && data.code == '000') {
                             console.log(data.data);
                             /* 预算单状态 */
-                            sessionStorage.setItem("budgetState", data.data.预算单编辑状态);
+                            sessionStorage.setItem("budgetState", data.data['预算单编辑状态']);
                             /* 结算单状态 */
-                            sessionStorage.setItem("statementStatus", data.data.结算单编辑状态);
+                            sessionStorage.setItem("statementStatus", data.data['结算单编辑状态']);
                         }
                     },
                     error: function (data) {
@@ -1218,15 +1219,15 @@
                             success: function (data) {
                                 if (data && data.code == '000') {
                                     console.log(data.data);
-                                    $('#before_remark').val(data.data.预算单数据[0].remark);
-                                    $('#after_remark').val(data.data.结算单数据[0].remark);
-                                    var $list = data.data.预算单数据[0];
+                                    $('#before_remark').val(data.data['预算单数据'][0].remark);
+                                    $('#after_remark').val(data.data['结算单数据'][0].remark);
+                                    var $list = data.data['预算单数据'][0];
                                     $.each($list, function (i, v) {
                                         if (i.indexOf('service') >= 0) {
                                             $('.sheet_left input[bid="' + i.substring(7) + '"]').val(v);
                                         }
                                     });
-                                    var $bill = data.data.结算单数据[0];
+                                    var $bill = data.data['结算单数据'][0];
                                     $.each($bill, function (i, v) {
                                         if (i.indexOf('service') >= 0) {
                                             $('.sheet_right input[bid="' + i.substring(7) + '"]').val(v);
