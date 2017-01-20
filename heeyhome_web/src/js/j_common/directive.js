@@ -1,4 +1,4 @@
-define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j_index/indexCal'], function(app, bootstrap) {
+define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j_index/indexCal','easemob', 'js/j_index/commonNav'], function(app, bootstrap) {
 	/**
 	 * 头部
 	 */
@@ -116,6 +116,18 @@ define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j
 	app.directive('indexFooter', function() {
 		return {
 			templateUrl: "view/v_common/_footer.html"
+		};
+	});
+	
+	/**
+	 * 导航
+	 */
+	app.directive('indexNav', function() {
+		return {
+			templateUrl: "view/v_common/_nav.html",
+			link: function(scope, iElement, iAttrs) {
+				app.indexNavWrapHandler();
+			}
 		};
 	});
 });

@@ -27,7 +27,8 @@
             'layer': 'lib/layui/lay/modules/layer',
             'app': 'js/app',
             'route': 'js/j_common/route',
-            'directive': 'js/j_common/directive'
+            'directive': 'js/j_common/directive',
+            'easemob':'//kefu.easemob.com/webim/easemob'
         },
         shim: {
             'angular': {
