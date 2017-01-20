@@ -38,10 +38,11 @@ callback            callback
 callback(
 code         000
 data         {
-                    bankcardno     bankcardno
-                    bankname       bankname
-                    cardtype       cardtype
-                    banklogo       banklogo
+                    bankcardno     //银行卡号
+                    bankname       //银行名字
+                    cardtype       //卡类型
+                    banklogo       //银行logo
+                    bankkey        //银行代号 
              }
 msg          ""
 )

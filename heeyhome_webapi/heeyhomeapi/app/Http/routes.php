@@ -105,6 +105,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('personal/myshop/technics', 'MyshoptechnicsController@index');
     Route::any('personal/myshop/addtechnics', 'MyshoptechnicsController@add');
     Route::any('personal/myshop/deltechnics', 'MyshoptechnicsController@del');
+    Route::any('personal/myshop/editechnics', 'MyshoptechnicsController@edit');
     /*安全等级*/
     Route::any('personal/safe', 'SafeLevelController@index');
     /*身份认证*/
@@ -256,6 +257,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/material/getOrderMaterialDetails', 'OrderMaterialController@getOrderMaterial');
     //材料商更新材料单状态为去配送中
     Route::any('order/material/changeMaterialStatus', 'OrderMaterialController@changeMaterialStatus');
+    //材料商月度报表
+    Route::any('supplier/monthlyReport', 'MaterialsupplierReportsController@monthlyReport');
 
 
     //进度方面

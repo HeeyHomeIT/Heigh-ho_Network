@@ -35,6 +35,10 @@ class WalletController extends Controller
         $user_id=rq('user_id');
         $cards=DB::select('select bankcardno,bankname,cardtype,banklogo from hh_bankcard where bank_userid=?',[$user_id]);
         if($cards){
+            foreach ($cards as $key=>$val){
+                $bankkey=DB::select('select bankkey from hh_bank where bankname=?',[$val->bankname]);
+                $cards[$key]->bankkey=$bankkey[0]->bankkey;
+            }
             $arr = array("code" => "000",
                 "data"=>$cards
             );

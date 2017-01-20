@@ -4,6 +4,7 @@
     </div><!--right_title-->
     <div class="right_content_wrap" ng-controller="shop">
         <div class="shop_content">
+            <!--<form method="post" target="if" enctype="multipart/form-data" action="" id="form">-->
             <div class="shop_detail">
                 <span>店铺名</span>
                 <input id="shop_name" class="shop_name" title="" type="text" placeholder="请输入您的店名">
@@ -20,10 +21,12 @@
                 <span>本店工艺</span>
                 <div id="shop_technic" class="renderings_show_wrap clearfix">
                     <div class="renderings_show fl first_renderings_show" ng-repeat="info in infos">
-                        <a id="complete_del" class="complete_del" href="javascript:;" technicsid="{{info.technics_id}}">
+                        <a id="complete_del" class="complete_del" href="javascript:;"
+                           technicsid="{{info.technics_id}}">
                             <em class="sprite_home"></em>
                         </a>
-                        <img class="craft_img" ng-src="http://hyu2387760001.my3w.com/{{info.technics_img[0].technics_img}}">
+                        <img class="craft_img"
+                             ng-src="http://hyu2387760001.my3w.com/{{info.technics_img[0].technics_img}}">
                         <div class="show_bg"></div><!--show_bg-->
                         <a class="renderings_show_a" href="javascript:;">更改</a>
                         <div class="renderings_bg"></div>
@@ -46,9 +49,10 @@
                         <div class="renderings_bg"></div>
                     </div><!--renderings_show-->
                     <!--<input type="file" class="renderings_add" href="javascript:;">-->
+                    <!--<input type="hidden" name="shop_id" id="shop_id" value="">-->
                     <div id="renderings_img" class="fl">
                         <a href="javascript:;" class="file renderings_img">+
-                            <input type="file" name="face">
+                            <input type="file" name="" id="renderings_file">
                         </a>
                         <div href="javascript:;" class="close">
                             <em class="sprite_total"></em>
@@ -88,7 +92,10 @@
                 <span>店铺理念</span>
                 <input id="shop_describe" class="shop_name" title="" type="text" placeholder="请输入您的店铺理念">
             </div><!--shop_detail-->
-            <a id="shop_save" class="shop_save" href="javascript:;">保存</a>
+            <input id="shop_save" class="shop_save" type="button" value="保存">
+            <!--</form>-->
+            <!--<iframe id="if" name="if" src="about:blank" frameborder='0' width="1500px" height="1500px"-->
+            <!--class="hide"></iframe>-->
         </div><!--shop_content-->
     </div><!--right_content_wrap-->
     <div class="add_technology hide">
@@ -100,7 +107,7 @@
             <div class="add_content clearfix">
                 <div class="add_picture fl">
                     <a href="javascript:;">+
-                        <input type="file" title="上传新图片">
+                        <input id="file1" type="file" title="上传新图片">
                     </a>
                     <div class="close">
                         <em class="sprite_total"></em>
@@ -108,7 +115,7 @@
                 </div>
                 <div class="add_picture fl">
                     <a href="javascript:;">+
-                        <input type="file" title="上传新图片">
+                        <input id="file2" type="file" title="上传新图片">
                     </a>
                     <div class="close">
                         <em class="sprite_total"></em>
@@ -116,7 +123,7 @@
                 </div>
                 <div class="add_picture fl">
                     <a href="javascript:;">+
-                        <input type="file" title="上传新图片">
+                        <input id="file3" type="file" title="上传新图片">
                     </a>
                     <div class="close">
                         <em class="sprite_total"></em>

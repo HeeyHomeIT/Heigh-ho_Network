@@ -265,7 +265,7 @@
                             var user = JSON.parse(str2);//转成json格式
                             if (user.code == '000') {
                                 upload();
-                            } else if (user.code == '000') {
+                            } else if (user.code == '111') {
                                 layer.alert('信息上传失败~~');
                             } else {
                                 layer.alert('图片上传出错~~');
