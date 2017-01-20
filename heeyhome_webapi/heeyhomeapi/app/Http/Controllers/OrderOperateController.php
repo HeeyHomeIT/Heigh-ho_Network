@@ -338,8 +338,23 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,re
         $order_id = rq('order_id');
         $callback = rq('callback');
         $list_data_json = rq('list_data_json');
-        $list_data_arr = json_decode($list_data_json, true);
+        $list_dataArr = array_values(json_decode($list_data_json, true));
         $remark = rq('remark');
+        if (!$remark) {
+            $remark = '';
+        }
+        
+        $count = count($list_dataArr);
+        $list_data_arr = array();
+        $dataCount = 0;
+        for ($i=0; $i < 63; $i++) { 
+            if ($i < $count) {
+                array_push($list_data_arr, $list_dataArr[$i]);
+            } else {
+                array_push($list_data_arr, $dataCount);
+            }
+        }
+
         //查看订单是否存在
         $sel_order_tbl = DB::select('SELECT * FROM hh_order_reckon_list WHERE order_id = ?',
             [$order_id]);
@@ -352,14 +367,14 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,re
             return $callback . "(" . HHJson($arr) . ")";
         }
         //判断字段是否为空
-        if (count($list_data_arr) < 63) {
-            $arr = array(
-                "code" => "200",
-                "msg" => "缺少数据",
-                "data" => ""
-            );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
+        // if (count($list_data_arr) < 63) {
+        //     $arr = array(
+        //         "code" => "200",
+        //         "msg" => "缺少数据",
+        //         "data" => ""
+        //     );
+        //     return $callback . "(" . HHJson($arr) . ")";
+        // }
         //获取当前时间转化为mysql时间戳格式
         $timenow = strtotime(date('Y-m-d H:i:s', time()));
         //判断订单步骤 控制结算单更改字段
