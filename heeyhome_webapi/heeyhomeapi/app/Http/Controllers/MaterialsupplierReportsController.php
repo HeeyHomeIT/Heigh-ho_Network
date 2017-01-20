@@ -42,11 +42,11 @@ class MaterialsupplierReportsController extends Controller
             "code" => "000",
             "msg" => "查询成功",
             "data" => array(
-                '1' => $sel_order_material_1[0]->material_price,
-                '2' => $sel_order_material_2[0]->material_price,
-                '3' => $sel_order_material_3[0]->material_price,
-                '4' => $sel_order_material_4[0]->material_price,
-                '5' => $sel_order_material_5[0]->material_price,
+                'hydropower' => $sel_order_material_1[0]->material_price,
+                'plaster' => $sel_order_material_2[0]->material_price,
+                'wood' => $sel_order_material_3[0]->material_price,
+                'paint' => $sel_order_material_4[0]->material_price,
+                'other' => $sel_order_material_5[0]->material_price,
             )
         );
         return $callback . "(" . HHJson($arr) . ")";
