@@ -561,7 +561,6 @@
                 $(".Jforeman").html("店铺资料");
                 $('.left_ul li').eq(2).addClass('left_active').siblings().removeClass('left_active');
                 getShopInfoHandler.shopInfo();
-                getShopImgHandler.imgInfo();
             }]);
         },
         /*
@@ -3498,7 +3497,7 @@
                     $add_picture_a.removeClass('opacity');
                     $add_picture.css('background-image', '');
                     $add_picture.find('.close').hide();
-                    $('#textarea').html('');
+                    $('#textarea').val('');
                 });
 
                 /* 点击本店工艺更改弹出弹层 */
@@ -3572,9 +3571,9 @@
                     $(this).parent().css('background-image', '');
                     $(this).hide();
                 });
+
                 /* 上传效果图 */
                 $(document).off('change', '#renderings_file').on('change', '#renderings_file', function () {
-                    // $('#shop_id').val($.base64.decode($.cookie("userShopId")));
                     var data = new FormData();
                     data.append("shop_id", $.base64.decode($.cookie("userShopId")));
                     data.append("myfile", $("#renderings_file")[0].files[0]);
@@ -3582,13 +3581,12 @@
                         url: SIMGURL,
                         type: 'POST',
                         data: data,
-                        dataType: 'text',
+                        dataType: 'jsonp',
+                        jsonp: 'callback',
                         cache: false,
                         processData: false,
                         contentType: false,
                         success: function (result) {
-                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
-                            result = JSON.parse(result);//转成json格式
                             if (result.code === '000') {
                                 $http({
                                     method: "JSONP",
@@ -3626,36 +3624,32 @@
                         }
                     });
                 });
+
                 /* 上传本店工艺 */
                 $(document).off('click', '.complete').on('click', '.complete', function () {
-                    $('#shop_id').val($.base64.decode($.cookie("userShopId")));
                     var data = new FormData();
-                    var count = 0;
                     data.append("shop_id", $.base64.decode($.cookie("userShopId")));
                     data.append("describe", $('#textarea').val());
                     for (var i = 1; i <= 3; i++) {
-                        if($("#file"+i).val()){
-                            data.append("myfile", $("#file"+i)[0].files[0]);
-                            count++;
+                        if ($("#file" + i).val()) {
+                            data.append("myfile[]", $("#file" + i)[0].files[0]);
                         }
                     }
-                    // data.append("myfile[]", $("#file1")[0].files[0]);
-                    // data.append("myfile[]", $("#file2")[0].files[0]);
-                    // data.append("myfile[]", $("#file3")[0].files[0]);
-                    data.append("count", count);
-                    data.getAll("myfile");
                     $.ajax({
                         url: STECURL,
                         type: 'POST',
                         data: data,
-                        dataType: 'text',
+                        dataType: 'jsonp',
+                        jsonp: 'callback',
                         cache: false,
                         processData: false,
                         contentType: false,
                         success: function (result) {
-                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
-                            result = JSON.parse(result);//转成json格式
                             if (result.code === '000') {
+                                $('.detail_p b').remove();
+                                layer.msg(result.msg);
+                                $('.add_technology').hide();
+                                $('.wrap').hide();
                                 $http({
                                     method: "JSONP",
                                     url: SHOPCURL,
@@ -3691,6 +3685,8 @@
                                     }
                                 }).error(function (data, status) {
                                 });
+                            } else {
+                                layer.msg(result.msg);
                             }
                         },
                         error: function (e, a, v) {
