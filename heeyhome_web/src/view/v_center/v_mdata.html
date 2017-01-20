@@ -83,7 +83,8 @@
             </div><!--personal_content-->
             <div class="update_head clearfix container hide">
                 <div class="update_head_left fl">
-                    <form>
+                    <form method="post" target="if" enctype="multipart/form-data" action="" id="form">
+                        <input type="hidden" name="user_id" id="user_id" value="">
                         <div class="imgWrap imageBox">
                             <div class="thumbBox hide"></div>
                             <div class="spinner" style="display: none">Loading...</div>
@@ -94,14 +95,15 @@
                                 <a class="update_img upload-img" href="javascript:;">
                                 	<em class="sprite-details icon-camera"></em>本地上传
                                 </a>
-                                <input type="file" class="" name="upload-file" id="upload-file"/>
+                                <input type="file" class="" name="myfile" id="upload-file"/>
                             </div><!--new-contentarea-->
                             <input type="button" id="btnCrop" class="Btnsty_peyton" value="裁切">
                             <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+">
                             <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-">
                         </div><!--local_update-->
-                        <a class="head_submit" href="javascript:;">提交</a>
+                        <input class="head_submit" type="submit" value="提交">
                     </form>
+                    <iframe id="if" name="if" src="about:blank" frameborder='0' width="1500px" height="1500px" class="hide"></iframe>
                 </div><!--update_head_left-->
 
                 <div class="update_head_right fr">
