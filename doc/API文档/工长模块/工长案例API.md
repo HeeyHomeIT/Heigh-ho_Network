@@ -350,7 +350,8 @@ timelong            timelong
 address             address
 可选
 img_id              img_id       //要删除的图片img_id(数组)
-count               count        //上传的图片数        
+count               count        //上传的图片数       
+myfile              myfile       //上传的图片(数组)
 
 callback            callback
 ```

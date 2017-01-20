@@ -26,7 +26,7 @@
 ```
 data
 必须参数
-shop_id          shop_id     //店铺id
+shop_id             shop_id     //店铺id
 
 callback            callback
 ```
@@ -180,4 +180,70 @@ msg           失败
 ###### Code值含义
 
 ```
+```
+# edit() #
+## 编辑店铺工艺接口
+
+
+### 接口地址
+
+
+```
+.../personal/myshop/editechnics
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../personal/myshop/editechnics
+```
+
+###### Json数据格式
+```
+data
+technics_id         technics_id
+describe            describe
+
+可选
+img_id              img_id       //要删除的图片img_id(数组)
+count               count        //上传的图片数        
+myfile              myfile       //要上传的图片(数组)
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         ""
+msg          "修改成功"
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
+000           修改成功
+121           没有图片被上传
+131           图片上传失败
+132           上传的图片无效
 ```

@@ -105,6 +105,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('personal/myshop/technics', 'MyshoptechnicsController@index');
     Route::any('personal/myshop/addtechnics', 'MyshoptechnicsController@add');
     Route::any('personal/myshop/deltechnics', 'MyshoptechnicsController@del');
+    Route::any('personal/myshop/editechnics', 'MyshoptechnicsController@edit');
     /*安全等级*/
     Route::any('personal/safe', 'SafeLevelController@index');
     /*身份认证*/
