@@ -1339,7 +1339,12 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
     {
         $callback = rq('callback');
         $order_id = rq('order_id'); //订单id
-        $order_step = rq('order_step'); //当前装修出于哪一步
+        $order_step_result = DB::SELECT('SELECT order_step FROM hh_order WHERE order_id = ?',[$order_id]);
+        if ($order_step_result) {
+            $order_step = $order_step_result[0]->order_id;
+        } else {
+            $order_step = rq('order_step'); //当前装修出于哪一步
+        }
         $content = rq('content'); //描述
         $time = rq('time'); //开工时间
         $count = rq('count');  //图片数量
