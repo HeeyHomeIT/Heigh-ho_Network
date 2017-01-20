@@ -75,12 +75,18 @@ define(['app', 'base64', 'cookie'], function (app) {
                     /* 判断是工长登录还是用户登录 */
                     if ($.base64.decode(userType) == 1) {
                         var loginStr = '<a class="user_information" rel="nofollow" href="center.html#/center" >' + unescape($.base64.decode(userName)) + '</a><span>，您好 </span><span class="exit">退出</span>';
+                    	var lgStr = '<a class="uinfo" href="center.html#/center"><span>' + unescape($.base64.decode(userName)) + '</span></a>';
+                    	var myinfoStr = '<span><a rel="nofollow" href="center.html#/center/morder">我的订单</a><a rel="nofollow" href="center.html#/center/mcollection">我的收藏</a></span><span><a rel="nofollow" href="center.html#/center/mdata">我的信息</a><a rel="nofollow" href="center.html#/center/setting">安全中心</a></span>'
+                    	$("#c_news a").attr("href","center.html#/center/msgcenter");
                     } else if ($.base64.decode(userType) == 2) {
                         var loginStr = '<a class="user_information" rel="nofollow" href="master.html#/master" >' + unescape($.base64.decode(userName)) + '</a><span>，您好 </span><span class="exit">退出</span>';
+                    	var lgStr = '<a class="uinfo" href="master.html#/master"><span>' + unescape($.base64.decode(userName)) + '</span></a>';
+                    	var myinfoStr = '<span><a rel="nofollow" href="master.html#/master/morder">我的订单</a><a rel="nofollow" href="master.html#/master/mteam">我的团队</a></span><span><a rel="nofollow" href="master.html#/master/mdata">我的信息</a><a rel="nofollow" href="master.html#/master/mwallet">我的钱包</a></span>'
+                    	$("#c_news a").attr("href","master.html#/master/msginfo");
                     }
 
-                    var lgStr = '<a class="uinfo" href="#nogo"><span>' + unescape($.base64.decode(userName)) + '</span></a>';
-                    cloneHtmlHendler.loginClone(loginStr, lgStr);
+                    
+                    cloneHtmlHendler.loginClone(loginStr, lgStr,myinfoStr);
                     $(".exit").on("click", function () { // 点击退出的事件
                         cloneHtmlHendler.loginClone(cloneLoginStr, cloneLgStr);
                         $.cookie("userId", null, {
@@ -105,9 +111,10 @@ define(['app', 'base64', 'cookie'], function (app) {
          * 删除追加代码
          */
         cloneHtmlHendler = {
-            loginClone: function (str1, str2) {
+            loginClone: function (str1, str2,str3) {
                 $("#topLogin").empty().append(str1);
                 $(".userinfo p").empty().append(str2);
+                $(".myinfo").html(str3);
             }
         };
         // 入口方法调用
