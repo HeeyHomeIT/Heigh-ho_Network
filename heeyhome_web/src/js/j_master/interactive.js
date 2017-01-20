@@ -28,6 +28,8 @@
     var WALLETURL = BASEURL + 'mywallet'; // 我的钱包获取当前总额，提现金额
     var DELBILLURL = BASEURL + 'mywallet/bill/del'; // 单条账单明细删除
     var SHOPCURL = BASEURL + 'personal/myshop?callback=JSON_CALLBACK';//店铺资料
+    var SIMGURL = BASEURL + 'personal/myshop/uploadimg';//上传效果图图片接口
+    var STECURL = BASEURL + 'personal/myshop/addtechnics';//上传本店工艺图片接口
     var WORKCURL = BASEURL + 'myworkcase?callback=JSON_CALLBACK';//我的作品
     var NEWCASEURL = BASEURL + 'addmyworkcase'; //我的作品工长添加案例
     var DELCASEURL = BASEURL + 'delmyworkcase'; //我的作品删除工长案例
@@ -638,7 +640,7 @@
                                     address = v.order_address;
                                     type = v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台";
                                     area = v.area;
-                                    src = 'http://www.heeyhome.com/'+ v.user_portrait;
+                                    src = 'http://www.heeyhome.com/' + v.user_portrait;
                                 }
                             });
                             $(".owner_content .owner_picture img").attr("src", src);
@@ -3495,7 +3497,7 @@
                     $add_picture_a.removeClass('opacity');
                     $add_picture.css('background-image', '');
                     $add_picture.find('.close').hide();
-                    $('#textarea').html('');
+                    $('#textarea').val('');
                 });
 
                 /* 点击本店工艺更改弹出弹层 */
@@ -3560,7 +3562,7 @@
                 }
 
                 upImg('.add_picture');//本店工艺上传图片
-                upImg('#renderings_img');//效果图上传图片
+                //upImg('#renderings_img');//效果图上传图片
 
 
                 /* 上传图片后点击红色叉叉图片取消事件 */
@@ -3568,6 +3570,129 @@
                     $(this).parent().find('a').removeClass('opacity');
                     $(this).parent().css('background-image', '');
                     $(this).hide();
+                });
+
+                /* 上传效果图 */
+                $(document).off('change', '#renderings_file').on('change', '#renderings_file', function () {
+                    var data = new FormData();
+                    data.append("shop_id", $.base64.decode($.cookie("userShopId")));
+                    data.append("myfile", $("#renderings_file")[0].files[0]);
+                    $.ajax({
+                        url: SIMGURL,
+                        type: 'POST',
+                        data: data,
+                        dataType: 'jsonp',
+                        jsonp: 'callback',
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function (result) {
+                            if (result.code === '000') {
+                                $http({
+                                    method: "JSONP",
+                                    url: SHOPCURL,
+                                    /* 传参 */
+                                    params: {
+                                        shop_id: $.base64.decode($.cookie("userShopId"))
+                                    }
+                                }).success(function (data, status) {
+                                    /* 如果成功执行 */
+                                    if (data.code === '000') {
+                                        //console.log(data);
+                                        //获取店铺资料的效果图展示(最多只显示四张)
+                                        if (data.data.shop_imgs.length >= 4) {
+                                            $scope.imgs = data.data.shop_imgs.slice(0, 4);
+                                            $('.renderings_img').hide();
+                                        } else {
+                                            $scope.imgs = data.data.shop_imgs;
+                                            $('.renderings_img').show();
+                                        }
+                                        var $renderings_img = $('#renderings_img');
+                                        $renderings_img.css('backgroundImage', '');
+                                        $renderings_img.find('a').removeClass('opacity');
+                                    }
+                                    /* 如果失败执行 */
+                                    else {
+                                        layer.msg(data.msg);
+                                    }
+                                });
+                                layer.msg(result.msg);
+                            }
+                        },
+                        error: function (e, a, v) {
+                            alert("错误！！");
+                        }
+                    });
+                });
+
+                /* 上传本店工艺 */
+                $(document).off('click', '.complete').on('click', '.complete', function () {
+                    var data = new FormData();
+                    data.append("shop_id", $.base64.decode($.cookie("userShopId")));
+                    data.append("describe", $('#textarea').val());
+                    for (var i = 1; i <= 3; i++) {
+                        if ($("#file" + i).val()) {
+                            data.append("myfile[]", $("#file" + i)[0].files[0]);
+                        }
+                    }
+                    $.ajax({
+                        url: STECURL,
+                        type: 'POST',
+                        data: data,
+                        dataType: 'jsonp',
+                        jsonp: 'callback',
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function (result) {
+                            if (result.code === '000') {
+                                $('.detail_p b').remove();
+                                layer.msg(result.msg);
+                                $('.add_technology').hide();
+                                $('.wrap').hide();
+                                $http({
+                                    method: "JSONP",
+                                    url: SHOPCURL,
+                                    /* 传参 */
+                                    params: {
+                                        shop_id: $.base64.decode($.cookie("userShopId"))
+                                    }
+                                }).success(function (data, status) {
+                                    /* 如果成功执行 */
+                                    if (data.code === '000') {
+                                        //console.log(data);
+                                        //获取店铺资料的本店工艺(最多只显示五张)
+                                        if (data.data.shop_technics.length >= 5) {
+                                            $scope.infos = data.data.shop_technics.slice(0, 5);
+                                            $('#technic_add').hide();
+                                            $('.detail_p').css('marginTop', '100px');
+                                        } else {
+                                            $scope.infos = data.data.shop_technics;
+                                            $('#technic_add').show();
+                                            $('.detail_p').css('marginTop', '5px');
+                                        }
+                                        if (data.data.shop_technics.length > 0) {
+                                            $.each(data.data.shop_technics, function (i, v) {
+                                                $('.detail_p').append('<b>' + v.technics_text + '</b>');
+                                            });
+                                        } else {
+                                            $('.detail_p').append('随便说点什么吧！');
+                                        }
+                                    }
+                                    /* 如果失败执行 */
+                                    else {
+                                        layer.layer.msg(data.msg);
+                                    }
+                                }).error(function (data, status) {
+                                });
+                            } else {
+                                layer.msg(result.msg);
+                            }
+                        },
+                        error: function (e, a, v) {
+                            alert("错误！！");
+                        }
+                    });
                 });
 
             }]);

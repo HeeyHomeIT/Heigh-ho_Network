@@ -14,6 +14,7 @@
     var USERDATAURL = BASEURL + 'personal/userinfo'; // 用户个人资料
     var EDITUSERDATAURL = BASEURL + 'personal/userinfo/change'; // 编辑用户个人资料
     var USERIMGURL = BASEURL + 'personal/portrait'; // 用户头像
+    var UPUSERIMGURL = BASEURL + 'personal/portrait/change'; // 上传用户头像
     var SAFELEVELURL = BASEURL + 'personal/safe'; // 安全等级
     var PANORAMAURL = BASEURL + 'personal/collection/panorama?callback=JSON_CALLBACK';//我的收藏全景图
     var SHOPCURL = BASEURL + 'personal/collection/shop?callback=JSON_CALLBACK';//我的收藏店铺列表
@@ -159,6 +160,7 @@
                     }
                 }
                 getUserInfoHandler.getInfoEvent();
+                getUserAvatarHandler.getInfoEvent();
                 uploadPictureHandler.uploadAvatar();
             }]);
         },
@@ -833,6 +835,40 @@
             });
         }
     };
+
+    /* 上传用户头像 */
+    getUserAvatarHandler = {
+        getInfoEvent: function () {
+            $('#user_id').val($.base64.decode($.cookie("userId")));
+            $('#form').attr('action', UPUSERIMGURL);
+            $(document).ready(function () {
+                var str1 = '';
+                $('.head_submit').click(function () {
+                    setTimeout(function () {
+                        str1 = $(document.getElementById('if').contentWindow.document.body).html();//获取iframe中的值
+                        console.log(str1);
+                        var str2 = str1.substring(str1.indexOf("(") + 1, str1.indexOf(")"));
+                        console.log(str2);
+                        var user = JSON.parse(str2);//转成json格式
+                        if (user.code == '000') {
+                            layer.alert('上传成功');
+                        } else if (user.code == '112') {
+                            layer.alert('用户id不能为空');
+                        } else if (user.code == '121') {
+                            layer.alert('没有图片被上传');
+                        } else if (user.code == '111') {
+                            layer.alert('上传失败');
+                        } else if (user.code == '122') {
+                            layer.alert('图片上传出错');
+                        } else if (user.code == '123') {
+                            layer.alert('图片上传出错,不能大于2M');
+                        }
+                    }, 5000);
+                });
+            });
+        }
+    };
+
 
     /* 获得我的订单详情内容 */
     OrderDetail = {
