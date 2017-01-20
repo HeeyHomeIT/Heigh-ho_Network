@@ -58,6 +58,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('editpassword/smsedit', 'EditPasswordController@smsedit');
     Route::any('editpassword/initialpwd', 'EditPasswordController@initialpwd');
     Route::any('editpassword', 'EditPasswordController@editpassword');
+    Route::any('editpasswordbyold', 'EditPasswordController@editpasswordbyold');
     /*用户个人资料*/
     Route::any('personal/userinfo', 'UserinfoController@index');
     Route::any('personal/userinfo/change', 'UserinfoController@edit');
