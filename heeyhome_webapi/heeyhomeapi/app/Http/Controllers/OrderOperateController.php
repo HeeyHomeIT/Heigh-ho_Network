@@ -1341,7 +1341,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         $order_id = rq('order_id'); //订单id
         $order_step_result = DB::SELECT('SELECT order_step FROM hh_order WHERE order_id = ?',[$order_id]);
         if ($order_step_result) {
-            $order_step = $order_step_result[0]->order_id;
+            $order_step = $order_step_result[0]->order_step;
         } else {
             $order_step = rq('order_step'); //当前装修出于哪一步
         }
