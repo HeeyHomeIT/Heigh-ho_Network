@@ -17,6 +17,7 @@
     var WORKINFOURL = "http://www.heeyhome.com/api/public/myworkers/workerinfo"; // 工人详细信息接口
     var SHOPCOLURL = "http://www.heeyhome.com/api/public/shop/collect"; // 获取工长店铺收藏店铺接口
     var SHOPWAGEURL = "http://www.heeyhome.com/api/public/shopwages"; // 店铺工价接口
+    var USERINFOURL = "http://www.heeyhome.com/api/public/personal/userinfo"; // 读取用户信息接口
 
 	
     var worksObj = {};
@@ -75,7 +76,9 @@
             /* 收藏店铺*/
             self.initCollectionEvent();
             /* 回到顶部 */
-           self.initBackTopEvent();
+           	self.initBackTopEvent();
+           	/* 显示客服聊天 */
+           	self.initinlineEvent();
 
         },
 
@@ -86,6 +89,46 @@
 			$(".mui-mbar-tabs .gotop").on("click",function() {
 				$("body,html").animate({scrollTop: 0},200);
 				return false;
+			});
+		},
+		/**
+		 * 显示客服聊天
+		 */
+		initinlineEvent:function(){
+			$(document).on("click",".hh-inline",function(){
+				$.ajax({
+					url: USERINFOURL,
+					type: "GET",
+					async: true,
+					dataType: 'jsonp',
+					data: {
+						user_id: UID
+					}
+				}).done(function(data){
+					var name='',phone='',userinfo_email='';
+					if(data.code == 000){
+						name = data.data.user_name;
+						phone = data.data.userinfo_phone;
+						userinfo_email = data.data.userinfo_email;
+					}
+					window.easemobim = window.easemobim || {};
+					easemobim.bind({
+						 //租户id 
+					    tenantId: '22227',   
+					    //是否隐藏小的悬浮按钮
+					    hide: true,
+					    visitor: {         
+					        trueName: name,
+					        phone: phone,
+					        description: '描述信息',
+					        email: userinfo_email
+					    },
+					    satisfaction: true,
+					    //启用收消息同步
+    					resources: true	
+					})
+				});
+					
 			});
 		},
         /**
@@ -499,7 +542,7 @@
          */
         initDeleteMworkEvent: function () {
             $(document).on("click", ".needclose", function () {
-                layer.alert($(this).parents(".needclist").children("div").length);
+//              layer.alert($(this).parents(".needclist").children("div").length);
                 var _wObj = JSON.parse(sessionStorage.getItem("wObj"));
                 var id = $(this).parent().data("nid");
                 delete _wObj[id];//删除属性
