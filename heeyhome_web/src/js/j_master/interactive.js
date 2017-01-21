@@ -30,6 +30,7 @@
     var SHOPCURL = BASEURL + 'personal/myshop?callback=JSON_CALLBACK';//店铺资料
     var SIMGURL = BASEURL + 'personal/myshop/uploadimg';//上传效果图图片接口
     var STECURL = BASEURL + 'personal/myshop/addtechnics';//上传本店工艺图片接口
+    var ETECURL = BASEURL + 'personal/myshop/editechnics'; //更改本店工艺图片接口
     var WORKCURL = BASEURL + 'myworkcase?callback=JSON_CALLBACK';//我的作品
     var NEWCASEURL = BASEURL + 'addmyworkcase'; //我的作品工长添加案例
     var DELCASEURL = BASEURL + 'delmyworkcase'; //我的作品删除工长案例
@@ -279,7 +280,7 @@
                             tag += '</div>';
                             $(".new_style").append(tag);
                             $(".new_stylecnt span").on("click", function () {
-                                $(this).toggleClass("active");
+                                $(this).toggleClass("active").siblings().removeClass("active");
                             });
                         }
                     },
@@ -500,56 +501,50 @@
         /*
          * 编辑我的员工资料
          */
-        initTeamEditEvent: function () {
-            HHIT_CENTERAPP.controller('teamDetail_editCtrl', ['$scope', '$http', function ($scope, $http) {
+        initTeamEditEvent: function() {
+            HHIT_CENTERAPP.controller('teamDetail_editCtrl', ['$scope', '$http', function($scope, $http) {
                 $('.left_ul li').eq(5).addClass('left_active').siblings().removeClass('left_active');
                 /* details */
                 //显示价格明细
                 loadDetail.showInformation();
-                var myfile = [];
-                var perform = sessionStorage.getItem("action");//当前是编辑还是新增
-                if (perform == "edit") {
+                var perform = sessionStorage.getItem("action"); //当前是编辑还是新增
+                if(perform == "edit") {
                     getInformation.workDetail();
                 } else {
-                    var $name = $(".staff_name .name").val();//工人姓名
-                    var $sex = $(".staff_name .sex option:selected").val();//工人性别   1：男生 2：女生
-                    var $age = $(".staff_name .age").val();//工人年龄
-                    var $birthplace = $(".staff_home .place").val();//工人籍贯
-                    var $worktime = $(".staff_date input").val();//工人从业年限
-                    var $idcard = $(".staff_phone .idcard").val();//身份证
-                    var $bankcard = $(".staff_phone .bankcard").val();//银行卡
-                    var $phone = $(".staff_phone .phone").val();//手机号
-                    var $bankname = $(".staff_phone .bankname").val();//开户银行
-                    $('.staff_picture .add_picture').find('input').change(function () {
+                    $('.staff_picture .add_picture').find('input').change(function() {
                         var inputImg = $(this);
                         inputImg.parent().parent().attr("data-flag", "0");
                         var file = inputImg.get(0).files[0];
                         var reader = new FileReader();
-                        if (!/image\/\w+/.test(file.type)) {
+                        if(!/image\/\w+/.test(file.type)) {
                             inputImg.parent().parent().css('background', '');
                             inputImg.parent().parent().removeClass('clear');
                             layer.alert("请确保文件为图像类型");
-                            //alertError(swal);//弹出文件格式错误通知
-                            inputImg.val('');//清空file选择的文件
+                            inputImg.val(''); //清空file选择的文件
                             return false;
                         }
                         // onload是异步操作
                         else {
-                            reader.onload = function (e) {
+                            reader.onload = function(e) {
                                 inputImg.parent().parent().attr("data-flag", "1");
-                                inputImg.parent().parent().addClass('clear');//图片预览时input file 添加opacity样式，设置完全透明
+                                inputImg.parent().parent().addClass('clear'); //图片预览时input file 添加opacity样式，设置完全透明
+                                inputImg.parent().siblings(".close").show();
                                 inputImg.parent().parent().css({
                                     'background': 'url("' + e.target.result + '") no-repeat',
                                     'backgroundSize': '100% 100%'
-                                });//图片设置为$('.showImg')背景图
-                                var pic = '<img src="' + e.target.result + '">';
-                                myfile.push(pic);
+                                }); //图片设置为$('.showImg')背景图
+                                /* 点击叉叉图片取消事件 */
+                                $('.close').on("click", function() {
+                                    $(this).parent().removeClass('clear');
+                                    $(this).parent().css('background', '');
+                                    $(this).hide();
+                                });
                             }
                         }
                         reader.readAsDataURL(file);
                     });
-                    $(".staff_confirm").on("click", function () {
-                        workerAction.addWorker($name, $sex, $age, $birthplace, $worktime, $idcard, $bankcard, $phone, $bankname, myfile); //增加工人
+                    $(".staff_confirm").on("click", function() {
+                        workerAction.addWorker(); //增加工人
                     });
                 }
 
@@ -2636,336 +2631,56 @@
 
     /* 新增和编辑工人 */
     workerAction = {
-        editWorker: function ($name, $sex, $age, $birthplace, $worktime, $idcard, $bankcard, $phone, $bankname, myfile) { //调用编辑工人接口
+        editWorker: function() { //调用编辑工人接口
             var service = [];
-            var cate_id = sessionStorage.getItem("cateid");//工种id     1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工
-            var worker_id = sessionStorage.getItem("userid");//工人id
+            var cate_id = sessionStorage.getItem("cateid"); //工种id     1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工
+            var worker_id = sessionStorage.getItem("userid"); //工人id
             var flag = true; // 判断能不能提交 true：能提交  false： 不能提交
-            $.ajax({
-                type: "get",
-                url: USERIMGEDITURL,
-                async: true,
-                dataType: "jsonp",
-                data: {
-                    user_id: worker_id,
-                    myfile: myfile
-                },
-                success: function (data) {
-                    if (data != null && data.code == '000') {
-                        if ($(".staff_picture .add_picture").attr("data-flag") == '0') {
-                            layer.alert("头像格式不正确");
-                            flag = false;
-                        } else if ($name == "" || $name == null) {
-                            layer.alert("姓名不能为空");
-                            flag = false;
-                        } else if ($age == "" || $age == null) {
-                            layer.alert("年龄不能为空");
-                            flag = false;
-                        } else if ($worktime == "" || $worktime == null) {
-                            layer.alert("从业时间不能为空");
-                            flag = false;
-                        } else if ($phone == "" || $phone == null) {
-                            layer.alert("手机号不能为空");
-                            flag = false;
-                        } else if ($idcard == "" || $idcard == null) {
-                            layer.alert("身份证号不能为空");
-                            flag = false;
-                        } else if ($bankname == "" || $bankname == null) {
-                            layer.alert("开户银行不能为空");
-                            flag = false;
-                        } else if ($bankcard == "" || $bankcard == null) {
-                            layer.alert("银行卡号不能为空");
-                            flag = false;
-                        }
-                        for (var i = 0; i < $(".edit_bottom li input").length; i++) {
-                            if ($(".edit_bottom li input").eq(i).val() == "" || $(".edit_bottom li input").eq(i).val() == null) {
-                                layer.alert("价格明细表有项未填");
-                                flag = false;
-                                break;
-                            }
-                        }
-                        // 验证后有错误则return 不提交
-                        if (!flag) {
-                            return;
-                        }
-                        switch (cate_id) {
-                            case "1":
-                                for (var i = 0; i < $(".edit_bottom li input").length; i++) {
-                                    service[i + 1] = $(".edit_bottom li input").eq(i).val();
-                                }
-                                $.ajax({
-                                    type: "get",
-                                    url: EDITWORKERURL,
-                                    async: true,
-                                    dataType: "jsonp",
-                                    data: {
-                                        cate_id: cate_id,
-                                        worker_id: worker_id,
-                                        name: $name,
-                                        sex: $sex,
-                                        age: $age,
-                                        birthplace: $birthplace,
-                                        worktime: $worktime,
-                                        idcard: $idcard,
-                                        bankcard: $bankcard,
-                                        phone: $phone,
-                                        bankname: $bankname,
-                                        service1: service[1],
-                                        service2: service[2],
-                                        service3: service[3],
-                                        service4: service[4],
-                                        service5: service[5],
-                                        service6: service[6],
-                                        service7: service[7],
-                                        service8: service[8],
-                                        service9: service[9],
-                                        service10: service[10],
-                                        service11: service[11],
-                                        service12: service[12],
-                                        service13: service[13],
-                                        service14: service[14],
-                                        service15: service[15],
-                                        service16: service[16]
-                                    },
-                                    success: function (data) {
-                                        if (data != null && data.code == '000') {
-                                            layer.alert(data.msg);
-                                            window.location.href = "#/master/mteam";
-                                        } else {
-                                            layer.alert(data.msg);
-                                        }
-                                    }
-                                });
-                                break;
-                            case "2":
-                                for (var i = 0; i < $(".edit_bottom li input").length; i++) {
-                                    service[i + 17] = $(".edit_bottom li input").eq(i).val();
-                                }
-                                $.ajax({
-                                    type: "get",
-                                    url: EDITWORKERURL,
-                                    async: true,
-                                    dataType: "jsonp",
-                                    data: {
-                                        cate_id: cate_id,
-                                        worker_id: worker_id,
-                                        name: $name,
-                                        sex: $sex,
-                                        age: $age,
-                                        birthplace: $birthplace,
-                                        worktime: $worktime,
-                                        idcard: $idcard,
-                                        bankcard: $bankcard,
-                                        phone: $phone,
-                                        bankname: $bankname,
-                                        service17: service[17],
-                                        service18: service[18]
-                                    },
-                                    success: function (data) {
-                                        if (data != null && data.code == '000') {
-                                            layer.alert(data.msg);
-                                            window.location.href = "#/master/mteam";
-                                        } else {
-                                            layer.alert(data.msg);
-                                        }
-                                    }
-                                });
-                                break;
-                            case "3":
-                                for (var i = 0; i < $(".edit_bottom li input").length; i++) {
-                                    service[i + 19] = $(".edit_bottom li input").eq(i).val();
-                                }
-                                $.ajax({
-                                    type: "get",
-                                    url: EDITWORKERURL,
-                                    async: true,
-                                    dataType: "jsonp",
-                                    data: {
-                                        cate_id: cate_id,
-                                        worker_id: worker_id,
-                                        name: $name,
-                                        sex: $sex,
-                                        age: $age,
-                                        birthplace: $birthplace,
-                                        worktime: $worktime,
-                                        idcard: $idcard,
-                                        bankcard: $bankcard,
-                                        phone: $phone,
-                                        bankname: $bankname,
-                                        service19: service[19],
-                                        service20: service[20],
-                                        service21: service[21],
-                                        service22: service[22],
-                                        service23: service[23],
-                                        service23: service[23],
-                                        service24: service[24],
-                                        service25: service[25],
-                                        service26: service[26],
-                                        service27: service[27],
-                                        service28: service[28],
-                                        service29: service[29],
-                                        service30: service[30],
-                                        service31: service[31],
-                                        service32: service[32],
-                                        service33: service[33],
-                                        service34: service[34],
-                                        service35: service[35],
-                                        service36: service[36],
-                                        service37: service[37],
-                                        service38: service[38],
-                                        service39: service[39],
-                                        service40: service[40],
-                                        service41: service[41]
-                                    },
-                                    success: function (data) {
-                                        if (data != null && data.code == '000') {
-                                            layer.alert(data.msg);
-                                            window.location.href = "#/master/mteam";
-                                        } else {
-                                            layer.alert(data.msg);
-                                        }
-                                    }
-                                });
-                                break;
-                            case "4":
-                                for (var i = 0; i < $(".edit_bottom li input").length; i++) {
-                                    service[i + 42] = $(".edit_bottom li input").eq(i).val();
-                                }
-                                $.ajax({
-                                    type: "get",
-                                    url: EDITWORKERURL,
-                                    async: true,
-                                    dataType: "jsonp",
-                                    data: {
-                                        cate_id: cate_id,
-                                        worker_id: worker_id,
-                                        name: $name,
-                                        sex: $sex,
-                                        age: $age,
-                                        birthplace: $birthplace,
-                                        worktime: $worktime,
-                                        idcard: $idcard,
-                                        bankcard: $bankcard,
-                                        phone: $phone,
-                                        bankname: $bankname,
-                                        service42: service[42],
-                                        service43: service[43],
-                                        service44: service[44],
-                                        service45: service[45],
-                                        service46: service[46],
-                                        service47: service[47],
-                                        service48: service[48],
-                                        service49: service[49],
-                                        service50: service[50],
-                                        service51: service[51],
-                                        service52: service[52],
-                                        service53: service[53]
-                                    },
-                                    success: function (data) {
-                                        if (data != null && data.code == '000') {
-                                            layer.alert(data.msg);
-                                            window.location.href = "#/master/mteam";
-                                        } else {
-                                            layer.alert(data.msg);
-                                        }
-                                    }
-                                });
-                                break;
-                            case "5":
-                                for (var i = 0; i < $(".edit_bottom li input").length; i++) {
-                                    service[i + 54] = $(".edit_bottom li input").eq(i).val();
-                                }
-                                $.ajax({
-                                    type: "get",
-                                    url: EDITWORKERURL,
-                                    async: true,
-                                    dataType: "jsonp",
-                                    data: {
-                                        cate_id: cate_id,
-                                        worker_id: worker_id,
-                                        name: $name,
-                                        sex: $sex,
-                                        age: $age,
-                                        birthplace: $birthplace,
-                                        worktime: $worktime,
-                                        idcard: $idcard,
-                                        bankcard: $bankcard,
-                                        phone: $phone,
-                                        bankname: $bankname,
-                                        service54: service[54],
-                                        service55: service[55],
-                                        service56: service[56],
-                                        service57: service[57],
-                                        service58: service[58],
-                                        service59: service[59],
-                                        service60: service[60],
-                                        service61: service[61],
-                                        service62: service[62],
-                                        service63: service[63]
-                                    },
-                                    success: function (data) {
-                                        if (data != null && data.code == '000') {
-                                            layer.alert(data.msg);
-                                            window.location.href = "#/master/mteam";
-                                        } else {
-                                            layer.alert(data.msg);
-                                        }
-                                    }
-                                });
-                                break;
-                        }
-                    } else {
-                        layer.alert(data.msg)
-                    }
-                },
-                error: function (data) {
-                }
-            });
-
-        },
-        addWorker: function ($name, $sex, $age, $birthplace, $worktime, $idcard, $bankcard, $phone, $bankname, myfile) { //调用增加工人接口
-            var service = [];
-            var cate_id = sessionStorage.getItem("cateid");//工种id     1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工
-            var flag = true; // 判断能不能提交 true：能提交  false： 不能提交
-            if ($(".staff_picture .add_picture").attr("data-flag") == '0') {
-                layer.msg("头像格式不正确");
+            var $name = $(".staff_name .name").val(); //工人姓名
+            var $sex = $(".staff_name .sex option:selected").val(); //工人性别   1：男生 2：女生
+            var $age = $(".staff_name .age").val(); //工人年龄
+            var $birthplace = $(".staff_home .place").val(); //工人籍贯
+            var $worktime = $(".staff_date input").val(); //工人从业年限
+            var $idcard = $(".staff_phone .idcard").val(); //身份证
+            var $bankcard = $(".staff_phone .bankcard").val(); //银行卡
+            var $phone = $(".staff_phone .phone").val(); //手机号
+            var $bankname = $(".staff_phone .bankname").val(); //开户银行
+            if($name == "" || $name == null) {
+                layer.alert("姓名不能为空");
                 flag = false;
-            } else if ($name == "" || $name == null) {
-                layer.msg("姓名不能为空");
+            } else if($age == "" || $age == null) {
+                layer.alert("年龄不能为空");
                 flag = false;
-            } else if ($age == "" || $age == null) {
-                layer.msg("年龄不能为空");
+            } else if($worktime == "" || $worktime == null) {
+                layer.alert("从业时间不能为空");
                 flag = false;
-            } else if ($worktime == "" || $worktime == null) {
-                layer.msg("从业时间不能为空");
+            } else if($phone == "" || $phone == null) {
+                layer.alert("手机号不能为空");
                 flag = false;
-            } else if ($phone == "" || $phone == null) {
-                layer.msg("手机号不能为空");
+            } else if($idcard == "" || $idcard == null) {
+                layer.alert("身份证号不能为空");
                 flag = false;
-            } else if ($idcard == "" || $idcard == null) {
-                layer.msg("身份证号不能为空");
+            } else if($bankname == "" || $bankname == null) {
+                layer.alert("开户银行不能为空");
                 flag = false;
-            } else if ($bankname == "" || $bankname == null) {
-                layer.msg("开户银行不能为空");
-                flag = false;
-            } else if ($bankcard == "" || $bankcard == null) {
-                layer.msg("银行卡号不能为空");
+            } else if($bankcard == "" || $bankcard == null) {
+                layer.alert("银行卡号不能为空");
                 flag = false;
             }
-            for (var i = 0; i < $(".edit_bottom li input").length; i++) {
-                if ($(".edit_bottom li input").eq(i).val() == "" || $(".edit_bottom li input").eq(i).val() == null) {
-                    layer.msg("价格明细表有项未填");
+            for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                if($(".edit_bottom li input").eq(i).val() == "" || $(".edit_bottom li input").eq(i).val() == null) {
+                    layer.alert("价格明细表有项未填");
                     flag = false;
                     break;
                 }
             }
             // 验证后有错误则return 不提交
-            if (!flag) {
+            if(!flag) {
                 return;
             }
-            switch (cate_id) {
+            switch(cate_id) {
                 case "1":
-                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 1] = $(".edit_bottom li input").eq(i).val();
                     }
                     $.ajax({
@@ -2975,7 +2690,7 @@
                         dataType: "jsonp",
                         data: {
                             cate_id: cate_id,
-                            shop_id: $.base64.decode($.cookie("userShopId")),
+                            worker_id: worker_id,
                             name: $name,
                             sex: $sex,
                             age: $age,
@@ -2985,7 +2700,6 @@
                             bankcard: $bankcard,
                             phone: $phone,
                             bankname: $bankname,
-                            myfile: myfile,
                             service1: service[1],
                             service2: service[2],
                             service3: service[3],
@@ -3003,18 +2717,19 @@
                             service15: service[15],
                             service16: service[16]
                         },
-                        success: function (data) {
-                            if (data != null && data.code == '000') {
+                        success: function(data) {
+                            if(data != null && data.code == '000') {
                                 layer.msg(data.msg);
                                 window.location.href = "#/master/mteam";
+                                location.reload(true);
                             } else {
-                                layer.msg(data.msg);
+                                layer.alert(data.msg);
                             }
                         }
                     });
                     break;
                 case "2":
-                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 17] = $(".edit_bottom li input").eq(i).val();
                     }
                     $.ajax({
@@ -3024,7 +2739,7 @@
                         dataType: "jsonp",
                         data: {
                             cate_id: cate_id,
-                            shop_id: $.base64.decode($.cookie("userShopId")),
+                            worker_id: worker_id,
                             name: $name,
                             sex: $sex,
                             age: $age,
@@ -3034,22 +2749,22 @@
                             bankcard: $bankcard,
                             phone: $phone,
                             bankname: $bankname,
-                            myfile: myfile,
                             service17: service[17],
                             service18: service[18]
                         },
-                        success: function (data) {
-                            if (data != null && data.code == '000') {
+                        success: function(data) {
+                            if(data != null && data.code == '000') {
                                 layer.msg(data.msg);
                                 window.location.href = "#/master/mteam";
+                                location.reload(true);
                             } else {
-                                layer.msg(data.msg);
+                                layer.alert(data.msg);
                             }
                         }
                     });
                     break;
                 case "3":
-                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 19] = $(".edit_bottom li input").eq(i).val();
                     }
                     $.ajax({
@@ -3059,7 +2774,7 @@
                         dataType: "jsonp",
                         data: {
                             cate_id: cate_id,
-                            shop_id: $.base64.decode($.cookie("userShopId")),
+                            worker_id: worker_id,
                             name: $name,
                             sex: $sex,
                             age: $age,
@@ -3069,11 +2784,11 @@
                             bankcard: $bankcard,
                             phone: $phone,
                             bankname: $bankname,
-                            myfile: myfile,
                             service19: service[19],
                             service20: service[20],
                             service21: service[21],
                             service22: service[22],
+                            service23: service[23],
                             service23: service[23],
                             service24: service[24],
                             service25: service[25],
@@ -3094,18 +2809,19 @@
                             service40: service[40],
                             service41: service[41]
                         },
-                        success: function (data) {
-                            if (data != null && data.code == '000') {
+                        success: function(data) {
+                            if(data != null && data.code == '000') {
                                 layer.msg(data.msg);
                                 window.location.href = "#/master/mteam";
+                                location.reload(true);
                             } else {
-                                layer.msg(data.msg);
+                                layer.alert(data.msg);
                             }
                         }
                     });
                     break;
                 case "4":
-                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 42] = $(".edit_bottom li input").eq(i).val();
                     }
                     $.ajax({
@@ -3115,7 +2831,7 @@
                         dataType: "jsonp",
                         data: {
                             cate_id: cate_id,
-                            shop_id: $.base64.decode($.cookie("userShopId")),
+                            worker_id: worker_id,
                             name: $name,
                             sex: $sex,
                             age: $age,
@@ -3125,7 +2841,6 @@
                             bankcard: $bankcard,
                             phone: $phone,
                             bankname: $bankname,
-                            myfile: myfile,
                             service42: service[42],
                             service43: service[43],
                             service44: service[44],
@@ -3139,18 +2854,19 @@
                             service52: service[52],
                             service53: service[53]
                         },
-                        success: function (data) {
-                            if (data != null && data.code == '000') {
+                        success: function(data) {
+                            if(data != null && data.code == '000') {
                                 layer.msg(data.msg);
                                 window.location.href = "#/master/mteam";
+                                location.reload(true);
                             } else {
-                                layer.msg(data.msg);
+                                layer.alert(data.msg);
                             }
                         }
                     });
                     break;
                 case "5":
-                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 54] = $(".edit_bottom li input").eq(i).val();
                     }
                     $.ajax({
@@ -3160,7 +2876,7 @@
                         dataType: "jsonp",
                         data: {
                             cate_id: cate_id,
-                            shop_id: $.base64.decode($.cookie("userShopId")),
+                            worker_id: worker_id,
                             name: $name,
                             sex: $sex,
                             age: $age,
@@ -3170,7 +2886,6 @@
                             bankcard: $bankcard,
                             phone: $phone,
                             bankname: $bankname,
-                            myfile: myfile,
                             service54: service[54],
                             service55: service[55],
                             service56: service[56],
@@ -3182,13 +2897,227 @@
                             service62: service[62],
                             service63: service[63]
                         },
-                        success: function (data) {
-                            if (data != null && data.code == '000') {
+                        success: function(data) {
+                            if(data != null && data.code == '000') {
                                 layer.msg(data.msg);
                                 window.location.href = "#/master/mteam";
+                                location.reload(true);
                             } else {
-                                layer.msg(data.msg);
+                                layer.alert(data.msg);
                             }
+                        }
+                    });
+                    break;
+            }
+
+        },
+        addWorker: function() { //调用增加工人接口
+            var service = [];
+            var cate_id = sessionStorage.getItem("cateid"); //工种id     1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工
+            var shop_id = sessionStorage.getItem("shopid");
+            var flag = true; // 判断能不能提交 true：能提交  false： 不能提交
+            var data = new FormData();
+            var $name = $(".staff_name .name").val(); //工人姓名
+            var $sex = $(".staff_name .sex option:selected").val(); //工人性别   1：男生 2：女生
+            var $age = $(".staff_name .age").val(); //工人年龄
+            var $birthplace = $(".staff_home .place").val(); //工人籍贯
+            var $worktime = $(".staff_date input").val(); //工人从业年限
+            var $idcard = $(".staff_phone .idcard").val(); //身份证
+            var $bankcard = $(".staff_phone .bankcard").val(); //银行卡
+            var $phone = $(".staff_phone .phone").val(); //手机号
+            var $bankname = $(".staff_phone .bankname").val(); //开户银行
+            data.append("cate_id", cate_id);
+            data.append("myfile", $("#worker_picture")[0].files[0]);
+            data.append("shop_id", $.base64.decode($.cookie("userShopId")));
+            data.append("name", $name);
+            data.append("sex", $sex);
+            data.append("age", $age);
+            data.append("birthplace", $birthplace);
+            data.append("worktime", $worktime);
+            data.append("idcard", $idcard);
+            data.append("bankcard", $bankcard);
+            data.append("phone", $phone);
+            data.append("bankname", $bankname);
+            if($(".staff_picture .add_picture").attr("data-flag") == '0') {
+                layer.msg("未上传头像");
+                flag = false;
+            } else if($name == "" || $name == null) {
+                layer.msg("姓名不能为空");
+                flag = false;
+            } else if($age == "" || $age == null) {
+                layer.msg("年龄不能为空");
+                flag = false;
+            } else if($worktime == "" || $worktime == null) {
+                layer.msg("从业时间不能为空");
+                flag = false;
+            } else if($phone == "" || $phone == null) {
+                layer.msg("手机号不能为空");
+                flag = false;
+            } else if($idcard == "" || $idcard == null) {
+                layer.msg("身份证号不能为空");
+                flag = false;
+            } else if($bankname == "" || $bankname == null) {
+                layer.msg("开户银行不能为空");
+                flag = false;
+            } else if($bankcard == "" || $bankcard == null) {
+                layer.msg("银行卡号不能为空");
+                flag = false;
+            }
+            for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                if($(".edit_bottom li input").eq(i).val() == "" || $(".edit_bottom li input").eq(i).val() == null) {
+                    layer.msg("价格明细表有项未填");
+                    flag = false;
+                    break;
+                }
+            }
+            // 验证后有错误则return 不提交
+            if(!flag) {
+                return;
+            }
+            switch(cate_id) {
+                case "1":
+                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                        service[i + 1] = $(".edit_bottom li input").eq(i).val();
+                        data.append(("service" + (i + 1)), service[i + 1]);
+                    }
+                    $.ajax({
+                        type: "post",
+                        url: ADDWORKERURL,
+                        dataType: "text",
+                        data: data,
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function(result) {
+                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
+                            result = JSON.parse(result); //转成json格式
+                            if(result.code == '000') {
+                                layer.msg("添加工人成功");
+                                window.location.href = "#/master/mteam";
+                                location.reload(true);
+                            } else {
+                                layer.alert(result.msg);
+                            }
+                        },
+                        error: function(e, a, v) {
+                            layer.alert("未知错误");
+                        }
+                    });
+                    break;
+                case "2":
+                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                        service[i + 17] = $(".edit_bottom li input").eq(i).val();
+                        data.append(("service" + (i + 17)), service[i + 17]);
+
+                    }
+                    $.ajax({
+                        type: "post",
+                        url: ADDWORKERURL,
+                        dataType: "text",
+                        data: data,
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function(result) {
+                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
+                            result = JSON.parse(result); //转成json格式
+                            if(result.code == '000') {
+                                layer.msg("添加工人成功");
+                                window.location.href = "#/master/mteam";
+                                location.reload(true);
+                            } else {
+                                layer.alert(result.msg);
+                            }
+                        },
+                        error: function(e, a, v) {
+                            layer.alert("未知错误");
+                        }
+                    });
+                    break;
+                case "3":
+                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                        service[i + 19] = $(".edit_bottom li input").eq(i).val();
+                        data.append(("service" + (i + 19)), service[i + 19]);
+                    }
+                    $.ajax({
+                        type: "post",
+                        url: ADDWORKERURL,
+                        dataType: "text",
+                        data: data,
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function(result) {
+                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
+                            result = JSON.parse(result); //转成json格式
+                            if(result.code == '000') {
+                                layer.msg("添加工人成功");
+                                window.location.href = "#/master/mteam";
+                                location.reload(true);
+                            } else {
+                                layer.alert(result.msg);
+                            }
+                        },
+                        error: function(e, a, v) {
+                            layer.alert("未知错误");
+                        }
+                    });
+                    break;
+                case "4":
+                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                        service[i + 42] = $(".edit_bottom li input").eq(i).val();
+                        data.append(("service" + (i + 42)), service[i + 42]);
+                    }
+                    $.ajax({
+                        type: "post",
+                        url: ADDWORKERURL,
+                        dataType: "text",
+                        data: data,
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function(result) {
+                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
+                            result = JSON.parse(result); //转成json格式
+                            if(result.code == '000') {
+                                layer.msg("添加工人成功");
+                                window.location.href = "#/master/mteam";
+                                location.reload(true);
+                            } else {
+                                layer.alert(result.msg);
+                            }
+                        },
+                        error: function(e, a, v) {
+                            layer.alert("未知错误");
+                        }
+                    });
+                    break;
+                case "5":
+                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                        service[i + 54] = $(".edit_bottom li input").eq(i).val();
+                        data.append(("service" + (i + 54)), service[i + 54]);
+                    }
+                    $.ajax({
+                        type: "post",
+                        url: ADDWORKERURL,
+                        dataType: "text",
+                        data: data,
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function(result) {
+                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
+                            result = JSON.parse(result); //转成json格式
+                            if(result.code == '000') {
+                                layer.msg("添加工人成功");
+                                window.location.href = "#/master/mteam";
+                                location.reload(true);
+                            } else {
+                                layer.alert(result.msg);
+                            }
+                        },
+                        error: function(e, a, v) {
+                            layer.alert("未知错误");
                         }
                     });
                     break;
@@ -3198,7 +3127,7 @@
 
     /* 编辑前获得我的员工具体信息 */
     getInformation = {
-        workDetail: function () {
+        workDetail: function() {
             var cate_id = sessionStorage.getItem("cateid");
             var worker_id = sessionStorage.getItem("userid");
             $.ajax({
@@ -3210,86 +3139,86 @@
                     cate_id: cate_id,
                     worker_id: worker_id
                 },
-                success: function (data) {
-                    if (data && data.code == '000') {
-                        var cost = [], k = 0;
+                success: function(data) {
+                    if(data && data.code == '000') {
+                        var cost = [],
+                            k = 0;
                         var length = $(".edit_bottom li").length;
                         $(".staff_picture .add_picture").attr("data-flag", "1").addClass("clear").css({
                             'background': 'url("http://www.heeyhome.com/' + data.data.portrait_img + '") no-repeat',
                             'backgroundSize': '100% 100%'
                         });
-                        $(".staff_name .name").val(data.data.name);//工人姓名
-                        $(".staff_name .sex option:selected").val(data.data.sex);//工人性别   1：男生 2：女生
-                        $(".staff_name .age").val(data.data.age);//工人年龄
-                        $(".staff_home .place").val(data.data.birthplace);//工人籍贯
-                        $(".staff_date input").val(data.data.worktime);//工人从业年限
-                        $(".staff_phone .idcard").val(data.data.idcard);//身份证
-                        $(".staff_phone .bankcard").val(data.data.bankcard);//银行卡
-                        $(".staff_phone .phone").val(data.data.phone);//手机号
-                        $(".staff_phone .bankname").val(data.data.bankname);//开户银行
-                        $.each(data.data.pricelist, function (i, v) {
-                            $.each(v.service, function (m, n) {
+                        $(".staff_name .name").val(data.data.name); //工人姓名
+                        $(".staff_name .sex option:selected").val(data.data.sex); //工人性别   1：男生 2：女生
+                        $(".staff_name .age").val(data.data.age); //工人年龄
+                        $(".staff_home .place").val(data.data.birthplace); //工人籍贯
+                        $(".staff_date input").val(data.data.worktime); //工人从业年限
+                        $(".staff_phone .idcard").val(data.data.idcard); //身份证
+                        $(".staff_phone .bankcard").val(data.data.bankcard); //银行卡
+                        $(".staff_phone .phone").val(data.data.phone); //手机号
+                        $(".staff_phone .bankname").val(data.data.bankname); //开户银行
+                        $.each(data.data.pricelist, function(i, v) {
+                            $.each(v.service, function(m, n) {
                                 cost[k] = n.cost;
                                 k++;
                             });
                         });
-                        for (var j = 0; j < length; j++) {
+                        for(var j = 0; j < length; j++) {
                             $(".edit_bottom li").eq(j).find("input").val(cost[j]);
                         }
-                        var $name = $(".staff_name .name").val();//工人姓名
-                        var $sex = $(".staff_name .sex option:selected").val();//工人性别   1：男生 2：女生
-                        var $age = $(".staff_name .age").val();//工人年龄
-                        var $birthplace = $(".staff_home .place").val();//工人籍贯
-                        var $worktime = $(".staff_date input").val();//工人从业年限
-                        var $idcard = $(".staff_phone .idcard").val();//身份证
-                        var $bankcard = $(".staff_phone .bankcard").val();//银行卡
-                        var $phone = $(".staff_phone .phone").val();//手机号
-                        var $bankname = $(".staff_phone .bankname").val();//开户银行
-                        var count = 1;
-                        $('.staff_picture .add_picture').find('input').change(function () {
-                            consoel.log(11222)
+                        $('.staff_picture .add_picture').find('input').change(function() {
                             var inputImg = $(this);
                             inputImg.parent().parent().attr("data-flag", "0");
                             var file = inputImg.get(0).files[0];
                             var reader = new FileReader();
-                            if (!/image\/\w+/.test(file.type)) {
+                            if(!/image\/\w+/.test(file.type)) {
                                 inputImg.parent().parent().css('background', '');
                                 inputImg.parent().parent().removeClass('clear');
                                 layer.alert("请确保文件为图像类型");
-                                //alertError(swal);//弹出文件格式错误通知
-                                inputImg.val('');//清空file选择的文件
+                                inputImg.val(''); //清空file选择的文件
                                 return false;
                             }
                             // onload是异步操作
                             else {
-                                reader.onload = function (e) {
+                                reader.onload = function(e) {
                                     inputImg.parent().parent().attr("data-flag", "1");
-                                    inputImg.parent().parent().addClass('clear');//图片预览时input file 添加opacity样式，设置完全透明
-                                    inputImg.parent().parent().css('background', 'url("' + e.target.result + '") no-repeat');//图片设置为$('.showImg')背景图
-                                    var pic = '<img src="' + e.target.result + '">';
-                                    myfile.push(pic);
+                                    inputImg.parent().parent().addClass('clear'); //图片预览时input file 添加opacity样式，设置完全透明
+                                    inputImg.parent().parent().css({
+                                        'background': 'url("' + e.target.result + '") no-repeat',
+                                        'backgroundSize': '100% 100%'
+                                    }); //图片设置为$('.showImg')背景图
+                                    var data = new FormData();
+                                    data.append("myfile", $("#worker_picture")[0].files[0]);
+                                    data.append("user_id", worker_id);
+                                    $.ajax({
+                                        type: "post",
+                                        url: USERIMGEDITURL,
+                                        cache: false,
+                                        data: data,
+                                        dataType: 'text',
+                                        processData: false,
+                                        contentType: false,
+                                        success: function(result) {
+                                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
+                                            result = JSON.parse(result); //转成json格式
+                                            layer.alert(result.msg);
+                                        },
+                                        error: function(e, a, v) {
+                                            layer.alert("未知错误");
+                                        }
+                                    });
                                 }
                             }
                             reader.readAsDataURL(file);
-                            $(".staff_confirm").on("click", function () {
-                                count = 2;
-                                workerAction.editWorker($name, $sex, $age, $birthplace, $worktime, $idcard, $bankcard, $phone, $bankname, myfile); //编辑工人
-                            });
                         });
-                        if (count == 1) {
-                            $(".staff_confirm").on("click", function () {
-                                var pic = '<img src="http://www.heeyhome.com/' + data.data.portrait_img + '">';
-                                myfile.push(pic);
-                                console.log(myfile);
-                                workerAction.editWorker($name, $sex, $age, $birthplace, $worktime, $idcard, $bankcard, $phone, $bankname, myfile); //编辑工人
-                            });
-                        }
+                        $(".staff_confirm").on("click", function() {
+                            workerAction.editWorker(); //编辑工人
+                        });
                     } else {
                         layer.alert(data.msg);
                     }
                 },
-                error: function (data) {
-                }
+                error: function(data) {}
             });
 
         }
@@ -3556,7 +3485,7 @@
                 /* 编辑工长店铺资料结束 */
 
                 /* 点击删除本店工艺开始 */
-                $(document).on('click', '#complete_del', function () {
+                $(document).off('click', '#complete_del').on('click', '#complete_del', function () {
                     var technicsid = $(this).attr('technicsid');
                     $.ajax({
                         url: DELTECURL,
@@ -3612,7 +3541,7 @@
                 /* 点击删除本店工艺结束 */
 
                 /* 点击删除效果图开始 */
-                $(document).on('click', '#img_del', function () {
+                $(document).off('click', '#img_del').on('click', '#img_del', function () {
                     var imgid = $(this).attr('imgid');
                     $.ajax({
                         url: DELSHOPURL,
@@ -3671,18 +3600,19 @@
                     $('#textarea').val('');
                 });
 
-                /* 点击本店工艺更改弹出弹层 */
-                $(document).on('click', '.renderings_show_a', function () {
-                    $('.add_technology').show().removeClass('hide');
-                    $('.wrap').show().removeClass('hide');
+                var img_id = [];
 
+                /* 点击本店工艺更改弹出弹层 */
+                $(document).on('click', '.renderings_show_a', function() {
+                    $('.add_technology').show().removeClass('hide').addClass("edit");
+                    $('.wrap').show().removeClass('hide');
 
                     var infos = $scope.infos;
                     var craftImg = $('.craft_img');
-                    $.each(craftImg, function (i, v) {
+                    $.each(craftImg, function(i, v) {
                         $(this).data('imgs', infos[i].technics_img);
                         $(this).data('text', infos[i].technics_text);
-                        //console.log($(this).data('text'));
+                        $(this).data("tid", infos[i].technics_id);
                     });
                     var $add_picture = $('.add_picture');
                     var $add_picture_a = $add_picture.find('a');
@@ -3691,19 +3621,20 @@
                     $add_picture.find('.close').hide();
                     var $img = $(this).prev().prev();
                     var imgs = $img.data('imgs');
-                    $.each(imgs, function (i, v) {
-                        $add_picture_a.eq(i).addClass('opacity');//图片预览时input file 添加opacity样式，设置完全透明
-                        $add_picture.eq(i).css('background-image', 'url(' + v.technics_img + ')');//图片设置为$('.showImg')背景图
+                    $.each(imgs, function(i, v) {
+                        $add_picture_a.eq(i).addClass('opacity'); //图片预览时input file 添加opacity样式，设置完全透明
+                        $add_picture.eq(i).css('background-image', 'url(http://www.heeyhome.com/' + v.technics_img + ')'); //图片设置为$('.showImg')背景图
                         $add_picture.eq(i).find('.close').show();
-
+                        $add_picture.eq(i).attr("img_id",v.img_id);
                     });
-
+                    $('.add_technology').attr("technics_id",$img.data('tid'));
                     $('#textarea').html($img.data('text'));
                 });
 
                 /* 点击弹层叉号关闭弹层 */
                 $('#add_close').click(function () {
                     $('.add_technology').hide();
+                    $(".add_technology .add_picture").removeAttr("img_id");
                     $('.wrap').hide();
                 });
 
@@ -3712,10 +3643,11 @@
                     $(div).find('input').change(function () {
                         var inputImg = $(this);
                         var file = inputImg.get(0).files[0];
+                        var id = inputImg.parent().parent().attr("img_id");
                         var reader = new FileReader();
                         if (!/image\/\w+/.test(file.type)) {
                             inputImg.parent().parent().css('background-image', '');
-                            inputImg.parent().removeClass('opacity');
+                            inputImg.parent().removeClass('opacity new');
                             layer.msg("请确保文件为图像类型");
                             inputImg.val('');//清空file选择的文件
                             return false;
@@ -3723,7 +3655,10 @@
                         // onload是异步操作
                         else {
                             reader.onload = function (e) {
-                                inputImg.parent().addClass('opacity');//图片预览时input file 添加opacity样式，设置完全透明
+                                if (id != undefined && img_id.indexOf(id) < 0) {
+                                    img_id.push(id);
+                                }
+                                inputImg.parent().addClass('opacity new');//图片预览时input file 添加opacity样式，设置完全透明
                                 inputImg.parent().parent().css('background-image', 'url("' + e.target.result + '")');//图片设置为$('.showImg')背景图
                                 inputImg.parent().parent().find('.close').show();
                             }
@@ -3796,74 +3731,110 @@
                     });
                 });
 
-                /* 上传本店工艺 */
+                /* 上传与更改本店工艺 */
                 $(document).off('click', '.complete').on('click', '.complete', function () {
-                    var data = new FormData();
-                    data.append("shop_id", $.base64.decode($.cookie("userShopId")));
-                    data.append("describe", $('#textarea').val());
-                    for (var i = 1; i <= 3; i++) {
-                        if ($("#file" + i).val()) {
-                            data.append("myfile[]", $("#file" + i)[0].files[0]);
+                    if ($(this).parent().parent().hasClass("edit")) { //更改本店工艺
+                        var data = new FormData();
+                        data.append("technics_id", $('.add_technology').attr("technics_id"));
+                        data.append("describe", $('#textarea').val());
+                        if (img_id.length > 0) {
+                            data.append("img_id[]", img_id);
                         }
-                    }
-                    $.ajax({
-                        url: STECURL,
-                        type: 'POST',
-                        data: data,
-                        dataType: 'jsonp',
-                        jsonp: 'callback',
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        success: function (result) {
-                            if (result.code === '000') {
-                                $('.detail_p b').remove();
-                                layer.msg(result.msg);
-                                $('.add_technology').hide();
-                                $('.wrap').hide();
-                                $http({
-                                    method: "JSONP",
-                                    url: SHOPCURL,
-                                    /* 传参 */
-                                    params: {
-                                        shop_id: $.base64.decode($.cookie("userShopId"))
-                                    }
-                                }).success(function (data, status) {
-                                    /* 如果成功执行 */
-                                    if (data.code === '000') {
-                                        //console.log(data);
-                                        //获取店铺资料的本店工艺(最多只显示五张)
-                                        if (data.data.shop_technics.length >= 5) {
-                                            $scope.infos = data.data.shop_technics.slice(0, 5);
-                                            $('#technic_add').hide();
-                                            $('.detail_p').css('marginTop', '100px');
-                                        } else {
-                                            $scope.infos = data.data.shop_technics;
-                                            $('#technic_add').show();
-                                            $('.detail_p').css('marginTop', '5px');
-                                        }
-                                        if (data.data.shop_technics.length > 0) {
-                                            $.each(data.data.shop_technics, function (i, v) {
-                                                $('.detail_p').append('<b>' + v.technics_text + '</b>');
-                                            });
-                                        } else {
-                                            $('.detail_p').append('随便说点什么吧！');
-                                        }
-                                    }
-                                    /* 如果失败执行 */
-                                    else {
-                                        layer.layer.msg(data.msg);
-                                    }
-                                }).error(function (data, status) {
-                                });
-                            } else {
-                                layer.msg(result.msg);
+                        for (var i = 1; i <= 3; i++) {
+                            if ($("#file" + i).val() && $("#file" + i).parent().hasClass("new")) {
+                                data.append("myfile[]", $("#file" + i)[0].files[0]);
                             }
-                        },
-                        error: function (e, a, v) {
-                            alert("错误！！");
                         }
-                    });
+                        $.ajax({
+                            type: "POST",
+                            url: ETECURL,
+                            data: data,
+                            dataType: "jsonp",
+                            jsonp: 'callback',
+                            cache: false,
+                            processData: false,
+                            contentType: false,
+                            success: function (result) {
+                                if (result.code == '000') {
+                                    layer.msg(result.msg);
+                                    location.reload(true);
+                                } else {
+                                    layer.alert(result.msg);
+                                }
+                            },
+                            error: function (e, a, v) {
+                                layer.alert("未知错误");
+                            }
+                        });
+                    } else { //上传本店工艺
+                        var data = new FormData();
+                        data.append("shop_id", $.base64.decode($.cookie("userShopId")));
+                        data.append("describe", $('#textarea').val());
+                        for (var i = 1; i <= 3; i++) {
+                            if ($("#file" + i).val()) {
+                                data.append("myfile[]", $("#file" + i)[0].files[0]);
+                            }
+                        }
+                        $.ajax({
+                            url: STECURL,
+                            type: 'POST',
+                            data: data,
+                            dataType: 'jsonp',
+                            jsonp: 'callback',
+                            cache: false,
+                            processData: false,
+                            contentType: false,
+                            success: function (result) {
+                                if (result.code === '000') {
+                                    $('.detail_p b').remove();
+                                    layer.msg(result.msg);
+                                    $('.add_technology').hide();
+                                    $('.wrap').hide();
+                                    $http({
+                                        method: "JSONP",
+                                        url: SHOPCURL,
+                                        /* 传参 */
+                                        params: {
+                                            shop_id: $.base64.decode($.cookie("userShopId"))
+                                        }
+                                    }).success(function (data, status) {
+                                        /* 如果成功执行 */
+                                        if (data.code === '000') {
+                                            //console.log(data);
+                                            //获取店铺资料的本店工艺(最多只显示五张)
+                                            if (data.data.shop_technics.length >= 5) {
+                                                $scope.infos = data.data.shop_technics.slice(0, 5);
+                                                $('#technic_add').hide();
+                                                $('.detail_p').css('marginTop', '100px');
+                                            } else {
+                                                $scope.infos = data.data.shop_technics;
+                                                $('#technic_add').show();
+                                                $('.detail_p').css('marginTop', '5px');
+                                            }
+                                            if (data.data.shop_technics.length > 0) {
+                                                $.each(data.data.shop_technics, function (i, v) {
+                                                    $('.detail_p').append('<b>' + v.technics_text + '</b>');
+                                                });
+                                            } else {
+                                                $('.detail_p').append('随便说点什么吧！');
+                                            }
+                                        }
+                                        /* 如果失败执行 */
+                                        else {
+                                            layer.layer.msg(data.msg);
+                                        }
+                                    }).error(function (data, status) {
+                                    });
+                                } else {
+                                    layer.msg(result.msg);
+                                }
+                            },
+                            error: function (e, a, v) {
+                                alert("错误！！");
+                            }
+                        });
+                    }
+
                 });
 
             }]);
@@ -4046,87 +4017,97 @@
 
     /* 我的作品增加新作品的提交 */
     ajaxSubmit = {
-        confirmAdd: function () {
-            $('#form').attr('action', NEWCASEURL);
+        confirmAdd: function() {
             var $area = $(".new_areacnt input"); //建筑面积
-            var $room = $(".room option:selected");//室所选中的项
-            var $hall = $(".hall option:selected");//厅所选中的项
-            var $toilet = $(".toilet option:selected");//卫所选中的项
-            var $balcony = $(".balcony option:selected");//阳台所选中的项
-            var $style = $(".new_stylecnt span.active");//选中的装修风格
-            var $syear = $(".year1 option:selected");//起始年份选中的项
-            var $smonth = $(".month1 option:selected");//起始月份选中的项
-            var $sday = $(".day1 option:selected");//起始日选中的项
-            var $eyear = $(".year2 option:selected");//结束年份选中的项
-            var $emonth = $(".month2 option:selected");//结束月份选中的项
-            var $eday = $(".day2 option:selected");//结束日选中的项
-            var $address = $(".detail_address input");//详细地址
-            var $pic = $(".construction_picturecnt .picture_cnt");//添加的新图片
-            var flag = true;// 判断能不能提交 true：能提交  false： 不能提交
+            var $room = $(".room option:selected"); //室所选中的项
+            var $hall = $(".hall option:selected"); //厅所选中的项
+            var $toilet = $(".toilet option:selected"); //卫所选中的项
+            var $balcony = $(".balcony option:selected"); //阳台所选中的项
+            var $style = $(".new_stylecnt span.active"); //选中的装修风格
+            var $syear = $(".year1 option:selected"); //起始年份选中的项
+            var $smonth = $(".month1 option:selected"); //起始月份选中的项
+            var $sday = $(".day1 option:selected"); //起始日选中的项
+            var $eyear = $(".year2 option:selected"); //结束年份选中的项
+            var $emonth = $(".month2 option:selected"); //结束月份选中的项
+            var $eday = $(".day2 option:selected"); //结束日选中的项
+            var $address = $(".detail_address input"); //详细地址
+            var count = 0;
+            var flag = true; // 判断能不能提交 true：能提交  false： 不能提交
             var housetype = $room.val() + "室" + $hall.val() + "厅" + $toilet.val() + "卫" + $balcony.val() + "阳台";
             var timelong = $syear.val() + "." + $smonth.val() + "." + $sday.val() + "-" + $eyear.val() + "." + $emonth.val() + "." + $eday.val();
+            var data = new FormData();
+            data.append("foreman_id", USERID);
+            data.append("housetype", housetype);
+            data.append("style", $style.html());
+            data.append("timelong", timelong);
+            data.append("address", $address.val());
+            data.append("area", $area.val());
+            for(var i = 0; i < 5; i++) {
+                if($("#file" + i).val()) {
+                    data.append("myfile", $("#file" + i)[0].files[0]);
+                    count++;
+                }
+            }
             /**
              * 相关验证
              */
-            if ($area.val() == "" || $area.val() == null) {
+            if($area.val() == "" || $area.val() == null) {
                 errorRemind.errorContent(MSG1, $(".new_area h3"));
                 flag = false;
             }
-            if ($room.val() == "请选择" || $hall.val() == "请选择" || $toilet.val() == "请选择" || $balcony.val() == "请选择") {
+            if($room.val() == "请选择" || $hall.val() == "请选择" || $toilet.val() == "请选择" || $balcony.val() == "请选择") {
                 errorRemind.errorContent(MSG2, $(".new_type h3"));
                 flag = false;
             }
-            if ($style.html() == "" || $style.html() == null) {
+            if($style.html() == "" || $style.html() == null) {
                 errorRemind.errorContent(MSG3, $(".new_style h3"));
                 flag = false;
             }
-            if ($syear.html() == "-年份-" || $smonth.html() == "-月份-" || $sday.html() == "-日期-" || $eyear.html() == "-年份-" || $emonth.html() == "-月份-" || $eday.html() == "-日期-") {
+            if($syear.html() == "-年份-" || $smonth.html() == "-月份-" || $sday.html() == "-日期-" || $eyear.html() == "-年份-" || $emonth.html() == "-月份-" || $eday.html() == "-日期-") {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
-            } else if ($syear.html() > $eyear.html()) {
+            } else if($syear.html() > $eyear.html()) {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
-            } else if ($syear.html() == $eyear.html() && $smonth.html() > $emonth.html()) {
+            } else if($syear.html() == $eyear.html() && $smonth.html() > $emonth.html()) {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
-            } else if ($syear.html() == $eyear.html() && $smonth.html() == $emonth.html() && $sday.html() > $eday.html()) {
+            } else if($syear.html() == $eyear.html() && $smonth.html() == $emonth.html() && $sday.html() > $eday.html()) {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
             }
-            if ($address.val() == "" || $address.val() == null) {
+            if($address.val() == "" || $address.val() == null) {
                 errorRemind.errorContent(MSG5, $(".new_address h3"));
                 flag = false;
             }
-            if ($pic.length == 0) {
+            if(count == 0) {
                 errorRemind.errorContent(MSG6, $(".construction_picture h3"));
                 flag = false;
             }
             // 验证后有错误则return 不提交
-            if (!flag) {
+            if(!flag) {
                 return;
             }
-            $("#form").submit();
             $.ajax({
                 type: "post",
                 url: NEWCASEURL,
-                async: true,
-                dataType: "jsonp",
-                data: {
-                    foreman_id: USERID,
-                    housetype: housetype,
-                    style: $style.html(),
-                    timelong: timelong,
-                    address: $address.val(),
-                    myfile: myfile
-                },
-                success: function (data) {
-                    if (data != null && data.code == '000') {  //正确
-                        //alert(1);
-                    } else if (data != null && data.code != '000') { //错误
-                        layer.alert(data.msg);
+                dataType: "text",
+                data: data,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(result) {
+                    result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
+                    result = JSON.parse(result); //转成json格式
+                    if(result.code == '000') {
+                        window.location.href = "#/master/mwork";
+                        location.reload(true);
+                    } else {
+                        layer.alert("上传失败");
                     }
                 },
-                error: function (data) {
+                error: function(e, a, v) {
+                    layer.alert("未知错误");
                 }
             });
         }
@@ -4154,27 +4135,31 @@
 
     /* 我的作品增加新的施工图片 */
     addPicture = {
-        constructionPic: function () {
-            $(".add_picture input").on("change", function () {
+        constructionPic: function() {
+            $(".add_picture input").on("change", function() {
                 var inputImg = $(this);
                 var file = inputImg.get(0).files[0];
                 var reader = new FileReader();
                 reader.readAsDataURL(file);
-                if (!/image\/\w+/.test(file.type)) {
+                if(!/image\/\w+/.test(file.type)) {
+                    inputImg.parent().parent().css('background', '');
+                    inputImg.parent().parent().removeClass('clear');
                     layer.alert("请确保文件为图像类型");
-                    inputImg.val('');//清空file选择的文件
+                    inputImg.val(''); //清空file选择的文件
                     return false;
                 } else {
-                    reader.onload = function (e) {
-                        var pic = '<div class="picture_cnt fl">';
-                        pic += '<a href="javascript:;"><img src="' + e.target.result + '"></a>';
-                        pic += '<div class="close"><em class="sprite_total"></em></div></div>';
-                        inputImg.parent().parent().before(pic);//新图片显示
-                        var pic = '<img src="' + e.target.result + '">';
-                        myfile.push(pic);
+                    reader.onload = function(e) {
+                        inputImg.parent().parent().addClass('clear'); //图片预览时input file 添加opacity样式，设置完全透明
+                        inputImg.parent().siblings('.close').show();
+                        inputImg.parent().parent().css({
+                            'background': 'url("' + e.target.result + '") no-repeat',
+                            'backgroundSize': '100% 100%'
+                        }); //图片设置为$('.showImg')背景图
                         /* 点击叉叉图片取消事件 */
-                        $('.close').on("click", function () {
-                            $(this).parent().remove();
+                        $('.close').on("click", function() {
+                            $(this).parent().removeClass('clear');
+                            $(this).parent().css('background', '');
+                            $(this).hide();
                         });
                     }
                 }
