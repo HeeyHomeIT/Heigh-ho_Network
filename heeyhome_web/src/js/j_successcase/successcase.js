@@ -23,7 +23,12 @@
 		initEvent: function() {
 			var self = this;
 			var gzId = getUrlParamHandler.getUrlParam('pos');
+			var gzName = getUrlParamHandler.getUrlCnParam('sn');
+			var gzshoperId = getUrlParamHandler.getUrlParam('si');
 			$("#Jgz").val(gzId);
+			$(".sname").html(gzName);
+			$(".sname").attr("href","view_shop.html#/shopdetails?pos="+gzshoperId)
+			
 			/* 页面工人初始化数据*/
 			self.initSuccessCaseDataEvent();
 
@@ -91,7 +96,19 @@
 		getUrlParam: function(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 			var r = window.location.hash.split("?")[1].match(reg); //匹配目标参数
+			console.log(r[2])
 			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
+		},
+		/**
+		 * 获取url中的中文参数
+		 * @param {Object} name
+		 */
+		getUrlCnParam: function(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.hash.split("?")[1].match(reg); //匹配目标参数
+			console.log(r[2])
+			if(r != null) return decodeURI(r[2]);
 			return null; //返回参数值
 		}
 	};

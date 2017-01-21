@@ -253,7 +253,7 @@
                 success: function (data) {
                     $(".sname").html((data.data.shop_name!=null &&data.data.shop_name!="")?data.data.shop_name:"--");
                     $("#JgzId").val(data.data.shopper_id);
-                    $(".Jmore").attr("href", "successcase.html#/successcase?pos=" + $("#JgzId").val() + "")
+                    $(".Jmore").attr("href", "successcase.html#/successcase?pos=" + $("#JgzId").val() + "&sn="+encodeURI(data.data.shop_name)+"&si="+shopId+"")
                     $(".hd ul").html(sc.spliceHdPictureEvent(data.data));
                     $(".bd ul").html(sc.spliceBdPictureEvent(data.data));
                     $(".scontent").html(sc.spliceShopInfoEvent(data.data));
