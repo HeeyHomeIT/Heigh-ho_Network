@@ -531,3 +531,7 @@
 .owner_detail .area, .owner_detail .type {
     margin-bottom: 10px;
 }
+
+.opacity {
+    opacity: 0;
+}

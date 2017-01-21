@@ -84,16 +84,16 @@
             <div class="process_center">
                 <img src="image/approach_preparation.png">
             </div><!--process_center-->
-            <input type="button" id="pre_add" class="order_add_left approach order_increase fl" value="添加">
+            <input type="button" id="pre_add1" class="order_add_left approach order_increase fl" value="添加">
             <input type="button" class="detail_a detail_complete hide fl" value="查看详情">
-            <input type="button" class="order_edit fl" value="编辑预算单">
+            <input id="order_edit" type="button" class="order_edit fl" value="编辑预算单">
         </div><!--order_process-->
         <div class="order_process fl">
             <p class="process_title" typename="水电">&bull;&nbsp;&nbsp;&nbsp;水电工进场&nbsp;&nbsp;&nbsp;&bull;</p>
             <div class="process_center">
                 <img src="image/plumber.png">
             </div><!--process_center-->
-            <input type="button" class="order_add order_increase approach" value="添加">
+            <input id="pre_add2" type="button" class="order_add order_increase approach" value="添加">
             <input type="button" class="order_edit hide" value="编辑结算单">
             <input type="button" class="detail_a hide" value="查看详情">
         </div><!--order_process-->
@@ -256,7 +256,7 @@
             </div><!--start_date_title-->
             <div class="add_picture first_add_picture fl">
                 <a href="javascript:;">+
-                    <input type="file" title="上传新图片">
+                    <input id="file1" type="file" title="上传新图片">
                 </a>
                 <div class="close hide">
                     <em class="sprite_total"></em>
@@ -264,7 +264,7 @@
             </div>
             <div class="add_picture fl">
                 <a href="javascript:;">+
-                    <input type="file" title="上传新图片">
+                    <input id="file2" type="file" title="上传新图片">
                 </a>
                 <div class="close hide">
                     <em class="sprite_total"></em>
@@ -272,7 +272,7 @@
             </div>
             <div class="add_picture fl">
                 <a href="javascript:;">+
-                    <input type="file" title="上传新图片">
+                    <input  id="file3" type="file" title="上传新图片">
                 </a>
                 <div class="close hide">
                     <em class="sprite_total"></em>
@@ -285,7 +285,7 @@
             </div><!--start_date_title-->
             <input class="message_input" type="text" title="">
         </div><!--start_date-->
-        <a href="javascript:;" class="complete">上传</a>
+        <a id="upload" href="javascript:;" class="complete">上传</a>
         <div class="add-bg">
             <img src="image/bg-decoration.png">
         </div>
@@ -306,15 +306,15 @@
                 施工图片
             </div><!--start_date_title-->
             <div class="construction_photo clearfix">
-                <div class="photo fl">
-                    <img src="css/img/my_work1.jpg">
-                </div><!--photo-->
-                <div class="photo fl">
-                    <img src="css/img/my_work1.jpg">
-                </div><!--photo-->
-                <div class="photo fl">
-                    <img src="css/img/my_work1.jpg">
-                </div><!--photo-->
+                <!--<div class="photo fl">-->
+                    <!--<img src="css/img/my_work1.jpg">-->
+                <!--</div>&lt;!&ndash;photo&ndash;&gt;-->
+                <!--<div class="photo fl">-->
+                    <!--<img src="css/img/my_work1.jpg">-->
+                <!--</div>&lt;!&ndash;photo&ndash;&gt;-->
+                <!--<div class="photo fl">-->
+                    <!--<img src="css/img/my_work1.jpg">-->
+                <!--</div>&lt;!&ndash;photo&ndash;&gt;-->
             </div><!--construction_photo-->
         </div><!--start_date-->
         <div class="start_date">

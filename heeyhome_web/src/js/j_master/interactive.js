@@ -50,6 +50,8 @@
     var ALLREADURL = BASEURL + 'personal/message/readall'; // 全部标记已读接口
     var NEWSURL = BASEURL + 'personal/message/isnew'; // 读取新消息接口
     var ORDERURL = BASEURL + 'order/shop/list'; // 我的订单
+    var STARTWORKURL = BASEURL + 'order/process/startWork'; // 我的订单进度开工等上传信息
+    var DETAILWORKURL = BASEURL + 'order/process/lookWork'; // 查看我的订单进度开工等上传信息
     var ORDERFILTERURL = BASEURL + 'order/shop/listfilter'; // 我的订单筛选
     var ORDERTOCUSURL = BASEURL + 'order/shop/subupdatemsg'; // 我的订单步骤返回给用户
     var ADDDATEURL = BASEURL + 'order/aeckonandactual/adddate'; // 添加预算单与结算单数据
@@ -873,127 +875,146 @@
                 var statementStatus = sessionStorage.getItem("statementStatus");
                 var houseStyle = sessionStorage.getItem("houseStyle");
 
-
                 /* 根据status判断进度更新进去页面的状态 */
-                if (status == '待确认' || status == '待预约' || status == '待上门量房') {
-                    $('.order_wrap input').attr("disabled", "disabled");//不可以编辑，只可以看
-                } else if (status == '待用户预支付') {//未开工状态，只能进行进场准备
-                    layer.msg('未开工');
-                    if (houseStyle == '' || houseStyle == null) {//如果装修风格不存在
-                        /* 在没有选择风格之前后面的状态都不能点击 */
-                        $('.order_process input').attr("disabled", "disabled");
-                        /* 点击选择风格 */
-                        $('#confirm_type').click(function () {
-                            $('.order_process input').attr("disabled", false);// 恢复按钮点击
-                            var styleVal = $('#testSelect option:selected').val();//获取select的值
-                            $('.process_style p').html(styleVal);
-                            $(this).hide();//隐藏按钮
-                            $('#testSelect').hide();//隐藏select框
-                            /* 向后台传送装修风格数据 */
-                            $.ajax({
-                                url: HOUSESTYLEURL,
-                                type: "GET",
-                                async: true,
-                                dataType: 'jsonp',
-                                data: {
-                                    order_id: orderId,
-                                    house_style: styleVal
-                                },
-                                success: function (data) {
-                                    console.log(data);
-                                    if (data && data.code == '000') {
-
-                                    }
-                                },
-                                error: function (data) {
-                                }
-                            });
-                        });
-                    }
-                    step = 18;
-                    for (var i = 1; i < 18; i++) {
-                        $('.order_edit').eq(i).addClass('determine_process');
-                        $('.order_increase').eq(i).addClass('add_process');
-                    }
-                    submitOrderProgress.getInfoEvent();//点击提交进程按钮
-
+                if (status == '待确认' || status == '待预约') {//不可以编辑，只可以看
+                    $('.order_wrap input').attr("disabled", "disabled");
+                } else if (status == '待上门量房' && step == 18) {//可以编辑进场准备的预算单
+                    $('.order_wrap input').attr("disabled", "disabled");
+                    $('#order_edit').attr("disabled", false);
                 } else if (status == '订单进行中') {
-                    var newStep = step;
-                    if (step == 5 || step == 9 || step == 13 || step == 17) {
-                        newStep = step - 1;
+                    switch (step) {
+                        case "1":
+                            /* 在没有选择风格之前后面的状态都不能点击 */
+                            $('.order_process input').attr("disabled", "disabled");
+                            //提醒工长需要先添加风格
+                            layer.alert('您需要先选择装修风格哦~~');
+                            /* 点击选择风格 */
+                            $('#confirm_type').click(function () {
+                                var styleVal = $('#testSelect').val();//获取select的值
+                                /* 向后台传送装修风格数据 */
+                                $.ajax({
+                                    url: HOUSESTYLEURL,
+                                    type: "GET",
+                                    async: true,
+                                    dataType: 'jsonp',
+                                    data: {
+                                        order_id: orderId,
+                                        house_style: styleVal
+                                    },
+                                    success: function (data) {
+                                        if (data && data.code == '000') {
+                                            $('.order_process input').attr("disabled", false);// 恢复按钮点击
+                                            $('.process_style p').html(styleVal);
+                                            $(this).hide();//隐藏按钮
+                                            $('#testSelect').hide();//隐藏select框
+                                        }
+                                    }
+                                });
+                            });
+                            for (var i = 1; i < 18; i++) {//判断后面的能不能点击
+                                $('.order_edit').eq(i).addClass('determine_process');
+                                $('.order_increase').eq(i).addClass('add_process');
+                            }
+                            submitOrderProgress.getInfoEvent();//点击提交进程按钮
+                            break;
+                        case "2":
+                        case "3":
+                        case "6":
+                        case "7":
+                        case "10":
+                        case "11":
+                        case "14":
+                        case "15":
+                            $('.order_increase').eq(parseInt(step) - 1).attr('disabled', false);
+                            for (var i = 0; i < parseInt(step) - 1; i++) {
+                                $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
+                                $('.order_increase').eq(i).hide();
+                                $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
+                                if (budgetState == '0' || statementStatus == '0') {
+                                    $('.order_edit ').eq(i).addClass('new_edit');
+                                }
+                                $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                            }
+                            for (var i = parseInt(step); i < 18; i++) {//判断后面的能不能点击
+                                $('.order_edit').eq(i).addClass('determine_process');
+                                $('.order_increase').eq(i).addClass('add_process');
+                            }
+                            submitOrderProgress.getInfoEvent();//点击提交进程按钮
+                            break;
+                        case "4":
+                        case "8":
+                        case "12":
+                        case "16":
+                            $('.order_edit').eq(parseInt(step)).attr('disabled', 'disabled');
+                            $('.order_increase').eq(parseInt(step) - 1).attr('disabled', false);
+                            for (var i = 0; i < parseInt(step); i++) {
+                                $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
+                                $('.order_increase').eq(i).hide();
+                                $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
+                                if (budgetState == '0' || statementStatus == '0') {
+                                    $('.order_edit ').eq(i).addClass('new_edit');
+                                }
+                                $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                            }
+                            for (var i = parseInt(step) + 1; i < 18; i++) {//判断后面的能不能点击
+                                $('.order_edit').eq(i).addClass('determine_process');
+                                $('.order_increase').eq(i).addClass('add_process');
+                            }
+                            submitOrderProgress.getInfoEvent();//点击提交进程按钮
+                            break;
+                        case "5":
+                        case "9":
+                        case "13":
+                        case "17":
+                            for (var i = 0; i < parseInt(step); i++) {
+                                if (i != step - 1) {
+                                    $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
+                                }
+                                $('.order_increase').eq(i).hide();
+                                $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
+                                if (budgetState == '0' || statementStatus == '0') {
+                                    $('.order_edit ').eq(i).addClass('new_edit');
+                                }
+                                if (i != 0) {
+                                    $('.order_edit ').eq(i - 1).val('查看' + $('.order_edit ').eq(i - 1).val().substr(2, 5));
+                                }
+                            }
+                            for (var i = parseInt(step); i < 18; i++) {//判断后面的能不能点击
+                                $('.order_edit').eq(i).addClass('determine_process');
+                                $('.order_increase').eq(i).addClass('add_process');
+                            }
+                            submitOrderProgress.getInfoEvent();//点击提交进程按钮
+                            break;
+                        default:
+                            break;
                     }
-                    for (var i = 0; i < newStep; i++) {
+                } else if (status == '已完成') {
+                    for (var i = 0; i < 17; i++) {
                         $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
                         $('.order_increase').eq(i).hide();
                         $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
-                        if (budgetState == '0' || statementStatus == '0') {
-                            $('.order_edit ').eq(i).addClass('new_edit');
-                        }
-                        var edit = $('.order_edit ').eq(i).val().substr(0, 2);
-                        edit = '查看';
-                        $('.order_edit ').eq(i).val(edit + $('.order_edit ').eq(i).val().substr(2, 5));
-                        //layer.msg($('#order_wrap .process_title').eq(i).html());
-                        /* 工种 */
-                        sessionStorage.setItem("type", $('#order_wrap .process_title').eq(i).attr('typename'));
+                        $('.order_edit ').eq(i).addClass('new_edit');
+                        $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
                     }
-                    var begin = parseInt(newStep) + 1;
-                    var $order_edit_next = $('.order_edit').eq(parseInt(step));
-                    if ($order_edit_next.parent().hasClass('hide')) {
-                        begin = parseInt(newStep) + 2;
+                    $('.order_wrap input').attr("disabled", false);
+                } else if (status == '待用户预支付') {
+                    for (var i = 0; i < parseInt(step); i++) {
+                        $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
+                        $('.order_increase').eq(i).hide();
+                        $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
+                        $('.order_edit ').eq(i).addClass('new_edit');
+                        $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
                     }
-                    for (var i = begin; i < 18; i++) {
+                    for (var i = parseInt(step); i < 18; i++) {//判断后面的能不能点击
                         $('.order_edit').eq(i).addClass('determine_process');
                         $('.order_increase').eq(i).addClass('add_process');
                     }
-                    submitOrderProgress.getInfoEvent();//点击提交进程按钮
-                } else if (status == '已完成') {
-                    step = 17;
-                    for (var i = 0; i < step; i++) {
-                        $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
-                        $('.order_increase').eq(i).hide();
-                        $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
-                        if (budgetState == '0' || statementStatus == '0') {
-                            $('.order_edit ').eq(i).addClass('new_edit');
-                        }
-                        var edit = $('.order_edit ').eq(i).val().substr(0, 2);
-                        edit = '查看';
-                        $('.order_edit ').eq(i).val(edit + $('.order_edit ').eq(i).val().substr(2, 5));
-                        //layer.msg($('#order_wrap .process_title').eq(i).html());
-                        /* 工种 */
-                        sessionStorage.setItem("type", $('#order_wrap .process_title').eq(i).attr('typename'));
-                    }
+                } else {
+                    $('#order_edit').attr("disabled", false);
+                    $('#order_edit').val('查看' + $('#order_edit').val().substr(2, 5));
                 }
 
-                // if (step != '18') {
-                //     for (var i = 0; i < step; i++) {
-                //         $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
-                //         $('.order_increase').eq(i).hide();
-                //         $('.detail_a').eq(i).show().removeClass('hide');
-                //         $('.order_edit ').eq(i).addClass('new_edit');
-                //         var edit = $('.order_edit ').eq(i).html().substr(0, 2);
-                //         edit = '查看';
-                //         $('.order_edit ').eq(i).html(edit + $('.order_edit ').eq(i).html().substr(2, 5));
-                //         layer.msg($('#order_wrap .process_title').eq(i).html());
-                //         /* 工种 */
-                //         sessionStorage.setItem("type", $('#order_wrap .process_title').eq(i).html());
-                //     }
-                //     var begin = parseInt(step) + 1;
-                //     var $order_edit_next = $('.order_edit').eq(parseInt(step));
-                //     if ($order_edit_next.parent().hasClass('hide')) {
-                //         begin = parseInt(step) + 2;
-                //     }
-                //     for (var i = begin; i < 18; i++) {
-                //         $('.order_edit').eq(i).addClass('determine_process');
-                //         $('.order_increase').eq(i).addClass('add_process');
-                //     }
-                //
-                // } else {
-                //     for (var i = 1; i < 18; i++) {
-                //         $('.order_edit').eq(i).addClass('determine_process');
-                //         $('.order_increase').eq(i).addClass('add_process');
-                //     }
-                //     layer.msg('未开工');
-                // }
+
                 /* 点击编辑预算结算单 */
                 $('.order_edit').click(function () {
                     if ($(this).hasClass('determine_process')) {
@@ -1009,19 +1030,25 @@
                         window.open('editSheet.html#/budget_sheet');//跳转到预算单页面
                     }
                 });
+
                 /*点击进场添加按钮*/
                 $('.order_increase').click(function () {
                     var budgetState = sessionStorage.getItem("budgetState");
                     if ($(this).hasClass('add_process')) {
                         layer.msg('亲，你需要先完成上一步~~');
                     } else if (budgetState == '1' && step == '18') {//如果预算单是可编辑状态则添加不能点击
-                        $('#pre_add').attr('disabled', 'disabled');
+                        $('#pre_add1').attr('disabled', 'disabled');
                     } else if ($(this).hasClass('approach')) {
                         var NUM = $(this).parent(".order_process");
+                        $(this).addClass('upload');
+                        $(this).siblings('.detail_a').addClass('detail_upload');
                         $('.add_technology').show().removeClass('hide');
                         $('.wrap').show().removeClass('hide');
                         $('.add_technology').css('top', ($(window).height() - NUM.outerHeight()) / 2 + $(document).scrollTop() - 100);
+                        orderStartWork.upload();//添加开工日期与图片
                     } else {
+                        /* 工种 */
+                        sessionStorage.setItem("type", $(this).parent('.order_process').find('.process_title').attr('typename'));
                         window.open('material.html#/material/list');//跳转到材料单页面
                     }
                 });
@@ -1043,6 +1070,12 @@
                         $('.see_details').show().removeClass('hide');
                         $('.wrap').show().removeClass('hide');
                         $('.see_details').css('top', ($(window).height() - NUM.outerHeight()) / 2 + $(document).scrollTop() - 100);
+
+                        var $index = $(this).parents('.order_process').index();
+                        if ($index == 5 || $index == 9 || $index == 13 || $index == 17) {
+                            $index = $index - 1;
+                        }
+                        orderDeatilWork.detail($index);
                     }
 
                 });
@@ -1125,13 +1158,15 @@
                     success: function (data) {
                         if (data && data.code == '000') {
                             console.log(data.data);
-                            //HOUSESTYLE = data.data.装修风格;
-                            //console.log(HOUSESTYLE);
                             if (data.data['装修风格'] != null) {
                                 $('.process_style p').html(data.data['装修风格']);
                                 $('#confirm_type').hide();//隐藏按钮
                                 $('#testSelect').hide();//隐藏select框
                                 sessionStorage.setItem("houseStyle", data.data['装修风格']);
+                                if (step == 1) {
+                                    $('#pre_add1').attr("disabled", false);// 恢复按钮点击
+                                    $('#order_edit').attr("disabled", false);// 恢复按钮点击
+                                }
                             }
                         }
                     },
@@ -1141,6 +1176,142 @@
 
 
             }]);
+        }
+    };
+
+    /* 我的订单添加开工时间 */
+    orderStartWork = {
+        upload: function () {
+            /* 图片上传预览 */
+            function upImg(div) {
+                $(div).find('input').change(function () {
+                    var inputImg = $(this);
+                    var file = inputImg.get(0).files[0];
+                    var reader = new FileReader();
+                    if (!/image\/\w+/.test(file.type)) {
+                        inputImg.parent().parent().css('background-image', '');
+                        inputImg.parent().removeClass('opacity');
+                        layer.msg("请确保文件为图像类型");
+                        inputImg.val('');//清空file选择的文件
+                        return false;
+                    }
+                    // onload是异步操作
+                    else {
+                        reader.onload = function (e) {
+                            inputImg.parent().addClass('opacity');//图片预览时input file 添加opacity样式，设置完全透明
+                            inputImg.parent().parent().css('background-image', 'url("' + e.target.result + '")');//图片设置为$('.showImg')背景图
+                            inputImg.parent().parent().find('.close').removeClass('hide').show();
+                        }
+                    }
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            upImg('.add_picture');//上传图片展示
+
+            /* 上传图片后点击红色叉叉图片取消事件 */
+            $('.close').click(function () {
+                $(this).parent().find('a').removeClass('opacity');
+                $(this).parent().css('background-image', '');
+                $(this).hide();
+            });
+
+            $(document).off('click', '#upload').on('click', '#upload', function () {
+                var data = new FormData();
+                var $syear = $(".year1 option:selected");//开工日期年份
+                var $smonth = $(".month1 option:selected");//开工日期月份
+                var $sday = $(".day1 option:selected");//开工日
+                var timelong = $syear.val() + "-" + $smonth.val() + "-" + $sday.val();
+                data.append("order_id", sessionStorage.getItem("orderId"));
+                data.append("content", $('.message_input').val());
+                data.append("time", timelong);
+                for (var i = 1; i <= 3; i++) {
+                    if ($("#file" + i).val()) {
+                        data.append("myfile", $("#file" + i)[0].files[0]);
+                    }
+                }
+                $.ajax({
+                    url: STARTWORKURL,
+                    type: 'POST',
+                    data: data,
+                    dataType: 'jsonp',
+                    jsonp: 'callback',
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (result) {
+                        if (result.code === '000') {
+                            layer.msg(result.msg);
+                            $('.upload').hide();
+                            $('.add_technology').hide();
+                            $('.detail_upload').removeClass('hide').show();
+                            $.ajax({
+                                url: ORDERURL,
+                                type: "GET",
+                                async: true,
+                                dataType: 'jsonp',
+                                data: {
+                                    shop_id: $.base64.decode($.cookie("userShopId"))
+                                },
+                                success: function (data) {
+                                    if (data && data.code == '000') {
+                                        var orderId = sessionStorage.getItem("orderId");
+                                        $.each(data.data.order_list, function (i, v) {
+                                            if (orderId == v.order_id) {
+                                                sessionStorage.setItem("step", v.order_step);
+                                            }
+                                        })
+                                    }
+                                }
+                            });
+                            location.reload();
+                        } else {
+                            layer.msg(result.msg);
+                            $('.add_technology').hide();
+                        }
+                    },
+                    error: function (e, a, v) {
+                        alert("错误！！");
+                    }
+                });
+            });
+        }
+    };
+
+    /* 我的订单查看详情 */
+    orderDeatilWork = {
+        detail: function ($index) {
+            var orderId = sessionStorage.getItem("orderId");
+            $.ajax({
+                url: DETAILWORKURL,
+                type: "GET",
+                async: true,
+                dataType: 'jsonp',
+                data: {
+                    order_id: orderId,
+                    order_step: $index
+                },
+                success: function (data) {
+                    if (data && data.code == '000') {
+                        var time = data.data.time.substring(0, 10);
+                        var newTime = time.split("-");
+                        console.log(data.data);
+                        $('.start_year').html(newTime[0]);
+                        $('.start_month').html(newTime[1]);
+                        $('.start_day').html(newTime[2]);
+                        $('.detail_describe').html(data.data.content);
+                        $.each(data.data.imgs, function (i, v) {
+                            $('.construction_photo').append('<div class="photo fl"> <img src=' + v.img_url + '> </div><!--photo-->');
+                        });
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                },
+                error: function (data) {
+                    layer.alert(data.msg);
+                }
+            });
+
         }
     };
 
@@ -3745,7 +3916,7 @@
 
                 http();
                 //删除入驻嗨吼之前的项目
-                $(document).on('click', '.complete_del', function () {
+                $(document).off('click', '.complete_del').on('click', '.complete_del', function () {
                     var $caseId = $(this).attr('caseId');
                     $.ajax({
                         url: DELCASEURL,
