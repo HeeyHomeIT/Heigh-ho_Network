@@ -1592,6 +1592,7 @@
     border: 0;
     border-radius: 4px;
     position: absolute;
+    cursor: pointer;
     margin-left: -47px;
     z-index: 100;
 }
