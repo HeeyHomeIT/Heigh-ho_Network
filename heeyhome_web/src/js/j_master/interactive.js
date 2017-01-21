@@ -3332,7 +3332,7 @@
                                 $('.detail_p').append('<b>' + v.technics_text + '</b>');
                             });
                         } else {
-                            $('.detail_p').append('随便说点什么吧！');
+                            $('.detail_p').append('<b>随便说点什么吧！</b>');
                         }
 
                         //获取店铺资料的效果图展示(最多只显示四张)
@@ -3516,7 +3516,7 @@
                                             $('.detail_p').append('<b>' + v.technics_text + '</b>');
                                         });
                                     } else {
-                                        $('.detail_p').append('随便说点什么吧！');
+                                        $('.detail_p').append('<b>随便说点什么吧！</b>');
                                     }
                                 }
                                 /* 如果失败执行 */
@@ -3819,7 +3819,7 @@
                                                     $('.detail_p').append('<b>' + v.technics_text + '</b>');
                                                 });
                                             } else {
-                                                $('.detail_p').append('随便说点什么吧！');
+                                                $('.detail_p').append('<b>随便说点什么吧！</b>');
                                             }
                                         }
                                         /* 如果失败执行 */
