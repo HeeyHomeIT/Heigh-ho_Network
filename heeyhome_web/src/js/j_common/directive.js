@@ -110,14 +110,7 @@ define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j
 			templateUrl: "view/v_common/_pagewrap.html",
 		};
 	});
-	/**
-	 * 工长店铺更多案例
-	 */
-	app.directive('scPagewrap', function() {
-		return {
-			templateUrl: "view/v_common/_pagewrap.html",
-		};
-	});
+	
 	/**
 	 * 结尾
 	 */
