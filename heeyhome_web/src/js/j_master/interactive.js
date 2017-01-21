@@ -324,7 +324,7 @@
                                     $(".content_bottom .address").html(v.address);
                                     var img = '<ul>';
                                     $.each(v.img, function (m, n) {
-                                        img += '<li><img src="http://www.heeyhome.com/' + n.case_img + '"></li>';
+                                        img += '<li><img src="' + n.case_img + '"></li>';
                                     });
                                     img += '</ul>';
                                     $(".bg_picture").append(img);
@@ -418,7 +418,7 @@
                             var worker = '<div class="team_detail_content clearfix">';
                             $.each(data.data, function (i, v) {
                                 worker += '<div class="worker_box sprite_team" data-id="' + v.userid + '" data-action="edit"><a href="#/master/teamDetail_list">';
-                                worker += '<div class="head_picture"><img src="http://www.heeyhome.com/' + v.portrait_img + '"></div>';
+                                worker += '<div class="head_picture"><img src="' + v.portrait_img + '"></div>';
                                 worker += '<div class="worker_content"><h3><span class="name">' + v.name + '</span>';
                                 worker += '<span class="age">' + v.age + '岁</span></h3>';
                                 worker += '<ul class="worker_information"><li>';
@@ -468,7 +468,7 @@
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
-                            $(".staff_bg img").attr("src", "http://www.heeyhome.com/" + data.data.portrait_img + "");
+                            $(".staff_bg img").attr("src", "" + data.data.portrait_img + "");
                             $(".staff_top_info .wname .span_val").html(data.data.name);
                             $(".staff_top_info .wage .span_val").html(data.data.age);
                             $(".staff_top_info .wplace .span_val").html(data.data.birthplace);
@@ -637,7 +637,7 @@
                                     address = v.order_address;
                                     type = v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台";
                                     area = v.area;
-                                    src = 'http://www.heeyhome.com/' + v.user_portrait;
+                                    src =  v.user_portrait;
                                 }
                             });
                             $(".owner_content .owner_picture img").attr("src", src);
@@ -840,7 +840,7 @@
                 }
             });
 
-            $(document).on('click', '.progress_updates', function (e) {
+            $(document).off('click', '.progress_updates').on('click', '.progress_updates', function (e) {
                 var sHtml = $(e.target).parents('.block').find('.stage span').html();
                 if (sHtml == '已取消' || sHtml == '工长店铺取消') {
                     layer.msg('您现在的订单状态还不能点击~~');
@@ -1092,7 +1092,7 @@
                                     address = v.order_address;
                                     type = v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台";
                                     area = v.area;
-                                    $(".owner_picture img").attr("src", "http://www.heeyhome.com/" + v.user_portrait);
+                                    $(".owner_picture img").attr("src", v.user_portrait);
                                 }
                             });
                             $(".owner_summary h3").html(name);
@@ -1604,7 +1604,7 @@
                             }
                             $.each(information, function (i, v) {
                                 list += '<li><div class="picture">';
-                                list += '<img src="http://www.heeyhome.com/' + v.img + '"></div>';
+                                list += '<img src="' + v.img + '"></div>';
                                 list += '<div class="name">' + v.name + '</div>';
                                 list += '<div class="li_right clearfix" id="li_right"><div class="format">';
                                 if (v.spec.length > 1) {
@@ -1752,11 +1752,11 @@
                 success: function (data) {
                     if (data && data.code == '000') {
                         //console.log(data.data);
-                        $(".head").html('<img src="http://www.heeyhome.com/' + data.data.foremanimg + '">');//获取头像
-//                      $('.head img').attr('src', 'http://www.heeyhome.com/' + data.data.foremanimg + '');//获取头像
+                        $(".head").html('<img src="' + data.data.foremanimg + '">');//获取头像
+//                      $('.head img').attr('src', '' + data.data.foremanimg + '');//获取头像
                         $('#shop_name').html(data.data.shop_name);//获取店铺名字
-                        $('#real_name').attr('src', 'http://www.heeyhome.com/' + data.data.authentication[0] + '');//获取安全认证图片
-                        $('#safe_name').attr('src', 'http://www.heeyhome.com/' + data.data.authentication[1] + '');//获取安全认证图片
+                        $('#real_name').attr('src', '' + data.data.authentication[0] + '');//获取安全认证图片
+                        $('#safe_name').attr('src', '' + data.data.authentication[1] + '');//获取安全认证图片
                         $('#team_person').html(data.data.shop_workernum);//获取我的团队总人数
                         $('#shop_scan').html(data.data.shop_scan);//获取浏览量
                         $('#projectquality').html(data.data.shop_score.projectquality);//获取工程质量
@@ -2608,11 +2608,11 @@
                             sessionStorage.setItem("cateid", cateid);
                         });
 
-                        wrap.eq(0).css('background', 'url(http://www.heeyhome.com/' + data.data.eleworker[0].portrait_img + ')');
-                        wrap.eq(1).css('background', 'url(http://www.heeyhome.com/' + data.data.woodworker[0].portrait_img + ')');
-                        wrap.eq(2).css('background', 'url(http://www.heeyhome.com/' + data.data.brickworker[0].portrait_img + ')');
-                        wrap.eq(3).css('background', 'url(http://www.heeyhome.com/' + data.data.paintworker[0].portrait_img + ')');
-                        wrap.eq(4).css('background', 'url(http://www.heeyhome.com/' + data.data.mixworker[0].portrait_img + ')');
+                        wrap.eq(0).css('background', 'url(' + data.data.eleworker[0].portrait_img + ')');
+                        wrap.eq(1).css('background', 'url(' + data.data.woodworker[0].portrait_img + ')');
+                        wrap.eq(2).css('background', 'url(' + data.data.brickworker[0].portrait_img + ')');
+                        wrap.eq(3).css('background', 'url(' + data.data.paintworker[0].portrait_img + ')');
+                        wrap.eq(4).css('background', 'url(' + data.data.mixworker[0].portrait_img + ')');
                     }
                 },
                 error: function (data) {
@@ -3137,7 +3137,7 @@
                             k = 0;
                         var length = $(".edit_bottom li").length;
                         $(".staff_picture .add_picture").attr("data-flag", "1").addClass("clear").css({
-                            'background': 'url("http://www.heeyhome.com/' + data.data.portrait_img + '") no-repeat',
+                            'background': 'url("' + data.data.portrait_img + '") no-repeat',
                             'backgroundSize': '100% 100%'
                         });
                         $(".staff_name .name").val(data.data.name); //工人姓名
@@ -3615,7 +3615,7 @@
                     var imgs = $img.data('imgs');
                     $.each(imgs, function(i, v) {
                         $add_picture_a.eq(i).addClass('opacity'); //图片预览时input file 添加opacity样式，设置完全透明
-                        $add_picture.eq(i).css('background-image', 'url(http://www.heeyhome.com/' + v.technics_img + ')'); //图片设置为$('.showImg')背景图
+                        $add_picture.eq(i).css('background-image', 'url(' + v.technics_img + ')'); //图片设置为$('.showImg')背景图
                         $add_picture.eq(i).find('.close').show();
                         $add_picture.eq(i).attr("img_id",v.img_id);
                     });
