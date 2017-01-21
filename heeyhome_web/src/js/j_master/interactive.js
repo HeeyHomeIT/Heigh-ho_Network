@@ -4045,9 +4045,9 @@
             data.append("timelong", timelong);
             data.append("address", $address.val());
             data.append("area", $area.val());
-            for(var i = 0; i < 5; i++) {
+            for(var i = 1; i <= 5; i++) {
                 if($("#file" + i).val()) {
-                    data.append("myfile", $("#file" + i)[0].files[0]);
+                    data.append("myfile[]", $("#file" + i)[0].files[0]);
                     count++;
                 }
             }
@@ -4094,14 +4094,13 @@
             $.ajax({
                 type: "post",
                 url: NEWCASEURL,
-                dataType: "text",
+                dataType: 'jsonp',
+                jsonp: 'callback',
                 data: data,
                 cache: false,
                 processData: false,
                 contentType: false,
                 success: function(result) {
-                    result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
-                    result = JSON.parse(result); //转成json格式
                     if(result.code == '000') {
                         window.location.href = "#/master/mwork";
                         location.reload(true);
