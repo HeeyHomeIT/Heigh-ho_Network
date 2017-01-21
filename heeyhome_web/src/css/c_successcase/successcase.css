@@ -41,11 +41,12 @@
 .sc_content .main_content .sc_contents {
     width: 1190px;
     margin-top: 32px;
+    margin-bottom: 55px;
 }
 
 .sc_content .main_content .sc_contents .product-3 {
     /*margin: 0px -49px;*/
-    margin: 0px -19px;
+    margin: 10px -19px 30px -19px;
 }
 
 .sc_content .main_content .sc_contents .product-3 ul {
@@ -177,4 +178,34 @@
 
 .sc_content .main_content .sc_contents .product-3 li .introduce .introduce-icon em.sc_icon_time {
     background-position: -8px -45px;
+}
+
+.loagbg {
+    background-position-y: 32px;
+    height: 380px;
+}
+
+.nullpage {
+    color: #999;
+    font-size: 14px;
+    overflow: hidden;
+    text-align: center;
+    padding: 75px 0 110px 0;
+    border: 1px solid #D7D7D7
+}
+
+.nullpage i {
+    position: relative;
+    background: url(../img/noinfo.png) no-repeat;
+    width: 86px;
+    height: 85px;
+    display: inline-block;
+
+}
+
+.nullpage span {
+    display: block;
+    float: left;
+    width: 100%;
+    margin: 10px 0;
 }
