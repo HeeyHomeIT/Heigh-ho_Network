@@ -870,12 +870,16 @@
                 var statementStatus = sessionStorage.getItem("statementStatus");
                 var houseStyle = sessionStorage.getItem("houseStyle");
 
-                /* 根据status判断进度更新进去页面的状态 */
+                 /* 根据status判断进度更新进去页面的状态 */
                 if (status == '待确认' || status == '待预约') {//不可以编辑，只可以看
                     $('.order_wrap input').attr("disabled", "disabled");
-                } else if (status == '待上门量房' && step == 18) {//可以编辑进场准备的预算单
+                } else if (status == '待上门量房') {//待上门量房可以编辑进场准备的预算单
                     $('.order_wrap input').attr("disabled", "disabled");
                     $('#order_edit').attr("disabled", false);
+                } else if (status == '待用户预支付') {//待用户预支付可以查看
+                    $('.order_wrap input').attr("disabled", "disabled");
+                    $('#order_edit').attr("disabled", false);
+                    $('#order_edit').val('查看' + $('#order_edit').val().substr(2, 5));
                 } else if (status == '订单进行中') {
                     switch (step) {
                         case "1":
@@ -992,18 +996,6 @@
                         $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
                     }
                     $('.order_wrap input').attr("disabled", false);
-                } else if (status == '待用户预支付') {
-                    for (var i = 0; i < parseInt(step); i++) {
-                        $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
-                        $('.order_increase').eq(i).hide();
-                        $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
-                        $('.order_edit ').eq(i).addClass('new_edit');
-                        $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
-                    }
-                    for (var i = parseInt(step); i < 18; i++) {//判断后面的能不能点击
-                        $('.order_edit').eq(i).addClass('determine_process');
-                        $('.order_increase').eq(i).addClass('add_process');
-                    }
                 } else {
                     $('#order_edit').attr("disabled", false);
                     $('#order_edit').val('查看' + $('#order_edit').val().substr(2, 5));
@@ -3601,7 +3593,7 @@
                 });
 
                 var img_id = [];
-
+				var img_count = 0;
                 /* 点击本店工艺更改弹出弹层 */
                 $(document).on('click', '.renderings_show_a', function() {
                     $('.add_technology').show().removeClass('hide').addClass("edit");
@@ -3616,7 +3608,7 @@
                     });
                     var $add_picture = $('.add_picture');
                     var $add_picture_a = $add_picture.find('a');
-                    $add_picture_a.removeClass('opacity');
+                    $add_picture_a.removeClass('opacity new');
                     $add_picture.css('background-image', '');
                     $add_picture.find('.close').hide();
                     var $img = $(this).prev().prev();
@@ -3634,6 +3626,7 @@
                 /* 点击弹层叉号关闭弹层 */
                 $('#add_close').click(function () {
                     $('.add_technology').hide();
+                    $('.add_technology').removeClass("edit");
                     $(".add_technology .add_picture").removeAttr("img_id");
                     $('.wrap').hide();
                 });
@@ -3655,7 +3648,10 @@
                         // onload是异步操作
                         else {
                             reader.onload = function (e) {
-                                if (id != undefined && img_id.indexOf(id) < 0) {
+                            	if (id == undefined ) {
+                            		img_count ++;
+                            	} else if (img_id.indexOf(id) < 0) {
+                            		img_count ++;
                                     img_id.push(id);
                                 }
                                 inputImg.parent().addClass('opacity new');//图片预览时input file 添加opacity样式，设置完全透明
@@ -3673,8 +3669,12 @@
 
                 /* 上传图片后点击红色叉叉图片取消事件 */
                 $('.close').click(function () {
-                    $(this).parent().find('a').removeClass('opacity');
+                    $(this).parent().find('a').removeClass('opacity new');
                     $(this).parent().css('background-image', '');
+                    var id =  $(this).parent().attr("img_id");
+                    if (id != undefined && img_id.indexOf(id) < 0) {
+                        img_id.push(id);                     
+                    }
                     $(this).hide();
                 });
 
@@ -3737,6 +3737,9 @@
                         var data = new FormData();
                         data.append("technics_id", $('.add_technology').attr("technics_id"));
                         data.append("describe", $('#textarea').val());
+                        data.append("count", img_count);
+                        data.append("type",1);
+                        console.log(img_id);
                         if (img_id.length > 0) {
                             data.append("img_id[]", img_id);
                         }
