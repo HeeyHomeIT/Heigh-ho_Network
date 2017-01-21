@@ -1343,7 +1343,10 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         if ($order_step_result) {
             $order_step = $order_step_result[0]->order_step;
         } else {
-            $order_step = rq('order_step'); //当前装修出于哪一步
+            $arr = array("code" => "200",
+                "msg" => "订单不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
         }
         $content = rq('content'); //描述
         $time = rq('time'); //开工时间
