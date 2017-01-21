@@ -3394,7 +3394,7 @@
                         //获取店铺资料的店铺认证
                         var hLen = data.data.authentication.length;
                         for (var i = 0; i < hLen; i++) {
-                            $('#shop_head').append('<img class="fl" src="http://www.heeyhome.com/' + data.data.authentication[i] + '">');
+                            $('#shop_head').append('<img class="fl" src=' + data.data.authentication[i] + '>');
                         }
                         //获取店铺资料的本店工艺(最多只显示五张)
                         if (data.data.shop_technics.length >= 5) {
@@ -3693,7 +3693,7 @@
                     var imgs = $img.data('imgs');
                     $.each(imgs, function (i, v) {
                         $add_picture_a.eq(i).addClass('opacity');//图片预览时input file 添加opacity样式，设置完全透明
-                        $add_picture.eq(i).css('background-image', 'url(http://www.heeyhome.com/' + v.technics_img + ')');//图片设置为$('.showImg')背景图
+                        $add_picture.eq(i).css('background-image', 'url(' + v.technics_img + ')');//图片设置为$('.showImg')背景图
                         $add_picture.eq(i).find('.close').show();
 
                     });
@@ -4527,7 +4527,7 @@
         spliceStrEvent: function (value) {
             var vrStr = '<div class="works_detail fl works_bg">';
             vrStr += '<div class="detail_img">';
-            vrStr += '<img src="http://www.heeyhome.com/' + value.img[0].case_img + '">';
+            vrStr += '<img src="' + value.img[0].case_img + '">';
             vrStr += '</div><!--detail_img-->';
             vrStr += '<div id="detail_bg" class="detail_bg clearfix" step ="' + value.order_step + '" orderId ="' + value.case_id + '">';
             vrStr += '<div class="detail_bg_div">';
