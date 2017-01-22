@@ -3747,8 +3747,8 @@
                         }
                         data.append("count", img_count);
                         data.append("type",1);
-                        if (img_id.length > 0) {
-                            data.append("img_id[]", img_id);
+                        for(var i = 0; i < img_id.length; i ++) {
+                        	data.append("img_id[]", img_id[i]);
                         }
                         for (var i = 1; i <= 3; i++) {
                             if ($("#file" + i).val() && $("#file" + i).parent().hasClass("new")) {
