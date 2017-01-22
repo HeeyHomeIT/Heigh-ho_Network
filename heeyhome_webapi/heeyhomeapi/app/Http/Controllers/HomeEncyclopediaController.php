@@ -60,12 +60,23 @@ class HomeEncyclopediaController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        DB::update('update hh_jzbkarticle set scan=scan+1 where id=?',[$article_id]);
-        $articles = DB::select('select id,article_title,article_content from hh_jzbkarticle where id=?',[$article_id]);
+        $articles = DB::select('select id,article_title,article_content,scan from hh_jzbkarticle where id=?',[$article_id]);
         if($articles){
             $arr=array(
                 "code"=>"000",
                 "data"=>$articles[0]
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+    public function scan(){
+        $callback=rq('callback');
+        $article_id=rq('id');
+        $update=DB::UPDATE('update hh_jzbkarticle set scan=scan+1 where id=?',[$article_id]);
+        $select=DB::select('select scan from hh_jzbkarticle where id=?',[$article_id]);
+        if($select){
+            $arr = array("code" => "000",
+                "data" => $select[0]
             );
             return $callback . "(" . HHJson($arr) . ")";
         }

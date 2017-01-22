@@ -38,6 +38,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
     Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
     Route::any('jzbk/info', 'HomeEncyclopediaController@info');
+    Route::any('jzbk/scan', 'HomeEncyclopediaController@scan');
     /*登录*/
     Route::any('login/login', 'LoginController@login');
     /*qq第三方登录*/

@@ -70,7 +70,7 @@ class MyworkcaseController extends Controller
         $area=rq('area');
         $timelong=rq('timelong');
         $address=rq('address');
-        $case_id=rand_number(5);
+        $case_id=rand_number(8);
 
         $count = rq('count');
         $files = array();
@@ -119,6 +119,10 @@ class MyworkcaseController extends Controller
             }
         }
         if($isvalid){
+            $exist=DB::SELECT('select id from hh_workcase where case_id=?',[$case_id]);
+            if($exist){
+                $case_id=rand_number(8);
+            }
             $case=DB::insert('insert into hh_workcase(case_id,foreman_id,area,housetype,style,timelong,address,type) values(?,?,?,?,?,?,?,?)',[$case_id,$foreman_id,$area,$housetype,$style,$timelong,$address,1]);
             $ifinsert=false;
             foreach($files as $key=>$file){

@@ -162,6 +162,7 @@ data         {
                     id                id                  //序号
                     article_title     article_title       //文章标题
                     article_content   article_content     //内容
+                    scan              scan                //浏览量
              }
 msg          ""
 )
@@ -180,4 +181,62 @@ msg           失败
 ```
 000           成功
 112           id不能为空
+```
+# scan() #
+## 家装百科浏览量计数接口
+
+
+### 接口地址
+
+
+```
+.../jzbk/scan
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET
+```
+
+```
+.../jzbk/scan
+```
+
+###### Json数据格式
+```
+data
+id                  id
+
+callback            callback
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                   scan      scan
+             }
+msg          ""
+)
+```
+
+```
+失败
+callback(
+code          111
+data          ""
+msg           失败
+)
+```
+
+###### Code值含义
+
+```
 ```
