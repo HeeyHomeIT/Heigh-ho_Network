@@ -3618,6 +3618,7 @@
                         $add_picture.eq(i).css('background-image', 'url(' + v.technics_img + ')'); //图片设置为$('.showImg')背景图
                         $add_picture.eq(i).find('.close').show();
                         $add_picture.eq(i).attr("img_id",v.img_id);
+                        $add_picture.eq(i).attr("count",0);
                     });
                     $('.add_technology').attr("technics_id",$img.data('tid'));
                     $('#textarea').html($img.data('text'));
@@ -3628,6 +3629,7 @@
                     $('.add_technology').hide();
                     $('.add_technology').removeClass("edit");
                     $(".add_technology .add_picture").removeAttr("img_id");
+                    $(".add_technology .add_picture").removeAttr("count");
                     $('.wrap').hide();
                 });
 
@@ -3649,9 +3651,9 @@
                         else {
                             reader.onload = function (e) {
                             	if (id == undefined ) {
-                            		img_count ++;
+                            		inputImg.parent().parent().attr("count",1);
                             	} else if (img_id.indexOf(id) < 0) {
-                            		img_count ++;
+                            		inputImg.parent().parent().attr("count",1);
                                     img_id.push(id);
                                 }
                                 inputImg.parent().addClass('opacity new');//图片预览时input file 添加opacity样式，设置完全透明
@@ -3671,6 +3673,7 @@
                 $('.close').click(function () {
                     $(this).parent().find('a').removeClass('opacity new');
                     $(this).parent().css('background-image', '');
+                    $(this).parent().attr("count",0);
                     var id =  $(this).parent().attr("img_id");
                     if (id != undefined && img_id.indexOf(id) < 0) {
                         img_id.push(id);                     
@@ -3737,9 +3740,13 @@
                         var data = new FormData();
                         data.append("technics_id", $('.add_technology').attr("technics_id"));
                         data.append("describe", $('#textarea').val());
+                        for(var i = 0; i < 3; i ++) {
+                        	if($(".add_technology .add_picture").eq(i).attr("count") == 1) {
+                        		img_count ++;
+                        	}
+                        }
                         data.append("count", img_count);
                         data.append("type",1);
-                        console.log(img_id);
                         if (img_id.length > 0) {
                             data.append("img_id[]", img_id);
                         }
