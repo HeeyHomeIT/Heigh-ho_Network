@@ -1,0 +1,360 @@
+<div id="calculatordiv" style="background: url(css/img/bj-header.png);background-attachment: fixed;">
+	<div id="calcontainer">
+		<div id="calcontent">
+			<h3 class="col_eec988">无需注册立即计算</h3>
+			<p class="col_eec988">*精确的成本计算！让您随时把控自己的成本支出！请收藏。</p>
+			<!-- 计算器过程 start -->
+			<div class="calcon">
+				<div class="cal_icon"></div>
+				<!-- 第一步 start -->
+				<div class="cal1" data-type="cal1">
+					<p class="col_eec988">请输入您的户型面积</p>
+					<!-- 建筑面积 start -->
+					<div class="areadiv col_eec988 border_eec988">
+						<input id="c_area" class="c_area col_eec988" type="text" autocomplete="off"  onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" value="0" attr-placeholder ="0" />
+						<em>M<sup>2</sup></em>
+						<span>请输入建筑面积（暂支持70㎡~160㎡）</span>
+						<label class="error"></label>
+					</div>
+					<p class="notes col_eec988">* 本次计算的建筑面积以房产证面积（不含赠送面积和自建面积）作为计价依据，实际以量房后实际面积为准</p>
+					<!-- 户型 start -->
+					<div class="housediv">
+						<div class="room item_hover_0">
+							<span>1</span>
+							<ul class="display border_eec988 col_eec988">
+								<li>1</li>
+								<li>2</li>
+								<li>3</li>
+								<li>4</li>
+							</ul>
+						</div>
+						<span>室</span>
+						<div class="parlor item_hover_0">
+							<span>1</span>
+							<ul class="display border_eec988">
+								<li>1</li>
+								<li>2</li>
+							</ul>
+						</div>
+						<span>厅</span>
+						<div class="bathroom item_hover_0">
+							<span>1</span>
+							<ul class="display border_eec988">
+								<li>1</li>
+								<li>2</li>
+								<li>3</li>
+							</ul>
+						</div>
+						<span>卫</span>
+						<div class="balcony item_hover_0">
+							<span>1</span>
+							<ul class="display border_eec988">
+								<li>1</li>
+								<li>2</li>
+								<li>3</li>
+							</ul>
+						</div>
+						<span>阳台</span>
+					</div>
+					<!-- 户型 end -->
+					<!-- 建筑面积 end -->
+				</div>
+				<!-- 第一步 end -->
+				<!-- 第二步 start -->
+				<div class="cal2" data-type="cal2">
+					<p>除了主卧以外其余N间房间怎么安排</p>
+					<div class="roomsdiv">
+						<div id="s1" class="s1 item_hover_0" data-info='{"cname":"次卧","ln":"1","cstyle":""}'  data-select="0" data-name="cw" >
+							<span data-nj="次卧">次卧&nbsp;×&nbsp;<em>0</em>&nbsp;</span>
+							<ul class="display border_eec988">
+								<!--<li>0</li>-->
+								<!--<li>1</li>
+								<li>2</li>
+								<li>3</li>-->
+							</ul>
+						</div>
+						<div id="s2" class="s2 item_hover_0" data-info='{"cname":"儿童房","ln":"2","cstyle":"after_childrenroom"}' data-select="0" data-name="etf" >
+							<span data-nj="儿童房">儿童房&nbsp;×&nbsp;<em>0</em>&nbsp;</span>
+							<ul class="display border_eec988">
+								<!--<li>0</li>-->
+								<!--<li>1</li>
+								<li>2</li>
+								<li>3</li>-->
+							</ul>
+						</div>
+						<div id="s3" class="s3 item_hover_0" data-info='{"cname":"父母房","ln":"3","cstyle":""}' data-select="0" data-name="fmf" >
+							<span data-nj="父母房">父母房&nbsp;×&nbsp;<em>0</em>&nbsp;</span>
+							<ul class="display border_eec988">
+								<!--<li>0</li>-->
+								<!--<li>1</li>
+								<li>2</li>
+								<li>3</li>-->
+							</ul>
+						</div>
+						<div id="s4" class="s4" data-info='{"cname":"衣帽间","ln":"4","cstyle":""}' data-select = "0" data-name="ymj" >
+							<span data-nj="衣帽间">衣帽间</span>
+						</div>
+						<div id="s5" class="s5" data-info='{"cname":"书房","ln":"5","cstyle":"after_bookroom"}' data-select = "0" data-name="sf" >
+							<span data-nj="书房">书房</span>
+						</div>
+						<label class="error"></label>
+					</div>
+				</div>
+				<!-- 第二步 end -->
+				<!-- 第三步 start -->
+				<div class="cal3" data-type="cal3">
+					<p>主要位置的选择</p>
+					<div class="mainareadiv">
+						<ul class="mainarea_list">
+							<!-- 主卧 start -->
+							<li class="room0">
+								<a class="item0">
+									<em></em>
+									<dl class="item_hover_0">主卧</dl>
+								</a>
+								<div class="filter_nav display ">
+									<i class="sprite"></i>
+									<div class="filter_mod">
+										<div class="filter_item">
+											<label class="item_title" data-name="ground" >地面处理方式：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow"  data-val="smdb" >实木地板</a>
+												<a rel="nofollow" data-val="qhfhdb" >强化复合地板</a>
+												<a rel="nofollow" data-val="cz" >铺设瓷砖</a>
+											</div>	
+										</div>
+										<div class="filter_item">
+											<label class="item_title" data-name="wardrobe" >衣柜制作方式：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="true" >木工制作衣柜</a>
+												<a rel="nofollow" data-val="false" >自行购买衣柜</a>
+											</div>	
+										</div>
+										<div class="filter_item">
+											<label class="item_title" data-name="ceiling" >木工制作吊顶：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="true" >需要</a>
+												<a rel="nofollow" data-val="false" >不需要</a>
+											</div>	
+										</div>
+										<div class="filter_item">
+											<label class="item_title" data-name="wallpaper" >墙面铺贴墙纸：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="true" >需要</a>
+												<a rel="nofollow" data-val="false" >不需要</a>
+											</div>	
+										</div>
+										<div class="filter_item">
+											<label class="item_title" data-name="window" >有无飘窗结构：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="true" >有飘窗</a>
+												<a rel="nofollow" data-val="false" >没有飘窗</a>
+											</div>	
+										</div>
+									</div>
+								</div>
+							</li>
+							<!-- 主卧 end -->
+						</ul>
+					</div>
+				</div>
+				<!-- 第三步 end -->
+				<!-- 第四步 start -->
+				<div class="cal4" data-type="cal4">
+					<p>次要位置的选择</p>
+					<div class="otherroomsdiv">
+						<ul class="otherroom_list">
+							<!-- 客餐厅 start -->
+							<li class="otherroom0">
+								<a class="otheritem0">
+									<em></em>
+									<dl class="item_hover_0">客餐厅</dl>
+								</a>
+								<div class="filter_nav display">
+									<i class="sprite"></i>
+									<div class="filter_mod">
+										<div class="filter_item">
+											<label class="item_title" data-name="ground" >地面处理方式：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="smdb" >实木地板</a>
+												<a rel="nofollow" data-val="qhfhdb" >强化复合地板</a>
+												<a rel="nofollow" data-val="cz" >铺设瓷砖</a>
+											</div>	
+										</div>
+										<div class="filter_item">
+											<label class="item_title" data-name="ceiling" >木工制作吊顶：</label>
+											<div class="item_mod">
+												<a class="cit"  rel="nofollow" data-val="true" >需要</a>
+												<a rel="nofollow" data-val="false" >不需要</a>
+											</div>	
+										</div>
+										<div class="filter_item">
+											<label class="item_title" data-name="shoebox" >鞋柜制作方式：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="true" >木工制作衣柜</a>
+												<a rel="nofollow" data-val="false" >自行购买衣柜</a>
+											</div>	
+										</div>
+										<div class="filter_item">
+											<label class="item_title" data-name="wine_cabinet" >酒柜制作方式：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="true" >木工制作酒柜</a>
+												<a rel="nofollow" data-val="false" >自行购买酒柜</a>
+											</div>	
+										</div>
+										<div class="filter_item">
+											<label class="item_title" data-name="wallpaper" >墙面铺贴墙纸：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="true" >需要</a>
+												<a rel="nofollow" data-val="false" >不需要</a>
+											</div>	
+										</div>
+									</div>
+								</div>
+							</li>
+							<!-- 客餐厅 end -->
+							<!-- 阳台 start -->
+							<li class="otherroom1">
+								<a class="otheritem1">
+									<em></em>
+									<dl class="item_hover_0">阳台</dl>
+								</a>
+								<div class="filter_nav after_balconyroom display">
+									<i class="sprite"></i>
+									<div class="filter_mod">
+										<div class="filter_item">
+											<label class="item_title" data-name="ground" >地面处理方式：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="smdb" >实木地板</a>
+												<a rel="nofollow" data-val="qhfhdb" >强化复合地板</a>
+												<a rel="nofollow" data-val="cz" >铺设瓷砖</a>
+											</div>	
+										</div>
+										<div class="filter_item">
+											<label class="item_title" data-name="hanging_cabinet" >木工制作吊柜：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="true" >需要</a>
+												<a rel="nofollow" data-val="false" >不需要</a>
+											</div>	
+										</div>
+									</div>
+								</div>
+							</li>
+							<!-- 阳台 end -->
+							<!-- 厨房 start -->
+							<li class="otherroom2">
+								<a class="otheritem2">
+									<em></em>
+									<dl class="item_hover_0">厨房</dl>
+								</a>
+								<div class="filter_nav after_kitchenroom display">
+									<i class="sprite"></i>
+									<div class="filter_mod">
+										<div class="filter_item">
+											<label class="item_title" data-name="ground" >地面处理方式：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="smdb" >实木地板</a>
+												<a rel="nofollow" data-val="qhfhdb" >强化复合地板</a>
+												<a rel="nofollow" data-val="cz" >铺设瓷砖</a>
+											</div>	
+										</div>
+										<div class="filter_item">
+											<label class="item_title" data-name="cupboard" >木工制作橱柜：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="true" >需要</a>
+												<a rel="nofollow" data-val="false" >不需要</a>
+											</div>	
+										</div>
+									</div>
+								</div>
+							</li>
+							<!-- 厨房 end -->
+						</ul>
+					</div>
+				</div>
+				<!-- 第四步 end -->
+				<!-- 第五步 strat -->
+				<div class="cal5" data-type="cal5">
+					<p>房屋特性</p>
+					<div class="othersdiv">
+						<ul class="other_list">
+							<!-- 无电梯 start -->
+							<li class="other0">
+								<a class="item0" >
+									<em></em>
+									<dl class="elevator item_hover_0">您住几楼</dl>
+								</a>
+								<div class="filter_nav after_elevator display ">
+									<i class="sprite"></i>
+									<div class="filter_mod">
+										<div class="filter_item">
+											<label class="item_title" data-name="floor" >楼层：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="1" >1楼</a>
+												<a rel="nofollow" data-val="2" >2楼</a>
+												<a rel="nofollow" data-val="3" >3楼</a>
+												<a rel="nofollow" data-val="4" >4楼</a>
+												<a rel="nofollow" data-val="5" >5楼</a>
+												<a rel="nofollow" data-val="6" >6楼</a>
+												<a rel="nofollow" data-val="7" >7楼(阁楼)</a>
+												<a rel="nofollow" data-val="0" >7楼以上</a>
+											</div>
+										</div>
+										<div class="filter_item">
+											<label class="item_title" data-name="isElevator" >有无电梯：</label>
+											<div class="item_mod">
+												<a class="cit" rel="nofollow" data-val="0" >有电梯</a>
+												<a rel="nofollow" data-val="-1" >无电梯</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+							<!-- 无电梯 end -->
+							<!-- 墙体拆除改造 start -->
+							<li  class="other1">
+								<a id="other1" class="item1 otherclick" data-select="true" >
+									<em></em>
+									<dl>墙体拆除改造</dl>
+								</a>
+							</li>
+							<!-- 墙体拆除改造 end -->
+							<!-- 卫生间地面下沉 start -->
+							<li  class="other2">
+								<a id="other2" class="item2 otherclick" data-select="true" >
+									<em></em>
+									<dl>卫生间地面下沉</dl>
+								</a>
+							</li>
+							<!-- 卫生间地面下沉 end -->
+						</ul>
+					</div>
+				</div>
+				<!-- 第五步 end -->
+				<!-- 第六步 strat -->
+				<div class="cal6">
+					<input class="nowcal" type="button" value="立即计算">
+				</div>
+				<!-- 第六步 end -->
+			</div>
+			<!-- 计算器过程 end -->
+			
+		</div>	
+	</div>
+</div>
+<div id="loading" class="display" style="position:fixed;width:100%;height:100%;top:0px;left:0px;opacity:0.7;background:#000;z-index:100000021">
+	<div class="sk-fading-circle">
+	  <div class="sk-circle1 sk-circle"></div>
+	  <div class="sk-circle2 sk-circle"></div>
+	  <div class="sk-circle3 sk-circle"></div>
+	  <div class="sk-circle4 sk-circle"></div>
+	  <div class="sk-circle5 sk-circle"></div>
+	  <div class="sk-circle6 sk-circle"></div>
+	  <div class="sk-circle7 sk-circle"></div>
+	  <div class="sk-circle8 sk-circle"></div>
+	  <div class="sk-circle9 sk-circle"></div>
+	  <div class="sk-circle10 sk-circle"></div>
+	  <div class="sk-circle11 sk-circle"></div>
+	  <div class="sk-circle12 sk-circle"></div>
+	</div>
+</div>

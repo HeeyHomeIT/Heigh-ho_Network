@@ -1,0 +1,54 @@
+<div id="pageheader" class="clearfix">
+    <div class="logo_style">
+        <div class="logo clearfix" title="嘿吼网">
+            <a class="fl" rel="nofollow" href="http://www.heeyhome.com/" target="_blank">
+                <img src="image/logo.png"/>
+            </a>
+            <span class="fl"></span>
+        </div><!--logo-->
+    </div><!--logo_style-->
+    <div class="logo_withdraw">
+        <p class="wChina">提现</p>
+        <p>WITHDRAW</p>
+    </div><!--logo_withdraw-->
+</div><!--pageheader-->
+<div class="withdraw_contentWrap">
+    <div class="withdraw_title">
+        <span class="extract_balance">提取余额到银行卡</span>
+        <span class="current_balance">当前余额<b>￥8500.00</b></span>
+    </div><!--withdraw_title-->
+    <div class="withdraw_content">
+        <div id="choose_bank" class="choose_bank clearfix">
+            <span class="choose_span fl">选择银行卡</span>
+            <div class="bankWrap fl">
+                <div class="bank clearfix" ng-repeat="wbank in wbanks">
+                    <div class="bank_fl fl">
+                        <input class="radio_money" title="" type="radio" name="money">
+                        <img ng-src="{{wbank.banklogo}}">
+                        <span class="bank_type">{{wbank.bankname}}</span>
+                        <span>尾号：</span>
+                        <span>{{wbank.bankcardnoDim}}</span>
+                    </div><!--bank_fl-->
+                    <div class="bank_fr fr">
+                        <a href="/Pc.Heigh-ho.Renovation/heeyhome_web/src/bank.html#/bank/home">管理<em class="sprite_order"></em></a>
+                    </div><!--bank_fr-->
+                </div><!--bank-->
+            </div><!--bankWrap-->
+        </div><!--choose_bank-->
+        <div class="money clearfix">
+            <span class="money_span fl">提现金额</span>
+            <input id="money" type="number" title="" placeholder="请输入金额">
+            <span class="yuan">元</span>
+        </div><!--money-->
+        <div class="cash_time">
+            <span class="time">到账时间</span>
+            <span class="detail">两小时</span>
+        </div><!--cash_time-->
+        <a href="javascript:;" id="cash_confirm">确认提现</a>
+    </div><!--withdraw_content-->
+</div><!--withdraw_contentWrap-->
+<div class="withdraw_complete hide">
+    <p class="success"><em class="sprite_order"></em>申请提现成功！</p>
+    <p class="process">我们正在处理您的申请，<span>2</span>个小时内提现金额将会到达您指定的银行卡账户</p>
+    <a href="/Pc.Heigh-ho.Renovation/heeyhome_web/src/master.html#/master/mwallet" id="cash_back">返回</a>
+</div><!--withdraw_complete-->

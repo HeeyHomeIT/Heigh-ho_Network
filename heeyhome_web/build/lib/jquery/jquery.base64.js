@@ -1,0 +1,12 @@
+/*!
+ * jquery.base64.js 0.0.3 - https://github.com/yckart/jquery.base64.js
+ * Makes Base64 en & -decoding simpler as it is.
+ *
+ * Based upon: https://gist.github.com/Yaffle/1284012
+ *
+ * Copyright (c) 2012 Yannick Albert (http://yckart.com)
+ * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php).
+ * 2013/02/10
+ **/
+
+!function($){function code(s,discard,alpha,beta,w1,w2){s=String(s);for(var buffer=0,i=0,length=s.length,result="",bitsInBuffer=0;length>i;){var c=s.charCodeAt(i);for(c=256>c?alpha[c]:-1,buffer=(buffer<<w1)+c,bitsInBuffer+=w1;bitsInBuffer>=w2;){bitsInBuffer-=w2;var tmp=buffer>>bitsInBuffer;result+=beta.charAt(tmp),buffer^=tmp<<bitsInBuffer}++i}return!discard&&bitsInBuffer>0&&(result+=beta.charAt(buffer<<w2-bitsInBuffer)),result}for(var b64="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",a256="",r64=[256],r256=[256],i=0,UTF8={encode:function(strUni){var strUtf=strUni.replace(/[\u0080-\u07ff]/g,function(c){var cc=c.charCodeAt(0);return String.fromCharCode(192|cc>>6,128|63&cc)}).replace(/[\u0800-\uffff]/g,function(c){var cc=c.charCodeAt(0);return String.fromCharCode(224|cc>>12,128|cc>>6&63,128|63&cc)});return strUtf},decode:function(strUtf){var strUni=strUtf.replace(/[\u00e0-\u00ef][\u0080-\u00bf][\u0080-\u00bf]/g,function(c){var cc=(15&c.charCodeAt(0))<<12|(63&c.charCodeAt(1))<<6|63&c.charCodeAt(2);return String.fromCharCode(cc)}).replace(/[\u00c0-\u00df][\u0080-\u00bf]/g,function(c){var cc=(31&c.charCodeAt(0))<<6|63&c.charCodeAt(1);return String.fromCharCode(cc)});return strUni}};256>i;){var c=String.fromCharCode(i);a256+=c,r256[i]=i,r64[i]=b64.indexOf(c),++i}var Plugin=$.base64=function(dir,input,encode){return input?Plugin[dir](input,encode):dir?null:this};Plugin.btoa=Plugin.encode=function(plain,utf8encode){return plain=Plugin.raw===!1||Plugin.utf8encode||utf8encode?UTF8.encode(plain):plain,plain=code(plain,!1,r256,b64,8,6),plain+"====".slice(plain.length%4||4)},Plugin.atob=Plugin.decode=function(coded,utf8decode){coded=String(coded).split("=");var i=coded.length;do--i,coded[i]=code(coded[i],!0,r64,a256,6,8);while(i>0);return coded=coded.join(""),Plugin.raw===!1||Plugin.utf8decode||utf8decode?UTF8.decode(coded):coded}}(jQuery);

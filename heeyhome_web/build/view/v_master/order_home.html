@@ -1,0 +1,330 @@
+<div class="bankWrap">
+    <!-- 当前位置start -->
+    <div id="selfcenter_top">
+        <div class="now_location">
+            <a href="index.html"><em></em></a>
+            <span>&gt;</span>
+            <a href="master.html#/master">个人中心</a>
+            <span>&gt;</span>
+            <a href="master.html#/master/morder">我的订单</a>
+        </div>
+    </div>
+    <!-- 当前位置end -->
+    <!-- 业主信息start -->
+    <div id="owner_information">
+        <div class="owner_information">
+            <div class="owner_informationcnt">
+                <div class="title">
+                    <h3>业主信息</h3>
+                    <p>Owner Information</p>
+                </div>
+                <div class="owner_content">
+                    <div class="owner_summary">
+                        <div class="owner_picture">
+                            <img src="css/img/foreman.png">
+                        </div>
+                        <h3>王文</h3>
+                        <p>
+                            <!--<img src="css/img/owner-phone.png">-->
+                            <em class="sprite_order"></em>
+                            <span>15835736987</span>
+                        </p>
+                    </div>
+                    <div class="owner_detail clearfix">
+                        <div class="owner_left">
+                            <div class="area">
+                                <h3>建筑面积</h3>
+                                <p><span>110</span>㎡</p>
+                            </div>
+                            <div class="order">
+                                <h3>订单号</h3>
+                                <p>142733623556523</p>
+                            </div>
+                        </div>
+                        <div class="owner_middle">
+                            <div class="type">
+                                <h3>户型</h3>
+                                <p>2室1厅1卫</p>
+                            </div>
+                            <div class="time">
+                                <h3>订单创建时间</h3>
+                                <p>2016.4.20 AM 10:00</p>
+                            </div>
+                        </div>
+                        <div class="owner_right">
+                            <div class="address">
+                                <h3>房屋地址</h3>
+                                <p>相城区丽景湾小区13幢1204室</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 业主信息end -->
+    <div class="order_wrap clearfix" id="order_wrap">
+        <div class="choose_style fl">
+            <p class="style_title">&bull;&nbsp;&nbsp;&nbsp;选择风格&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_style">
+                <p></p>
+                <select id="testSelect" title="">
+                    <option>中式</option>
+                    <option>日式</option>
+                    <option>美式</option>
+                    <option>现代</option>
+                    <option>欧式</option>
+                    <option>地中海</option>
+                </select>
+            </div><!--process_style-->
+            <input id="confirm_type" type="button" class="order_add" value="确定">
+        </div><!--choose_style-->
+        <div class="order_process fl clearfix">
+            <p class="process_title">&bull;&nbsp;&nbsp;&nbsp;进场准备&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/approach_preparation.png">
+            </div><!--process_center-->
+            <input type="button" id="pre_add1" class="order_add_left approach order_increase fl" value="添加">
+            <input type="button" class="detail_a detail_complete hide fl" value="查看详情">
+            <input id="order_edit" type="button" class="order_edit fl" value="编辑预算单">
+        </div><!--order_process-->
+        <div class="order_process fl">
+            <p class="process_title" typename="水电">&bull;&nbsp;&nbsp;&nbsp;水电工进场&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/plumber.png">
+            </div><!--process_center-->
+            <input id="pre_add2" type="button" class="order_add order_increase approach" value="添加">
+            <input type="button" class="order_edit hide" value="编辑结算单">
+            <input type="button" class="detail_a hide" value="查看详情">
+        </div><!--order_process-->
+        <div class="order_process fl">
+            <p class="process_title" typename="水电">&bull;&nbsp;&nbsp;&nbsp;水电材料&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/hydropower_materials.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add order_increase" value="添加">
+            <input type="button" class="order_edit hide" value="编辑结算单">
+            <input type="button" class="detail_a detail_m hide" value="查看详情">
+        </div><!--order_process-->
+        <div class="order_process fl hide">
+            <p class="process_title">&bull;&nbsp;&nbsp;&nbsp;水电工正在施工&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="">
+            </div><!--process_center-->
+            <input type="button" class="order_add_left approach order_increase" value="添加">
+            <input type="button" class="detail_a hide" value="查看详情">
+            <input type="button" class="order_edit" value="编辑结算单">
+        </div><!--order_process-->
+        <div class="order_process fl clearfix">
+            <p class="process_title">&bull;&nbsp;&nbsp;&nbsp;改造完工&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/hydropower_completed.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add_left approach order_increase fl" value="添加">
+            <input type="button" class="detail_a detail_complete hide fl" value="查看详情">
+            <input type="button" class="order_edit fl" value="编辑结算单">
+        </div><!--order_process-->
+        <div class="order_process fl">
+            <p class="process_title" typename="瓦工">&bull;&nbsp;&nbsp;&nbsp;瓦工进场&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/tile_approach.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add approach order_increase" value="添加">
+            <input type="button" class="order_edit hide" value="编辑结算单">
+            <input type="button" class="detail_a hide" value="查看详情">
+        </div><!--order_process-->
+        <div class="order_process fl">
+            <p class="process_title" typename="瓦工">&bull;&nbsp;&nbsp;&nbsp;瓦工辅材&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/tile_auxiliary_materials.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add order_increase" value="添加">
+            <input type="button" class="order_edit hide" value="编辑结算单">
+            <input type="button" class="detail_a detail_m hide" value="查看详情">
+        </div><!--order_process-->
+        <div class="order_process fl hide">
+            <p class="process_title">&bull;&nbsp;&nbsp;&nbsp;瓦工正在施工&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/tile_auxiliary_materials.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add order_increase" value="添加">
+            <input type="button" class="order_edit hide" value="编辑结算单">
+            <input type="button" class="detail_a hide" value="查看详情">
+        </div><!--order_process-->
+        <div class="order_process fl clearfix">
+            <p class="process_title">&bull;&nbsp;&nbsp;&nbsp;瓦工完工&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/tile_completed.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add_left approach order_increase fl" value="添加">
+            <input type="button" class="detail_a detail_complete hide fl" value="查看详情">
+            <input type="button" class="order_edit fl" value="编辑结算单">
+        </div><!--order_process-->
+        <div class="order_process fl">
+            <p class="process_title" typename="木工">&bull;&nbsp;&nbsp;&nbsp;木工进场&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/woodwork_approach.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add approach order_increase" value="添加">
+            <input type="button" class="order_edit hide" value="编辑结算单">
+            <input type="button" class="detail_a hide" value="查看详情">
+        </div><!--order_process-->
+        <div class="order_process fl">
+            <p class="process_title" typename="木工">&bull;&nbsp;&nbsp;&nbsp;木工辅材&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/woodwork_auxiliary_materials.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add order_increase" value="添加">
+            <input type="button" class="order_edit hide" value="编辑结算单">
+            <input type="button" class="detail_a detail_m hide" value="查看详情">
+        </div><!--order_process-->
+        <div class="order_process fl hide">
+            <p class="process_title">&bull;&nbsp;&nbsp;&nbsp;木工正在施工&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/woodwork_auxiliary_materials.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add order_increase" value="添加">
+            <input type="button" class="order_edit hide" value="编辑结算单">
+            <input type="button" class="detail_a hide" value="查看详情">
+        </div><!--order_process-->
+        <div class="order_process fl clearfix">
+            <p class="process_title">&bull;&nbsp;&nbsp;&nbsp;木工完工&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/woodwork_completed.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add_left approach order_increase fl" value="添加">
+            <input type="button" class="detail_a detail_complete hide fl" value="查看详情">
+            <input type="button" class="order_edit fl" value="编辑结算单">
+        </div><!--order_process-->
+        <div class="order_process fl">
+            <p class="process_title" typename="油漆">&bull;&nbsp;&nbsp;&nbsp;油漆工进场&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/painter_approach.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add approach order_increase" value="添加">
+            <input type="button" class="order_edit hide" value="编辑结算单">
+            <input type="button" class="detail_a hide" value="查看详情">
+        </div><!--order_process-->
+        <div class="order_process fl">
+            <p class="process_title" typename="油漆">&bull;&nbsp;&nbsp;&nbsp;油漆工辅材&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/painter_auxiliary_materials.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add order_increase" value="添加">
+            <input type="button" class="order_edit hide" value="编辑结算单">
+            <input type="button" class="detail_a detail_m hide" value="查看详情">
+        </div><!--order_process-->
+        <div class="order_process fl hide">
+            <p class="process_title">&bull;&nbsp;&nbsp;&nbsp;油漆工正在施工&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/painter_auxiliary_materials.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add order_increase" value="添加">
+            <input type="button" class="order_edit hide" value="编辑结算单">
+            <input type="button" class="detail_a hide" value="查看详情">
+        </div><!--order_process-->
+        <div class="order_process fl">
+            <p class="process_title">&bull;&nbsp;&nbsp;&nbsp;油漆工完工&nbsp;&nbsp;&nbsp;&bull;</p>
+            <div class="process_center">
+                <img src="image/painter_completed.png">
+            </div><!--process_center-->
+            <input type="button" class="order_add_left approach order_increase fl" value="添加">
+            <input type="button" class="detail_a detail_complete hide fl" value="查看详情">
+            <input type="button" class="order_edit fl" value="编辑结算单">
+        </div><!--order_process-->
+    </div><!--order_wrap-->
+    <a class="order_submit" href="javascript:;">提交</a>
+    <!--添加开始-->
+    <div class="add_technology hide">
+        <div class="add_close">
+            <!--<img id="add_close" src="css/img/technology_delete1.png">-->
+            <em id="add_close" class="sprite_order"></em>
+        </div>
+        <div class="start_date">
+            <div class="start_date_title">
+                开工日期
+            </div><!--start_date_title-->
+            <div class="last_time">
+                <select title="" name="year1" class="year1"></select>
+                <select title="" name="month1" class="month1"></select>
+                <select title="" name="day1" class="day1"></select>
+            </div>
+        </div><!--start_date-->
+        <div class="start_date clearfix">
+            <div class="start_date_title">
+                上传图片
+            </div><!--start_date_title-->
+            <div class="add_picture first_add_picture fl">
+                <a href="javascript:;">+
+                    <input id="file1" type="file" title="上传新图片">
+                </a>
+                <div class="close hide">
+                    <em class="sprite_total"></em>
+                </div>
+            </div>
+            <div class="add_picture fl">
+                <a href="javascript:;">+
+                    <input id="file2" type="file" title="上传新图片">
+                </a>
+                <div class="close hide">
+                    <em class="sprite_total"></em>
+                </div>
+            </div>
+            <div class="add_picture fl">
+                <a href="javascript:;">+
+                    <input  id="file3" type="file" title="上传新图片">
+                </a>
+                <div class="close hide">
+                    <em class="sprite_total"></em>
+                </div>
+            </div>
+        </div><!--start_date-->
+        <div class="start_date">
+            <div class="start_date_title leave_message">
+                留言
+            </div><!--start_date_title-->
+            <input class="message_input" type="text" title="">
+        </div><!--start_date-->
+        <a id="upload" href="javascript:;" class="complete">上传</a>
+        <div class="add-bg">
+            <img src="image/bg-decoration.png">
+        </div>
+    </div><!--add_technology-->
+    <!--添加结束-->
+    <!--查看详情开始-->
+    <div class="see_details hide">
+        <div class="start_date">
+            <div class="start_date_title sprite_order">
+                开工日期
+            </div><!--start_date_title-->
+            <div class="date_detail">
+                <span class="start_year">2016</span>年<span class="start_month">10</span>月<span class="start_day">22</span>日
+            </div><!--date_detail-->
+        </div><!--start_date-->
+        <div class="start_date clearfix">
+            <div class="start_date_title sprite_order">
+                施工图片
+            </div><!--start_date_title-->
+            <div class="construction_photo clearfix">
+                <!--<div class="photo fl">-->
+                    <!--<img src="css/img/my_work1.jpg">-->
+                <!--</div>&lt;!&ndash;photo&ndash;&gt;-->
+                <!--<div class="photo fl">-->
+                    <!--<img src="css/img/my_work1.jpg">-->
+                <!--</div>&lt;!&ndash;photo&ndash;&gt;-->
+                <!--<div class="photo fl">-->
+                    <!--<img src="css/img/my_work1.jpg">-->
+                <!--</div>&lt;!&ndash;photo&ndash;&gt;-->
+            </div><!--construction_photo-->
+        </div><!--start_date-->
+        <div class="start_date">
+            <p class="detail_describe">准备开工啦准备开工啦准备开工啦准备开工啦准备开工啦准备开工啦准备开工啦准备开工啦准备开工啦准备开工啦准备开工啦准备开工啦</p>
+        </div><!--start_date-->
+        <a href="javascript:;" class="complete">关闭</a>
+        <div class="add-bg">
+            <img src="image/bg-decoration.png">
+        </div>
+    </div><!--see_details-->
+    <!--查看详情结束-->
+    <div class="wrap hide"></div>
+</div><!--bankWrap-->

@@ -1,0 +1,40 @@
+<div class="master_user_wrap clearfix">
+    <!-- 当前位置start -->
+    <div id="selfcenter_top">
+        <div class="now_location">
+			您所在位置：
+			<a href="index.html" title="嘿吼首页"><em></em></a>
+			<span>&gt;</span>
+			<a href="center.html#/center">个人中心</a>
+			<span>&gt;</span>
+			<span class="Jcenter" >我的主页</span>
+		</div>
+    </div>
+    <!-- 当前位置end -->
+    <div class="user_left fl">
+        <ul class="left_ul" id="left_ul">
+            <li>
+                <a class="a_content" href="" ui-sref="center.mhome" ><span>&bull;</span>&nbsp;&nbsp;我的主页&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="center.mdata" ><span>&bull;</span>&nbsp;&nbsp;个人资料&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="center.morder" ><span>&bull;</span>&nbsp;&nbsp;我的订单&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="center.mcollection" ><span>&bull;</span>&nbsp;&nbsp;我的收藏&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="center.msgcenter" ><span>&bull;</span>&nbsp;&nbsp;消息中心&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li class="safe_setting">
+                <a class="a_content" href="" ui-sref="center.setting" ><span>&bull;</span>&nbsp;&nbsp;安全设置&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+            <li>
+                <a class="a_content" href="" ui-sref="center.maddress" ><span>&bull;</span>&nbsp;&nbsp;收货地址&nbsp;&nbsp;<span>&bull;</span></a>
+            </li>
+        </ul>
+    </div><!--user_left-->
+    <div id="user_right" ui-view="user_right"></div>
+</div><!--master_user_wrap-->

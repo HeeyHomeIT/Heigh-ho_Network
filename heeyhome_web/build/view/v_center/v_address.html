@@ -1,0 +1,71 @@
+<div class="user_right fr">
+    <div class="right_title">
+        <span>收货地址 &nbsp;&nbsp;&nbsp;SHIPPING ADDRESS</span>
+    </div><!--right_title-->
+    <div class="right_content_wrap auto_address">
+        <div class="address_wrap">
+           	<div class="addressListWrap"></div>
+            <div class="address_add">
+                <a class="addEvent" href="javascript:;">
+                    <em class="sprite-details"></em>添加新地址
+                </a>
+            </div>
+        </div><!--address_wrap-->
+        <div class="add_address_wrap display">
+        	<div class="add_address_cont">
+        		<div class="cont_box">
+        			<div class="address_cont_line clearfix">
+        				<label class="address_lable">所在地区</label>
+        				<div data-toggle="distpicker" class="address_content">
+                            <select class="form-control" id="province3"></select>
+                            <select class="form-control" id="city3"></select>
+                            <select class="form-control" id="district3"></select>
+                        </div>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<label class="address_lable">详细地址</label>
+        				<div  class="address_content">
+        					<input id="alladdress" type="text" placeholder="建议您如实填写详细收货地址，如街道名称、门牌号码、楼层和房间号等信息" autocomplete="off">
+        					<label class="error"></label>
+                        </div>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<label class="address_lable">邮政编码</label>
+        				<div  class="address_content">
+        					<input id="zipcode" class="smallinput" type="text" placeholder="如您不清楚邮递区号，请填写000000" autocomplete="off">
+        					<label class="error"></label>
+                        </div>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<label class="address_lable">收货人姓名 </label>
+        				<div  class="address_content">
+        					<input id="receiver" class="smallinput" type="text" autocomplete="off">
+        					<label class="error"></label>
+                        </div>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<label class="address_lable">手机号码 </label>
+        				<div  class="address_content">
+        					<input id="mobile" class="smallinput" type="text" autocomplete="off">
+        					<label class="error"></label>
+                        </div>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<input type="checkbox" class="i-chk" checked="checked" name="defaultAddress" id="J_SetDefault">
+        				<label for="J_SetDefault" class="set_lable" >设置为默认地址</label>
+        			</div>
+        			<div class="address_cont_line clearfix">
+        				<input type="button" class="saveaddBtn" value="">
+        				<input id="addBack" type="button" class="addBack" value="返回">
+        			</div>
+        		</div>
+        	</div>
+        </div>
+		<div class="not_information hide">
+			<div class="not_information_img">
+				<img src="css/img/no_information_found.png">
+			</div><!--not_information_img-->
+			<div class="not_information_text"></div><!--not_information_text-->
+		</div><!--not_information-->
+    </div><!--right_content_wrap-->
+</div><!--user_right-->

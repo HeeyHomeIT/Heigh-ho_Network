@@ -1,0 +1,80 @@
+<div class="user_right fr">
+    <div class="right_title">
+        <span>我的作品 &nbsp;&nbsp;&nbsp;MY CREATION</span>
+    </div><!--right_title-->
+    <div class="right_content_wrap" ng-controller="work">
+        <div class="works_content my_work">
+            <div id="works_content_title1" class="works_content_title clearfix">
+                <div class="title_complete fl">已完成</div>
+                <div class="title_pending fl">待完成</div>
+                <div id="title_active" class="title_active"></div><!--title_active-->
+            </div><!--works_content_title-->
+            <div class="works_complete_wrap">
+
+                <div class="works_completeWrap">
+                    <!-- 具体内容start -->
+                    <div class="works_complete clearfix"></div><!--works_complete-->
+                    <!-- 具体内容end -->
+                    <!-- 页码start -->
+                    <div class="page_number">
+                        <div style="display: inline-block;text-align: left">
+                            <div class="page_div4"></div>
+                        </div>
+                    </div>
+                    <!-- 页码end -->
+                </div><!--works_completeWrap-->
+                <div class="not_information hide">
+                    <div class="not_information_img">
+                        <img src="css/img/no_information_found.png">
+                    </div><!--not_information_img-->
+                    <div class="not_information_text"></div><!--not_information_text-->
+                </div><!--not_information-->
+                <div class="complete_before clearfix">
+                    <div class="before_title">
+                        <span>入驻嗨吼之前的项目</span>
+                    </div><!--before_title-->
+                    <div class="works_detail fl complete_img" ng-repeat="work in works">
+                        <a class="bg" href="success_case.html#/success" target="_blank"
+                           ng-click="session(work.case_id)">
+                            <a class="complete_del" href="javascript:;" caseid="{{work.case_id}}">
+                                <em class="sprite-details"></em>
+                            </a>
+                            <div class="detail_img">
+                                <img ng-src="{{work.img[0].case_img}}">
+                            </div><!--detail_img-->
+                            <a class="complete_bg" href="success_case.html#/success" ng-click="session(work.case_id)"
+                               target="_blank"></a><!--complete_bg-->
+                            <a href="success_case.html#/success" class="works_style" target="_blank">{{work.style}}</a>
+                        </a>
+                    </div>
+                    <div class="new_album works_new_album fl">
+                        <a href="#/master/mwork/newwork">
+                            <em class="sprite_remain"></em>
+                            <p>添加新的项目</p>
+                        </a>
+                    </div><!--new_album-->
+                </div><!--complete_before-->
+            </div><!--works_complete_wrap-->
+            <div class="works_pending_wrap clearfix hide">
+                <div class="works_pending">
+                    <!-- 具体内容start -->
+                    <div class="worksPending clearfix"></div><!--worksPending-->
+                    <!-- 具体内容end -->
+                    <!-- 页码start -->
+                    <div class="page_number">
+                        <div style="display: inline-block;text-align: left">
+                            <div class="page_div5"></div>
+                        </div>
+                    </div>
+                    <!-- 页码end -->
+                </div><!--works_pending-->
+                <div class="not_information hide">
+                    <div class="not_information_img">
+                        <img src="css/img/no_information_found.png">
+                    </div><!--not_information_img-->
+                    <div class="not_information_text"></div><!--not_information_text-->
+                </div><!--not_information-->
+            </div><!--works_pending_wrap-->
+        </div><!--works_content-->
+    </div><!--right_content_wrap-->
+</div><!--user_right-->

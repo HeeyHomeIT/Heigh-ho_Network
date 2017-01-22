@@ -1,0 +1,47 @@
+<div id="pageheader" class="clearfix">
+    <div class="logo_style">
+        <div class="logo clearfix" title="嘿吼网">
+            <a class="fl" rel="nofollow" href="http://www.heeyhome.com/" target="_blank">
+                <img src="image/logo.png"/>
+            </a>
+            <span class="fl"></span>
+        </div><!--logo-->
+    </div><!--logo_style-->
+    <div class="logo_withdraw">
+        <p class="wChina">我的银行卡</p>
+        <p>MY BANK CARD</p>
+    </div><!--logo_withdraw-->
+</div><!--pageheader-->
+<div class="bankWrap">
+    <!-- 当前位置start -->
+    <div id="selfcenter_top">
+        <div class="now_location">
+            <a href="index.html"><em></em></a>
+            <span>&gt;</span>
+            <a href="master.html#/master">个人中心</a>
+            <span>&gt;</span>
+            <a href="master.html#/master/mwallet">我的钱包</a>
+            <span>&gt;</span>
+            <a href="bank.html#/bank/home">我的银行卡</a>
+            <!--<span class="hide add">&nbsp;&gt;&nbsp;</span>-->
+            <!--<span class="hide add">添加银行卡</span>-->
+        </div>
+    </div>
+    <!-- 当前位置end -->
+    <div id="process" class="bankContent_wrap clearfix">
+        <div class="bank_content fl" ng-repeat="bank in banks">
+            <div class="bank_content_title clearfix">
+                <img class="bank_logo fl" ng-src="{{bank.banklogo}}">
+                <span class="bank_name fl">{{bank.bankname}}</span>
+                <span class="bank_type fl">{{bank.cardtype}}</span>
+            </div><!--bank_content_title-->
+            <div class="bankContent">
+                <span>****&nbsp;&nbsp;****&nbsp;&nbsp;****&nbsp;&nbsp;</span>
+                <span class="star">{{bank.bankcardno}}</span>
+            </div><!--bankContent-->
+        </div><!--bank_content-->
+        <a id="add_bank_a" class="add_bank_a fl" href="#bank/add_process1">
+            <img src="image/add_bank.png">
+        </a><!--bank_content-->
+    </div><!--bankContent_wrap-->
+</div><!--bankWrap-->
