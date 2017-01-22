@@ -1,4 +1,4 @@
-define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j_index/indexCal','easemob', 'js/j_index/commonNav'], function(app, bootstrap) {
+define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j_index/indexCal','easemob', 'js/j_index/commonNav','js/j_index/404'], function(app, bootstrap) {
 	/**
 	 * 头部
 	 */
@@ -117,6 +117,18 @@ define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j
 	app.directive('indexFooter', function() {
 		return {
 			templateUrl: "view/v_common/_footer.html"
+		};
+	});
+	
+	/**
+	 * 404
+	 */
+	app.directive('errorContent', function() {
+		return {
+			templateUrl: "view/v_404/404_detail.html",
+			link: function(scope, iElement, iAttrs) {
+				app.errorWrapHandler();
+			}
 		};
 	});
 	

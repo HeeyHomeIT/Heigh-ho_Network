@@ -1294,31 +1294,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                             controllerAs: "pay_end"
                         }
                     }
-                })
-                .state("error_content", { // 404错误页面
-                    url: "/error_content",
-                    views: {
-                        'error_content': {
-                            templateUrl: 'view/v_404/404_wrap.html'
-                        }
-                    },
-                    resolve: {
-                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load('js/j_404/error.js')
-                        }]
-                    }
-                })
-                .state("error_content.error_detail", { // 404错误页面-内容
-                    url: "/error_detail",
-                    views: {
-                        'error_detail': {
-                            templateUrl: 'view/v_404/404_detail.html',
-                            controller: "error_detailCtrl",
-                            controllerAs: "error_detail"
-                        }
-                    }
                 });
-
 
             $urlRouterProvider.when('', '/')
                 .when('/center', '/center/mhome')
