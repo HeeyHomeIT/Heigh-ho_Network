@@ -143,7 +143,6 @@ class OrderController extends Controller
         $callback = rq('callback');
         $user_id = rq('user_id');
         $confirm_time = rq('confirm_time');
-
         $order_tbl_isdestroy = DB::select('SELECT order_status FROM hh_order WHERE user_id =  ? AND order_id = ?',
             [$user_id, $order_id]);
         if ($order_tbl_isdestroy) {
@@ -293,12 +292,6 @@ class OrderController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-    }
-
-    //TODO 订单列表（用户带筛选条件）
-    public function orderListUserFilter()
-    {
-
     }
 
     /*订单列表（店铺）*/
@@ -550,21 +543,21 @@ class OrderController extends Controller
     {
         $callback = rq('callback');
         $order_id = rq('order_id');
-        $appointmentTime = DB::select('select * from hh_order_reservation_time where order_id = ?', [$order_id]);
-        if ($appointmentTime) {
+        $sel_order_user_id = DB::select('SELECT a.order_id,a.user_id,b.reservation_time1,b.reservation_time2,b.confirm_time FROM hh_order a LEFT JOIN hh_order_reservation_time b ON (a.order_id = b.order_id) WHERE a.order_id = ?',
+            [$order_id]);
+        if ($sel_order_user_id) {
             $arr = array(
                 "code" => "000",
-                "data" => $appointmentTime[0]
+                "data" => $sel_order_user_id[0]
             );
             return $callback . "(" . HHJson($arr) . ")";
         } else {
             $arr = array(
                 "code" => "200",
-                "msg" => "没有时间"
+                "msg" => "没有订单"
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-
     }
 
     //工长提交订单消息发送给用户
