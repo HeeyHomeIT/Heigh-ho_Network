@@ -18,14 +18,25 @@ class OrderOperateController extends Controller
     {
         $order_id = rq('order_id');
         $list_data_json = rq('list_data_json');
+        $callback = rq('callback');
         //存在list数据
         if ($list_data_json) {
-            $list_data_arr = json_decode($list_data_json, true);
+            // $list_data_arr = json_decode($list_data_json, true);
+            $list_dataArr = array_values(json_decode($list_data_json, true));
+            $count = count($list_dataArr);
+            $list_data_arr = array();
+            $dataCount = 0;
+            for ($i=0; $i < 63; $i++) { 
+                if ($i < $count) {
+                    array_push($list_data_arr, $list_dataArr[$i]);
+                } else {
+                    array_push($list_data_arr, $dataCount);
+                }
+            }
             $list_data_exist = true;
         } else {
             $list_data_exist = false;
         }
-        $callback = rq('callback');
         //查询订单是否存在，存在则获取装修人员id号
         $sel_order_tbl = DB::select('SELECT order_personnel FROM hh_order WHERE order_id = ?',
             [$order_id]);
@@ -49,6 +60,7 @@ class OrderOperateController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+
         //生成预算单与结算单表
         //预算
         if ($list_data_exist) {
