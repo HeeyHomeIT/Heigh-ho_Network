@@ -18,7 +18,7 @@
 ```
 data
 
-order_id        材料商id
+order_id        订单id
 user_id         用户id
 confirm_time    确认上门时间（传1或2）
 callback                
