@@ -5,7 +5,7 @@
 ### 接口地址
 
 ```
-.../supplier/monthlyReport
+.../order/shop/confirm
 ```
 
 ### 接口格式
