@@ -184,6 +184,20 @@ body {
     background-color: #e6501e;
 }
 
+.paymentList_wrap .paylist .paylist_cardtable table .submit.alreadyPaid {
+    background: #999;
+    border: 1px solid #999;
+    color: #ddd;
+    cursor: auto;
+}
+
+.paymentList_wrap .paylist .paylist_cardtable table .submit.alreadyPaid:hover {
+    background: #999;
+    border: 1px solid #999;
+    color: #ddd;
+    cursor: auto;
+}
+
 .paymentList_wrap .paylist .paylist_cardtable table .submit:hover {
 	background-color: #eb734b;
     border-color: #dc5528;

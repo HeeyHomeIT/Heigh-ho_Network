@@ -69,7 +69,7 @@
             self.initMsgInfo();
             self.initMOrderDataEvent();
             self.initMOrderDetailEvent();
-            self.initSuccessPayEvent();
+//          self.initSuccessPayEvent();
         },
         /**
          * 个人中心样式改变事件

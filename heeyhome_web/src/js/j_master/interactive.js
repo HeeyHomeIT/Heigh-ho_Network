@@ -1030,6 +1030,7 @@
                     $('#order_edit').attr("disabled", false).addClass("border_eec988").addClass("col_eec988");
                     $('#order_edit').val('查看' + $('#order_edit').val().substr(2, 5));
                 } else if (status == '订单进行中') {
+                	console.log(step)
                     switch (step) {
                         case "1":
                             /* 在没有选择风格之前后面的状态都不能点击 */
@@ -1722,6 +1723,7 @@
                 } else if (type == '油漆') {
                     type = "paint";
                 }
+                console.log(orderId)
                 $.ajax({
                     type: "get",
                     url: MATERIALLISTURL,
@@ -1731,6 +1733,7 @@
                         order_id: orderId
                     },
                     success: function (data) {
+                    	console.log(data)
                         if (data != null && data.code == '000') {
                             var list = '<ul>';
                             switch (type) {
@@ -1798,7 +1801,7 @@
                         }
                     },
                     error: function (data) {
-
+						console.log(data)
                     }
                 });
             }]);
@@ -1862,6 +1865,7 @@
                 } else if (type == '油漆') {
                     material_type = 5;
                 }
+                console.log(material_string);
                 $.ajax({
                     type: "get",
                     url: MATERIALORDERURL,
