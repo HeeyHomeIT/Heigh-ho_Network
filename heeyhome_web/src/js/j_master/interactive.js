@@ -1873,12 +1873,15 @@
                 },
                 success: function (data) {
                     if (data && data.code == '000') {
-                        //console.log(data.data);
+                          console.log(data.data);
                         $(".head").html('<img src="' + data.data.foremanimg + '">');//获取头像
 //                      $('.head img').attr('src', '' + data.data.foremanimg + '');//获取头像
                         $('#shop_name').html(data.data.shop_name);//获取店铺名字
-                        $('#real_name').attr('src', '' + data.data.authentication[0] + '');//获取安全认证图片
-                        $('#safe_name').attr('src', '' + data.data.authentication[1] + '');//获取安全认证图片
+                        $.each(data.data.authentication,function(i,v){
+                        	$(".store_name").append('<img src="'+data.data.authentication[i]+'">')
+                        });
+//                      $('#real_name').attr('src', '' + data.data.authentication[0] + '');//获取安全认证图片
+//                      $('#safe_name').attr('src', '' + data.data.authentication[1] + '');//获取安全认证图片
                         $('#team_person').html(data.data.shop_workernum);//获取我的团队总人数
                         $('#shop_scan').html(data.data.shop_scan);//获取浏览量
                         $('#projectquality').html(data.data.shop_score.projectquality);//获取工程质量

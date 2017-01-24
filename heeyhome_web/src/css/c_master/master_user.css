@@ -262,19 +262,19 @@
     color: #4b4948;
 }
 
+.store_name img {
+    display: inline-block;
+    margin: 0px 2px;
+}
+
 .store_name .real_name, .store_name .safe_name {
     display: inline-block;
     vertical-align: top;
-
 }
 
 .store_name .real_name {
     margin-left: 13px;
     margin-right: 15px;
-}
-
-.store_name .safe_name {
-
 }
 
 .enter_storeWrap {
