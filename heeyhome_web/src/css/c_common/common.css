@@ -124,6 +124,10 @@ a:hover {
 	border-top: 8px solid #EEC988 !important
 }
 
+.cursor {
+	cursor: pointer !important;
+}
+
 label.error{
     position: absolute;
     padding: 0 8px;

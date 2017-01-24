@@ -65,6 +65,9 @@
     var ORDERSHOPURL = BASEURL + 'order/shop/list'; //订单列表（店铺）
     var HOUSESTYLEURL = BASEURL + 'order/style/addhousestyle'; //订单装修风格
     var MATERIALORDERURL = BASEURL + 'order/material/produce'; //材料订单
+    var APPOINTMENTURL = BASEURL + '/order/appointment';// 获取订单上门时间
+	var DESTORYURL = BASEURL + '/order/shop/destory';// 取消订单
+	var CONFIRMURL = BASEURL + '/order/shop/confirm';// 工长确认订单接口
 
 
     var email;//获取工长邮箱
@@ -783,6 +786,7 @@
     /* 获取我的订单列表 */
     orderList = {
         getInfoEvent: function () {
+        	console.log($.base64.decode($.cookie("userShopId")))
             $.ajax({
                 url: ORDERURL,
                 type: "GET",
@@ -872,13 +876,130 @@
 
                  /* 根据status判断进度更新进去页面的状态 */
                 if (status == '待确认' || status == '待预约') {//不可以编辑，只可以看
+                	/* 从后台得到用于预约上门时间 */
+                    $.ajax({
+                        url: APPOINTMENTURL,
+                        type: "GET",
+                        async: true,
+                        dataType: 'jsonp',
+                        data: {
+                            order_id: orderId,
+                        },
+                        success: function (data) {
+                        	console.log(data)
+                            if(data.code == 000){
+                            	$("#Ju").val(data.data.user_id)
+                            	var vrstr = '';
+                            	if(data.data.reservation_time1!= null && data.data.reservation_time1 !=""){
+                            		vrstr += '<span class="reservation_time">'+data.data.reservation_time1+'</span>';
+                            	}
+                            	if(data.data.reservation_time2!= null && data.data.reservation_time2 !=""){
+                            		vrstr += '<span class="reservation_time">'+data.data.reservation_time2+'</span>';
+                            	}
+                            	$(".whetherOrders_style").append(vrstr);
+                            	$('.reservation_time').addClass("cursor");
+                            }
+                        }
+                    });
                     $('.order_wrap input').attr("disabled", "disabled");
+                    $('#whetherOrders_sure').attr("disabled", false).addClass("bg_eec988");
+                    $('#whetherOrders_cancel').attr("disabled", false).addClass("border_eec988").addClass("col_eec988");
+                    $(document).on("click",".whetherOrders_style span",function(){
+                    	if($(this).hasClass("on")){
+                    		$(this).removeClass("border_eec988").removeClass("col_eec988").removeClass("on");
+                    	}else{
+                    		$(this).addClass("border_eec988").addClass("col_eec988").addClass("on");
+                    		$(this).siblings("span").removeClass("border_eec988").removeClass("col_eec988").removeClass("on");
+                    	}
+                    });
+                    $(document).on("click","#whetherOrders_sure",function(){
+                    	var Ju = $("#Ju").val();
+                    	var flag=false;
+                    	var confirmTime= [];
+                    	$.each($(".whetherOrders_style span"), function(i,v) {
+                    		console.log(v)
+                    		if($(v).hasClass("on")){
+                    			flag=true;
+                    			confirmTime.push($(v).index())
+                    		}
+                    	});
+                    	if(flag){
+                    		// 可以接单MONTHLYREPORTURL
+                    		console.log(confirmTime)
+                    		$.ajax({
+		                        url: CONFIRMURL,
+		                        type: "GET",
+		                        async: true,
+		                        dataType: 'jsonp',
+		                        data: {
+		                            order_id: orderId,
+		                            user_id:Ju,
+		                            confirm_time:confirmTime[0]
+		                        },
+		                        success: function (data) {
+		                        	console.log(data)
+		                            if(data.code == 000){
+		                            	layer.msg("接单成功");
+		                            	window.close();
+		                            }
+		                        }
+		                    });
+                    	}else{
+                    		layer.msg('请先选择上门时间~~');
+                    	}
+                    });
+                    // 取消订单
+                    $(document).on("click","#whetherOrders_cancel",function(){
+                    	var Ju = $("#Ju").val();
+                    	$.ajax({
+	                        url: DESTORYURL,
+	                        type: "GET",
+	                        async: true,
+	                        dataType: 'jsonp',
+	                        data: {
+	                            order_id: orderId,
+	                            user_id:Ju
+	                        },
+	                        success: function (data) {
+	                        	console.log(data)
+	                            if(data.code == 000){
+	                            	layer.msg(data.msg);
+	                            	window.close();
+	                            }
+	                        }
+	                    });
+                    });
                 } else if (status == '待上门量房') {//待上门量房可以编辑进场准备的预算单
+                	$.ajax({
+                        url: APPOINTMENTURL,
+                        type: "GET",
+                        async: true,
+                        dataType: 'jsonp',
+                        data: {
+                            order_id: orderId,
+                        },
+                        success: function (data) {
+                        	console.log(data)
+                            if(data.code == 000){
+                            	$("#Ju").val(data.data.user_id);
+                            	$(".whetherOrders_style p ").html("您的上门时间为")
+                            	if(data.data.confirm_time == 1){
+                            		var vrstr = '<span class="reservation_time">'+data.data.reservation_time1+'</span>';
+                            	}else if(data.data.confirm_time == 2){
+                            		var vrstr = '<span class="reservation_time">'+data.data.reservation_time2+'</span>';
+                            	}
+                            	
+                            	$(".whetherOrders_style").append(vrstr);
+                            	$("#whetherOrders_cancel").addClass("centerit").val("已接单");
+                            	$("#whetherOrders_sure").remove()
+                            }
+                        }
+                    });
                     $('.order_wrap input').attr("disabled", "disabled");
-                    $('#order_edit').attr("disabled", false);
+                    $('#order_edit').attr("disabled", false).addClass("border_eec988").addClass("col_eec988");
                 } else if (status == '待用户预支付') {//待用户预支付可以查看
                     $('.order_wrap input').attr("disabled", "disabled");
-                    $('#order_edit').attr("disabled", false);
+                    $('#order_edit').attr("disabled", false).addClass("border_eec988").addClass("col_eec988");
                     $('#order_edit').val('查看' + $('#order_edit').val().substr(2, 5));
                 } else if (status == '订单进行中') {
                     switch (step) {
@@ -1083,6 +1204,7 @@
                         shop_id: $.base64.decode($.cookie("userShopId"))
                     },
                     success: function (data) {
+                    	console.log(data);
                         if (data != null && data.code == '000') {
                             $.each(data.data.order_list, function (i, v) {
                                 if (v.order_id == orderId) {

@@ -130,6 +130,7 @@
 			var vrStr4 = '';
 			var vrStr7 = '';
 			var vrStr8 = '';
+			console.log(value);
 			// 测试数据 start
 			// 测试数据 end
 			switch(value.order_status_id){

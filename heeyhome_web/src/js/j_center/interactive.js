@@ -237,14 +237,14 @@
                                     $(this).find(".all .top").addClass("one");
                                 }
                             });
-                            $(document).off("click", ".ordercnt_content .all").on("click", ".ordercnt_content .all", function () {
+                            $(document).off("click", ".ordercnt_content .all .bottom").on("click", ".ordercnt_content .all .bottom", function () {
                                 var shopid = $(this).attr("data-shopid");
                                 var orderid = $(this).attr("data-orderid");
                                 var orderstep = $(this).attr("data-orderstep");
                                 sessionStorage.setItem("shopid", shopid);
                                 sessionStorage.setItem("orderid", orderid);
                                 sessionStorage.setItem("orderstep", orderstep);
-                                if ($(this).children(".bottom").html() == "取消订单") {
+                                if ($(this).html() == "取消订单") {
                                     $.ajax({
                                         type: "get",
                                         url: CANCELORDERURL,
@@ -265,7 +265,7 @@
                                         error: function (data) {
                                         }
                                     });
-                                } else if ($(this).children(".bottom").html() == "确认验货") {
+                                } else if ($(this).html() == "确认验货") {
                                     layer.alert("订单已完成");
                                 }
                             });
@@ -446,8 +446,10 @@
                 },
                 success: function (data) {
                     //data.code = 117;
+                    console.log(data)
                     if (data && data.code == '000') {
-                        var _new = data.data.order_count - 1;
+                        var _new = 0;
+                        console.log(data.data.order_list[_new])
                         var orderid = data.data.order_list[_new].order_id;
                         var shopid = data.data.order_list[_new].shop_id;
                         /* 获取店铺图片 */
@@ -1714,14 +1716,14 @@
                             $(this).find(".all .top").addClass("one");
                         }
                     });
-                    $(document).off("click", ".ordercnt_content .all").on("click", ".ordercnt_content .all", function () {
+                    $(document).off("click", ".ordercnt_content .all .bottom").on("click", ".ordercnt_content .all .bottom", function () {
                         var shopid = $(this).attr("data-shopid");
                         var orderid = $(this).attr("data-orderid");
                         var orderstep = $(this).attr("data-orderstep");
                         sessionStorage.setItem("shopid", shopid);
                         sessionStorage.setItem("orderid", orderid);
                         sessionStorage.setItem("orderstep", orderstep);
-                        if ($(this).children(".bottom").html() == "取消订单") {
+                        if ($(this).html() == "取消订单") {
                             $.ajax({
                                 type: "get",
                                 url: CANCELORDERURL,
@@ -1742,7 +1744,7 @@
                                 error: function (data) {
                                 }
                             });
-                        } else if ($(this).children(".bottom").html() == "确认验货") {
+                        } else if ($(this).html() == "确认验货") {
                             layer.alert("订单已完成");
                         }
                     });
