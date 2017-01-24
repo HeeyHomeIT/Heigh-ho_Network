@@ -27,7 +27,7 @@ define(['app'], function(app) {
 				$("#JpayStep").html(payStep);
 				$("#JpayTime").html(payTime);
 				/* 查看订单 */
-				$("#Jview").attr("href","/advancelist?pos="+orderId)
+				$("#Jview").attr("href","reservation.html#/advancelist?pos="+orderId)
 			}					
 		};
 		
