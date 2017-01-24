@@ -350,15 +350,15 @@
                 initInfo.info();
             }]);
         },
-        /*
-         * 支付成功
-         */
-        initSuccessPayEvent: function () {
-            HHIT_CENTERAPP.controller('pay_endCtrl', ['$scope', '$http', function ($scope, $http) {
-                $("#headerWrapper").remove();
-                $("#menuNavOuter").remove();
-            }]);
-        }
+//      /*
+//       * 支付成功
+//       */
+//      initSuccessPayEvent: function () {
+//          HHIT_CENTERAPP.controller('pay_endCtrl', ['$scope', '$http', function ($scope, $http) {
+//              $("#headerWrapper").remove();
+//              $("#menuNavOuter").remove();
+//          }]);
+//      }
 
     };
 

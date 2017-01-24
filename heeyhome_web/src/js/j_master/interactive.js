@@ -1001,6 +1001,31 @@
                     $('.order_wrap input').attr("disabled", "disabled");
                     $('#order_edit').attr("disabled", false).addClass("border_eec988").addClass("col_eec988");
                 } else if (status == '待用户预支付') {//待用户预支付可以查看
+                	$.ajax({
+                        url: APPOINTMENTURL,
+                        type: "GET",
+                        async: true,
+                        dataType: 'jsonp',
+                        data: {
+                            order_id: orderId,
+                        },
+                        success: function (data) {
+                        	console.log(data)
+                            if(data.code == 000){
+                            	$("#Ju").val(data.data.user_id);
+                            	$(".whetherOrders_style p ").html("您的上门时间为")
+                            	if(data.data.confirm_time == 1){
+                            		var vrstr = '<span class="reservation_time">'+data.data.reservation_time1+'</span>';
+                            	}else if(data.data.confirm_time == 2){
+                            		var vrstr = '<span class="reservation_time">'+data.data.reservation_time2+'</span>';
+                            	}
+                            	
+                            	$(".whetherOrders_style").append(vrstr);
+                            	$("#whetherOrders_cancel").addClass("centerit").val("已接单");
+                            	$("#whetherOrders_sure").remove()
+                            }
+                        }
+                    });
                     $('.order_wrap input').attr("disabled", "disabled");
                     $('#order_edit').attr("disabled", false).addClass("border_eec988").addClass("col_eec988");
                     $('#order_edit').val('查看' + $('#order_edit').val().substr(2, 5));
@@ -1502,17 +1527,20 @@
                                 order_id: orderId
                             },
                             success: function (data) {
+                            	console.log(data)
                                 if (data && data.code == '000') {
                                     console.log(data.data);
                                     $('#before_remark').val(data.data['预算单数据'][0].remark);
                                     $('#after_remark').val(data.data['结算单数据'][0].remark);
                                     var $list = data.data['预算单数据'][0];
+                                    $('.sheet_left input[bid="64"]').val(data.data['预算单数据'][0].foreman_price);
                                     $.each($list, function (i, v) {
                                         if (i.indexOf('service') >= 0) {
                                             $('.sheet_left input[bid="' + i.substring(7) + '"]').val(v);
                                         }
                                     });
                                     var $bill = data.data['结算单数据'][0];
+                                    $('.sheet_right input[bid="64"]').val(data.data['结算单数据'][0].foreman_price);
                                     $.each($bill, function (i, v) {
                                         if (i.indexOf('service') >= 0) {
                                             $('.sheet_right input[bid="' + i.substring(7) + '"]').val(v);
@@ -1571,6 +1599,7 @@
                     $.each($number, function (i, v) {
                         budObj[parseInt($(v).attr('bid') - 1)] = $(v).val();
                     });
+                    console.log(budObj)
                     /* 生成预算单结算单 */
                     $.ajax({
                         url: GENERATEURL,
@@ -1581,7 +1610,8 @@
                             order_id: orderId
                         },
                         success: function (data) {
-                            //console.log(data.msg);
+                              console.log($('#before_remark').val());
+                              console.log(JSON.stringify(budObj))
                             /* 添加预算单数据 */
                             $.ajax({
                                 url: ADDDATEURL,
@@ -1594,8 +1624,9 @@
                                     remark: $('#before_remark').val()
                                 },
                                 success: function (data) {
+                                	console.log(data)
                                     if (data && data.code == '000') {
-                                        window.location.href = 'order.html#/order/home';
+//                                      window.location.href = 'order.html#/order/home';
                                         //sessionStorage.setItem("status", '订单进行中');
                                         // if (step == '18') {
                                         //     sessionStorage.setItem("step", 1);//假设赋值
@@ -1605,6 +1636,7 @@
                                     }
                                 },
                                 error: function (data) {
+                                	console.log(data)
                                 }
                             });
                         },

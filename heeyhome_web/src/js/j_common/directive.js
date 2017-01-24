@@ -1,4 +1,4 @@
-define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j_index/indexCal','easemob', 'js/j_index/commonNav','js/j_index/404'], function(app, bootstrap) {
+define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j_index/indexCal','easemob', 'js/j_index/commonNav','js/j_index/404','js/j_pay/success_pay'], function(app, bootstrap) {
 	/**
 	 * 头部
 	 */
@@ -128,6 +128,18 @@ define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j
 			templateUrl: "view/v_404/404_detail.html",
 			link: function(scope, iElement, iAttrs) {
 				app.errorWrapHandler();
+			}
+		};
+	});
+	
+	/**
+	 * 支付成功
+	 */
+	app.directive('spayContent', function() {
+		return {
+			templateUrl: "view/v_pay/v_success_pay_end.html",
+			link: function(scope, iElement, iAttrs) {
+				app.successPayWrapHandler();
 			}
 		};
 	});

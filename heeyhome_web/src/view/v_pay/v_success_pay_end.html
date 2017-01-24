@@ -1,10 +1,16 @@
+<!-- 当前位置start -->
+<div id="selfcenter_top">
+    <div class="now_location">
+		您所在位置：
+		<a href="index.html" title="嘿吼首页"><em></em></a>
+		<span>&gt;</span>
+		<span class="Jcenter" >支付成功</span>
+	</div>
+</div>
+<!-- 当前位置end -->
+	
 <!-- 支付成功start -->
 <div class="pay_success">
-	<div class="icon">
-		<a href="http://www.heeyhome.com" target="_blank">
-			<img src="image/logo.png">
-		</a>
-	</div>
 	<!-- 具体内容start -->
 	<div class="spay_content">
 		<div class="spay_title clearfix">
@@ -14,27 +20,28 @@
 			<div class="spay_tips">
 				<p>支付成功!</p>
 			</div>
-			<div class="spay_money">
-				<p>支付金额 ￥<span>5000.00</span>元</p>
-			</div>
 		</div>
 		<div class="spay_bottom">
 			<ul>
 				<li>
+					<span class="spay_left">支付金额</span>
+					<span class="spay_right">￥<span id="Jpay"></span>元</span>
+				</li>
+				<li>
 					<span class="spay_left">订单编号</span>
-					<span class="spay_right">15472324546456451</span>
+					<span id="JorderId" class="spay_right"></span>
 				</li>
 				<li>
 					<span class="spay_left">交易类型</span>
-					<span class="spay_right">水电工阶段</span>
+					<span id="JpayStep" class="spay_right"></span>
 				</li>
 				<li>
 					<span class="spay_left">交易时间</span>
-					<span class="spay_right">2016-10-15</span>
+					<span id="JpayTime" class="spay_right"></span>
 				</li>
 			</ul>
 			<div class="spay_button">
-				<a href="center.html#/center/morder" class="view">查看订单</a>
+				<a id="Jview" class="view" href="" >查看订单</a>
 				<a href="index.html" class="back">返回首页</a>
 			</div>
 		</div>

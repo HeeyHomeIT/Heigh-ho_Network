@@ -1271,30 +1271,30 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                             return $ocLazyLoad.load('js/j_master/interactive.js')
                         }]
                     }
-                })
-                .state("success_pay", { // 支付成功
-                    url: "/success_pay",
-                    views: {
-                        'success_pay': {
-                            templateUrl: 'view/v_pay/v_success_pay_wrap.html'
-                        }
-                    },
-                    resolve: {
-                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load('js/j_center/interactive.js')
-                        }]
-                    }
-                })
-                .state("success_pay.pay_end", { // 支付成功-内容
-                    url: "/pay_end",
-                    views: {
-                        'pay_end': {
-                            templateUrl: 'view/v_pay/v_success_pay_end.html',
-                            controller: "pay_endCtrl",
-                            controllerAs: "pay_end"
-                        }
-                    }
                 });
+//              .state("success_pay", { // 支付成功
+//                  url: "/success_pay",
+//                  views: {
+//                      'success_pay': {
+//                          templateUrl: 'view/v_pay/v_success_pay_wrap.html'
+//                      }
+//                  },
+//                  resolve: {
+//                      deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+//                          return $ocLazyLoad.load('js/j_center/interactive.js')
+//                      }]
+//                  }
+//              })
+//              .state("success_pay.pay_end", { // 支付成功-内容
+//                  url: "/pay_end",
+//                  views: {
+//                      'pay_end': {
+//                          templateUrl: 'view/v_pay/v_success_pay_end.html',
+//                          controller: "pay_endCtrl",
+//                          controllerAs: "pay_end"
+//                      }
+//                  }
+//              });
 
             $urlRouterProvider.when('', '/')
                 .when('/center', '/center/mhome')
