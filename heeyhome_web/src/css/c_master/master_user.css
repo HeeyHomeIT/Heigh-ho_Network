@@ -3145,8 +3145,9 @@
     height: 3px;
     background-color: #D4D4D4;
     position: absolute;
-    left: 80px;
     top: 150px;
+    left: 50%;
+    margin-left: -40px;
 }
 
 .worker_add:after {
@@ -3156,8 +3157,9 @@
     height: 80px;
     background-color: #D4D4D4;
     position: absolute;
-    left: 118px;
-    top: 110px;
+    top: 112px;
+    left: 50%;
+    margin-left: -1.5px;
 }
 
 /* 我的团队工人列表 */

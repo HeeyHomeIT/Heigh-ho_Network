@@ -443,7 +443,10 @@
                             });
                             pageHandler.pageContentEvent(box_total, cate_id); //分页
                         } else {
-                            layer.msg(data.msg)
+//                          layer.msg(data.msg)
+							var worker = '<div class="team_detail_content clearfix">';
+							worker += '<div class="worker_box sprite_team worker_add" data-action="add"><a href="#/master/teamDetail_edit"></a></div></div>';
+						 	$(".team_detail_wrap .page_number").before(worker);
                         }
                     },
                     error: function (data) {
