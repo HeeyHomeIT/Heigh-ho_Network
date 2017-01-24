@@ -2718,6 +2718,7 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
+                    	console.log(data)
                         sessionStorage.setItem("eleworker_num", data.data.eleworker.length);
                         sessionStorage.setItem("woodworker_num", data.data.woodworker.length);
                         sessionStorage.setItem("brickworker_num", data.data.brickworker.length);
@@ -2732,12 +2733,25 @@
                             var cateid = $(this).children("a").attr("data-id");
                             sessionStorage.setItem("cateid", cateid);
                         });
-
-                        wrap.eq(0).css('background', 'url(' + data.data.eleworker[0].portrait_img + ')');
-                        wrap.eq(1).css('background', 'url(' + data.data.woodworker[0].portrait_img + ')');
-                        wrap.eq(2).css('background', 'url(' + data.data.brickworker[0].portrait_img + ')');
-                        wrap.eq(3).css('background', 'url(' + data.data.paintworker[0].portrait_img + ')');
-                        wrap.eq(4).css('background', 'url(' + data.data.mixworker[0].portrait_img + ')');
+						if(data.data.eleworker.length !=0){
+							wrap.eq(0).css('background', 'url(' + data.data.eleworker[0].portrait_img + ')');
+						}
+						if(data.data.woodworker.length !=0){
+							wrap.eq(1).css('background', 'url(' + data.data.woodworker[0].portrait_img + ')');
+						}
+						if(data.data.brickworker.length !=0){
+							wrap.eq(2).css('background', 'url(' + data.data.brickworker[0].portrait_img + ')');
+						}
+						if(data.data.paintworker.length !=0){
+							wrap.eq(3).css('background', 'url(' + data.data.paintworker[0].portrait_img + ')');
+						}
+						if(data.data.mixworker.length !=0){
+							wrap.eq(4).css('background', 'url(' + data.data.mixworker[0].portrait_img + ')');
+						}
+                        
+                        
+                       
+                        
                     }
                 },
                 error: function (data) {
