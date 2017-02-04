@@ -4115,6 +4115,7 @@
                                         }
                                     }).error(function (data, status) {
                                     });
+                                    $('.add_picture input').val('');//清空file选择的文件
                                 } else {
                                     layer.msg(result.msg);
                                 }
