@@ -66,8 +66,8 @@
     var HOUSESTYLEURL = BASEURL + 'order/style/addhousestyle'; //订单装修风格
     var MATERIALORDERURL = BASEURL + 'order/material/produce'; //材料订单
     var APPOINTMENTURL = BASEURL + '/order/appointment';// 获取订单上门时间
-	var DESTORYURL = BASEURL + '/order/shop/destory';// 取消订单
-	var CONFIRMURL = BASEURL + '/order/shop/confirm';// 工长确认订单接口
+    var DESTORYURL = BASEURL + '/order/shop/destory';// 取消订单
+    var CONFIRMURL = BASEURL + '/order/shop/confirm';// 工长确认订单接口
 
 
     var email;//获取工长邮箱
@@ -202,6 +202,8 @@
                 getHomeInfoHandler.getInfoEvent();//获取工长店铺
                 getHomeInfoHandler.getSafeEvent();//获取工长的安全等级
                 getHomeInfoHandler.getEmailEvent();//获取工长的邮箱信息
+                getHomeInfoHandler.getImgEvent();//获取工长的头像
+                getUserAvatarHandler.getInfoEvent();//上传工长头像
             }]);
         },
         /*
@@ -214,18 +216,18 @@
                 // 加载城市插件
                 $('[data-toggle="distpicker"]').distpicker();
                 /* details */
-                var $dtDiv = $("#works_content_title div");
-                var iSpeed = 0;
-                var left = 0;
-                var oBg = document.getElementById("title_active");
-                for (var i = 0; i < $dtDiv.length - 1; i++) {
-                    $dtDiv[i].onclick = function () {
-                        startMoveHandler.startMoveEvent(oBg, this.offsetLeft, iSpeed, left);
-                        $(".personal_content").hide();
-                        $(".update_head").hide();
-                        $(".works_content >div:eq(" + ($(this).index() + 1) + ")").show().removeClass('hide');
-                    }
-                }
+                // var $dtDiv = $("#works_content_title div");
+                // var iSpeed = 0;
+                // var left = 0;
+                // var oBg = document.getElementById("title_active");
+                // for (var i = 0; i < $dtDiv.length - 1; i++) {
+                //     $dtDiv[i].onclick = function () {
+                //         startMoveHandler.startMoveEvent(oBg, this.offsetLeft, iSpeed, left);
+                //         $(".personal_content").hide();
+                //         $(".update_head").hide();
+                //         $(".works_content >div:eq(" + ($(this).index() + 1) + ")").show().removeClass('hide');
+                //     }
+                // }
                 getMasterInfoHandler.getInfoEvent();//获取工长信息
                 uploadPictureHandler.uploadAvatar();//上传图片
             }]);
@@ -444,9 +446,9 @@
                             pageHandler.pageContentEvent(box_total, cate_id); //分页
                         } else {
 //                          layer.msg(data.msg)
-							var worker = '<div class="team_detail_content clearfix">';
-							worker += '<div class="worker_box sprite_team worker_add" data-action="add"><a href="#/master/teamDetail_edit"></a></div></div>';
-						 	$(".team_detail_wrap .page_number").before(worker);
+                            var worker = '<div class="team_detail_content clearfix">';
+                            worker += '<div class="worker_box sprite_team worker_add" data-action="add"><a href="#/master/teamDetail_edit"></a></div></div>';
+                            $(".team_detail_wrap .page_number").before(worker);
                         }
                     },
                     error: function (data) {
@@ -507,22 +509,22 @@
         /*
          * 编辑我的员工资料
          */
-        initTeamEditEvent: function() {
-            HHIT_CENTERAPP.controller('teamDetail_editCtrl', ['$scope', '$http', function($scope, $http) {
+        initTeamEditEvent: function () {
+            HHIT_CENTERAPP.controller('teamDetail_editCtrl', ['$scope', '$http', function ($scope, $http) {
                 $('.left_ul li').eq(5).addClass('left_active').siblings().removeClass('left_active');
                 /* details */
                 //显示价格明细
                 loadDetail.showInformation();
                 var perform = sessionStorage.getItem("action"); //当前是编辑还是新增
-                if(perform == "edit") {
+                if (perform == "edit") {
                     getInformation.workDetail();
                 } else {
-                    $('.staff_picture .add_picture').find('input').change(function() {
+                    $('.staff_picture .add_picture').find('input').change(function () {
                         var inputImg = $(this);
                         inputImg.parent().parent().attr("data-flag", "0");
                         var file = inputImg.get(0).files[0];
                         var reader = new FileReader();
-                        if(!/image\/\w+/.test(file.type)) {
+                        if (!/image\/\w+/.test(file.type)) {
                             inputImg.parent().parent().css('background', '');
                             inputImg.parent().parent().removeClass('clear');
                             layer.alert("请确保文件为图像类型");
@@ -531,7 +533,7 @@
                         }
                         // onload是异步操作
                         else {
-                            reader.onload = function(e) {
+                            reader.onload = function (e) {
                                 inputImg.parent().parent().attr("data-flag", "1");
                                 inputImg.parent().parent().addClass('clear'); //图片预览时input file 添加opacity样式，设置完全透明
                                 inputImg.parent().siblings(".close").show();
@@ -540,7 +542,7 @@
                                     'backgroundSize': '100% 100%'
                                 }); //图片设置为$('.showImg')背景图
                                 /* 点击叉叉图片取消事件 */
-                                $('.close').on("click", function() {
+                                $('.close').on("click", function () {
                                     $(this).parent().removeClass('clear');
                                     $(this).parent().css('background', '');
                                     $(this).hide();
@@ -549,7 +551,7 @@
                         }
                         reader.readAsDataURL(file);
                     });
-                    $(".staff_confirm").on("click", function() {
+                    $(".staff_confirm").on("click", function () {
                         workerAction.addWorker(); //增加工人
                     });
                 }
@@ -643,7 +645,7 @@
                                     address = v.order_address;
                                     type = v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台";
                                     area = v.area;
-                                    src =  v.user_portrait;
+                                    src = v.user_portrait;
                                 }
                             });
                             $(".owner_content .owner_picture img").attr("src", src);
@@ -789,7 +791,7 @@
     /* 获取我的订单列表 */
     orderList = {
         getInfoEvent: function () {
-        	console.log($.base64.decode($.cookie("userShopId")))
+            console.log($.base64.decode($.cookie("userShopId")))
             $.ajax({
                 url: ORDERURL,
                 type: "GET",
@@ -877,152 +879,152 @@
                 var statementStatus = sessionStorage.getItem("statementStatus");
                 var houseStyle = sessionStorage.getItem("houseStyle");
 
-                 /* 根据status判断进度更新进去页面的状态 */
+                /* 根据status判断进度更新进去页面的状态 */
                 if (status == '待确认' || status == '待预约') {//不可以编辑，只可以看
-                	/* 从后台得到用于预约上门时间 */
+                    /* 从后台得到用于预约上门时间 */
                     $.ajax({
                         url: APPOINTMENTURL,
                         type: "GET",
                         async: true,
                         dataType: 'jsonp',
                         data: {
-                            order_id: orderId,
+                            order_id: orderId
                         },
                         success: function (data) {
-                        	console.log(data)
-                            if(data.code == 000){
-                            	$("#Ju").val(data.data.user_id)
-                            	var vrstr = '';
-                            	if(data.data.reservation_time1!= null && data.data.reservation_time1 !=""){
-                            		vrstr += '<span class="reservation_time">'+data.data.reservation_time1+'</span>';
-                            	}
-                            	if(data.data.reservation_time2!= null && data.data.reservation_time2 !=""){
-                            		vrstr += '<span class="reservation_time">'+data.data.reservation_time2+'</span>';
-                            	}
-                            	$(".whetherOrders_style").append(vrstr);
-                            	$('.reservation_time').addClass("cursor");
+                            console.log(data);
+                            if (data.code == "000") {
+                                $("#Ju").val(data.data.user_id);
+                                var vrstr = '';
+                                if (data.data.reservation_time1 != null && data.data.reservation_time1 != "") {
+                                    vrstr += '<span class="reservation_time">' + data.data.reservation_time1 + '</span>';
+                                }
+                                if (data.data.reservation_time2 != null && data.data.reservation_time2 != "") {
+                                    vrstr += '<span class="reservation_time">' + data.data.reservation_time2 + '</span>';
+                                }
+                                $(".whetherOrders_style").append(vrstr);
+                                $('.reservation_time').addClass("cursor");
                             }
                         }
                     });
                     $('.order_wrap input').attr("disabled", "disabled");
                     $('#whetherOrders_sure').attr("disabled", false).addClass("bg_eec988");
                     $('#whetherOrders_cancel').attr("disabled", false).addClass("border_eec988").addClass("col_eec988");
-                    $(document).on("click",".whetherOrders_style span",function(){
-                    	if($(this).hasClass("on")){
-                    		$(this).removeClass("border_eec988").removeClass("col_eec988").removeClass("on");
-                    	}else{
-                    		$(this).addClass("border_eec988").addClass("col_eec988").addClass("on");
-                    		$(this).siblings("span").removeClass("border_eec988").removeClass("col_eec988").removeClass("on");
-                    	}
+                    $(document).on("click", ".whetherOrders_style span", function () {
+                        if ($(this).hasClass("on")) {
+                            $(this).removeClass("border_eec988").removeClass("col_eec988").removeClass("on");
+                        } else {
+                            $(this).addClass("border_eec988").addClass("col_eec988").addClass("on");
+                            $(this).siblings("span").removeClass("border_eec988").removeClass("col_eec988").removeClass("on");
+                        }
                     });
-                    $(document).on("click","#whetherOrders_sure",function(){
-                    	var Ju = $("#Ju").val();
-                    	var flag=false;
-                    	var confirmTime= [];
-                    	$.each($(".whetherOrders_style span"), function(i,v) {
-                    		console.log(v)
-                    		if($(v).hasClass("on")){
-                    			flag=true;
-                    			confirmTime.push($(v).index())
-                    		}
-                    	});
-                    	if(flag){
-                    		// 可以接单MONTHLYREPORTURL
-                    		console.log(confirmTime)
-                    		$.ajax({
-		                        url: CONFIRMURL,
-		                        type: "GET",
-		                        async: true,
-		                        dataType: 'jsonp',
-		                        data: {
-		                            order_id: orderId,
-		                            user_id:Ju,
-		                            confirm_time:confirmTime[0]
-		                        },
-		                        success: function (data) {
-		                        	console.log(data)
-		                            if(data.code == 000){
-		                            	layer.msg("接单成功");
-		                            	window.close();
-		                            }
-		                        }
-		                    });
-                    	}else{
-                    		layer.msg('请先选择上门时间~~');
-                    	}
+                    $(document).on("click", "#whetherOrders_sure", function () {
+                        var Ju = $("#Ju").val();
+                        var flag = false;
+                        var confirmTime = [];
+                        $.each($(".whetherOrders_style span"), function (i, v) {
+                            console.log(v);
+                            if ($(v).hasClass("on")) {
+                                flag = true;
+                                confirmTime.push($(v).index())
+                            }
+                        });
+                        if (flag) {
+                            // 可以接单MONTHLYREPORTURL
+                            console.log(confirmTime);
+                            $.ajax({
+                                url: CONFIRMURL,
+                                type: "GET",
+                                async: true,
+                                dataType: 'jsonp',
+                                data: {
+                                    order_id: orderId,
+                                    user_id: Ju,
+                                    confirm_time: confirmTime[0]
+                                },
+                                success: function (data) {
+                                    console.log(data);
+                                    if (data.code == "000") {
+                                        layer.msg("接单成功");
+                                        window.close();
+                                    }
+                                }
+                            });
+                        } else {
+                            layer.msg('请先选择上门时间~~');
+                        }
                     });
                     // 取消订单
-                    $(document).on("click","#whetherOrders_cancel",function(){
-                    	var Ju = $("#Ju").val();
-                    	$.ajax({
-	                        url: DESTORYURL,
-	                        type: "GET",
-	                        async: true,
-	                        dataType: 'jsonp',
-	                        data: {
-	                            order_id: orderId,
-	                            user_id:Ju
-	                        },
-	                        success: function (data) {
-	                        	console.log(data)
-	                            if(data.code == 000){
-	                            	layer.msg(data.msg);
-	                            	window.close();
-	                            }
-	                        }
-	                    });
+                    $(document).on("click", "#whetherOrders_cancel", function () {
+                        var Ju = $("#Ju").val();
+                        $.ajax({
+                            url: DESTORYURL,
+                            type: "GET",
+                            async: true,
+                            dataType: 'jsonp',
+                            data: {
+                                order_id: orderId,
+                                user_id: Ju
+                            },
+                            success: function (data) {
+                                console.log(data);
+                                if (data.code == "000") {
+                                    layer.msg(data.msg);
+                                    window.close();
+                                }
+                            }
+                        });
                     });
                 } else if (status == '待上门量房') {//待上门量房可以编辑进场准备的预算单
-                	$.ajax({
+                    $.ajax({
                         url: APPOINTMENTURL,
                         type: "GET",
                         async: true,
                         dataType: 'jsonp',
                         data: {
-                            order_id: orderId,
+                            order_id: orderId
                         },
                         success: function (data) {
-                        	console.log(data)
-                            if(data.code == 000){
-                            	$("#Ju").val(data.data.user_id);
-                            	$(".whetherOrders_style p ").html("您的上门时间为")
-                            	if(data.data.confirm_time == 1){
-                            		var vrstr = '<span class="reservation_time">'+data.data.reservation_time1+'</span>';
-                            	}else if(data.data.confirm_time == 2){
-                            		var vrstr = '<span class="reservation_time">'+data.data.reservation_time2+'</span>';
-                            	}
-                            	
-                            	$(".whetherOrders_style").append(vrstr);
-                            	$("#whetherOrders_cancel").addClass("centerit").val("已接单");
-                            	$("#whetherOrders_sure").remove()
+                            console.log(data);
+                            if (data.code == "000") {
+                                $("#Ju").val(data.data.user_id);
+                                $(".whetherOrders_style p ").html("您的上门时间为");
+                                if (data.data.confirm_time == 1) {
+                                    var vrstr = '<span class="reservation_time">' + data.data.reservation_time1 + '</span>';
+                                } else if (data.data.confirm_time == 2) {
+                                    var vrstr = '<span class="reservation_time">' + data.data.reservation_time2 + '</span>';
+                                }
+
+                                $(".whetherOrders_style").append(vrstr);
+                                $("#whetherOrders_cancel").addClass("centerit").val("已接单");
+                                $("#whetherOrders_sure").remove();
                             }
                         }
                     });
                     $('.order_wrap input').attr("disabled", "disabled");
                     $('#order_edit').attr("disabled", false).addClass("border_eec988").addClass("col_eec988");
                 } else if (status == '待用户预支付') {//待用户预支付可以查看
-                	$.ajax({
+                    $.ajax({
                         url: APPOINTMENTURL,
                         type: "GET",
                         async: true,
                         dataType: 'jsonp',
                         data: {
-                            order_id: orderId,
+                            order_id: orderId
                         },
                         success: function (data) {
-                        	console.log(data)
-                            if(data.code == 000){
-                            	$("#Ju").val(data.data.user_id);
-                            	$(".whetherOrders_style p ").html("您的上门时间为")
-                            	if(data.data.confirm_time == 1){
-                            		var vrstr = '<span class="reservation_time">'+data.data.reservation_time1+'</span>';
-                            	}else if(data.data.confirm_time == 2){
-                            		var vrstr = '<span class="reservation_time">'+data.data.reservation_time2+'</span>';
-                            	}
-                            	
-                            	$(".whetherOrders_style").append(vrstr);
-                            	$("#whetherOrders_cancel").addClass("centerit").val("已接单");
-                            	$("#whetherOrders_sure").remove()
+                            console.log(data);
+                            if (data.code == "000") {
+                                $("#Ju").val(data.data.user_id);
+                                $(".whetherOrders_style p ").html("您的上门时间为");
+                                if (data.data.confirm_time == 1) {
+                                    var vrstr = '<span class="reservation_time">' + data.data.reservation_time1 + '</span>';
+                                } else if (data.data.confirm_time == 2) {
+                                    var vrstr = '<span class="reservation_time">' + data.data.reservation_time2 + '</span>';
+                                }
+
+                                $(".whetherOrders_style").append(vrstr);
+                                $("#whetherOrders_cancel").addClass("centerit").val("已接单");
+                                $("#whetherOrders_sure").remove()
                             }
                         }
                     });
@@ -1030,7 +1032,7 @@
                     $('#order_edit').attr("disabled", false).addClass("border_eec988").addClass("col_eec988");
                     $('#order_edit').val('查看' + $('#order_edit').val().substr(2, 5));
                 } else if (status == '订单进行中') {
-                	console.log(step)
+                    console.log(step);
                     switch (step) {
                         case "1":
                             /* 在没有选择风格之前后面的状态都不能点击 */
@@ -1233,7 +1235,7 @@
                         shop_id: $.base64.decode($.cookie("userShopId"))
                     },
                     success: function (data) {
-                    	console.log(data);
+                        console.log(data);
                         if (data != null && data.code == '000') {
                             $.each(data.data.order_list, function (i, v) {
                                 if (v.order_id == orderId) {
@@ -1528,7 +1530,7 @@
                                 order_id: orderId
                             },
                             success: function (data) {
-                            	console.log(data)
+                                console.log(data)
                                 if (data && data.code == '000') {
                                     console.log(data.data);
                                     $('#before_remark').val(data.data['预算单数据'][0].remark);
@@ -1611,8 +1613,8 @@
                             order_id: orderId
                         },
                         success: function (data) {
-                              console.log($('#before_remark').val());
-                              console.log(JSON.stringify(budObj))
+                            console.log($('#before_remark').val());
+                            console.log(JSON.stringify(budObj))
                             /* 添加预算单数据 */
                             $.ajax({
                                 url: ADDDATEURL,
@@ -1625,7 +1627,7 @@
                                     remark: $('#before_remark').val()
                                 },
                                 success: function (data) {
-                                	console.log(data)
+                                    console.log(data)
                                     if (data && data.code == '000') {
 //                                      window.location.href = 'order.html#/order/home';
                                         //sessionStorage.setItem("status", '订单进行中');
@@ -1637,7 +1639,7 @@
                                     }
                                 },
                                 error: function (data) {
-                                	console.log(data)
+                                    console.log(data)
                                 }
                             });
                         },
@@ -1723,7 +1725,7 @@
                 } else if (type == '油漆') {
                     type = "paint";
                 }
-                console.log(orderId)
+                console.log(orderId);
                 $.ajax({
                     type: "get",
                     url: MATERIALLISTURL,
@@ -1733,7 +1735,7 @@
                         order_id: orderId
                     },
                     success: function (data) {
-                    	console.log(data)
+                        console.log(data);
                         if (data != null && data.code == '000') {
                             var list = '<ul>';
                             switch (type) {
@@ -1801,7 +1803,7 @@
                         }
                     },
                     error: function (data) {
-						console.log(data)
+                        console.log(data)
                     }
                 });
             }]);
@@ -1912,15 +1914,11 @@
                 },
                 success: function (data) {
                     if (data && data.code == '000') {
-                          console.log(data.data);
-                        $(".head").html('<img src="' + data.data.foremanimg + '">');//获取头像
-//                      $('.head img').attr('src', '' + data.data.foremanimg + '');//获取头像
+                        console.log(data.data);
                         $('#shop_name').html(data.data.shop_name);//获取店铺名字
-                        $.each(data.data.authentication,function(i,v){
-                        	$(".store_name").append('<img src="'+data.data.authentication[i]+'">')
+                        $.each(data.data.authentication, function (i, v) {
+                            $(".store_name").append('<img src="' + data.data.authentication[i] + '">')
                         });
-//                      $('#real_name').attr('src', '' + data.data.authentication[0] + '');//获取安全认证图片
-//                      $('#safe_name').attr('src', '' + data.data.authentication[1] + '');//获取安全认证图片
                         $('#team_person').html(data.data.shop_workernum);//获取我的团队总人数
                         $('#shop_scan').html(data.data.shop_scan);//获取浏览量
                         $('#projectquality').html(data.data.shop_score.projectquality);//获取工程质量
@@ -2018,7 +2016,68 @@
                 error: function (data) {
                 }
             });
+        },
+        /* 获取用户头像信息 */
+        getImgEvent: function () {
+            $.ajax({
+                url: USERIMGURL,
+                type: "GET",
+                async: true,
+                dataType: 'jsonp',
+                data: {
+                    user_id: USERID
+                },
+                success: function (data) {
+                    if (data && data.code == '000') {
+                        //console.log(data.data);
+                        $(".head").html('<img src="' + data.data.user_img + '"><a class="edit_avatar" href="javascript:;">修改头像<input type="file" name="" id="avatar_file"></a> ');//获取头像
+                    }
+                },
+                error: function (data) {
+                }
+            });
         }
+    };
+
+    /* 上传工长头像 */
+    getUserAvatarHandler = {
+        getInfoEvent: function () {
+            $(document).off('change', '#avatar_file').on('change', '#avatar_file', function () {
+                var inputImg = $(this);
+                var file = inputImg.get(0).files[0];
+                if (!/image\/\w+/.test(file.type)) {
+                    layer.msg("请确保文件为图像类型");
+                    inputImg.val('');//清空file选择的文件
+                    return false;
+                } else {
+                    var data = new FormData();
+                    data.append("user_id", USERID);
+                    data.append("myfile", $("#avatar_file")[0].files[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: USERIMGEDITURL,
+                        data: data,
+                        dataType: "jsonp",
+                        jsonp: 'callback',
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function (result) {
+                            if (result.code == '000') {
+                                layer.msg(result.msg);
+                                getHomeInfoHandler.getImgEvent();
+                            } else {
+                                layer.alert(result.msg);
+                            }
+                        },
+                        error: function (e, a, v) {
+                            layer.alert("未知错误");
+                        }
+                    });
+                }
+            })
+        }
+
     };
 
     /* 工长信息 */
@@ -2757,7 +2816,7 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
-                    	console.log(data)
+                        console.log(data)
                         sessionStorage.setItem("eleworker_num", data.data.eleworker.length);
                         sessionStorage.setItem("woodworker_num", data.data.woodworker.length);
                         sessionStorage.setItem("brickworker_num", data.data.brickworker.length);
@@ -2772,25 +2831,23 @@
                             var cateid = $(this).children("a").attr("data-id");
                             sessionStorage.setItem("cateid", cateid);
                         });
-						if(data.data.eleworker.length !=0){
-							wrap.eq(0).css('background', 'url(' + data.data.eleworker[0].portrait_img + ')');
-						}
-						if(data.data.woodworker.length !=0){
-							wrap.eq(1).css('background', 'url(' + data.data.woodworker[0].portrait_img + ')');
-						}
-						if(data.data.brickworker.length !=0){
-							wrap.eq(2).css('background', 'url(' + data.data.brickworker[0].portrait_img + ')');
-						}
-						if(data.data.paintworker.length !=0){
-							wrap.eq(3).css('background', 'url(' + data.data.paintworker[0].portrait_img + ')');
-						}
-						if(data.data.mixworker.length !=0){
-							wrap.eq(4).css('background', 'url(' + data.data.mixworker[0].portrait_img + ')');
-						}
-                        
-                        
-                       
-                        
+                        if (data.data.eleworker.length != 0) {
+                            wrap.eq(0).css('background', 'url(' + data.data.eleworker[0].portrait_img + ')');
+                        }
+                        if (data.data.woodworker.length != 0) {
+                            wrap.eq(1).css('background', 'url(' + data.data.woodworker[0].portrait_img + ')');
+                        }
+                        if (data.data.brickworker.length != 0) {
+                            wrap.eq(2).css('background', 'url(' + data.data.brickworker[0].portrait_img + ')');
+                        }
+                        if (data.data.paintworker.length != 0) {
+                            wrap.eq(3).css('background', 'url(' + data.data.paintworker[0].portrait_img + ')');
+                        }
+                        if (data.data.mixworker.length != 0) {
+                            wrap.eq(4).css('background', 'url(' + data.data.mixworker[0].portrait_img + ')');
+                        }
+
+
                     }
                 },
                 error: function (data) {
@@ -2801,7 +2858,7 @@
 
     /* 新增和编辑工人 */
     workerAction = {
-        editWorker: function() { //调用编辑工人接口
+        editWorker: function () { //调用编辑工人接口
             var service = [];
             var cate_id = sessionStorage.getItem("cateid"); //工种id     1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工
             var worker_id = sessionStorage.getItem("userid"); //工人id
@@ -2815,42 +2872,42 @@
             var $bankcard = $(".staff_phone .bankcard").val(); //银行卡
             var $phone = $(".staff_phone .phone").val(); //手机号
             var $bankname = $(".staff_phone .bankname").val(); //开户银行
-            if($name == "" || $name == null) {
+            if ($name == "" || $name == null) {
                 layer.alert("姓名不能为空");
                 flag = false;
-            } else if($age == "" || $age == null) {
+            } else if ($age == "" || $age == null) {
                 layer.alert("年龄不能为空");
                 flag = false;
-            } else if($worktime == "" || $worktime == null) {
+            } else if ($worktime == "" || $worktime == null) {
                 layer.alert("从业时间不能为空");
                 flag = false;
-            } else if($phone == "" || $phone == null) {
+            } else if ($phone == "" || $phone == null) {
                 layer.alert("手机号不能为空");
                 flag = false;
-            } else if($idcard == "" || $idcard == null) {
+            } else if ($idcard == "" || $idcard == null) {
                 layer.alert("身份证号不能为空");
                 flag = false;
-            } else if($bankname == "" || $bankname == null) {
+            } else if ($bankname == "" || $bankname == null) {
                 layer.alert("开户银行不能为空");
                 flag = false;
-            } else if($bankcard == "" || $bankcard == null) {
+            } else if ($bankcard == "" || $bankcard == null) {
                 layer.alert("银行卡号不能为空");
                 flag = false;
             }
-            for(var i = 0; i < $(".edit_bottom li input").length; i++) {
-                if($(".edit_bottom li input").eq(i).val() == "" || $(".edit_bottom li input").eq(i).val() == null) {
+            for (var i = 0; i < $(".edit_bottom li input").length; i++) {
+                if ($(".edit_bottom li input").eq(i).val() == "" || $(".edit_bottom li input").eq(i).val() == null) {
                     layer.alert("价格明细表有项未填");
                     flag = false;
                     break;
                 }
             }
             // 验证后有错误则return 不提交
-            if(!flag) {
+            if (!flag) {
                 return;
             }
-            switch(cate_id) {
+            switch (cate_id) {
                 case "1":
-                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 1] = $(".edit_bottom li input").eq(i).val();
                     }
                     $.ajax({
@@ -2887,8 +2944,8 @@
                             service15: service[15],
                             service16: service[16]
                         },
-                        success: function(data) {
-                            if(data != null && data.code == '000') {
+                        success: function (data) {
+                            if (data != null && data.code == '000') {
                                 layer.msg(data.msg);
                                 window.location.href = "#/master/mteam";
                                 location.reload(true);
@@ -2899,7 +2956,7 @@
                     });
                     break;
                 case "2":
-                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 17] = $(".edit_bottom li input").eq(i).val();
                     }
                     $.ajax({
@@ -2922,8 +2979,8 @@
                             service17: service[17],
                             service18: service[18]
                         },
-                        success: function(data) {
-                            if(data != null && data.code == '000') {
+                        success: function (data) {
+                            if (data != null && data.code == '000') {
                                 layer.msg(data.msg);
                                 window.location.href = "#/master/mteam";
                                 location.reload(true);
@@ -2934,7 +2991,7 @@
                     });
                     break;
                 case "3":
-                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 19] = $(".edit_bottom li input").eq(i).val();
                     }
                     $.ajax({
@@ -2959,7 +3016,6 @@
                             service21: service[21],
                             service22: service[22],
                             service23: service[23],
-                            service23: service[23],
                             service24: service[24],
                             service25: service[25],
                             service26: service[26],
@@ -2979,8 +3035,8 @@
                             service40: service[40],
                             service41: service[41]
                         },
-                        success: function(data) {
-                            if(data != null && data.code == '000') {
+                        success: function (data) {
+                            if (data != null && data.code == '000') {
                                 layer.msg(data.msg);
                                 window.location.href = "#/master/mteam";
                                 location.reload(true);
@@ -2991,7 +3047,7 @@
                     });
                     break;
                 case "4":
-                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 42] = $(".edit_bottom li input").eq(i).val();
                     }
                     $.ajax({
@@ -3024,8 +3080,8 @@
                             service52: service[52],
                             service53: service[53]
                         },
-                        success: function(data) {
-                            if(data != null && data.code == '000') {
+                        success: function (data) {
+                            if (data != null && data.code == '000') {
                                 layer.msg(data.msg);
                                 window.location.href = "#/master/mteam";
                                 location.reload(true);
@@ -3036,7 +3092,7 @@
                     });
                     break;
                 case "5":
-                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 54] = $(".edit_bottom li input").eq(i).val();
                     }
                     $.ajax({
@@ -3067,8 +3123,8 @@
                             service62: service[62],
                             service63: service[63]
                         },
-                        success: function(data) {
-                            if(data != null && data.code == '000') {
+                        success: function (data) {
+                            if (data != null && data.code == '000') {
                                 layer.msg(data.msg);
                                 window.location.href = "#/master/mteam";
                                 location.reload(true);
@@ -3081,7 +3137,7 @@
             }
 
         },
-        addWorker: function() { //调用增加工人接口
+        addWorker: function () { //调用增加工人接口
             var service = [];
             var cate_id = sessionStorage.getItem("cateid"); //工种id     1：杂工 2：水电工 3：瓦工 4：木工 5：油漆工
             var shop_id = sessionStorage.getItem("shopid");
@@ -3108,45 +3164,45 @@
             data.append("bankcard", $bankcard);
             data.append("phone", $phone);
             data.append("bankname", $bankname);
-            if($(".staff_picture .add_picture").attr("data-flag") == '0') {
+            if ($(".staff_picture .add_picture").attr("data-flag") == '0') {
                 layer.msg("未上传头像");
                 flag = false;
-            } else if($name == "" || $name == null) {
+            } else if ($name == "" || $name == null) {
                 layer.msg("姓名不能为空");
                 flag = false;
-            } else if($age == "" || $age == null) {
+            } else if ($age == "" || $age == null) {
                 layer.msg("年龄不能为空");
                 flag = false;
-            } else if($worktime == "" || $worktime == null) {
+            } else if ($worktime == "" || $worktime == null) {
                 layer.msg("从业时间不能为空");
                 flag = false;
-            } else if($phone == "" || $phone == null) {
+            } else if ($phone == "" || $phone == null) {
                 layer.msg("手机号不能为空");
                 flag = false;
-            } else if($idcard == "" || $idcard == null) {
+            } else if ($idcard == "" || $idcard == null) {
                 layer.msg("身份证号不能为空");
                 flag = false;
-            } else if($bankname == "" || $bankname == null) {
+            } else if ($bankname == "" || $bankname == null) {
                 layer.msg("开户银行不能为空");
                 flag = false;
-            } else if($bankcard == "" || $bankcard == null) {
+            } else if ($bankcard == "" || $bankcard == null) {
                 layer.msg("银行卡号不能为空");
                 flag = false;
             }
-            for(var i = 0; i < $(".edit_bottom li input").length; i++) {
-                if($(".edit_bottom li input").eq(i).val() == "" || $(".edit_bottom li input").eq(i).val() == null) {
+            for (var i = 0; i < $(".edit_bottom li input").length; i++) {
+                if ($(".edit_bottom li input").eq(i).val() == "" || $(".edit_bottom li input").eq(i).val() == null) {
                     layer.msg("价格明细表有项未填");
                     flag = false;
                     break;
                 }
             }
             // 验证后有错误则return 不提交
-            if(!flag) {
+            if (!flag) {
                 return;
             }
-            switch(cate_id) {
+            switch (cate_id) {
                 case "1":
-                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 1] = $(".edit_bottom li input").eq(i).val();
                         data.append(("service" + (i + 1)), service[i + 1]);
                     }
@@ -3158,10 +3214,10 @@
                         cache: false,
                         processData: false,
                         contentType: false,
-                        success: function(result) {
+                        success: function (result) {
                             result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
                             result = JSON.parse(result); //转成json格式
-                            if(result.code == '000') {
+                            if (result.code == '000') {
                                 layer.msg("添加工人成功");
                                 window.location.href = "#/master/mteam";
                                 location.reload(true);
@@ -3169,13 +3225,13 @@
                                 layer.alert(result.msg);
                             }
                         },
-                        error: function(e, a, v) {
+                        error: function (e, a, v) {
                             layer.alert("未知错误");
                         }
                     });
                     break;
                 case "2":
-                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 17] = $(".edit_bottom li input").eq(i).val();
                         data.append(("service" + (i + 17)), service[i + 17]);
 
@@ -3188,10 +3244,10 @@
                         cache: false,
                         processData: false,
                         contentType: false,
-                        success: function(result) {
+                        success: function (result) {
                             result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
                             result = JSON.parse(result); //转成json格式
-                            if(result.code == '000') {
+                            if (result.code == '000') {
                                 layer.msg("添加工人成功");
                                 window.location.href = "#/master/mteam";
                                 location.reload(true);
@@ -3199,13 +3255,13 @@
                                 layer.alert(result.msg);
                             }
                         },
-                        error: function(e, a, v) {
+                        error: function (e, a, v) {
                             layer.alert("未知错误");
                         }
                     });
                     break;
                 case "3":
-                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 19] = $(".edit_bottom li input").eq(i).val();
                         data.append(("service" + (i + 19)), service[i + 19]);
                     }
@@ -3217,10 +3273,10 @@
                         cache: false,
                         processData: false,
                         contentType: false,
-                        success: function(result) {
+                        success: function (result) {
                             result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
                             result = JSON.parse(result); //转成json格式
-                            if(result.code == '000') {
+                            if (result.code == '000') {
                                 layer.msg("添加工人成功");
                                 window.location.href = "#/master/mteam";
                                 location.reload(true);
@@ -3228,13 +3284,13 @@
                                 layer.alert(result.msg);
                             }
                         },
-                        error: function(e, a, v) {
+                        error: function (e, a, v) {
                             layer.alert("未知错误");
                         }
                     });
                     break;
                 case "4":
-                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 42] = $(".edit_bottom li input").eq(i).val();
                         data.append(("service" + (i + 42)), service[i + 42]);
                     }
@@ -3246,10 +3302,10 @@
                         cache: false,
                         processData: false,
                         contentType: false,
-                        success: function(result) {
+                        success: function (result) {
                             result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
                             result = JSON.parse(result); //转成json格式
-                            if(result.code == '000') {
+                            if (result.code == '000') {
                                 layer.msg("添加工人成功");
                                 window.location.href = "#/master/mteam";
                                 location.reload(true);
@@ -3257,13 +3313,13 @@
                                 layer.alert(result.msg);
                             }
                         },
-                        error: function(e, a, v) {
+                        error: function (e, a, v) {
                             layer.alert("未知错误");
                         }
                     });
                     break;
                 case "5":
-                    for(var i = 0; i < $(".edit_bottom li input").length; i++) {
+                    for (var i = 0; i < $(".edit_bottom li input").length; i++) {
                         service[i + 54] = $(".edit_bottom li input").eq(i).val();
                         data.append(("service" + (i + 54)), service[i + 54]);
                     }
@@ -3275,10 +3331,10 @@
                         cache: false,
                         processData: false,
                         contentType: false,
-                        success: function(result) {
+                        success: function (result) {
                             result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
                             result = JSON.parse(result); //转成json格式
-                            if(result.code == '000') {
+                            if (result.code == '000') {
                                 layer.msg("添加工人成功");
                                 window.location.href = "#/master/mteam";
                                 location.reload(true);
@@ -3286,7 +3342,7 @@
                                 layer.alert(result.msg);
                             }
                         },
-                        error: function(e, a, v) {
+                        error: function (e, a, v) {
                             layer.alert("未知错误");
                         }
                     });
@@ -3297,7 +3353,7 @@
 
     /* 编辑前获得我的员工具体信息 */
     getInformation = {
-        workDetail: function() {
+        workDetail: function () {
             var cate_id = sessionStorage.getItem("cateid");
             var worker_id = sessionStorage.getItem("userid");
             $.ajax({
@@ -3309,8 +3365,8 @@
                     cate_id: cate_id,
                     worker_id: worker_id
                 },
-                success: function(data) {
-                    if(data && data.code == '000') {
+                success: function (data) {
+                    if (data && data.code == '000') {
                         var cost = [],
                             k = 0;
                         var length = $(".edit_bottom li").length;
@@ -3327,21 +3383,21 @@
                         $(".staff_phone .bankcard").val(data.data.bankcard); //银行卡
                         $(".staff_phone .phone").val(data.data.phone); //手机号
                         $(".staff_phone .bankname").val(data.data.bankname); //开户银行
-                        $.each(data.data.pricelist, function(i, v) {
-                            $.each(v.service, function(m, n) {
+                        $.each(data.data.pricelist, function (i, v) {
+                            $.each(v.service, function (m, n) {
                                 cost[k] = n.cost;
                                 k++;
                             });
                         });
-                        for(var j = 0; j < length; j++) {
+                        for (var j = 0; j < length; j++) {
                             $(".edit_bottom li").eq(j).find("input").val(cost[j]);
                         }
-                        $('.staff_picture .add_picture').find('input').change(function() {
+                        $('.staff_picture .add_picture').find('input').change(function () {
                             var inputImg = $(this);
                             inputImg.parent().parent().attr("data-flag", "0");
                             var file = inputImg.get(0).files[0];
                             var reader = new FileReader();
-                            if(!/image\/\w+/.test(file.type)) {
+                            if (!/image\/\w+/.test(file.type)) {
                                 inputImg.parent().parent().css('background', '');
                                 inputImg.parent().parent().removeClass('clear');
                                 layer.alert("请确保文件为图像类型");
@@ -3350,7 +3406,7 @@
                             }
                             // onload是异步操作
                             else {
-                                reader.onload = function(e) {
+                                reader.onload = function (e) {
                                     inputImg.parent().parent().attr("data-flag", "1");
                                     inputImg.parent().parent().addClass('clear'); //图片预览时input file 添加opacity样式，设置完全透明
                                     inputImg.parent().parent().css({
@@ -3368,12 +3424,12 @@
                                         dataType: 'text',
                                         processData: false,
                                         contentType: false,
-                                        success: function(result) {
+                                        success: function (result) {
                                             result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
                                             result = JSON.parse(result); //转成json格式
                                             layer.alert(result.msg);
                                         },
-                                        error: function(e, a, v) {
+                                        error: function (e, a, v) {
                                             layer.alert("未知错误");
                                         }
                                     });
@@ -3381,14 +3437,15 @@
                             }
                             reader.readAsDataURL(file);
                         });
-                        $(".staff_confirm").on("click", function() {
+                        $(".staff_confirm").on("click", function () {
                             workerAction.editWorker(); //编辑工人
                         });
                     } else {
                         layer.alert(data.msg);
                     }
                 },
-                error: function(data) {}
+                error: function (data) {
+                }
             });
 
         }
@@ -3771,15 +3828,15 @@
                 });
 
                 var img_id = [];
-				var img_count = 0;
+                var img_count = 0;
                 /* 点击本店工艺更改弹出弹层 */
-                $(document).on('click', '.renderings_show_a', function() {
+                $(document).on('click', '.renderings_show_a', function () {
                     $('.add_technology').show().removeClass('hide').addClass("edit");
                     $('.wrap').show().removeClass('hide');
 
                     var infos = $scope.infos;
                     var craftImg = $('.craft_img');
-                    $.each(craftImg, function(i, v) {
+                    $.each(craftImg, function (i, v) {
                         $(this).data('imgs', infos[i].technics_img);
                         $(this).data('text', infos[i].technics_text);
                         $(this).data("tid", infos[i].technics_id);
@@ -3791,15 +3848,15 @@
                     $add_picture.find('.close').hide();
                     var $img = $(this).prev().prev();
                     var imgs = $img.data('imgs');
-                    $.each(imgs, function(i, v) {
+                    $.each(imgs, function (i, v) {
                         $add_picture_a.eq(i).addClass('opacity'); //图片预览时input file 添加opacity样式，设置完全透明
                         $add_picture.eq(i).css('background-image', 'url(' + v.technics_img + ')'); //图片设置为$('.showImg')背景图
                         $add_picture.eq(i).find('.close').show();
-                        $add_picture.eq(i).attr("img_id",v.img_id);
-                        $add_picture.eq(i).attr("count",0);
+                        $add_picture.eq(i).attr("img_id", v.img_id);
+                        $add_picture.eq(i).attr("count", 0);
                     });
-                    $('.add_technology').attr("technics_id",$img.data('tid'));
-                    $('#textarea').html($img.data('text'));
+                    $('.add_technology').attr("technics_id", $img.data('tid'));
+                    $('#textarea').val($img.data('text'));
                 });
 
                 /* 点击弹层叉号关闭弹层 */
@@ -3828,10 +3885,10 @@
                         // onload是异步操作
                         else {
                             reader.onload = function (e) {
-                            	if (id == undefined ) {
-                            		inputImg.parent().parent().attr("count",1);
-                            	} else if (img_id.indexOf(id) < 0) {
-                            		inputImg.parent().parent().attr("count",1);
+                                if (id == undefined) {
+                                    inputImg.parent().parent().attr("count", 1);
+                                } else if (img_id.indexOf(id) != -1) {
+                                    inputImg.parent().parent().attr("count", 1);
                                     img_id.push(id);
                                 }
                                 inputImg.parent().addClass('opacity new');//图片预览时input file 添加opacity样式，设置完全透明
@@ -3851,65 +3908,73 @@
                 $('.close').click(function () {
                     $(this).parent().find('a').removeClass('opacity new');
                     $(this).parent().css('background-image', '');
-                    $(this).parent().attr("count",0);
-                    var id =  $(this).parent().attr("img_id");
+                    $(this).parent().attr("count", 0);
+                    var id = $(this).parent().attr("img_id");
                     if (id != undefined && img_id.indexOf(id) < 0) {
-                        img_id.push(id);                     
+                        img_id.push(id);
                     }
                     $(this).hide();
                 });
 
                 /* 上传效果图 */
                 $(document).off('change', '#renderings_file').on('change', '#renderings_file', function () {
-                    var data = new FormData();
-                    data.append("shop_id", $.base64.decode($.cookie("userShopId")));
-                    data.append("myfile", $("#renderings_file")[0].files[0]);
-                    $.ajax({
-                        url: SIMGURL,
-                        type: 'POST',
-                        data: data,
-                        dataType: 'jsonp',
-                        jsonp: 'callback',
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        success: function (result) {
-                            if (result.code === '000') {
-                                $http({
-                                    method: "JSONP",
-                                    url: SHOPCURL,
-                                    /* 传参 */
-                                    params: {
-                                        shop_id: $.base64.decode($.cookie("userShopId"))
-                                    }
-                                }).success(function (data, status) {
-                                    /* 如果成功执行 */
-                                    if (data.code === '000') {
-                                        //console.log(data);
-                                        //获取店铺资料的效果图展示(最多只显示四张)
-                                        if (data.data.shop_imgs.length >= 4) {
-                                            $scope.imgs = data.data.shop_imgs.slice(0, 4);
-                                            $('.renderings_img').hide();
-                                        } else {
-                                            $scope.imgs = data.data.shop_imgs;
-                                            $('.renderings_img').show();
+                    var inputImg = $(this);
+                    var file = inputImg.get(0).files[0];
+                    if (!/image\/\w+/.test(file.type)) {
+                        layer.msg("请确保文件为图像类型");
+                        inputImg.val('');//清空file选择的文件
+                        return false;
+                    } else {
+                        var data = new FormData();
+                        data.append("shop_id", $.base64.decode($.cookie("userShopId")));
+                        data.append("myfile", $("#renderings_file")[0].files[0]);
+                        $.ajax({
+                            url: SIMGURL,
+                            type: 'POST',
+                            data: data,
+                            dataType: 'jsonp',
+                            jsonp: 'callback',
+                            cache: false,
+                            processData: false,
+                            contentType: false,
+                            success: function (result) {
+                                if (result.code === '000') {
+                                    $http({
+                                        method: "JSONP",
+                                        url: SHOPCURL,
+                                        /* 传参 */
+                                        params: {
+                                            shop_id: $.base64.decode($.cookie("userShopId"))
                                         }
-                                        var $renderings_img = $('#renderings_img');
-                                        $renderings_img.css('backgroundImage', '');
-                                        $renderings_img.find('a').removeClass('opacity');
-                                    }
-                                    /* 如果失败执行 */
-                                    else {
-                                        layer.msg(data.msg);
-                                    }
-                                });
-                                layer.msg(result.msg);
+                                    }).success(function (data, status) {
+                                        /* 如果成功执行 */
+                                        if (data.code === '000') {
+                                            //console.log(data);
+                                            //获取店铺资料的效果图展示(最多只显示四张)
+                                            if (data.data.shop_imgs.length >= 4) {
+                                                $scope.imgs = data.data.shop_imgs.slice(0, 4);
+                                                $('.renderings_img').hide();
+                                            } else {
+                                                $scope.imgs = data.data.shop_imgs;
+                                                $('.renderings_img').show();
+                                            }
+                                            var $renderings_img = $('#renderings_img');
+                                            $renderings_img.css('backgroundImage', '');
+                                            $renderings_img.find('a').removeClass('opacity');
+                                        }
+                                        /* 如果失败执行 */
+                                        else {
+                                            layer.msg(data.msg);
+                                        }
+                                    });
+                                    layer.msg(result.msg);
+                                }
+                            },
+                            error: function (e, a, v) {
+                                alert("错误！！");
                             }
-                        },
-                        error: function (e, a, v) {
-                            alert("错误！！");
-                        }
-                    });
+                        });
+                    }
                 });
 
                 /* 上传与更改本店工艺 */
@@ -3918,15 +3983,15 @@
                         var data = new FormData();
                         data.append("technics_id", $('.add_technology').attr("technics_id"));
                         data.append("describe", $('#textarea').val());
-                        for(var i = 0; i < 3; i ++) {
-                        	if($(".add_technology .add_picture").eq(i).attr("count") == 1) {
-                        		img_count ++;
-                        	}
+                        for (var i = 0; i < 3; i++) {
+                            if ($(".add_technology .add_picture").eq(i).attr("count") == 1) {
+                                img_count++;
+                            }
                         }
                         data.append("count", img_count);
-                        data.append("type",1);
-                        for(var i = 0; i < img_id.length; i ++) {
-                        	data.append("img_id[]", img_id[i]);
+                        data.append("type", 1);
+                        for (var i = 0; i < img_id.length; i++) {
+                            data.append("img_id[]", img_id[i]);
                         }
                         for (var i = 1; i <= 3; i++) {
                             if ($("#file" + i).val() && $("#file" + i).parent().hasClass("new")) {
@@ -3945,7 +4010,44 @@
                             success: function (result) {
                                 if (result.code == '000') {
                                     layer.msg(result.msg);
-                                    location.reload(true);
+                                    $('.detail_p b').remove();
+                                    $('.add_technology').hide();
+                                    $('.wrap').hide();
+                                    $http({
+                                        method: "JSONP",
+                                        url: SHOPCURL,
+                                        /* 传参 */
+                                        params: {
+                                            shop_id: $.base64.decode($.cookie("userShopId"))
+                                        }
+                                    }).success(function (data, status) {
+                                        /* 如果成功执行 */
+                                        if (data.code === '000') {
+                                            //console.log(data);
+                                            //获取店铺资料的本店工艺(最多只显示五张)
+                                            if (data.data.shop_technics.length >= 5) {
+                                                $scope.infos = data.data.shop_technics.slice(0, 5);
+                                                $('#technic_add').hide();
+                                                $('.detail_p').css('marginTop', '100px');
+                                            } else {
+                                                $scope.infos = data.data.shop_technics;
+                                                $('#technic_add').show();
+                                                $('.detail_p').css('marginTop', '5px');
+                                            }
+                                            if (data.data.shop_technics.length > 0) {
+                                                $.each(data.data.shop_technics, function (i, v) {
+                                                    $('.detail_p').append('<b>' + v.technics_text + '</b>');
+                                                });
+                                            } else {
+                                                $('.detail_p').append('<b>随便说点什么吧！</b>');
+                                            }
+                                        }
+                                        /* 如果失败执行 */
+                                        else {
+                                            layer.layer.msg(data.msg);
+                                        }
+                                    }).error(function (data, status) {
+                                    });
                                 } else {
                                     layer.alert(result.msg);
                                 }
@@ -4205,7 +4307,7 @@
 
     /* 我的作品增加新作品的提交 */
     ajaxSubmit = {
-        confirmAdd: function() {
+        confirmAdd: function () {
             var $area = $(".new_areacnt input"); //建筑面积
             var $room = $(".room option:selected"); //室所选中的项
             var $hall = $(".hall option:selected"); //厅所选中的项
@@ -4230,8 +4332,8 @@
             data.append("timelong", timelong);
             data.append("address", $address.val());
             data.append("area", $area.val());
-            for(var i = 1; i <= 5; i++) {
-                if($("#file" + i).val()) {
+            for (var i = 1; i <= 5; i++) {
+                if ($("#file" + i).val()) {
                     data.append("myfile[]", $("#file" + i)[0].files[0]);
                     count++;
                 }
@@ -4239,41 +4341,41 @@
             /**
              * 相关验证
              */
-            if($area.val() == "" || $area.val() == null) {
+            if ($area.val() == "" || $area.val() == null) {
                 errorRemind.errorContent(MSG1, $(".new_area h3"));
                 flag = false;
             }
-            if($room.val() == "请选择" || $hall.val() == "请选择" || $toilet.val() == "请选择" || $balcony.val() == "请选择") {
+            if ($room.val() == "请选择" || $hall.val() == "请选择" || $toilet.val() == "请选择" || $balcony.val() == "请选择") {
                 errorRemind.errorContent(MSG2, $(".new_type h3"));
                 flag = false;
             }
-            if($style.html() == "" || $style.html() == null) {
+            if ($style.html() == "" || $style.html() == null) {
                 errorRemind.errorContent(MSG3, $(".new_style h3"));
                 flag = false;
             }
-            if($syear.html() == "-年份-" || $smonth.html() == "-月份-" || $sday.html() == "-日期-" || $eyear.html() == "-年份-" || $emonth.html() == "-月份-" || $eday.html() == "-日期-") {
+            if ($syear.html() == "-年份-" || $smonth.html() == "-月份-" || $sday.html() == "-日期-" || $eyear.html() == "-年份-" || $emonth.html() == "-月份-" || $eday.html() == "-日期-") {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
-            } else if($syear.html() > $eyear.html()) {
+            } else if ($syear.html() > $eyear.html()) {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
-            } else if($syear.html() == $eyear.html() && $smonth.html() > $emonth.html()) {
+            } else if ($syear.html() == $eyear.html() && $smonth.html() > $emonth.html()) {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
-            } else if($syear.html() == $eyear.html() && $smonth.html() == $emonth.html() && $sday.html() > $eday.html()) {
+            } else if ($syear.html() == $eyear.html() && $smonth.html() == $emonth.html() && $sday.html() > $eday.html()) {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
             }
-            if($address.val() == "" || $address.val() == null) {
+            if ($address.val() == "" || $address.val() == null) {
                 errorRemind.errorContent(MSG5, $(".new_address h3"));
                 flag = false;
             }
-            if(count == 0) {
+            if (count == 0) {
                 errorRemind.errorContent(MSG6, $(".construction_picture h3"));
                 flag = false;
             }
             // 验证后有错误则return 不提交
-            if(!flag) {
+            if (!flag) {
                 return;
             }
             $.ajax({
@@ -4285,15 +4387,15 @@
                 cache: false,
                 processData: false,
                 contentType: false,
-                success: function(result) {
-                    if(result.code == '000') {
+                success: function (result) {
+                    if (result.code == '000') {
                         window.location.href = "#/master/mwork";
                         location.reload(true);
                     } else {
                         layer.alert("上传失败");
                     }
                 },
-                error: function(e, a, v) {
+                error: function (e, a, v) {
                     layer.alert("未知错误");
                 }
             });
@@ -4322,20 +4424,20 @@
 
     /* 我的作品增加新的施工图片 */
     addPicture = {
-        constructionPic: function() {
-            $(".add_picture input").on("change", function() {
+        constructionPic: function () {
+            $(".add_picture input").on("change", function () {
                 var inputImg = $(this);
                 var file = inputImg.get(0).files[0];
                 var reader = new FileReader();
                 reader.readAsDataURL(file);
-                if(!/image\/\w+/.test(file.type)) {
+                if (!/image\/\w+/.test(file.type)) {
                     inputImg.parent().parent().css('background', '');
                     inputImg.parent().parent().removeClass('clear');
                     layer.alert("请确保文件为图像类型");
                     inputImg.val(''); //清空file选择的文件
                     return false;
                 } else {
-                    reader.onload = function(e) {
+                    reader.onload = function (e) {
                         inputImg.parent().parent().addClass('clear'); //图片预览时input file 添加opacity样式，设置完全透明
                         inputImg.parent().siblings('.close').show();
                         inputImg.parent().parent().css({
@@ -4343,7 +4445,7 @@
                             'backgroundSize': '100% 100%'
                         }); //图片设置为$('.showImg')背景图
                         /* 点击叉叉图片取消事件 */
-                        $('.close').on("click", function() {
+                        $('.close').on("click", function () {
                             $(this).parent().removeClass('clear');
                             $(this).parent().css('background', '');
                             $(this).hide();
