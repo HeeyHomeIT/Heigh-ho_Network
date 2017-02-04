@@ -620,7 +620,7 @@ define(['app'], function(app) {
 							var calObj = {};
 							var room_distribution = {};
 							var floorObj = {};
-							calObj.city = $("#nowCity label").text() + '市'; // 城市
+							calObj.city = $("#Jcity").text() +'市'; // 城市
 							calObj.area = $("#c_area").val(); // 面积
 							calObj.room_num = $(".room span").text(); // 房间数
 							calObj.parlor_num = $(".parlor span").text(); // 客厅数
