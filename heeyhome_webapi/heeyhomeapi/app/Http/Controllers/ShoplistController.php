@@ -152,7 +152,7 @@ class ShoplistController extends Controller
                 }
                 $select[$key]->authentication=$authentication;
                 $select[$key]->total=$total;
-                $img=DB::select('select shop_img from hh_shop_img where shop_id=? and is_face=?',[$value->shop_id,1]);
+                $img=DB::select('select shop_img from hh_shop_img where shop_id=? order by id desc',[$value->shop_id]);
                 if($img){
                     $select[$key]->shop_img=$img[0]->shop_img;
                 }else{
