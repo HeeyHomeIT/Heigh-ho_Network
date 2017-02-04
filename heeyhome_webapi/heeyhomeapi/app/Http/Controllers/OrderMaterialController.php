@@ -50,8 +50,12 @@ class OrderMaterialController extends Controller
                     [$material_arr_keys[$i], $material_id]);
                 if ($sel_material_echo_tbl) {
                     //更新单条数据
-                    DB::update('UPDATE hh_order_material_list SET material_name_id = ? , material_num = ? WHERE material_id = ?',
-                        [$material_arr_keys[$i], $material_arr_values[$i], $material_id]);
+                    if ($material_arr_values[$i] > 0 || $material_arr_values[$i] != "" || $material_arr_values[$i] != "0") {
+                        DB::update('UPDATE hh_order_material_list SET material_num = ? WHERE material_id = ? AND material_name_id = ?',
+                            [$material_arr_values[$i], $material_id, $material_arr_keys[$i]]);
+                    } else {
+                        DB::delete('DELETE FROM hh_order_material_list WHERE material_name_id = ? AND material_id = ?', [$material_arr_keys[$i], $material_id]);
+                    }
                 } else {
                     $sel_isexist_material = DB::select('SELECT * FROM hh_materials WHERE id = ?',
                         [$material_arr_keys[$i]]);
@@ -92,8 +96,10 @@ class OrderMaterialController extends Controller
                 [$order_id, $material_id, $material_type, $material_list, $pay_status, $order_material_status]);
             if ($ins_material_tbl) {
                 for ($i = 0; $i < $count; $i++) {
-                    DB::insert('INSERT INTO hh_order_material_list (material_id,material_name_id,material_num) VALUES (?,?,?)',
-                        [$material_id, $material_arr_keys[$i], $material_arr_values[$i]]);
+                    if ($material_arr_values[$i] > 0 || $material_arr_values[$i] != "" || $material_arr_values[$i] != "0") {
+                        DB::insert('INSERT INTO hh_order_material_list (material_id,material_name_id,material_num) VALUES (?,?,?)',
+                            [$material_id, $material_arr_keys[$i], $material_arr_values[$i]]);
+                    }
                 }
                 $material_type_chn = '';
                 $sel = DB::select('SELECT material_type FROM hh_order_material_type WHERE material_type_id = ?',
@@ -728,7 +734,7 @@ class OrderMaterialController extends Controller
                     $material_type_chn = $sel[0]->material_type;
                 }
                 $step = $order_step + 1;
-                $result = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?',[$step,$order_id]);
+                $result = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?', [$step, $order_id]);
                 $arr = array(
                     "code" => "000",
                     "msg" => "材料订单已经生成",
@@ -738,7 +744,7 @@ class OrderMaterialController extends Controller
                         "material_type" => $order_id,
                         "material_type" => $material_type,
                         "material_type_chn" => $material_type_chn,
-                        "order_step"=>$result,
+                        "order_step" => $result,
                     )
                 );
                 return $callback . "(" . HHJson($arr) . ")";

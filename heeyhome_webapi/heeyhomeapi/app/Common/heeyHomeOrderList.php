@@ -30,3 +30,10 @@ function isOrder_OrderID($order_id)
         return false;
     }
 }
+
+function orderPrice($data_list,$shop_id)
+{
+
+    $sum = 0;
+    return $sum;
+}

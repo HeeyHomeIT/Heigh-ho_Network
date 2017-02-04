@@ -26,11 +26,11 @@ class OrderOperateController extends Controller
             $count = count($list_dataArr);
             $list_data_arr = array();
             $dataCount = 0;
-            for ($i=0; $i < 63; $i++) { 
+            for ($i = 0; $i < 64; $i++) {
                 if ($i < $count) {
-                    array_push($list_data_arr, $list_dataArr[$i]);
+                    $list_data_arr[$i] = $list_dataArr[$i];
                 } else {
-                    array_push($list_data_arr, $dataCount);
+                    $list_data_arr[$i] = $dataCount;
                 }
             }
             $list_data_exist = true;
@@ -64,12 +64,12 @@ class OrderOperateController extends Controller
         //生成预算单与结算单表
         //预算
         if ($list_data_exist) {
-            $reckon_list_tbl = DB::insert('INSERT INTO hh_order_reckon_list(order_id,order_personnel,service1,service2,service3,service4,service5,service6,service7,service8,
+            $reckon_list_tbl = DB::insert('INSERT INTO hh_order_reckon_list(order_id,order_personnel,foreman_price,service1,service2,service3,service4,service5,service6,service7,service8,
 service9,service10,service11,service12,service13,service14,service15,service16,service17,service18,service19,service20,service21,service22,service23,service24,service25,service26,
 service27,service28,service29,service30,service31,service32,service33,service34,service35,service36,service37,service38,service39,service40,service41,service42,service43,service44,
 service45,service46,service47,service48,service49,service50,service51,service52,service53,service54,service55,service56,service57,service58,service59,service60,service61,service62,
-service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-                [$order_id, $order_personnel, $list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6],
+service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                [$order_id, $order_personnel, $list_data_arr[63], $list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6],
                     $list_data_arr[7], $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14],
                     $list_data_arr[15], $list_data_arr[16], $list_data_arr[17], $list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22],
                     $list_data_arr[23], $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30],
@@ -99,12 +99,12 @@ service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         }
         //结算
         if ($list_data_exist) {
-            $reckon_list_tbl = DB::insert('INSERT INTO hh_order_actual_list(order_id,order_personnel,service1,service2,service3,service4,service5,service6,service7,service8,
+            $reckon_list_tbl = DB::insert('INSERT INTO hh_order_actual_list(order_id,order_personnel,foreman_price,service1,service2,service3,service4,service5,service6,service7,service8,
 service9,service10,service11,service12,service13,service14,service15,service16,service17,service18,service19,service20,service21,service22,service23,service24,service25,service26,
 service27,service28,service29,service30,service31,service32,service33,service34,service35,service36,service37,service38,service39,service40,service41,service42,service43,service44,
 service45,service46,service47,service48,service49,service50,service51,service52,service53,service54,service55,service56,service57,service58,service59,service60,service61,service62,
-service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-                [$order_id, $order_personnel, $list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6],
+service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                [$order_id, $order_personnel, $list_data_arr[63], $list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6],
                     $list_data_arr[7], $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14],
                     $list_data_arr[15], $list_data_arr[16], $list_data_arr[17], $list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22],
                     $list_data_arr[23], $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30],
@@ -138,6 +138,17 @@ service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
                 return $callback . "(" . HHJson($arr) . ")";
             }
         }
+        $changeOrder_status = DB::update('update hh_order set order_status = 4 where order_id=?', [$order_id]);
+        $ins_status_time = DB::insert('INSERT INTO hh_order_status_time (order_id, order_status) VALUES (?,?)',
+            [$order_id, 4]);
+        //查询店铺id
+        $sel_shop_id = DB::select('SELECT shop_id FROM hh_order WHERE order_id = ?', [$order_id]);
+        $shop_id = $sel_shop_id[0]->shop_id;
+        //生成预算金额
+        $sel_shop_price = DB::select('SELECT * FROM hh_shop_price WHERE shop_id = ?', [$shop_id]);
+
+        $ins_status_time = DB::insert('INSERT INTO hh_order_status_time (order_id, order_status) VALUES (?,?)',
+            [$order_id, 4]);
         $arr = array(
             "code" => "000",
             "msg" => "生成成功",
@@ -286,7 +297,7 @@ service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
             return $callback . "(" . HHJson($arr) . ")";
         }
         //判断字段是否为空
-        if (count($list_data_arr) < 63) {
+        if (count($list_data_arr) < 64) {
             $arr = array(
                 "code" => "200",
                 "msg" => "缺少数据",
@@ -297,13 +308,13 @@ service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         //获取当前时间转化为mysql时间戳格式
         $timenow = strtotime(date('Y-m-d H:i:s', time()));
         //预算
-        $reckon_list_tbl = DB::update('update hh_order_reckon_list set service1 = ?,service2 = ?,service3 = ?,service4 = ?,service5 = ?,service6 = ?,service7 = ?,service8 = ?,service9 = ?,service10 = ?,service11 = ?,service12 = ?,service13 = ?,service14 = ?,service15 = ?,
+        $reckon_list_tbl = DB::update('update hh_order_reckon_list set foreman_price = ?,service1 = ?,service2 = ?,service3 = ?,service4 = ?,service5 = ?,service6 = ?,service7 = ?,service8 = ?,service9 = ?,service10 = ?,service11 = ?,service12 = ?,service13 = ?,service14 = ?,service15 = ?,
 service16 = ?,service17 = ? ,service18 = ? ,service19 = ? ,service20 = ? ,service21 = ? ,service22 = ? ,service23 = ? ,service24 = ? ,service25 = ? ,service26 = ? ,
 service27 = ?,service28 = ? ,service29 = ? ,service30 = ? ,service31 = ? ,service32 = ? ,service33 = ? ,service34 = ? ,service35 = ? ,service36 = ? ,service37 = ? ,
 service38 = ?,service39 = ? ,service40 = ? ,service41 = ? ,service42 = ? ,service43 = ? ,service44 = ? ,service45 = ? ,service46 = ? ,service47 = ? ,service48 = ? ,
 service49 = ?,service50 = ?,service51 = ? ,service52 = ? ,service53 = ? ,service54 = ? ,service55 = ? ,service56 = ? ,service57 = ? ,service58 = ? ,service59 = ? ,
 service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,remark = ? WHERE order_id = ?',
-            [$list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6], $list_data_arr[7],
+            [$list_data_arr[63], $list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6], $list_data_arr[7],
                 $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14], $list_data_arr[15],
                 $list_data_arr[16], $list_data_arr[17], $list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22], $list_data_arr[23],
                 $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30], $list_data_arr[31],
@@ -312,14 +323,14 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,re
                 $list_data_arr[48], $list_data_arr[49], $list_data_arr[50], $list_data_arr[51], $list_data_arr[52], $list_data_arr[53], $list_data_arr[54], $list_data_arr[55],
                 $list_data_arr[56], $list_data_arr[57], $list_data_arr[58], $list_data_arr[59], $list_data_arr[60], $list_data_arr[61], $list_data_arr[62], 0, $remark, $order_id]);
         //结算
-        $actual_list_tbl = DB::update('UPDATE hh_order_actual_list SET service1 = ? ,service2 = ? ,service3 = ? ,service4 = ? ,
+        $actual_list_tbl = DB::update('UPDATE hh_order_actual_list SET foreman_price = ?, service1 = ? ,service2 = ? ,service3 = ? ,service4 = ? ,
 service5 = ? ,service6 = ? ,service7 = ? ,service8 = ? ,service9 = ? ,service10 = ? ,service11 = ? ,service12 = ? ,service13 = ? ,service14 = ? ,service15 = ? ,
 service16 = ? ,service17 = ? ,service18 = ? ,service19 = ? ,service20 = ? ,service21 = ? ,service22 = ? ,service23 = ? ,service24 = ? ,service25 = ? ,service26 = ? ,
 service27 = ? ,service28 = ? ,service29 = ? ,service30 = ? ,service31 = ? ,service32 = ? ,service33 = ? ,service34 = ? ,service35 = ? ,service36 = ? ,service37 = ? ,
 service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,service42 = ? ,service43 = ? ,service44 = ? ,service45 = ? ,service46 = ? ,service47 = ? ,service48 = ? ,
 service49 = ? ,service50 = ? ,service51 = ? ,service52 = ? ,service53 = ? ,service54 = ? ,service55 = ? ,service56 = ? ,service57 = ? ,service58 = ? ,service59 = ? ,
 service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,remark = ? ,update_time = ? WHERE order_id = ?',
-            [$list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6], $list_data_arr[7],
+            [$list_data_arr[63], $list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6], $list_data_arr[7],
                 $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14], $list_data_arr[15],
                 $list_data_arr[16], $list_data_arr[17], $list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22], $list_data_arr[23],
                 $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30], $list_data_arr[31],
@@ -355,11 +366,11 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,re
         if (!$remark) {
             $remark = '';
         }
-        
+
         $count = count($list_dataArr);
         $list_data_arr = array();
         $dataCount = 0;
-        for ($i=0; $i < 63; $i++) { 
+        for ($i = 0; $i < 63; $i++) {
             if ($i < $count) {
                 array_push($list_data_arr, $list_dataArr[$i]);
             } else {
@@ -1071,7 +1082,8 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 )
             );
             $data = array(
-                "data_list" => $arr_list
+                "data_list" => $arr_list,
+                "pay_type" => 0
             );
             $arr = array(
                 "code" => "000",
@@ -1290,7 +1302,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         }
         $order_personnel = $order_id;
         $order_personnel_tbl = DB::insert('INSERT INTO hh_order_personnel(personnel_id, order_id,person1,person2,person3,person4,person5,person6,person7,person8,person9) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
-            [$order_personnel, $order_id, $pa[0], $pa[1],$pa[2],$pa[3],$pa[4],$pa[5], $pa[6], $pa[7], $pa[8]]);
+            [$order_personnel, $order_id, $pa[0], $pa[1], $pa[2], $pa[3], $pa[4], $pa[5], $pa[6], $pa[7], $pa[8]]);
 
         if ($order_personnel_tbl) {
             $arr = array(
@@ -1314,13 +1326,13 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
     {
         $order_id = rq('order_id');
         $callback = rq('callback');
-        $result = DB::select('SELECT * from hh_order_personnel WHERE personnel_id = ? AND order_id = ?',[$order_id,$order_id]);
+        $result = DB::select('SELECT * from hh_order_personnel WHERE personnel_id = ? AND order_id = ?', [$order_id, $order_id]);
         if ($result) {
             $order_person = $result[0];
             $personArr = array();
 
-            for ($i=1; $i <= 9 ; $i++) { 
-                $personId = 'person'.$i;
+            for ($i = 1; $i <= 9; $i++) {
+                $personId = 'person' . $i;
                 $user_id = $order_person->$personId;
                 if ($user_id) {
                     $user = personal($user_id);
@@ -1342,7 +1354,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             return $callback . "(" . HHJson($arr) . ")";
         }
 
-        
+
     }
 
     /*订单进度*/
@@ -1351,7 +1363,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
     {
         $callback = rq('callback');
         $order_id = rq('order_id'); //订单id
-        $order_step_result = DB::SELECT('SELECT order_step FROM hh_order WHERE order_id = ?',[$order_id]);
+        $order_step_result = DB::SELECT('SELECT order_step FROM hh_order WHERE order_id = ?', [$order_id]);
         if ($order_step_result) {
             $order_step = $order_step_result[0]->order_step;
         } else {
@@ -1365,9 +1377,9 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         $count = rq('count');  //图片数量
         $files = array();
         if ($count) {
-            for ($i=0; $i < $count; $i++) { 
-                $filename = "myfile".$i;
-                if(!Request::hasFile($filename)){
+            for ($i = 0; $i < $count; $i++) {
+                $filename = "myfile" . $i;
+                if (!Request::hasFile($filename)) {
                     $arr = array("code" => "121",
                         "msg" => "没有图片被上传"
                     );
@@ -1377,14 +1389,14 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 $files[$i] = $myfile;
             }
         } else {
-            $myfile=Request::file('myfile');
-            if(!Request::hasFile('myfile')){
+            $myfile = Request::file('myfile');
+            if (!Request::hasFile('myfile')) {
                 $arr = array("code" => "121",
                     "msg" => "没有图片被上传"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
-            if (! is_array($myfile)) {
+            if (!is_array($myfile)) {
                 $files = [$myfile];
             } else {
                 $files = $myfile;
@@ -1399,17 +1411,17 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         }
 
         //检测图片是否都合法
-        $isvalid=true;
-        foreach($files as $file){
-            if(!$file->isValid()){
-                $isvalid=false;
+        $isvalid = true;
+        foreach ($files as $file) {
+            if (!$file->isValid()) {
+                $isvalid = false;
                 break;
             }
         }
 
         if ($isvalid && count($files)) {
 
-            $detail = DB::select('SELECT id from hh_order_detail WHERE order_id = ? AND order_step = ? ',[$order_id,$order_step]);
+            $detail = DB::select('SELECT id from hh_order_detail WHERE order_id = ? AND order_step = ? ', [$order_id, $order_step]);
             if ($detail) {
                 $arr = array("code" => "000",
                     "msg" => "重复添加"
@@ -1417,59 +1429,59 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 return $callback . "(" . HHJson($arr) . ")";
             } else {
 
-                $case=DB::insert('insert into hh_order_detail(order_id,order_step,img_time,img_content) values(?,?,?,?)',[$order_id,$order_step,$time,$content]);
-                $order_detail_id = DB::select('SELECT id from hh_order_detail WHERE order_id = ? AND order_step = ? ',[$order_id,$order_step]);
+                $case = DB::insert('insert into hh_order_detail(order_id,order_step,img_time,img_content) values(?,?,?,?)', [$order_id, $order_step, $time, $content]);
+                $order_detail_id = DB::select('SELECT id from hh_order_detail WHERE order_id = ? AND order_step = ? ', [$order_id, $order_step]);
                 if (!$order_detail_id) {
                     $arr = array("code" => "111",
                         "msg" => "添加失败"
                     );
                     return $callback . "(" . HHJson($arr) . ")";
-                } 
-                $step = $order_step+1;
-                $order_step = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?',[$step,$order_id]);
-                $ifinsert=false;
-                foreach($files as $key=>$file){
-                    $clientName = $file -> getClientOriginalName();//文件原名
-                    $entension = $file -> getClientOriginalExtension();//扩展名
+                }
+                $step = $order_step + 1;
+                $order_step = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?', [$step, $order_id]);
+                $ifinsert = false;
+                foreach ($files as $key => $file) {
+                    $clientName = $file->getClientOriginalName();//文件原名
+                    $entension = $file->getClientOriginalExtension();//扩展名
                     $realPath = $file->getRealPath();   //临时文件的绝对路径
                     $type = $file->getClientMimeType();
-                    $size=$file-> getClientSize();
-                    $filename=date('Ymd').md5(rand(999,10000)).'.'.$entension;
-                    $is = $file -> move(public_path().'/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2),$filename);
-                    if($is){
-                        $path='api/public/uploads/'.substr($filename,0,4).'-'.substr($filename,4,2).'-'.substr($filename,6,2).'/'.$filename;
-                        $insert=DB::insert('insert into hh_order_detail_img(order_detail_id,img_url) values (?,?)',[$order_detail_id[0]->id,$path]);
-                        if($insert){
-                            $ifinsert=true;
-                        }else{
-                            $ifinsert=false;
+                    $size = $file->getClientSize();
+                    $filename = date('Ymd') . md5(rand(999, 10000)) . '.' . $entension;
+                    $is = $file->move(public_path() . '/uploads/' . substr($filename, 0, 4) . '-' . substr($filename, 4, 2) . '-' . substr($filename, 6, 2), $filename);
+                    if ($is) {
+                        $path = 'api/public/uploads/' . substr($filename, 0, 4) . '-' . substr($filename, 4, 2) . '-' . substr($filename, 6, 2) . '/' . $filename;
+                        $insert = DB::insert('insert into hh_order_detail_img(order_detail_id,img_url) values (?,?)', [$order_detail_id[0]->id, $path]);
+                        if ($insert) {
+                            $ifinsert = true;
+                        } else {
+                            $ifinsert = false;
                         }
-                    }else{
+                    } else {
                         $arr = array("code" => "131",
                             "msg" => "上传失败"
                         );
                         return $callback . "(" . HHJson($arr) . ")";
                     }
                 }
-                if($ifinsert){
+                if ($ifinsert) {
                     $arr = array("code" => "000",
                         "msg" => "添加成功",
                         "data" => $step
                     );
                     return $callback . "(" . HHJson($arr) . ")";
-                }else{
+                } else {
                     $arr = array("code" => "111",
                         "msg" => "添加失败"
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }
             }
-        } else{
+        } else {
             $arr = array("code" => "132",
                 "msg" => "上传的文件无效"
             );
             return $callback . "(" . HHJson($arr) . ")";
-         }
+        }
     }
 
     //查看
@@ -1479,16 +1491,16 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         $order_id = rq('order_id');
         $order_step = rq('order_step');
 
-        $order = DB::select('SELECT * FROM hh_order_detail WHERE order_id = ? AND order_step = ?',[$order_id,$order_step]);
+        $order = DB::select('SELECT * FROM hh_order_detail WHERE order_id = ? AND order_step = ?', [$order_id, $order_step]);
         if ($order) {
             $order_img_id = $order[0]->id;
-            $imgArr = DB::select('SELECT img_url FROM hh_order_detail_img WHERE order_detail_id = ?',[$order_img_id]);
+            $imgArr = DB::select('SELECT img_url FROM hh_order_detail_img WHERE order_detail_id = ?', [$order_img_id]);
             if ($imgArr) {
                 $arr = array("code" => "000",
-                    "data" => array("time"=>$order[0]->img_time,
-                                    "content"=>$order[0]->img_content,
-                                    "imgs"=>$imgArr
-                        )
+                    "data" => array("time" => $order[0]->img_time,
+                        "content" => $order[0]->img_content,
+                        "imgs" => $imgArr
+                    )
                 );
                 return $callback . "(" . HHJson($arr) . ")";
 
@@ -1519,11 +1531,11 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         if (!$remark) {
             $remark = '';
         }
-        
+
         $count = count($list_dataArr);
         $list_data_arr = array();
         $dataCount = 0;
-        for ($i=0; $i < 63; $i++) { 
+        for ($i = 0; $i < 63; $i++) {
             if ($i < $count) {
                 array_push($list_data_arr, $list_dataArr[$i]);
             } else {
@@ -1532,7 +1544,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         }
 
         //查看订单是否存在
-        $sel_order_tbl = DB::select('SELECT * FROM hh_order_actual_list WHERE order_id = ?',[$order_id]);
+        $sel_order_tbl = DB::select('SELECT * FROM hh_order_actual_list WHERE order_id = ?', [$order_id]);
 
         if (!$sel_order_tbl) { //添加
             $reckon_list_tbl = DB::insert('INSERT INTO hh_order_actual_list(order_id,order_personnel,service1,service2,service3,service4,service5,service6,service7,service8,service9,service10,service11,service12,service13,service14,service15,service16,service17,service18,service19,service20,service21,service22,service23,service24,service25,service26,service27,service28,service29,service30,service31,service32,service33,service34,service35,service36,service37,service38,service39,service40,service41,service42,service43,service44,service45,service46,service47,service48,service49,service50,service51,service52,service53,service54,service55,service56,service57,service58,service59,service60,service61,service62,service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
@@ -1622,5 +1634,5 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             }
         }
     }
-    
+
 }

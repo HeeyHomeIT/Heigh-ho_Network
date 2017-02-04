@@ -77,6 +77,7 @@ if ($pay_type == 'order') {
                         [$order_id, 1, 1]);
                     if ($sel_pay_each_gz) {
                         $pay_amount = $sel_pay_each_gz[0]->pay_amount;
+                        $pay_amount = 2;
                         $pay_each_mess = '1.工长预支付工价为：' . $pay_amount . ';';
                         $pay_mess .= $pay_each_mess;
                     }
@@ -85,6 +86,7 @@ if ($pay_type == 'order') {
                         [$order_id, 1, 2]);
                     if ($sel_pay_each_gz) {
                         $pay_amount = $sel_pay_each_sdg[0]->pay_amount;
+                        $pay_amount = 1;
                         $pay_each_mess = '2.水电工预支付工价为：' . $pay_amount . ';';
                         $pay_mess .= $pay_each_mess;
                     }
@@ -159,88 +161,88 @@ if ($pay_type == 'order') {
     }
 } else if ($pay_type == 'material') {
     //进入支付阶段
-$sel_material_tbl = \Illuminate\Support\Facades\DB::select('SELECT material_id,material_type,material_price FROM hh_order_material WHERE order_id =? AND pay_status = ?',
-    [$order_id, 1]);
-if (!$sel_material_tbl) {
-    $material_list_arr = json_decode($_REQUEST['material_list'], true);
-    //获取材料订单id
-    $sel_material_tbl = \Illuminate\Support\Facades\DB::select('SELECT material_id,order_id,material_type FROM hh_order_material WHERE order_id =? AND pay_status = ?',
-        [$order_id, 0]);
-    if ($sel_material_tbl) {
-        $material_id = $sel_material_tbl[0]->material_id;
-        $order_id = $sel_material_tbl[0]->order_id;
-        $material_type = $sel_material_tbl[0]->material_type;
+    $sel_material_tbl = \Illuminate\Support\Facades\DB::select('SELECT material_id,material_type,material_price FROM hh_order_material WHERE order_id =? AND pay_status = ?',
+        [$order_id, 1]);
+    if (!$sel_material_tbl) {
+        $material_list_arr = json_decode($_REQUEST['material_list'], true);
+        //获取材料订单id
+        $sel_material_tbl = \Illuminate\Support\Facades\DB::select('SELECT material_id,order_id,material_type FROM hh_order_material WHERE order_id =? AND pay_status = ?',
+            [$order_id, 0]);
+        if ($sel_material_tbl) {
+            $material_id = $sel_material_tbl[0]->material_id;
+            $order_id = $sel_material_tbl[0]->order_id;
+            $material_type = $sel_material_tbl[0]->material_type;
+        } else {
+            //不存在未支付的订单
+            return;
+        }
+        //默认状态为辅材支付
+        $order_pay_step = 12;
+        switch ($material_type) {
+            case 1:
+                $order_pay_step = 6;
+                break;
+            case 3:
+                $order_pay_step = 7;
+                break;
+            case 4:
+                $order_pay_step = 8;
+                break;
+            case 5:
+                $order_pay_step = 9;
+                break;
+        }
+        //确定材料单用户所选材料
+        $count = count($material_list_arr);
+        $i = 0;
+        $sum = 0.00;
+        while ($i < $count) {
+            \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material_list SET choose_flag = ? WHERE material_id = ? AND material_name_id = ?',
+                [1, $material_id, $material_list_arr[$i]]);
+            //获取当前材料金额
+            $sel_aterial_list_data_tbl = \Illuminate\Support\Facades\DB::select('SELECT price,num FROM hh_material_list_data_view WHERE material_list_id = ? AND id = ?',
+                [$material_id, $material_list_arr[$i]]);
+            $sum += ($sel_aterial_list_data_tbl[0]->price * $sel_aterial_list_data_tbl[0]->num);
+            $i++;
+        }
+        //查询订单状态
+        $sel_order_step = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?',
+            [$order_id]);
+        if ($sel_order_step) {
+            $order_step = $sel_order_step[0]->order_step;
+        } else {
+            return;
+        }
+        //插入支付表
+        \Illuminate\Support\Facades\DB::insert('INSERT INTO hh_order_pay_each (order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',
+            [$order_id, $material_id, $order_pay_step, $order_step, $sum, 1]);
+        //修改材料表信息
+        \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET pay_status = ?,material_price=? WHERE order_id = ? AND material_type = ?',
+            [1, $sum, $order_id, $material_type]);
+        $actual_next_amount = $sum;
     } else {
-        //不存在未支付的订单
-        return;
+        $material_id = $sel_material_tbl[0]->material_id;
+        $sum = $sel_material_tbl[0]->material_price;
+        $material_type = $sel_material_tbl[0]->material_type;
     }
-    //默认状态为辅材支付
-    $order_pay_step = 12;
+
+    $pay_id = $material_id;
+    $pay_name = "heeyhome网装材料订单";
+    $actual_next_amount = $sum;
     switch ($material_type) {
         case 1:
-            $order_pay_step = 6;
+            $pay_mess .= '1.水电辅材';
+            break;
+        case 2:
+            $pay_mess .= '1.木工辅材';
             break;
         case 3:
-            $order_pay_step = 7;
+            $pay_mess .= '1.瓦工辅材';
             break;
         case 4:
-            $order_pay_step = 8;
-            break;
-        case 5:
-            $order_pay_step = 9;
+            $pay_mess .= '1.油漆工辅材';
             break;
     }
-    //确定材料单用户所选材料
-    $count = count($material_list_arr);
-    $i = 0;
-    $sum = 0.00;
-    while ($i < $count) {
-        \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material_list SET choose_flag = ? WHERE material_id = ? AND material_name_id = ?',
-            [1, $material_id, $material_list_arr[$i]]);
-        //获取当前材料金额
-        $sel_aterial_list_data_tbl = \Illuminate\Support\Facades\DB::select('SELECT price,num FROM hh_material_list_data_view WHERE material_list_id = ? AND id = ?',
-            [$material_id, $material_list_arr[$i]]);
-        $sum += ($sel_aterial_list_data_tbl[0]->price * $sel_aterial_list_data_tbl[0]->num);
-        $i++;
-    }
-    //查询订单状态
-    $sel_order_step = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?',
-        [$order_id]);
-    if ($sel_order_step) {
-        $order_step = $sel_order_step[0]->order_step;
-    } else {
-        return;
-    }
-    //插入支付表
-    \Illuminate\Support\Facades\DB::insert('INSERT INTO hh_order_pay_each (order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',
-        [$order_id, $material_id, $order_pay_step, $order_step, $sum, 1]);
-    //修改材料表信息
-    \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET pay_status = ?,material_price=? WHERE order_id = ? AND material_type = ?',
-        [1, $sum, $order_id, $material_type]);
-    $actual_next_amount = $sum;
-} else {
-    $material_id = $sel_material_tbl[0]->material_id;
-    $sum = $sel_material_tbl[0]->material_price;
-    $material_type = $sel_material_tbl[0]->material_type;
-}
-
-$pay_id = $material_id;
-$pay_name = "heeyhome网装材料订单";
-$actual_next_amount = $sum;
-switch ($material_type) {
-    case 1:
-        $pay_mess .= '1.水电辅材';
-        break;
-    case 2:
-        $pay_mess .= '1.木工辅材';
-        break;
-    case 3:
-        $pay_mess .= '1.瓦工辅材';
-        break;
-    case 4:
-        $pay_mess .= '1.油漆工辅材';
-        break;
-}
 }
 //商户订单号，商户网站订单系统中唯一订单号，必填
 $out_trade_no = $pay_id;

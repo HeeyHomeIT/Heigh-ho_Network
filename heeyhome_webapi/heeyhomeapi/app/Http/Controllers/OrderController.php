@@ -148,9 +148,10 @@ class OrderController extends Controller
         if ($order_tbl_isdestroy) {
             $order_status = $order_tbl_isdestroy[0]->order_status;
             if ($order_status == 1 || $order_status == 2) {
-                $selectTime = DB::select('select confirm_time from hh_order_reservation_time where confirm_time = ?', [$confirm_time]);
-
+                $selectTime = DB::select('select confirm_time from hh_order_reservation_time where order_id = ?', [$order_id]);
                 $changeOrder_status = DB::update('update hh_order set order_status = 3 where user_id=? and order_id=?', [$user_id, $order_id]);
+                $ins_status_time = DB::insert('INSERT INTO hh_order_status_time (order_id, order_status) VALUES (?,?)',
+                    [$order_id, 3]);
                 if ($changeOrder_status) {
                     if ($selectTime[0]->confirm_time == $confirm_time) {
                         $arr = array(
@@ -263,7 +264,7 @@ class OrderController extends Controller
         }
         $callback = rq('callback');
         $page_start = ($page - 1) * $limit;
-        $order_tbl_list = DB::select('SELECT * FROM hh_order_user_view WHERE user_id = ? LIMIT ?,?',
+        $order_tbl_list = DB::select('SELECT * FROM hh_order_user_view WHERE user_id = ? ORDER BY id DESC LIMIT ?,?',
             [$user_id, $page_start, $limit]);
         foreach ($order_tbl_list as $key => $val) {
             $order_step_ch = DB::select('select order_step from hh_order_step where step_id=?', [$val->order_step]);

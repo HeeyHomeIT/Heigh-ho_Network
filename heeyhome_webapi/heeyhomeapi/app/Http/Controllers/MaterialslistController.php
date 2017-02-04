@@ -46,7 +46,7 @@ class MaterialslistController extends Controller
                     $nums = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
                     foreach ($nums as $ke => $item) {
                         if ($ids[0]->id == $item->material_name_id) {
-                            $num = $num[$ke]->material_num;
+                            $num = $nums[$ke]->material_num;
                         }
                     }
                 }

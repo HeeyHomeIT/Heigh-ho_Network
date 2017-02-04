@@ -40,6 +40,12 @@ class WorkerpricelistController extends Controller
                 );
                 return $callback . "(" . HHJson($arr) . ")";
         }
+        if(!$cost){
+            $arr = array("code" => "200",
+                "msg" => "店铺价格不存在"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
         $sel = DB::select('select id,serviceitem from hh_workerprice_serviceitem where workercate=?', [$cate]);
         //dd($sel);
         foreach ($sel as $key => $val) {
@@ -53,9 +59,9 @@ class WorkerpricelistController extends Controller
             }
             $sel[$key]->service = $des;
         }
-            $arr = array("code" => "000",
-                "data" => $sel
-            );
-            return $callback . "(" . HHJson($arr) . ")";
+        $arr = array("code" => "000",
+            "data" => $sel
+        );
+        return $callback . "(" . HHJson($arr) . ")";
     }
 }
