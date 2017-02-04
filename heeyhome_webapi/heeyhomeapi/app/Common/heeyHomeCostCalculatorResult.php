@@ -19,8 +19,24 @@ function sdrg($a)
 }
 
 //瓦工人工
-function wgrg($flag, $b1, $d1, $h1)
+function wgrg($flag, $b1, $d1, $h1, $parlor_ground)
 {
+    if ($parlor_ground == 'cz') {
+        $kt = 1;
+    } else {
+        $kt = 0;
+    }
+    if ($parlor_ground == 'cz') {
+        $yt = 1;
+    } else {
+        $yt = 0;
+    }
+    if ($parlor_ground == 'cz') {
+        $cf = 1;
+    } else {
+        $cf = 0;
+    }
+    //TODO 瓦工需要添加瓷砖属性
     switch ($flag) {
         case 1:
             //基础
@@ -36,7 +52,7 @@ function wgrg($flag, $b1, $d1, $h1)
             $F6 = ($h1 - 1) * 3;
             $H6 = $J1 - $B5 - $D5 - $H5 - $J5 - $D6 - $F6 - $F5;
             //厨房瓦工贴瓷砖人工
-            $D18 = (($H5 / 2 + 2) * 4.8 + $H5 - 3) * 40;
+            $D18 = (($H5 / 2 + 2) * 4.8 + $H5 - 3) * 40 * $cf;
             //厨房落水管封砌人工
             $F18 = 150;
             //厨房瓦工做防水
@@ -48,19 +64,19 @@ function wgrg($flag, $b1, $d1, $h1)
             //卫生间落水管封砌人工
             $F21 = 150;
             //客餐厅瓦工人工费
-            $B33 = $H6 * 40;
+            $B33 = $H6 * 40 * $kt;
             //客餐厅瓦工补电线槽人工
             $D33 = 200;
             //客餐厅瓦工砌墙人工
             $F33 = 10 * 50;
             //阳台瓦工瓷砖人工
-            $B37 = (($D6/3.2*2+6.4)*2.7-4.8-4+$D6)*40;
+            $B37 = (($D6 / 3.2 * 2 + 6.4) * 2.7 - 4.8 - 4 + $D6) * 40 * $yt;
             //阳台瓦工封砌水管
             $D37 = 150;
             //阳台瓦工做防水
             $F37 = 150;
             //第二个阳台
-            $B40 = abs(1-$h1)*(($F6/2*2+4)*2.7+$F6-5)*40;
+            $B40 = abs(1 - $h1) * (($F6 / 2 * 2 + 4) * 2.7 + $F6 - 5) * 40;
             $D40 = (abs(1 - $h1)) * 150;
             $F40 = (abs(1 - $h1)) * 100;
             return $D18 + $F18 + $H18 + $B21 + $D21 + $F21 + $B33 + $D33 + $F33 + $B37 + $D37 + $F37 + ($B40 + $D40 + $F40);
@@ -82,8 +98,14 @@ function wgrg($flag, $b1, $d1, $h1)
 }
 
 //木工人工
-function mgrg($flag, $b1, $d1, $h1)
+function mgrg($flag, $b1, $d1, $h1,$kitchen_cupboard)
 {
+    //TODO 橱柜
+    if($kitchen_cupboard){
+
+    }else{
+
+    }
     switch ($flag) {
         case 1:
             //基础

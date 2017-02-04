@@ -112,7 +112,7 @@ function costCalculator_suzhou($calculator_arr)
         );
         return $arr;
     }
-    if (($area != null) && ($room_num != null) && ($parlor_num != null) && ($bathroom_num != null) && ($balcony_num != null)) {
+    if (($area == null) || ($room_num == null) || ($parlor_num == null) || ($bathroom_num == null) || ($balcony_num == null)) {
         $arr = array(
             "code" => "200",
             "msg" => "参数错误",
@@ -122,26 +122,26 @@ function costCalculator_suzhou($calculator_arr)
     }
 
     $flag = 1;
-    if ($area >= 70 && $area <= 80) {
-        $flag = 1;
-    } else if ($area >= 80 && $area <= 90) {
-        $flag = 2;
-    } else if ($area >= 90 && $area <= 100) {
-        $flag = 3;
-    } else if ($area >= 100 && $area <= 110) {
-        $flag = 4;
-    } else if ($area >= 110 && $area <= 120) {
-        $flag = 5;
-    } else if ($area >= 120 && $area <= 140) {
-        $flag = 6;
-    } else if ($area >= 140 && $area <= 160) {
-        $flag = 7;
-    }
+//    if ($area >= 70 && $area <= 80) {
+//        $flag = 1;
+//    } else if ($area >= 80 && $area <= 90) {
+//        $flag = 2;
+//    } else if ($area >= 90 && $area <= 100) {
+//        $flag = 3;
+//    } else if ($area >= 100 && $area <= 110) {
+//        $flag = 4;
+//    } else if ($area >= 110 && $area <= 120) {
+//        $flag = 5;
+//    } else if ($area >= 120 && $area <= 140) {
+//        $flag = 6;
+//    } else if ($area >= 140 && $area <= 160) {
+//        $flag = 7;
+//    }
     //人工费用
     $gzrg = $area * 50;
     $sdrg = sdrg($area);
-    $wgrg = wgrg($flag, $area, $room_num, $balcony_num);
-    $mgrg = mgrg($flag, $area, $room_num, $balcony_num);
+    $wgrg = wgrg($flag, $area, $room_num, $balcony_num, $parlor_ground);
+    $mgrg = mgrg($flag, $area, $room_num, $balcony_num, $kitchen_cupboard);
     $yqgrg = yqgrg($flag, $area, $room_num);
     $zgrg = zgrg($flag, $area, $room_num, $balcony_num);
     $rgzj = $gzrg + $sdrg + $wgrg + $mgrg + $yqgrg + $zgrg;
