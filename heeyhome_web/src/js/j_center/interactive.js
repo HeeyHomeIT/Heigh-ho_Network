@@ -135,6 +135,7 @@
                 getHomeInfoHandler.getOrderEvent();//获取用户我的订单信息
                 getHomeInfoHandler.getCollectEvent();//获取用户我的收藏信息
                 getHomeInfoHandler.getSafeEvent();//获取用户的安全等级
+                getUserAvatarHandler.getInfoEvent();//上传头像
             }]);
         },
         /*
@@ -146,21 +147,7 @@
                 $('.left_ul li').eq(1).addClass('left_active').siblings().removeClass('left_active');
                 // 加载城市插件
                 $('[data-toggle="distpicker"]').distpicker();
-                /* details */
-                var $dtDiv = $("#works_content_title div");
-                var iSpeed = 0;
-                var left = 0;
-                var oBg = document.getElementById("title_active");
-                for (var i = 0; i < $dtDiv.length - 1; i++) {
-                    $dtDiv[i].onclick = function () {
-                        startMoveHandler.startMoveEvent(oBg, this.offsetLeft, iSpeed, left);
-                        $(".personal_content").hide();
-                        $(".update_head").hide();
-                        $(".works_content >div:eq(" + ($(this).index() + 1) + ")").show().removeClass('hide');
-                    }
-                }
                 getUserInfoHandler.getInfoEvent();
-                getUserAvatarHandler.getInfoEvent();
                 uploadPictureHandler.uploadAvatar();
             }]);
         },
@@ -349,7 +336,7 @@
                 $('.left_ul li').eq(4).addClass('left_active').siblings().removeClass('left_active');
                 initInfo.info();
             }]);
-        },
+        }
 //      /*
 //       * 支付成功
 //       */
@@ -422,7 +409,7 @@
                 success: function (data) {
                     if (data && data.code == '000') {
                         //console.log(data.data);
-                        $(".left_img").html('<img src="' + data.data.user_img + '">');
+                        $(".left_img").html('<img src="' + data.data.user_img + '"><a class="edit_avatar" href="javascript:;">修改头像<input type="file" name="" id="renderings_file"></a> ');
                     }
                 },
                 error: function (data) {
@@ -841,36 +828,43 @@
     /* 上传用户头像 */
     getUserAvatarHandler = {
         getInfoEvent: function () {
-            $('#user_id').val($.base64.decode($.cookie("userId")));
-            $('#form').attr('action', UPUSERIMGURL);
-            $(document).ready(function () {
-                var str1 = '';
-                $('.head_submit').click(function () {
-                    setTimeout(function () {
-                        str1 = $(document.getElementById('if').contentWindow.document.body).html();//获取iframe中的值
-                        console.log(str1);
-                        var str2 = str1.substring(str1.indexOf("(") + 1, str1.indexOf(")"));
-                        console.log(str2);
-                        var user = JSON.parse(str2);//转成json格式
-                        if (user.code == '000') {
-                            layer.alert('上传成功');
-                        } else if (user.code == '112') {
-                            layer.alert('用户id不能为空');
-                        } else if (user.code == '121') {
-                            layer.alert('没有图片被上传');
-                        } else if (user.code == '111') {
-                            layer.alert('上传失败');
-                        } else if (user.code == '122') {
-                            layer.alert('图片上传出错');
-                        } else if (user.code == '123') {
-                            layer.alert('图片上传出错,不能大于2M');
+            $(document).off('change', '#renderings_file').on('change', '#renderings_file', function () {
+                var inputImg = $(this);
+                var file = inputImg.get(0).files[0];
+                if (!/image\/\w+/.test(file.type)) {
+                    layer.msg("请确保文件为图像类型");
+                    inputImg.val('');//清空file选择的文件
+                    return false;
+                } else {
+                    var data = new FormData();
+                    data.append("user_id", USERID);
+                    data.append("myfile", $("#renderings_file")[0].files[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: UPUSERIMGURL,
+                        data: data,
+                        dataType: "jsonp",
+                        jsonp: 'callback',
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function (result) {
+                            if (result.code == '000') {
+                                layer.msg(result.msg);
+                                getHomeInfoHandler.getImgEvent();
+                            } else {
+                                layer.alert(result.msg);
+                            }
+                        },
+                        error: function (e, a, v) {
+                            layer.alert("未知错误");
                         }
-                    }, 5000);
-                });
-            });
+                    });
+                }
+            })
         }
-    };
 
+    };
 
     /* 获得我的订单详情内容 */
     OrderDetail = {
@@ -1140,76 +1134,6 @@
         }
     };
 
-    /* 上传图片 */
-    uploadPictureHandler = {
-        uploadAvatar: function () {
-            var options = {
-                thumbBox: '.thumbBox',
-                spinner: '.spinner',
-                imgSrc: 'css/img/imgWrap_bg.png'
-            };
-            var cropper = $('.imageBox').cropbox(options);
-            $('#upload-file').on('change', function () {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    options.imgSrc = e.target.result;
-                    cropper = $('.imageBox').cropbox(options);
-                    $('.thumbBox').show().removeClass('hide');
-                };
-                reader.readAsDataURL(this.files[0]);
-                /*this.files = [];*/
-            });
-            /* 点击剪切触发的事件 */
-            $('#btnCrop').on('click', function () {
-                var img = cropper.getDataURL();
-                var result_100 = $('.cropped .result_100');
-                var result_50 = $('.cropped .result_50');
-                result_100.html('');
-                result_50.html('');
-                result_100.append('<img src="' + img + '" align="absmiddle" style="width:100px;height:100px;box-shadow:0 0 12px #7E7E7E;">');
-                result_50.append('<img src="' + img + '" align="absmiddle" style="width:50px;height:50px;box-shadow:0 0 12px #7E7E7E;" >');
-            });
-            /* 点击加号触发的事件 */
-            $('#btnZoomIn').on('click', function () {
-                cropper.zoomIn();
-            });
-            /* 点击减号触发的事件 */
-            $('#btnZoomOut').on('click', function () {
-                cropper.zoomOut();
-            });
-            /* 鼠标移入图片框框的时候禁用滚轮，离开可以使用滚轮 */
-            $('.imgWrap').hover(function () {
-                disabledMouseWheel.chromeDepend();
-            }, function () {
-                window.onmousewheel = document.onmousewheel = true;
-                document.removeEventListener('DOMMouseScroll', disabledMouseWheel.firefoxDepend, false);
-            });
-        }
-    };
-
-    /* 禁用滚轮事件 */
-    disabledMouseWheel = {
-        chromeDepend: function () {
-            if (document.addEventListener) {
-                document.addEventListener('DOMMouseScroll', disabledMouseWheel.firefoxDepend, false);
-            }//W3C
-            window.onmousewheel = document.onmousewheel = disabledMouseWheel.firefoxDepend;//IE/Opera/Chrome
-        },
-        firefoxDepend: function (evt) {
-            evt = evt || window.event;
-            if (evt.preventDefault) {
-                // Firefox
-                evt.preventDefault();
-                evt.stopPropagation();
-            } else {
-                // IE
-                evt.cancelBubble = true;
-                evt.returnValue = false;
-            }
-            return false;
-        }
-    };
-
     /* 消息中心判断已读还是未读*/
     judgeNews = {
         isnews: function () {
@@ -1450,7 +1374,7 @@
             $(".info_header span").text(msg);
             $rb.stop().animate({
                 "margin-top": "-150px",
-                opacity: 1,
+                opacity: 1
             }, 500);
             $(".remindemodel_ok").on("click", function () { // 点击'好的'关闭提示弹出框
                 $rb.stop().animate({
@@ -1466,39 +1390,40 @@
     /* 时间轴订单左侧的悬浮条 */
     suspensionMenu = {
         menuTab: function () {
-            $(".work_stage").eq(0).addClass("first_stage bar");
-            $(".work_stage").eq(1).addClass("sdg_stage bar");
-            $(".work_stage").eq(5).addClass("wg_stage bar");
-            $(".work_stage").eq(9).addClass("mg_stage bar");
-            $(".work_stage").eq(13).addClass("yqg_stage bar");
-            $(".work_stage").eq(17).addClass("end_stage bar");
+            var workStage = $(".work_stage");
+            workStage.eq(0).addClass("first_stage bar");
+            workStage.eq(1).addClass("sdg_stage bar");
+            workStage.eq(5).addClass("wg_stage bar");
+            workStage.eq(9).addClass("mg_stage bar");
+            workStage.eq(13).addClass("yqg_stage bar");
+            workStage.eq(17).addClass("end_stage bar");
             var li = '';
-            if ($(".work_stage").hasClass("first_stage")) {
+            if (workStage.hasClass("first_stage")) {
                 li += '<li class="current">';
                 li += '<a href="javascript:void(0)" tab="&first_stage">进场准备</a>';
                 li += '</li>';
             }
-            if ($(".work_stage").hasClass("sdg_stage")) {
+            if (workStage.hasClass("sdg_stage")) {
                 li += '<li>';
                 li += '<a href="javascript:void(0)" tab="&sdg_stage">水电工阶段</a>';
                 li += '</li>';
             }
-            if ($(".work_stage").hasClass("wg_stage")) {
+            if (workStage.hasClass("wg_stage")) {
                 li += '<li>';
                 li += '<a href="javascript:void(0)" tab="&wg_stage">瓦工阶段</a>';
                 li += '</li>';
             }
-            if ($(".work_stage").hasClass("mg_stage")) {
+            if (workStage.hasClass("mg_stage")) {
                 li += '<li>';
                 li += '<a href="javascript:void(0)" tab="&mg_stage">木工阶段</a>';
                 li += '</li>';
             }
-            if ($(".work_stage").hasClass("yqg_stage")) {
+            if (workStage.hasClass("yqg_stage")) {
                 li += '<li>';
                 li += '<a href="javascript:void(0)" tab="&yqg_stage">油漆工阶段</a>';
                 li += '</li>';
             }
-            if ($(".work_stage").hasClass("end_stage")) {
+            if (workStage.hasClass("end_stage")) {
                 li += '<li>';
                 li += '<a href="javascript:void(0)" tab="&end_stage">工期完成</a>';
                 li += '</li>';
@@ -1621,7 +1546,7 @@
             vrStr += '<div class="trade_stage"><p>' + value.order_status_ch + '</p></div>';
             // 未开工之前跳转到预约单页面
             if (value.order_step == 18 && (value.order_status == 1 || value.order_status == 2 || value.order_status == 3 || value.order_status == 4)) {
-                console.log(value)
+                console.log(value);
                 var oInfoObj = {};
                 oInfoObj.shop_id = value.shop_id;
                 oInfoObj.user_id = value.user_id;

@@ -203,12 +203,36 @@ a:focus {
     margin-left: 25px;
     box-sizing: content-box;
     -webkit-box-sizing: content-box;
+    position: relative;
 }
 
 .left_img img {
     width: 98px;
     height: 98px;
     border-radius: 50%;
+}
+
+.left_img .edit_avatar {
+    background: url(../../css/img/userImg_bg.jpg) no-repeat;
+    position: absolute;
+    bottom: -16px;
+    left: -7px;
+    width: 100%;
+    height: 50px;
+    line-height: 39px;
+    text-align: center;
+    color: #e1d7ca;
+    opacity: 0.6;
+    display: inline-block;
+}
+
+.left_img .edit_avatar input {
+    font-size: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    opacity: 0;
 }
 
 .left_user {
@@ -596,7 +620,7 @@ a:focus {
 }
 
 .personal_form_list .personal_user_name, .personal_form_list .personal_user_nickname {
-    width: 126px;
+    width: 150px;
 }
 
 .personal_form_list .personal_user_name:disabled {
@@ -740,7 +764,7 @@ a:focus {
     color: white;
     display: block;
     font-size: 14px;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 .personal_submit:hover {
@@ -758,7 +782,7 @@ a:focus {
 }
 
 .personal_content {
-    margin-top: 15px;
+    margin-top: 80px;
 }
 
 /* 头像照片 */
