@@ -42,6 +42,7 @@ class ForemaninfoController extends Controller
                 }
                 $userinfo[0]->foremaninfo_phone=$user[0]->user_phone;
                 $userinfo[0]->foremaninfo_email=$user[0]->user_email;
+                $userinfo[0]->user_name=$user[0]->user_name;
                 if($user[0]->user_name==$user[0]->user_phone) $userinfo[0]->isedit=1;
                 else  $userinfo[0]->isedit=2;
                 $userinfo[0]->servicearea=explode(',',$userinfo[0]->servicearea);
