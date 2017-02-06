@@ -662,6 +662,12 @@
     vertical-align: middle;
 }
 
+.personal_form_list #email_p span {
+    margin-left: 16px;
+    width: auto;
+    margin-right: 16px;
+}
+
 .personal_form_list input {
     margin-left: 15px;
     border: none;

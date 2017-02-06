@@ -545,7 +545,7 @@
                                     if (data.code == '000') {
                                         new_flag = data.data.flag;
                                         //console.log(password_flag);
-                                        window.location.href = '#/center/setting/reset/reset_6';
+                                        window.location.href = '#/master/setting/reset/reset_6';
                                     } else {
                                         layer.alert(data.msg);
                                     }

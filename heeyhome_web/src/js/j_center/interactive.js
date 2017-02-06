@@ -1015,7 +1015,7 @@
                         limit: 4
                     },
                     success: function (data) {
-                        //console.log(data.data);
+                        console.log(data.data);
                         //data.code = 117;
                         if (data != null && data.code == '000') {
                             shop_total = data.data[0].total;

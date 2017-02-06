@@ -147,6 +147,8 @@
             $(document).on('click', '#collect_shop', function (e) {
                 if (USERID != null && USERID != "" && USERID != undefined) {
                     if ($.base64.decode(userType) == 1) {
+                        console.log($("#JdpId").val());
+                        console.log(USERID);
                         $.ajax({
                             url: SHOPCOLURL,
                             type: "GET",
@@ -772,14 +774,18 @@
             vrStr += '<div class="shop_introduce"><p><em class="sprite icon-position"></em>' + ((value.shop_address != null && value.shop_address != "") ? value.shop_address : '无') + '</p><p class="service_area">服务范围:&nbsp;';
             if (value.servicearea.length != 0) {
                 $.each(value.servicearea, function (i, v) {
-                    vrStr += '<span>' + v + ';</span>';
+                    if (v != null && v != '') {
+                        vrStr += '<span>' + v + ';</span>';
+                    }else{
+                        vrStr += '<span>--</span>';
+                    }
                 });
                 vrStr += '<input type="button" value="查看地图">';
             } else {
                 vrStr += '<span>无</span>';
             }
 
-            vrStr += '</p><div class="good_form clearfix"><p class="good_style">擅长风格:</p>';
+            vrStr += '</p><div class="good_form clearfix"><p class="good_style">擅长风格:&nbsp;</p>';
             if (value.servicetag.length != 0) {
                 $.each(value.servicetag, function (i, v) {
                     if (v != null && v != '') {
