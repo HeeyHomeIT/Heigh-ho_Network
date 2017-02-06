@@ -331,7 +331,7 @@
                     shop_id: shopId
                 },
                 success: function (data) {
-                    if(data.code == 000){
+                    if(data.code == "000"){
                     	$(".process_content").append(sc.spliceGyInfoEvent(data.data));
                     }else{
                     	$(".process_content").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也...</span></div>');
@@ -353,11 +353,12 @@
                 async: true,
                 dataType: 'jsonp',
                 data: {
-                    foreman_id: shopperId,
+                    foreman_id: shopperId
                 },
                 success: function (data) {
-                    if(data.code == 000){
-                    	$("#sd_hexgrid").append(sc.spliceCgInfoEvent(data.data));	
+                    if(data.code == "000"){
+                    	$("#sd_hexgrid").append(sc.spliceCgInfoEvent(data.data));
+                    	$.cookie('foremanId',$.base64.encode(data.data[0].foreman_id));
                     }else{
                     	$(".sdcon").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也...</span></div>');
                     }
@@ -399,7 +400,7 @@
                     shop_id: shopId
                 },
                 success: function (data) {
-                    if(data.code == 000){
+                    if(data.code == "000"){
                     	if(data.data.eleworker.length != 0){
                     		$("#water_electrician .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.eleworker)); //水电工
                     		$("#water_electrician ").append(sc.spliceHidePicEvent(data.data.eleworker)); //水电工隐藏图片
@@ -508,7 +509,7 @@
                     ucateid: 0, // 工种类别
                     shopName: '',
                     resList: []
-                }
+                };
                 worksObj[uid].resList.push(uinfo);
                 worksObj[uid].ucateid = ucateid;
                 worksObj[uid].shopName = shopName;
@@ -653,7 +654,7 @@
 		                        "dp": 0, // 店铺ID
 		                        "mark": "choose", // 标志位 choose：选择工人 onekey：一键预约
 		                        "worker": [] // 工人数组
-		                    }
+		                    };
 		                    reservationObj["dp"] = dpId;
 		                    $.each($(".selectItemContent>div"), function (i, v) {
 		                        var attributeObj = {};

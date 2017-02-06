@@ -150,7 +150,6 @@
                 // 加载城市插件
                 $('[data-toggle="distpicker"]').distpicker();
                 getUserInfoHandler.getInfoEvent();
-                uploadPictureHandler.uploadAvatar();
             }]);
         },
         /*

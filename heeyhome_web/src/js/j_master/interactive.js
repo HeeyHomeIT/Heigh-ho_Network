@@ -310,14 +310,21 @@
                 /* 去掉头部多余的部分 */
                 $("#menuNavOuter").remove();
                 $("#headerWrapper").remove();
+                var id;
                 var case_id = sessionStorage.getItem("case_id");
+                var userType = $.cookie('userType');
+                if ($.base64.decode(userType) == 1) {
+                    id = $.base64.decode($.cookie("foremanId"));
+                }else{
+                    id=$.base64.decode($.cookie('userId'));
+                }
                 $.ajax({
                     type: "get",
                     url: WORKCURL,
                     async: true,
                     dataType: "jsonp",
                     data: {
-                        foreman_id: USERID
+                        foreman_id: id
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
