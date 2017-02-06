@@ -3392,7 +3392,7 @@
     text-align: center;
     background-color: #525252;
     color: white;
-    display: block;
+    display: inline-block;
     font-size: 14px;
     border-radius: 3px;
     margin: 20px auto;
@@ -4285,10 +4285,15 @@ div.clear:after, div.clear:before {
     text-align: center;
     background-color: #525252;
     color: white;
-    display: block;
+    display: inline-block;
     font-size: 14px;
     border-radius: 3px;
     margin-top: 50px;
+    margin-left: 300px;
+}
+
+.staff_confirm:hover {
+    color: white;
 }
 
 .edit_price {
@@ -4431,4 +4436,30 @@ div.clear:after, div.clear:before {
     font-size: 14px;
     font-family: FZLTHJW;
     padding: 15px;
+}
+
+.team_back {
+    width: 80px;
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    background-color: #525252;
+    margin: 0 auto;
+    font-size: 14px;
+    border-radius: 3px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.team_back:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.new_back {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
 }
