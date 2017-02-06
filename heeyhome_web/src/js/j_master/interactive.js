@@ -3967,6 +3967,10 @@
                                         }
                                     });
                                     layer.msg(result.msg);
+                                    $('#renderings_file').val('');//清空file选择的文件
+                                } else {
+                                    layer.msg(result.msg);
+                                    $('#renderings_file').val('');//清空file选择的文件
                                 }
                             },
                             error: function (e, a, v) {

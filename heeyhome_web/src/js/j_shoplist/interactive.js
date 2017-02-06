@@ -239,7 +239,7 @@
                 vrStr += '			</p>';
                 var openTime = v.opentime;
                 openTime = openTime.substring(0, 10);
-                vrStr += '			<p>开店时间：<span>' + openTime + '</span>年</p>';
+                vrStr += '			<p>开店时间：<span>' + openTime + '</span></p>';
                 vrStr += '		</div>';
                 vrStr += '		<div class="shop_icon clearfix">';
                 vrStr += '			<div>';
