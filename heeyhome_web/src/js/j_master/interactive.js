@@ -4175,7 +4175,7 @@
                         }
                         /* 如果失败执行 */
                         else {
-                            layer.msg(data.msg);
+                            //layer.msg(data.msg);
                         }
                     }).error(function (data, status) {
                     });

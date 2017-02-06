@@ -19,22 +19,22 @@
     var SHOPWAGEURL = "http://www.heeyhome.com/api/public/shopwages"; // 店铺工价接口
     var USERINFOURL = "http://www.heeyhome.com/api/public/personal/userinfo"; // 读取用户信息接口
 
-	
+
     var worksObj = {};
-	
-	var UID = $.cookie("userId"); // 得到userid
-	var USERTYPE = $.cookie("userType");
-    if(UID!=null && UID !="" && UID !=undefined){
-    	UID = $.base64.decode(UID);
-    }else {
-    	UID = "";
+
+    var UID = $.cookie("userId"); // 得到userid
+    var USERTYPE = $.cookie("userType");
+    if (UID != null && UID != "" && UID != undefined) {
+        UID = $.base64.decode(UID);
+    } else {
+        UID = "";
     }
-    if(USERTYPE!=null && USERTYPE !="" && USERTYPE !=undefined){
-    	USERTYPE = $.base64.decode(USERTYPE);
-    }else {
-    	USERTYPE = "";
+    if (USERTYPE != null && USERTYPE != "" && USERTYPE != undefined) {
+        USERTYPE = $.base64.decode(USERTYPE);
+    } else {
+        USERTYPE = "";
     }
-    
+
     /*定义一个类*/
     var shopDetailWrap = {
         /**
@@ -70,67 +70,67 @@
             /* 去预约*/
             self.initGoReservationEvent();
             /* 店铺工价*/
-           	self.initArtificialPriceEvent();
+            self.initArtificialPriceEvent();
             /* 展开工种价格明细*/
             self.initSpriceListEvent();
             /* 收藏店铺*/
             self.initCollectionEvent();
             /* 回到顶部 */
-           	self.initBackTopEvent();
-           	/* 显示客服聊天 */
-           	self.initinlineEvent();
+            self.initBackTopEvent();
+            /* 显示客服聊天 */
+            self.initinlineEvent();
 
         },
 
-		/**
-		 * 页面滑动后回到顶部
-		 */
-		initBackTopEvent : function () {
-			$(".mui-mbar-tabs .gotop").on("click",function() {
-				$("body,html").animate({scrollTop: 0},200);
-				return false;
-			});
-		},
-		/**
-		 * 显示客服聊天
-		 */
-		initinlineEvent:function(){
-			$(document).on("click",".hh-inline",function(){
-				$.ajax({
-					url: USERINFOURL,
-					type: "GET",
-					async: true,
-					dataType: 'jsonp',
-					data: {
-						user_id: UID
-					}
-				}).done(function(data){
-					var name='',phone='',userinfo_email='';
-					if(data.code == 000){
-						name = data.data.user_name;
-						phone = data.data.userinfo_phone;
-						userinfo_email = data.data.userinfo_email;
-					}
-					window.easemobim = window.easemobim || {};
-					easemobim.bind({
-						 //租户id 
-					    tenantId: '22227',   
-					    //是否隐藏小的悬浮按钮
-					    hide: true,
-					    visitor: {         
-					        trueName: name,
-					        phone: phone,
-					        description: '描述信息',
-					        email: userinfo_email
-					    },
-					    satisfaction: true,
-					    //启用收消息同步
-    					resources: true	
-					})
-				});
-					
-			});
-		},
+        /**
+         * 页面滑动后回到顶部
+         */
+        initBackTopEvent: function () {
+            $(".mui-mbar-tabs .gotop").on("click", function () {
+                $("body,html").animate({scrollTop: 0}, 200);
+                return false;
+            });
+        },
+        /**
+         * 显示客服聊天
+         */
+        initinlineEvent: function () {
+            $(document).on("click", ".hh-inline", function () {
+                $.ajax({
+                    url: USERINFOURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        user_id: UID
+                    }
+                }).done(function (data) {
+                    var name = '', phone = '', userinfo_email = '';
+                    if (data.code == 000) {
+                        name = data.data.user_name;
+                        phone = data.data.userinfo_phone;
+                        userinfo_email = data.data.userinfo_email;
+                    }
+                    window.easemobim = window.easemobim || {};
+                    easemobim.bind({
+                        //租户id
+                        tenantId: '22227',
+                        //是否隐藏小的悬浮按钮
+                        hide: true,
+                        visitor: {
+                            trueName: name,
+                            phone: phone,
+                            description: '描述信息',
+                            email: userinfo_email
+                        },
+                        satisfaction: true,
+                        //启用收消息同步
+                        resources: true
+                    })
+                });
+
+            });
+        },
         /**
          * 显示是否已收藏店铺
          */
@@ -294,9 +294,9 @@
                     $(".scontent").addClass("loagbg p1");
                 },
                 success: function (data) {
-                    $(".sname").html((data.data.shop_name!=null &&data.data.shop_name!="")?data.data.shop_name:"--");
+                    $(".sname").html((data.data.shop_name != null && data.data.shop_name != "") ? data.data.shop_name : "--");
                     $("#JgzId").val(data.data.shopper_id);
-                    $(".Jmore").attr("href", "successcase.html#/successcase?pos=" + $("#JgzId").val() + "&sn="+encodeURI(data.data.shop_name)+"&si="+shopId+"")
+                    $(".Jmore").attr("href", "successcase.html#/successcase?pos=" + $("#JgzId").val() + "&sn=" + encodeURI(data.data.shop_name) + "&si=" + shopId + "")
                     $(".hd ul").html(sc.spliceHdPictureEvent(data.data));
                     $(".bd ul").html(sc.spliceBdPictureEvent(data.data));
                     $(".scontent").html(sc.spliceShopInfoEvent(data.data));
@@ -331,10 +331,10 @@
                     shop_id: shopId
                 },
                 success: function (data) {
-                    if(data.code == "000"){
-                    	$(".process_content").append(sc.spliceGyInfoEvent(data.data));
-                    }else{
-                    	$(".process_content").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也...</span></div>');
+                    if (data.code == "000") {
+                        $(".process_content").append(sc.spliceGyInfoEvent(data.data));
+                    } else {
+                        $(".process_content").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也...</span></div>');
                     }
                 },
                 error: function (data) {
@@ -356,31 +356,31 @@
                     foreman_id: shopperId
                 },
                 success: function (data) {
-                    if(data.code == "000"){
-                    	$("#sd_hexgrid").append(sc.spliceCgInfoEvent(data.data));
-                    	$.cookie('foremanId',$.base64.encode(data.data[0].foreman_id));
-                    }else{
-                    	$(".sdcon").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也...</span></div>');
+                    if (data.code == "000") {
+                        $("#sd_hexgrid").append(sc.spliceCgInfoEvent(data.data));
+                        $.cookie('foremanId', $.base64.encode(data.data[0].foreman_id));
+                    } else {
+                        $(".sdcon").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也...</span></div>');
                     }
                 },
                 error: function (data) {
                 }
             });
-            $(document).on("click","#sd_hexgrid li",function() {
-            	var type = $(this).attr("data-type");
-				var id = $(this).attr("data-id");				
-				if(type == 1) {		
-					sessionStorage.setItem("case_id", id);
-					window.location.href = "success_case.html#/success/success_case";
-				} else {
-					sessionStorage.setItem("orderid", id);
-					window.location.href = "order_detail.html#/morder_wrap/morder_detail";
-				}
+            $(document).on("click", "#sd_hexgrid li", function () {
+                var type = $(this).attr("data-type");
+                var id = $(this).attr("data-id");
+                if (type == 1) {
+                    sessionStorage.setItem("case_id", id);
+                    window.location.href = "success_case.html#/success/success_case";
+                } else {
+                    sessionStorage.setItem("orderid", id);
+                    window.location.href = "order_detail.html#/morder_wrap/morder_detail";
+                }
             });
-            $("#sdcontent .s_more").on("click",function() {
-            	var url = window.location.hash;
-            	var pos = url.split("=")[1];
-            	sessionStorage.setItem("shopid",pos);
+            $("#sdcontent .s_more").on("click", function () {
+                var url = window.location.hash;
+                var pos = url.split("=")[1];
+                sessionStorage.setItem("shopid", pos);
             });
         },
         /**
@@ -400,34 +400,34 @@
                     shop_id: shopId
                 },
                 success: function (data) {
-                    if(data.code == "000"){
-                    	if(data.data.eleworker.length != 0){
-                    		$("#water_electrician .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.eleworker)); //水电工
-                    		$("#water_electrician ").append(sc.spliceHidePicEvent(data.data.eleworker)); //水电工隐藏图片
-                    	}else{
-                    		$("#water_electrician .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
-                    	}
-                    	
-                    	if(data.data.brickworker.length != 0){
-                    		$("#bricklayer .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.brickworker)); //瓦工
-                    		$("#bricklayer ").append(sc.spliceHidePicEvent(data.data.brickworker)); //瓦工隐藏图片
-                    	}else{
-                    		$("#bricklayer .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
-                    	}
-                    	
-                    	if(data.data.woodworker.length != 0){
-                    		$("#woodworking .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.woodworker)); //木工
-                    		$("#woodworking ").append(sc.spliceHidePicEvent(data.data.woodworker)); //木工隐藏图片
-                    	}else{
-                    		$("#woodworking .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
-                    	}
-                    	
-                    	if(data.data.paintworker.length != 0){
-                    		$("#painter .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.paintworker)); //油漆工
-                    		$("#painter ").append(sc.spliceHidePicEvent(data.data.paintworker)); //油漆工隐藏图片
-                    	}else{
-                    		$("#painter .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
-                    	}
+                    if (data.code == "000") {
+                        if (data.data.eleworker.length != 0) {
+                            $("#water_electrician .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.eleworker)); //水电工
+                            $("#water_electrician ").append(sc.spliceHidePicEvent(data.data.eleworker)); //水电工隐藏图片
+                        } else {
+                            $("#water_electrician .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
+                        }
+
+                        if (data.data.brickworker.length != 0) {
+                            $("#bricklayer .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.brickworker)); //瓦工
+                            $("#bricklayer ").append(sc.spliceHidePicEvent(data.data.brickworker)); //瓦工隐藏图片
+                        } else {
+                            $("#bricklayer .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
+                        }
+
+                        if (data.data.woodworker.length != 0) {
+                            $("#woodworking .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.woodworker)); //木工
+                            $("#woodworking ").append(sc.spliceHidePicEvent(data.data.woodworker)); //木工隐藏图片
+                        } else {
+                            $("#woodworking .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
+                        }
+
+                        if (data.data.paintworker.length != 0) {
+                            $("#painter .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.paintworker)); //油漆工
+                            $("#painter ").append(sc.spliceHidePicEvent(data.data.paintworker)); //油漆工隐藏图片
+                        } else {
+                            $("#painter .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
+                        }
                     }
                 },
                 error: function (data) {
@@ -624,63 +624,63 @@
         initGoReservationEvent: function () {
             var dpId = $("#JdpId").val(); // 店铺ID
             $(document).on("click", "#JReservation", function () {
-                if(UID != ""){
-                	if(USERTYPE == 2){
-                		layer.msg("此功能暂时只对用户开放~~");
-                	}else{
-                		var gzId = $("#JgzId").val(); // 工长ID
-		                var reservationObj = {};
-		                reservationObj["dp"] = dpId;
-		                reservationObj["gz"] = gzId;
-		                reservationObj["mark"] = "onekey";
-		                //console.log(reservationObj);
-		                sessionStorage.setItem("rt_list", JSON.stringify(reservationObj));
-		                var url = "reservation.html#/reservation";
-		                window.location.href = url + "?type=1";
-                	}
-            	}else{
-            		layer.msg('一键预约前请先登录哦~');
-            	}         	
+                if (UID != "") {
+                    if (USERTYPE == 2) {
+                        layer.msg("此功能暂时只对用户开放~~");
+                    } else {
+                        var gzId = $("#JgzId").val(); // 工长ID
+                        var reservationObj = {};
+                        reservationObj["dp"] = dpId;
+                        reservationObj["gz"] = gzId;
+                        reservationObj["mark"] = "onekey";
+                        //console.log(reservationObj);
+                        sessionStorage.setItem("rt_list", JSON.stringify(reservationObj));
+                        var url = "reservation.html#/reservation";
+                        window.location.href = url + "?type=1";
+                    }
+                } else {
+                    layer.msg('一键预约前请先登录哦~');
+                }
             });
             $(document).on("click", ".settlement-btncon", function () {
-                if(UID != ""){
-                	if(USERTYPE == 2){
-                		layer.msg("此功能暂时只对用户开放~~");
-                	}else{
-                		var length = $(".h-bd").text();
-	                	if (parseInt(length) != 0) {
-		                    var reservationObj = {};
-		                    reservationObj = {
-		                        "dp": 0, // 店铺ID
-		                        "mark": "choose", // 标志位 choose：选择工人 onekey：一键预约
-		                        "worker": [] // 工人数组
-		                    };
-		                    reservationObj["dp"] = dpId;
-		                    $.each($(".selectItemContent>div"), function (i, v) {
-		                        var attributeObj = {};
-		                        attributeObj["nid"] = $(v).find(".Jworker").data("nid"); // 工人id
-		                        attributeObj["ntype"] = $(v).find(".Jworker").data("ntype"); // 工人类型
-		                        reservationObj.worker.push(attributeObj);
-		                    });
-		                    //console.log(reservationObj);
-		                    sessionStorage.setItem("rt_list", JSON.stringify(reservationObj));
-		                    var url = "reservation.html#/reservation";
-		                    window.location.href = url + "?type=2";
-		                } else {
-		                    layer.msg('请先选择相应的工人');
-		                }
-                	}
-                }else{
-                	layer.msg('请先登录哦~');
-                }               
+                if (UID != "") {
+                    if (USERTYPE == 2) {
+                        layer.msg("此功能暂时只对用户开放~~");
+                    } else {
+                        var length = $(".h-bd").text();
+                        if (parseInt(length) != 0) {
+                            var reservationObj = {};
+                            reservationObj = {
+                                "dp": 0, // 店铺ID
+                                "mark": "choose", // 标志位 choose：选择工人 onekey：一键预约
+                                "worker": [] // 工人数组
+                            };
+                            reservationObj["dp"] = dpId;
+                            $.each($(".selectItemContent>div"), function (i, v) {
+                                var attributeObj = {};
+                                attributeObj["nid"] = $(v).find(".Jworker").data("nid"); // 工人id
+                                attributeObj["ntype"] = $(v).find(".Jworker").data("ntype"); // 工人类型
+                                reservationObj.worker.push(attributeObj);
+                            });
+                            //console.log(reservationObj);
+                            sessionStorage.setItem("rt_list", JSON.stringify(reservationObj));
+                            var url = "reservation.html#/reservation";
+                            window.location.href = url + "?type=2";
+                        } else {
+                            layer.msg('请先选择相应的工人');
+                        }
+                    }
+                } else {
+                    layer.msg('请先登录哦~');
+                }
             });
         },
         /**
          * 工人价格
          */
-        initArtificialPriceEvent:function(){
-        	var shopId = $("#JdpId").val();
-        	$.ajax({
+        initArtificialPriceEvent: function () {
+            var shopId = $("#JdpId").val();
+            $.ajax({
                 url: SHOPWAGEURL,
                 type: "GET",
                 async: true,
@@ -689,14 +689,14 @@
                     shop_id: shopId
                 },
                 success: function (data) {
-                	console.log(data);
-                	if(data.code==000){
-                		$.each($(".con_price ul li"),function(item,val){
-                			$.each($(val).find("p"), function(i,v) {
-                				$(v).find("span.Jprice").html(data.data[item+1][i+1])
-                			});
-                		});
-                	}
+                    console.log(data);
+                    if (data.code == 000) {
+                        $.each($(".con_price ul li"), function (item, val) {
+                            $.each($(val).find("p"), function (i, v) {
+                                $(v).find("span.Jprice").html(data.data[item + 1][i + 1])
+                            });
+                        });
+                    }
                 },
                 error: function (data) {
                 }
@@ -708,11 +708,11 @@
         initSpriceListEvent: function () {
             $(document).on("click", ".btndown", function () {
                 if ($(this).hasClass("pickdowm")) {
-                	$(this).find("span").text("展开");
+                    $(this).find("span").text("展开");
                     $(this).removeClass("pickdowm").siblings(".price_list").addClass("autoheight");
-                    
+
                 } else {
-                	$(this).find("span").text("收起");
+                    $(this).find("span").text("收起");
                     $(this).addClass("pickdowm").siblings(".price_list").removeClass("autoheight");
                 }
             });
@@ -762,30 +762,36 @@
          * @param {Object} value 对象
          */
         spliceShopInfoEvent: function (value) {
-            var vrStr = '<div class="shop_name"><h2>' + ((value.shop_name!=null &&value.shop_name!="")?value.shop_name:'无') + '</h2>';
+            var vrStr = '<div class="shop_name"><h2>' + ((value.shop_name != null && value.shop_name != "") ? value.shop_name : '无') + '</h2>';
             $.each(value.authentication, function (i, v) {
-                vrStr += '<img src="http://www.heeyhome.com/' + v + '">';
+                if (v != null && v != '') {
+                    vrStr += '<img src="http://www.heeyhome.com/' + v + '">';
+                }
             });
-            vrStr += '</div><div class="signature"><h3>' + ((value.shop_describe!=null &&value.shop_describe!="")?value.shop_describe:'无') + '</h3></div>';
-            vrStr += '<div class="shop_introduce"><p><em class="sprite icon-position"></em>' + ((value.shop_address!=null &&value.shop_address!="")?value.shop_address:'无') + '</p><p class="service_area">服务范围:&nbsp;';
-            if(value.servicearea.length!=0){
-            	$.each(value.servicearea, function (i, v) {
-	                vrStr += '<span>' + v + '</span>';
-	            });
-	            vrStr += '<input type="button" value="查看地图">';
-            }else{
-            	vrStr += '<span>无</span>';
+            vrStr += '</div><div class="signature"><h3>' + ((value.shop_describe != null && value.shop_describe != "") ? value.shop_describe : '无') + '</h3></div>';
+            vrStr += '<div class="shop_introduce"><p><em class="sprite icon-position"></em>' + ((value.shop_address != null && value.shop_address != "") ? value.shop_address : '无') + '</p><p class="service_area">服务范围:&nbsp;';
+            if (value.servicearea.length != 0) {
+                $.each(value.servicearea, function (i, v) {
+                    vrStr += '<span>' + v + ';</span>';
+                });
+                vrStr += '<input type="button" value="查看地图">';
+            } else {
+                vrStr += '<span>无</span>';
             }
-            
+
             vrStr += '</p><div class="good_form clearfix"><p class="good_style">擅长风格:</p>';
-            if(value.servicetag.length!=0){
-            	$.each(value.servicetag, function (i, v) {
-                	vrStr += '<span>' + v + '</span>';
-            	});
-            }else{
-            	vrStr += '<span>--</span>';
+            if (value.servicetag.length != 0) {
+                $.each(value.servicetag, function (i, v) {
+                    if (v != null && v != '') {
+                        vrStr += '<span>' + v + ';</span>';
+                    }else{
+                        vrStr += '<span>--</span>';
+                    }
+                });
+            } else {
+                vrStr += '<span>--</span>';
             }
-            
+
             vrStr += '</div></div><div class="shop_assess clearfix"><div><p>工程质量</p><p><span>' + value.shop_score.projectquality + '</span>分</p></div><div><p>服务态度</p><p><span>' + value.shop_score.serviceattitude + '</span>分</p></div><div><p>综合评价</p><p><span>' + value.shop_score.overallmerit + '</span>分</p></div></div>';
             return vrStr;
         },
@@ -796,19 +802,19 @@
         spliceManagerInfoEvent: function (value) {
             var vrStr = '<div class="icon_head"><img src="http://www.heeyhome.com/' + value.shopper_info.portrait_img + '"></div>';
             vrStr += '<div class="manager_detail"><div><span>姓名</span><span>' + value.shopper_info.foremaninfo_realname + '</span></div><div><span>籍贯</span><span>';
-            if(value.shopper_info.home_province !=null && value.shopper_info.home_province!=""){
-            	vrStr += value.shopper_info.home_province;
-            }else{
-            	vrStr += "-";
+            if (value.shopper_info.home_province != null && value.shopper_info.home_province != "") {
+                vrStr += value.shopper_info.home_province;
+            } else {
+                vrStr += "-";
             }
-            if(value.shopper_info.home_city !=null && value.shopper_info.home_city!=""){
-            	vrStr += value.shopper_info.home_city;
-            }else{
-            	vrStr += "-";
+            if (value.shopper_info.home_city != null && value.shopper_info.home_city != "") {
+                vrStr += value.shopper_info.home_city;
+            } else {
+                vrStr += "-";
             }
             var openTime = value.opentime;
             openTime = openTime.substring(0, 10);
-            vrStr += '</span></div><div><span>施工团队</span><span>' + value.shop_workernum + '人</span></div><div><span>工龄</span><span>' + ((value.shopper_info.worktime!=null &&value.shopper_info.worktime!="")?value.shopper_info.worktime+"年":'--') + '</span></div><div><span>开店时间</span><span>' + openTime + '</span></div><div><span>接单数</span><span>' + value.shopper_info.ordernum + '</span></div></div>';
+            vrStr += '</span></div><div><span>施工团队</span><span>' + value.shop_workernum + '人</span></div><div><span>工龄</span><span>' + ((value.shopper_info.worktime != null && value.shopper_info.worktime != "") ? value.shopper_info.worktime + "年" : '--') + '</span></div><div><span>开店时间</span><span>' + openTime + '</span></div><div><span>接单数</span><span>' + value.shopper_info.ordernum + '</span></div></div>';
             return vrStr;
         },
         /**
@@ -817,19 +823,19 @@
          */
         spliceBeInfoEvent: function (value) {
             var vrStr = '';
-            if(value.shopper_info.experience.length !=0){
-            	$.each(value.shopper_info.experience, function (i, v) {
-	            	if(v!=null && v!=""){
-	            		vrStr += '<li>' + v + '</li>';
-	            	}else{
-	            		vrStr += '<li>无</li>';
-	            	}
-	                
-	            });
-            }else{
-            	vrStr += '无';
+            if (value.shopper_info.experience.length != 0) {
+                $.each(value.shopper_info.experience, function (i, v) {
+                    if (v != null && v != "") {
+                        vrStr += '<li>' + v + '</li>';
+                    } else {
+                        vrStr += '<li>无</li>';
+                    }
+
+                });
+            } else {
+                vrStr += '无';
             }
-            
+
             return vrStr;
         },
         /**
@@ -838,16 +844,16 @@
          */
         spliceDhInfoEvent: function (value) {
             var vrStr = '';
-            if(value.shopper_info.decoratedareas.length !=0){
-            	$.each(value.shopper_info.decoratedareas, function (i, v) {
-	            	if(v!=null && v!=""){
-	            		vrStr += '<li>' + v + '</li>';
-	            	}else{
-	            		vrStr += '<li>无</li>';
-	            	}
-	            });
-            }else{
-            	vrStr += '无';
+            if (value.shopper_info.decoratedareas.length != 0) {
+                $.each(value.shopper_info.decoratedareas, function (i, v) {
+                    if (v != null && v != "") {
+                        vrStr += '<li>' + v + '</li>';
+                    } else {
+                        vrStr += '<li>无</li>';
+                    }
+                });
+            } else {
+                vrStr += '无';
             }
             return vrStr;
         },

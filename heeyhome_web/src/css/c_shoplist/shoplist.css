@@ -137,7 +137,8 @@
     font-family: FZLTZHK;
     margin-bottom: 16px;
     font-size: 18px;
-    color: #E88226
+    color: #E88226;
+    height: 30px
 }
 
 #foreman_shop .shop_content .shop_box .right_summary .shop_name h2 {

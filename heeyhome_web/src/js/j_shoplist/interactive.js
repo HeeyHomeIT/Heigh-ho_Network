@@ -212,29 +212,42 @@
         spliceStrEvent: function (value) {
             var vrStr = '';
             $.each(value, function (i, v) {
+                console.log(v);
                 vrStr += '<div class="shop_box" data-shopid="' + v.shop_id + '" data-shopperid="' + v.shopper_id + '">';
                 vrStr += '	<div class="left_image">';
-                vrStr += '		<a href="#nogo"><img src="http://www.heeyhome.com/' + v.shop_img + '"></a>';
+                if (v.shop_img != null && v.shop_img != '') {
+                    vrStr += '		<a href="#nogo"><img src="http://www.heeyhome.com/' + v.shop_img + '"></a>';
+                }
                 vrStr += '		<div class="image-background_1"></div>';
                 vrStr += '		<div class="image-background_2"></div>';
                 vrStr += '	</div>';
                 vrStr += '	<div class="right_summary">';
                 vrStr += '		<div class="shop_name">';
-                vrStr += '			<h2>' + v.shop_name + '</h2>';
+                vrStr += '			<h2>' + ((v.shop_name != null && v.shop_name != "") ? v.shop_name : '无') + '</h2>';
                 $.each(v.authentication, function (i1, v1) {
-                    vrStr += '		<img src="http://www.heeyhome.com/' + v1 + '">';
+                    if (v1 != '' && v1 != null) {
+                        vrStr += '		<img src="http://www.heeyhome.com/' + v1 + '">';
+                    }
                 });
                 vrStr += '		</div>';
                 vrStr += '		<div class="shop_introduce">';
-                vrStr += '			<p>常住地址: <span>' + v.shop_address + '</span></p>';
+                vrStr += '			<p>常住地址: <span>' + ((v.shop_address != null && v.shop_address != "") ? v.shop_address : '无') + '</span></p>';
                 vrStr += '			<p>服务范围: ';
                 $.each(v.servicearea, function (i1, v1) {
-                    vrStr += '		<span>' + v1 + '</span>';
+                    if (v1 != '' && v1 != null) {
+                        vrStr += '		<span>' + v1 + '</span>';
+                    } else {
+                        vrStr += '		<span>无</span>';
+                    }
                 });
                 vrStr += '			</p>';
                 vrStr += '			<p>擅长风格: ';
                 $.each(v.servicetag, function (i1, v1) {
-                    vrStr += '		<span>' + v1 + '</span>';
+                    if (v1 != '' && v1 != null) {
+                        vrStr += '		<span>' + v1 + '</span>';
+                    } else {
+                        vrStr += '无';
+                    }
                 });
                 vrStr += '			</p>';
                 var openTime = v.opentime;
