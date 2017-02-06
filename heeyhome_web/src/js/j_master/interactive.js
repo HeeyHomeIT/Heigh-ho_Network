@@ -215,21 +215,7 @@
                 $('.left_ul li').eq(1).addClass('left_active').siblings().removeClass('left_active');
                 // 加载城市插件
                 $('[data-toggle="distpicker"]').distpicker();
-                /* details */
-                // var $dtDiv = $("#works_content_title div");
-                // var iSpeed = 0;
-                // var left = 0;
-                // var oBg = document.getElementById("title_active");
-                // for (var i = 0; i < $dtDiv.length - 1; i++) {
-                //     $dtDiv[i].onclick = function () {
-                //         startMoveHandler.startMoveEvent(oBg, this.offsetLeft, iSpeed, left);
-                //         $(".personal_content").hide();
-                //         $(".update_head").hide();
-                //         $(".works_content >div:eq(" + ($(this).index() + 1) + ")").show().removeClass('hide');
-                //     }
-                // }
                 getMasterInfoHandler.getInfoEvent();//获取工长信息
-                uploadPictureHandler.uploadAvatar();//上传图片
             }]);
         },
         /*
@@ -315,8 +301,8 @@
                 var userType = $.cookie('userType');
                 if ($.base64.decode(userType) == 1) {
                     id = $.base64.decode($.cookie("foremanId"));
-                }else{
-                    id=$.base64.decode($.cookie('userId'));
+                } else {
+                    id = $.base64.decode($.cookie('userId'));
                 }
                 $.ajax({
                     type: "get",
@@ -2134,7 +2120,9 @@
                         //获取工长的服务区域
                         var aLen = data.data.servicearea.length;
                         for (var i = 0; i < aLen; i++) {
-                            $('#personal_circle').before('<a class="personal_area" href="javascript:;">' + data.data.servicearea[i] + '</a>');
+                            if (data.data.servicearea[i] != '') {
+                                $('#personal_circle').before('<a class="personal_area" href="javascript:;">' + data.data.servicearea[i] + '</a>');
+                            }
                         }
                         //获取工长的装修小区
                         var dLen = data.data.decoratedareas.length;
@@ -3547,12 +3535,16 @@
                         //获取店铺资料的服务区域
                         var aLen = data.data.servicearea.length;
                         for (var i = 0; i < aLen; i++) {
-                            $('#personal_circle').before('<a class="personal_area service_area" href="javascript:;">' + data.data.servicearea[i] + '</a>');
+                            if (data.data.servicearea[i] != '') {
+                                $('#personal_circle').before('<a class="personal_area service_area" href="javascript:;">' + data.data.servicearea[i] + '</a>');
+                            }
                         }
                         // //获取店铺资料的擅长风格
                         var sLen = data.data.servicetag.length;
                         for (var i = 0; i < sLen; i++) {
-                            $('#personal_style').before('<a class="personal_style" href="javascript:;">' + data.data.servicetag[i] + '</a>');
+                            if (data.data.servicetag[i] != '') {
+                                $('#personal_style').before('<a class="personal_style" href="javascript:;">' + data.data.servicetag[i] + '</a>');
+                            }
                         }
                         //获取店铺资料的店铺认证
                         var hLen = data.data.authentication.length;
@@ -4462,76 +4454,6 @@
                 }
 
             });
-        }
-    };
-
-    /* 上传图片 */
-    uploadPictureHandler = {
-        uploadAvatar: function () {
-            var options = {
-                thumbBox: '.thumbBox',
-                spinner: '.spinner',
-                imgSrc: 'css/img/imgWrap_bg.png'
-            };
-            var cropper = $('.imageBox').cropbox(options);
-            $('#upload-file').on('change', function () {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    options.imgSrc = e.target.result;
-                    cropper = $('.imageBox').cropbox(options);
-                    $('.thumbBox').show().removeClass('hide');
-                };
-                reader.readAsDataURL(this.files[0]);
-                /*this.files = [];*/
-            });
-            /* 点击剪切触发的事件 */
-            $('#btnCrop').on('click', function () {
-                var img = cropper.getDataURL();
-                var result_100 = $('.cropped .result_100');
-                var result_50 = $('.cropped .result_50');
-                result_100.html('');
-                result_50.html('');
-                result_100.append('<img src="' + img + '" align="absmiddle" style="width:100px;height:100px;box-shadow:0 0 12px #7E7E7E;">');
-                result_50.append('<img src="' + img + '" align="absmiddle" style="width:50px;height:50px;box-shadow:0 0 12px #7E7E7E;" >');
-            });
-            /* 点击加号触发的事件 */
-            $('#btnZoomIn').on('click', function () {
-                cropper.zoomIn();
-            });
-            /* 点击减号触发的事件 */
-            $('#btnZoomOut').on('click', function () {
-                cropper.zoomOut();
-            });
-            /* 鼠标移入图片框框的时候禁用滚轮，离开可以使用滚轮 */
-            $('.imgWrap').hover(function () {
-                disabledMouseWheel.chromeDepend();
-            }, function () {
-                window.onmousewheel = document.onmousewheel = true;
-                document.removeEventListener('DOMMouseScroll', disabledMouseWheel.firefoxDepend, false);
-            });
-        }
-    };
-
-    /* 禁用滚轮事件 */
-    disabledMouseWheel = {
-        chromeDepend: function () {
-            if (document.addEventListener) {
-                document.addEventListener('DOMMouseScroll', disabledMouseWheel.firefoxDepend, false);
-            }//W3C
-            window.onmousewheel = document.onmousewheel = disabledMouseWheel.firefoxDepend;//IE/Opera/Chrome
-        },
-        firefoxDepend: function (evt) {
-            evt = evt || window.event;
-            if (evt.preventDefault) {
-                // Firefox
-                evt.preventDefault();
-                evt.stopPropagation();
-            } else {
-                // IE
-                evt.cancelBubble = true;
-                evt.returnValue = false;
-            }
-            return false;
         }
     };
 
