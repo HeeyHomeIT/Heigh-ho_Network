@@ -94,12 +94,14 @@
                         $(".right_content_wrap").append(load);
                         $(".order_content .right_content").append(load);
                         $(".safe_right_content").append(load);
-                        $(".safe_right_content .loading").css('top', '80%');
+                        $("#safe").append(load);
+                        $("#safe .loading").css('top', '80%');
                     },
                     complete: function () {
                         $(".right_content_wrap .loading").remove(); //关闭加载层
                         $(".order_content .right_content .loading").remove(); //关闭加载层
                         $(".safe_right_content .loading").remove(); //关闭加载层
+                        $("#safe .loading").remove(); //关闭加载层
                     }
                 });
                 /* 消息中心有多少条新消息 */

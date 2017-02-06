@@ -1531,7 +1531,7 @@ a:focus {
     margin-right: 50px
 }
 
-.safe_right_content {
+.safe_right,.safe_right_content {
     padding: 50px 0 50px 83px;
     border: 1px solid #cdcdcd;
     border-top: none;
@@ -2905,7 +2905,7 @@ a:focus {
     height: 300px;
 }
 
-.safe_right_content .not_information {
+.safe_right .not_information {
     margin-left: -80px;
 }
 
@@ -2916,7 +2916,7 @@ a:focus {
     margin-top: 100px;
 }
 
-.safe_right_content .not_information .not_information_img {
+.safe_right .not_information .not_information_img {
     margin-top: 30px;
 }
 

@@ -4,86 +4,88 @@
         <div class="right_title">
             <span>安全设置 &nbsp;&nbsp;&nbsp;SECURITY SETTING</span>
         </div>
-        <div class="safe_right_content">
-            <div class="security_top">
-                <div class="security_score">
-                    <span class="font">安全评分</span>
-                    <div class="star">
-                        <i class="iconfont">&#xe64e;</i>
-                        <i class="iconfont">&#xe64e;</i>
-                        <i class="iconfont">&#xe64e;</i>
-                        <i class="iconfont">&#xe64e;</i>
-                        <i class="iconfont">&#xe64e;</i>
+        <div class="safe_right">
+            <div id="safe">
+                <div class="security_top">
+                    <div class="security_score">
+                        <span class="font">安全评分</span>
+                        <div class="star">
+                            <i class="iconfont">&#xe64e;</i>
+                            <i class="iconfont">&#xe64e;</i>
+                            <i class="iconfont">&#xe64e;</i>
+                            <i class="iconfont">&#xe64e;</i>
+                            <i class="iconfont">&#xe64e;</i>
+                        </div>
+                        <span class="number" id="number">0.0</span>
+                        <span class="mark">分</span>
                     </div>
-                    <span class="number" id="number">0.0</span>
-                    <span class="mark">分</span>
+                    <ul>
+                        <li class="clearfix">
+                            <em class="sprite-details"></em>
+                            <span>身份验证</span>
+                            <p>用于提升账号的安全性和信任级别，认证后有买家记录的账号不能修改认证信息</p>
+                            <a href="javascript:void(0)" ui-sref="center.authentication">立即认证</a>
+                        </li>
+                        <li class="clearfix">
+                            <em class="sprite-details"></em>
+                            <span>修改密码</span>
+                            <p>安全性高的密码可以使账号更安全，建议你定期修改密码</p>
+                            <a id="change_password" href="javascript:;" ui-sref="center.reset">立即修改</a>
+                        </li>
+                        <li class="clearfix">
+                            <em class="sprite-details"></em>
+                            <span>绑定手机</span>
+                            <p>绑定手机后，您即可享受淘宝丰富的手机服务，如手机找回密码等</p>
+                            <a href="javascript:void(0)" ui-sref="center.bind">立即修改</a>
+                        </li>
+                        <li class="clearfix">
+                            <em class="sprite-details"></em>
+                            <span>绑定邮箱</span>
+                            <p>绑定邮箱后，您即可享受淘宝丰富的邮箱服务，如手机找回密码等</p>
+                            <a href="javascript:void(0)" id="email" ui-sref="center.email">立即绑定</a>
+                        </li>
+                    </ul>
                 </div>
-                <ul>
-                    <li class="clearfix">
-                        <em class="sprite-details"></em>
-                        <span>身份验证</span>
-                        <p>用于提升账号的安全性和信任级别，认证后有买家记录的账号不能修改认证信息</p>
-                        <a href="javascript:void(0)" ui-sref="center.authentication">立即认证</a>
-                    </li>
-                    <li class="clearfix">
-                        <em class="sprite-details"></em>
-                        <span>修改密码</span>
-                        <p>安全性高的密码可以使账号更安全，建议你定期修改密码</p>
-                        <a id="change_password" href="javascript:;" ui-sref="center.reset">立即修改</a>
-                    </li>
-                    <li class="clearfix">
-                        <em class="sprite-details"></em>
-                        <span>绑定手机</span>
-                        <p>绑定手机后，您即可享受淘宝丰富的手机服务，如手机找回密码等</p>
-                        <a href="javascript:void(0)" ui-sref="center.bind">立即修改</a>
-                    </li>
-                    <li class="clearfix">
-                        <em class="sprite-details"></em>
-                        <span>绑定邮箱</span>
-                        <p>绑定邮箱后，您即可享受淘宝丰富的邮箱服务，如手机找回密码等</p>
-                        <a href="javascript:void(0)" id="email" ui-sref="center.email">立即绑定</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="security_bottom">
-                <div class="login_history">
-                    <h3>登录历史</h3>
-                    <p>以下是您最近登录记录，若存在异常情况，请在核实后尽快<a href="#/center/setting/reset/reset_1">修改密码</a></p>
+                <div class="security_bottom">
+                    <div class="login_history">
+                        <h3>登录历史</h3>
+                        <p>以下是您最近登录记录，若存在异常情况，请在核实后尽快<a href="#/center/setting/reset/reset_1">修改密码</a></p>
+                    </div>
+                    <div class="login_note clearfix">
+                        <h3>
+                            <span>时间</span>
+                            <span>地点</span>
+                            <span>IP</span>
+                            <span>浏览器</span>
+                            <span>登录方式</span>
+                            <span>设备</span>
+                        </h3>
+                        <p class="login_p" ng-repeat="safe in safes">
+                            <span class="login_time">{{safe.login_time}}</span>
+                            <span>江苏苏州</span>
+                            <span>{{safe.login_ip}}</span>
+                            <span>{{safe.login_browser}}</span>
+                            <span>{{safe.login_way}}</span>
+                            <span>{{safe.login_device}}</span>
+                        </p>
+                        <p class="login_p display login_next" ng-repeat="more in mores ">
+                            <span class="login_time">{{more.login_time}}</span>
+                            <span>江苏苏州</span>
+                            <span>{{more.login_ip}}</span>
+                            <span>{{more.login_browser}}</span>
+                            <span>{{more.login_way}}</span>
+                            <span>{{more.login_device}}</span>
+                        </p>
+                        <a id="more" href="javascript:;">更多</a>
+                    </div>
                 </div>
-                <div class="login_note clearfix">
-                    <h3>
-                        <span>时间</span>
-                        <span>地点</span>
-                        <span>IP</span>
-                        <span>浏览器</span>
-                        <span>登录方式</span>
-                        <span>设备</span>
-                    </h3>
-                    <p class="login_p" ng-repeat="safe in safes">
-                        <span class="login_time">{{safe.login_time}}</span>
-                        <span>江苏苏州</span>
-                        <span>{{safe.login_ip}}</span>
-                        <span>{{safe.login_browser}}</span>
-                        <span>{{safe.login_way}}</span>
-                        <span>{{safe.login_device}}</span>
-                    </p>
-                    <p class="login_p display login_next" ng-repeat="more in mores ">
-                        <span class="login_time">{{more.login_time}}</span>
-                        <span>江苏苏州</span>
-                        <span>{{more.login_ip}}</span>
-                        <span>{{more.login_browser}}</span>
-                        <span>{{more.login_way}}</span>
-                        <span>{{more.login_device}}</span>
-                    </p>
-                    <a id="more" href="javascript:;">更多</a>
-                </div>
-            </div>
-            <div class="not_information hide">
-                <div class="not_information_img">
-                    <img src="css/img/no_information_found.png">
-                </div><!--not_information_img-->
-                <div class="not_information_text"></div><!--not_information_text-->
-            </div><!--not_information-->
+                <div class="not_information hide">
+                    <div class="not_information_img">
+                        <img src="css/img/no_information_found.png">
+                    </div><!--not_information_img-->
+                    <div class="not_information_text"></div><!--not_information_text-->
+                </div><!--not_information-->
+            </div><!--safe-->
         </div>
     </div>
 </div>
