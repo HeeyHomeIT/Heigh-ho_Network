@@ -2096,6 +2096,7 @@
                         var abb_phone = data.data.foremaninfo_phone.substr(0, 3) + "****" + data.data.foremaninfo_phone.substr(7, 11);//手机号中间四位变成*号
                         $('.personal_tel').html(abb_phone); //获取工长的电话号码
                         $('.personal_user_age').val(data.data.foremaninfo_age); //获取工长的年龄
+                        $('.personal_service_length').val(data.data.worktime); //获取工长的工龄
                         $('.personal_user_nickname').val(data.data.foremaninfo_nickname); //获取工长的昵称
                         $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
                         email = data.data.foremaninfo_email; //获取工长的邮箱
@@ -2240,6 +2241,7 @@
                         name: $('.personal_user_name').val(),
                         nickname: $('.personal_user_nickname').val(),
                         age: $('.personal_user_age').val(),
+                        worktime: $('.personal_service_length').val(),
                         experience: array,
                         decoratedareas: arry_community,
                         servicearea: arry_area,

@@ -704,6 +704,10 @@
     width: 67px;
 }
 
+.personal_form_list .personal_service_length {
+    width: 40px;
+}
+
 .personal_form_list p {
     display: inline-block;
     margin-left: 15px;
@@ -711,6 +715,11 @@
     font-size: 14px;
     color: #d0d0d0;
     vertical-align: middle;
+}
+
+.year_i {
+    color: #4b4948;
+    font-size: 14px;
 }
 
 .personal_form_list p a {
