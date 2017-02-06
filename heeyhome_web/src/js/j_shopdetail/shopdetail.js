@@ -806,7 +806,9 @@
             }else{
             	vrStr += "-";
             }
-            vrStr += '</span></div><div><span>施工团队</span><span>' + value.shop_workernum + '人</span></div><div><span>工龄</span><span>' + ((value.shopper_info.worktime!=null &&value.shopper_info.worktime!="")?value.shopper_info.worktime+"年":'--') + '</span></div><div><span>开店时间</span><span>' + value.opentime + '</span></div><div><span>接单数</span><span>' + value.shopper_info.ordernum + '</span></div></div>';
+            var openTime = value.opentime;
+            openTime = openTime.substring(0, 10);
+            vrStr += '</span></div><div><span>施工团队</span><span>' + value.shop_workernum + '人</span></div><div><span>工龄</span><span>' + ((value.shopper_info.worktime!=null &&value.shopper_info.worktime!="")?value.shopper_info.worktime+"年":'--') + '</span></div><div><span>开店时间</span><span>' + openTime + '</span></div><div><span>接单数</span><span>' + value.shopper_info.ordernum + '</span></div></div>';
             return vrStr;
         },
         /**

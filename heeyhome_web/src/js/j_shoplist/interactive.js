@@ -237,7 +237,9 @@
                     vrStr += '		<span>' + v1 + '</span>';
                 });
                 vrStr += '			</p>';
-                vrStr += '			<p>店铺年限：<span>' + v.opentime + '</span>年</p>';
+                var openTime = v.opentime;
+                openTime = openTime.substring(0, 10);
+                vrStr += '			<p>开店时间：<span>' + openTime + '</span>年</p>';
                 vrStr += '		</div>';
                 vrStr += '		<div class="shop_icon clearfix">';
                 vrStr += '			<div>';
