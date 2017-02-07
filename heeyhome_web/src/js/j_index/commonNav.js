@@ -43,9 +43,9 @@ define(['app'], function(app) {
 			navigationScorllEvent: function() {
 				$(window).scroll(function() {
 					if($(window).scrollTop() > 100) {
-						$(".top").slideDown(1000);
+						$(".top").show();
 					} else {
-						$(".top").slideUp(1000);
+						$(".top").hide();
 					}
 				});
 			},
