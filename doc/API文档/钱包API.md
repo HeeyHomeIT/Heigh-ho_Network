@@ -282,6 +282,7 @@ msg           失败
 ```
 data
 user_id             user_id    
+
 callback            callback
 ```
 
@@ -295,6 +296,7 @@ code         000
 data         {
                 available_total          提现金额
                 total                    当前总额
+                process_type             存不存在提现申请 true:可提现 flase:有提现未确认
             }
 
 )
@@ -351,7 +353,7 @@ data         {
                 total              我的资产
                 todaytotal         今日收益
                 available_total    可提现金额
-                process_type       存不存在提现申请 true:存在 flase:不存在
+                process_type       存不存在提现申请 true:可提现 flase:有提现未确认
             }
 
 )

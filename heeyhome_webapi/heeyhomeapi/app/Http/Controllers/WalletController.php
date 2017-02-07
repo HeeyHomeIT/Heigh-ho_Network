@@ -17,18 +17,26 @@ class WalletController extends Controller
         $callback = rq('callback');
         $user_id = rq('user_id');
         $money = DB::select('select total,available_total from hh_wallet_balance where user_id =?',[$user_id]);
-        if ($money) {
-            $arr = array("code" => "000",
+        $isapply=DB::select('select payment,money,process_type from hh_withdrawapply where apply_userid=? order by apply_id desc',[$user_id]);
+        if($isapply) {
+            if($isapply[0]->process_type){
+                $money[0]->process_type=true;
+            }else{
+                $money[0]->process_type = false;
+                $money[0]->money=$isapply[0]->money;
+                $money[0]->bankcard=preg_replace('/([\x80-\xff]*)/i','',$isapply[0]->payment);
+                $bank=DB::select('select bankname,banklogo from hh_bankcard where bankcardno=?',[$money[0]->bankcard]);
+                $money[0]->bank=$bank[0]->bankname;
+                $money[0]->banklogo=$bank[0]->banklogo;
+            }
+        }
+        else{
+            $money[0]->process_type=true;
+        }
+        $arr = array("code" => "000",
                     "data" =>$money[0] //这里肯定返回一个的，不取第一个的话，ios这边会返回一个数组里面包含一个字典
                 );
-            return $callback . "(" . HHJson($arr) . ")";
-        } else {
-            $arr = array("code" => "117",
-                    "msg" => "没有金额"
-                );
-            return $callback . "(" . HHJson($arr) . ")";
-        }
-
+        return $callback . "(" . HHJson($arr) . ")";
     }
     public function mycards(){
         $callback=rq('callback');
