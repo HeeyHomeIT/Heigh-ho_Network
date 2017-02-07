@@ -329,11 +329,12 @@
 }
 
 .appointment_decoration .button_decoration .btn_decoration {
+	display: block;
     text-align: center;
     width: 405px;
     height: 132px;
+    line-height: 131px;
     background-color: #EEC988;
-    opacity: 100%;
     border-radius: 4px;
     -webkit-box-shadow: 3px 5px 20px #939393;
     -moz-box-shadow: 3px 5px 20px #939393;

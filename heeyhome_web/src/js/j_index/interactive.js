@@ -33,9 +33,9 @@ define(['app'], function(app) {
 							var carouselPic = '<ul class="car-inner">';
 							$.each(data.data, function(i,n) {
 								if(i == 0) {
-									carouselPic += '<li class="item active"><a href="'+n.img_path+'" target="_blank"><img src="http://www.heeyhome.com/'+n.img+'"></a></li>';
+									carouselPic += '<li class="item active"><a href="'+n.img_path+'" target="_blank"><img src="'+n.img+'"></a></li>';
 								} else {
-									carouselPic += '<li class="item"><a href="'+n.img_path+'" target="_blank"><img src="http://www.heeyhome.com/'+n.img+'"></a></li>';
+									carouselPic += '<li class="item"><a href="'+n.img_path+'" target="_blank"><img src="'+n.img+'"></a></li>';
 								}
 							});
 							carouselPic += '</ul>';
@@ -61,7 +61,7 @@ define(['app'], function(app) {
 							var panorama = '<div class="vr_picture">';
 							for(var i = 0; i< 6; i++) {
 								panorama += '<div class="box_picture clearfix"><a href="'+data.data[i].panorama_url+'" target="_blank">';
-								panorama += '<img src="http://www.heeyhome.com/'+data.data[i].panorama_img+'"><div class="pic_content">';
+								panorama += '<img src="'+data.data[i].panorama_img+'"><div class="pic_content">';
 								panorama += '<div class="sprite-image pic_icon"></div>';
 								panorama += '<div class="pic_title"><h3>'+data.data[i].panorama_area+'㎡</h3></div>';
 								panorama += ' <div class="pic_name">'+data.data[i].panorama_style+'</div></div></a></div>';
