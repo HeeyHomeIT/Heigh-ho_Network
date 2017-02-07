@@ -239,6 +239,10 @@
     margin-bottom: 50px;
 }
 
+#cash_confirm:disabled {
+    cursor: not-allowed;
+}
+
 .withdraw_complete .success {
     font-size: 16px;
     color: #4b4948;

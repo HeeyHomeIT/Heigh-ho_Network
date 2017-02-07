@@ -1898,18 +1898,24 @@
         spliceStrEvent: function (value) {
             var vrStr = '<div class="collection_shop clearfix" shopId="' + value.shop_id + '">';
             vrStr += '	<div class="left_img fl">';
-            vrStr += '	<img src="' + value.img + '">';
+            if (value.img != null && value.img != '') {
+                vrStr += '	<img src="' + value.img + '">';
+            }
             vrStr += '		</div><!--left_img-->';
             vrStr += '		<div class="left_detail fl">';
-            vrStr += '	<p class="manager_shop">' + value.shop_name + '<i class="iconfont first_i">';
+            vrStr += '	<p class="manager_shop">' + ((value.shop_name != null && value.shop_name != "") ? value.shop_name : '无') + '<i class="iconfont first_i">';
             $.each(value.authentication, function (s, r) {
                 vrStr += '<img src="' + r + '">';
             });
             vrStr += '	</i></p>';
-            vrStr += '	<p>常驻地址：<span>' + value.shop_address + '</span></p>';
+            vrStr += '	<p>常驻地址：<span>' + ((value.shop_address != null && value.shop_address != "") ? value.shop_address : '无') + '</span></p>';
             vrStr += '<p>服务范围：';
             $.each(value.servicearea, function (m, n) {
-                vrStr += '<span>' + n + '</span>;';
+                if (n != '' && n != null) {
+                    vrStr += '<span>' + n + '</span>;';
+                } else {
+                    vrStr += '<span>无</span>';
+                }
             });
             vrStr += '</p>';
             vrStr += '			<a class="eyes" href="javascript:;">';

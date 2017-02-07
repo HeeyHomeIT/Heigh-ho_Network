@@ -21,7 +21,7 @@
         <div id="choose_bank" class="choose_bank clearfix">
             <span class="choose_span fl">选择银行卡</span>
             <div class="bankWrap fl">
-                <div class="bank clearfix" ng-repeat="wbank in wbanks">
+                <div class="bank clearfix" ng-repeat="wbank in wbanks" repeat-finish="renderFinish()">
                     <div class="bank_fl fl">
                         <input class="radio_money" title="" type="radio" name="money">
                         <img ng-src="{{wbank.banklogo}}">
@@ -44,7 +44,7 @@
             <span class="time">到账时间</span>
             <span class="detail">两小时</span>
         </div><!--cash_time-->
-        <a href="javascript:;" id="cash_confirm">确认提现</a>
+        <input type="button" id="cash_confirm" value="确认提现">
     </div><!--withdraw_content-->
 </div><!--withdraw_contentWrap-->
 <div class="withdraw_complete hide">

@@ -299,10 +299,10 @@
                 var id;
                 var case_id = sessionStorage.getItem("case_id");
                 var userType = $.cookie('userType');
-                if ($.base64.decode(userType) == 1) {
-                    id = $.base64.decode($.cookie("foremanId"));
-                } else {
+                if ($.base64.decode(userType) == 2) {
                     id = $.base64.decode($.cookie('userId'));
+                } else {
+                    id = $.base64.decode($.cookie("foremanId"));
                 }
                 $.ajax({
                     type: "get",
@@ -348,7 +348,11 @@
                     },
                     success: function (data) {
                         if (data && data.code == '000') {
-                            $("#success_case .now_location .shopname").html(data.data.shop_name);//获取店铺名字
+                            if (data.data.shop_name != null && data.data.shop_name != '') {
+                                $("#success_case .now_location .shopname").html(data.data.shop_name);//获取店铺名字
+                            } else {
+                                $("#success_case .now_location .shopname").html('无');
+                            }
                         } else {
                             layer.alert(data.msg);
                         }
@@ -1908,7 +1912,11 @@
                 success: function (data) {
                     if (data && data.code == '000') {
                         console.log(data.data);
-                        $('#shop_name').html(data.data.shop_name);//获取店铺名字
+                        if (data.data.shop_name != null && data.data.shop_name != '') {
+                            $('#shop_name').html(data.data.shop_name);//获取店铺名字
+                        } else {
+                            $('#shop_name').html('无');
+                        }
                         $.each(data.data.authentication, function (i, v) {
                             $(".store_name").append('<img src="' + data.data.authentication[i] + '">')
                         });
@@ -2082,168 +2090,169 @@
             var area = '<div class="fl reduce"><input class="personal_user_community" type="text" title=""> <a class="experience" href="javascript:;">-</a></div> ';
             /* 获取工长信息 */
             //HHIT_CENTERAPP.controller('personal', ['$scope', '$http', function ($scope, $http) {
-                function foreInfo() {
-                    $.ajax({
-                        url: MASTERDATAURL,
-                        type: "GET",
-                        async: true,
-                        dataType: 'jsonp',
-                        data: {
-                            foreman_id: USERID
-                        },
-                        success: function (data) {
-                            if (data && data.code == '000') {
-                                console.log(data);
-                                var abb_phone = data.data.foremaninfo_phone.substr(0, 3) + "****" + data.data.foremaninfo_phone.substr(7, 11);//手机号中间四位变成*号
-                                $('.personal_tel').html(abb_phone); //获取工长的电话号码
-                                $('.personal_user_age').val(data.data.foremaninfo_age); //获取工长的年龄
-                                $('.personal_service_length').val(data.data.worktime); //获取工长的工龄
-                                $('.personal_user_nickname').val(data.data.foremaninfo_nickname); //获取工长的昵称
-                                $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
-                                email = data.data.foremaninfo_email; //获取工长的邮箱
-                                if (email != null) {//判断邮箱是否为空
-                                    var length = email.length;
-                                    var abb_email = email.substr(0, 3) + "****" + email.substr(length - 3, length);//邮箱中间变成*号
-                                    $('#email_p').html('<span>' + abb_email + '</span><a href="#/master/setting/email/email_1">修改绑定</a>')
-                                }
-                                $('.personal_user_name').val(data.data.user_name); //获取工长的用户名
-                                //判断工长的性别
-                                if (data.data.foremaninfo_sex == 1) {
-                                    $('#man').attr('checked', 'checked');
-                                } else {
-                                    $('#women').attr('checked', 'checked');
-                                }
-                                //获取工长的从业经历
-                                var eLen = data.data.experience.length;
-                                for (var i = 0; i < eLen; i++) {
-                                    $('.personal_form_area').append('<div class="fl"> <input type="text" title="" class="input_all" value="' + data.data.experience[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
-                                }
-                                $('.input_all').eq(0).addClass('first');
-                                //获取工长的服务区域
-                                var aLen = data.data.servicearea.length;
-                                for (var i = 0; i < aLen; i++) {
-                                    if (data.data.servicearea[i] != '') {
-                                        $('#personal_circle').before('<a class="personal_area" href="javascript:;">' + data.data.servicearea[i] + '</a>');
-                                    }
-                                }
-                                //获取工长的装修小区
-                                var dLen = data.data.decoratedareas.length;
-                                for (var i = 0; i < dLen; i++) {
-                                    $('.renovation_area').append('<div class="fl"> <input type="text" title="" class="personal_user_community" value="' + data.data.decoratedareas[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
-                                }
-                                if (data.data.isedit == 2) {
-                                    $('.personal_user_name').attr("disabled", true);
-                                }
-                                $('.personal_user_community').eq(0).addClass('personal_user_first');
-                                //获取所在地信息
-                                if (data.data.loc_province != null && data.data.loc_province != '') {
-                                    $('#loc').distpicker({province: data.data.loc_province});
-                                }
-                                if (data.data.loc_city != null && data.data.loc_city != '') {
-                                    $('#loc').distpicker({city: data.data.loc_city});
-                                }
-                                if (data.data.loc_district != null && data.data.loc_district != '') {
-                                    $('#loc').distpicker({district: data.data.loc_district});
-                                }
-
-                                //获取家乡信息
-                                if (data.data.home_province != null && data.data.home_province != '') {
-                                    $('#home').distpicker({province: data.data.home_province});
-                                }
-                                if (data.data.home_city != null && data.data.home_city != '') {
-                                    $('#home').distpicker({city: data.data.home_city});
-                                }
-                                if (data.data.home_district != null && data.data.home_district != '') {
-                                    $('#home').distpicker({district: data.data.home_district});
+            function foreInfo() {
+                $.ajax({
+                    url: MASTERDATAURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        foreman_id: USERID
+                    },
+                    success: function (data) {
+                        if (data && data.code == '000') {
+                            console.log(data);
+                            var abb_phone = data.data.foremaninfo_phone.substr(0, 3) + "****" + data.data.foremaninfo_phone.substr(7, 11);//手机号中间四位变成*号
+                            $('.personal_tel').html(abb_phone); //获取工长的电话号码
+                            $('.personal_user_age').val(data.data.foremaninfo_age); //获取工长的年龄
+                            $('.personal_service_length').val(data.data.worktime); //获取工长的工龄
+                            $('.personal_user_nickname').val(data.data.foremaninfo_nickname); //获取工长的昵称
+                            $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
+                            email = data.data.foremaninfo_email; //获取工长的邮箱
+                            if (email != null) {//判断邮箱是否为空
+                                var length = email.length;
+                                var abb_email = email.substr(0, 3) + "****" + email.substr(length - 3, length);//邮箱中间变成*号
+                                $('#email_p').html('<span>' + abb_email + '</span><a href="#/master/setting/email/email_1">修改绑定</a>')
+                            }
+                            $('.personal_user_name').val(data.data.user_name); //获取工长的用户名
+                            //判断工长的性别
+                            if (data.data.foremaninfo_sex == 1) {
+                                $('#man').attr('checked', 'checked');
+                            } else {
+                                $('#women').attr('checked', 'checked');
+                            }
+                            //获取工长的从业经历
+                            var eLen = data.data.experience.length;
+                            for (var i = 0; i < eLen; i++) {
+                                $('.personal_form_area').append('<div class="fl"> <input type="text" title="" class="input_all" value="' + data.data.experience[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
+                            }
+                            $('.input_all').eq(0).addClass('first');
+                            //获取工长的服务区域
+                            var aLen = data.data.servicearea.length;
+                            for (var i = 0; i < aLen; i++) {
+                                if (data.data.servicearea[i] != '') {
+                                    $('#personal_circle').before('<a class="personal_area" href="javascript:;">' + data.data.servicearea[i] + '</a>');
                                 }
                             }
-                        },
-                        error: function (data) {
+                            //获取工长的装修小区
+                            var dLen = data.data.decoratedareas.length;
+                            for (var i = 0; i < dLen; i++) {
+                                $('.renovation_area').append('<div class="fl"> <input type="text" title="" class="personal_user_community" value="' + data.data.decoratedareas[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
+                            }
+                            if (data.data.isedit == 2) {
+                                $('.personal_user_name').attr("disabled", true);
+                            }
+                            $('.personal_user_community').eq(0).addClass('personal_user_first');
+                            //获取所在地信息
+                            if (data.data.loc_province != null && data.data.loc_province != '') {
+                                $('#loc').distpicker({province: data.data.loc_province});
+                            }
+                            if (data.data.loc_city != null && data.data.loc_city != '') {
+                                $('#loc').distpicker({city: data.data.loc_city});
+                            }
+                            if (data.data.loc_district != null && data.data.loc_district != '') {
+                                $('#loc').distpicker({district: data.data.loc_district});
+                            }
+
+                            //获取家乡信息
+                            if (data.data.home_province != null && data.data.home_province != '') {
+                                $('#home').distpicker({province: data.data.home_province});
+                            }
+                            if (data.data.home_city != null && data.data.home_city != '') {
+                                $('#home').distpicker({city: data.data.home_city});
+                            }
+                            if (data.data.home_district != null && data.data.home_district != '') {
+                                $('#home').distpicker({district: data.data.home_district});
+                            }
                         }
-                    });
-                    // $http({
-                    //     method: "JSONP",
-                    //     url: MASTERDATAURL,
-                    //     /* 传参 */
-                    //     params: {
-                    //         foreman_id: USERID
-                    //     }
-                    // }).success(function (data, status) {
-                    //     /* 如果成功执行 */
-                    //     if (data.code === '000') {
-                    //         console.log(data);
-                    //         var abb_phone = data.data.foremaninfo_phone.substr(0, 3) + "****" + data.data.foremaninfo_phone.substr(7, 11);//手机号中间四位变成*号
-                    //         $('.personal_tel').html(abb_phone); //获取工长的电话号码
-                    //         $('.personal_user_age').val(data.data.foremaninfo_age); //获取工长的年龄
-                    //         $('.personal_service_length').val(data.data.worktime); //获取工长的工龄
-                    //         $('.personal_user_nickname').val(data.data.foremaninfo_nickname); //获取工长的昵称
-                    //         $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
-                    //         email = data.data.foremaninfo_email; //获取工长的邮箱
-                    //         if (email != null) {//判断邮箱是否为空
-                    //             var length = email.length;
-                    //             var abb_email = email.substr(0, 3) + "****" + email.substr(length - 3, length);//邮箱中间变成*号
-                    //             $('#email_p').html('<span>' + abb_email + '</span><a href="#/master/setting/email/email_1">修改绑定</a>')
-                    //         }
-                    //         $('.personal_user_name').val(data.data.user_name); //获取工长的用户名
-                    //         //判断工长的性别
-                    //         if (data.data.foremaninfo_sex == 1) {
-                    //             $('#man').attr('checked', 'checked');
-                    //         } else {
-                    //             $('#women').attr('checked', 'checked');
-                    //         }
-                    //         //获取工长的从业经历
-                    //         var eLen = data.data.experience.length;
-                    //         for (var i = 0; i < eLen; i++) {
-                    //             $('.personal_form_area').append('<div class="fl"> <input type="text" title="" class="input_all" value="' + data.data.experience[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
-                    //         }
-                    //         $('.input_all').eq(0).addClass('first');
-                    //         //获取工长的服务区域
-                    //         var aLen = data.data.servicearea.length;
-                    //         for (var i = 0; i < aLen; i++) {
-                    //             if (data.data.servicearea[i] != '') {
-                    //                 $('#personal_circle').before('<a class="personal_area" href="javascript:;">' + data.data.servicearea[i] + '</a>');
-                    //             }
-                    //         }
-                    //         //获取工长的装修小区
-                    //         var dLen = data.data.decoratedareas.length;
-                    //         for (var i = 0; i < dLen; i++) {
-                    //             $('.renovation_area').append('<div class="fl"> <input type="text" title="" class="personal_user_community" value="' + data.data.decoratedareas[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
-                    //         }
-                    //         if (data.data.isedit == 2) {
-                    //             $('.personal_user_name').attr("disabled", true);
-                    //         }
-                    //         $('.personal_user_community').eq(0).addClass('personal_user_first');
-                    //         //获取所在地信息
-                    //         if (data.data.loc_province != null && data.data.loc_province != '') {
-                    //             $('#loc').distpicker({province: data.data.loc_province});
-                    //         }
-                    //         if (data.data.loc_city != null && data.data.loc_city != '') {
-                    //             $('#loc').distpicker({city: data.data.loc_city});
-                    //         }
-                    //         if (data.data.loc_district != null && data.data.loc_district != '') {
-                    //             $('#loc').distpicker({district: data.data.loc_district});
-                    //         }
-                    //
-                    //         //获取家乡信息
-                    //         if (data.data.home_province != null && data.data.home_province != '') {
-                    //             $('#home').distpicker({province: data.data.home_province});
-                    //         }
-                    //         if (data.data.home_city != null && data.data.home_city != '') {
-                    //             $('#home').distpicker({city: data.data.home_city});
-                    //         }
-                    //         if (data.data.home_district != null && data.data.home_district != '') {
-                    //             $('#home').distpicker({district: data.data.home_district});
-                    //         }
-                    //
-                    //     }
-                    //     /* 如果失败执行 */
-                    //     else {
-                    //         layer.alert(data.msg);
-                    //     }
-                    // }).error(function (data, status) {
-                    // });
-                }
-                foreInfo();
+                    },
+                    error: function (data) {
+                    }
+                });
+                // $http({
+                //     method: "JSONP",
+                //     url: MASTERDATAURL,
+                //     /* 传参 */
+                //     params: {
+                //         foreman_id: USERID
+                //     }
+                // }).success(function (data, status) {
+                //     /* 如果成功执行 */
+                //     if (data.code === '000') {
+                //         console.log(data);
+                //         var abb_phone = data.data.foremaninfo_phone.substr(0, 3) + "****" + data.data.foremaninfo_phone.substr(7, 11);//手机号中间四位变成*号
+                //         $('.personal_tel').html(abb_phone); //获取工长的电话号码
+                //         $('.personal_user_age').val(data.data.foremaninfo_age); //获取工长的年龄
+                //         $('.personal_service_length').val(data.data.worktime); //获取工长的工龄
+                //         $('.personal_user_nickname').val(data.data.foremaninfo_nickname); //获取工长的昵称
+                //         $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
+                //         email = data.data.foremaninfo_email; //获取工长的邮箱
+                //         if (email != null) {//判断邮箱是否为空
+                //             var length = email.length;
+                //             var abb_email = email.substr(0, 3) + "****" + email.substr(length - 3, length);//邮箱中间变成*号
+                //             $('#email_p').html('<span>' + abb_email + '</span><a href="#/master/setting/email/email_1">修改绑定</a>')
+                //         }
+                //         $('.personal_user_name').val(data.data.user_name); //获取工长的用户名
+                //         //判断工长的性别
+                //         if (data.data.foremaninfo_sex == 1) {
+                //             $('#man').attr('checked', 'checked');
+                //         } else {
+                //             $('#women').attr('checked', 'checked');
+                //         }
+                //         //获取工长的从业经历
+                //         var eLen = data.data.experience.length;
+                //         for (var i = 0; i < eLen; i++) {
+                //             $('.personal_form_area').append('<div class="fl"> <input type="text" title="" class="input_all" value="' + data.data.experience[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
+                //         }
+                //         $('.input_all').eq(0).addClass('first');
+                //         //获取工长的服务区域
+                //         var aLen = data.data.servicearea.length;
+                //         for (var i = 0; i < aLen; i++) {
+                //             if (data.data.servicearea[i] != '') {
+                //                 $('#personal_circle').before('<a class="personal_area" href="javascript:;">' + data.data.servicearea[i] + '</a>');
+                //             }
+                //         }
+                //         //获取工长的装修小区
+                //         var dLen = data.data.decoratedareas.length;
+                //         for (var i = 0; i < dLen; i++) {
+                //             $('.renovation_area').append('<div class="fl"> <input type="text" title="" class="personal_user_community" value="' + data.data.decoratedareas[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
+                //         }
+                //         if (data.data.isedit == 2) {
+                //             $('.personal_user_name').attr("disabled", true);
+                //         }
+                //         $('.personal_user_community').eq(0).addClass('personal_user_first');
+                //         //获取所在地信息
+                //         if (data.data.loc_province != null && data.data.loc_province != '') {
+                //             $('#loc').distpicker({province: data.data.loc_province});
+                //         }
+                //         if (data.data.loc_city != null && data.data.loc_city != '') {
+                //             $('#loc').distpicker({city: data.data.loc_city});
+                //         }
+                //         if (data.data.loc_district != null && data.data.loc_district != '') {
+                //             $('#loc').distpicker({district: data.data.loc_district});
+                //         }
+                //
+                //         //获取家乡信息
+                //         if (data.data.home_province != null && data.data.home_province != '') {
+                //             $('#home').distpicker({province: data.data.home_province});
+                //         }
+                //         if (data.data.home_city != null && data.data.home_city != '') {
+                //             $('#home').distpicker({city: data.data.home_city});
+                //         }
+                //         if (data.data.home_district != null && data.data.home_district != '') {
+                //             $('#home').distpicker({district: data.data.home_district});
+                //         }
+                //
+                //     }
+                //     /* 如果失败执行 */
+                //     else {
+                //         layer.alert(data.msg);
+                //     }
+                // }).error(function (data, status) {
+                // });
+            }
+
+            foreInfo();
             //}]);
 
 
@@ -2338,7 +2347,6 @@
                     success: function (data) {
                         if (data != null && data.code == '000') {
                             layer.msg(data.msg);
-                            location.reload();
                         }
                     },
                     error: function (data) {
@@ -2361,8 +2369,12 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
+                        console.log(data.data);
                         $(".wallet_content_top li .withdraw span").html(data.data.available_total);
                         sessionStorage.setItem('availableTotal', data.data.available_total);
+                        sessionStorage.setItem('processType', data.data.process_type);
+                        sessionStorage.setItem('money', data.data.money);
+                        sessionStorage.setItem('bank', data.data.bank);
                         $(".wallet_content_top li .total span").html(data.data.total);
                     } else {
                         layer.alert(data.msg);
@@ -2596,34 +2608,73 @@
         getInfoEvent: function () {
             HHIT_CENTERAPP.controller('withdraw', ['$scope', '$http', function ($scope, $http) {
                 $('#headerWrapper').remove();
+
                 var availableTotal = sessionStorage.getItem('availableTotal');
                 $('.current_balance b').html(availableTotal);
-                /* 列出我的银行卡信息 */
-                $http({
-                    method: "JSONP",
-                    url: BANKINFOURL,
-                    /* 传参 */
-                    params: {
-                        user_id: USERID
-                    }
-                }).success(function (data, status) {
-                    /* 如果成功执行 */
-                    if (data.code === '000') {
-                        console.log(data);
-                        for (var i = 0; i < data.data.length; i++) {
-                            var cardno = data.data[i].bankcardno;
-                            data.data[i].bankcardnoDim = cardno.substr(cardno.length - 4);//获取银行卡后四位
+                var processType = sessionStorage.getItem('processType');
+                var money = sessionStorage.getItem('money');
+                var bank = sessionStorage.getItem('bank');
+                var v_array = [];
+                if (processType == 'false') {//正在提现中
+                    /* 列出我的银行卡信息 */
+                    $http({
+                        method: "JSONP",
+                        url: BANKINFOURL,
+                        /* 传参 */
+                        params: {
+                            user_id: USERID
                         }
-                        $scope.wbanks = data.data;
-                    }
-                    /* 如果失败执行 */
-                    else {
-                        //layer.alert(data.msg);
-                        $("#choose_bank").append('<div class="not_bank fl"> <span>您还没有绑定银行卡哦~~ 点击去</span><a href="bank.html#/bank/home"> 绑定 </a> </div><!--not_bank-->');
+                    }).success(function (data, status) {
+                        /* 如果成功执行 */
+                        if (data.code === '000') {
+                            console.log(data);
+                            $.each(data.data, function (i, v) {
+                                if (v.bankname == bank) {
+                                    var cardno = v.bankcardno;
+                                    v.bankcardnoDim = cardno.substr(cardno.length - 4);//获取银行卡后四位
+                                    v_array.push(v);
+                                    $scope.wbanks = v_array;
+                                }
+                            });
 
-                    }
-                }).error(function (data, status) {
-                });
+                            $scope.renderFinish = function(){
+                                $('.radio_money').attr('checked', 'checked');
+                                $('.bank_fr').remove();
+                                $('#money').val(money);
+                                $('#cash_confirm').attr("disabled", true).val("正在提现中...");
+                            };
+                        }
+
+                    });
+                } else {
+                    /* 列出我的银行卡信息 */
+                    $http({
+                        method: "JSONP",
+                        url: BANKINFOURL,
+                        /* 传参 */
+                        params: {
+                            user_id: USERID
+                        }
+                    }).success(function (data, status) {
+                        /* 如果成功执行 */
+                        if (data.code === '000') {
+                            console.log(data);
+                            for (var i = 0; i < data.data.length; i++) {
+                                var cardno = data.data[i].bankcardno;
+                                data.data[i].bankcardnoDim = cardno.substr(cardno.length - 4);//获取银行卡后四位
+                            }
+                            $scope.wbanks = data.data;
+                        }
+                        /* 如果失败执行 */
+                        else {
+                            //layer.alert(data.msg);
+                            $("#choose_bank").append('<div class="not_bank fl"> <span>您还没有绑定银行卡哦~~ 点击去</span><a href="bank.html#/bank/home"> 绑定 </a> </div><!--not_bank-->');
+
+                        }
+                    }).error(function (data, status) {
+                    });
+                }
+
 
                 /* 提现 */
                 $('#cash_confirm').click(function () {
@@ -2868,7 +2919,7 @@
                                 console.log(data);
                                 if (data.code == '000') {
                                     window.location.href = '#bank/add_process4';
-                                }else{
+                                } else {
                                     layer.msg(data.msg);
                                 }
                             },
@@ -4069,7 +4120,7 @@
 
                 /* 上传与更改本店工艺 */
                 $(document).off('click', '.complete').on('click', '.complete', function () {
-                    if ($(this).parent().parent().hasClass("edit")) { //更改本店工艺
+                    if ($(this).parent().parent().parent().hasClass("edit")) { //更改本店工艺
                         var data = new FormData();
                         data.append("technics_id", $('.add_technology').attr("technics_id"));
                         data.append("describe", $('#textarea').val());

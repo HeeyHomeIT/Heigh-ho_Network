@@ -155,4 +155,17 @@ define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j
 			}
 		};
 	});
+
+    /**
+     * 工长我的钱包提现repeat执行完成之后的事件
+     */
+    app.directive('repeatFinish',function(){
+        return {
+            link: function(scope,element,attr){
+                if(scope.$last == true){
+                    scope.$eval( attr.repeatFinish )
+                }
+            }
+        }
+    })
 });
