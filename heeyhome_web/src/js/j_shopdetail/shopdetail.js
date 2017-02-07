@@ -147,8 +147,6 @@
             $(document).on('click', '#collect_shop', function (e) {
                 if (USERID != null && USERID != "" && USERID != undefined) {
                     if ($.base64.decode(userType) == 1) {
-                        console.log($("#JdpId").val());
-                        console.log(USERID);
                         $.ajax({
                             url: SHOPCOLURL,
                             type: "GET",
