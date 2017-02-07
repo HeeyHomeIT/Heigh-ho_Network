@@ -253,15 +253,15 @@
 }
 
 .head .edit_avatar {
-    background: url(../../css/img/userImg_bg.jpg) no-repeat;
+    background: url(../../css/img/userImg_bg.png) no-repeat;
     position: absolute;
-    bottom: -28px;
-    left: -7px;
+    bottom: -19px;
+    left: 2px;
     width: 100%;
     height: 50px;
-    line-height: 39px;
+    line-height: 30px;
     text-align: center;
-    color: #e1d7ca;
+    color: white;
     opacity: 0.6;
     display: inline-block;
 }
@@ -4477,4 +4477,7 @@ div.clear:after, div.clear:before {
     display: block;
     margin: 0 auto;
     margin-top: 50px;
+}
+.add_technology_wrap{
+
 }
