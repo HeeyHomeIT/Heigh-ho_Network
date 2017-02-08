@@ -653,7 +653,18 @@ class OrderMaterialController extends Controller
         $str2 = substr((string)$mtime[0], 1);
         $str = $str1 . $str2;
         $order_id = rq('order_id');
-        $order_step = rq('order_step');
+        
+
+        $order_step_result = DB::SELECT('SELECT order_step FROM hh_order WHERE order_id = ?',[$order_id]);
+        if (!$order_step_result) {
+            $arr = array(
+                "code" => "203",
+                "msg" => "订单不存在",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        $order_step = $order_step_result[0]->order_step;
         $material_type = rq('material_type');
         $callback = rq('callback');
         $material_json = rq('material_arr');
@@ -733,7 +744,7 @@ class OrderMaterialController extends Controller
                 if ($sel) {
                     $material_type_chn = $sel[0]->material_type;
                 }
-                $step = $order_step + 1;
+                $step = $order_step+1;
                 $result = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?', [$step, $order_id]);
                 $arr = array(
                     "code" => "000",
@@ -744,7 +755,7 @@ class OrderMaterialController extends Controller
                         "material_type" => $order_id,
                         "material_type" => $material_type,
                         "material_type_chn" => $material_type_chn,
-                        "order_step" => $result,
+                        "order_step" => $step,
                     )
                 );
                 return $callback . "(" . HHJson($arr) . ")";
