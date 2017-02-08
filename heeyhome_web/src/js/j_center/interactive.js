@@ -773,12 +773,6 @@
                 var account = $(".personal_user_name").val();
                 var age = $('.personal_user_age').val();
                 var nickname = $('.personal_user_nickname').val();
-                var sex;
-                if ($('#man').attr('checked') == 'checked') {
-                    sex = 1;
-                } else {
-                    sex = 0;
-                }
                 var province1 = $(".personal_form_list #province1 option:selected").val();
                 var city1 = $(".personal_form_list #city1 option:selected").val();
                 var district1 = $(".personal_form_list #district1 option:selected").val();
@@ -796,7 +790,7 @@
                         user_id: USERID,
                         name: account,
                         nickname: nickname,
-                        sex: sex,
+                        sex: $("input[name='sex']:checked").val(),
                         age: age,
                         loc_province: province1,
                         loc_city: city1,
