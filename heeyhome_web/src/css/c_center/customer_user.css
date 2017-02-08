@@ -1533,7 +1533,6 @@ a:focus {
 
 .safe_right,.safe_right_content {
     padding: 50px 0 50px 83px;
-    border: 1px solid #cdcdcd;
     border-top: none;
     position: relative;
 }
@@ -1546,7 +1545,7 @@ a:focus {
     color: #4B4948;
     font-size: 14px;
     position: relative;
-    margin-bottom: 15px
+    margin-bottom: 30px
 }
 
 .security_top .security_score i {

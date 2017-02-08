@@ -78,12 +78,13 @@
 }
 
 .content_wrap {
-    height: auto;
     border: 1px solid #cdcdcd;
     border-top: none
 }
-
-/*.right_content {*/
+/*#user_right .content_wrap {*/
+    /*height: 845px;*/
+/*}*/
+    /*.right_content {*/
 /*padding: 100px 50px*/
 /*}*/
 

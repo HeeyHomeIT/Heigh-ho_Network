@@ -24,7 +24,7 @@
     var NEWEMAILURL = BASEURL + 'personal/safe/emailchange'; // 绑定新邮箱
     var LOGINPASSWORDURL = BASEURL + 'editpassword/initialpwd'; // 登录密码验证
     var PASSWORDMSURL = BASEURL + 'editpassword/smsedit'; // 修改密码短信验证
-    var SAFEURL = BASEURL + 'personal/loginhistory?callback=JSON_CALLBACK';//安全设置登录历史
+    // var SAFEURL = BASEURL + 'personal/loginhistory?callback=JSON_CALLBACK';//安全设置登录历史
 
     var phone;//获取用户手机号
     var email;//获取用户邮箱
@@ -744,45 +744,51 @@
                     error: function (data) {
                     }
                 });
-                /* 获取登录历史 */
-                $http({
-                    method: "JSONP",
-                    url: SAFEURL,
-                    /* 传参 */
-                    params: {
-                        user_id: $.base64.decode($.cookie("userId"))
-                    }
-                }).success(function (data, status) {
-                    console.log(data);
-                    /* 如果成功执行 */
-                    if (data.code === '000') {
-                        /* 获取显示在页面中的数据 */
-                        $scope.safes = data.data.slice(0, 2);
-                        /* 获取点击更多显示的数据 */
-                        var len = data.data.length;//总数据的长度
-                        $scope.mores = data.data.slice(2, len);
-                        var more = $("#more");//获取到更多按钮
-                        /* 点击更多执行的事件 */
-                        more.click(function () {
-                            $('.login_next').toggle(300);
-                            if (more.html() == '更多') {
-                                more.html('隐藏');
-                            } else {
-                                more.html('更多');
-                            }
-                        });
-                    }
-                    /* 如果失败执行 */
-                    else if (data.code === '117') {
-                        $('.not_information').show().removeClass('hide');
-                        $('.not_information_text').html('您最近还没有登录过哦~~');
-                        $('.login_note').hide();
-                        $('.login_history p').hide();
-                    } else {
-                        layer.msg(data.msg);
-                    }
-                }).error(function (data, status) {
-                });
+                // /* 获取登录历史 */
+                // $http({
+                //     method: "JSONP",
+                //     url: SAFEURL,
+                //     /* 传参 */
+                //     params: {
+                //         user_id: $.base64.decode($.cookie("userId"))
+                //     }
+                // }).success(function (data, status) {
+                //     console.log(data);
+                //     /* 如果成功执行 */
+                //     if (data.code === '000') {
+                //         /* 获取显示在页面中的数据 */
+                //         $scope.safes = data.data.slice(0, 2);
+                //         /* 获取点击更多显示的数据 */
+                //         var len = data.data.length;//总数据的长度
+                //         $scope.mores = data.data.slice(2, len);
+                //         var more = $("#more");//获取到更多按钮
+                //         /* 点击更多执行的事件 */
+                //         more.click(function () {
+                //             $('.login_next').toggle(300);
+                //             if (more.html() == '更多') {
+                //                 more.html('隐藏');
+                //             } else {
+                //                 more.html('更多');
+                //             }
+                //         });
+                //     }
+                //     /* 如果失败执行 */
+                //     else if (data.code === '117') {
+                //         $('.not_information').show().removeClass('hide');
+                //         $('.not_information_text').html('您最近还没有登录过哦~~');
+                //         $('.login_note').hide();
+                //         $('.login_history p').hide();
+                //     } else {
+                //         layer.msg(data.msg);
+                //     }
+                // }).error(function (data, status) {
+                // });
+                /* 判断用户有没有绑定邮箱 */
+                var have_email = $.base64.decode($.cookie("userEmail"));
+                console.log(have_email);
+                if (have_email != "null") {
+                    $('#email').html('立即修改');
+                }
             }]);
         }
     };
