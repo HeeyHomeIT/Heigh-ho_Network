@@ -267,6 +267,8 @@
                                 upload();
                             } else if (user.code == '111') {
                                 layer.alert('信息上传失败~~');
+                            } else if (user.code == '121') {
+                                layer.alert('没有图片被上传~~');
                             } else {
                                 layer.alert('图片上传出错~~');
                             }
@@ -553,7 +555,7 @@
                                 error: function (data) {
                                 }
                             });
-                        }else{
+                        } else {
                             layer.alert(MSG7);
                         }
                     });
