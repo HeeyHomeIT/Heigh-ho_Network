@@ -160,25 +160,35 @@ class WalletController extends Controller
             $todaytotal=0;
         }
         $money = DB::select('select total,available_total from hh_wallet_balance where user_id =?',[$user_id]);
-        $total=$money[0]->total;
-        $available_total=$money[0]->available_total;
-        $isapply=DB::select('select process_type from hh_withdrawapply where apply_userid=?',[$user_id]);
-        if($isapply) {
-                if($isapply[0]->process_type){
-                    $process_type=true;
-                }else{
-                    $process_type = false;
-                }
+        if ($money) {
+            $total=$money[0]->total;
+            $available_total=$money[0]->available_total;
+            $isapply=DB::select('select process_type from hh_withdrawapply where apply_userid=?',[$user_id]);
+            if($isapply) {
+                    if($isapply[0]->process_type){
+                        $process_type=true;
+                    }else{
+                        $process_type = false;
+                    }
+            }
+            else{
+                $process_type=true;
+            }
+            $arr = array("code" => "000",
+                "data" => array("total"=>$total,
+                    "todaytotal"=>floatval($todaytotal),
+                    "available_total"=>$available_total,
+                "process_type"=>$process_type),
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array("code" => "000",
+                "data" => array("total"=>0.00,
+                    "todaytotal"=> 0.00,
+                    "available_total"=>0.00
+                    ),
+            );
+            return $callback . "(" . HHJson($arr) . ")";
         }
-        else{
-            $process_type=true;
-        }
-        $arr = array("code" => "000",
-            "data" => array("total"=>$total,
-                "todaytotal"=>floatval($todaytotal),
-                "available_total"=>$available_total,
-            "process_type"=>$process_type),
-        );
-        return $callback . "(" . HHJson($arr) . ")";
     }
 }
