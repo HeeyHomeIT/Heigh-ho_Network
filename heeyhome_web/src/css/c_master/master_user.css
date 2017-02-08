@@ -1710,7 +1710,7 @@
     margin-left: 29px
 }
 
-.content_wrap {
+#master_right .master_safe .content_wrap {
     width: 870px;
     height: 898px
 }
@@ -3528,7 +3528,7 @@ div.clear:after, div.clear:before {
     margin-left: 29px
 }
 
-.content_wrap {
+#master_right #user_right .content_wrap {
     height: 898px;
     margin-right: 50px
 }
@@ -3546,7 +3546,7 @@ div.clear:after, div.clear:before {
     color: #4B4948;
     font-size: 14px;
     position: relative;
-    margin-bottom: 15px
+    margin-bottom: 30px
 }
 
 .security_top .security_score i {
@@ -3580,13 +3580,13 @@ div.clear:after, div.clear:before {
 
 .security_top .security_score .number {
     position: absolute;
-    right: 350px;
+    right: 335px;
     top: 0
 }
 
 .security_top .security_score .mark {
     position: absolute;
-    right: 325px;
+    right: 315px;
     top: 0;
     background-color: white;
     padding: 0

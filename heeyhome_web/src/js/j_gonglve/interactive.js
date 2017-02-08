@@ -15,6 +15,7 @@
     var CATEURL = "http://www.heeyhome.com/api/public/jzbk/cate?callback=JSON_CALLBACK"; // 获取家装百科分类接口
     var ARTICLE = "http://www.heeyhome.com/api/public/jzbk/article?callback=JSON_CALLBACK"; // 获取文章列表接口
     var DETAILURL = "http://www.heeyhome.com/api/public/jzbk/info?callback=JSON_CALLBACK"; // 获取文章详情接口
+    var VRVIEWURL = "http://www.heeyhome.com/api/public/jzbk/scan"; // 获取浏览量
 
     /*定义一个类*/
     var wikipedia = {
@@ -48,17 +49,17 @@
                         $scope.names = data.data;
                         /* 右边标题默认出现 */
                         $rH.html(data.data[0].cate_describe);
-						sessionStorage.setItem("describe",data.data[0].cate_describe);
-                		sessionStorage.setItem("name",data.data[0].cate_name);
+                        sessionStorage.setItem("describe", data.data[0].cate_describe);
+                        sessionStorage.setItem("name", data.data[0].cate_name);
                     } else {  /* 如果失败执行 */
                         layer.alert(data.msg);
                     }
                 }).error(function (data, status) {
                 });
                 /* 左边导航栏点击事件 */
-                 $scope.barTab = function (describe, id,name) {
-                	sessionStorage.setItem("describe",describe);
-                	sessionStorage.setItem("name",name);
+                $scope.barTab = function (describe, id, name) {
+                    sessionStorage.setItem("describe", describe);
+                    sessionStorage.setItem("name", name);
                     /* 获取右边文章标题 */
                     $rH.html(describe);
                     /* 获取右边文章列表 */
@@ -73,7 +74,7 @@
          */
         initDetailEvent: function () {
             HHIT_NEWAPP.controller('myDetail', ['$scope', '$http', function ($scope, $http) {
-            	var cate_describe = sessionStorage.getItem("describe");
+                var cate_describe = sessionStorage.getItem("describe");
                 var cate_name = sessionStorage.getItem("name");
                 console.log(cate_describe)
                 /* 获取文章详情接口 */
@@ -87,7 +88,7 @@
                 }).success(function (data, status) {
                     /* 如果成功执行 */
                     if (data.code === '000') {
-                          
+
                         //往详情页里面塞内容
                         $(".gonglve_detail .now_location .stage").html(cate_name);
                         $(".gonglve_detail .now_location .attention").html(cate_describe);
@@ -127,6 +128,7 @@
                     });
                     $(".right_wrap").html(vrStr);
                     pageHandler.pageContentEvent(id);
+                    viewPlus.addView();
                 } else {  /* 如果失败执行 */
                     layer.alert(data.msg);
                 }
@@ -136,11 +138,41 @@
 
     };
     /**
+     * 浏览量计数
+     */
+    viewPlus = {
+        addView: function () {
+            $(".rightDetail").on("click", function () {
+                var id = $(this).attr("rid");
+                var icon = $(this).find('.icon_people');
+                $.ajax({
+                    type: "get",
+                    url: VRVIEWURL,
+                    async: true,
+                    dataType: "jsonp",
+                    data: {
+                        id: id
+                    },
+                    success: function (data) {
+                        if (data && data.code == '000') {
+                            icon.html(data.data.scan++);
+                            //location.reload();
+                        } else {
+                            layer.alert(data.msg);
+                        }
+                    },
+                    error: function (data) {
+                    }
+                });
+            });
+        }
+    };
+    /**
      * 分页
      */
     pageHandler = {
         pageContentEvent: function (id) {
-        	$(".page_number>div").append($(".page_div3").empty().paging({
+            $(".page_number>div").append($(".page_div3").empty().paging({
                 total: Math.ceil(gonglve_total / 2), //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
                 centerBgColor: "#fff",
@@ -191,7 +223,7 @@
      */
     splicePicHandler = {
         spliceStrEvent: function (value) {
-            var vrStr = '<div id="rightDetail" rid="' + value.id + '">';
+            var vrStr = '<div class="rightDetail" rid="' + value.id + '">';
             vrStr += '<a class="right_detail clearfix" href="gonglve_detail.html#/detail?id=' + value.id + '" target="_blank">';
             vrStr += '	<div class="right_img">';
             vrStr += '		<img src="http://www.heeyhome.com/' + value.img + '">';

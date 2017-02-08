@@ -46,45 +46,45 @@
                         </li>
                     </ul>
                 </div>
-                <div class="security_bottom">
-                    <div class="login_history">
-                        <h3>登录历史</h3>
-                        <p>以下是您最近登录记录，若存在异常情况，请在核实后尽快<a href="#/center/setting/reset/reset_1">修改密码</a></p>
-                    </div>
-                    <div class="login_note clearfix">
-                        <h3>
-                            <span>时间</span>
-                            <span>地点</span>
-                            <span>IP</span>
-                            <span>浏览器</span>
-                            <span>登录方式</span>
-                            <span>设备</span>
-                        </h3>
-                        <p class="login_p" ng-repeat="safe in safes">
-                            <span class="login_time">{{safe.login_time}}</span>
-                            <span>江苏苏州</span>
-                            <span>{{safe.login_ip}}</span>
-                            <span>{{safe.login_browser}}</span>
-                            <span>{{safe.login_way}}</span>
-                            <span>{{safe.login_device}}</span>
-                        </p>
-                        <p class="login_p display login_next" ng-repeat="more in mores ">
-                            <span class="login_time">{{more.login_time}}</span>
-                            <span>江苏苏州</span>
-                            <span>{{more.login_ip}}</span>
-                            <span>{{more.login_browser}}</span>
-                            <span>{{more.login_way}}</span>
-                            <span>{{more.login_device}}</span>
-                        </p>
-                        <a id="more" href="javascript:;">更多</a>
-                    </div>
-                </div>
-                <div class="not_information hide">
-                    <div class="not_information_img">
-                        <img src="css/img/no_information_found.png">
-                    </div><!--not_information_img-->
-                    <div class="not_information_text"></div><!--not_information_text-->
-                </div><!--not_information-->
+                <!--<div class="security_bottom">-->
+                    <!--<div class="login_history">-->
+                        <!--<h3>登录历史</h3>-->
+                        <!--<p>以下是您最近登录记录，若存在异常情况，请在核实后尽快<a href="#/center/setting/reset/reset_1">修改密码</a></p>-->
+                    <!--</div>-->
+                    <!--<div class="login_note clearfix">-->
+                        <!--<h3>-->
+                            <!--<span>时间</span>-->
+                            <!--<span>地点</span>-->
+                            <!--<span>IP</span>-->
+                            <!--<span>浏览器</span>-->
+                            <!--<span>登录方式</span>-->
+                            <!--<span>设备</span>-->
+                        <!--</h3>-->
+                        <!--<p class="login_p" ng-repeat="safe in safes">-->
+                            <!--<span class="login_time">{{safe.login_time}}</span>-->
+                            <!--<span>江苏苏州</span>-->
+                            <!--<span>{{safe.login_ip}}</span>-->
+                            <!--<span>{{safe.login_browser}}</span>-->
+                            <!--<span>{{safe.login_way}}</span>-->
+                            <!--<span>{{safe.login_device}}</span>-->
+                        <!--</p>-->
+                        <!--<p class="login_p display login_next" ng-repeat="more in mores ">-->
+                            <!--<span class="login_time">{{more.login_time}}</span>-->
+                            <!--<span>江苏苏州</span>-->
+                            <!--<span>{{more.login_ip}}</span>-->
+                            <!--<span>{{more.login_browser}}</span>-->
+                            <!--<span>{{more.login_way}}</span>-->
+                            <!--<span>{{more.login_device}}</span>-->
+                        <!--</p>-->
+                        <!--<a id="more" href="javascript:;">更多</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="not_information hide">-->
+                    <!--<div class="not_information_img">-->
+                        <!--<img src="css/img/no_information_found.png">-->
+                    <!--</div>&lt;!&ndash;not_information_img&ndash;&gt;-->
+                    <!--<div class="not_information_text"></div>&lt;!&ndash;not_information_text&ndash;&gt;-->
+                <!--</div>&lt;!&ndash;not_information&ndash;&gt;-->
             </div><!--safe-->
         </div>
     </div>

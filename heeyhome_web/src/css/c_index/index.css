@@ -157,7 +157,8 @@
 .vr_picture .box_picture_1 a {
     display: block;
     width: 100%;
-    height: 100%
+    height: 100%;
+    position: relative
 }
 
 .vr_picture .box_picture_1 a > img {
@@ -182,7 +183,6 @@
 }
 
 .vr_picture {
-    position: relative;
     margin: 0 auto;
     -webkit-column-count: 3;
     -moz-column-count: 3;
@@ -190,11 +190,11 @@
     -webkit-column-gap: 10px;
     -moz-column-gap: 10px;
     column-gap: 10px;
-    height: 900px
+    height: auto;
+    margin-bottom: 50px
 }
 
 .box_picture {
-    position: absolute;
     overflow: hidden;
     text-align: center;
 }
