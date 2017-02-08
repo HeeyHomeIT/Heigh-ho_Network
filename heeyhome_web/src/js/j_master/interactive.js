@@ -4313,9 +4313,14 @@
                                 $scope.works = data.data;
                                 $('.new_album').show();
                             }
-                            $scope.session = function (id) {
-                                sessionStorage.setItem("case_id", id);
-                            }
+                            // $scope.session = function (id) {
+                            //     sessionStorage.setItem("case_id", id);
+                            // };
+
+                            $(document).on('click','.works_detail',function () {
+                                sessionStorage.setItem("case_id", $(this).attr('caseid'));
+                            })
+
                         }
                         /* 如果失败执行 */
                         else {
@@ -4506,13 +4511,13 @@
             if ($syear.html() == "-年份-" || $smonth.html() == "-月份-" || $sday.html() == "-日期-" || $eyear.html() == "-年份-" || $emonth.html() == "-月份-" || $eday.html() == "-日期-") {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
-            } else if ($syear.html() > $eyear.html()) {
+            } else if (parseInt($syear.html()) > parseInt($eyear.html())) {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
-            } else if ($syear.html() == $eyear.html() && $smonth.html() > $emonth.html()) {
+            } else if (parseInt($syear.html()) == parseInt($eyear.html()) && parseInt($smonth.html()) > parseInt($emonth.html())) {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
-            } else if ($syear.html() == $eyear.html() && $smonth.html() == $emonth.html() && $sday.html() > $eday.html()) {
+            } else if (parseInt($syear.html()) == parseInt($eyear.html()) && parseInt($smonth.html()) == parseInt($emonth.html()) && parseInt($sday.html()) > parseInt($eday.html())) {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
             }
