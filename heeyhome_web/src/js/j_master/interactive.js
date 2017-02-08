@@ -2637,7 +2637,7 @@
                                 }
                             });
 
-                            $scope.renderFinish = function(){
+                            $scope.renderFinish = function () {
                                 $('.radio_money').attr('checked', 'checked');
                                 $('.bank_fr').remove();
                                 $('#money').val(money);
@@ -3952,9 +3952,10 @@
 
                 /* 点击添加工艺弹出弹层 */
                 $('#technic_add').click(function () {
+                    $('.add_picture input').val('');//清空file选择的文件
                     var NUM = $(this).parents(".right_content_wrap").next('.add_technology');
                     $('.add_technology').css('top', ($(window).height() - NUM.outerHeight()) / 2 + $(document).scrollTop());
-                    $('.add_technology').show().removeClass('hide');
+                    $('.add_technology').show().removeClass('hide').removeClass("edit");
                     $('.wrap').show().removeClass('hide');
                     var $add_picture = $('.add_picture');
                     var $add_picture_a = $add_picture.find('a');
@@ -3962,10 +3963,11 @@
                     $add_picture.css('background-image', '');
                     $add_picture.find('.close').hide();
                     $('#textarea').val('');
+                    upImg('.add_picture');//本店工艺上传图片
                 });
 
                 var img_id = [];
-                var img_count = 0;
+                // var img_count = 0;
                 /* 点击本店工艺更改弹出弹层 */
                 $(document).on('click', '.renderings_show_a', function () {
                     $('.add_technology').show().removeClass('hide').addClass("edit");
@@ -3982,6 +3984,8 @@
                     var $add_picture_a = $add_picture.find('a');
                     $add_picture_a.removeClass('opacity new');
                     $add_picture.css('background-image', '');
+                    $add_picture.removeAttr('img_id');
+                    $add_picture.removeAttr('count');
                     $add_picture.find('.close').hide();
                     var $img = $(this).prev().prev();
                     var imgs = $img.data('imgs');
@@ -3994,6 +3998,7 @@
                     });
                     $('.add_technology').attr("technics_id", $img.data('tid'));
                     $('#textarea').val($img.data('text'));
+                    upImg('.add_picture');//本店工艺上传图片
                 });
 
                 /* 点击弹层叉号关闭弹层 */
@@ -4007,37 +4012,39 @@
 
                 /* 图片上传预览 */
                 function upImg(div) {
-                    $(div).find('input').change(function () {
+                    $(div).find('input').unbind("change").change(function () {
                         var inputImg = $(this);
                         var file = inputImg.get(0).files[0];
                         var id = inputImg.parent().parent().attr("img_id");
                         var reader = new FileReader();
-                        if (!/image\/\w+/.test(file.type)) {
-                            inputImg.parent().parent().css('background-image', '');
-                            inputImg.parent().removeClass('opacity new');
-                            layer.msg("请确保文件为图像类型");
-                            inputImg.val('');//清空file选择的文件
-                            return false;
-                        }
-                        // onload是异步操作
-                        else {
-                            reader.onload = function (e) {
-                                if (id == undefined) {
-                                    inputImg.parent().parent().attr("count", 1);
-                                } else if (img_id.indexOf(id) != -1) {
-                                    inputImg.parent().parent().attr("count", 1);
-                                    img_id.push(id);
-                                }
-                                inputImg.parent().addClass('opacity new');//图片预览时input file 添加opacity样式，设置完全透明
-                                inputImg.parent().parent().css('background-image', 'url("' + e.target.result + '")');//图片设置为$('.showImg')背景图
-                                inputImg.parent().parent().find('.close').show();
+                        if (file) {
+                            if (!/image\/\w+/.test(file.type)) {
+                                inputImg.parent().parent().css('background-image', '');
+                                inputImg.parent().removeClass('opacity new');
+                                layer.msg("请确保文件为图像类型");
+                                inputImg.val('');//清空file选择的文件
+                                return false;
                             }
+                            // onload是异步操作
+                            else {
+                                reader.onload = function (e) {
+                                    if (id == undefined) {
+                                        inputImg.parent().parent().attr("count", 1);
+                                    } else if (img_id.indexOf(id) != -1) {
+                                        inputImg.parent().parent().attr("count", 1);
+                                        img_id.push(id);
+                                    }
+                                    inputImg.parent().addClass('opacity new');//图片预览时input file 添加opacity样式，设置完全透明
+                                    inputImg.parent().parent().css('background-image', 'url("' + e.target.result + '")');//图片设置为$('.showImg')背景图
+                                    inputImg.parent().parent().find('.close').show();
+                                }
+                            }
+                            reader.readAsDataURL(file);
                         }
-                        reader.readAsDataURL(file);
                     });
                 }
 
-                upImg('.add_picture');//本店工艺上传图片
+                // upImg('.add_picture');//本店工艺上传图片
                 //upImg('#renderings_img');//效果图上传图片
 
 
@@ -4120,6 +4127,7 @@
 
                 /* 上传与更改本店工艺 */
                 $(document).off('click', '.complete').on('click', '.complete', function () {
+                    var img_count = 0;
                     if ($(this).parent().parent().parent().hasClass("edit")) { //更改本店工艺
                         var data = new FormData();
                         data.append("technics_id", $('.add_technology').attr("technics_id"));
