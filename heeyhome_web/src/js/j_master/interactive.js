@@ -164,10 +164,12 @@
                 $.ajaxSetup({//给所有的Ajax加加载层
                     beforeSend: function () {
                         $(".right_content_wrap").append(load);
-                        $(".safe_right .loading").css('top', '70%');
+                        $(".safe_right_content").append(load);
+                        // $(".safe_right .loading").css('top', '70%');
                     },
                     complete: function () {
                         $(".right_content_wrap .loading").remove(); //关闭加载层
+                        $(".safe_right_content .loading").remove(); //关闭加载层
                     }
                 });
                 /* 消息中心有多少条新消息 */
@@ -2795,6 +2797,11 @@
                                     sessionStorage.setItem("idcardno", data.data.idcardno);
                                 }
                             });
+                        } else if (data.code == '133') {
+                            layer.alert('您还没有进行身份验证，您可以在安全设置中进行验证~~如果您已验证过，请耐心等待我们的审核~~');
+                            $('#card_name').attr('disabled',true);
+                            $('#card_no').attr('disabled',true);
+                            $('#process1_next').attr('disabled',true);
                         }
                     },
                     error: function (data) {
@@ -4317,7 +4324,7 @@
                             //     sessionStorage.setItem("case_id", id);
                             // };
 
-                            $(document).on('click','.works_detail',function () {
+                            $(document).on('click', '.works_detail', function () {
                                 sessionStorage.setItem("case_id", $(this).attr('caseid'));
                             })
 
