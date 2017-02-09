@@ -3751,6 +3751,13 @@ div.clear:after, div.clear:before {
 .safe_right_content {
     padding: 50px 0 50px 83px;
     border: 1px solid #cdcdcd;
+    border-top: none;
+    position: relative;
+}
+
+.safe_right {
+    position: relative;
+    padding: 50px 0 50px 83px;
     border-top: none
 }
 
@@ -4478,6 +4485,7 @@ div.clear:after, div.clear:before {
     margin: 0 auto;
     margin-top: 50px;
 }
-.add_technology_wrap{
+
+.add_technology_wrap {
 
 }

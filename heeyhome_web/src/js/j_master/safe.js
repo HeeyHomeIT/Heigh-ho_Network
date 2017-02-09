@@ -239,6 +239,8 @@
                                 $('.content_wrap').css('height', '898px');
                                 $('#face img').attr('src', 'http://www.heeyhome.com/' + data.data.facephoto);
                                 $('#back img').attr('src', 'http://www.heeyhome.com/' + data.data.backphoto);
+                            } else {
+                                $('#form').show().removeClass('hide');
                             }
                         },
                         error: function (data) {
@@ -253,6 +255,7 @@
                     $('#new_info #wrap').remove();
                     $('.revise_process').show();
                     $('.bind_phonecnt').show();
+                    $('#form').show().removeClass('hide');
                 });
 
                 /* 点击确认按钮上传信息 */

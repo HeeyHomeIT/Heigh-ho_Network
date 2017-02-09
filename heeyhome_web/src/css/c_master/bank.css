@@ -201,6 +201,10 @@
     margin-bottom: 250px;
 }
 
+.process1_next:disabled {
+    cursor: not-allowed;
+}
+
 .process3_next {
     width: 143px;
     height: 37px;
@@ -259,6 +263,7 @@
 .add_process3 p img {
     margin-right: 10px;
 }
+
 .add_process3 p em {
     display: inline-block;
     width: 25px;
@@ -267,6 +272,7 @@
     margin-right: 11px;
     vertical-align: middle;
 }
+
 .cardtype {
     margin-top: 15px;
 }
