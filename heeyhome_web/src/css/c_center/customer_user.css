@@ -1545,7 +1545,8 @@ a:focus {
     color: #4B4948;
     font-size: 14px;
     position: relative;
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    width: 600px
 }
 
 .security_top .security_score i {
@@ -1578,13 +1579,13 @@ a:focus {
 
 .security_top .security_score .number {
     position: absolute;
-    right: 430px;
+    left: 46%;
     top: 0
 }
 
 .security_top .security_score .mark {
     position: absolute;
-    right: 400px;
+    left: 54%;
     top: 0;
     padding: 0;
     background-color: white

@@ -663,7 +663,6 @@
 }
 
 .personal_form_list #email_p span {
-    margin-left: 16px;
     width: auto;
     margin-right: 16px;
 }
@@ -682,7 +681,7 @@
 }
 
 .personal_form_area input {
-    width: 435px;
+    width: 338px;
 }
 
 .personal_form_list .personal_user_name, .personal_form_list .personal_user_nickname {
@@ -795,7 +794,37 @@
     vertical-align: middle;
 }
 
+.personal_form .personal_form_list .new_circle {
+    display: inline-block;
+    width: 55px;
+    height: 31px;
+    line-height: 33px;
+    border: 1px solid #3d3d3d;
+    border-radius: 2px;
+    color: #3d3d3d;
+    text-align: center;
+    margin-left: 15px;
+    vertical-align: middle;
+    font-weight: normal;
+    font-size: 14px;
+}
+
 .personal_form_list .experience {
+    width: 31px;
+    height: 31px;
+    line-height: 25px;
+    text-align: center;
+    border: 1px solid #d0d0d0;
+    border-radius: 50%;
+    display: inline-block;
+    color: #d0d0d0;
+    font-weight: bold;
+    font-size: 40px;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+
+.personal_form_list .experience1 {
     width: 31px;
     height: 31px;
     line-height: 25px;
@@ -3529,8 +3558,7 @@ div.clear:after, div.clear:before {
 }
 
 #master_right #user_right .content_wrap {
-    height: 898px;
-    margin-right: 50px
+    height: 898px
 }
 
 .right_content {
@@ -3546,7 +3574,8 @@ div.clear:after, div.clear:before {
     color: #4B4948;
     font-size: 14px;
     position: relative;
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    width: 600px
 }
 
 .security_top .security_score i {
@@ -3580,13 +3609,13 @@ div.clear:after, div.clear:before {
 
 .security_top .security_score .number {
     position: absolute;
-    right: 335px;
+    left: 46%;
     top: 0
 }
 
 .security_top .security_score .mark {
     position: absolute;
-    right: 315px;
+    left: 54%;
     top: 0;
     background-color: white;
     padding: 0
