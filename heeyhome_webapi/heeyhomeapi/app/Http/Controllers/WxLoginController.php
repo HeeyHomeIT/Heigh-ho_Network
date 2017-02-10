@@ -47,22 +47,59 @@ class WxLoginController extends Controller
         $user_head = $arr['headimgurl'];
         $sql = DB::select('select a.user_id,b.userinfo_nickname from hh_user_third a LEFT OUTER JOIN hh_userinfo b ON a.user_id = b.userinfo_userid where wechat_id=? ', [$wx_id]);
         if($sql){
-            $arr = array("code" => "000",
-                "msg" => "登录成功",
-                "data" => array("user_id" => $sql[0]->user_id,
-                    "userinfo_nickname" => $sql[0]->userinfo_nickname
-                )
-            );
-            return $callback . "(" . HHJson($arr) . ")";
+            $pwd=DB::select('select * from hh_user where user_id=?',[$sql[0]->user_id]);
+            /*登录成功返回用户信息*/
+            if($pwd[0]->user_type==1){
+                $nickname=DB::select('select userinfo_nickname from hh_userinfo where userinfo_userid=?',[$pwd[0]->user_id]);
+                if($nickname){
+                    $pwd[0]->nickname=$nickname[0]->userinfo_nickname;
+                }else{
+                    $pwd[0]->nickname = null;
+                }
+
+            }
+            if($pwd[0]->user_type==2){
+                $shop_id=DB::select('select shop_id from hh_shop where shopper_id=?',[$pwd[0]->user_id]);
+                $pwd[0]->shop_id=$shop_id[0]->shop_id;
+                $nickname=DB::select('select foremaninfo_nickname from hh_foremaninfo where foremaninfo_userid=?',[$pwd[0]->user_id]);
+                if($nickname){
+                    $pwd[0]->nickname=$nickname[0]->foremaninfo_nickname;
+                }else {
+                    $pwd[0]->nickname = null;
+                }
+            }
+            if($pwd[0]->user_type==3){
+                $nickname=DB::select('select material_supplier_name from hh_material_supplier_info where material_supplier_id=?',[$pwd[0]->user_id]);
+                $pwd[0]->nickname=$nickname[0]->material_supplier_name;
+            }
+            setcookie("userEmail", $pwd[0]->user_email, time()+604800,"/");
+            setcookie("userId", $pwd[0]->user_id, time()+604800,"/");
+            setcookie("userName", $pwd[0]->user_name, time()+604800,"/");
+            setcookie("userNickName", $pwd[0]->nickname, time()+604800,"/");
+            setcookie("userPhone", $pwd[0]->user_phone, time()+604800,"/");
+            setcookie("userType", $pwd[0]->user_type, time()+604800,"/");
+            if ($pwd[0]->user_type == 2) {
+                setcookie("userShopId", $pwd[0]->shop_id, time()+604800,"/");
+            }
+            header('Location:'.'http://www.heeyhome.com');
+            // $arr = array("code" => "000",
+            //     "msg" => "登录成功",
+            //     "data" => array("user_id" => $sql[0]->user_id,
+            //         "userinfo_nickname" => $sql[0]->userinfo_nickname
+            //     )
+            // );
+            // return $callback . "(" . HHJson($arr) . ")";
         } else {
-            $arr = array("code" => "111",
-                "msg" => "登录失败，需要绑定手机号",
-                "data" => array("wx_id" => $wx_id,
-                    "user_nickname" => $user_nickname,
-                    "user_head" => $user_head
-                )
-            );
-            return $callback . "(" . HHJson($arr) . ")";
+            setcookie("wxid", $wx_id, time()+604800,"/");
+            header('Location:'.'http://www.heeyhome.com/register.html?#zc');
+            // $arr = array("code" => "111",
+            //     "msg" => "登录失败，需要绑定手机号",
+            //     "data" => array("wx_id" => $wx_id,
+            //         "user_nickname" => $user_nickname,
+            //         "user_head" => $user_head
+            //     )
+            // );
+            // return $callback . "(" . HHJson($arr) . ")";
         }
     }
     public function getwechatuserinfo($access_token, $openid)

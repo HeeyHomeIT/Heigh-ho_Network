@@ -56,11 +56,10 @@ class RegisterController extends Controller
                 $nickname='heeyhome会员_'.substr($user_id,0,6);
                 $sql = DB::insert('insert into hh_userinfo(userinfo_userid,userinfo_nickname) values(?,?)',[$user_id,$nickname]);
                 if($sql){
-                    //取cookies
-                    $openid = $_COOKIE["openid"];
-                    if ($openid) {
+                    //取cookies qq
+                    if (isset($_COOKIE["openid"])) {
                         //绑定qq
-                        $qq_id = $openid;
+                        $qq_id = $_COOKIE["openid"];
                         $user_nickname = $nickname;
                         $personal =DB::select('select portrait_img from hh_portrait where portrait_userid=?',[$user_id]);
                         if ($personal) {
@@ -88,6 +87,39 @@ class RegisterController extends Controller
                                 $sql = DB::insert('insert into hh_userinfo(userinfo_userid,userinfo_nickname) values(?,?)', [$user_id, $user_nickname]);
                                 $into_user_third = DB::insert('INSERT INTO hh_user_third (user_id,qq_id) VALUE (?,?)',
                                     [$user_id, $qq_id]);
+                            } 
+                        }
+                    } else {
+                        if (isset($_COOKIE["wxid"])) {
+                            //查询该手机号用户是否存在
+                            $wx_id = $_COOKIE["wxid"];
+                            $user_nickname = $nickname;
+                            $personal =DB::select('select portrait_img from hh_portrait where portrait_userid=?',[$user_id]);
+                            if ($personal) {
+                                $user_head = $personal[0]->portrait_img;
+                            } else {
+                                $user_head = '';
+                            }
+                            $sel_user_phone = DB::select('SELECT * FROM hh_user WHERE user_phone = ?',
+                                [$user_phone]);
+                            if ($sel_user_phone) {
+                                $user_id = $sel_user_phone[0]->user_id;
+                                $into_user_third = DB::insert('INSERT INTO hh_user_third (user_id,wechat_id) VALUE (?,?)',
+                                    [$user_id,$wx_id]);
+                            } else {
+                                $user_id = create_pid();
+                                $user_password = HHEncryption(('heeyhome' . $user_phone));
+                                /*向用户表插入数据*/
+                                $insert = DB::insert('insert into hh_user(user_id,user_name,user_phone,user_password,user_typeway,user_type) values(?,?,?,?,?,?)', [$user_id, $user_phone, $user_phone, $user_password, 'phone', 1]);
+                                if ($insert) {
+                                    /*向时间表插入数据，同时向用户信息表插入数据*/
+                                    $reg_time = date('Y-m-d H:i:s', time());
+                                    $time = DB::insert('insert into hh_time(time_userid,reg_time) values(?,?)', [$user_id, $reg_time]);
+                                    $portrait = DB::insert('insert into hh_portrait(portrait_userid,portrait_img) values(?,?)', [$user_id, $user_head]);
+                                    $sql = DB::insert('insert into hh_userinfo(userinfo_userid,userinfo_nickname) values(?,?)', [$user_id, $user_nickname]);
+                                    $into_user_third = DB::insert('INSERT INTO hh_user_third (user_id,wechat_id) VALUE (?,?)',
+                                        [$user_id, $wx_id]);
+                                }
                             } 
                         }
                     }
