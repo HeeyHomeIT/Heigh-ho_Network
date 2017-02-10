@@ -2088,174 +2088,105 @@
         getInfoEvent: function () {
             var $personal_edit = $(".personal_area_list .area_edit");
             var area_arr = [];
-            var experience = '<div class="fl reduce"><input class="input_all" type="text" title=""> <a class="experience" href="javascript:;">-</a></div> ';
-            var area = '<div class="fl reduce"><input class="personal_user_community" type="text" title=""> <a class="experience" href="javascript:;">-</a></div> ';
+            var experience = '<div class="fl reduce"><input class="input_all" type="text" title=""><a class="experience new_circle hide" href="javascript:;">删除</a></div> ';
+            var experience1 = '<a id="area_circle" class="personal_circle new_circle" href="javascript:;">添加</a>';
+            var experience2 = '<a id="experience_circle" class="personal_circle new_circle" href="javascript:;">添加</a><a id="experience_edit" class="personal_circle new_circle" href="javascript:;">编辑</a>';
+            var area = '<div class="fl reduce"><input class="personal_user_community" type="text" title=""> <a class="experience1 new_circle hide" href="javascript:;">删除</a></div> ';
+            var area1 = '<a id="area_circle" class="personal_circle new_circle" href="javascript:;">添加</a><a id="area_edit" class="personal_circle new_circle" href="javascript:;">编辑</a>';
             /* 获取工长信息 */
             //HHIT_CENTERAPP.controller('personal', ['$scope', '$http', function ($scope, $http) {
-            function foreInfo() {
-                $.ajax({
-                    url: MASTERDATAURL,
-                    type: "GET",
-                    async: true,
-                    dataType: 'jsonp',
-                    data: {
-                        foreman_id: USERID
-                    },
-                    success: function (data) {
-                        if (data && data.code == '000') {
-                            console.log(data);
-                            var abb_phone = data.data.foremaninfo_phone.substr(0, 3) + "****" + data.data.foremaninfo_phone.substr(7, 11);//手机号中间四位变成*号
-                            $('.personal_tel').html(abb_phone); //获取工长的电话号码
-                            $('.personal_user_age').val(data.data.foremaninfo_age); //获取工长的年龄
-                            $('.personal_service_length').val(data.data.worktime); //获取工长的工龄
-                            $('.personal_user_nickname').val(data.data.foremaninfo_nickname); //获取工长的昵称
-                            $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
-                            email = data.data.foremaninfo_email; //获取工长的邮箱
-                            if (email != null) {//判断邮箱是否为空
-                                var length = email.length;
-                                var abb_email = email.substr(0, 3) + "****" + email.substr(length - 3, length);//邮箱中间变成*号
-                                $('#email_p').html('<span>' + abb_email + '</span><a href="#/master/setting/email/email_1">修改绑定</a>')
-                            }
-                            $('.personal_user_name').val(data.data.user_name); //获取工长的用户名
-                            //判断工长的性别
-                            if (data.data.foremaninfo_sex == 1) {
-                                $('#man').attr('checked', 'checked');
-                            } else {
-                                $('#women').attr('checked', 'checked');
-                            }
-                            //获取工长的从业经历
-                            var eLen = data.data.experience.length;
+
+            $.ajax({
+                url: MASTERDATAURL,
+                type: "GET",
+                async: true,
+                dataType: 'jsonp',
+                data: {
+                    foreman_id: USERID
+                },
+                success: function (data) {
+                    if (data && data.code == '000') {
+                        console.log(data);
+                        var abb_phone = data.data.foremaninfo_phone.substr(0, 3) + "****" + data.data.foremaninfo_phone.substr(7, 11);//手机号中间四位变成*号
+                        $('.personal_tel').html(abb_phone); //获取工长的电话号码
+                        $('.personal_user_age').val(data.data.foremaninfo_age); //获取工长的年龄
+                        $('.personal_service_length').val(data.data.worktime); //获取工长的工龄
+                        $('.personal_user_nickname').val(data.data.foremaninfo_nickname); //获取工长的昵称
+                        $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
+                        email = data.data.foremaninfo_email; //获取工长的邮箱
+                        if (email != null) {//判断邮箱是否为空
+                            var length = email.length;
+                            var abb_email = email.substr(0, 3) + "****" + email.substr(length - 3, length);//邮箱中间变成*号
+                            $('#email_p').html('<span>' + abb_email + '</span><a href="#/master/setting/email/email_1">修改绑定</a>')
+                        }
+                        $('.personal_user_name').val(data.data.user_name); //获取工长的用户名
+                        //判断工长的性别
+                        if (data.data.foremaninfo_sex == 1) {
+                            $('#man').attr('checked', 'checked');
+                        } else {
+                            $('#women').attr('checked', 'checked');
+                        }
+                        //获取工长的从业经历
+                        var eLen = data.data.experience.length;
+                        if (eLen == 0) {
+                            $('.personal_form_area').append('<a id="experience_circle" class="personal_circle new_circle" href="javascript:;">添加</a>');
+                        } else {
                             for (var i = 0; i < eLen; i++) {
-                                $('.personal_form_area').append('<div class="fl"> <input type="text" title="" class="input_all" value="' + data.data.experience[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
+                                $('.personal_form_area').append('<div class="fl"> <input type="text" title="" class="input_all" value="' + data.data.experience[i] + '"><a class="experience new_circle hide" href="javascript:;">删除</a></div>');
                             }
                             $('.input_all').eq(0).addClass('first');
-                            //获取工长的服务区域
-                            var aLen = data.data.servicearea.length;
-                            for (var i = 0; i < aLen; i++) {
-                                if (data.data.servicearea[i] != '') {
-                                    $('#personal_circle').before('<a class="personal_area" href="javascript:;">' + data.data.servicearea[i] + '</a>');
-                                }
-                            }
-                            //获取工长的装修小区
-                            var dLen = data.data.decoratedareas.length;
-                            for (var i = 0; i < dLen; i++) {
-                                $('.renovation_area').append('<div class="fl"> <input type="text" title="" class="personal_user_community" value="' + data.data.decoratedareas[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
-                            }
-                            if (data.data.isedit == 2) {
-                                $('.personal_user_name').attr("disabled", true);
-                            }
-                            $('.personal_user_community').eq(0).addClass('personal_user_first');
-                            //获取所在地信息
-                            if (data.data.loc_province != null && data.data.loc_province != '') {
-                                $('#loc').distpicker({province: data.data.loc_province});
-                            }
-                            if (data.data.loc_city != null && data.data.loc_city != '') {
-                                $('#loc').distpicker({city: data.data.loc_city});
-                            }
-                            if (data.data.loc_district != null && data.data.loc_district != '') {
-                                $('#loc').distpicker({district: data.data.loc_district});
-                            }
+                            $('.personal_form_area .experience').eq(0).before(experience2);
+                        }
 
-                            //获取家乡信息
-                            if (data.data.home_province != null && data.data.home_province != '') {
-                                $('#home').distpicker({province: data.data.home_province});
-                            }
-                            if (data.data.home_city != null && data.data.home_city != '') {
-                                $('#home').distpicker({city: data.data.home_city});
-                            }
-                            if (data.data.home_district != null && data.data.home_district != '') {
-                                $('#home').distpicker({district: data.data.home_district});
+
+                        //获取工长的服务区域
+                        var aLen = data.data.servicearea.length;
+                        for (var i = 0; i < aLen; i++) {
+                            if (data.data.servicearea[i] != '') {
+                                $('#personal_circle').before('<a class="personal_area" href="javascript:;">' + data.data.servicearea[i] + '</a>');
                             }
                         }
-                    },
-                    error: function (data) {
-                    }
-                });
-                // $http({
-                //     method: "JSONP",
-                //     url: MASTERDATAURL,
-                //     /* 传参 */
-                //     params: {
-                //         foreman_id: USERID
-                //     }
-                // }).success(function (data, status) {
-                //     /* 如果成功执行 */
-                //     if (data.code === '000') {
-                //         console.log(data);
-                //         var abb_phone = data.data.foremaninfo_phone.substr(0, 3) + "****" + data.data.foremaninfo_phone.substr(7, 11);//手机号中间四位变成*号
-                //         $('.personal_tel').html(abb_phone); //获取工长的电话号码
-                //         $('.personal_user_age').val(data.data.foremaninfo_age); //获取工长的年龄
-                //         $('.personal_service_length').val(data.data.worktime); //获取工长的工龄
-                //         $('.personal_user_nickname').val(data.data.foremaninfo_nickname); //获取工长的昵称
-                //         $('.personal_area_detail').val(data.data.loc_address); //获取工长的详细住址
-                //         email = data.data.foremaninfo_email; //获取工长的邮箱
-                //         if (email != null) {//判断邮箱是否为空
-                //             var length = email.length;
-                //             var abb_email = email.substr(0, 3) + "****" + email.substr(length - 3, length);//邮箱中间变成*号
-                //             $('#email_p').html('<span>' + abb_email + '</span><a href="#/master/setting/email/email_1">修改绑定</a>')
-                //         }
-                //         $('.personal_user_name').val(data.data.user_name); //获取工长的用户名
-                //         //判断工长的性别
-                //         if (data.data.foremaninfo_sex == 1) {
-                //             $('#man').attr('checked', 'checked');
-                //         } else {
-                //             $('#women').attr('checked', 'checked');
-                //         }
-                //         //获取工长的从业经历
-                //         var eLen = data.data.experience.length;
-                //         for (var i = 0; i < eLen; i++) {
-                //             $('.personal_form_area').append('<div class="fl"> <input type="text" title="" class="input_all" value="' + data.data.experience[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
-                //         }
-                //         $('.input_all').eq(0).addClass('first');
-                //         //获取工长的服务区域
-                //         var aLen = data.data.servicearea.length;
-                //         for (var i = 0; i < aLen; i++) {
-                //             if (data.data.servicearea[i] != '') {
-                //                 $('#personal_circle').before('<a class="personal_area" href="javascript:;">' + data.data.servicearea[i] + '</a>');
-                //             }
-                //         }
-                //         //获取工长的装修小区
-                //         var dLen = data.data.decoratedareas.length;
-                //         for (var i = 0; i < dLen; i++) {
-                //             $('.renovation_area').append('<div class="fl"> <input type="text" title="" class="personal_user_community" value="' + data.data.decoratedareas[i] + '"> <a class="experience" href="javascript:;">-</a></div>');
-                //         }
-                //         if (data.data.isedit == 2) {
-                //             $('.personal_user_name').attr("disabled", true);
-                //         }
-                //         $('.personal_user_community').eq(0).addClass('personal_user_first');
-                //         //获取所在地信息
-                //         if (data.data.loc_province != null && data.data.loc_province != '') {
-                //             $('#loc').distpicker({province: data.data.loc_province});
-                //         }
-                //         if (data.data.loc_city != null && data.data.loc_city != '') {
-                //             $('#loc').distpicker({city: data.data.loc_city});
-                //         }
-                //         if (data.data.loc_district != null && data.data.loc_district != '') {
-                //             $('#loc').distpicker({district: data.data.loc_district});
-                //         }
-                //
-                //         //获取家乡信息
-                //         if (data.data.home_province != null && data.data.home_province != '') {
-                //             $('#home').distpicker({province: data.data.home_province});
-                //         }
-                //         if (data.data.home_city != null && data.data.home_city != '') {
-                //             $('#home').distpicker({city: data.data.home_city});
-                //         }
-                //         if (data.data.home_district != null && data.data.home_district != '') {
-                //             $('#home').distpicker({district: data.data.home_district});
-                //         }
-                //
-                //     }
-                //     /* 如果失败执行 */
-                //     else {
-                //         layer.alert(data.msg);
-                //     }
-                // }).error(function (data, status) {
-                // });
-            }
+                        //获取工长的装修小区
+                        var dLen = data.data.decoratedareas.length;
+                        if (dLen == 0) {
+                            $('.renovation_area').append(experience1);
+                        } else {
+                            for (var i = 0; i < dLen; i++) {
+                                $('.renovation_area').append('<div class="fl"> <input type="text" title="" class="personal_user_community" value="' + data.data.decoratedareas[i] + '"><a class="experience1 new_circle hide" href="javascript:;">删除</a></div>');
+                            }
+                            $('.renovation_area .experience1').eq(0).before(area1);
+                        }
 
-            foreInfo();
-            //}]);
+                        if (data.data.isedit == 2) {//判断用户名能不能被编辑
+                            $('.personal_user_name').attr("disabled", true);
+                        }
+                        $('.personal_user_community').eq(0).addClass('personal_user_first');
+                        //获取所在地信息
+                        if (data.data.loc_province != null && data.data.loc_province != '') {
+                            $('#loc').distpicker({province: data.data.loc_province});
+                        }
+                        if (data.data.loc_city != null && data.data.loc_city != '') {
+                            $('#loc').distpicker({city: data.data.loc_city});
+                        }
+                        if (data.data.loc_district != null && data.data.loc_district != '') {
+                            $('#loc').distpicker({district: data.data.loc_district});
+                        }
+
+                        //获取家乡信息
+                        if (data.data.home_province != null && data.data.home_province != '') {
+                            $('#home').distpicker({province: data.data.home_province});
+                        }
+                        if (data.data.home_city != null && data.data.home_city != '') {
+                            $('#home').distpicker({city: data.data.home_city});
+                        }
+                        if (data.data.home_district != null && data.data.home_district != '') {
+                            $('#home').distpicker({district: data.data.home_district});
+                        }
+                    }
+                },
+                error: function (data) {
+                }
+            });
 
 
             /* 点击添加服务区域 */
@@ -2291,19 +2222,58 @@
             });
 
             /* 点击添加从业经历 */
-            $('#experience_circle').click(function () {
+            $(document).off('click', '#experience_circle').on('click', '#experience_circle', function () {
                 $('.personal_form_area').append(experience);
                 $('.input_all').eq(0).addClass('first');
+                $('.personal_form_area #experience_circle').remove();
+                $('.personal_form_area #experience_edit').remove();
+                $('.personal_form_area .experience').eq(0).before(experience2);
             });
-            /* 点击删除从业经历、装修小区 */
-            $(document).on('click', '.experience', function () {
-                $(this).parent().remove();
-            });
+
             /* 点击添加装修小区 */
-            $('#area_circle').click(function () {
+            $(document).off('click', '#area_circle').on('click', '#area_circle', function () {
                 $('.renovation_area').append(area);
                 $('.personal_user_community').eq(0).addClass('personal_user_first');
+                $('.renovation_area #area_circle').remove();
+                $('.renovation_area #area_edit').remove();
+                $('.renovation_area .experience1').eq(0).before(area1);
 
+            });
+
+            /* 点击编辑从业经历删除按钮出现 */
+            $(document).off('click', '#experience_edit').on('click', '#experience_edit', function () {
+                $(this).parents('.personal_form_area ').find('.experience').show().removeClass('hide').css('display', 'inline-block');
+            });
+            /* 点击编辑装修小区删除按钮出现 */
+            $(document).off('click', '#area_edit').on('click', '#area_edit', function () {
+                $(this).parents('.renovation_area ').find('.experience1').show().removeClass('hide').css('display', 'inline-block');
+            });
+            /* 点击删除从业经历 */
+            $(document).off('click', '.experience').on('click', '.experience', function () {
+                $(this).parent().remove();
+                $('.personal_form_area #experience_circle').remove();
+                $('.personal_form_area #experience_edit').remove();
+                $('.input_all').eq(0).addClass('first');
+                if ($('.personal_form_area .experience').length == 0) {
+                    $('.personal_form_area').append('<a id="experience_circle" class="personal_circle new_circle" href="javascript:;">添加</a>');
+                } else {
+                    if ($('.personal_form_area #experience_circle').length == 0) {
+                        $('.personal_form_area').find('.experience').eq(0).before(experience2);
+                    }
+                }
+            });
+            /* 点击删除装修小区 */
+            $(document).off('click', '.experience1').on('click', '.experience1', function () {
+                $(this).parent().remove();
+                $('.renovation_area #area_circle').remove();
+                $('.renovation_area #area_edit').remove();
+                $('.personal_user_community').eq(0).addClass('personal_user_first');
+
+                if ($('.renovation_area .experience1').length == 0) {
+                    $('.renovation_area').append(experience1);
+                } else {
+                    $('.renovation_area').find('.experience1').eq(0).before(area1);
+                }
             });
 
             /* 编辑工长信息 */
@@ -2323,6 +2293,9 @@
                 for (var i = 0; i < $('.personal_area').length; i++) {
                     arry_area.push($('.personal_area').eq(i).html());
                 }
+                console.log(USERID);
+                console.log('name:' + $('.personal_user_name').val());
+                console.log('experience:' + array);
                 $.ajax({
                     url: EDITPERURL,
                     type: "GET",
@@ -2642,7 +2615,7 @@
                             $scope.renderFinish = function () {
                                 $('.radio_money').attr('checked', 'checked');
                                 $('.bank_fr').remove();
-                                $('#money').val(money);
+                                $('#money').attr("disabled", true).val(money);
                                 $('#cash_confirm').attr("disabled", true).val("正在提现中...");
                             };
                         }
@@ -2753,7 +2726,7 @@
                     /* 如果失败执行 */
                     else {
                         //alert(data.msg);
-                        layer.alert(data.msg);
+                        layer.msg(data.msg);
                     }
                 }).error(function (data, status) {
                 });
@@ -2791,17 +2764,17 @@
                                 } else if (!cardReg.test($('#card_no').val())) {
                                     layer.alert('银行卡格式不正确');
                                 } else {
+                                    $.cookie("b", $.base64.encode($('#card_no').val()));//银行卡卡号
+                                    $.cookie("r", $.base64.encode(data.data.realname,'utf8'));//真实姓名
+                                    $.cookie("i", $.base64.encode(data.data.idcardno));//身份证号
                                     window.location.href = '#bank/add_process2';
-                                    sessionStorage.setItem("bankcardno", $('#card_no').val());
-                                    sessionStorage.setItem("realname", data.data.realname);
-                                    sessionStorage.setItem("idcardno", data.data.idcardno);
                                 }
                             });
                         } else if (data.code == '133') {
                             layer.alert('您还没有进行身份验证，您可以在安全设置中进行验证~~如果您已验证过，请耐心等待我们的审核~~');
-                            $('#card_name').attr('disabled',true);
-                            $('#card_no').attr('disabled',true);
-                            $('#process1_next').attr('disabled',true);
+                            $('#card_name').attr('disabled', true);
+                            $('#card_no').attr('disabled', true);
+                            $('#process1_next').attr('disabled', true);
                         }
                     },
                     error: function (data) {
@@ -2813,7 +2786,7 @@
         /* 获取银行卡logo */
         getLogoEvent: function () {
             HHIT_CENTERAPP.controller('process2', ['$scope', '$http', function ($scope, $http) {
-                var bankcardno = sessionStorage.getItem("bankcardno");
+                var bankcardno = $.base64.decode($.cookie("b"));
                 $('#headerWrapper').remove();
                 $.ajax({
                     url: TYPEURL,
@@ -2836,11 +2809,11 @@
                                 } else if (!PHONEREG.test($('#reserved_phone').val())) {
                                     layer.alert('手机号码格式不正确');
                                 } else {
-                                    window.location.href = '#bank/add_process3';
-                                    sessionStorage.setItem("phone", $('#reserved_phone').val());
-                                    sessionStorage.setItem("bankname", data.data.bankname);
+                                    $.cookie("phone", $.base64.encode($('#reserved_phone').val()));
+                                    $.cookie("bankname", $.base64.encode(data.data.bankname,'utf8'));
                                     sessionStorage.setItem("cardtype", data.data.cardtype);
                                     sessionStorage.setItem("banklogo", data.data.banklogo);
+                                    window.location.href = '#bank/add_process3';
                                 }
                             });
                         }
@@ -2858,13 +2831,13 @@
             // 向后台发送处理数据，向用户发送验证码
             HHIT_CENTERAPP.controller('process3', ['$scope', '$http', function ($scope, $http) {
                 $('#headerWrapper').remove();
-                var phone = sessionStorage.getItem("phone");
-                var bankcardno = sessionStorage.getItem("bankcardno");
-                var bankname = sessionStorage.getItem("bankname");
-                var cardtype = sessionStorage.getItem("cardtype");
+                var phone = $.base64.decode($.cookie("phone"));
+                var bankcardno = $.base64.decode($.cookie("b"));
+                var bankname = unescape($.base64.decode($.cookie("bankname"),'utf8'));
+                var cardtype =sessionStorage.getItem("cardtype");
                 var banklogo = sessionStorage.getItem("banklogo");
-                var realname = sessionStorage.getItem("realname");
-                var idcardno = sessionStorage.getItem("idcardno");
+                var realname = unescape($.base64.decode($.cookie("r"),'utf8'));
+                var idcardno = $.base64.decode($.cookie("i"));
                 var code = $('#verification_code');
                 var abb_phone = phone.substr(0, 3) + "****" + phone.substr(7, 11);//手机号中间四位变成*号
                 $('#phone_number').html(abb_phone);//银行卡预留手机号
@@ -2882,15 +2855,15 @@
                             if (data.code == '000') {
                                 // 设置验证码按钮效果，开始计时
                                 code.addClass("zc_btnClick").attr("disabled", true);
-                                code.html(COUNT + "秒后重新获取");
+                                code.val(COUNT + "秒后重新获取");
                                 InterValObj = window.setInterval(function () {
                                     if (COUNT == 1) {
                                         window.clearInterval(InterValObj); // 停止计时器
                                         code.removeClass("zc_btnClick").removeAttr("disabled"); // 启用按钮
-                                        code.html("获取验证码");
+                                        code.val("获取验证码");
                                     } else {
                                         COUNT--;
-                                        code.html(COUNT + "秒后重新获取");
+                                        code.val(COUNT + "秒后重新获取");
                                     }
                                 }, 1000); // 启动计时器，1秒执行一次
                             } else {
@@ -3013,25 +2986,28 @@
             var $phone = $(".staff_phone .phone").val(); //手机号
             var $bankname = $(".staff_phone .bankname").val(); //开户银行
             if ($name == "" || $name == null) {
-                layer.alert("姓名不能为空");
+                layer.msg("姓名不能为空");
                 flag = false;
             } else if ($age == "" || $age == null) {
-                layer.alert("年龄不能为空");
+                layer.msg("年龄不能为空");
+                flag = false;
+            } else if ($birthplace == "" || $birthplace == null) {
+                layer.msg("籍贯不能为空");
                 flag = false;
             } else if ($worktime == "" || $worktime == null) {
-                layer.alert("从业时间不能为空");
+                layer.msg("从业时间不能为空");
                 flag = false;
             } else if ($phone == "" || $phone == null) {
-                layer.alert("手机号不能为空");
+                layer.msg("手机号不能为空");
                 flag = false;
             } else if ($idcard == "" || $idcard == null) {
-                layer.alert("身份证号不能为空");
+                layer.msg("身份证号不能为空");
                 flag = false;
             } else if ($bankname == "" || $bankname == null) {
-                layer.alert("开户银行不能为空");
+                layer.msg("开户银行不能为空");
                 flag = false;
             } else if ($bankcard == "" || $bankcard == null) {
-                layer.alert("银行卡号不能为空");
+                layer.msg("银行卡号不能为空");
                 flag = false;
             }
             for (var i = 0; i < $(".edit_bottom li input").length; i++) {
@@ -3313,6 +3289,9 @@
             } else if ($age == "" || $age == null) {
                 layer.msg("年龄不能为空");
                 flag = false;
+            } else if ($birthplace == "" || $birthplace == null) {
+                layer.msg("籍贯不能为空");
+                flag = false;
             } else if ($worktime == "" || $worktime == null) {
                 layer.msg("从业时间不能为空");
                 flag = false;
@@ -3349,14 +3328,13 @@
                     $.ajax({
                         type: "post",
                         url: ADDWORKERURL,
-                        dataType: "text",
+                        dataType: "jsonp",
+                        jsonp: 'callback',
                         data: data,
                         cache: false,
                         processData: false,
                         contentType: false,
                         success: function (result) {
-                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
-                            result = JSON.parse(result); //转成json格式
                             if (result.code == '000') {
                                 layer.msg("添加工人成功");
                                 window.location.href = "#/master/mteam";
@@ -3379,14 +3357,13 @@
                     $.ajax({
                         type: "post",
                         url: ADDWORKERURL,
-                        dataType: "text",
+                        dataType: "jsonp",
+                        jsonp: 'callback',
                         data: data,
                         cache: false,
                         processData: false,
                         contentType: false,
                         success: function (result) {
-                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
-                            result = JSON.parse(result); //转成json格式
                             if (result.code == '000') {
                                 layer.msg("添加工人成功");
                                 window.location.href = "#/master/mteam";
@@ -3408,14 +3385,13 @@
                     $.ajax({
                         type: "post",
                         url: ADDWORKERURL,
-                        dataType: "text",
+                        dataType: "jsonp",
+                        jsonp: 'callback',
                         data: data,
                         cache: false,
                         processData: false,
                         contentType: false,
                         success: function (result) {
-                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
-                            result = JSON.parse(result); //转成json格式
                             if (result.code == '000') {
                                 layer.msg("添加工人成功");
                                 window.location.href = "#/master/mteam";
@@ -3437,14 +3413,13 @@
                     $.ajax({
                         type: "post",
                         url: ADDWORKERURL,
-                        dataType: "text",
+                        dataType: "jsonp",
+                        jsonp: 'callback',
                         data: data,
                         cache: false,
                         processData: false,
                         contentType: false,
                         success: function (result) {
-                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
-                            result = JSON.parse(result); //转成json格式
                             if (result.code == '000') {
                                 layer.msg("添加工人成功");
                                 window.location.href = "#/master/mteam";
@@ -3466,14 +3441,13 @@
                     $.ajax({
                         type: "post",
                         url: ADDWORKERURL,
-                        dataType: "text",
+                        dataType: "jsonp",
+                        jsonp: 'callback',
                         data: data,
                         cache: false,
                         processData: false,
                         contentType: false,
                         success: function (result) {
-                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
-                            result = JSON.parse(result); //转成json格式
                             if (result.code == '000') {
                                 layer.msg("添加工人成功");
                                 window.location.href = "#/master/mteam";
@@ -3561,12 +3535,11 @@
                                         url: USERIMGEDITURL,
                                         cache: false,
                                         data: data,
-                                        dataType: 'text',
+                                        dataType: "jsonp",
+                                        jsonp: 'callback',
                                         processData: false,
                                         contentType: false,
                                         success: function (result) {
-                                            result = result.substring(result.indexOf("(") + 1, result.indexOf(")"));
-                                            result = JSON.parse(result); //转成json格式
                                             layer.alert(result.msg);
                                         },
                                         error: function (e, a, v) {
