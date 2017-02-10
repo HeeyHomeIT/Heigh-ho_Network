@@ -2354,6 +2354,10 @@
     -ms-transition: all 0.3s ease-in;
 }
 
+.sure_send:disabled {
+    cursor: not-allowed;
+}
+
 /* 我的作品 */
 .works_content {
     border: 1px solid white;

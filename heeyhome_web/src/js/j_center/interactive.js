@@ -152,49 +152,7 @@
                 getUserInfoHandler.getInfoEvent();
             }]);
         },
-        /*
-         * 我的订单详情
-         */
-        initMOrderDetailEvent: function () {
-            HHIT_CENTERAPP.controller('order_detailCtrl', ['$scope', '$http', function ($scope, $http) {
-                $('#menuNavOuter').remove();
-                var shop_id = sessionStorage.getItem("shopid");
-                var order_id = sessionStorage.getItem("orderid");
-                /* 获得订单顶部业主信息 */
-                $.ajax({
-                    type: "get",
-                    url: ORDERURL,
-                    async: true,
-                    dataType: "jsonp",
-                    data: {
-                        shop_id: shop_id
-                    },
-                    success: function (data) {
-                        if (data != null && data.code == '000') {
-                            $.each(data.data.order_list, function (i, v) {
-                                if (v.order_id == order_id) {
-                                    $(".owner_picture img").attr("src", v.user_portrait);
-                                    $(".owner_summary h3").html(v.user_realname);
-                                    $(".owner_summary p span").html(v.user_phone);
-                                    $(".owner_left .area p span").html(v.area);
-                                    $(".owner_left .order p").html(order_id);
-                                    $(".owner_middle .type p").html(v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台");
-                                    $(".owner_middle .time p").html(v.order_time);
-                                    $(".owner_right .address p").html(v.order_address);
-                                }
-                            });
-                        } else {
-                            layer.alert(data.msg);
-                        }
-                    },
-                    error: function (data) {
 
-                    }
-                });
-                /* 获得订单详情 */
-                OrderDetail.getDetail();
-            }]);
-        },
         /*
          * 获得我的订单内容
          */
@@ -269,6 +227,55 @@
                     error: function (data) {
                     }
                 });
+                $(document).off("click", ".ordercnt_content .all .top").on("click", ".ordercnt_content .all .top", function () {
+                    var shopid = $(this).parent().attr("data-shopid");
+                    var orderid = $(this).parent().attr("data-orderid");
+                    sessionStorage.setItem("shopid", shopid);
+                    sessionStorage.setItem("orderid", orderid);
+                });
+            }]);
+        },
+        /*
+         * 我的订单详情
+         */
+        initMOrderDetailEvent: function () {
+            HHIT_CENTERAPP.controller('order_detailCtrl', ['$scope', '$http', function ($scope, $http) {
+                $('#menuNavOuter').remove();
+                var shop_id = sessionStorage.getItem("shopid");
+                var order_id = sessionStorage.getItem("orderid");
+                /* 获得订单顶部业主信息 */
+                $.ajax({
+                    type: "get",
+                    url: ORDERURL,
+                    async: true,
+                    dataType: "jsonp",
+                    data: {
+                        shop_id: shop_id
+                    },
+                    success: function (data) {
+                        if (data != null && data.code == '000') {
+                            $.each(data.data.order_list, function (i, v) {
+                                if (v.order_id == order_id) {
+                                    $(".owner_picture img").attr("src", v.user_portrait);
+                                    $(".owner_summary h3").html(v.user_realname);
+                                    $(".owner_summary p span").html(v.user_phone);
+                                    $(".owner_left .area p span").html(v.area);
+                                    $(".owner_left .order p").html(order_id);
+                                    $(".owner_middle .type p").html(v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台");
+                                    $(".owner_middle .time p").html(v.order_time);
+                                    $(".owner_right .address p").html(v.order_address);
+                                }
+                            });
+                        } else {
+                            layer.alert(data.msg);
+                        }
+                    },
+                    error: function (data) {
+
+                    }
+                });
+                /* 获得订单详情 */
+                OrderDetail.getDetail();
             }]);
         },
         /*

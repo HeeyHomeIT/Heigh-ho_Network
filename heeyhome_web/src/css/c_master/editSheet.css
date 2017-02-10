@@ -205,6 +205,14 @@
     margin-left: 110px;
 }
 
+.before_submit:hover, .after_submit:hover {
+    cursor: pointer;
+}
+
+.before_submit:disabled, .after_submit:disabled {
+    cursor: not-allowed;
+}
+
 .before_remark, .after_remark {
     display: inline-block;
     font-size: 14px;
