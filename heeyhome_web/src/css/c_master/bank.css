@@ -192,13 +192,29 @@
     line-height: 37px;
     background-color: #eec988;
     border: 1px solid #dab678;
-    display: block;
+    display: inline-block;
     text-align: center;
     font-size: 16px;
     color: white;
     border-radius: 2px;
     margin-top: 45px;
     margin-bottom: 250px;
+}
+
+.process3_back {
+    width: 85px;
+    height: 37px;
+    line-height: 37px;
+    background-color: #eec988;
+    border: 1px solid #dab678;
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    border-radius: 2px;
+    margin-top: 45px;
+    margin-bottom: 250px;
+    margin-left: 30px;
 }
 
 .process1_next:disabled {
@@ -232,7 +248,7 @@
     margin-right: 10px;
 }
 
-.cardcode input {
+.cardcode #code_input {
     width: 103px;
     height: 28px;
     line-height: 28px;
@@ -243,7 +259,7 @@
     margin-top: -3px;
 }
 
-.cardcode a {
+.cardcode #verification_code {
     width: 120px;
     height: 28px;
     line-height: 28px;
@@ -253,6 +269,7 @@
     color: #eec988;
     font-size: 14px;
     border-radius: 3px;
+    background-color: white;
 }
 
 .add_process3 p {
