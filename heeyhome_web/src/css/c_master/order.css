@@ -81,7 +81,7 @@
     text-align: center;
 }
 
-.process_center input:disabled {
+.order_wrap input:disabled {
     cursor: not-allowed;
 }
 
@@ -208,7 +208,7 @@
 }
 
 .order_submit {
-    display: block;
+    display: inline-block;
     width: 101px;
     height: 38px;
     line-height: 38px;
@@ -216,13 +216,37 @@
     background-color: #eec988;
     color: white;
     font-size: 16px;
-    margin: 0 auto;
     border-radius: 2px;
     margin-bottom: 180px;
     margin-top: 60px;
+    margin-left: 650px;
+}
+
+.order_back {
+    display: inline-block;
+    width: 101px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    background-color: #eec988;
+    color: white;
+    font-size: 16px;
+    border-radius: 2px;
+    margin-bottom: 180px;
+    margin-top: 60px;
+    margin-left: 50px;
 }
 
 .order_submit:hover {
+    box-shadow: 2px 2px 4px #999;
+    color: white;
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+}
+.order_back:hover {
     box-shadow: 2px 2px 4px #999;
     color: white;
     transition: all 0.3s ease;

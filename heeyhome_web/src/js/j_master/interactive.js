@@ -856,7 +856,7 @@
                     sessionStorage.setItem("status", $(e.target).parents('.order_box').attr('status'));
                     sessionStorage.setItem("step", $(e.target).parents('.order_box').attr('step'));
                     sessionStorage.setItem("orderId", $(e.target).parents('.order_box').attr('orderId'));
-                    window.open('order.html#/order');
+                    window.location.href = 'order.html#/order';
                 }
             });
         }
@@ -870,13 +870,12 @@
                 /* 年月日三级联动 */
                 new YMDselect('year1', 'month1', 'day1');
 
-
                 var step;
                 var status;
                 var orderId = sessionStorage.getItem("orderId");
                 var budgetState;//定义预算单编辑状态
                 var statementStatus;//定义结算单编辑状态
-                var houseStyle = sessionStorage.getItem("houseStyle");
+                var houseStyle;//定义装修风格
 
                 function change() {
                     $.ajax({
@@ -978,7 +977,7 @@
                                         console.log(data);
                                         if (data.code == "000") {
                                             layer.msg("接单成功");
-                                            window.close();
+                                            window.location.href = 'master.html#/master/morder';
                                         }
                                     }
                                 });
@@ -1026,7 +1025,7 @@
                                     } else if (data.data.confirm_time == 2) {
                                         var vrstr = '<span class="reservation_time">' + data.data.reservation_time2 + '</span>';
                                     }
-
+                                    $(".whetherOrders_style span").remove();
                                     $(".whetherOrders_style").append(vrstr);
                                     $("#whetherOrders_cancel").addClass("centerit").val("已接单");
                                     $("#whetherOrders_sure").remove();
@@ -1034,7 +1033,7 @@
                             }
                         });
                         $('.order_wrap input').attr("disabled", "disabled");
-                        $('#order_edit').attr("disabled", false).addClass("border_eec988").addClass("col_eec988");
+                        $('#order_edit').attr("disabled", false);
                     } else if (status == '4') {//待用户预支付可以查看
                         $.ajax({
                             url: APPOINTMENTURL,
@@ -1071,8 +1070,14 @@
                             case "1":
                                 /* 在没有选择风格之前后面的状态都不能点击 */
                                 $('.order_process input').attr("disabled", "disabled");
+                                //可以查看预算单
+                                $('#order_edit').attr("disabled", false).addClass('new_edit');
                                 //提醒工长需要先添加风格
-                                layer.alert('您需要先选择装修风格哦~~');
+                                if (houseStyle != null && houseStyle != '' && houseStyle != undefined) {
+                                    $('.order_increase').eq(0).attr("disabled", false);
+                                } else {
+                                    layer.alert('您需要先选择装修风格哦~~');
+                                }
                                 /* 点击选择风格 */
                                 $('#confirm_type').click(function () {
                                     var styleVal = $('#testSelect').val();//获取select的值
@@ -1090,7 +1095,7 @@
                                             if (data && data.code == '000') {
                                                 $('.order_process input').attr("disabled", false);// 恢复按钮点击
                                                 $('.process_style p').html(styleVal);
-                                                $(this).hide();//隐藏按钮
+                                                $('#confirm_type').hide();//隐藏按钮
                                                 $('#testSelect').hide();//隐藏select框
                                             }
                                         }
@@ -1115,8 +1120,11 @@
                                     $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
                                     $('.order_increase').eq(i).hide();
                                     $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
-                                    if (budgetState == '0' || statementStatus == '0') {
-                                        $('.order_edit ').eq(i).addClass('new_edit');
+                                    if (budgetState == '0') {
+                                        $('#order_edit').addClass('new_edit');
+                                    }
+                                    if (statementStatus == '0') {
+                                        $('.order_edit ').eq(i + 1).addClass('new_edit');
                                     }
                                     $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
                                 }
@@ -1136,8 +1144,11 @@
                                     $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
                                     $('.order_increase').eq(i).hide();
                                     $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
-                                    if (budgetState == '0' || statementStatus == '0') {
-                                        $('.order_edit ').eq(i).addClass('new_edit');
+                                    if (budgetState == '0') {
+                                        $('#order_edit').addClass('new_edit');
+                                    }
+                                    if (statementStatus == '0') {
+                                        $('.order_edit ').eq(i + 1).addClass('new_edit');
                                     }
                                     $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
                                 }
@@ -1157,8 +1168,11 @@
                                     }
                                     $('.order_increase').eq(i).hide();
                                     $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
-                                    if (budgetState == '0' || statementStatus == '0') {
-                                        $('.order_edit ').eq(i).addClass('new_edit');
+                                    if (budgetState == '0') {
+                                        $('#order_edit').addClass('new_edit');
+                                    }
+                                    if (statementStatus == '0') {
+                                        $('.order_edit ').eq(i + 1).addClass('new_edit');
                                     }
                                     if (i != 0) {
                                         $('.order_edit ').eq(i - 1).val('查看' + $('.order_edit ').eq(i - 1).val().substr(2, 5));
@@ -1320,6 +1334,7 @@
                             statementStatus = data.data['结算单编辑状态'];
                             // sessionStorage.setItem("statementStatus", data.data['结算单编辑状态']);
                             orderStatus();
+                        } else if (data && data.code == '200') {
 
                         }
                     },
@@ -1343,7 +1358,8 @@
                                 $('.process_style p').html(data.data['装修风格']);
                                 $('#confirm_type').hide();//隐藏按钮
                                 $('#testSelect').hide();//隐藏select框
-                                sessionStorage.setItem("houseStyle", data.data['装修风格']);
+                                houseStyle = data.data['装修风格'];
+                                orderStatus();
                                 if (step == 1) {
                                     $('#pre_add1').attr("disabled", false);// 恢复按钮点击
                                     $('#order_edit').attr("disabled", false);// 恢复按钮点击
@@ -4849,7 +4865,7 @@
 
             vrStr += '</div>';
             vrStr += '<div class="all">';
-            vrStr += '<a class="progress_updates" target="_blank">进度更新</a>';
+            vrStr += '<a class="progress_updates">进度更新</a>';
             vrStr += '</div>';
             vrStr += '</div>';
             vrStr += '<div class="order_detail display">';
