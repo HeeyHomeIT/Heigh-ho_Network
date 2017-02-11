@@ -439,16 +439,16 @@
          */
         initClickAddEvent: function () {
             var self = this;
-            $(document).on("click", ".btnCart", function () {
+            $(document).on("click", ".btnCart", function (event) {
                 var uid = $(this).data("uid");
-                self.initParabolaAnimationEvent(uid);
+                self.initParabolaAnimationEvent(uid, event);
             })
         },
         /**
          * 抛物线运动动画
          * @param {Object} uid 当前工人的ID名
          */
-        initParabolaAnimationEvent: function (uid) {
+        initParabolaAnimationEvent: function (uid, event) {
             var self = this;
             // 元素以及其他一些变量
             var eleFlyElement = document.querySelector("#flyItem" + uid),
@@ -492,11 +492,11 @@
             });
 
             // 绑定点击事件
-
             if (eleFlyElement && eleShopCart) {
                 // 滚动大小
                 var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft || 0,
                     scrollTop = document.documentElement.scrollTop || document.body.scrollTop || 0;
+                event = event ? event : window.event;
                 eleFlyElement.style.left = event.clientX + scrollLeft + "px";
                 eleFlyElement.style.top = event.clientY + scrollTop + "px";
                 eleFlyElement.style.visibility = "visible";
@@ -774,7 +774,7 @@
                 $.each(value.servicearea, function (i, v) {
                     if (v != null && v != '') {
                         vrStr += '<span>' + v + ';</span>';
-                    }else{
+                    } else {
                         vrStr += '<span>--</span>';
                     }
                 });
@@ -788,7 +788,7 @@
                 $.each(value.servicetag, function (i, v) {
                     if (v != null && v != '') {
                         vrStr += '<span>' + v + ';</span>';
-                    }else{
+                    } else {
                         vrStr += '<span>--</span>';
                     }
                 });
