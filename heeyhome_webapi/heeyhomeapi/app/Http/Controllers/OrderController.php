@@ -50,13 +50,13 @@ class OrderController extends Controller
             $worker_flag = true;
         }
         /* 判断订单是否重复*/
-        $order_tbl_isrepeat = DB::select('SELECT order_id,order_time FROM hh_order WHERE user_id =  ? AND shop_id = ? AND order_address = ? AND calculator_result_id = ? AND order_status != ? ',
+        $order_tbl_isrepeat = DB::select('SELECT order_id,order_time FROM hh_order WHERE order_address = ?',
             [$user_id, $shop_id, $order_address, $calculator_result_id, 7]);
         if ($order_tbl_isrepeat) {
             $order_id = $order_tbl_isrepeat[0]->order_id;
             $arr = array(
                 "code" => "202",
-                "msg" => "订单已重复存在",
+                "msg" => "地址已预约店铺",
                 "data" => array(
                     "order_id" => $order_id,
                 )
