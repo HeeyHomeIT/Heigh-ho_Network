@@ -1053,7 +1053,7 @@
                                     } else if (data.data.confirm_time == 2) {
                                         var vrstr = '<span class="reservation_time">' + data.data.reservation_time2 + '</span>';
                                     }
-
+                                    $(".whetherOrders_style span").remove();
                                     $(".whetherOrders_style").append(vrstr);
                                     $("#whetherOrders_cancel").addClass("centerit").val("已接单");
                                     $("#whetherOrders_sure").remove()

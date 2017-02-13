@@ -1250,6 +1250,10 @@ a:focus {
     border-radius: 2px;
 }
 
+.collection_detail：hover {
+    color: white;
+}
+
 .collection_shop_wrap {
     width: 711px;
     height: auto;
@@ -1531,7 +1535,7 @@ a:focus {
     margin-right: 50px
 }
 
-.safe_right,.safe_right_content {
+.safe_right, .safe_right_content {
     padding: 50px 0 50px 83px;
     border-top: none;
     position: relative;

@@ -174,6 +174,11 @@
     color: #4b4948;
 }
 
+.money input:disabled {
+    background-color: white;
+    cursor: not-allowed;
+}
+
 .money .yuan {
     margin-left: 11px;
     font-size: 14px;

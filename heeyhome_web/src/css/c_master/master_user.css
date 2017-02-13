@@ -1662,7 +1662,7 @@
     border-radius: 4px;
     position: absolute;
     cursor: pointer;
-    margin-left: -47px;
+    left: 45%;
     z-index: 100;
 }
 
@@ -4239,12 +4239,6 @@ div.clear:after, div.clear:before {
     margin-left: 35px;
 }
 
-.staff_bottom {
-    width: 545px;
-    height: auto;
-    margin: 0 auto;
-}
-
 .staff_bottom_content span {
     display: inline-block;
     color: #4b4948;
@@ -4517,6 +4511,7 @@ div.clear:after, div.clear:before {
     display: block;
     margin: 0 auto;
     margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .add_technology_wrap {
