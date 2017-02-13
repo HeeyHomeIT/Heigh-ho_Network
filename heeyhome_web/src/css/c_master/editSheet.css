@@ -136,7 +136,7 @@
 }
 
 .worker_type .type_detail {
-    width: 80px;
+    width: 110px;
     text-align: center;
 }
 
@@ -153,7 +153,7 @@
 
 .servicename {
     display: inline-block;
-    width: 170px;
+    width: 180px;
     text-align: right;
 }
 

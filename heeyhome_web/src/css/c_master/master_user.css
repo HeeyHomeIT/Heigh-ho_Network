@@ -4514,6 +4514,12 @@ div.clear:after, div.clear:before {
     margin-bottom: 20px;
 }
 
-.add_technology_wrap {
+input[type='number'] {
+    -moz-appearance: textfield;
+}
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

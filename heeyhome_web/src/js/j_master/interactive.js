@@ -1868,7 +1868,7 @@
                                     list += '</div><div class="number">';
                                     $.each(v.spec, function (m, n) {
                                         list += '<div class="control_number"><span class="minus"></span>';
-                                        list += '<input type="text" value="' + n.num + '" data-id="' + n.id + '"><span class="plus"></span></div>';
+                                        list += '<input type="number" value="' + n.num + '" data-id="' + n.id + '"><span class="plus"></span></div>';
                                     });
                                 } else {
                                     list += '<span class="none"></span>';
@@ -1876,7 +1876,7 @@
                                     list += '<span class="none">' + v.unit + '</span>';
                                     list += '</div><div class="number">';
                                     list += '<div class="control_number none"><span class="minus"></span>';
-                                    list += '<input type="text" value="' + v.spec.num + '" data-id="' + v.spec.id + '"><span class="plus"></span></div>';
+                                    list += '<input type="number" value="' + v.spec.num + '" data-id="' + v.spec.id + '"><span class="plus"></span></div>';
                                 }
                                 list += '</div></div></li>';
                             });
