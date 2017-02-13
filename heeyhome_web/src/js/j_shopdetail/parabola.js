@@ -64,7 +64,7 @@ var funParabola = function(element, target, options) {
 			element.setAttribute("data-center", [coordElement.x, coordElement.y].join());
 			target.setAttribute("data-center", [coordTarget.x, coordTarget.y].join());
 			return this;
-		}
+		};
 		
 		exports.position = function() {
 			if (flagMove == false) return this;

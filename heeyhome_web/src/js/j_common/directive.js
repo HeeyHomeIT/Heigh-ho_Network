@@ -72,7 +72,7 @@ define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j
 
 	app.directive('vrPagewrap', function() {
 		return {
-			templateUrl: "view/v_common/_pagewrap.html",
+			templateUrl: "view/v_common/_pagewrap.html"
 		};
 	});
 	/**
@@ -86,13 +86,13 @@ define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j
 	
 	app.directive('shopFliter', function() {
 		return {
-			templateUrl: "view/v_common/_fliter.html",
+			templateUrl: "view/v_common/_fliter.html"
 		};
 	});
 
 	app.directive('shopPagewrap', function() {
 		return {
-			templateUrl: "view/v_common/_pagewrap.html",
+			templateUrl: "view/v_common/_pagewrap.html"
 		};
 	});
 	
@@ -107,7 +107,7 @@ define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j
 	
 	app.directive('gonglvePagewrap', function() {
 		return {
-			templateUrl: "view/v_common/_pagewrap.html",
+			templateUrl: "view/v_common/_pagewrap.html"
 		};
 	});
 	

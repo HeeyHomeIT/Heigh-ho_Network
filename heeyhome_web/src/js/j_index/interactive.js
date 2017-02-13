@@ -131,7 +131,7 @@ define(['app'], function (app) {
                 $(".box_picture").eq(4).addClass("box_picture_1");
                 $(".box_picture").eq(5).addClass("box_picture_2");
             }
-        }
+        };
         //入口方法调用 代码只能从这里执行
         app.indexWrapHandler = function () {
             indexWrap.init();

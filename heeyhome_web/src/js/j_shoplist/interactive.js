@@ -83,7 +83,7 @@
                 dataType: 'jsonp',
                 complete: function () {
                     $(".fliter").removeClass("loagbg");
-                },
+                }
             }).done(function (data) {
                 if (data != null && data.code == '000') {
                     var fliterStr = '';
@@ -121,7 +121,7 @@
             $fliter.off().on("click", function () {
                 $(this).addClass("active").siblings().removeClass("active");
                 var $fliterdiv = $(this).closest("div");
-                var $siblingdiv = $fliterdiv.siblings()
+                var $siblingdiv = $fliterdiv.siblings();
 //				// 插入当前点击的筛选内容块名字 对应相应的当前点击的筛选内容id
                 shopListFilterObj[$fliterdiv.data("name")] = $(this).data("label");
                 $.each($siblingdiv, function (i, v) {
@@ -139,7 +139,7 @@
          */
         listContentEvent: function (shopListFilterObj) {
 
-            console.log(shopListFilterObj)
+            console.log(shopListFilterObj);
             $.ajax({
                 url: SHOPLISTURL,
                 type: "GET",

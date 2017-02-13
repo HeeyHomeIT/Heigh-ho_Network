@@ -392,7 +392,7 @@
 			$(".info_header span").text(msg);
 			$rb.stop().animate({
 				"margin-top": "-150px",
-				opacity: 1,
+				opacity: 1
 			}, 500);
 			$(".remindemodel_ok").on("click",function() { // 点击'好的'关闭提示弹出框
 				$rb.stop().animate({

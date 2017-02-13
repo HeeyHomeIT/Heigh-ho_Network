@@ -106,7 +106,7 @@
                     }
                 }).done(function (data) {
                     var name = '', phone = '', userinfo_email = '';
-                    if (data.code == 000) {
+                    if (data.code == "000") {
                         name = data.data.user_name;
                         phone = data.data.userinfo_phone;
                         userinfo_email = data.data.userinfo_email;
@@ -264,7 +264,7 @@
                         ucateid: 0, // 工种类别
                         shopName: '',
                         resList: []
-                    }
+                    };
                     worksObj[i].resList.push(v.resList[0]);
                     worksObj[i].ucateid = v.ucateid;
                     worksObj[i].shopName = v.shopName;
@@ -565,7 +565,7 @@
                             ucateid: 0, // 工种类别
                             shopName: '',
                             resList: []
-                        }
+                        };
                         worksObj[i].resList.push(v.resList[0]);
                         worksObj[i].ucateid = v.ucateid;
                         worksObj[i].shopName = v.shopName;
@@ -691,7 +691,7 @@
                 },
                 success: function (data) {
                     console.log(data);
-                    if (data.code == 000) {
+                    if (data.code == "000") {
                         $.each($(".con_price ul li"), function (item, val) {
                             $.each($(val).find("p"), function (i, v) {
                                 $(v).find("span.Jprice").html(data.data[item + 1][i + 1])
@@ -921,7 +921,7 @@
             });
             return vrStr;
         }
-    }
+    };
 
     //入口方法调用 代码只能从这里执行
     HHIT_SHOPDETAILAPP.controller('shopDetailCtrl', ['$scope', '$http', function ($scope, $http) {

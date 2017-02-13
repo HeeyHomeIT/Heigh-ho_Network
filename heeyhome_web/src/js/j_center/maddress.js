@@ -134,7 +134,7 @@
         setdefaultBtnClickEvent: function () {
             $(".default_address").on("click", function () {
                 var addressId = $(this).closest("div.address_list").data("id");
-                CRUDInfoHandler.setdefaultInfoEvent(addressId) // 设置默认收货地址
+                CRUDInfoHandler.setdefaultInfoEvent(addressId); // 设置默认收货地址
             });
         },
         /**
@@ -161,7 +161,7 @@
                 } else {
                     addAddressObj.is_default = "2";
                 }
-                console.log(addAddressObj)
+                console.log(addAddressObj);
                 // 保存事件
                 if ($saveaddBtn.val() == ADDTEXT && flag == 1) {
                     addAddressObj.userId = USERID; // 用户id
@@ -231,7 +231,7 @@
                 async: true,
                 dataType: 'jsonp',
                 data: {
-                    user_id: USERID,
+                    user_id: USERID
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
@@ -275,7 +275,7 @@
                     is_default: obj.is_default
                 },
                 success: function (data) {
-                    console.log(data)
+                    console.log(data);
                     if (data != null && data.code == '000') {
                         layer.msg(data.msg);
                         CRUDInfoHandler.queryInfoEvent();
@@ -320,7 +320,7 @@
          * 编辑信息
          */
         editorInfoEvent: function (obj) {
-            console.log(obj.addressId)
+            console.log(obj.addressId);
             $.ajax({
                 url: EDITORURL,
                 type: "GET",
@@ -339,7 +339,7 @@
                     is_default: obj.is_default
                 },
                 success: function (data) {
-                    console.log(data)
+                    console.log(data);
                     if (data != null && data.code == '000') {
                         layer.msg(data.msg);
                         CRUDInfoHandler.queryInfoEvent();

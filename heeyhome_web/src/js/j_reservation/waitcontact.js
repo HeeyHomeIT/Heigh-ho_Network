@@ -185,7 +185,7 @@
 			}
 			
 			return vrStr;
-		},
+		}
 	};
 	/**
 	 * 日期转化
@@ -204,7 +204,7 @@
 			var newTime = new Date(parseInt(timestamp+itemTimestamp)).toLocaleString().replace(/\//g, "-");
 			return newTime;
 		}
-	}
+	};
 	//入口方法调用 代码只能从这里执行
 	HHIT_WAITCONTACTAPP.controller('waitcontactCtrl', ['$scope', '$http', function($scope, $http) {
 		waitcontactWrap.init();

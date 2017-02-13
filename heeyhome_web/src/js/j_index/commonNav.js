@@ -67,7 +67,7 @@ define(['app'], function(app) {
 						}
 					}).done(function(data){
 						var name='',phone='',userinfo_email='';
-						if(data.code == 000){
+						if(data.code == "000"){
 							name = data.data.user_name;
 							phone = data.data.userinfo_phone;
 							userinfo_email = data.data.userinfo_email;

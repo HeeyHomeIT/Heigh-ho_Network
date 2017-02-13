@@ -118,7 +118,7 @@
 			$phcode.on("click",function() { //手机验证码
 				var $phone = $(".phone_validate .phone input"); //手机号
 				var phoneVal = $phone.val(); //手机号的值				
-				console.log(phoneVal)
+				console.log(phoneVal);
 				if(phoneVal == null || phoneVal == "") {
 					inputErrorHendler.errorContent(MSG1,$phone);
 					return;
@@ -143,7 +143,7 @@
 			});
 			clickInput.clickInputEvent(); //隐藏错误信息
 		}
-	}
+	};
 	/*
 	 * input的点击隐藏错误信息
 	 */

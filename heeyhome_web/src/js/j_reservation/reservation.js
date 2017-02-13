@@ -96,7 +96,7 @@
                         user_id: rtList.gz
                     }
                 }).done(function (data) {
-                    if (data.code == 000) {
+                    if (data.code == "000") {
                         imgUrl = data.data.user_img;
                         $.ajax({
                             url: FOREMANINFOURL,
@@ -107,7 +107,7 @@
                                 foreman_id: rtList.gz
                             }
                         }).done(function (data) {
-                            if (data.code == 000) {
+                            if (data.code == "000") {
                                 $(".cards").append(rc.splicePersonDataEvent(imgUrl, data.data));
                                 $(".explain").html("尊敬的用户，您选择了<span class='col_eec988'>一键预约</span>装修，接下来将有工长全权负责您家房子的装修任务");
                             }
@@ -201,7 +201,7 @@
                     user_id: UID
                 },
                 success: function (data) {
-                    if (data.code == 000) {
+                    if (data.code == "000") {
                         $(".Jcal").html(rc.spliceCalRresultDataEvent(data.data.calculator_data));
                         $("#Jarea").prepend(data.data.calculator_data[0].area);
                         $("#Jroom").prepend(data.data.calculator_data[0].room);
@@ -270,7 +270,7 @@
                 laydate({
                     elem: '#JHomeTime',
                     min: laydate.now(), //开始日期
-                    format: 'YYYY年MM月DD日', //日期格式
+                    format: 'YYYY年MM月DD日' //日期格式
                 });
             });
 
@@ -515,7 +515,7 @@
             return vrStr;
 
         }
-    }
+    };
 
     getUrlParamHandler = {
         /**
@@ -583,7 +583,7 @@
             $(".add_address_wrap input[type='text']").siblings("label.error").removeClass("whether");
             $(".add_address_wrap input[type='text']").removeClass("border_eec988 border_ff5704");
         }
-    }
+    };
     /**
      * 增删改查
      */
@@ -605,7 +605,7 @@
                 success: function (data) {
                     console.log("用户收藏的地址");
                     console.log(data);
-                    if (data.code == 000) {
+                    if (data.code == "000") {
                         $(".Jaddress").html(rc.spliceAddressDataEvent(data.data));
                         initInputDataHandler.inputDataEvent(); // input框初始化
                     } else {
@@ -640,7 +640,7 @@
                     is_default: obj.is_default
                 },
                 success: function (data) {
-                    console.log(data)
+                    console.log(data);
                     if (data != null && data.code == '000') {
                         layer.alert(data.msg);
                         self.queryInfoEvent();
@@ -652,7 +652,7 @@
                 error: function (data) {
                 }
             });
-        },
+        }
     };
 
     //入口方法调用 代码只能从这里执行

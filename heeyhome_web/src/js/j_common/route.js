@@ -7,7 +7,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     url: "/",
                     views: {
                         'content': {
-                            templateUrl: 'view/v_index/index_wrap.html',
+                            templateUrl: 'view/v_index/index_wrap.html'
                         }
                     }
 
@@ -142,7 +142,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     url: "/forget",
                     views: {
                         'forget_content': {
-                            templateUrl: 'view/v_reset/reset.html',
+                            templateUrl: 'view/v_reset/reset.html'
                         }
                     },
                     resolve: {
@@ -155,9 +155,9 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     url: "/public",
                     views: {
                         'forget_public': {
-                            templateUrl: 'view/v_reset/reset_password.html',
+                            templateUrl: 'view/v_reset/reset_password.html'
                         }
-                    },
+                    }
 
                 })
                 .state("forget.public.process_1", { // 忘记密码-步骤一
@@ -168,7 +168,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                             controller: "processOneCtrl",
                             controllerAs: "process_1"
                         }
-                    },
+                    }
 
                 })
                 .state("forget.public.process_2", { // 忘记密码-步骤二
@@ -179,7 +179,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                             controller: "processTwoCtrl",
                             controllerAs: "process_2"
                         }
-                    },
+                    }
 
                 })
                 .state("forget.public.process_3", { // 忘记密码-步骤三
@@ -190,7 +190,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                             controller: "processThreeCtrl",
                             controllerAs: "process_3"
                         }
-                    },
+                    }
 
                 })
                 .state("center", { // 用户个人中心

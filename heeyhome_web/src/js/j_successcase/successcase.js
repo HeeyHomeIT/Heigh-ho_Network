@@ -31,7 +31,7 @@
             } else {
                 $(".sname").html('无');
             }
-            $(".sname").attr("href", "view_shop.html#/shopdetails?pos=" + gzshoperId)
+            $(".sname").attr("href", "view_shop.html#/shopdetails?pos=" + gzshoperId);
 
             /* 页面工人初始化数据*/
             self.initSuccessCaseDataEvent();
@@ -59,7 +59,7 @@
                     $(".sc_contents").removeClass("loagbg");
                 }
             }).done(function (data) {
-                if (data.code == 000) {
+                if (data.code == "000") {
                     var iSpeed = 0;
                     var left = 0;
                     var oBg = document.getElementById("title_active");
@@ -100,7 +100,7 @@
         getUrlParam: function (name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
             var r = window.location.hash.split("?")[1].match(reg); //匹配目标参数
-            console.log(r[2])
+            console.log(r[2]);
             if (r != null) return unescape(r[2]);
             return null; //返回参数值
         },
@@ -111,7 +111,7 @@
         getUrlCnParam: function (name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
             var r = window.location.hash.split("?")[1].match(reg); //匹配目标参数
-            console.log(r[2])
+            console.log(r[2]);
             if (r != null) return decodeURI(r[2]);
             return null; //返回参数值
         }
@@ -160,7 +160,7 @@
          */
         spliceCgInfoEvent: function (value, arr) {
             var vrStr = '';
-            console.log(value)
+            console.log(value);
             $.each(value, function (i, v) {
                 if (v.img.length != 0) {
                     if (v.type == arr[0] || v.type == arr[1]) {
@@ -175,7 +175,7 @@
                 }
             });
             return vrStr;
-        },
+        }
     };
 
 

@@ -38,7 +38,7 @@
 		 */
 		initMaterialListDetailsEvent: function() {
 			getDataForAjaxHandler.getDataEvent();
-		},
+		}
 	};
 	getDataForAjaxHandler = {
 		/**
@@ -47,7 +47,7 @@
 		getDataEvent: function() {
 			var self = this;
 			var orderId = getUrlParamHandler.getUrlParam("pos");
-			console.log(orderId)
+			console.log(orderId);
 			var pc = spliceMaterialContHandler;
 			
 			$.ajax({
@@ -77,7 +77,7 @@
 					$(document).on("click", ".titlelist input", function() {
 						var $this = $(this);
 						pc.spliceRelevantMaterialsEvent(data.data, $this.data("brand"), $this,false);
-						$this.parents("li").siblings().find("i").removeClass("rep_radiao_check")
+						$this.parents("li").siblings().find("i").removeClass("rep_radiao_check");
 						$this.siblings("i").addClass("rep_radiao_check");
 					});
 					
@@ -93,7 +93,7 @@
 					$(document).on("click", ".titlelist input", function() {
 						var $this = $(this);
 						pc.spliceRelevantMaterialsEvent(data.data, $this.data("brand"), $this,true);
-						$this.parents("li").siblings().find("i").removeClass("rep_radiao_check")
+						$this.parents("li").siblings().find("i").removeClass("rep_radiao_check");
 						$this.siblings("i").addClass("rep_radiao_check");
 					});
                     layer.msg("材料不可选择，可以选择自行购买或平台支付");
@@ -109,7 +109,7 @@
 					$(document).on("click", ".titlelist input", function() {
 						var $this = $(this);
 						pc.spliceRelevantMaterialsEvent(data.data, $this.data("brand"), $this,true);
-						$this.parents("li").siblings().find("i").removeClass("rep_radiao_check")
+						$this.parents("li").siblings().find("i").removeClass("rep_radiao_check");
 						$this.siblings("i").addClass("rep_radiao_check");
 					});
 					self.initTotalSumEvent(); // 求总价
@@ -146,7 +146,7 @@
 					});
 					console.log(JSON.stringify(selectedArr));
 					var orderType = $("#Jpayment").data("submit");
-					console.log(orderType)
+					console.log(orderType);
 					PAYURL = PAYURL + "?pay_type=" + orderType + "&order_id=" + orderId + "&material_list=" + JSON.stringify(selectedArr);
 					$("#meterialFrom").attr("action", PAYURL);
 					$("#meterialFrom").submit();
@@ -310,7 +310,7 @@
 						$.each(v, function(a, b) {
 							brandId.push(Object.values(b)[0].data[0].brand_id);
 						});
-						vrStr += '<div class="itemlist">'
+						vrStr += '<div class="itemlist">';
 						vrStr += '<div class="titlelist"><dl><dt>请选择一个品牌</dt><dd><ul class="airplane_rad clearfix">';
 						for(var i1 in Object.keys(v)) {
 							vrStr += '<li><label for="airplaneRadio' + i + i1 + '" id="repAirRadio' + i + i1 + '">';

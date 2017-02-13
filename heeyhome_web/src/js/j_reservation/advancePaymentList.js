@@ -62,7 +62,7 @@
             $(document).on("click", "#Jsubmit", function () {
                 if ($("#checkYt").is(':checked')) {
                     var orderType = $("#Jsubmit").data("submit");
-                    PAYURL = PAYURL + "?pay_type=" + orderType + "&order_id=" + orderId
+                    PAYURL = PAYURL + "?pay_type=" + orderType + "&order_id=" + orderId;
                     $("#orderFrom").attr("action", PAYURL);
                     $("#orderFrom").submit();
                 } else {
@@ -110,7 +110,7 @@
                 }
             }).done(function (data) {
                 console.log(data);
-                if (data.code == 000) {
+                if (data.code == "000") {
                     pc.splicePayDetailsDataEvent(data.data.data_list, "工长");
                     pc.splicePayMoneyDataEvent(data.data.data_list["需付款"]);
                     if(data.data.pay_type == 0){ // 没有需要支付的订单（已支付）
@@ -147,7 +147,7 @@
                 for (key in v) {
                     counter++;
                 }
-                console.log(i)
+                console.log(i);
                 console.log(v);
                 if (i == "小计/元") {
                     vrStr += '<tr><td colspan="4" class="border_eee">' + i + '</td>';

@@ -105,7 +105,7 @@
                     tabSelectHandler.tabSelectEvent()
                 }
             });
-        },
+        }
 
     };
     /**
@@ -366,7 +366,7 @@
             }));
 
         }
-    }
+    };
     //入口方法调用 代码只能从这里执行
     HHIT_CENTERAPP.controller('panoramaCtrl', ['$scope', '$http', function ($scope, $http) {
         panoramaWrap.init();

@@ -76,7 +76,7 @@
             HHIT_NEWAPP.controller('myDetail', ['$scope', '$http', function ($scope, $http) {
                 var cate_describe = sessionStorage.getItem("describe");
                 var cate_name = sessionStorage.getItem("name");
-                console.log(cate_describe)
+                console.log(cate_describe);
                 /* 获取文章详情接口 */
                 $http({
                     method: "JSONP",
