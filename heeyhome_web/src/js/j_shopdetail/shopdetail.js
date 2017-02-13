@@ -371,10 +371,10 @@
                 var id = $(this).attr("data-id");
                 if (type == 1) {
                     sessionStorage.setItem("case_id", id);
-                    window.location.href = "success_case.html#/success/success_case";
+                    window.open("success_case.html#/success/success_case");
                 } else {
                     sessionStorage.setItem("orderid", id);
-                    window.location.href = "order_detail.html#/morder_wrap/morder_detail";
+                    window.open("order_detail.html#/morder_wrap/morder_detail");
                 }
             });
             $("#sdcontent .s_more").on("click", function () {

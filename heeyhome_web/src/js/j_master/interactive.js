@@ -1539,15 +1539,21 @@
 
                 /* 点击左边提交按钮 */
                 var budObj = {};
-                $(document).on('click', '.before_submit', function () {
+                $(document).off('click', '.before_submit').on('click', '.before_submit', function () {
+                    var isInteger = true;
                     /* 获取json数据 */
                     var $number = $('.sheet_left input[type="number"]');
                     $.each($number, function (i, v) {
                         budObj[parseInt($(v).attr('bid') - 1)] = $(v).val();
+                        if ($(v).val() < 0) {
+                            layer.msg('数字不能小于0哦~~');
+                            isInteger = false;
+                        }
+
                     });
-                    console.log(budObj)
+
                     /* 生成预算单结算单 */
-                    $.ajax({
+                    isInteger && $.ajax({
                         url: GENERATEURL,
                         type: "GET",
                         async: true,
@@ -1570,16 +1576,10 @@
                                     remark: $('#before_remark').val()
                                 },
                                 success: function (data) {
-                                    console.log(data)
+                                    console.log(data);
                                     if (data && data.code == '000') {
                                         layer.msg(data.msg);
                                         window.location.href = 'order.html#/order/home';
-                                        //sessionStorage.setItem("status", '订单进行中');
-                                        // if (step == '18') {
-                                        //     sessionStorage.setItem("step", 1);//假设赋值
-                                        // } else {
-                                        //     sessionStorage.setItem("step", parseInt(step) + 1);//假设赋值
-                                        // }
                                     }
                                 },
                                 error: function (data) {
@@ -1591,17 +1591,23 @@
                         }
                     });
 
+
                 });
 
                 /* 点击右边提交按钮 */
-                $(document).on('click', '.after_submit', function () {
+                $(document).off('click', '.after_submit').on('click', '.after_submit', function () {
+                    var isGreater = true;
                     var billObj = {};
                     /* 获取json数据 */
                     var $right = $('.sheet_right input[type="number"]');
                     $.each($right, function (i, v) {
                         billObj[parseInt($(v).attr('bid') - 1)] = $(v).val();
+                        if ($(v).val() < 0) {
+                            layer.msg('数字不能小于0哦~~');
+                            isGreater = false;
+                        }
                     });
-                    $.ajax({
+                    isGreater && $.ajax({
                         url: UPDATEURL,
                         type: "GET",
                         async: true,
@@ -1621,6 +1627,7 @@
                         error: function (data) {
                         }
                     });
+
                 });
             }]);
         }
