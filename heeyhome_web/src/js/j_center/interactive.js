@@ -160,6 +160,7 @@
             HHIT_CENTERAPP.controller('mMorderCtrl', ['$scope', '$http', function ($scope, $http) {
                 $(".Jcenter").html("我的订单");
                 $('.left_ul li').eq(2).addClass('left_active').siblings().removeClass('left_active');
+
                 $.ajax({
                     type: "get",
                     url: USERORDERURL,
@@ -183,38 +184,6 @@
                                     $(this).find(".all .top").addClass("one");
                                 }
                             });
-                            $(document).off("click", ".ordercnt_content .all .bottom").on("click", ".ordercnt_content .all .bottom", function () {
-                                var shopid = $(this).attr("data-shopid");
-                                var orderid = $(this).attr("data-orderid");
-                                var orderstep = $(this).attr("data-orderstep");
-                                sessionStorage.setItem("shopid", shopid);
-                                sessionStorage.setItem("orderid", orderid);
-                                sessionStorage.setItem("orderstep", orderstep);
-                                if ($(this).html() == "取消订单") {
-                                    $.ajax({
-                                        type: "get",
-                                        url: CANCELORDERURL,
-                                        async: true,
-                                        dataType: "jsonp",
-                                        data: {
-                                            user_id: USERID,
-                                            order_id: orderid
-                                        },
-                                        success: function (data) {
-                                            if (data && data.code == '000') {
-                                                layer.alert(data.code);
-                                                location.reload(true);
-                                            } else {
-                                                layer.alert(data.code);
-                                            }
-                                        },
-                                        error: function (data) {
-                                        }
-                                    });
-                                } else if ($(this).html() == "确认验货") {
-                                    layer.alert("订单已完成");
-                                }
-                            });
                             OrderPageHandler.pageContentEvent(order_total);
                         } else if (data.code == '205') {
                             $('#orderContent').remove();
@@ -227,11 +196,46 @@
                     error: function (data) {
                     }
                 });
+
+
+                /* 点击查看详情 */
                 $(document).off("click", ".ordercnt_content .all .top").on("click", ".ordercnt_content .all .top", function () {
                     var shopid = $(this).parent().attr("data-shopid");
                     var orderid = $(this).parent().attr("data-orderid");
                     sessionStorage.setItem("shopid", shopid);
                     sessionStorage.setItem("orderid", orderid);
+                });
+                $(document).off("click", ".ordercnt_content .all .bottom").on("click", ".ordercnt_content .all .bottom", function () {
+                    var shopid = $(this).parent().attr("data-shopid");
+                    var orderid = $(this).parent().attr("data-orderid");
+                    var orderstep = $(this).parent().attr("data-orderstep");
+                    sessionStorage.setItem("shopid", shopid);
+                    sessionStorage.setItem("orderid", orderid);
+                    sessionStorage.setItem("orderstep", orderstep);
+                    if ($(this).html() == "取消订单") {
+                        $.ajax({
+                            type: "get",
+                            url: CANCELORDERURL,
+                            async: true,
+                            dataType: "jsonp",
+                            data: {
+                                user_id: USERID,
+                                order_id: orderid
+                            },
+                            success: function (data) {
+                                if (data && data.code == '000') {
+                                    layer.alert(data.msg);
+                                    location.reload(true);
+                                } else {
+                                    layer.alert(data.msg);
+                                }
+                            },
+                            error: function (data) {
+                            }
+                        });
+                    } else if ($(this).html() == "确认验货") {
+                        layer.alert("订单已完成");
+                    }
                 });
             }]);
         },
@@ -1555,6 +1559,8 @@
                 oInfoObj.order_id = value.order_id;
                 $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
                 vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="reservation.html#/waitcontact?type=1" target="_blank" class="top">查看详情</a>';
+            } else if (value.order_status == 7) {
+                vrStr += '<div class="all"><span>--</span>';
             } else {
                 vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';
             }
@@ -1644,8 +1650,8 @@
                         }
                     });
                     $(document).off("click", ".ordercnt_content .all .bottom").on("click", ".ordercnt_content .all .bottom", function () {
-                        var shopid = $(this).attr("data-shopid");
-                        var orderid = $(this).attr("data-orderid");
+                        var shopid = $(this).parent().attr("data-shopid");
+                        var orderid = $(this).parent().parent().attr("data-orderid");
                         var orderstep = $(this).attr("data-orderstep");
                         sessionStorage.setItem("shopid", shopid);
                         sessionStorage.setItem("orderid", orderid);
@@ -1665,7 +1671,7 @@
                                         layer.alert(data.msg);
                                         location.reload(true);
                                     } else {
-                                        layer.alert(data.code);
+                                        layer.alert(data.msg);
                                     }
                                 },
                                 error: function (data) {
