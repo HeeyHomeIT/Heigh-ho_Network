@@ -98,14 +98,29 @@ function wgrg($flag, $b1, $d1, $h1, $parlor_ground)
 }
 
 //木工人工
-function mgrg($flag, $b1, $d1, $h1,$kitchen_cupboard)
+function mgrg($flag, $b1, $d1, $h1, $kitchen_cupboard, $master_wardrobe, $second_wardrobe, $master_ceiling, $second_ceiling, $parlor_ceiling, $parlor_shoebox, $parlor_wine_cabinet, $balcony_hanging_cabinet)
 {
-    //TODO 橱柜
-    if($kitchen_cupboard){
+    //橱柜
+    $cg = isset($kitchen_cupboard) ? 1 : 0;
+    //衣柜1
+    $yg1 = isset($master_wardrobe) ? 1 : 0;
+    //衣柜2
+    $yg2 = isset($second_wardrobe) ? 1 : 0;
+    //吊顶1
+    $dd1 = isset($master_ceiling) ? 1 : 0;
+    //吊顶2
+    $dd2 = isset($second_ceiling) ? 1 : 0;
+    //客餐厅吊顶
+    $dd3 = isset($parlor_ceiling) ? 1 : 0;
+    //背景基层
+    $bj = 1;
+    //鞋柜
+    $xg = isset($parlor_shoebox) ? 1 : 0;
+    //酒柜
+    $jg = isset($parlor_wine_cabinet) ? 1 : 0;
+    //阳台吊柜
+    $dg = isset($balcony_hanging_cabinet) ? 1 : 0;
 
-    }else{
-
-    }
     switch ($flag) {
         case 1:
             //基础
@@ -121,16 +136,26 @@ function mgrg($flag, $b1, $d1, $h1,$kitchen_cupboard)
             $F6 = ($h1 - 1) * 3;
             $H6 = $J1 - $B5 - $D5 - $H5 - $J5 - $D6 - $F6 - $F5;
 
-            $B17 = 806;
-            $B30 = 825;
-            $D30 = ((14 + ((2 - $d1) * 9.5) / 9.5 * 1.5) / 3.2 + 3.2) * 2 * 0.7 * 40 + 150;
-            $D25 = 825;
-            $D26 = (abs(1 - $d1)) * (((($d1 - 1) * 9.5) / 3 + 3) * 2 * 0.7 * 40 + 150);
-            $H37 = 1.5 * 130 + 40 * 3;
-            $H33 = ((($b1 * 0.83) - (14 + ((2 - $d1) * 9.5) / 9.5 * 1.5) - (($d1 - 1) * 9.5) - (5.6 + ((2 - $d1) * 9.5) / 9.5) - (4.5 + ((2 - $d1) * 9.5) / 9.5 * 1.5) - (4.8 + ((2 - $d1) * 9.5) / 9.5 * 0.5) - (($h1 - 1) * 3) - 0) / 3.6 * 2 + 3.6 * 2) * 0.8 * 40 + 150;
-            $J33 = 300;
-            $B34 = 350;
-            $D34 = 600;
+            //厨房橱柜
+            $B17 = 806 * $cg;
+            //主卧衣柜
+            $B30 = 825 * $yg1;
+            //主卧吊顶
+            $D30 = (((14 + ((2 - $d1) * 9.5) / 9.5 * 1.5) / 3.2 + 3.2) * 2 * 0.7 * 40 + 150) * $dd1;
+            //次卧衣柜
+            $D25 = 825 * $yg2;
+            //次卧吊顶
+            $D26 = ((abs(1 - $d1)) * (((($d1 - 1) * 9.5) / 3 + 3) * 2 * 0.7 * 40 + 150)) * $dd2;
+            //阳台吊柜
+            $H37 = (1.5 * 130 + 40 * 3) * $dg;
+            //客餐厅吊顶
+            $H33 = (($H6 / 3.6 * 2 + 3.6 * 2) * 0.8 * 40 + 150) * $dd3;
+            //客餐厅背景基层
+            $J33 = 300 * $bj;
+            //客餐厅鞋柜
+            $B34 = 350 * $xg;
+            //客餐厅酒柜
+            $D34 = 600 * $jg;
             return $B17 + $B30 + $D30 + $D25 + $D26 + $H37 + $H33 + $J33 + $B34 + $D34;
         case 2:
             return;
@@ -154,9 +179,16 @@ function yqgrg($flag, $b1, $d1)
 {
     switch ($flag) {
         case 1:
-            $B43 = (($b1 * 0.83) - (5.6 + ((2 - $d1) * 9.5) / 9.5) - (4.5 + ((2 - $d1) * 9.5) / 9.5 * 1.5)) * 3 * 23;
+            //基础
+            $J1 = $b1 * 0.83;
+            $L1 = (2 - $d1) * 9.5;
+            $H5 = 5.6 + $L1 / 9.5;
+            $J5 = 4.5 + $L1 / 9.5 * 1.5;
+
+            $B43 = ($J1 - $H5 - $J5) * 3 * 23;
             return $B43;
         case 2:
+
             return;
         case 3:
             return;
