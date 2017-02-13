@@ -448,6 +448,10 @@
                             var worker = '<div class="team_detail_content clearfix">';
                             worker += '<div class="worker_box sprite_team worker_add" data-action="add"><a href="#/master/teamDetail_edit"></a></div></div>';
                             $(".team_detail_wrap .page_number").before(worker);
+                            $(".team_detail_content .worker_box").on("click", function () {
+                                var action = $(this).attr("data-action");
+                                sessionStorage.setItem("action", action);
+                            });
                         }
                     },
                     error: function (data) {
