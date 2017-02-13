@@ -99,8 +99,8 @@ class ForemaninfoController extends Controller
         if($foremaninfo_realname) $personal->foremaninfo_realname=$foremaninfo_realname;
         if($foremaninfo_sex) $personal->foremaninfo_sex=$foremaninfo_sex;
         if($foremaninfo_age) $personal->foremaninfo_age=$foremaninfo_age;
-        if($foremaninfo_experience) $personal->experience=implode(',',$foremaninfo_experience);
-        if($foremaninfo_decoratedareas) $personal->decoratedareas=implode(',',$foremaninfo_decoratedareas);
+        if($foremaninfo_experience) $personal->experience=implode(',',array_filter($foremaninfo_experience));
+        if($foremaninfo_decoratedareas) $personal->decoratedareas=implode(',',array_filter($foremaninfo_decoratedareas));
         if($foremaninfo_worktime) $personal->worktime=$foremaninfo_worktime;
         if($foremaninfo_servicearea) $personal->servicearea=implode(',',$foremaninfo_servicearea);
         if($loc_province) $personal->loc_province=$loc_province;

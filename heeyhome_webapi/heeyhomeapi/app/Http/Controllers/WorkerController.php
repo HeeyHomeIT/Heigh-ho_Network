@@ -513,6 +513,25 @@ class WorkerController extends Controller
         $bankname = rq('bankname');    //开户行
         $bankcard = rq('bankcard');    //银行卡号
         $phone = rq('phone');          //手机号
+        $host = "http://jisubank4.market.alicloudapi.com";
+        $path = "/bankcardverify4/verify";
+        $method = "GET";
+        $appcode = "e52017c3b93f46588f93c5745141249d";
+        $headers = array();
+        array_push($headers, "Authorization:APPCODE " . $appcode);
+        $querys = "bankcard=".$bankcard."&idcard=".$idcard."&mobile=".$phone."&realname=".$name;
+        $url = $host . $path . "?" . $querys;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_FAILONERROR, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $json_data =curl_exec($curl);
+        $array = json_decode($json_data, true);
+        //var_dump($json_data);
+        if ($array['status'] == '0') {
+            if($array['result']['verifystatus']==0) {
         /*按工种分类修改员工信息 1：木工 2：水电工 3：瓦工 4：油漆工*/
         switch ($cate) {
             case 1:
@@ -636,6 +655,15 @@ class WorkerController extends Controller
                     "msg" => "该分类不存在"
                 );
                 return $callback . "(" . HHJson($arr) . ")";
+        }
+            }else{
+                $arr = array('code' => '130', 'msg' => $array['result']['verifymsg']);
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        }
+        else {
+            $arr = array('code' => $array['status'], 'msg' => $array['msg']);
+            return $callback . "(" . HHJson($arr) . ")";
         }
     }
 

@@ -17,6 +17,7 @@ class OrderDisplayController extends Controller
         $callback = rq('callback');
         $order_id = rq('order_id');
         $order=DB::select('select order_step from hh_order where order_id=?',[$order_id]);
+        if($order)
         $order_step=$order[0]->order_step;
         $noworder_step=$order_step;
         $woker_who=array();

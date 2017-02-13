@@ -646,6 +646,7 @@ class OrderMaterialController extends Controller
     //进度提交材料
     public function progressOrderMaterial()
     {
+        $callback=rq('callback');
         /* 返回当前的毫秒时间戳(16位) */
         $mtime = explode(' ', microtime());
         $mtime[0] = ($mtime[0] + 1) * 1000000;
