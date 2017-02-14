@@ -213,13 +213,10 @@
                     layer.msg("亲，收藏前请先登录哦~");
                     function login() {
                         window.location.href = "register.html#/dl";
-                        setTimeout(function () {
-                            login()
-                        }, 1500);
                     }
 
                     setTimeout(function () {
-                        login()
+                        login();
                     }, 1500);
                 } else {
                     var userType = $.cookie('userType');
