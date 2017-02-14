@@ -176,7 +176,14 @@
             /* 点击店铺收藏 */
             $(document).on('click', '.collect_shop', function () {
                 if (USERTYPE == null || USERTYPE == "" || USERTYPE == undefined) {
-                    window.location.href = 'register.html';
+                    layer.msg("亲，收藏前请先登录哦~");
+                    function login() {
+                        window.location.href = "register.html#/dl";
+                    }
+
+                    setTimeout(function () {
+                        login();
+                    }, 1500);
                 } else if ($.base64.decode(USERTYPE) == 1) {
                     if ($(this).val() == '已收藏') {
                         layer.msg('已收藏过~~');
