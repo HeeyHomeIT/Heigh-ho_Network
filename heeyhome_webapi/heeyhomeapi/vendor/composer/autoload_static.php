@@ -28,6 +28,7 @@ class ComposerStaticInit67db7509c61e60a4f92e012c704d3566
         'f62b36b0da1b7d151297465d64c7c6ea' => __DIR__ . '/../..' . '/app/Common/heeyHomeCostCalculator.php',
         'c10eed02d62dc9b8fd262f9cd2fea9a0' => __DIR__ . '/../..' . '/app/Common/heeyHomeCostCalculatorResult.php',
         '5587083d633d09947b27ffae71cbf7ae' => __DIR__ . '/../..' . '/app/Common/heeyHomeOrderList.php',
+        '0c1ba6ce516f2aab4dfdb2594d2f8b72' => __DIR__ . '/../..' . '/app/Common/heeyHomeCostCalculatorMain.php',
     );
 
     public static $prefixLengthsPsr4 = array (

@@ -21,6 +21,10 @@ function costCalculator_suzhou($calculator_arr)
     $wall = $calculator_arr['wall'];
     $ground_sank = $calculator_arr['ground_sank'];
     //其他基础信息
+    $master_wardrobe = 0;
+    $second_wardrobe = 0;
+    $master_ceiling = 0;
+    $second_ceiling = 0;
     //房间分配 TODO 例：array('master'=>'1','second'=>'1','child'=>'1','parent'=>'0','cloakroom'=>'0','study'=>'0')
     $room_distribution = $calculator_arr['room_distribution'];
     if ($room_distribution['master'] != 0) {
@@ -122,26 +126,25 @@ function costCalculator_suzhou($calculator_arr)
     }
 
     $flag = 1;
-    if ($area >= 70 && $area <= 80) {
-        $flag = 1;
-    } else if ($area >= 80 && $area <= 90) {
-        $flag = 2;
-    } else if ($area >= 90 && $area <= 100) {
-        $flag = 3;
-    } else if ($area >= 100 && $area <= 110) {
-        $flag = 4;
-    } else if ($area >= 110 && $area <= 120) {
-        $flag = 5;
-    } else if ($area >= 120 && $area <= 140) {
-        $flag = 6;
-    } else if ($area >= 140 && $area <= 160) {
-        $flag = 7;
-    }
+//    if ($area >= 70 && $area <= 80) {
+//        $flag = 1;
+//    } else if ($area >= 80 && $area <= 90) {
+//        $flag = 2;
+//    } else if ($area >= 90 && $area <= 100) {
+//        $flag = 3;
+//    } else if ($area >= 100 && $area <= 110) {
+//        $flag = 4;
+//    } else if ($area >= 110 && $area <= 120) {
+//        $flag = 5;
+//    } else if ($area >= 120 && $area <= 140) {
+//        $flag = 6;
+//    } else if ($area >= 140 && $area <= 160) {
+//        $flag = 7;
+//    }
     //人工费用
     $gzrg = $area * 50;
     $sdrg = sdrg($area);
     $wgrg = wgrg($flag, $area, $room_num, $balcony_num, $parlor_ground);
-    //TODO 需要除主卧外其他卧室数据合并
     $mgrg = mgrg($flag, $area, $room_num, $balcony_num, $kitchen_cupboard, $master_wardrobe, $second_wardrobe, $master_ceiling, $second_ceiling, $parlor_ceiling, $parlor_shoebox, $parlor_wine_cabinet, $balcony_hanging_cabinet);
     $yqgrg = yqgrg($flag, $area, $room_num);
     $zgrg = zgrg($flag, $area, $room_num, $balcony_num);
@@ -153,7 +156,7 @@ function costCalculator_suzhou($calculator_arr)
     $mgfc = mgfc($flag, $area, $room_num, $balcony_num);
     $yqcl = yqcl($flag, $area, $room_num, $balcony_num);
     //主材费用
-    $czdd = 0;
+    $czdd = czdd();
     $czgd = 0;
     $bc = 0;
     $dls = 0;
@@ -166,29 +169,32 @@ function costCalculator_suzhou($calculator_arr)
     $cgsys = 0;
     $zxzj = $rgzj + $zdsdcl + $gdsdcl + $wgfc + $mgfc + $yqcl;
     return array(
-        "gzrg" => $gzrg,
-        "sdrg" => $sdrg,
-        "wgrg" => $wgrg,
-        "mgrg" => $mgrg,
-        "yqgrg" => $yqgrg,
-        "zgrg" => $zgrg,
-        "rgzj" => $rgzj,
-        "zdsdcl" => $zdsdcl,
-        "gdsdcl" => $gdsdcl,
-        "wgfc" => $wgfc,
-        "mgfc" => $mgfc,
-        "yqcl" => $yqcl,
-        "czdd" => $czdd,
-        "czgd" => $czgd,
-        "bc" => $bc,
-        "dls" => $dls,
-        "db" => $db,
-        "mm" => $mm,
-        "cfym" => $cfym,
-        "lyfym" => $lyfym,
-        "ygym" => $ygym,
-        "jcdd" => $jcdd,
-        "cgsys" => $cgsys,
-        "zxzj" => $zxzj
+        "code" => "000",
+        "msg" => "计算成功",
+        "data" => array(
+            "gzrg" => $gzrg,
+            "sdrg" => $sdrg,
+            "wgrg" => $wgrg,
+            "mgrg" => $mgrg,
+            "yqgrg" => $yqgrg,
+            "zgrg" => $zgrg,
+            "rgzj" => $rgzj,
+            "zdsdcl" => $zdsdcl,
+            "gdsdcl" => $gdsdcl,
+            "wgfc" => $wgfc,
+            "mgfc" => $mgfc,
+            "yqcl" => $yqcl,
+            "czdd" => $czdd,
+            "czgd" => $czgd,
+            "bc" => $bc,
+            "dls" => $dls,
+            "db" => $db,
+            "mm" => $mm,
+            "cfym" => $cfym,
+            "lyfym" => $lyfym,
+            "ygym" => $ygym,
+            "jcdd" => $jcdd,
+            "cgsys" => $cgsys,
+            "zxzj" => $zxzj)
     );
 }

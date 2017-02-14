@@ -34,7 +34,8 @@
             "app/Common/heeyHomeIsmatched.php",
             "app/Common/heeyHomeCostCalculator.php",
             "app/Common/heeyHomeCostCalculatorResult.php",
-            "app/Common/heeyHomeOrderList.php"
+            "app/Common/heeyHomeOrderList.php",
+            "app/Common/heeyHomeCostCalculatorMain.php"
         ],
         "psr-4": {
             "App\\": "app/"
