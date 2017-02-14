@@ -12,7 +12,7 @@
 
     var SELDATAURL = "http://www.heeyhome.com/api/public/order/aeckonandactual/seldata"; // 预约订单接口
     var PAYURL = "http://www.heeyhome.com/api/public/alipay/pay"; // 支付宝支付
-    var FLAG =true;
+    var FLAG = true;
 
     /*定义一个类*/
     var advancePayListWrap = {
@@ -48,27 +48,28 @@
         initPaySumbitEvent: function () {
             var orderId = getUrlParamHandler.getUrlParam("pos");
             $(document).on("click", "#checkYt", function () {
-            	if(FLAG){
-            		if ($(this).is(':checked')) { //是否默认地址 1:默认地址 2:非默认地址
-	                    $(this).siblings("em").addClass("defalut_ico");
-	                    $(this).parents().siblings("span").addClass("yes_check");
-	                } else {
-	                    $(this).siblings("em").removeClass("defalut_ico");
-	                    $(this).parents().siblings("span").removeClass("yes_check");
-	                }
-            	}
+                if (FLAG) {
+                    if ($(this).is(':checked')) { //是否默认地址 1:默认地址 2:非默认地址
+                        $(this).siblings("em").addClass("defalut_ico");
+                        $(this).parents().siblings("span").addClass("yes_check");
+                    } else {
+                        $(this).siblings("em").removeClass("defalut_ico");
+                        $(this).parents().siblings("span").removeClass("yes_check");
+                    }
+                }
             });
 
             $(document).on("click", "#Jsubmit", function () {
-                if ($("#checkYt").is(':checked')) {
-                    var orderType = $("#Jsubmit").data("submit");
-                    PAYURL = PAYURL + "?pay_type=" + orderType + "&order_id=" + orderId;
-                    $("#orderFrom").attr("action", PAYURL);
-                    $("#orderFrom").submit();
-                } else {
-                    layer.msg("请先仔细阅读合同条款并勾选确认");
+                if (FLAG) {
+                    if ($("#checkYt").is(':checked')) {
+                        var orderType = $("#Jsubmit").data("submit");
+                        PAYURL = PAYURL + "?pay_type=" + orderType + "&order_id=" + orderId;
+                        $("#orderFrom").attr("action", PAYURL);
+                        $("#orderFrom").submit();
+                    } else {
+                        layer.msg("请先仔细阅读合同条款并勾选确认");
+                    }
                 }
-
             });
             $(document).on("click", "#Rsubmit", function () {
                 if ($("#checkYt").is(':checked')) {
@@ -113,15 +114,15 @@
                 if (data.code == "000") {
                     pc.splicePayDetailsDataEvent(data.data.data_list, "工长");
                     pc.splicePayMoneyDataEvent(data.data.data_list["需付款"]);
-                    if(data.data.pay_type == 0){ // 没有需要支付的订单（已支付）
-                		$("#Jsubmit").val("已支付").addClass("alreadyPaid");
-                		$("#checkYt").prop("checked",true);
-                        $("#checkYt").attr('disabled',true);
-                		$(".lookit_default").find("em").addClass("defalut_ico");
-						$(".lookit_default").find("label").addClass("cursor");
-                		$("#nocheck").addClass("yes_check");
-                		FLAG = false;
-                	}
+                    if (data.data.pay_type == 0) { // 没有需要支付的订单（已支付）
+                        $("#Jsubmit").val("已支付").addClass("alreadyPaid");
+                        $("#checkYt").prop("checked", true);
+                        $("#checkYt").attr('disabled', true);
+                        $(".lookit_default").find("em").addClass("defalut_ico");
+                        $(".lookit_default").find("label").addClass("cursor");
+                        $("#nocheck").addClass("yes_check");
+                        FLAG = false;
+                    }
                     $(document).on("click", ".titlelist li", function () {
                         pc.splicePayDetailsDataEvent(data.data.data_list, $(this).find("a").text());
                         $(this).addClass("payment_on").siblings().removeClass("payment_on");
