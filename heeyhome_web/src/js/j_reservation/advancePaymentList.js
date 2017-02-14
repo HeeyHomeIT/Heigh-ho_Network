@@ -116,6 +116,7 @@
                     if(data.data.pay_type == 0){ // 没有需要支付的订单（已支付）
                 		$("#Jsubmit").val("已支付").addClass("alreadyPaid");
                 		$("#checkYt").prop("checked",true);
+                        $("#checkYt").attr('disabled',true);
                 		$(".lookit_default").find("em").addClass("defalut_ico");
 						$(".lookit_default").find("label").addClass("cursor");
                 		$("#nocheck").addClass("yes_check");

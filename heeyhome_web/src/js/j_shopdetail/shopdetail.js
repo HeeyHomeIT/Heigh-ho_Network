@@ -170,7 +170,14 @@
                     else if ($.base64.decode(userType) == 2) {
                         layer.alert('工长暂时还不能收藏店铺哦~~');
                     } else {
-                        window.location.href = 'register.html';
+                        layer.msg("亲，收藏前请先登录哦~");
+                        function login() {
+                            window.location.href = "register.html#/dl";
+                        }
+
+                        setTimeout(function () {
+                            login();
+                        }, 1500);
                     }
                 }
             });

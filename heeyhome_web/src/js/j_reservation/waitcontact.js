@@ -139,25 +139,21 @@
 					vrStr8 += ' <span id="Jtime8" class="time">'+value.order_status_time[8].split(" ")[1]+'</span>';
 					vrStr8 += ' <span class="detail_text">店小二已取消本次订单了</span></p>';
 					vrStr8 += '<div>快去和店小二沟通一下吧;</div></li> ';
-					break;
 				case "7":
 					vrStr7 += '<li class="detail_active"><em></em><p><span id="Jday7" class="date">'+value.order_status_time[7].split(" ")[0]+'</span>';
 					vrStr7 += ' <span id="Jtime7" class="time">'+value.order_status_time[7].split(" ")[1]+'</span>';
 					vrStr7 += ' <span class="detail_text">订单已经取消</span></p>';
 					vrStr7 += '<div>快去和店小二沟通一下吧;</div></li> ';
-                    break;
 				case "4":
 					vrStr4 += '<li class="detail_active"><em></em><p><span id="Jday5" class="date">'+value.order_status_time[4].split(" ")[0]+'</span>';
 					vrStr4 += ' <span id="Jtime5" class="time">'+value.order_status_time[4].split(" ")[1]+'</span>';
 					vrStr4 += ' <span class="detail_text">工长已经上传预支付单，请立即支付(<a href="reservation.html#/advancelist?pos='+value.order_id+'">去看看</a>)</span></p>';
 					vrStr4 += '</li> ';
-                    break;
 				case "3":
 					vrStr3 += '<li class="'+(value.order_status_id != 3?'detail_active':'')+'"><em></em><p><span id="Jday4" class="date">'+value.order_status_time[3].split(" ")[0]+'</span>';
 					vrStr3 += ' <span id="Jtime4" class="time">'+value.order_status_time[3].split(" ")[1]+'</span>';
 					vrStr3 += ' <span class="detail_text">店铺接受您的预约需求，预约上门时间为 '+value.reservation_time+'</span></p>';
 					vrStr3 += '<div>请等待工长上门量房</div></li> ';
-                    break;
 				case "1":
 					var newTime = getTimeHandler.getTimeEvent(value.order_time,8);
 					vrStr1 += '<li class="detail_active"><em></em><p><span id="Jday1" class="date">'+value.order_time.split(" ")[0]+'</span><span id="Jtime1" class="time">'+value.order_time.split(" ")[1]+'</span><span class="detail_text">您的需求已提交给店小二</span>';

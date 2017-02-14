@@ -3,7 +3,7 @@ define(['app'], function(app) {
 		/*定义一个类*/
 		var roomPlanObj = {};
 		var Msg1 = "未保存工艺";
-		var Msg2 = "已保存工艺"
+		var Msg2 = "已保存工艺";
 		var COUNTURL = 'http://www.heeyhome.com/api/public/costcalculator/count'; // 成本计算器接口
 
 		var indexCalWrap = {
@@ -79,7 +79,7 @@ define(['app'], function(app) {
 						}
 						self.roomsPlanStatusEvent($this.parent().attr("id"), num);
 						$this.siblings("a").removeClass("off");
-						$(".add-btn").removeClass("off").addClass("Jcursor")
+						$(".add-btn").removeClass("off").addClass("Jcursor");
 						$(this).siblings("span").find("input").val(num);
 						if(num == 0) {
 							$this.addClass("off").removeClass("Jcursor");
@@ -101,7 +101,7 @@ define(['app'], function(app) {
 						});
 						if(num == roomNumber || sum == roomNumber) {
 							$this.addClass("off").removeClass("Jcursor");
-							$(".add-btn").addClass("off").removeClass("Jcursor")
+							$(".add-btn").addClass("off").removeClass("Jcursor");
 						}
 					}
 					// 房间工艺选择
@@ -314,7 +314,7 @@ define(['app'], function(app) {
 					rnid = $(".JroomName").data("rn");
 				if(cnid != null && cnid != undefined && rnid != null && rnid != undefined) {
 					if(cnid == rnid) {
-						strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择右边的房间</span></div>'
+						strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择右边的房间</span></div>';
 						$(".mainareadiv .filter_nav ").html(strLi);
 					}
 				}
@@ -326,7 +326,7 @@ define(['app'], function(app) {
 			initcontentStrEvent: function() {
 				var self = this;
 				var strLi;
-				strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择右边的房间</span></div>'
+				strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择右边的房间</span></div>';
 				$(".mainareadiv .filter_nav ").html(strLi);
 			},
 			/**
@@ -346,10 +346,11 @@ define(['app'], function(app) {
 					$.each($filterNav.find(".filter_item"), function(i, elem) {
 						dataObj[$(elem).find("label").data("name")] = $(elem).find("div.item_mod a.cit").data("val");
 					});
-					resObj[roomName] = dataObj
+					resObj[roomName] = dataObj;
 					$(".J" + roomName).attr("data-option", JSON.stringify(resObj));
 					$(".J" + roomName).attr("data-sw", 1);
 					$(".J" + roomName).closest("li").children("span").removeClass("none").html(Msg2);
+					layer.msg('保存成功');
 				});
 			},
 			lastdivClickEvent: function() {
@@ -382,9 +383,9 @@ define(['app'], function(app) {
 					room_distribution["master"] = 1; //主卧数量
 					room_distribution["second"] = $(".Jsecond").val(); //次卧数量
 					room_distribution["child"] = $(".Jchild").val(); //儿童房数量
-					room_distribution["parent"] = $(".Jparent").val();; //父母房数量
-					room_distribution["cloakroom"] = $(".Jcloakroom").val();; //衣帽间数量
-					room_distribution["study"] = $(".Jstudy").val();; //书房数量
+					room_distribution["parent"] = $(".Jparent").val(); //父母房数量
+					room_distribution["cloakroom"] = $(".Jcloakroom").val(); //衣帽间数量
+					room_distribution["study"] = $(".Jstudy").val(); //书房数量
 					calObj.room_distribution = room_distribution;
 					calObj.master_distribution = self.initGetCalDataEvent($(".Jzw")); // 主卧参数
 					calObj.second_distribution = self.initGetCalDataEvent($(".Jcw")); // 次卧参数
@@ -404,59 +405,73 @@ define(['app'], function(app) {
 					}
 					calObj.wall = $("#qtccgcRadio").attr("data-select"); // 墙体改造
 					calObj.ground_sank = $("#wsjdmxcRadio").attr("data-select"); // 卫生间地面下沉
-					console.log(calObj)
-					$.ajax({
-						url: COUNTURL,
-						type: "GET",
-						async: true,
-						dataType: 'jsonp',
-						data: {
-							calculator_json: JSON.stringify(calObj)
-						},
-						beforeSend: function() {
-							$("#loading").removeClass("display");
-						},
-						success: function(data) {
-							console.log(data)
-							if(data.code == 000){
-								var costObj = {};
-								costObj.gzrg = data.data.gzrg; // 工长人工费用
-								costObj.sdrg = data.data.sdrg; // 水电人工费用
-								costObj.wgrg = data.data.wgrg; // 瓦工人工费用
-		                      	costObj.mgrg = data.data.mgrg; // 木工人工费用
-		                     	costObj.yqgrg = data.data.yqgrg; // 油漆工人工费用
-		                      	costObj.zgrg = data.data.zgrg; // 杂工人工费用
-		                      	costObj.rgzj = data.data.rgzj; // 人工总价费用
-		                    	costObj.zdsdcl = data.data.zdsdcl; // 中端水电材料费用
-		                    	costObj.gdsdcl = data.data.gdsdcl; // 高端水电材料费用
-		                      	costObj.wgfc = data.data.wgfc; // 瓦工辅材费用
-		                      	costObj.mgfc = data.data.mgfc; // 木工辅材费用
-			                    costObj.yqcl = data.data.yqcl; // 油漆材料费用
-			                    costObj.czdd = data.data.czdd; // 瓷砖低端费用
-			                    costObj.czgd = data.data.czgd; // 瓷砖高端费用
-			                    costObj.bc = data.data.bc; // 板材费用
-			                    costObj.dls = data.data.dls; // 大理石费用
-			                    costObj.db = data.data.db; // 地板费用
-			                    costObj.mm = data.data.mm; // 木门费用
-			                    costObj.cfym = data.data.cfym; // 厨房移门费用
-		                     	costObj.lyfym = data.data.lyfym; // 淋浴移门费用
-		                     	costObj.ygym = data.data.ygym; // 衣柜移门费用
-		                     	costObj.jcdd = data.data.jcdd; // 集成吊顶费用
-		                    	costObj.cgsys = data.data.cgsys; // 橱柜石英石费用
-		                    	costObj.zxzj = data.data.zxzj; // 装修总价
-		                      	sessionStorage.payJson = JSON.stringify(costObj);
-		                      	var url = "calresult.html#/calresult";
-								window.location.href = url + "?cs="+calObj.city+"&mj="+calObj.area+"&fj="+calObj.room_num+"&kt="+calObj.parlor_num+"&wsj="+calObj.bathroom_num+"&yt="+calObj.balcony_num;
-							}else if(data.code == 200){
-								layer.alert(data.msg);
-							}
+					console.log(calObj);
+                    var jSw = $(".Jzw").attr('data-sw');//主卧
+                    var kSw = $(".Jkct").attr('data-sw');//客餐厅
+                    var ySw = $(".Jyt").attr('data-sw');//阳台
+                    var cSw = $(".Jcf").attr('data-sw');//厨房
+                    if (jSw == '0') {
+                        layer.msg('主卧还没有保存工艺哦~~');
+                    } else if (kSw == '0') {
+                        layer.msg('客餐厅还没有保存工艺哦~~');
+                    } else if (ySw == '0') {
+                        layer.msg('阳台还没有保存工艺哦~~');
+                    } else if (cSw == '0') {
+                        layer.msg('厨房还没有保存工艺哦~~');
+                    } else {
+                        $.ajax({
+                            url: COUNTURL,
+                            type: "GET",
+                            async: true,
+                            dataType: 'jsonp',
+                            data: {
+                                calculator_json: JSON.stringify(calObj)
+                            },
+                            beforeSend: function () {
+                                $("#loading").removeClass("display");
+                            },
+                            success: function (data) {
+                                console.log(data);
+                                if (data.code == '000') {
+                                    var costObj = {};
+                                    costObj.gzrg = data.data.gzrg; // 工长人工费用
+                                    costObj.sdrg = data.data.sdrg; // 水电人工费用
+                                    costObj.wgrg = data.data.wgrg; // 瓦工人工费用
+                                    costObj.mgrg = data.data.mgrg; // 木工人工费用
+                                    costObj.yqgrg = data.data.yqgrg; // 油漆工人工费用
+                                    costObj.zgrg = data.data.zgrg; // 杂工人工费用
+                                    costObj.rgzj = data.data.rgzj; // 人工总价费用
+                                    costObj.zdsdcl = data.data.zdsdcl; // 中端水电材料费用
+                                    costObj.gdsdcl = data.data.gdsdcl; // 高端水电材料费用
+                                    costObj.wgfc = data.data.wgfc; // 瓦工辅材费用
+                                    costObj.mgfc = data.data.mgfc; // 木工辅材费用
+                                    costObj.yqcl = data.data.yqcl; // 油漆材料费用
+                                    costObj.czdd = data.data.czdd; // 瓷砖低端费用
+                                    costObj.czgd = data.data.czgd; // 瓷砖高端费用
+                                    costObj.bc = data.data.bc; // 板材费用
+                                    costObj.dls = data.data.dls; // 大理石费用
+                                    costObj.db = data.data.db; // 地板费用
+                                    costObj.mm = data.data.mm; // 木门费用
+                                    costObj.cfym = data.data.cfym; // 厨房移门费用
+                                    costObj.lyfym = data.data.lyfym; // 淋浴移门费用
+                                    costObj.ygym = data.data.ygym; // 衣柜移门费用
+                                    costObj.jcdd = data.data.jcdd; // 集成吊顶费用
+                                    costObj.cgsys = data.data.cgsys; // 橱柜石英石费用
+                                    costObj.zxzj = data.data.zxzj; // 装修总价
+                                    sessionStorage.payJson = JSON.stringify(costObj);
+                                    var url = "calresult.html#/calresult";
+                                    window.location.href = url + "?cs=" + calObj.city + "&mj=" + calObj.area + "&fj=" + calObj.room_num + "&kt=" + calObj.parlor_num + "&wsj=" + calObj.bathroom_num + "&yt=" + calObj.balcony_num;
+                                } else if (data.code == 200) {
+                                    layer.alert(data.msg);
+                                }
 
-						},
-						complete: function() {
-							$("#loading").addClass("display");
-						},
-						error: function(data) {}
-					});
+
+                            }, complete: function () {
+                                $("#loading").addClass("display");
+                            }, error: function (data) {
+                            }
+                        });
+                    }
 				});
 			},
 			initGetCalDataEvent: function(element) {

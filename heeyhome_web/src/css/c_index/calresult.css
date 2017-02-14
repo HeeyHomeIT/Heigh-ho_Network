@@ -1,6 +1,6 @@
 body #crcontainer {
     /*background-color: rgba(231,231,231,0.5)*/
-    background-color: rgba(0, 0, 0, 0.83)
+    background-color: rgba(242, 242, 242, 0.83)
 }
 
 #crcontent {
@@ -44,8 +44,8 @@ body #crcontainer {
     width: 132px;
     height: 132px;
     margin: 100px 30px 100px 50px;
-    background: #EEC988;
-    border: 1px solid #EEC988;
+    background: #4b4948;
+    border: 1px solid #4b4948;
     border-radius: 50%
 }
 
@@ -66,21 +66,21 @@ body #crcontainer {
 }
 
 #crcontent .cr_condiv > div.cr_content > div.cr_title > a > em.icon-rg {
-	background-position: -11px -99px;
+    background-position: 0 0;
 }
 
 #crcontent .cr_condiv > div.cr_content > div.cr_title > a > em.icon-fc {
-	background-position: -81px -105px;
+    background-position: -246px -21px;
 }
 
 #crcontent .cr_condiv > div.cr_content > div.cr_title > a > em.icon-zc {
-	background-position: -11px -176px;
+    background-position: -497px -21px;
 }
 
 #crcontent .cr_condiv > div.cr_content > div.cr_title > a > dl {
     height: 32px;
     font-size: 16px;
-    color: #1c1c1c;
+    color: #f4f4f4;
     overflow: hidden;
     line-height: 32px
 }
@@ -88,7 +88,6 @@ body #crcontainer {
 #crcontent .cr_condiv > div.cr_content > div.cr_con {
     float: left;
     width: 900px;
-    color: #EEC988;
     font-size: 16px;
     margin-bottom: 20px;
     position: relative
@@ -115,8 +114,8 @@ body #crcontainer {
 #crcontent .cr_condiv > div.cr_content > div.cr_con .plan_one > i {
     width: 12px;
     height: 12px;
-    background: url(../img/sprite-img.png) no-repeat;
-    background-position: -69px -273px;
+    background: url(../img/sprite-calresult.png) no-repeat;
+    background-position: -97px -423px;
     margin: 0 7px -1px 20px;
     position: relative;
     z-index: 999
@@ -125,7 +124,7 @@ body #crcontainer {
 #crcontent .cr_condiv > div.cr_content > div.cr_con .wages {
     padding-bottom: 8px;
     margin: -31px 23px 0 215px;
-    border-left: 1px dashed #EEC988;
+    border-left: 1px solid #4b4948;
     position: relative
 }
 
@@ -133,9 +132,9 @@ body #crcontainer {
     margin: -31px 23px 0 45px;
 }
 
-/*#crcontent .cr_condiv>div#rgcontent>div.cr_con .wages.lastWages {
-	border-left: 0;
-}*/
+#crcontent .cr_condiv > div.cr_content > div.cr_con .lastWages {
+    border-left: none;
+}
 
 #crcontent .cr_condiv > div.cr_content > div.cr_con .wages dl {
     height: 25px;
@@ -152,11 +151,11 @@ body #crcontainer {
 
 #crcontent .cr_condiv > div.cr_content > div.cr_con .wages a {
     cursor: pointer;
-    color: #EEC988;
+    color: #636363;
 }
 
 #crcontent .cr_condiv > div.cr_content > div.cr_con .wages a:hover {
-    color: #ff7449;
+    /*color: #ff7449;*/
 }
 
 #crcontent .cr_condiv > div.cr_content > div.cr_con .wages_tip, #crcontent .cr_condiv > div.specialreminder {
@@ -167,7 +166,7 @@ body #crcontainer {
     display: inline-block;
     font-size: 14px;
     margin-left: 15px;
-    color: #ff7449;
+    color: #4b4948;
     line-height: 25px
 }
 
@@ -177,7 +176,7 @@ body #crcontainer {
 
 #crcontent .cr_condiv > div.specialreminder h5 {
     font-size: 18px;
-    color: #ff7449;
+    color: #4b4948;
     margin-left: 40px
 }
 
@@ -185,7 +184,7 @@ body #crcontainer {
     display: inline-block;
     font-size: 14px;
     margin-left: 40px;
-    color: #ff7449;
+    color: #4b4948;
     line-height: 25px;
     padding: 15px 0
 }
@@ -195,6 +194,8 @@ body #crcontainer {
     position: relative;
     text-align: right;
     margin-bottom: 60px;
+    width: 500px;
+    float: right;
 }
 
 #crcontent .cr_condiv > div.cr_btn span, #crcontent .cr_condiv > div.cr_btn a {
@@ -203,30 +204,60 @@ body #crcontainer {
     width: 170px;
     height: 55px;
     text-align: center;
-    margin-left: 90px;
-    line-height: 55px;
     font-size: 16px
 }
 
+#crcontent .cr_condiv > div.cr_btn .total, #crcontent .cr_condiv > div.cr_btn .cr_back {
+    height: 37px;
+}
+
+#crcontent .cr_condiv > div.cr_btn .cr_collection {
+    line-height: 55px;
+}
+
+.cr_btn_left, .cr_btn_right {
+    float: left;
+    width: 200px;
+}
+
 #crcontent .cr_condiv > div.cr_btn span.total {
-    background: #e69628;
-    border: 1px solid #e69628;
-    color: #fff
+    color: #4b4948;
+    margin-top: 20px;
+    width: 200px;
+}
+
+#crcontent .cr_condiv > div.cr_btn span.total em {
+    font-size: 20px;
 }
 
 #crcontent .cr_condiv > div.cr_btn span.cr_collection {
-    border: 1px solid #e69628;
+    width: 214px;
+    height: 79px;
+    line-height: 79px;
+    border: 1px solid #d2af77;
     border-radius: 2px;
     margin-left: 20px;
     cursor: pointer;
-    color: #e69628
+    color: #fff;
+    background-color: #EEC988;
+    font-size: 28px;
+}
+
+#crcontent .cr_condiv > div.cr_btn span.cr_collection i {
+    width: 41px;
+    height: 42px;
+    display: inline-block;
+    background: url("../../css/img/sprite-calresult.png") no-repeat;
+    background-position: -497px -339px;
+    vertical-align: middle;
+    margin-right: 20px;
+    margin-left: -20px;
 }
 
 #crcontent .cr_condiv > div.cr_btn a.cr_back {
     float: right;
-    line-height: 95px;
     cursor: pointer;
-    color: #fff
+    color: #4b4948
 }
 
 #crcontent .cr_condiv > div.cr_btn a.cr_back:hover {
@@ -267,7 +298,7 @@ body #crcontainer {
 }
 
 .sl_wcontent .wcontent_title em {
-	width: 22px;
+    width: 22px;
     height: 22px;
     background-position: -332px -12px;
     display: block;
@@ -445,4 +476,12 @@ body #crcontainer {
 
 .hide {
     display: none;
+}
+
+.col_4b4948 {
+    color: #4b4948;
+}
+
+.sprite-calresult {
+    background: url("../../css/img/sprite-calresult.png") no-repeat;
 }

@@ -1656,6 +1656,10 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }
+                //需要修改一个availlabel字段
+                if ($order_step == 4 || $order_step == 8 || $order_step == 12 || $order_step == 16) {
+                    $available = DB::UPDATE('UPDATE hh_order_actual_list SET is_available = 1 WHERE order_id = ?',[$order_id]);
+                }
                 $step = $order_step + 1;
                 $order_step = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?', [$step, $order_id]);
                 $ifinsert = false;
@@ -1745,23 +1749,11 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         $order_personnel = $order_id;
         $callback = rq('callback');
         $list_data_json = rq('list_data_json');
-        $list_dataArr = array_values(json_decode($list_data_json, true));
+        $list_data_arr = json_decode($list_data_json, true);
         $remark = rq('remark');
         if (!$remark) {
             $remark = '';
         }
-
-        $count = count($list_dataArr);
-        $list_data_arr = array();
-        $dataCount = 0;
-        for ($i = 0; $i < 63; $i++) {
-            if ($i < $count) {
-                array_push($list_data_arr, $list_dataArr[$i]);
-            } else {
-                array_push($list_data_arr, $dataCount);
-            }
-        }
-
         //查看订单是否存在
         $sel_order_tbl = DB::select('SELECT * FROM hh_order_actual_list WHERE order_id = ?', [$order_id]);
 
@@ -1839,15 +1831,15 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             if ($actual_list_tbl) {
                 $arr = array(
                     "code" => "000",
-                    "msg" => "插入成功",
+                    "msg" => "更新成功",
                     "data" => ""
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             } else {
                 $arr = array(
                     "code" => "200",
-                    "msg" => "插入失败",
-                    "data" => ""
+                    "msg" => "更新失败",
+                    "data" => $list_data_arr
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
