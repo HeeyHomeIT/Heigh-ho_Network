@@ -1,4 +1,4 @@
-define(['angular', 'require', 'angular-ui-router', 'oclazyLoad', 'ChineseDistricts', 'distpicker', 'pagination', 'paging', 'superSlide', 'dialog', 'ymdClass', 'layer', 'idCode','cookie'], function (angular, require) {
+define(['angular', 'require', 'angular-ui-router', 'oclazyLoad', 'ChineseDistricts', 'distpicker', 'pagination', 'paging', 'superSlide', 'dialog', 'ymdClass', 'layer', 'idCode','cookie','base64'], function (angular, require) {
 
     var app = angular.module('heeyhomeApp', ['ui.router', "oc.lazyLoad", 'tm.pagination']);
 
