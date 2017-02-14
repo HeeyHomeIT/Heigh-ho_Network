@@ -479,11 +479,11 @@
                         });
                         // 未开工之前跳转到预约单页面
                         if (step == 18 && (status == 1 || status == 2 || status == 3 || status == 4)) {
-//			                var oInfoObj = {};
-//			                oInfoObj.shop_id = value.shop_id;
-//			                oInfoObj.user_id = value.user_id;
-//			                oInfoObj.order_id = value.order_id;
-//			                $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
+			                var oInfoObj = {};
+			                oInfoObj.shop_id = data.data.shop_id;
+			                oInfoObj.user_id = data.data.user_id;
+			                oInfoObj.order_id = data.data.order_id;
+			                $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
                             $(".order_cnt_right .detail").attr("href", "reservation.html#/waitcontact?type=1");
                         } else {
                             $(".order_cnt_right .detail").attr("href", "order_detail.html#/morder_wrap/morder_detail");
@@ -1538,6 +1538,7 @@
      */
     spliceOrderHandler = {
         spliceOrderList: function (value) {
+            console.log(value);
             var vrStr = '<div class="order_box">';
             vrStr += '<div class="ordercnt_title clearfix">';
             vrStr += '<span class="type">' + value.room + '室 ' + value.parlour + '厅' + value.toilet + '卫' + value.balcony + '阳台</span>';
