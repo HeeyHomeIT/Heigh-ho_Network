@@ -22,7 +22,7 @@
   margin: 0 auto;
   width: 15%;
   height: 15%;
-  background-color: #3399FF;
+  background-color: #EEC988;
   border-radius: 100%;
   -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
   animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
@@ -125,6 +125,18 @@
 .sk-fading-circle .sk-circle12:before {
   -webkit-animation-delay: -0.1s;
           animation-delay: -0.1s;
+}
+
+.loadingspan{
+    width: 88px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -40px;
+    margin-left: -30px;
+    color: #eec988;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei';
 }
 
 @-webkit-keyframes sk-circleFadeDelay {
