@@ -205,6 +205,17 @@
                     sessionStorage.setItem("shopid", shopid);
                     sessionStorage.setItem("orderid", orderid);
                 });
+                $(document).off("click", ".ordercnt_content .all .look_new").on("click", ".ordercnt_content .all .look_new", function () {
+                    var shopid = $(this).parent().attr("data-shopid");
+                    var orderid = $(this).parent().attr("data-orderid");
+                    var userid = $(this).parent().attr("data-sss");//userid
+                    var oInfoObj = {};
+                    oInfoObj.shop_id = shopid;
+                    oInfoObj.user_id = userid;
+                    oInfoObj.order_id = orderid;
+                    $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
+                    window.open('reservation.html#/waitcontact?type=1');
+                });
                 $(document).off("click", ".ordercnt_content .all .bottom").on("click", ".ordercnt_content .all .bottom", function () {
                     var shopid = $(this).parent().attr("data-shopid");
                     var orderid = $(this).parent().attr("data-orderid");
@@ -480,11 +491,11 @@
                         // 未开工之前跳转到预约单页面
                         if (step == 18 && (status == 1 || status == 2 || status == 3 || status == 4)) {
                             console.log(data);
-			                var oInfoObj = {};
-			                oInfoObj.shop_id = data.data.order_list[0].shop_id;
-			                oInfoObj.user_id = data.data.order_list[0].user_id;
-			                oInfoObj.order_id = data.data.order_list[0].order_id;
-			                $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
+                            var oInfoObj = {};
+                            oInfoObj.shop_id = data.data.order_list[0].shop_id;
+                            oInfoObj.user_id = data.data.order_list[0].user_id;
+                            oInfoObj.order_id = data.data.order_list[0].order_id;
+                            $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
                             $(".order_cnt_right .detail").attr("href", "reservation.html#/waitcontact?type=1");
                         } else {
                             $(".order_cnt_right .detail").attr("href", "order_detail.html#/morder_wrap/morder_detail");
@@ -1554,13 +1565,13 @@
             vrStr += '<div class="trade_stage"><p>' + value.order_status_ch + '</p></div>';
             // 未开工之前跳转到预约单页面
             if (value.order_step == 18 && (value.order_status == 1 || value.order_status == 2 || value.order_status == 3 || value.order_status == 4)) {
-                console.log(value);
-                var oInfoObj = {};
-                oInfoObj.shop_id = value.shop_id;
-                oInfoObj.user_id = value.user_id;
-                oInfoObj.order_id = value.order_id;
-                $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
-                vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="reservation.html#/waitcontact?type=1" target="_blank" class="top">查看详情</a>';
+                // console.log(value);
+                // var oInfoObj = {};
+                // oInfoObj.shop_id = value.shop_id;
+                // oInfoObj.user_id = value.user_id;
+                // oInfoObj.order_id = value.order_id;
+                // $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
+                vrStr += '<div class="all" data-sss="' + value.user_id + '" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="javascript:;" target="_blank" class="top look_new">查看详情</a>';
             } else if (value.order_status == 7) {
                 vrStr += '<div class="all"><span>--</span>';
             } else {
