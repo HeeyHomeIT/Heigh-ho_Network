@@ -1530,23 +1530,11 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         $order_personnel = $order_id;
         $callback = rq('callback');
         $list_data_json = rq('list_data_json');
-        $list_dataArr = array_values(json_decode($list_data_json, true));
+        $list_data_arr = json_decode($list_data_json, true);
         $remark = rq('remark');
         if (!$remark) {
             $remark = '';
         }
-
-        $count = count($list_dataArr);
-        $list_data_arr = array();
-        $dataCount = 0;
-        for ($i = 0; $i < 63; $i++) {
-            if ($i < $count) {
-                array_push($list_data_arr, $list_dataArr[$i]);
-            } else {
-                array_push($list_data_arr, $dataCount);
-            }
-        }
-
         //查看订单是否存在
         $sel_order_tbl = DB::select('SELECT * FROM hh_order_actual_list WHERE order_id = ?', [$order_id]);
 
@@ -1624,15 +1612,15 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             if ($actual_list_tbl) {
                 $arr = array(
                     "code" => "000",
-                    "msg" => "插入成功",
+                    "msg" => "更新成功",
                     "data" => ""
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             } else {
                 $arr = array(
                     "code" => "200",
-                    "msg" => "插入失败",
-                    "data" => ""
+                    "msg" => "更新失败",
+                    "data" => $list_data_arr
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
