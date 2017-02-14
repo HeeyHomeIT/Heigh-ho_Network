@@ -1437,6 +1437,10 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }
+                //需要修改一个availlabel字段
+                if ($order_step == 4 || $order_step == 8 || $order_step == 12 || $order_step == 16) {
+                    $available = DB::UPDATE('UPDATE hh_order_actual_list SET is_available = 1 WHERE order_id = ?',[$order_id]);
+                }
                 $step = $order_step + 1;
                 $order_step = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?', [$step, $order_id]);
                 $ifinsert = false;
