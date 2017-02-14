@@ -765,6 +765,8 @@
                                     data.data.order_list[i].order_status = '待预约';
                                 } else if (data.data.order_list[i].order_status == '3') {
                                     data.data.order_list[i].order_status = '待上门量房';
+                                }else if (data.data.order_list[i].order_status == '4') {
+                                    data.data.order_list[i].order_status = '待用户预支付';
                                 } else if (data.data.order_list[i].order_status == '5') {
                                     data.data.order_list[i].order_status = '订单进行中';
                                 } else if (data.data.order_list[i].order_status == '6') {

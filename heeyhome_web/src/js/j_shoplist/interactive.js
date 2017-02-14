@@ -175,7 +175,9 @@
 
             /* 点击店铺收藏 */
             $(document).on('click', '.collect_shop', function () {
-                if ($.base64.decode(USERTYPE) == 1) {
+                if (USERTYPE == null || USERTYPE == "" || USERTYPE == undefined) {
+                    window.location.href = 'register.html';
+                } else if ($.base64.decode(USERTYPE) == 1) {
                     if ($(this).val() == '已收藏') {
                         layer.msg('已收藏过~~');
                     } else {
