@@ -479,10 +479,11 @@
                         });
                         // 未开工之前跳转到预约单页面
                         if (step == 18 && (status == 1 || status == 2 || status == 3 || status == 4)) {
+                            console.log(data);
 			                var oInfoObj = {};
-			                oInfoObj.shop_id = data.data.shop_id;
-			                oInfoObj.user_id = data.data.user_id;
-			                oInfoObj.order_id = data.data.order_id;
+			                oInfoObj.shop_id = data.data.order_list[0].shop_id;
+			                oInfoObj.user_id = data.data.order_list[0].user_id;
+			                oInfoObj.order_id = data.data.order_list[0].order_id;
 			                $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
                             $(".order_cnt_right .detail").attr("href", "reservation.html#/waitcontact?type=1");
                         } else {
