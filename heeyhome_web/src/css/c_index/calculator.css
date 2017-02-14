@@ -20,7 +20,7 @@ body #calcontainer {
     position: relative
 }
 
-#calcontent .cal1,#calcontent .cal2,#calcontent .cal3,#calcontent .cal4,,#calcontent .cal5 {
+#calcontent .cal1,#calcontent .cal2,#calcontent .cal3,#calcontent .cal4,#calcontent .cal5 {
 	position: relative;
 	padding: 20px 45px 0px;
 }
