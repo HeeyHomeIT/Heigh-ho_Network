@@ -38,7 +38,7 @@ class OrderOperateController extends Controller
             $list_data_exist = false;
         }
         //查询订单是否存在，存在则获取装修人员id号
-        $sel_order_tbl = DB::select('SELECT order_personnel FROM hh_order WHERE order_id = ?',
+        $sel_order_tbl = DB::select('SELECT * FROM hh_order WHERE order_id = ?',
             [$order_id]);
         if (!$sel_order_tbl) {
             $arr = array(
@@ -49,6 +49,9 @@ class OrderOperateController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         $order_personnel = $sel_order_tbl[0]->order_personnel;
+        $shop_id = $sel_order_tbl[0]->shop_id;
+        $sel_shop_price = DB::select('SELECT * FROM hh_shop_price WHERE shop_id = ?',
+            [$shop_id]);
         //查询预算单是否存在
         $sel_order_tbl = DB::select('SELECT * FROM hh_order_reckon_list WHERE order_id = ? AND order_personnel = ?',
             [$order_id, $order_personnel]);
@@ -141,14 +144,91 @@ service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         $changeOrder_status = DB::update('update hh_order set order_status = 4 where order_id=?', [$order_id]);
         $ins_status_time = DB::insert('INSERT INTO hh_order_status_time (order_id, order_status) VALUES (?,?)',
             [$order_id, 4]);
-        //查询店铺id
-        $sel_shop_id = DB::select('SELECT shop_id FROM hh_order WHERE order_id = ?', [$order_id]);
-        $shop_id = $sel_shop_id[0]->shop_id;
-        //生成预算金额
-        $sel_shop_price = DB::select('SELECT * FROM hh_shop_price WHERE shop_id = ?', [$shop_id]);
 
-        $ins_status_time = DB::insert('INSERT INTO hh_order_status_time (order_id, order_status) VALUES (?,?)',
-            [$order_id, 4]);
+        //计算工价
+        $gz = $list_data_arr[63] * $sel_shop_price[0]->foreman_price;
+        $zg = ($list_data_arr[0] * $sel_shop_price[0]->service1);
+        $zg += ($list_data_arr[1] * $sel_shop_price[0]->service2);
+        $zg += ($list_data_arr[2] * $sel_shop_price[0]->service3);
+        $zg += ($list_data_arr[3] * $sel_shop_price[0]->service4);
+        $zg += ($list_data_arr[4] * $sel_shop_price[0]->service5);
+        $zg += ($list_data_arr[5] * $sel_shop_price[0]->service6);
+        $zg += ($list_data_arr[6] * $sel_shop_price[0]->service7);
+        $zg += ($list_data_arr[7] * $sel_shop_price[0]->service8);
+        $zg += ($list_data_arr[8] * $sel_shop_price[0]->service9);
+        $zg += ($list_data_arr[9] * $sel_shop_price[0]->service10);
+        $zg += ($list_data_arr[10] * $sel_shop_price[0]->service11);
+        $zg += ($list_data_arr[11] * $sel_shop_price[0]->service12);
+        $zg += ($list_data_arr[12] * $sel_shop_price[0]->service13);
+        $zg += ($list_data_arr[13] * $sel_shop_price[0]->service14);
+        $zg += ($list_data_arr[14] * $sel_shop_price[0]->service15);
+        $zg += ($list_data_arr[15] * $sel_shop_price[0]->service16);
+        $sdg = ($list_data_arr[16] * $sel_shop_price[0]->service17);
+        $sdg += ($list_data_arr[17] * $sel_shop_price[0]->service18);
+        $wg = ($list_data_arr[18] * $sel_shop_price[0]->service19);
+        $wg += ($list_data_arr[19] * $sel_shop_price[0]->service20);
+        $wg += ($list_data_arr[20] * $sel_shop_price[0]->service21);
+        $wg += ($list_data_arr[21] * $sel_shop_price[0]->service22);
+        $wg += ($list_data_arr[22] * $sel_shop_price[0]->service23);
+        $wg += ($list_data_arr[23] * $sel_shop_price[0]->service24);
+        $wg += ($list_data_arr[24] * $sel_shop_price[0]->service25);
+        $wg += ($list_data_arr[25] * $sel_shop_price[0]->service26);
+        $wg += ($list_data_arr[26] * $sel_shop_price[0]->service27);
+        $wg += ($list_data_arr[27] * $sel_shop_price[0]->service28);
+        $wg += ($list_data_arr[28] * $sel_shop_price[0]->service29);
+        $wg += ($list_data_arr[29] * $sel_shop_price[0]->service30);
+        $wg += ($list_data_arr[30] * $sel_shop_price[0]->service31);
+        $wg += ($list_data_arr[31] * $sel_shop_price[0]->service32);
+        $wg += ($list_data_arr[32] * $sel_shop_price[0]->service33);
+        $wg += ($list_data_arr[33] * $sel_shop_price[0]->service34);
+        $wg += ($list_data_arr[34] * $sel_shop_price[0]->service35);
+        $wg += ($list_data_arr[35] * $sel_shop_price[0]->service36);
+        $wg += ($list_data_arr[36] * $sel_shop_price[0]->service37);
+        $wg += ($list_data_arr[37] * $sel_shop_price[0]->service38);
+        $wg += ($list_data_arr[38] * $sel_shop_price[0]->service39);
+        $wg += ($list_data_arr[39] * $sel_shop_price[0]->service40);
+        $wg += ($list_data_arr[40] * $sel_shop_price[0]->service41);
+        $mg = ($list_data_arr[41] * $sel_shop_price[0]->service42);
+        $mg += ($list_data_arr[42] * $sel_shop_price[0]->service43);
+        $mg += ($list_data_arr[43] * $sel_shop_price[0]->service44);
+        $mg += ($list_data_arr[44] * $sel_shop_price[0]->service45);
+        $mg += ($list_data_arr[45] * $sel_shop_price[0]->service46);
+        $mg += ($list_data_arr[46] * $sel_shop_price[0]->service47);
+        $mg += ($list_data_arr[47] * $sel_shop_price[0]->service48);
+        $mg += ($list_data_arr[48] * $sel_shop_price[0]->service49);
+        $mg += ($list_data_arr[49] * $sel_shop_price[0]->service50);
+        $mg += ($list_data_arr[50] * $sel_shop_price[0]->service51);
+        $mg += ($list_data_arr[51] * $sel_shop_price[0]->service52);
+        $mg += ($list_data_arr[52] * $sel_shop_price[0]->service53);
+        $yqg = ($list_data_arr[53] * $sel_shop_price[0]->service54);
+        $yqg += ($list_data_arr[54] * $sel_shop_price[0]->service55);
+        $yqg += ($list_data_arr[55] * $sel_shop_price[0]->service56);
+        $yqg += ($list_data_arr[56] * $sel_shop_price[0]->service57);
+        $yqg += ($list_data_arr[57] * $sel_shop_price[0]->service58);
+        $yqg += ($list_data_arr[58] * $sel_shop_price[0]->service59);
+        $yqg += ($list_data_arr[59] * $sel_shop_price[0]->service60);
+        $yqg += ($list_data_arr[60] * $sel_shop_price[0]->service61);
+        $yqg += ($list_data_arr[61] * $sel_shop_price[0]->service62);
+        $yqg += ($list_data_arr[62] * $sel_shop_price[0]->service63);
+        $sum = $gz + $zg + $sdg + $wg + $mg + $yqg;
+        $sum_next = $gz + $zg + $sdg;
+        //添加订单id
+        /* 返回当前的毫秒时间戳(16位) */
+        $mtime = explode(' ', microtime());
+        $mtime[0] = ($mtime[0] + 1) * 1000000;
+        $str1 = (string)$mtime[1];
+        $str2 = substr((string)$mtime[0], 1);
+        $str = $str1 . $str2 . rand(1000, 9999);
+        $pay_id = $str;
+        //添加预支付订单
+        $ins_order_pay = DB::insert('INSERT INTO hh_order_pay(order_id,reckon_amount,actual_finish_amount,actual_next_amount,order_pay_step) VALUES (?,?,?,?,?)',
+            $order_id, $sum, 0, $sum_next, 1);
+        $ins_order_pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',
+            $order_id, $pay_id, 1, 18, $gz, 1);
+        $ins_order_pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',
+            $order_id, $pay_id, 11, 18, $zg, 1);
+        $ins_order_pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',
+            $order_id, $pay_id, 2, 18, $sdg, 1);
         $arr = array(
             "code" => "000",
             "msg" => "生成成功",
@@ -411,7 +491,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,re
                     //杂工及水电工结算单数据修改
                     $actual_list_tbl = DB::update('update hh_order_actual_list SET service1 = ? ,service2 = ? ,service3 = ? ,service4 = ? ,
 service5 = ? ,service6 = ? ,service7 = ? ,service8 = ? ,service9 = ? ,service10 = ? ,service11 = ? ,service12 = ? ,service13 = ? ,service14 = ? ,service15 = ? ,
-service16 = ? ,service17 = ? ,service18 = ? ,remark = ? ,update_time = ? WHERE order_id = ?',
+service16 = ? ,service17 = ? ,service18 = ? ,remark = ? ,update_time = ? ,is_available = 0 WHERE order_id = ?',
                         [$list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6], $list_data_arr[7],
                             $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14], $list_data_arr[15],
                             $list_data_arr[16], $list_data_arr[17], $remark, $timenow, $order_id]);
@@ -420,7 +500,7 @@ service16 = ? ,service17 = ? ,service18 = ? ,remark = ? ,update_time = ? WHERE o
                     //瓦工结算单数据修改
                     $actual_list_tbl = DB::update('UPDATE hh_order_actual_list SET service19 = ? ,service20 = ? ,service21 = ? ,service22 = ? ,service23 = ? ,service24 = ? ,service25 = ? ,service26 = ? ,
 service27 = ? ,service28 = ? ,service29 = ? ,service30 = ? ,service31 = ? ,service32 = ? ,service33 = ? ,service34 = ? ,service35 = ? ,service36 = ? ,service37 = ? ,
-service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,remark = ? ,update_time = ? WHERE order_id = ?',
+service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,remark = ? ,update_time = ? ,is_available = 0 WHERE order_id = ?',
                         [$list_data_arr[18], $list_data_arr[19], $list_data_arr[20], $list_data_arr[21], $list_data_arr[22], $list_data_arr[23],
                             $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30], $list_data_arr[31],
                             $list_data_arr[32], $list_data_arr[33], $list_data_arr[34], $list_data_arr[35], $list_data_arr[36], $list_data_arr[37], $list_data_arr[38], $list_data_arr[39],
@@ -429,13 +509,13 @@ service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,remark = ? ,update_t
                 case 13:
                     //木工结算单数据修改
                     $actual_list_tbl = DB::update('UPDATE hh_order_actual_list SET service42 = ? ,service43 = ? ,service44 = ? ,service45 = ? ,service46 = ? ,service47 = ? ,service48 = ? ,
-service49 = ? ,service50 = ? ,service51 = ? ,service52 = ? ,service53 = ? ,remark = ? ,update_time = ? WHERE order_id = ?',
+service49 = ? ,service50 = ? ,service51 = ? ,service52 = ? ,service53 = ? ,remark = ? ,update_time = ? ,is_available = 0 WHERE order_id = ?',
                         [$list_data_arr[41], $list_data_arr[42], $list_data_arr[43], $list_data_arr[44], $list_data_arr[45], $list_data_arr[46], $list_data_arr[47],
                             $list_data_arr[48], $list_data_arr[49], $list_data_arr[50], $list_data_arr[51], $list_data_arr[52], $remark, $timenow, $order_id]);
                     break;
                 case 17:
                     $actual_list_tbl = DB::update('UPDATE hh_order_actual_list SET service54 = ? ,service55 = ? ,service56 = ? ,service57 = ? ,service58 = ? ,service59 = ? ,
-service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_time = ? WHERE order_id = ?',
+service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_time = ? ,is_available = 0 WHERE order_id = ?',
                         [$list_data_arr[53], $list_data_arr[54], $list_data_arr[55],
                             $list_data_arr[56], $list_data_arr[57], $list_data_arr[58], $list_data_arr[59], $list_data_arr[60], $list_data_arr[61], $list_data_arr[62], $remark, $timenow, $order_id]);
                     break;
@@ -520,73 +600,73 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             $sel_order_tbl = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?', [$order_id]);
             if ($sel_order_tbl) $order_step = $sel_order_tbl[0]->order_step;
             //根据订单步骤隐藏结算单数据
-            if ($order_step < 17) {
-                $sel_actual_list[0]->service63 = "--";
-                $sel_actual_list[0]->service62 = "--";
-                $sel_actual_list[0]->service61 = "--";
-                $sel_actual_list[0]->service60 = "--";
-                $sel_actual_list[0]->service59 = "--";
-                $sel_actual_list[0]->service58 = "--";
-                $sel_actual_list[0]->service57 = "--";
-                $sel_actual_list[0]->service56 = "--";
-                $sel_actual_list[0]->service55 = "--";
-                $sel_actual_list[0]->service54 = "--";
-                if ($order_step < 13) {
-                    $sel_actual_list[0]->service53 = "--";
-                    $sel_actual_list[0]->service52 = "--";
-                    $sel_actual_list[0]->service51 = "--";
-                    $sel_actual_list[0]->service50 = "--";
-                    $sel_actual_list[0]->service49 = "--";
-                    $sel_actual_list[0]->service48 = "--";
-                    $sel_actual_list[0]->service47 = "--";
-                    $sel_actual_list[0]->service46 = "--";
-                    $sel_actual_list[0]->service45 = "--";
-                    $sel_actual_list[0]->service44 = "--";
-                    $sel_actual_list[0]->service43 = "--";
-                    $sel_actual_list[0]->service42 = "--";
-                    if ($order_step < 9) {
-                        $sel_actual_list[0]->service41 = "--";
-                        $sel_actual_list[0]->service40 = "--";
-                        $sel_actual_list[0]->service39 = "--";
-                        $sel_actual_list[0]->service38 = "--";
-                        $sel_actual_list[0]->service37 = "--";
-                        $sel_actual_list[0]->service36 = "--";
-                        $sel_actual_list[0]->service35 = "--";
-                        $sel_actual_list[0]->service34 = "--";
-                        $sel_actual_list[0]->service33 = "--";
-                        $sel_actual_list[0]->service32 = "--";
-                        $sel_actual_list[0]->service31 = "--";
-                        $sel_actual_list[0]->service20 = "--";
-                        $sel_actual_list[0]->service29 = "--";
-                        $sel_actual_list[0]->service28 = "--";
-                        $sel_actual_list[0]->service27 = "--";
-                        $sel_actual_list[0]->service26 = "--";
-                        $sel_actual_list[0]->service25 = "--";
-                        $sel_actual_list[0]->service24 = "--";
-                        $sel_actual_list[0]->service23 = "--";
-                        $sel_actual_list[0]->service22 = "--";
-                        $sel_actual_list[0]->service21 = "--";
-                        $sel_actual_list[0]->service20 = "--";
-                        $sel_actual_list[0]->service19 = "--";
-                        if ($order_step < 5) {
-                            $sel_actual_list[0]->service18 = "--";
-                            $sel_actual_list[0]->service17 = "--";
-                            $sel_actual_list[0]->service16 = "--";
-                            $sel_actual_list[0]->service15 = "--";
-                            $sel_actual_list[0]->service14 = "--";
-                            $sel_actual_list[0]->service13 = "--";
-                            $sel_actual_list[0]->service12 = "--";
-                            $sel_actual_list[0]->service11 = "--";
-                            $sel_actual_list[0]->service10 = "--";
-                            $sel_actual_list[0]->service9 = "--";
-                            $sel_actual_list[0]->service8 = "--";
-                            $sel_actual_list[0]->service7 = "--";
-                            $sel_actual_list[0]->service6 = "--";
-                            $sel_actual_list[0]->service5 = "--";
-                            $sel_actual_list[0]->service4 = "--";
-                            $sel_actual_list[0]->service3 = "--";
-                            $sel_actual_list[0]->service2 = "--";
-                            $sel_actual_list[0]->service1 = "--";
+            if ($order_step < 17 || $order_step = 18) {
+                $sel_actual_list[0]->service63 = 0;
+                $sel_actual_list[0]->service62 = 0;
+                $sel_actual_list[0]->service61 = 0;
+                $sel_actual_list[0]->service60 = 0;
+                $sel_actual_list[0]->service59 = 0;
+                $sel_actual_list[0]->service58 = 0;
+                $sel_actual_list[0]->service57 = 0;
+                $sel_actual_list[0]->service56 = 0;
+                $sel_actual_list[0]->service55 = 0;
+                $sel_actual_list[0]->service54 = 0;
+                if ($order_step < 13 || $order_step = 18) {
+                    $sel_actual_list[0]->service53 = 0;
+                    $sel_actual_list[0]->service52 = 0;
+                    $sel_actual_list[0]->service51 = 0;
+                    $sel_actual_list[0]->service50 = 0;
+                    $sel_actual_list[0]->service49 = 0;
+                    $sel_actual_list[0]->service48 = 0;
+                    $sel_actual_list[0]->service47 = 0;
+                    $sel_actual_list[0]->service46 = 0;
+                    $sel_actual_list[0]->service45 = 0;
+                    $sel_actual_list[0]->service44 = 0;
+                    $sel_actual_list[0]->service43 = 0;
+                    $sel_actual_list[0]->service42 = 0;
+                    if ($order_step < 9 || $order_step = 18) {
+                        $sel_actual_list[0]->service41 = 0;
+                        $sel_actual_list[0]->service40 = 0;
+                        $sel_actual_list[0]->service39 = 0;
+                        $sel_actual_list[0]->service38 = 0;
+                        $sel_actual_list[0]->service37 = 0;
+                        $sel_actual_list[0]->service36 = 0;
+                        $sel_actual_list[0]->service35 = 0;
+                        $sel_actual_list[0]->service34 = 0;
+                        $sel_actual_list[0]->service33 = 0;
+                        $sel_actual_list[0]->service32 = 0;
+                        $sel_actual_list[0]->service31 = 0;
+                        $sel_actual_list[0]->service20 = 0;
+                        $sel_actual_list[0]->service29 = 0;
+                        $sel_actual_list[0]->service28 = 0;
+                        $sel_actual_list[0]->service27 = 0;
+                        $sel_actual_list[0]->service26 = 0;
+                        $sel_actual_list[0]->service25 = 0;
+                        $sel_actual_list[0]->service24 = 0;
+                        $sel_actual_list[0]->service23 = 0;
+                        $sel_actual_list[0]->service22 = 0;
+                        $sel_actual_list[0]->service21 = 0;
+                        $sel_actual_list[0]->service20 = 0;
+                        $sel_actual_list[0]->service19 = 0;
+                        if ($order_step < 5 || $order_step = 18) {
+                            $sel_actual_list[0]->service18 = 0;
+                            $sel_actual_list[0]->service17 = 0;
+                            $sel_actual_list[0]->service16 = 0;
+                            $sel_actual_list[0]->service15 = 0;
+                            $sel_actual_list[0]->service14 = 0;
+                            $sel_actual_list[0]->service13 = 0;
+                            $sel_actual_list[0]->service12 = 0;
+                            $sel_actual_list[0]->service11 = 0;
+                            $sel_actual_list[0]->service10 = 0;
+                            $sel_actual_list[0]->service9 = 0;
+                            $sel_actual_list[0]->service8 = 0;
+                            $sel_actual_list[0]->service7 = 0;
+                            $sel_actual_list[0]->service6 = 0;
+                            $sel_actual_list[0]->service5 = 0;
+                            $sel_actual_list[0]->service4 = 0;
+                            $sel_actual_list[0]->service3 = 0;
+                            $sel_actual_list[0]->service2 = 0;
+                            $sel_actual_list[0]->service1 = 0;
                         }
                     }
                 }
@@ -602,11 +682,43 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     )
                 ),
                 "小计/元" => array(
-                    "预计工程量" => 10000,
-                    "实际工程量" => 10000
+                    "预计工程量" => $sel_reckon_list[0]->foreman_price * $sel_shop_price[0]->foreman_price,
+                    "实际工程量" => $sel_actual_list[0]->foreman_price * $sel_shop_price[0]->foreman_price
                 ),
-                "结转金额/元" => "0");
+                "结转金额/元" => ($sel_actual_list[0]->foreman_price * $sel_shop_price[0]->foreman_price) - ($sel_reckon_list[0]->foreman_price * $sel_shop_price[0]->foreman_price));
             //杂工费用
+            $reckon_sum = ($sel_reckon_list[0]->service1 * $sel_shop_price[0]->service1);
+            $reckon_sum += ($sel_reckon_list[0]->service2 * $sel_shop_price[0]->service2);
+            $reckon_sum += ($sel_reckon_list[0]->service3 * $sel_shop_price[0]->service3);
+            $reckon_sum += ($sel_reckon_list[0]->service4 * $sel_shop_price[0]->service4);
+            $reckon_sum += ($sel_reckon_list[0]->service5 * $sel_shop_price[0]->service5);
+            $reckon_sum += ($sel_reckon_list[0]->service6 * $sel_shop_price[0]->service6);
+            $reckon_sum += ($sel_reckon_list[0]->service7 * $sel_shop_price[0]->service7);
+            $reckon_sum += ($sel_reckon_list[0]->service8 * $sel_shop_price[0]->service8);
+            $reckon_sum += ($sel_reckon_list[0]->service9 * $sel_shop_price[0]->service9);
+            $reckon_sum += ($sel_reckon_list[0]->service10 * $sel_shop_price[0]->service10);
+            $reckon_sum += ($sel_reckon_list[0]->service11 * $sel_shop_price[0]->service11);
+            $reckon_sum += ($sel_reckon_list[0]->service12 * $sel_shop_price[0]->service12);
+            $reckon_sum += ($sel_reckon_list[0]->service13 * $sel_shop_price[0]->service13);
+            $reckon_sum += ($sel_reckon_list[0]->service14 * $sel_shop_price[0]->service14);
+            $reckon_sum += ($sel_reckon_list[0]->service15 * $sel_shop_price[0]->service15);
+            $reckon_sum += ($sel_reckon_list[0]->service16 * $sel_shop_price[0]->service16);
+            $actual_sum = ($sel_actual_list[0]->service1 * $sel_actual_list[0]->service1);
+            $actual_sum += ($sel_actual_list[0]->service2 * $sel_actual_list[0]->service2);
+            $actual_sum += ($sel_actual_list[0]->service3 * $sel_actual_list[0]->service3);
+            $actual_sum += ($sel_actual_list[0]->service4 * $sel_actual_list[0]->service4);
+            $actual_sum += ($sel_actual_list[0]->service5 * $sel_actual_list[0]->service5);
+            $actual_sum += ($sel_actual_list[0]->service6 * $sel_actual_list[0]->service6);
+            $actual_sum += ($sel_actual_list[0]->service7 * $sel_actual_list[0]->service7);
+            $actual_sum += ($sel_actual_list[0]->service8 * $sel_actual_list[0]->service8);
+            $actual_sum += ($sel_actual_list[0]->service9 * $sel_actual_list[0]->service9);
+            $actual_sum += ($sel_actual_list[0]->service10 * $sel_actual_list[0]->service10);
+            $actual_sum += ($sel_actual_list[0]->service11 * $sel_actual_list[0]->service11);
+            $actual_sum += ($sel_actual_list[0]->service12 * $sel_actual_list[0]->service12);
+            $actual_sum += ($sel_actual_list[0]->service13 * $sel_actual_list[0]->service13);
+            $actual_sum += ($sel_actual_list[0]->service14 * $sel_actual_list[0]->service14);
+            $actual_sum += ($sel_actual_list[0]->service15 * $sel_actual_list[0]->service15);
+            $actual_sum += ($sel_actual_list[0]->service16 * $sel_actual_list[0]->service16);
             $zg = array(
                 "基础改造" => array(
                     "原墙、顶面腻子铲除" => array(
@@ -707,11 +819,15 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     ),
                 ),
                 "小计/元" => array(
-                    "预计工程量" => 10000,
-                    "实际工程量" => 10000
+                    "预计工程量" => $reckon_sum,
+                    "实际工程量" => $actual_sum
                 ),
-                "结转金额/元" => "0");
+                "结转金额/元" => $actual_sum - $reckon_sum);
             //水电工费用
+            $reckon_sum = ($sel_reckon_list[0]->service17 * $sel_shop_price[0]->service17);
+            $reckon_sum += ($sel_reckon_list[0]->service18 * $sel_shop_price[0]->service18);
+            $actual_sum = ($sel_actual_list[0]->service17 * $sel_actual_list[0]->service17);
+            $actual_sum += ($sel_actual_list[0]->service18 * $sel_actual_list[0]->service18);
             $sdg = array(
                 "水电改造" => array(
                     "局部改造" => array(
@@ -728,11 +844,57 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     ),
                 ),
                 "小计/元" => array(
-                    "预计工程量" => 10000,
-                    "实际工程量" => 10000
+                    "预计工程量" => $reckon_sum,
+                    "实际工程量" => $actual_sum
                 ),
-                "结转金额/元" => "0");
+                "结转金额/元" => $actual_sum - $reckon_sum);
             //瓦工费用
+            $reckon_sum = ($sel_reckon_list[0]->service19 * $sel_shop_price[0]->service19);
+            $reckon_sum += ($sel_reckon_list[0]->service20 * $sel_shop_price[0]->service20);
+            $reckon_sum += ($sel_reckon_list[0]->service21 * $sel_shop_price[0]->service21);
+            $reckon_sum += ($sel_reckon_list[0]->service22 * $sel_shop_price[0]->service22);
+            $reckon_sum += ($sel_reckon_list[0]->service23 * $sel_shop_price[0]->service23);
+            $reckon_sum += ($sel_reckon_list[0]->service24 * $sel_shop_price[0]->service24);
+            $reckon_sum += ($sel_reckon_list[0]->service25 * $sel_shop_price[0]->service25);
+            $reckon_sum += ($sel_reckon_list[0]->service26 * $sel_shop_price[0]->service26);
+            $reckon_sum += ($sel_reckon_list[0]->service27 * $sel_shop_price[0]->service27);
+            $reckon_sum += ($sel_reckon_list[0]->service28 * $sel_shop_price[0]->service28);
+            $reckon_sum += ($sel_reckon_list[0]->service29 * $sel_shop_price[0]->service29);
+            $reckon_sum += ($sel_reckon_list[0]->service30 * $sel_shop_price[0]->service30);
+            $reckon_sum += ($sel_reckon_list[0]->service31 * $sel_shop_price[0]->service31);
+            $reckon_sum += ($sel_reckon_list[0]->service32 * $sel_shop_price[0]->service32);
+            $reckon_sum += ($sel_reckon_list[0]->service33 * $sel_shop_price[0]->service33);
+            $reckon_sum += ($sel_reckon_list[0]->service34 * $sel_shop_price[0]->service34);
+            $reckon_sum += ($sel_reckon_list[0]->service35 * $sel_shop_price[0]->service35);
+            $reckon_sum += ($sel_reckon_list[0]->service36 * $sel_shop_price[0]->service36);
+            $reckon_sum += ($sel_reckon_list[0]->service37 * $sel_shop_price[0]->service37);
+            $reckon_sum += ($sel_reckon_list[0]->service38 * $sel_shop_price[0]->service38);
+            $reckon_sum += ($sel_reckon_list[0]->service39 * $sel_shop_price[0]->service39);
+            $reckon_sum += ($sel_reckon_list[0]->service40 * $sel_shop_price[0]->service40);
+            $reckon_sum += ($sel_reckon_list[0]->service41 * $sel_shop_price[0]->service41);
+            $actual_sum = ($sel_actual_list[0]->service19 * $sel_actual_list[0]->service18);
+            $actual_sum += ($sel_actual_list[0]->service20 * $sel_shop_price[0]->service20);
+            $actual_sum += ($sel_actual_list[0]->service21 * $sel_shop_price[0]->service21);
+            $actual_sum += ($sel_actual_list[0]->service22 * $sel_shop_price[0]->service22);
+            $actual_sum += ($sel_actual_list[0]->service23 * $sel_shop_price[0]->service23);
+            $actual_sum += ($sel_actual_list[0]->service24 * $sel_shop_price[0]->service24);
+            $actual_sum += ($sel_actual_list[0]->service25 * $sel_shop_price[0]->service25);
+            $actual_sum += ($sel_actual_list[0]->service26 * $sel_shop_price[0]->service26);
+            $actual_sum += ($sel_actual_list[0]->service27 * $sel_shop_price[0]->service27);
+            $actual_sum += ($sel_actual_list[0]->service28 * $sel_shop_price[0]->service28);
+            $actual_sum += ($sel_actual_list[0]->service29 * $sel_shop_price[0]->service29);
+            $actual_sum += ($sel_actual_list[0]->service30 * $sel_shop_price[0]->service30);
+            $actual_sum += ($sel_actual_list[0]->service31 * $sel_shop_price[0]->service31);
+            $actual_sum += ($sel_actual_list[0]->service32 * $sel_shop_price[0]->service32);
+            $actual_sum += ($sel_actual_list[0]->service33 * $sel_shop_price[0]->service33);
+            $actual_sum += ($sel_actual_list[0]->service34 * $sel_shop_price[0]->service34);
+            $actual_sum += ($sel_actual_list[0]->service35 * $sel_shop_price[0]->service35);
+            $actual_sum += ($sel_actual_list[0]->service36 * $sel_shop_price[0]->service36);
+            $actual_sum += ($sel_actual_list[0]->service37 * $sel_shop_price[0]->service37);
+            $actual_sum += ($sel_actual_list[0]->service38 * $sel_shop_price[0]->service38);
+            $actual_sum += ($sel_actual_list[0]->service39 * $sel_shop_price[0]->service39);
+            $actual_sum += ($sel_actual_list[0]->service40 * $sel_shop_price[0]->service40);
+            $actual_sum += ($sel_actual_list[0]->service41 * $sel_shop_price[0]->service41);
             $wg = array(
                 "贴砖" => array(
                     "常规瓷砖方正贴" => array(
@@ -879,11 +1041,35 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     )
                 ),
                 "小计/元" => array(
-                    "预计工程量" => 10000,
-                    "实际工程量" => 10000
+                    "预计工程量" => $reckon_sum,
+                    "实际工程量" => $actual_sum
                 ),
-                "结转金额/元" => "0");
+                "结转金额/元" => $actual_sum - $reckon_sum);
             //木工费用
+            $reckon_sum = ($sel_reckon_list[0]->service42 * $sel_shop_price[0]->service42);
+            $reckon_sum += ($sel_reckon_list[0]->service43 * $sel_shop_price[0]->service43);
+            $reckon_sum += ($sel_reckon_list[0]->service44 * $sel_shop_price[0]->service44);
+            $reckon_sum += ($sel_reckon_list[0]->service45 * $sel_shop_price[0]->service45);
+            $reckon_sum += ($sel_reckon_list[0]->service46 * $sel_shop_price[0]->service46);
+            $reckon_sum += ($sel_reckon_list[0]->service47 * $sel_shop_price[0]->service47);
+            $reckon_sum += ($sel_reckon_list[0]->service48 * $sel_shop_price[0]->service48);
+            $reckon_sum += ($sel_reckon_list[0]->service49 * $sel_shop_price[0]->service49);
+            $reckon_sum += ($sel_reckon_list[0]->service50 * $sel_shop_price[0]->service50);
+            $reckon_sum += ($sel_reckon_list[0]->service51 * $sel_shop_price[0]->service51);
+            $reckon_sum += ($sel_reckon_list[0]->service52 * $sel_shop_price[0]->service52);
+            $reckon_sum += ($sel_reckon_list[0]->service53 * $sel_shop_price[0]->service53);
+            $actual_sum = ($sel_actual_list[0]->service42 * $sel_actual_list[0]->service42);
+            $actual_sum += ($sel_actual_list[0]->service43 * $sel_shop_price[0]->service43);
+            $actual_sum += ($sel_actual_list[0]->service44 * $sel_shop_price[0]->service44);
+            $actual_sum += ($sel_actual_list[0]->service45 * $sel_shop_price[0]->service45);
+            $actual_sum += ($sel_actual_list[0]->service46 * $sel_shop_price[0]->service46);
+            $actual_sum += ($sel_actual_list[0]->service47 * $sel_shop_price[0]->service47);
+            $actual_sum += ($sel_actual_list[0]->service48 * $sel_shop_price[0]->service48);
+            $actual_sum += ($sel_actual_list[0]->service49 * $sel_shop_price[0]->service49);
+            $actual_sum += ($sel_actual_list[0]->service50 * $sel_shop_price[0]->service50);
+            $actual_sum += ($sel_actual_list[0]->service51 * $sel_shop_price[0]->service51);
+            $actual_sum += ($sel_actual_list[0]->service52 * $sel_shop_price[0]->service52);
+            $actual_sum += ($sel_actual_list[0]->service53 * $sel_shop_price[0]->service53);
             $mg = array(
                 "家具制作（免漆板）" => array(
                     "高柜制作" => array(
@@ -964,11 +1150,31 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     )
                 ),
                 "小计/元" => array(
-                    "预计工程量" => 10000,
-                    "实际工程量" => 10000
+                    "预计工程量" => $reckon_sum,
+                    "实际工程量" => $actual_sum
                 ),
-                "结转金额/元" => "0");
+                "结转金额/元" => $actual_sum - $reckon_sum);
             //油漆工费用
+            $reckon_sum = ($sel_reckon_list[0]->service54 * $sel_shop_price[0]->service54);
+            $reckon_sum += ($sel_reckon_list[0]->service55 * $sel_shop_price[0]->service55);
+            $reckon_sum += ($sel_reckon_list[0]->service56 * $sel_shop_price[0]->service56);
+            $reckon_sum += ($sel_reckon_list[0]->service57 * $sel_shop_price[0]->service57);
+            $reckon_sum += ($sel_reckon_list[0]->service58 * $sel_shop_price[0]->service58);
+            $reckon_sum += ($sel_reckon_list[0]->service59 * $sel_shop_price[0]->service59);
+            $reckon_sum += ($sel_reckon_list[0]->service60 * $sel_shop_price[0]->service60);
+            $reckon_sum += ($sel_reckon_list[0]->service61 * $sel_shop_price[0]->service61);
+            $reckon_sum += ($sel_reckon_list[0]->service62 * $sel_shop_price[0]->service62);
+            $reckon_sum += ($sel_reckon_list[0]->service63 * $sel_shop_price[0]->service63);
+            $actual_sum = ($sel_actual_list[0]->service54 * $sel_actual_list[0]->service54);
+            $actual_sum += ($sel_actual_list[0]->service55 * $sel_shop_price[0]->service55);
+            $actual_sum += ($sel_actual_list[0]->service56 * $sel_shop_price[0]->service56);
+            $actual_sum += ($sel_actual_list[0]->service57 * $sel_shop_price[0]->service57);
+            $actual_sum += ($sel_actual_list[0]->service58 * $sel_shop_price[0]->service58);
+            $actual_sum += ($sel_actual_list[0]->service59 * $sel_shop_price[0]->service59);
+            $actual_sum += ($sel_actual_list[0]->service60 * $sel_shop_price[0]->service60);
+            $actual_sum += ($sel_actual_list[0]->service61 * $sel_shop_price[0]->service61);
+            $actual_sum += ($sel_actual_list[0]->service62 * $sel_shop_price[0]->service62);
+            $actual_sum += ($sel_actual_list[0]->service63 * $sel_shop_price[0]->service63);
             $yqg = array(
                 "天花墙面乳胶漆" => array(
                     "原顶天花墙面乳胶漆" => array(
@@ -1035,12 +1241,12 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     )
                 ),
                 "小计/元" => array(
-                    "预计工程量" => 10000,
-                    "实际工程量" => 10000
+                    "预计工程量" => $reckon_sum,
+                    "实际工程量" => $actual_sum
                 ),
-                "结转金额/元" => "0");
+                "结转金额/元" => $actual_sum - $reckon_sum);
             //根据当前状态判断付款订单状态
-            $order_step_in_pay = 0;
+            $order_step_in_pay = $order_step;
             if ($order_step <= 5) {
                 $order_step_in_pay = 5;
             }
@@ -1054,11 +1260,36 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 $order_step_in_pay = 17;
             }
             //当前付款阶段
-//            $sle_order_pay_each = DB::select('SELECT * FROM hh_order_pay_each_view WHERE order_id = ? , order_step = ?',
-//                [$order_id, $order_step_in_pay]);
-//            if ($sle_order_pay_each) {
-//
-//            }
+            $pay_arr = array();
+            $sle_order_pay_each = DB::select('SELECT * FROM hh_order_pay_each_view WHERE order_id = ? AND order_step = ?',
+                [$order_id, $order_step_in_pay]);
+            $sle_order_pay_each_count = DB::select('SELECT count(id) AS count_id FROM hh_order_pay_each_view WHERE order_id = ? AND order_step = ?',
+                [$order_id, $order_step_in_pay]);
+            $pay_type = 0;
+            if ($sle_order_pay_each) {
+                $num = $sle_order_pay_each_count[0]->count_id;
+                $i = 0;
+                while ($i < $num) {
+                    if ($sle_order_pay_each[$i]->pay_status == 3) {
+                        $pay_name = "已付款";
+                    } else if ($sle_order_pay_each[$i]->pay_status == 1) {
+                        $pay_type = 1;
+                        $pay_name = "待付款";
+                    }
+                    $pay_arr[$i] = array(
+                        "付款项目" => $sle_order_pay_each[$i]->order_pay_step,
+                        "工费/元" => $sle_order_pay_each[$i]->pay_amount,
+                        "状态" => $pay_name
+                    );
+                    $i++;
+                }
+            } else {
+                $pay_arr[0] = array(
+                    "付款项目" => "当前无项目",
+                    "工费/元" => "0",
+                    "状态" => ""
+                );
+            }
             //数据
             $arr_list = array(
                 "工长" => $gz,
@@ -1067,23 +1298,11 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 "瓦工" => $wg,
                 "木工" => $mg,
                 "油漆工" => $yqg,
-                "需付款" => array(
-                    "1" => array(
-                        "付款项目" => "木工",
-                        "工费/元" => "50000.00",
-                        "状态" => "待付款"
-                    ),
-                    "2" => array(
-                        "付款项目" => "结转金额",
-                        "工费/元" => "50000.00",
-                        "状态" => "待付款"
-                    ),
-                    "总计/元" => "100000.000"
-                )
+                "需付款" => $pay_arr
             );
             $data = array(
                 "data_list" => $arr_list,
-                "pay_type" => 0
+                "pay_type" => $pay_type
             );
             $arr = array(
                 "code" => "000",
