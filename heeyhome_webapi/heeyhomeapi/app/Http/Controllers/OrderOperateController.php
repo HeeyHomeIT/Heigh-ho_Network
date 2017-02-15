@@ -1542,10 +1542,10 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
     {
         $order_id = rq('order_id');
         $callback = rq('callback');
-        $sel_actual_tbl = DB::select('SELECT is_available FROM hh_order_actual_list WHERE order_id = ?',
+        $sel_reckon_tbl = DB::select('SELECT is_available FROM hh_order_reckon_list WHERE order_id = ?',
             [$order_id]);
-        if ($sel_actual_tbl) {
-            $actual_is_available = $sel_actual_tbl[0]->is_available;
+        if ($sel_reckon_tbl) {
+            $reckon_is_available = $sel_reckon_tbl[0]->is_available;
         } else {
             $arr = array(
                 "code" => "200",
@@ -1554,10 +1554,10 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
-        $sel_reckon_tbl = DB::select('SELECT is_available FROM hh_order_reckon_list WHERE order_id = ?',
+        $sel_actual_tbl = DB::select('SELECT is_available FROM hh_order_actual_list WHERE order_id = ?',
             [$order_id]);
-        if ($sel_reckon_tbl) {
-            $reckon_is_available = $sel_reckon_tbl[0]->is_available;
+        if ($sel_actual_tbl) {
+            $actual_is_available = $sel_actual_tbl[0]->is_available;
         } else {
             $arr = array(
                 "code" => "200",
@@ -1570,8 +1570,8 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             "code" => "000",
             "msg" => "查询成功",
             "data" => array(
-                "预算单编辑状态" => $actual_is_available,
-                "结算单编辑状态" => $reckon_is_available
+                "预算单编辑状态" => $reckon_is_available,
+                "结算单编辑状态" => $actual_is_available
             )
         );
         return $callback . "(" . HHJson($arr) . ")";
