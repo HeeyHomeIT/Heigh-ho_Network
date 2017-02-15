@@ -96,7 +96,9 @@ body #crcontainer {
 #crcontent .cr_condiv > div.cr_content > div.cr_con .plan_one {
     position: relative;
     margin: 10px;
-    padding: 10px
+    padding: 10px;
+    margin-top: 0;
+    padding-top: 0
 }
 
 .plan_one > span, .plan_one > i {
@@ -125,7 +127,16 @@ body #crcontainer {
     padding-bottom: 8px;
     margin: -31px 23px 0 215px;
     border-left: 1px solid #4b4948;
-    position: relative
+    position: relative;
+    height: 62px;
+}
+
+#crcontent .cr_condiv > div.cr_content > div.cr_con .w_117 {
+    height: 117px;
+}
+
+#crcontent .cr_condiv > div.cr_content > div.cr_con .w_153 {
+    height: 153px;
 }
 
 #crcontent .cr_condiv > div#rgcontent > div.cr_con .wages {

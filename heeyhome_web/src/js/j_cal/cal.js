@@ -362,7 +362,7 @@ var heeyhomeCal = {
      */
     sumbitCalEvent: function () {
         var self = this;
-        $(document).on("click", ".nowcal", function () {
+        $(document).off("click", ".nowcal").on("click", ".nowcal", function () {
             var calObj = {};
             var room_distribution = {};
             var floorObj = {};
