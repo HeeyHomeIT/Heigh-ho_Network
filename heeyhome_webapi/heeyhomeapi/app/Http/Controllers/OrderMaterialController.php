@@ -107,6 +107,9 @@ class OrderMaterialController extends Controller
                 if ($sel) {
                     $material_type_chn = $sel[0]->material_type;
                 }
+                //TODO 插入到订单进度详情表
+//                $ins_order_detail = DB::insert('INSERT INTO hh_order_detail(order_id,order_step,img_time,img_content) VALUES (?,,?,?,?)',
+//                    []);
                 $arr = array(
                     "code" => "000",
                     "msg" => "材料订单已经生成",

@@ -662,7 +662,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         }
     }
 
-    //TODO 查询预结算单数据和付款信息
+    //查询预结算单数据和付款信息
     public function searchActualDataAndReckonData()
     {
         $order_id = rq('order_id');
@@ -1337,16 +1337,15 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 "结转金额/元" => $actual_sum - $reckon_sum);
             //根据当前状态判断付款订单状态
             $order_step_in_pay = $order_step;
-            if ($order_step <= 5) {
+            if ($order_step < 3) {
+                $order_step_in_pay = 18;
+            } else if ($order_step <= 5) {
                 $order_step_in_pay = 5;
-            }
-            if ($order_step <= 9) {
+            } else if ($order_step <= 9) {
                 $order_step_in_pay = 9;
-            }
-            if ($order_step <= 13) {
+            } else if ($order_step <= 13) {
                 $order_step_in_pay = 13;
-            }
-            if ($order_step <= 17) {
+            } else if ($order_step <= 17) {
                 $order_step_in_pay = 17;
             }
             //当前付款阶段

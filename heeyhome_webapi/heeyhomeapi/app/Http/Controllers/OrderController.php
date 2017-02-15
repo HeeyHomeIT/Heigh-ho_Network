@@ -273,10 +273,34 @@ class OrderController extends Controller
             $order_tbl_list[$key]->order_status_ch = $order_status_ch[0]->order_status;
             $portrait = DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?', [$val->user_id]);
             $order_tbl_list[$key]->user_portrait = $portrait[0]->portrait_img;
+            //根据当前进度查询是否存在材料单
+            $order_material_type = 0;
+            switch ($val->order_step) {
+                case 3:
+                    $order_material_type = 1;
+                    break;
+                case 7:
+                    $order_material_type = 3;
+                    break;
+                case 11:
+                    $order_material_type = 4;
+                    break;
+                case 15:
+                    $order_material_type = 5;
+                    break;
+            }
+            $sel_order_material = DB::select('SELECT * FROM hh_order_material WHERE order_id = ? AND material_type = ? ',
+                [$order_tbl_list[$key]->order_id, $order_material_type]);
+            if ($sel_order_material) {
+                $order_tbl_list[$key]->order_material_is_exist = 1;
+            } else {
+                $order_tbl_list[$key]->order_material_is_exist = 0;
+            }
         }
         $order_tbl_count = DB::select('SELECT COUNT(id) AS order_count FROM hh_order_user_view WHERE user_id = ?',
             [$user_id]);
         $order_count = $order_tbl_count[0]->order_count;
+
         if ($order_tbl_list) {
             $arr = array("code" => "000",
                 "data" => array("order_list" => $order_tbl_list,
