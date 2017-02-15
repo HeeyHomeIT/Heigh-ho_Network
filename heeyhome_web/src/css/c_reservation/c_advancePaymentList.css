@@ -267,7 +267,7 @@ body {
 }
 
 .paymentList_wrap .paylist .orderInfo {
-    border: 1px solid #ddd;
+    border: 1px solid #e8e8e8;
     overflow-x: hidden;
     overflow-y: scroll;
     padding: 15px 10px 0 15px;

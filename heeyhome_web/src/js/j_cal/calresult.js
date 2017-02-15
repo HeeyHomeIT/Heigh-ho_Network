@@ -97,6 +97,9 @@
          * 右侧内容显示隐藏
          */
         initSlideEvent: function () {
+            if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
+                $('#slide_bar').css('width', '67px');
+            }
             /* 屏幕可视区高度小于735时调整相应的高度 */
             var height = $(window).height();
             console.log(height)
@@ -106,9 +109,13 @@
                     $(this).css('height', parseFloat($(this).css('height')) * height / 735);
                 });
                 $('.wcontent_title').css('backgroundPosition', '15px ' + 90 * height / 735 + 'px');
-                if(height > 736){
-                    $('.wcontent_title span').css({'marginTop': '20px', 'position': 'absolute'});
-                }else{
+                if (height > 736) {
+                    if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
+                        ('.wcontent_title span').css('fontSize', '12px');
+                    } else {
+                        $('.wcontent_title span').css({'marginTop': '20px', 'position': 'absolute'});
+                    }
+                } else {
                     $('.wcontent_title span').css('fontSize', '12px');
                 }
             }
