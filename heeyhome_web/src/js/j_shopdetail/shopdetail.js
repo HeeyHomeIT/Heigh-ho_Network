@@ -658,7 +658,11 @@
                                     var url = "reservation.html#/reservation";
                                     window.location.href = url + "?type=1";
                                 } else {
-                                    layer.alert('您需要先通过身份验证才可以预约哦~~');
+                                    layer.confirm('您还没有身份验证，现在去进行身份验证？', {
+                                        btn: ['确定','取消'] //按钮
+                                    }, function(){
+                                        window.location.href = "center.html#/center/setting/authentication/authentication_1";
+                                    });
                                 }
                             }
                         });
@@ -706,7 +710,11 @@
                                         layer.msg('请先选择相应的工人');
                                     }
                                 } else {
-                                    layer.alert('您需要先通过身份验证才可以预约哦~~');
+                                    layer.confirm('您还没有身份验证，现在去进行身份验证？', {
+                                        btn: ['确定','取消'] //按钮
+                                    }, function(){
+                                        window.location.href = "center.html#/center/setting/authentication/authentication_1";
+                                    });
                                 }
                             }
                         });
