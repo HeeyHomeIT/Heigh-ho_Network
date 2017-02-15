@@ -940,6 +940,9 @@
                         } else {
                             layer.alert("还未开工哦，亲~~");
                         }
+                        if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
+                            $('.work_stage .stage_content').css('marginLeft', '0');
+                        }
                     } else {
                         layer.alert(data.msg)
                     }

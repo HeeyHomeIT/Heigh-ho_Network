@@ -1980,7 +1980,8 @@ a:focus {
     position: absolute;
     left: -30px;
     top: -60px;
-    text-align: center
+    text-align: center;
+    width: 100px
 }
 
 #time_axis .axis_start h2 {
