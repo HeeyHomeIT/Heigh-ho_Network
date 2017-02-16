@@ -1998,7 +1998,7 @@ a:focus {
 
 #time_axis .date {
     float: left;
-    margin: 0 17px 0 14px;
+    margin: 0 17px 0 73px;
     font-family: HelveticaNeueLTPro Roman;
     font-size: 14px;
     color: #303030
@@ -2154,7 +2154,24 @@ a:focus {
     color: #FFFFFF;
 }
 
-.complete_stage .stage_title .balance:hover {
+.step .balance {
+    position: absolute;
+    top: -8px;
+    left: 98px;
+    width: 94px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background-color: #525252;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 0;
+    font-family: FZLTHJW;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.complete_stage .stage_title .balance:hover, .step .balance:hover {
     transition: all 0.3s ease-in-out;
     background-color: #000000;
     -moz-transition: all 0.3s ease-in-out;
@@ -2404,7 +2421,7 @@ a:focus {
     color: #686868;
 }
 
-.owner_detail .area, .owner_detail .type {
+.owner_detail .area, .owner_detail .type, .owner_detail .address {
     margin-bottom: 10px;
 }
 

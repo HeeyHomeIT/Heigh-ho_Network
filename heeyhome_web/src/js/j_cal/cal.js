@@ -331,7 +331,7 @@ var heeyhomeCal = {
         $(document).on("click", ".filter_item a", function () {
             $(this).addClass("cit").siblings().removeClass("cit");
         });
-        $(document).on("click", ".J_btnR", function () {
+        $(document).off("click", ".J_btnR").on("click", ".J_btnR", function () {
             var $filterNav = $(this).closest("div.filter_nav");
             var dataObj = {}, resObj = {}, roomName;
             roomName = $filterNav.find(".JroomName").data("rn");
