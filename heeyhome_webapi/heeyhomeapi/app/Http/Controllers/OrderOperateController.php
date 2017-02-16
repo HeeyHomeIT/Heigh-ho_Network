@@ -536,7 +536,12 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,re
         if (!$remark) {
             $remark = '';
         }
-
+        //判断结算单阶段是否更改表字段是否存在
+        $sel_order_actual_isclick = DB::select('SELECT * FROM hh_order_actual_isclick WHERE order_id = ?', [$order_id]);
+        if (!$sel_order_actual_isclick) {
+            //不存在则插入字段
+            $ins_order_actual_isclick = DB::insert('INSERT INTO hh_order_actual_isclick(order_id) VALUES (?)', [$order_id]);
+        }
         $count = count($list_dataArr);
         $list_data_arr = array();
         $dataCount = 0;
@@ -577,6 +582,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,is_available = ? ,re
         if ($sel_order_step) {
             $order_step = $sel_order_step[0]->order_step;
             switch ($order_step) {
+                case 4:
                 case 5:
                     //杂工及水电工结算单数据修改
                     $actual_list_tbl = DB::update('update hh_order_actual_list SET service1 = ? ,service2 = ? ,service3 = ? ,service4 = ? ,
@@ -585,7 +591,9 @@ service16 = ? ,service17 = ? ,service18 = ? ,remark = ? ,update_time = ? ,is_ava
                         [$list_data_arr[0], $list_data_arr[1], $list_data_arr[2], $list_data_arr[3], $list_data_arr[4], $list_data_arr[5], $list_data_arr[6], $list_data_arr[7],
                             $list_data_arr[8], $list_data_arr[9], $list_data_arr[10], $list_data_arr[11], $list_data_arr[12], $list_data_arr[13], $list_data_arr[14], $list_data_arr[15],
                             $list_data_arr[16], $list_data_arr[17], $remark, $timenow, $order_id]);
+                    $upd_order_actual_isclick = DB::update('UPDATE hh_order_actual_isclick SET stage1 = ?', [1]);
                     break;
+                case 8:
                 case 9:
                     //瓦工结算单数据修改
                     $actual_list_tbl = DB::update('UPDATE hh_order_actual_list SET service19 = ? ,service20 = ? ,service21 = ? ,service22 = ? ,service23 = ? ,service24 = ? ,service25 = ? ,service26 = ? ,
@@ -595,19 +603,24 @@ service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,remark = ? ,update_t
                             $list_data_arr[24], $list_data_arr[25], $list_data_arr[26], $list_data_arr[27], $list_data_arr[28], $list_data_arr[29], $list_data_arr[30], $list_data_arr[31],
                             $list_data_arr[32], $list_data_arr[33], $list_data_arr[34], $list_data_arr[35], $list_data_arr[36], $list_data_arr[37], $list_data_arr[38], $list_data_arr[39],
                             $list_data_arr[40], $remark, $timenow, $order_id]);
+                    $upd_order_actual_isclick = DB::update('UPDATE hh_order_actual_isclick SET stage2 = ?', [1]);
                     break;
+                case 12:
                 case 13:
                     //木工结算单数据修改
                     $actual_list_tbl = DB::update('UPDATE hh_order_actual_list SET service42 = ? ,service43 = ? ,service44 = ? ,service45 = ? ,service46 = ? ,service47 = ? ,service48 = ? ,
 service49 = ? ,service50 = ? ,service51 = ? ,service52 = ? ,service53 = ? ,remark = ? ,update_time = ? ,is_available = 0 WHERE order_id = ?',
                         [$list_data_arr[41], $list_data_arr[42], $list_data_arr[43], $list_data_arr[44], $list_data_arr[45], $list_data_arr[46], $list_data_arr[47],
                             $list_data_arr[48], $list_data_arr[49], $list_data_arr[50], $list_data_arr[51], $list_data_arr[52], $remark, $timenow, $order_id]);
+                    $upd_order_actual_isclick = DB::update('UPDATE hh_order_actual_isclick SET stage3 = ?', [1]);
                     break;
+                case 16:
                 case 17:
                     $actual_list_tbl = DB::update('UPDATE hh_order_actual_list SET service54 = ? ,service55 = ? ,service56 = ? ,service57 = ? ,service58 = ? ,service59 = ? ,
 service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_time = ? ,is_available = 0 WHERE order_id = ?',
                         [$list_data_arr[53], $list_data_arr[54], $list_data_arr[55],
                             $list_data_arr[56], $list_data_arr[57], $list_data_arr[58], $list_data_arr[59], $list_data_arr[60], $list_data_arr[61], $list_data_arr[62], $remark, $timenow, $order_id]);
+                    $upd_order_actual_isclick = DB::update('UPDATE hh_order_actual_isclick SET stage4 = ?', [1]);
                     break;
                 default:
                     $arr = array(
@@ -690,7 +703,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             $sel_order_tbl = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?', [$order_id]);
             if ($sel_order_tbl) $order_step = $sel_order_tbl[0]->order_step;
             //根据订单步骤隐藏结算单数据
-            if ($order_step < 17 || $order_step = 18) {
+            if ($order_step < 17 || $order_step == 18) {
                 $sel_actual_list[0]->service63 = 0;
                 $sel_actual_list[0]->service62 = 0;
                 $sel_actual_list[0]->service61 = 0;
@@ -701,7 +714,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 $sel_actual_list[0]->service56 = 0;
                 $sel_actual_list[0]->service55 = 0;
                 $sel_actual_list[0]->service54 = 0;
-                if ($order_step < 13 || $order_step = 18) {
+                if ($order_step < 13 || $order_step == 18) {
                     $sel_actual_list[0]->service53 = 0;
                     $sel_actual_list[0]->service52 = 0;
                     $sel_actual_list[0]->service51 = 0;
@@ -714,7 +727,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     $sel_actual_list[0]->service44 = 0;
                     $sel_actual_list[0]->service43 = 0;
                     $sel_actual_list[0]->service42 = 0;
-                    if ($order_step < 9 || $order_step = 18) {
+                    if ($order_step < 9 || $order_step == 18) {
                         $sel_actual_list[0]->service41 = 0;
                         $sel_actual_list[0]->service40 = 0;
                         $sel_actual_list[0]->service39 = 0;
@@ -726,7 +739,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $sel_actual_list[0]->service33 = 0;
                         $sel_actual_list[0]->service32 = 0;
                         $sel_actual_list[0]->service31 = 0;
-                        $sel_actual_list[0]->service20 = 0;
+                        $sel_actual_list[0]->service30 = 0;
                         $sel_actual_list[0]->service29 = 0;
                         $sel_actual_list[0]->service28 = 0;
                         $sel_actual_list[0]->service27 = 0;
@@ -738,7 +751,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $sel_actual_list[0]->service21 = 0;
                         $sel_actual_list[0]->service20 = 0;
                         $sel_actual_list[0]->service19 = 0;
-                        if ($order_step < 5 || $order_step = 18) {
+                        if ($order_step < 5 || $order_step == 18) {
                             $sel_actual_list[0]->service18 = 0;
                             $sel_actual_list[0]->service17 = 0;
                             $sel_actual_list[0]->service16 = 0;

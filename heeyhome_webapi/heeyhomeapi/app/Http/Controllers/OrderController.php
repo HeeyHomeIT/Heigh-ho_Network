@@ -296,6 +296,30 @@ class OrderController extends Controller
             } else {
                 $order_tbl_list[$key]->order_material_is_exist = 0;
             }
+            $sel_order_step = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?', [$order_tbl_list[$key]->order_id]);
+            $sel_order_actual_isclick = DB::select('SELECT * FROM hh_order_actual_isclick WHERE order_id =?', [$order_tbl_list[$key]->order_id]);
+            $order_step = $sel_order_step[0]->order_step;
+            if (!$sel_order_actual_isclick) {
+                $order_tbl_list[$key]->order_actual_isclick = 0;
+            } else {
+                switch ($order_step) {
+                    case 5:
+                        $order_tbl_list[$key]->order_actual_isclick = $sel_order_actual_isclick[0]->stage1;
+                        break;
+                    case 9:
+                        $order_tbl_list[$key]->order_actual_isclick = $sel_order_actual_isclick[0]->stage2;
+                        break;
+                    case 13:
+                        $order_tbl_list[$key]->order_actual_isclick = $sel_order_actual_isclick[0]->stage3;
+                        break;
+                    case 17:
+                        $order_tbl_list[$key]->order_actual_isclick = $sel_order_actual_isclick[0]->stage4;
+                        break;
+                    default:
+                        $order_tbl_list[$key]->order_actual_isclick = 0;
+                        break;
+                }
+            }
         }
         $order_tbl_count = DB::select('SELECT COUNT(id) AS order_count FROM hh_order_user_view WHERE user_id = ?',
             [$user_id]);
