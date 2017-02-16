@@ -52,72 +52,77 @@ require_once("lib/alipay_notify.class.php");
         } else {
             echo "trade_status=" . $_GET['trade_status'];
         }
-
-        //更新订单为已支付状态
-        $upd_order_pay_each = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_pay_each SET pay_status = 3 WHERE pay_id = ?', [$out_trade_no]);
-        $sel_order_pay_each = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ?', [$out_trade_no]);
-        $order_id = $sel_order_pay_each[0]->order_id;
-        //跟新订单已支付金额
-        $sel_order_pay = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay WHERE order_id = ?', [$order_id]);
-        $actual_finish_amount = $sel_order_pay[0]->actual_finish_amount;
-        $actual_next_amount = $sel_order_pay[0]->actual_next_amount;
-        $order_pay_step = $sel_order_pay[0]->order_pay_step;
-        $actual_finish_amount += $total_fee;
-        $actual_next_amount -= $total_fee;
-        $order_pay_step = 13;
-        //获取订单进度
-        $sel_order = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order WHERE order_id = ?', [$order_id]);
-        $order_step = $sel_order[0]->order_step;
-        $order_status = $sel_order[0]->order_status;
-        $upd_order_pay = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_pay SET actual_finish_amount = ?, actual_next_amount= ?, order_pay_step = ? WHERE order_id = ?',
-            [$actual_finish_amount, $actual_next_amount, $order_pay_step, $order_id]);
-        if ($order_status == 4) {
-            $pay_step = "工长、杂工、水电工预付款";
-            $order_status = 5;
-            $order_step = 1;
-        } else if ($order_status == 5) {
-            if ($order_step == 3) {
-                $pay_step = "水电辅材付款";
-                $order_step = 4;
-            }
-            if ($order_step == 5) {
-                $pay_step = "瓦工预付款及上阶段结转金额";
-                $order_step = 6;
-            }
-            if ($order_step == 7) {
-                $pay_step = "瓦工辅材付款";
-                $order_step = 8;
-            }
-            if ($order_step == 9) {
-                $pay_step = "木工预付款及上阶段结转金额";
-                $order_step = 10;
-            }
-            if ($order_step == 11) {
-                $pay_step = "木工辅材付款";
-                $order_step = 12;
-            }
-            if ($order_step == 13) {
-                $pay_step = "油漆工预付款及上阶段结转金额";
-                $order_step = 14;
-            }
-            if ($order_step == 15) {
-                $pay_step = "油漆工辅材付款";
-                $order_step = 16;
-            }
-            if ($order_step == 17) {
-                $pay_step = "最终结转金额";
+        $sel_order_pay_each_istrue = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ?', [$out_trade_no]);
+        if ($sel_order_pay_each_istrue) {
+            //更新订单为已支付状态
+            $upd_order_pay_each = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_pay_each SET pay_status = 3 WHERE pay_id = ?', [$out_trade_no]);
+            $sel_order_pay_each = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ?', [$out_trade_no]);
+            $order_id = $sel_order_pay_each[0]->order_id;
+            //跟新订单已支付金额
+            $sel_order_pay = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay WHERE order_id = ?', [$order_id]);
+            $actual_finish_amount = $sel_order_pay[0]->actual_finish_amount;
+            $actual_next_amount = $sel_order_pay[0]->actual_next_amount;
+            $order_pay_step = $sel_order_pay[0]->order_pay_step;
+            $actual_finish_amount += $total_fee;
+            $actual_next_amount -= $total_fee;
+            $order_pay_step = 13;
+            //获取订单进度
+            $sel_order = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order WHERE order_id = ?', [$order_id]);
+            $order_step = $sel_order[0]->order_step;
+            $order_status = $sel_order[0]->order_status;
+            $upd_order_pay = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_pay SET actual_finish_amount = ?, actual_next_amount= ?, order_pay_step = ? WHERE order_id = ?',
+                [$actual_finish_amount, $actual_next_amount, $order_pay_step, $order_id]);
+            if ($order_status == 4) {
+                $pay_step = "工长、杂工、水电工预付款";
+                $order_status = 5;
                 $order_step = 1;
+            } else if ($order_status == 5) {
+                if ($order_step == 3) {
+                    $pay_step = "水电辅材付款";
+                    $order_step = 4;
+                }
+                if ($order_step == 5) {
+                    $pay_step = "瓦工预付款及上阶段结转金额";
+                    $order_step = 6;
+                }
+                if ($order_step == 7) {
+                    $pay_step = "瓦工辅材付款";
+                    $order_step = 8;
+                }
+                if ($order_step == 9) {
+                    $pay_step = "木工预付款及上阶段结转金额";
+                    $order_step = 10;
+                }
+                if ($order_step == 11) {
+                    $pay_step = "木工辅材付款";
+                    $order_step = 12;
+                }
+                if ($order_step == 13) {
+                    $pay_step = "油漆工预付款及上阶段结转金额";
+                    $order_step = 14;
+                }
+                if ($order_step == 15) {
+                    $pay_step = "油漆工辅材付款";
+                    $order_step = 16;
+                }
+                if ($order_step == 17) {
+                    $pay_step = "最终结转金额";
+                    $order_step = 1;
+                }
+            } else {
+                $pay_step = "嘿吼网订单付款";
             }
-        } else {
-            $pay_step = "嘿吼网订单付款";
-        }
-        //跟新订单进度
-        $upd_order = \Illuminate\Support\Facades\DB::update('UPDATE hh_order SET order_status = ?,order_step = ? WHERE order_id = ?', [$order_status, $order_step, $order_id]);
+            //跟新订单进度
+            $upd_order = \Illuminate\Support\Facades\DB::update('UPDATE hh_order SET order_status = ?,order_step = ? WHERE order_id = ?', [$order_status, $order_step, $order_id]);
 //        echo "验证成功<br />";
-        $url = 'http://www.heeyhome.com/success_pay.html#/?total=' . $total_fee . '&order_id=' . $order_id . '&pay_step=' . $pay_step . '&pay_time=' . $notify_time;
-        echo "<meta http-equiv='Refresh' content='1; url=" . $url . "'/>";
-        //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+            $url = 'http://www.heeyhome.com/success_pay.html#/?total=' . $total_fee . '&order_id=' . $order_id . '&pay_step=' . $pay_step . '&pay_time=' . $notify_time;
+            echo "<meta http-equiv='Refresh' content='1; url=" . $url . "'/>";
+            //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+        }else {
+            //若为材料单时支付成功逻辑
 
+
+        }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     } else {
