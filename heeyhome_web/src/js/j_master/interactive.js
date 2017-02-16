@@ -2263,26 +2263,18 @@
                         }
                         $('.personal_user_community').eq(0).addClass('personal_user_first');
                         //获取所在地信息
-                        if (data.data.loc_province != null && data.data.loc_province != '') {
-                            $('#loc').distpicker({province: data.data.loc_province});
-                        }
-                        if (data.data.loc_city != null && data.data.loc_city != '') {
-                            $('#loc').distpicker({city: data.data.loc_city});
-                        }
-                        if (data.data.loc_district != null && data.data.loc_district != '') {
-                            $('#loc').distpicker({district: data.data.loc_district});
-                        }
+                        $('#loc').distpicker({
+                            province: data.data.loc_province,
+                            city: data.data.loc_city,
+                            district: data.data.loc_district
+                        });
 
                         //获取家乡信息
-                        if (data.data.home_province != null && data.data.home_province != '') {
-                            $('#home').distpicker({province: data.data.home_province});
-                        }
-                        if (data.data.home_city != null && data.data.home_city != '') {
-                            $('#home').distpicker({city: data.data.home_city});
-                        }
-                        if (data.data.home_district != null && data.data.home_district != '') {
-                            $('#home').distpicker({district: data.data.home_district});
-                        }
+                        $('#home').distpicker({
+                            province: data.data.home_province,
+                            city: data.data.home_city,
+                            district: data.data.home_district
+                        });
                     }
                 },
                 error: function (data) {

@@ -790,24 +790,18 @@
                             $(".personal_form_list .email").removeClass("apparent");
                             $(".personal_form_list p a").html("绑定邮箱");
                         }
-                        if (data.data.loc_province != null && data.data.loc_province != '') {
-                            $('#nowAddress').distpicker({province: data.data.loc_province});
-                        }
-                        if (data.data.loc_city != null && data.data.loc_city != '') {
-                            $('#nowAddress').distpicker({city: data.data.loc_city});
-                        }
-                        if (data.data.loc_district != null && data.data.loc_district != '') {
-                            $('#nowAddress').distpicker({district: data.data.loc_district});
-                        }
-                        if (data.data.home_province != null && data.data.home_province != '') {
-                            $('#homeAddress').distpicker({province: data.data.home_province});
-                        }
-                        if (data.data.home_city != null && data.data.home_city != '') {
-                            $('#homeAddress').distpicker({city: data.data.home_city});
-                        }
-                        if (data.data.home_district != null && data.data.home_district != '') {
-                            $('#homeAddress').distpicker({district: data.data.home_district});
-                        }
+                        
+                        $('#nowAddress').distpicker({
+                            province: data.data.loc_province,
+                            city: data.data.loc_city,
+                            district: data.data.loc_district
+                        });
+
+                        $('#homeAddress').distpicker({
+                            province: data.data.home_province,
+                            city: data.data.home_city,
+                            district: data.data.home_district
+                        });
                         $(".personal_form_list .personal_area_detail").val(data.data.loc_address);
                     }
                 },
@@ -1496,7 +1490,7 @@
                     divTop = items.eq(x + 1).offset().top;
                 }
                 $("html,body").stop().animate({
-                    scrollTop: divTop + 100
+                    scrollTop: divTop - 20
                 }, 10);
             });
             $(window).scroll(function () {
