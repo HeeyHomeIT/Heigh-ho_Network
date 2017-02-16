@@ -2294,6 +2294,11 @@
     padding-left: 10px;
 }
 
+.material_content li .number .control_number input:disabled {
+    background-color: white;
+    cursor: not-allowed;
+}
+
 .material_content li .number .control_number span:before {
     position: absolute;
     content: "";

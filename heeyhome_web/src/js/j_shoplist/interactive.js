@@ -174,7 +174,7 @@
             });
 
             /* 点击店铺收藏 */
-            $(document).on('click', '.collect_shop', function () {
+            $(document).off('click', '.collect_shop').on('click', '.collect_shop', function () {
                 if (USERTYPE == null || USERTYPE == "" || USERTYPE == undefined) {
                     layer.msg("亲，收藏前请先登录哦~");
                     function login() {

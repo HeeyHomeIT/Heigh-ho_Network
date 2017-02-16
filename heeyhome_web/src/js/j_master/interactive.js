@@ -1898,6 +1898,7 @@
                             var isClick = sessionStorage.getItem("isClick");
                             if (isClick == '0') {
                                 $('.sure_send').attr('disabled', true);
+                                $('.control_number input[type="number"]').attr('disabled', true);
                             }
                         } else {
                             layer.msg(data.msg)
@@ -3934,43 +3935,45 @@
                             technics_id: technicsid
                         },
                         success: function (data) {
-                            layer.msg(data.msg);
-                            $('.detail_p b').remove();
-                            $http({
-                                method: "JSONP",
-                                url: SHOPCURL,
-                                /* 传参 */
-                                params: {
-                                    shop_id: $.base64.decode($.cookie("userShopId"))
-                                }
-                            }).success(function (data, status) {
-                                /* 如果成功执行 */
-                                if (data.code === '000') {
-                                    //console.log(data);
-                                    //获取店铺资料的本店工艺(最多只显示五张)
-                                    if (data.data.shop_technics.length >= 5) {
-                                        $scope.infos = data.data.shop_technics.slice(0, 5);
-                                        $('#technic_add').hide();
-                                        $('.detail_p').css('marginTop', '100px');
-                                    } else {
-                                        $scope.infos = data.data.shop_technics;
-                                        $('#technic_add').show();
-                                        $('.detail_p').css('marginTop', '5px');
+                            if (data.code == '000') {
+                                layer.msg(data.msg);
+                                $('.detail_p b').remove();
+                                $http({
+                                    method: "JSONP",
+                                    url: SHOPCURL,
+                                    /* 传参 */
+                                    params: {
+                                        shop_id: $.base64.decode($.cookie("userShopId"))
                                     }
-                                    if (data.data.shop_technics.length > 0) {
-                                        $.each(data.data.shop_technics, function (i, v) {
-                                            $('.detail_p').append('<b>' + v.technics_text + '</b>');
-                                        });
+                                }).success(function (data, status) {
+                                    /* 如果成功执行 */
+                                    if (data.code === '000') {
+                                        //console.log(data);
+                                        //获取店铺资料的本店工艺(最多只显示五张)
+                                        if (data.data.shop_technics.length >= 5) {
+                                            $scope.infos = data.data.shop_technics.slice(0, 5);
+                                            $('#technic_add').hide();
+                                            $('.detail_p').css('marginTop', '100px');
+                                        } else {
+                                            $scope.infos = data.data.shop_technics;
+                                            $('#technic_add').show();
+                                            $('.detail_p').css('marginTop', '5px');
+                                        }
+                                        if (data.data.shop_technics.length > 0) {
+                                            $.each(data.data.shop_technics, function (i, v) {
+                                                $('.detail_p').append('<b>' + v.technics_text + '</b>');
+                                            });
+                                        } else {
+                                            $('.detail_p').append('<b>随便说点什么吧！</b>');
+                                        }
                                     } else {
-                                        $('.detail_p').append('<b>随便说点什么吧！</b>');
+                                        layer.msg(data.msg);
                                     }
-                                }
-                                /* 如果失败执行 */
-                                else {
-                                    layer.layer.msg(data.msg);
-                                }
-                            }).error(function (data, status) {
-                            });
+                                })
+                            } else {
+                                layer.msg(data.msg);
+                            }
+
                         },
                         error: function (data) {
                         }
@@ -3990,33 +3993,37 @@
                             img_id: imgid
                         },
                         success: function (data) {
-                            layer.msg(data.msg);
-                            $http({
-                                method: "JSONP",
-                                url: SHOPCURL,
-                                /* 传参 */
-                                params: {
-                                    shop_id: $.base64.decode($.cookie("userShopId"))
-                                }
-                            }).success(function (data, status) {
-                                /* 如果成功执行 */
-                                if (data.code === '000') {
-                                    //console.log(data);
-                                    //获取店铺资料的效果图展示(最多只显示四张)
-                                    if (data.data.shop_imgs.length >= 4) {
-                                        $scope.imgs = data.data.shop_imgs.slice(0, 4);
-                                        $('.renderings_img').hide();
-                                    } else {
-                                        $scope.imgs = data.data.shop_imgs;
-                                        $('.renderings_img').show();
+                            if (data.code == '000') {
+                                layer.msg(data.msg);
+                                $http({
+                                    method: "JSONP",
+                                    url: SHOPCURL,
+                                    /* 传参 */
+                                    params: {
+                                        shop_id: $.base64.decode($.cookie("userShopId"))
                                     }
-                                }
-                                /* 如果失败执行 */
-                                else {
-                                    layer.layer.msg(data.msg);
-                                }
-                            }).error(function (data, status) {
-                            });
+                                }).success(function (data, status) {
+                                    /* 如果成功执行 */
+                                    if (data.code === '000') {
+                                        //console.log(data);
+                                        //获取店铺资料的效果图展示(最多只显示四张)
+                                        if (data.data.shop_imgs.length >= 4) {
+                                            $scope.imgs = data.data.shop_imgs.slice(0, 4);
+                                            $('.renderings_img').hide();
+                                        } else {
+                                            $scope.imgs = data.data.shop_imgs;
+                                            $('.renderings_img').show();
+                                        }
+                                    }
+                                    /* 如果失败执行 */
+                                    else {
+                                        layer.layer.msg(data.msg);
+                                    }
+                                });
+                            } else {
+                                layer.msg(data.msg);
+                            }
+
                         },
                         error: function (data) {
                         }
