@@ -1179,10 +1179,12 @@
                                     }
                                     if (statementStatus == '0') {
                                         $('.order_edit ').eq(i + 1).addClass('new_edit');
+                                        $('.order_edit ').eq(i + 1).val('查看' + $('.order_edit ').eq(i + 1).val().substr(2, 5));
                                     }
                                     if (i != 0) {
                                         $('.order_edit ').eq(i - 1).val('查看' + $('.order_edit ').eq(i - 1).val().substr(2, 5));
                                     }
+
                                 }
                                 for (var i = parseInt(step); i < 18; i++) {//判断后面的能不能点击
                                     $('.order_edit').eq(i).addClass('determine_process');
@@ -1259,6 +1261,7 @@
                     if ($(this).hasClass('detail_m')) {
                         /* 工种 */
                         sessionStorage.setItem("type", $(this).parent('.order_process').find('.process_title').attr('typename'));
+                        sessionStorage.setItem("isClick", '0');
                         window.location.href = 'material.html#/material/list';//跳转到材料单页面
                     } else {
                         var NUM = $(this).parent(".order_process");
@@ -1413,6 +1416,7 @@
                                 /* 点击结算单只可以填写施工后的数据 */
                                 $('.sheet_left input').attr("disabled", "disabled");
                                 $('.before_submit').attr("disabled", "disabled");
+                                $('.foreman').attr("disabled", "disabled");
                             }
                         }
                     }
@@ -1456,7 +1460,7 @@
                                 } else if (v.category == '油漆工') {
                                     $('.painter_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '"> </li>')
                                 } else if (v.category == '工长') {
-                                    $('.foreman_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '"> </li>')
+                                    $('.foreman_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '" class="foreman"> </li>')
                                 }
                             })
                         }
@@ -1890,6 +1894,10 @@
                             numberControl.plusMinus();
                             /* 确认发送 */
                             sureSend.toUser();
+                            var isClick = sessionStorage.getItem("isClick");
+                            if (isClick == '0') {
+                                $('.sure_send').attr('disabled', true);
+                            }
                         } else {
                             layer.msg(data.msg)
                         }

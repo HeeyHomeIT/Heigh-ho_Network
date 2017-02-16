@@ -34,6 +34,7 @@
     var SELSTATUSURL = BASEURL + 'order/client/selstatus';//查询订单状态及步骤
     var CALRESULTURL = BASEURL + 'costcalculator/result/get'; // 获取收藏的成本计算器结果接口
     var CANCELORDERURL = BASEURL + 'order/client/destory';//用户取消订单
+    var HOUSESTYLEURL = BASEURL + 'order/style/addhousestyle'; //订单装修风格
 
     var email;//获取用户邮箱
     var pic_total;//获取我的收藏全景图总数据
@@ -51,7 +52,6 @@
     } else {
         USERID = "";
     }
-
     /*定义一个类*/
     var centerWrap = {
         /**
@@ -269,6 +269,7 @@
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
+                            console.log(data.data);
                             $.each(data.data.order_list, function (i, v) {
                                 if (v.order_id == order_id) {
                                     $(".owner_picture img").attr("src", v.user_portrait);
@@ -287,6 +288,28 @@
                     },
                     error: function (data) {
 
+                    }
+                });
+                /* 获取装修风格 */
+                $.ajax({
+                    url: HOUSESTYLEURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        order_id: order_id
+                    },
+                    success: function (data) {
+                        if (data && data.code == '000') {
+                            console.log(data.data);
+                            if (data.data['装修风格'] != null) {
+                                $('.housetype p').html(data.data['装修风格']);
+                            } else {
+                                $('.housetype p').html('无');
+                            }
+                        }
+                    },
+                    error: function (data) {
                     }
                 });
                 /* 获得订单详情 */
@@ -898,6 +921,7 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
+                        console.log(data.data);
                         if (data.data.now_order_step != 18) {
                             var stage = '<div class="axis_start">';
                             stage += '<h2>进场准备</h2>';
@@ -1465,14 +1489,14 @@
                 e.stopPropagation();
                 var x = $(this).index();
                 var divTop;
-                if (x == _tabs.length - 1) {
+                if (x == 4) {
                     divTop = items.eq(0).offset().top;
                 }
                 else {
                     divTop = items.eq(x + 1).offset().top;
                 }
                 $("html,body").stop().animate({
-                    scrollTop: divTop
+                    scrollTop: divTop + 100
                 }, 10);
             });
             $(window).scroll(function () {
@@ -1518,21 +1542,50 @@
             }
             var vrStr = '<div class="work_stage">';
             vrStr += '<div class="stage_title">';
-            vrStr += '<span class="date">' + value.img_time + '</span>';
+            vrStr += '<span class="date">' + value.img_time.split(" ")[0] + '</span>';
             vrStr += '<em></em>';
             vrStr += '<b></b>';
-            vrStr += '<span class="step">' + value.order_step + '<span class="status">(' + value.material_pay_status + ')</span></span>';
-            vrStr += '</div>';
-            vrStr += '<div class="stage_content">';
-            vrStr += '<div class="stage_pic clearfix">';
-            $.each(value.img, function (m, n) {
-                vrStr += '<div class="pic">';
-                vrStr += '<img src="' + n.img_url + '">';
+            var order_id = sessionStorage.getItem("orderid");
+            if (value.order_step.indexOf("辅材") > 0) {
+                var type = 0;
+                if (value.order_step.indexOf("水电") != -1) {
+                    type = 1;
+                }
+                if (value.order_step.indexOf("瓦工") != -1) {
+                    type = 3;
+                }
+                if (value.order_step.indexOf("木工") != -1) {
+                    type = 4;
+                }
+                if (value.order_step.indexOf("油漆工") != -1) {
+                    type = 5;
+                }
+                vrStr += '<span class="step">' + value.order_step + '<a href="reservation.html#/materiallist?pos=' + order_id + '&&material_type=' + type + '" target="_blank" class="balance">材料清单</a></span>';
                 vrStr += '</div>';
-            });
+                vrStr += '<div class="stage_content">';
+                vrStr += '<div class="stage_pic clearfix">';
+                $.each(value.img, function (m, n) {
+                    vrStr += '<div class="pic">';
+                    vrStr += '<img src="' + n.img_url + '">';
+                    vrStr += '</div>';
+                });
+                vrStr += '</div>';
+                vrStr += '</div>';
+            } else {
+                vrStr += '<span class="step">' + value.order_step + '</span>';
+                vrStr += '</div>';
+                vrStr += '<div class="stage_content">';
+                vrStr += '<div class="stage_pic clearfix">';
+                $.each(value.img, function (m, n) {
+                    vrStr += '<div class="pic">';
+                    vrStr += '<img src="' + n.img_url + '">';
+                    vrStr += '</div>';
+                });
+                vrStr += '</div>';
+                vrStr += '<p>' + value.img_content + '</p>';
+                vrStr += '</div>';
+            }
             vrStr += '</div>';
-            vrStr += '<p>' + value.img_content + '</p>';
-            vrStr += '</div></div>';
             if (value.order_step.indexOf("完成") > 0) {
                 vrStr += '<div class="work_stage complete_stage">';
                 vrStr += '<div class="stage_title">';
@@ -1563,6 +1616,23 @@
             vrStr += '<div class="block clearfix"><div class="address">';
             vrStr += '<p>' + value.order_address + '</p></div>';
             vrStr += '<div class="area"><p class="item_hover_0"><span>' + value.area + '</span>㎡</p></div>';
+            if (value.order_step == '3') {
+                if (value.order_material_is_exist == '0') {
+                    value.order_step_ch = '水电工开工';
+                }
+            } else if (value.order_step == '7') {
+                if (value.order_material_is_exist == '0') {
+                    value.order_step_ch = '瓦工开工';
+                }
+            } else if (value.order_step == '11') {
+                if (value.order_material_is_exist == '0') {
+                    value.order_step_ch = '木工开工';
+                }
+            } else if (value.order_step == '15') {
+                if (value.order_material_is_exist == '0') {
+                    value.order_step_ch = '油漆工开工';
+                }
+            }
             vrStr += '<div class="now_stage"><p>' + value.order_step_ch + '</p></div>';
             vrStr += '<div class="money"><p>' + value.actual_finish_amount + '</p></div>';
             vrStr += '<div class="trade_stage"><p>' + value.order_status_ch + '</p></div>';
@@ -1599,11 +1669,15 @@
             if (value.order_status == 5) {
                 // 辅材类
                 if (value.order_step == 3 || value.order_step == 7 || value.order_step == 11 || value.order_step == 15) {
-                    vrStr += '<a href="reservation.html#/materiallist?pos=' + value.order_id + '" class="bottom">辅材支付</a>';
+                    if (value.order_material_is_exist == '1') {//工长已编辑过材料清单
+                        vrStr += '<a href="reservation.html#/materiallist?pos=' + value.order_id + '" class="bottom">辅材支付</a>';
+                    }
                 }
                 // 人工费
                 if (value.order_step == 5 || value.order_step == 9 || value.order_step == 13 || value.order_step == 17) {
-                    vrStr += '<a href="reservation.html#/advancelist?pos=' + value.order_id + '"  class="bottom">人工支付</a>';
+                    if (value.order_actual_isclick == '1') {//工长已编辑过结算单
+                        vrStr += '<a href="reservation.html#/advancelist?pos=' + value.order_id + '"  class="bottom">人工支付</a>';
+                    }
                     /*href="refund.html#/refund/home/refund_step_1"*/
                 }
             }
