@@ -4016,6 +4016,14 @@ div.clear:after, div.clear:before {
     border-radius: 2px;
 }
 
+.wallet_withdrawal:hover, .wallet_withdrawal:visited {
+    color: white !important;
+}
+
+.wallet_safe:hover, .wallet_safe:visited {
+    color: #4b4948 !important;
+}
+
 .wallet_safe {
     width: 88px;
     height: 36px;

@@ -439,6 +439,7 @@
                         } else {
                             $("#painter .team_con").html('<div class="nullpage"><i>&nbsp;</i><span>店铺还没有该工种...</span></div>');
                         }
+                        self.initPictureScrollEvent();
                     }
                 },
                 error: function (data) {
@@ -661,8 +662,8 @@
                                     window.location.href = url + "?type=1";
                                 } else {
                                     layer.confirm('您还没有身份验证，现在去进行身份验证？', {
-                                        btn: ['确定','取消'] //按钮
-                                    }, function(){
+                                        btn: ['确定', '取消'] //按钮
+                                    }, function () {
                                         window.location.href = "center.html#/center/setting/authentication/authentication_1";
                                     });
                                 }
@@ -713,8 +714,8 @@
                                     }
                                 } else {
                                     layer.confirm('您还没有身份验证，现在去进行身份验证？', {
-                                        btn: ['确定','取消'] //按钮
-                                    }, function(){
+                                        btn: ['确定', '取消'] //按钮
+                                    }, function () {
                                         window.location.href = "center.html#/center/setting/authentication/authentication_1";
                                     });
                                 }

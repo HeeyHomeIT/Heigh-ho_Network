@@ -416,7 +416,7 @@
                         shop_id: $.base64.decode($.cookie("userShopId")),
                         cate_id: cate_id,
                         page: 1,
-                        limit: 6
+                        limit: 5
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
@@ -435,6 +435,7 @@
                                 worker += '<li><span class="span_left">银行卡号</span><span class="span_right">' + v.bankcard + '</span></li>';
                                 worker += '</ul></div></a></div>';
                             });
+
                             worker += '<div class="worker_box sprite_team worker_add" data-action="add"><a href="#/master/teamDetail_edit"></a></div></div>';
                             $(".team_detail_wrap .page_number").before(worker);
                             $(".team_detail_content .worker_box").on("click", function () {
@@ -443,7 +444,7 @@
                                 sessionStorage.setItem("userid", id);
                                 sessionStorage.setItem("action", action);
                             });
-                            pageHandler.pageContentEvent(box_total, cate_id); //分页
+                            workpageHandler.pageContentEvent(box_total, cate_id); //分页
                         } else {
 //                          layer.msg(data.msg)
                             var worker = '<div class="team_detail_content clearfix">';
@@ -460,6 +461,7 @@
                 });
             }]);
         },
+
         /*
          * 我的员工详细资料
          */
@@ -683,6 +685,7 @@
             }]);
         }
     };
+
 
     /* div移动撞击事件 */
     startMoveHandler = {
@@ -4849,6 +4852,78 @@
                     judgeNews.isnews();
                     readNews.tobeRead();
                     deleteRecord.singleSelection();
+                    //markRead.checkAll();
+                } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
+            });
+        }
+    };
+
+    /* 我的团队具体工人分页 */
+    workpageHandler = {
+        pageContentEvent: function (box_total, cate_id) {
+            MAXROWS = Math.ceil(box_total / 5); // 页数
+            $(".page_div3").empty().paging({
+                total: MAXROWS, //全部页数
+                animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
+                centerBgColor: "#fff",
+                centerFontColor: "#000",
+                centerBorder: "1px solid #ddd",
+                transition: "all .2s",
+                centerHoverBgColor: "#eec988",
+                centerHoverBorder: "1px solid #eec988",
+                centerFontHoverColor: "#fff",
+                otherFontHoverColor: "#fff",
+                otherBorder: "1px solid #ddd",
+                otherHoverBorder: "1px solid #eec988",
+                otherBgColor: "#fff",
+                otherHoverBgColor: "#eec988",
+                currentFontColor: "#fff",
+                currentBgColor: "#eec988",
+                currentBorder: "1px solid #eec988",
+                fontSize: 13,
+                currentFontSize: 13,
+                cormer: 2, //按钮的边角曲度
+                gapWidth: 3, //间隙宽度
+                showJump: true, //是否显示跳转功能
+                jumpBgColor: "#fff",
+                jumpFontHoverColor: "#fff",
+                jumpHoverBgColor: "#eec988",
+                jumpBorder: "1px solid #ddd",
+                jumpHoverBorder: "1px solid #eec988",
+                submitType: "get", //注明是通过get方式访问还是post方式访问
+                idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
+                url: TEAMURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
+                ajaxData: {
+                    shop_id: $.base64.decode($.cookie("userShopId")),
+                    cate_id: cate_id,
+                    page: 1,
+                    limit: 5
+                },   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
+                dataOperate: function oprate(data) {
+                    $('.team_detail_content').remove();
+                    var worker = '<div class="team_detail_content clearfix">';
+                    $.each(data.data, function (i, v) {
+                        worker += '<div class="worker_box sprite_team" data-id="' + v.userid + '" data-action="edit"><a href="#/master/teamDetail_list">';
+                        worker += '<div class="head_picture"><img src="' + v.portrait_img + '"></div>';
+                        worker += '<div class="worker_content"><h3><span class="name">' + v.name + '</span>';
+                        worker += '<span class="age">' + v.age + '岁</span></h3>';
+                        worker += '<ul class="worker_information"><li>';
+                        worker += '<span class="span_left">籍贯</span><span class="span_right">' + v.birthplace + '</span></li>';
+                        worker += '<li><span class="span_left">从业时间</span><span class="span_right">' + v.worktime + '</span></li>';
+                        worker += '<li><span class="span_left">手机号</span><span class="span_right">' + v.phone + '</span></li>';
+                        worker += '<li><span class="span_left">身份证号</span><span class="span_right">' + v.idcard + '</span></li>';
+                        worker += '<li><span class="span_left">开户银行</span><span class="span_right">' + v.bankname + '</span></li>';
+                        worker += '<li><span class="span_left">银行卡号</span><span class="span_right">' + v.bankcard + '</span></li>';
+                        worker += '</ul></div></a></div>';
+                    });
+                    worker += '<div class="worker_box sprite_team worker_add" data-action="add"><a href="#/master/teamDetail_edit"></a></div></div>';
+                    $(".team_detail_wrap .page_number").before(worker);
+                    $(".team_detail_content .worker_box").on("click", function () {
+                        var id = $(this).attr("data-id");
+                        var action = $(this).attr("data-action");
+                        sessionStorage.setItem("userid", id);
+                        sessionStorage.setItem("action", action);
+                    });
                     //markRead.checkAll();
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
             });
