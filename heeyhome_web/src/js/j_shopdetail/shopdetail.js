@@ -365,8 +365,10 @@
                 },
                 success: function (data) {
                     if (data.code == "000") {
+                        console.log(data.data);
                         $("#sd_hexgrid").append(sc.spliceCgInfoEvent(data.data));
                         $.cookie('foremanId', $.base64.encode(data.data[0].foreman_id));
+                        sessionStorage.setItem("isshopdetail", '0');
                     } else {
                         $(".sdcon").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也...</span></div>');
                     }
@@ -803,7 +805,7 @@
         spliceBdPictureEvent: function (value) {
             var vrStr = '';
             $.each(value.shop_imgs, function (i, v) {
-                vrStr += '<li><div class="bg"></div><div class="pic"><img src="http://www.heeyhome.com/' + v.shop_img + '" /></div><div class="title"><a href="">效果图1</a></div></li>';
+                vrStr += '<li><div class="pic"><img src="http://www.heeyhome.com/' + v.shop_img + '" /></div></li>';
             });
             return vrStr;
         },

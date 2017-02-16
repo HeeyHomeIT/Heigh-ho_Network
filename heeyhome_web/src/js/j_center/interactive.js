@@ -790,7 +790,7 @@
                             $(".personal_form_list .email").removeClass("apparent");
                             $(".personal_form_list p a").html("绑定邮箱");
                         }
-                        
+
                         $('#nowAddress').distpicker({
                             province: data.data.loc_province,
                             city: data.data.loc_city,

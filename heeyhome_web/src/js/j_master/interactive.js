@@ -300,8 +300,9 @@
                 $("#headerWrapper").remove();
                 var id;
                 var case_id = sessionStorage.getItem("case_id");
+                var isshopdetai = sessionStorage.getItem("isshopdetail");
                 var userType = $.cookie('userType');
-                if ($.base64.decode(userType) == 2) {
+                if ($.base64.decode(userType) == 2 && isshopdetai != '0') {
                     id = $.base64.decode($.cookie('userId'));
                 } else {
                     id = $.base64.decode($.cookie("foremanId"));
@@ -4392,6 +4393,7 @@
 
                             $(document).on('click', '.works_detail', function () {
                                 sessionStorage.setItem("case_id", $(this).attr('caseid'));
+                                sessionStorage.setItem("isshopdetail", '1');
                             })
 
                         }
