@@ -197,6 +197,7 @@
             /* 点击进入店铺 */
             $(document).on('click', '.enter_shop', function () {
                 sessionStorage.setItem('iscollected', $(this).attr('iscollected'));
+                sessionStorage.setItem('wObj', '{}');
             })
         }
     };
