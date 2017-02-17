@@ -601,7 +601,7 @@ service16 = ? ,service17 = ? ,service18 = ? ,remark = ? ,update_time = ? ,is_ava
                     $zg += ($list_data_arr[1]- $yu_price[0]->service2) * ($sel_shop_price[0]->service2 );
                     $zg += ($list_data_arr[2]- $yu_price[0]->service3) * ($sel_shop_price[0]->service3 );
                     $zg += ($list_data_arr[3]- $yu_price[0]->service4) * ($sel_shop_price[0]->service4 );
-                    $zg += ($list_data_arr[4] $yu_price[0]->service5) * ($sel_shop_price[0]->service5 -);
+                    $zg += ($list_data_arr[4]- $yu_price[0]->service5) * ($sel_shop_price[0]->service5 );
                     $zg += ($list_data_arr[5]- $yu_price[0]->service6) * ($sel_shop_price[0]->service6 );
                     $zg += ($list_data_arr[6]- $yu_price[0]->service7) * ($sel_shop_price[0]->service7 );
                     $zg += ($list_data_arr[7]- $yu_price[0]->service8) * ($sel_shop_price[0]->service8 );
@@ -617,37 +617,39 @@ service16 = ? ,service17 = ? ,service18 = ? ,remark = ? ,update_time = ? ,is_ava
                     $sdg += ($list_data_arr[17] - $yu_price[0]->service18) * ($sel_shop_price[0]->service18);
                     $sum_next = $zg + $sdg + $gz;
 
-                    $pay_amount = $sum_next;
+                    $pay_amount1 = $sum_next;
 
-                    $sum_next += ($yu_price[0]->service19 * $sel_shop_price[0]->service19);
-                    $sum_next += ($yu_price[0]->service20 * $sel_shop_price[0]->service20);
-                    $sum_next += ($yu_price[0]->service21 * $sel_shop_price[0]->service21);
-                    $sum_next += ($yu_price[0]->service22 * $sel_shop_price[0]->service22);
-                    $sum_next += ($yu_price[0]->service23 * $sel_shop_price[0]->service23);
-                    $sum_next += ($yu_price[0]->service24 * $sel_shop_price[0]->service24);
-                    $sum_next += ($yu_price[0]->service25 * $sel_shop_price[0]->service25);
-                    $sum_next += ($yu_price[0]->service26 * $sel_shop_price[0]->service26);
-                    $sum_next += ($yu_price[0]->service27 * $sel_shop_price[0]->service27);
-                    $sum_next += ($yu_price[0]->service28 * $sel_shop_price[0]->service28);
-                    $sum_next += ($yu_price[0]->service29 * $sel_shop_price[0]->service29);
-                    $sum_next += ($yu_price[0]->service30 * $sel_shop_price[0]->service30);
-                    $sum_next += ($yu_price[0]->service31 * $sel_shop_price[0]->service31);
-                    $sum_next += ($yu_price[0]->service32 * $sel_shop_price[0]->service32);
-                    $sum_next += ($yu_price[0]->service33 * $sel_shop_price[0]->service33);
-                    $sum_next += ($yu_price[0]->service34 * $sel_shop_price[0]->service34);
-                    $sum_next += ($yu_price[0]->service35 * $sel_shop_price[0]->service35);
-                    $sum_next += ($yu_price[0]->service36 * $sel_shop_price[0]->service36);
-                    $sum_next += ($yu_price[0]->service37 * $sel_shop_price[0]->service37);
-                    $sum_next += ($yu_price[0]->service38 * $sel_shop_price[0]->service38);
-                    $sum_next += ($yu_price[0]->service39 * $sel_shop_price[0]->service39);
-                    $sum_next += ($yu_price[0]->service40 * $sel_shop_price[0]->service40);
-                    $sum_next += ($yu_price[0]->service41 * $sel_shop_price[0]->service41);
+                    $pay_amount2 = ($yu_price[0]->service19 * $sel_shop_price[0]->service19);
+                    $pay_amount2 += ($yu_price[0]->service20 * $sel_shop_price[0]->service20);
+                    $pay_amount2 += ($yu_price[0]->service21 * $sel_shop_price[0]->service21);
+                    $pay_amount2 += ($yu_price[0]->service22 * $sel_shop_price[0]->service22);
+                    $pay_amount2 += ($yu_price[0]->service23 * $sel_shop_price[0]->service23);
+                    $pay_amount2 += ($yu_price[0]->service24 * $sel_shop_price[0]->service24);
+                    $pay_amount2 += ($yu_price[0]->service25 * $sel_shop_price[0]->service25);
+                    $pay_amount2 += ($yu_price[0]->service26 * $sel_shop_price[0]->service26);
+                    $pay_amount2 += ($yu_price[0]->service27 * $sel_shop_price[0]->service27);
+                    $pay_amount2 += ($yu_price[0]->service28 * $sel_shop_price[0]->service28);
+                    $pay_amount2 += ($yu_price[0]->service29 * $sel_shop_price[0]->service29);
+                    $pay_amount2 += ($yu_price[0]->service30 * $sel_shop_price[0]->service30);
+                    $pay_amount2 += ($yu_price[0]->service31 * $sel_shop_price[0]->service31);
+                    $pay_amount2 += ($yu_price[0]->service32 * $sel_shop_price[0]->service32);
+                    $pay_amount2 += ($yu_price[0]->service33 * $sel_shop_price[0]->service33);
+                    $pay_amount2 += ($yu_price[0]->service34 * $sel_shop_price[0]->service34);
+                    $pay_amount2 += ($yu_price[0]->service35 * $sel_shop_price[0]->service35);
+                    $pay_amount2 += ($yu_price[0]->service36 * $sel_shop_price[0]->service36);
+                    $pay_amount2 += ($yu_price[0]->service37 * $sel_shop_price[0]->service37);
+                    $pay_amount2 += ($yu_price[0]->service38 * $sel_shop_price[0]->service38);
+                    $pay_amount2 += ($yu_price[0]->service39 * $sel_shop_price[0]->service39);
+                    $pay_amount2 += ($yu_price[0]->service40 * $sel_shop_price[0]->service40);
+                    $pay_amount2 += ($yu_price[0]->service41 * $sel_shop_price[0]->service41);
+                    $sum_next += $pay_amount2;
 
                     $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?',[$order_id]);
                     if ($order_pay) {
                         $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
                         $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?',[$new_finish_count,$sum_next,2,$order_id]);
-                        $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 1, 5, $pay_amount, 1]);
+                        $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 10, 5, $pay_amount1, 1]);
+                        $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 3, 5, $pay_amount2, 1]);
                     }
                     break;
                 case 8:
@@ -684,26 +686,28 @@ service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,remark = ? ,update_t
                     $wg += ($list_data_arr[38]- $yu_price[0]->service39) * ($sel_shop_price[0]->service39);
                     $wg += ($list_data_arr[39]- $yu_price[0]->service40) * ($sel_shop_price[0]->service40);
                     $wg += ($list_data_arr[40]- $yu_price[0]->service41) * ($sel_shop_price[0]->service41);
-                    $pay_amount = $wg;
+                    $pay_amount1 = $wg;
 
-                    $wg += ($yu_price[0]->service42 * $sel_shop_price[0]->service42);
-                    $wg += ($yu_price[0]->service43 * $sel_shop_price[0]->service43);
-                    $wg += ($yu_price[0]->service44 * $sel_shop_price[0]->service44);
-                    $wg += ($yu_price[0]->service45 * $sel_shop_price[0]->service45);
-                    $wg += ($yu_price[0]->service46 * $sel_shop_price[0]->service46);
-                    $wg += ($yu_price[0]->service47 * $sel_shop_price[0]->service47);
-                    $wg += ($yu_price[0]->service48 * $sel_shop_price[0]->service48);
-                    $wg += ($yu_price[0]->service49 * $sel_shop_price[0]->service49);
-                    $wg += ($yu_price[0]->service50 * $sel_shop_price[0]->service50);
-                    $wg += ($yu_price[0]->service51 * $sel_shop_price[0]->service51);
-                    $wg += ($yu_price[0]->service52 * $sel_shop_price[0]->service52);
-                    $wg += ($yu_price[0]->service53 * $sel_shop_price[0]->service53);
+                    $pay_amount2 = ($yu_price[0]->service42 * $sel_shop_price[0]->service42);
+                    $pay_amount2 += ($yu_price[0]->service43 * $sel_shop_price[0]->service43);
+                    $pay_amount2 += ($yu_price[0]->service44 * $sel_shop_price[0]->service44);
+                    $pay_amount2 += ($yu_price[0]->service45 * $sel_shop_price[0]->service45);
+                    $pay_amount2 += ($yu_price[0]->service46 * $sel_shop_price[0]->service46);
+                    $pay_amount2 += ($yu_price[0]->service47 * $sel_shop_price[0]->service47);
+                    $pay_amount2 += ($yu_price[0]->service48 * $sel_shop_price[0]->service48);
+                    $pay_amount2 += ($yu_price[0]->service49 * $sel_shop_price[0]->service49);
+                    $pay_amount2 += ($yu_price[0]->service50 * $sel_shop_price[0]->service50);
+                    $pay_amount2 += ($yu_price[0]->service51 * $sel_shop_price[0]->service51);
+                    $pay_amount2 += ($yu_price[0]->service52 * $sel_shop_price[0]->service52);
+                    $pay_amount2 += ($yu_price[0]->service53 * $sel_shop_price[0]->service53);
+                    $wg += $pay_amount2;
 
                     $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?',[$order_id]);
                     if ($order_pay) {
                         $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
                         $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?',[$new_finish_count,$wg,3,$order_id]);
-                        $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 1, 9, $pay_amount, 1]);
+                        $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 10, 9, $pay_amount1, 1]);
+                        $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 4, 9, $pay_amount2, 1]);
 
                     }
                     break;
@@ -728,25 +732,26 @@ service49 = ? ,service50 = ? ,service51 = ? ,service52 = ? ,service53 = ? ,remar
                     $mg += ($list_data_arr[51]- $yu_price[0]->service52) * ($sel_shop_price[0]->service52);
                     $mg += ($list_data_arr[52]- $yu_price[0]->service53) * ($sel_shop_price[0]->service53);
 
-                    $pay_amount = $mg;
+                    $pay_amount1 = $mg;
 
-                    $mg += ($yu_price[0]->service54 * $sel_shop_price[0]->service54);
-                    $mg += ($yu_price[0]->service55 * $sel_shop_price[0]->service55);
-                    $mg += ($yu_price[0]->service56 * $sel_shop_price[0]->service56);
-                    $mg += ($yu_price[0]->service57 * $sel_shop_price[0]->service57);
-                    $mg += ($yu_price[0]->service58 * $sel_shop_price[0]->service58);
-                    $mg += ($yu_price[0]->service59 * $sel_shop_price[0]->service59);
-                    $mg += ($yu_price[0]->service60 * $sel_shop_price[0]->service60);
-                    $mg += ($yu_price[0]->service61 * $sel_shop_price[0]->service61);
-                    $mg += ($yu_price[0]->service62 * $sel_shop_price[0]->service62);
-                    $mg += ($yu_price[0]->service63 * $sel_shop_price[0]->service63);
-
+                    $pay_amount2 = ($yu_price[0]->service54 * $sel_shop_price[0]->service54);
+                    $pay_amount2 += ($yu_price[0]->service55 * $sel_shop_price[0]->service55);
+                    $pay_amount2 += ($yu_price[0]->service56 * $sel_shop_price[0]->service56);
+                    $pay_amount2 += ($yu_price[0]->service57 * $sel_shop_price[0]->service57);
+                    $pay_amount2 += ($yu_price[0]->service58 * $sel_shop_price[0]->service58);
+                    $pay_amount2 += ($yu_price[0]->service59 * $sel_shop_price[0]->service59);
+                    $pay_amount2 += ($yu_price[0]->service60 * $sel_shop_price[0]->service60);
+                    $pay_amount2 += ($yu_price[0]->service61 * $sel_shop_price[0]->service61);
+                    $pay_amount2 += ($yu_price[0]->service62 * $sel_shop_price[0]->service62);
+                    $pay_amount2 += ($yu_price[0]->service63 * $sel_shop_price[0]->service63);
+                    $mg+= $pay_amount2;
 
                     $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?',[$order_id]);
                     if ($order_pay) {
                         $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
                         $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?',[$new_finish_count,$mg,4,$order_id]);
-                        $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 1, 13, $pay_amount, 1]);
+                        $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 10, 13, $pay_amount1, 1]);
+                        $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 5, 13, $pay_amount2, 1]);
                     }
                     break;
                 case 16:
@@ -770,7 +775,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     if ($order_pay) {
                         $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
                         $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?',[$new_finish_count,$yqg,5,$order_id]);
-                        $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 1, 17, $yqg, 1]);
+                        $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 10, 17, $yqg, 1]);
                     }
                     break;
                 default:
@@ -2044,6 +2049,12 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             $yu_price = DB::SELECT('SELECT * FROM hh_order_reckon_list WHERE order_id = ?',[$order_id]);
             //获取当前时间转化为mysql时间戳格式
             $timenow = strtotime(date('Y-m-d H:i:s', time()));
+            $mtime = explode(' ', microtime());
+            $mtime[0] = ($mtime[0] + 1) * 1000000;
+            $str1 = (string)$mtime[1];
+            $str2 = substr((string)$mtime[0], 1);
+            $str = $str1 . $str2 . rand(1000, 9999);
+            $pay_id = $str;
             //判断订单步骤 控制结算单更改字段
             //获取订单步骤
             $sel_order_step = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?',
@@ -2064,7 +2075,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $zg += ($list_data_arr[1]- $yu_price[0]->service2) * ($sel_shop_price[0]->service2 );
                         $zg += ($list_data_arr[2]- $yu_price[0]->service3) * ($sel_shop_price[0]->service3 );
                         $zg += ($list_data_arr[3]- $yu_price[0]->service4) * ($sel_shop_price[0]->service4 );
-                        $zg += ($list_data_arr[4] $yu_price[0]->service5) * ($sel_shop_price[0]->service5 -);
+                        $zg += ($list_data_arr[4]- $yu_price[0]->service5) * ($sel_shop_price[0]->service5 );
                         $zg += ($list_data_arr[5]- $yu_price[0]->service6) * ($sel_shop_price[0]->service6 );
                         $zg += ($list_data_arr[6]- $yu_price[0]->service7) * ($sel_shop_price[0]->service7 );
                         $zg += ($list_data_arr[7]- $yu_price[0]->service8) * ($sel_shop_price[0]->service8 );
@@ -2080,37 +2091,39 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $sdg += ($list_data_arr[17] - $yu_price[0]->service18) * ($sel_shop_price[0]->service18);
                         $sum_next = $zg + $sdg + $gz;
 
-                        $pay_amount = $sum_next;
+                        $pay_amount1 = $sum_next;
 
-                        $sum_next += ($yu_price[0]->service19 * $sel_shop_price[0]->service19);
-                        $sum_next += ($yu_price[0]->service20 * $sel_shop_price[0]->service20);
-                        $sum_next += ($yu_price[0]->service21 * $sel_shop_price[0]->service21);
-                        $sum_next += ($yu_price[0]->service22 * $sel_shop_price[0]->service22);
-                        $sum_next += ($yu_price[0]->service23 * $sel_shop_price[0]->service23);
-                        $sum_next += ($yu_price[0]->service24 * $sel_shop_price[0]->service24);
-                        $sum_next += ($yu_price[0]->service25 * $sel_shop_price[0]->service25);
-                        $sum_next += ($yu_price[0]->service26 * $sel_shop_price[0]->service26);
-                        $sum_next += ($yu_price[0]->service27 * $sel_shop_price[0]->service27);
-                        $sum_next += ($yu_price[0]->service28 * $sel_shop_price[0]->service28);
-                        $sum_next += ($yu_price[0]->service29 * $sel_shop_price[0]->service29);
-                        $sum_next += ($yu_price[0]->service30 * $sel_shop_price[0]->service30);
-                        $sum_next += ($yu_price[0]->service31 * $sel_shop_price[0]->service31);
-                        $sum_next += ($yu_price[0]->service32 * $sel_shop_price[0]->service32);
-                        $sum_next += ($yu_price[0]->service33 * $sel_shop_price[0]->service33);
-                        $sum_next += ($yu_price[0]->service34 * $sel_shop_price[0]->service34);
-                        $sum_next += ($yu_price[0]->service35 * $sel_shop_price[0]->service35);
-                        $sum_next += ($yu_price[0]->service36 * $sel_shop_price[0]->service36);
-                        $sum_next += ($yu_price[0]->service37 * $sel_shop_price[0]->service37);
-                        $sum_next += ($yu_price[0]->service38 * $sel_shop_price[0]->service38);
-                        $sum_next += ($yu_price[0]->service39 * $sel_shop_price[0]->service39);
-                        $sum_next += ($yu_price[0]->service40 * $sel_shop_price[0]->service40);
-                        $sum_next += ($yu_price[0]->service41 * $sel_shop_price[0]->service41);
+                        $pay_amount2 = ($yu_price[0]->service19 * $sel_shop_price[0]->service19);
+                        $pay_amount2 += ($yu_price[0]->service20 * $sel_shop_price[0]->service20);
+                        $pay_amount2 += ($yu_price[0]->service21 * $sel_shop_price[0]->service21);
+                        $pay_amount2 += ($yu_price[0]->service22 * $sel_shop_price[0]->service22);
+                        $pay_amount2 += ($yu_price[0]->service23 * $sel_shop_price[0]->service23);
+                        $pay_amount2 += ($yu_price[0]->service24 * $sel_shop_price[0]->service24);
+                        $pay_amount2 += ($yu_price[0]->service25 * $sel_shop_price[0]->service25);
+                        $pay_amount2 += ($yu_price[0]->service26 * $sel_shop_price[0]->service26);
+                        $pay_amount2 += ($yu_price[0]->service27 * $sel_shop_price[0]->service27);
+                        $pay_amount2 += ($yu_price[0]->service28 * $sel_shop_price[0]->service28);
+                        $pay_amount2 += ($yu_price[0]->service29 * $sel_shop_price[0]->service29);
+                        $pay_amount2 += ($yu_price[0]->service30 * $sel_shop_price[0]->service30);
+                        $pay_amount2 += ($yu_price[0]->service31 * $sel_shop_price[0]->service31);
+                        $pay_amount2 += ($yu_price[0]->service32 * $sel_shop_price[0]->service32);
+                        $pay_amount2 += ($yu_price[0]->service33 * $sel_shop_price[0]->service33);
+                        $pay_amount2 += ($yu_price[0]->service34 * $sel_shop_price[0]->service34);
+                        $pay_amount2 += ($yu_price[0]->service35 * $sel_shop_price[0]->service35);
+                        $pay_amount2 += ($yu_price[0]->service36 * $sel_shop_price[0]->service36);
+                        $pay_amount2 += ($yu_price[0]->service37 * $sel_shop_price[0]->service37);
+                        $pay_amount2 += ($yu_price[0]->service38 * $sel_shop_price[0]->service38);
+                        $pay_amount2 += ($yu_price[0]->service39 * $sel_shop_price[0]->service39);
+                        $pay_amount2 += ($yu_price[0]->service40 * $sel_shop_price[0]->service40);
+                        $pay_amount2 += ($yu_price[0]->service41 * $sel_shop_price[0]->service41);
+                        $sum_next += $pay_amount2;
 
                         $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?',[$order_id]);
                         if ($order_pay) {
                             $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
                             $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?',[$new_finish_count,$sum_next,2,$order_id]);
-                            $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 1, 5, $pay_amount, 1]);
+                            $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 10, 5, $pay_amount1, 1]);
+                            $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 3, 5, $pay_amount2, 1]);
                         }
                         break;
                     case 8:
@@ -2145,26 +2158,28 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $wg += ($list_data_arr[38]- $yu_price[0]->service39) * ($sel_shop_price[0]->service39);
                         $wg += ($list_data_arr[39]- $yu_price[0]->service40) * ($sel_shop_price[0]->service40);
                         $wg += ($list_data_arr[40]- $yu_price[0]->service41) * ($sel_shop_price[0]->service41);
-                        $pay_amount = $wg;
+                        $pay_amount1 = $wg;
 
-                        $wg += ($yu_price[0]->service42 * $sel_shop_price[0]->service42);
-                        $wg += ($yu_price[0]->service43 * $sel_shop_price[0]->service43);
-                        $wg += ($yu_price[0]->service44 * $sel_shop_price[0]->service44);
-                        $wg += ($yu_price[0]->service45 * $sel_shop_price[0]->service45);
-                        $wg += ($yu_price[0]->service46 * $sel_shop_price[0]->service46);
-                        $wg += ($yu_price[0]->service47 * $sel_shop_price[0]->service47);
-                        $wg += ($yu_price[0]->service48 * $sel_shop_price[0]->service48);
-                        $wg += ($yu_price[0]->service49 * $sel_shop_price[0]->service49);
-                        $wg += ($yu_price[0]->service50 * $sel_shop_price[0]->service50);
-                        $wg += ($yu_price[0]->service51 * $sel_shop_price[0]->service51);
-                        $wg += ($yu_price[0]->service52 * $sel_shop_price[0]->service52);
-                        $wg += ($yu_price[0]->service53 * $sel_shop_price[0]->service53);
+                        $pay_amount2 = ($yu_price[0]->service42 * $sel_shop_price[0]->service42);
+                        $pay_amount2 += ($yu_price[0]->service43 * $sel_shop_price[0]->service43);
+                        $pay_amount2 += ($yu_price[0]->service44 * $sel_shop_price[0]->service44);
+                        $pay_amount2 += ($yu_price[0]->service45 * $sel_shop_price[0]->service45);
+                        $pay_amount2 += ($yu_price[0]->service46 * $sel_shop_price[0]->service46);
+                        $pay_amount2 += ($yu_price[0]->service47 * $sel_shop_price[0]->service47);
+                        $pay_amount2 += ($yu_price[0]->service48 * $sel_shop_price[0]->service48);
+                        $pay_amount2 += ($yu_price[0]->service49 * $sel_shop_price[0]->service49);
+                        $pay_amount2 += ($yu_price[0]->service50 * $sel_shop_price[0]->service50);
+                        $pay_amount2 += ($yu_price[0]->service51 * $sel_shop_price[0]->service51);
+                        $pay_amount2 += ($yu_price[0]->service52 * $sel_shop_price[0]->service52);
+                        $pay_amount2 += ($yu_price[0]->service53 * $sel_shop_price[0]->service53);
+                        $wg += $pay_amount2;
 
                         $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?',[$order_id]);
                         if ($order_pay) {
                             $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
                             $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?',[$new_finish_count,$wg,3,$order_id]);
-                            $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 1, 9, $pay_amount, 1]);
+                            $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 10, 9, $pay_amount1, 1]);
+                            $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 4, 9, $pay_amount2, 1]);
 
                         }
                         break;
@@ -2188,24 +2203,26 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $mg += ($list_data_arr[51]- $yu_price[0]->service52) * ($sel_shop_price[0]->service52);
                         $mg += ($list_data_arr[52]- $yu_price[0]->service53) * ($sel_shop_price[0]->service53);
 
-                        $pay_amount = $mg;
+                        $pay_amount1 = $mg;
 
-                        $mg += ($yu_price[0]->service54 * $sel_shop_price[0]->service54);
-                        $mg += ($yu_price[0]->service55 * $sel_shop_price[0]->service55);
-                        $mg += ($yu_price[0]->service56 * $sel_shop_price[0]->service56);
-                        $mg += ($yu_price[0]->service57 * $sel_shop_price[0]->service57);
-                        $mg += ($yu_price[0]->service58 * $sel_shop_price[0]->service58);
-                        $mg += ($yu_price[0]->service59 * $sel_shop_price[0]->service59);
-                        $mg += ($yu_price[0]->service60 * $sel_shop_price[0]->service60);
-                        $mg += ($yu_price[0]->service61 * $sel_shop_price[0]->service61);
-                        $mg += ($yu_price[0]->service62 * $sel_shop_price[0]->service62);
-                        $mg += ($yu_price[0]->service63 * $sel_shop_price[0]->service63);
+                        $pay_amount2 = ($yu_price[0]->service54 * $sel_shop_price[0]->service54);
+                        $pay_amount2 += ($yu_price[0]->service55 * $sel_shop_price[0]->service55);
+                        $pay_amount2 += ($yu_price[0]->service56 * $sel_shop_price[0]->service56);
+                        $pay_amount2 += ($yu_price[0]->service57 * $sel_shop_price[0]->service57);
+                        $pay_amount2 += ($yu_price[0]->service58 * $sel_shop_price[0]->service58);
+                        $pay_amount2 += ($yu_price[0]->service59 * $sel_shop_price[0]->service59);
+                        $pay_amount2 += ($yu_price[0]->service60 * $sel_shop_price[0]->service60);
+                        $pay_amount2 += ($yu_price[0]->service61 * $sel_shop_price[0]->service61);
+                        $pay_amount2 += ($yu_price[0]->service62 * $sel_shop_price[0]->service62);
+                        $pay_amount2 += ($yu_price[0]->service63 * $sel_shop_price[0]->service63);
+                        $mg+= $pay_amount2;
 
                         $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?',[$order_id]);
                         if ($order_pay) {
                             $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
                             $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?',[$new_finish_count,$mg,4,$order_id]);
-                            $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 1, 13, $pay_amount, 1]);
+                            $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 10, 13, $pay_amount1, 1]);
+                            $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 5, 13, $pay_amount2, 1]);
                         }
                         break;
                     case 16:
@@ -2228,7 +2245,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         if ($order_pay) {
                             $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
                             $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?',[$new_finish_count,$yqg,5,$order_id]);
-                            $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 1, 17, $yqg, 1]);
+                            $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',[$order_id, $pay_id, 10, 17, $yqg, 1]);
                         }
                         break;
                     default:

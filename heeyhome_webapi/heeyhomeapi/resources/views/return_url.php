@@ -137,10 +137,10 @@ require_once("lib/alipay_notify.class.php");
                     //5.插入id
                     $supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?',[$material_supplier_id[0]->material_supplier_id]);
                 } else {
-                    echo "查找材料商失败";
+                    echo "未找到材料供应商，请联系客服！";
                 }
             } else {
-                    echo "插入材料商失败";
+                    echo "未找到材料供应商，请联系客服！";
             }
         }
 
