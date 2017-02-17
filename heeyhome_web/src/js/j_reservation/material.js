@@ -171,8 +171,13 @@
                     }, error: function (data) {
                     }
                 }).done(function (data) {
-                    console.log(data);
-                    layer.alert(data.msg)
+                    // console.log(data);
+                    // layer.alert(data.msg)
+                    layer.confirm('您确定自行购买吗？', {
+                        btn: ['确定', '取消'] //按钮
+                    }, function () {
+                        location.reload();
+                    });
                 });
             });
         },

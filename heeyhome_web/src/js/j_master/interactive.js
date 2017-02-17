@@ -62,12 +62,13 @@
     var UPDATEURL = BASEURL + 'order/aeckonandactual/update?callback=JSON_CALLBACK'; // 修改结算单信息
     var SELSTATUSURL = BASEURL + 'order/aeckonandactual/selstatus'; // 查询预结算单编辑状态
     var MATERIALLISTURL = BASEURL + 'materialslist'; //工长材料清单
-    var ORDERSHOPURL = BASEURL + 'order/shop/list'; //订单列表（店铺）
     var HOUSESTYLEURL = BASEURL + 'order/style/addhousestyle'; //订单装修风格
     var MATERIALORDERURL = BASEURL + 'order/material/produce'; //材料订单
     var APPOINTMENTURL = BASEURL + '/order/appointment';// 获取订单上门时间
     var DESTORYURL = BASEURL + '/order/shop/destory';// 取消订单
     var CONFIRMURL = BASEURL + '/order/shop/confirm';// 工长确认订单接口
+    var BASICINFOURL = BASEURL + '/order/shop/orderbasicinfo';// 获取业主信息接口
+    var HOMEORDERURL = BASEURL + '/order/shop/ordercount';// 获取我的首页订单数据接口
 
 
     var email;//获取工长邮箱
@@ -635,25 +636,24 @@
                 var orderId = sessionStorage.getItem("orderId");
                 $.ajax({
                     type: "get",
-                    url: ORDERSHOPURL,
+                    url: BASICINFOURL,
                     async: true,
                     dataType: "jsonp",
                     data: {
-                        shop_id: $.base64.decode($.cookie("userShopId"))
+                        shop_id: $.base64.decode($.cookie("userShopId")),
+                        order_id: orderId
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
-                            $.each(data.data.order_list, function (i, v) {
-                                if (v.order_id == orderId) {
-                                    time = v.order_time;
-                                    name = v.user_realname;
-                                    phone = v.user_phone;
-                                    address = v.order_address;
-                                    type = v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台";
-                                    area = v.area;
-                                    src = v.user_portrait;
-                                }
-                            });
+
+                            time = data.data.order_list[0].order_time;
+                            name = data.data.order_list[0].user_realname;
+                            phone = data.data.order_list[0].user_phone;
+                            address = data.data.order_list[0].order_address;
+                            type = data.data.order_list[0].room + "室" + data.data.order_list[0].parlour + "厅" + data.data.order_list[0].toilet + "卫" + data.data.order_list[0].balcony + "阳台";
+                            area = data.data.order_list[0].area;
+                            src = data.data.order_list[0].user_portrait;
+
                             $(".owner_content .owner_picture img").attr("src", src);
                             $(".owner_summary h3").html(name);
                             $(".owner_summary p span").html(phone);
@@ -889,22 +889,20 @@
 
                 function change() {
                     $.ajax({
-                        url: ORDERURL,
+                        url: BASICINFOURL,
                         type: "GET",
                         async: true,
                         dataType: 'jsonp',
                         data: {
-                            shop_id: $.base64.decode($.cookie("userShopId"))
+                            shop_id: $.base64.decode($.cookie("userShopId")),
+                            order_id: orderId
                         },
                         success: function (data) {
                             if (data && data.code == '000') {
                                 console.log(data.data);
-                                $.each(data.data.order_list, function (i, v) {
-                                    if (orderId == v.order_id) {
-                                        step = v.order_step;
-                                        status = v.order_status;
-                                    }
-                                });
+
+                                step = data.data.order_list[0].order_step;
+                                status = data.data.order_list[0].order_status;
 
                                 orderStatus();
                             }
@@ -1291,31 +1289,28 @@
                 /* 获取业主信息 */
                 $.ajax({
                     type: "get",
-                    url: ORDERSHOPURL,
+                    url: BASICINFOURL,
                     async: true,
                     dataType: "jsonp",
                     data: {
-                        shop_id: $.base64.decode($.cookie("userShopId"))
+                        shop_id: $.base64.decode($.cookie("userShopId")),
+                        order_id: orderId
                     },
                     success: function (data) {
                         console.log(data);
                         if (data != null && data.code == '000') {
-                            $.each(data.data.order_list, function (i, v) {
-                                if (v.order_id == orderId) {
-                                    time = v.order_time;
-                                    name = v.user_realname;
-                                    phone = v.user_phone;
-                                    address = v.order_address;
-                                    type = v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台";
-                                    area = v.area;
-                                    orderid = v.order_id;
-                                    $(".owner_picture img").attr("src", v.user_portrait);
-                                }
-                            });
+                            time = data.data.order_list[0].order_time;
+                            name = data.data.order_list[0].user_realname;
+                            phone = data.data.order_list[0].user_phone;
+                            address = data.data.order_list[0].order_address;
+                            type = data.data.order_list[0].room + "室" + data.data.order_list[0].parlour + "厅" + data.data.order_list[0].toilet + "卫" + data.data.order_list[0].balcony + "阳台";
+                            area = data.data.order_list[0].area;
+                            src = data.data.order_list[0].user_portrait;
+
                             $(".owner_summary h3").html(name);
                             $(".owner_summary p span").html(phone);
                             $(".owner_left .area span").html(area);
-                            $(".owner_left .order p").html(orderid);
+                            $(".owner_left .order p").html(orderId);
                             $(".owner_middle .type p").html(type);
                             $(".owner_middle .time p").html(time);
                             $(".owner_right .address p").html(address);
@@ -1398,21 +1393,19 @@
                 var step;
                 var num = sessionStorage.getItem("num");
                 $.ajax({
-                    url: ORDERURL,
+                    url: BASICINFOURL,
                     type: "GET",
                     async: true,
                     dataType: 'jsonp',
                     data: {
-                        shop_id: $.base64.decode($.cookie("userShopId"))
+                        shop_id: $.base64.decode($.cookie("userShopId")),
+                        order_id: orderId
                     },
                     success: function (data) {
                         if (data && data.code == '000') {
                             console.log(data.data);
-                            $.each(data.data.order_list, function (i, v) {
-                                if (orderId == v.order_id) {
-                                    step = v.order_step;
-                                }
-                            });
+                            step = data.data.order_list[0].order_step;
+
                             if (step == '18') {
                                 $('.sheet_right input').attr("disabled", "disabled");
                                 $('.after_submit').attr("disabled", "disabled");
@@ -1711,22 +1704,19 @@
                             $('.upload').hide();
                             $('.add_technology').hide();
                             $('.detail_upload').removeClass('hide').show();
+                            var orderId = sessionStorage.getItem("orderId");
                             $.ajax({
-                                url: ORDERURL,
+                                url: BASICINFOURL,
                                 type: "GET",
                                 async: true,
                                 dataType: 'jsonp',
                                 data: {
-                                    shop_id: $.base64.decode($.cookie("userShopId"))
+                                    shop_id: $.base64.decode($.cookie("userShopId")),
+                                    order_id: orderId
                                 },
                                 success: function (data) {
                                     if (data && data.code == '000') {
-                                        var orderId = sessionStorage.getItem("orderId");
-                                        $.each(data.data.order_list, function (i, v) {
-                                            if (orderId == v.order_id) {
-                                                sessionStorage.setItem("step", v.order_step);
-                                            }
-                                        })
+                                        sessionStorage.setItem("step", data.data.order_list[0].order_step);
                                     }
                                 }
                             });
@@ -2041,7 +2031,7 @@
             });
             /* 获取订单信息 */
             $.ajax({
-                url: ORDERURL,
+                url: HOMEORDERURL,
                 type: "GET",
                 async: true,
                 dataType: 'jsonp',
@@ -2050,18 +2040,8 @@
                 },
                 success: function (data) {
                     if (data && data.code == '000') {
-                        var order_progress = [];
-                        var completed = [];
-                        $.each(data.data.order_list, function (i, v) {
-                            /* 判断当前状态 */
-                            if (v.order_status == '5') {//订单进行中
-                                order_progress.push(v);
-                            } else if (v.order_status == '6') {//已完成
-                                completed.push(v);
-                            }
-                        });
-                        $('#completed').html(completed.length);
-                        $('#order_progress').html(order_progress.length);
+                        $('#completed').html(data.data['已完成']);
+                        $('#order_progress').html(data.data['未完成']);
                     }
                 },
                 error: function (data) {
