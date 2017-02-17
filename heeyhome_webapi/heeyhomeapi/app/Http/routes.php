@@ -195,6 +195,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/shop/list', 'OrderController@orderListFeroman');
     //店铺订单列表（筛选）
     Route::any('order/shop/listfilter', 'OrderController@orderListFeromanFilter');
+    //店铺订单基础信息
+    Route::any('order/shop/orderbasicinfo', 'OrderController@selOrderBasicInfo');
+    //店铺订单基础信息
+    Route::any('order/shop/ordercount', 'OrderController@orderCount');
     //取消订单
     Route::any('order/client/destory', 'OrderController@orderDestroy');
     //确认订单

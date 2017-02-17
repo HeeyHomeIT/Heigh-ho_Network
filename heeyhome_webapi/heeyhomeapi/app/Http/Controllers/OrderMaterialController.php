@@ -108,10 +108,10 @@ class OrderMaterialController extends Controller
                     $material_type_chn = $sel[0]->material_type;
                 }
                 //TODO 插入到订单进度详情表
-                $order_steps=DB::select('select order_step from hh_order where order_id=?',[$order_id]);
-                $order_step=$order_steps[0]->order_step;
-                $ins_order_detail = DB::insert('INSERT INTO hh_order_detail(order_id,order_step) VALUES (?,?)',[$order_id,$order_step]
-                    );
+                $order_steps = DB::select('select order_step from hh_order where order_id=?', [$order_id]);
+                $order_step = $order_steps[0]->order_step;
+                $ins_order_detail = DB::insert('INSERT INTO hh_order_detail(order_id,order_step) VALUES (?,?)', [$order_id, $order_step]
+                );
                 $arr = array(
                     "code" => "000",
                     "msg" => "材料订单已经生成",
@@ -623,6 +623,12 @@ class OrderMaterialController extends Controller
             //修改材料表信息
             $upd_material_tbl = DB::update('UPDATE hh_order_material SET pay_status = ?,material_price=? WHERE material_id = ?',
                 [3, 0, $material_id]);
+            //查询订单进度
+            $sel_order_step = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?', [$order_id]);
+            $order_step = $sel_order_step[0]->order_step;
+            //修改订单进度
+            $order_step += 1;
+            $upd_order_step = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?', [$order_step, $order_id]);
             if ($upd_material_tbl) {
                 $arr = array(
                     "code" => "000",
@@ -651,7 +657,7 @@ class OrderMaterialController extends Controller
     //进度提交材料
     public function progressOrderMaterial()
     {
-        $callback=rq('callback');
+        $callback = rq('callback');
         /* 返回当前的毫秒时间戳(16位) */
         $mtime = explode(' ', microtime());
         $mtime[0] = ($mtime[0] + 1) * 1000000;
@@ -659,9 +665,9 @@ class OrderMaterialController extends Controller
         $str2 = substr((string)$mtime[0], 1);
         $str = $str1 . $str2;
         $order_id = rq('order_id');
-        
 
-        $order_step_result = DB::SELECT('SELECT order_step FROM hh_order WHERE order_id = ?',[$order_id]);
+
+        $order_step_result = DB::SELECT('SELECT order_step FROM hh_order WHERE order_id = ?', [$order_id]);
         if (!$order_step_result) {
             $arr = array(
                 "code" => "203",
@@ -750,7 +756,7 @@ class OrderMaterialController extends Controller
                 if ($sel) {
                     $material_type_chn = $sel[0]->material_type;
                 }
-                $step = $order_step+1;
+                $step = $order_step + 1;
                 $result = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?', [$step, $order_id]);
                 $arr = array(
                     "code" => "000",

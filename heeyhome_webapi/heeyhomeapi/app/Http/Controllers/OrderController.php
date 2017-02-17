@@ -647,4 +647,51 @@ class OrderController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+
+    //订单基础信息查询
+    public function selOrderBasicInfo()
+    {
+        $order_id = rq('order_id');
+        $shop_id = rq('shop_id');
+        $callback = rq('callback');
+        $sel_order_id = DB::select('SELECT * FROM hh_order_new_view WHERE shop_id = ? AND order_id = ? ',
+            [$shop_id, $order_id]);
+        if ($sel_order_id) {
+            $arr = array("code" => "000",
+                "data" => array("order_list" => $sel_order_id
+                ),
+                "msg" => "查询成功"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array(
+                "code" => "205",
+                "msg" => "没有订单",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
+
+    //店铺订单统计
+    public function orderCount()
+    {
+        $shop_id = rq('shop_id');
+        $callback = rq('callback');
+        $sel_order_finish_count = DB::select('SELECT count(id) AS finish_count FROM hh_order WHERE shop_id = ? AND order_status = ? ',
+            [$shop_id, 6]);
+        $sel_order_unfinish_count = DB::select('SELECT count(id) AS unfinish_count FROM hh_order WHERE shop_id = ? AND order_status != ? ',
+            [$shop_id, 6]);
+        $finish_count = $sel_order_finish_count[0]->finish_count;
+        $unfinish_count = $sel_order_unfinish_count[0]->unfinish_count;
+        $arr = array(
+            "code" => "000",
+            "msg" => "没有订单",
+            "data" => array(
+                '已完成' => $finish_count,
+                '未完成' => $unfinish_count
+            )
+        );
+        return $callback . "(" . HHJson($arr) . ")";
+    }
 }
