@@ -765,7 +765,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     $yqg += ($list_data_arr[54]- $yu_price[0]->service54) * $sel_shop_price[0]->service55;
                     $yqg += ($list_data_arr[55]- $yu_price[0]->service55) * $sel_shop_price[0]->service56;
                     $yqg += ($list_data_arr[56]- $yu_price[0]->service56) * $sel_shop_price[0]->service57;
-                    $yqg += ($list_data_arr[57]- $yu_price[0]->service57) * $sel_shop_price[0]->service58);
+                    $yqg += ($list_data_arr[57]- $yu_price[0]->service57) * $sel_shop_price[0]->service58;
                     $yqg += ($list_data_arr[58]- $yu_price[0]->service58) * $sel_shop_price[0]->service59;
                     $yqg += ($list_data_arr[59]- $yu_price[0]->service59) * $sel_shop_price[0]->service60;
                     $yqg += ($list_data_arr[60]- $yu_price[0]->service60) * $sel_shop_price[0]->service61;
@@ -2235,7 +2235,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $yqg += ($list_data_arr[54]- $yu_price[0]->service54) * $sel_shop_price[0]->service55;
                         $yqg += ($list_data_arr[55]- $yu_price[0]->service55) * $sel_shop_price[0]->service56;
                         $yqg += ($list_data_arr[56]- $yu_price[0]->service56) * $sel_shop_price[0]->service57;
-                        $yqg += ($list_data_arr[57]- $yu_price[0]->service57) * $sel_shop_price[0]->service58);
+                        $yqg += ($list_data_arr[57]- $yu_price[0]->service57) * $sel_shop_price[0]->service58;
                         $yqg += ($list_data_arr[58]- $yu_price[0]->service58) * $sel_shop_price[0]->service59;
                         $yqg += ($list_data_arr[59]- $yu_price[0]->service59) * $sel_shop_price[0]->service60;
                         $yqg += ($list_data_arr[60]- $yu_price[0]->service60) * $sel_shop_price[0]->service61;
