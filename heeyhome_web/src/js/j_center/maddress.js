@@ -80,7 +80,7 @@
                 $('.not_information_text').html();
             });
         },
-         /**
+        /**
          * 返回按钮点击事件
          */
         backBtnClickEvent: function () {
@@ -207,7 +207,7 @@
             vrStr += '<em class="sprite_order"></em></a></div></div>';
             vrStr += '<div class="address_list_content" >';
             vrStr += '<span class="recipient">' + value.receiver + '</span>';
-            vrStr += '<span class="in_area">' + value.province + value.city + value.district + value.street + '</span>';
+            vrStr += '<span class="in_area">' + value.province + value.city + value.district + '</span>';
             vrStr += '<span class="detailed_address">' + value.address + '</span>';
             vrStr += '<span class="address_code">' + value.zipcode + '</span>';
             vrStr += '<span class="address_tel">' + value.mobile + '</span>';
@@ -224,7 +224,7 @@
         /**
          * 查询信息
          */
-        queryInfoEvent: function () {        	
+        queryInfoEvent: function () {
             $.ajax({
                 url: READURL,
                 type: "GET",
@@ -235,6 +235,7 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
+                        console.log(data.data);
                         $(".addressListWrap").empty();
                         $.each(data.data, function (i, v) {
                             var fliterStr = spliceContentHandler.spliceStrEvent(v);
@@ -307,7 +308,7 @@
                     if (data != null && data.code == '000') {
                         layer.msg(data.msg);
                         element.remove();
-						CRUDInfoHandler.queryInfoEvent(); // 查询信息初始化		
+                        CRUDInfoHandler.queryInfoEvent(); // 查询信息初始化
                     } else {
                         layer.msg(data.msg);
                     }
@@ -422,7 +423,7 @@
     };
     //入口方法调用 代码只能从这里执行
     HHIT_CENTERAPP.controller('mAddressCtrl', ['$scope', '$http', function ($scope, $http) {
-    	
+
         addressWrap.init();
     }]);
 })();

@@ -54,7 +54,7 @@ class MyworkersController extends Controller
                 $total=$total[0]->total;
                 $newpage=new PageController();
                 $offset=$newpage->page($total);
-                $eleworker=DB::select('select hh_eleworker.*,hh_portrait.portrait_img as portrait_img from hh_eleworker left join hh_portrait on hh_portrait.portrait_userid=hh_eleworker.userid where shopid=?',[$shop_id]);
+                $eleworker=DB::select('select hh_eleworker.*,hh_portrait.portrait_img as portrait_img from hh_eleworker left join hh_portrait on hh_portrait.portrait_userid=hh_eleworker.userid where shopid=? order by id desc limit ?,?',[$shop_id,$offset[0],$offset[1]]);
                 if($eleworker) {
                     foreach($eleworker as $key=>$val){
                         $ordernum=DB::select('select count(id) as total from hh_order_personnel where person1=? or person2=? or person3=? or person4=? or person5=? or person6=? or person7=? or person8=? or person9=?',[$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid]);
@@ -76,7 +76,7 @@ class MyworkersController extends Controller
                 $total=$total[0]->total;
                 $newpage=new PageController();
                 $offset=$newpage->page($total);
-                $brickworker=DB::select('select hh_brickworker.*,hh_portrait.portrait_img as portrait_img from hh_brickworker left join hh_portrait on hh_portrait.portrait_userid=hh_brickworker.userid where shopid=?',[$shop_id]);
+                $brickworker=DB::select('select hh_brickworker.*,hh_portrait.portrait_img as portrait_img from hh_brickworker left join hh_portrait on hh_portrait.portrait_userid=hh_brickworker.userid where shopid=? order by id desc limit ?,?',[$shop_id,$offset[0],$offset[1]]);
                 if($brickworker) {
                     foreach($brickworker as $key=>$val){
                         $ordernum=DB::select('select count(id) as total from hh_order_personnel where person1=? or person2=? or person3=? or person4=? or person5=? or person6=? or person7=? or person8=? or person9=?',[$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid]);
@@ -98,7 +98,7 @@ class MyworkersController extends Controller
                 $total=$total[0]->total;
                 $newpage=new PageController();
                 $offset=$newpage->page($total);
-                $woodworker=DB::select('select hh_woodworker.*,hh_portrait.portrait_img as portrait_img from hh_woodworker left join hh_portrait on hh_portrait.portrait_userid=hh_woodworker.userid where shopid=?',[$shop_id]);
+                $woodworker=DB::select('select hh_woodworker.*,hh_portrait.portrait_img as portrait_img from hh_woodworker left join hh_portrait on hh_portrait.portrait_userid=hh_woodworker.userid where shopid=? order by id desc limit ?,?',[$shop_id,$offset[0],$offset[1]]);
                 if($woodworker) {
                     foreach($woodworker as $key=>$val){
                         $ordernum=DB::select('select count(id) as total from hh_order_personnel where person1=? or person2=? or person3=? or person4=? or person5=? or person6=? or person7=? or person8=? or person9=?',[$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid]);
@@ -120,7 +120,7 @@ class MyworkersController extends Controller
                 $total=$total[0]->total;
                 $newpage=new PageController();
                 $offset=$newpage->page($total);
-                $paintworker=DB::select('select hh_paintworker.*,hh_portrait.portrait_img as portrait_img from hh_paintworker left join hh_portrait on hh_portrait.portrait_userid=hh_paintworker.userid where shopid=?',[$shop_id]);
+                $paintworker=DB::select('select hh_paintworker.*,hh_portrait.portrait_img as portrait_img from hh_paintworker left join hh_portrait on hh_portrait.portrait_userid=hh_paintworker.userid where shopid=? order by id desc limit ?,?',[$shop_id,$offset[0],$offset[1]]);
                 if($paintworker) {
                     foreach($paintworker as $key=>$val){
                         $ordernum=DB::select('select count(id) as total from hh_order_personnel where person1=? or person2=? or person3=? or person4=? or person5=? or person6=? or person7=? or person8=? or person9=?',[$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid,$val->userid]);

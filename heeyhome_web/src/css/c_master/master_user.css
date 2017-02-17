@@ -2294,6 +2294,11 @@
     padding-left: 10px;
 }
 
+.material_content li .number .control_number input:disabled {
+    background-color: white;
+    cursor: not-allowed;
+}
+
 .material_content li .number .control_number span:before {
     position: absolute;
     content: "";
@@ -4009,6 +4014,14 @@ div.clear:after, div.clear:before {
     margin-right: 10px;
     margin-top: 53px;
     border-radius: 2px;
+}
+
+.wallet_withdrawal:hover, .wallet_withdrawal:visited {
+    color: white !important;
+}
+
+.wallet_safe:hover, .wallet_safe:visited {
+    color: #4b4948 !important;
 }
 
 .wallet_safe {
