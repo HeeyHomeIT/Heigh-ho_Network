@@ -156,6 +156,30 @@ define(['app','bootstrap', 'js/j_common/common', 'js/j_index/interactive', 'js/j
 		};
 	});
 
+	/**
+	 * 订单详情导航
+	 */
+	app.directive('orderdetailNav', function() {
+		return {
+			templateUrl: "view/v_center/orderDetail_nav.html",
+			link: function(scope, iElement, iAttrs) {
+				app.indexNavWrapHandler();
+			}
+		};
+	});
+
+	/**
+	 * 材料导航
+	 */
+	app.directive('ordermaterialNav', function() {
+		return {
+			templateUrl: "view/v_center/orderMaterial_nav.html",
+			link: function(scope, iElement, iAttrs) {
+				app.indexNavWrapHandler();
+			}
+		};
+	});
+
     /**
      * 工长我的钱包提现repeat执行完成之后的事件
      */
