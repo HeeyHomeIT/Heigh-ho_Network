@@ -648,7 +648,7 @@ service16 = ? ,service17 = ? ,service18 = ? ,remark = ? ,update_time = ? ,is_ava
                     $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?', [$order_id]);
                     if ($order_pay) {
                         $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
-                        $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?', [$new_finish_count, $sum_next, 2, $order_id]);
+                        $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_pay_step = ? WHERE order_id = ?', [$new_finish_count, $sum_next, 2, $order_id]);
                         $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 10, 5, $pay_amount1, 1]);
                         $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 3, 5, $pay_amount2, 1]);
                     }
@@ -706,7 +706,7 @@ service38 = ? ,service39 = ? ,service40 = ? ,service41 = ? ,remark = ? ,update_t
                     $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?', [$order_id]);
                     if ($order_pay) {
                         $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
-                        $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?', [$new_finish_count, $wg, 3, $order_id]);
+                        $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_pay_step = ? WHERE order_id = ?', [$new_finish_count, $wg, 3, $order_id]);
                         $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 10, 9, $pay_amount1, 1]);
                         $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 4, 9, $pay_amount2, 1]);
                     }
@@ -749,7 +749,7 @@ service49 = ? ,service50 = ? ,service51 = ? ,service52 = ? ,service53 = ? ,remar
                     $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?', [$order_id]);
                     if ($order_pay) {
                         $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
-                        $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?', [$new_finish_count, $mg, 4, $order_id]);
+                        $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_pay_step = ? WHERE order_id = ?', [$new_finish_count, $mg, 4, $order_id]);
                         $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 10, 13, $pay_amount1, 1]);
                         $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 5, 13, $pay_amount2, 1]);
                     }
@@ -774,7 +774,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?', [$order_id]);
                     if ($order_pay) {
                         $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
-                        $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?', [$new_finish_count, $yqg, 5, $order_id]);
+                        $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_pay_step = ? WHERE order_id = ?', [$new_finish_count, $yqg, 5, $order_id]);
                         $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 10, 17, $yqg, 1]);
                     }
                     break;
@@ -1131,7 +1131,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             $reckon_sum += ($sel_reckon_list[0]->service39 * $sel_shop_price[0]->service39);
             $reckon_sum += ($sel_reckon_list[0]->service40 * $sel_shop_price[0]->service40);
             $reckon_sum += ($sel_reckon_list[0]->service41 * $sel_shop_price[0]->service41);
-            $actual_sum = ($sel_actual_list[0]->service19 * $sel_shop_price[0]->service18);
+            $actual_sum = ($sel_actual_list[0]->service19 * $sel_shop_price[0]->service19);
             $actual_sum += ($sel_actual_list[0]->service20 * $sel_shop_price[0]->service20);
             $actual_sum += ($sel_actual_list[0]->service21 * $sel_shop_price[0]->service21);
             $actual_sum += ($sel_actual_list[0]->service22 * $sel_shop_price[0]->service22);
@@ -2121,7 +2121,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?', [$order_id]);
                         if ($order_pay) {
                             $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
-                            $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?', [$new_finish_count, $sum_next, 2, $order_id]);
+                            $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_pay_step = ? WHERE order_id = ?', [$new_finish_count, $sum_next, 2, $order_id]);
                             $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 10, 5, $pay_amount1, 1]);
                             $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 3, 5, $pay_amount2, 1]);
                         }
@@ -2177,7 +2177,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?', [$order_id]);
                         if ($order_pay) {
                             $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
-                            $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?', [$new_finish_count, $wg, 3, $order_id]);
+                            $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_pay_step = ? WHERE order_id = ?', [$new_finish_count, $wg, 3, $order_id]);
                             $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 10, 9, $pay_amount1, 1]);
                             $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 4, 9, $pay_amount2, 1]);
                         }
@@ -2219,7 +2219,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?', [$order_id]);
                         if ($order_pay) {
                             $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
-                            $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?', [$new_finish_count, $mg, 4, $order_id]);
+                            $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_pay_step = ? WHERE order_id = ?', [$new_finish_count, $mg, 4, $order_id]);
                             $pay_each1 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 10, 13, $pay_amount1, 1]);
                             $pay_each2 = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 5, 13, $pay_amount2, 1]);
                         }
@@ -2243,7 +2243,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $order_pay = DB::SELECT('SELECT actual_finish_amount,actual_next_amount FROM hh_order_pay where order_id = ?', [$order_id]);
                         if ($order_pay) {
                             $new_finish_count = $order_pay[0]->actual_next_amount + $order_pay[0]->actual_finish_amount;
-                            $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_step = ? WHERE order_id = ?', [$new_finish_count, $yqg, 5, $order_id]);
+                            $new_finish = DB::update('update hh_order_pay SET actual_finish_amount = ?,actual_next_amount = ?, order_pay_step = ? WHERE order_id = ?', [$new_finish_count, $yqg, 5, $order_id]);
                             $pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)', [$order_id, $pay_id, 10, 17, $yqg, 1]);
 
                         }
