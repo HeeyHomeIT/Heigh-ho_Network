@@ -31,7 +31,7 @@ class MaterialslistController extends Controller
                             $num = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
                             foreach ($num as $ke => $item) {
                                 if ($ids[0]->id == $item->material_name_id) {
-                                    $spec[$k]->num = $num[$ke]->material_num;
+                                    $spec[$k]->num = $item->material_num;
                                 }
                             }
                         }
@@ -46,7 +46,7 @@ class MaterialslistController extends Controller
                     $nums = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
                     foreach ($nums as $ke => $item) {
                         if ($ids[0]->id == $item->material_name_id) {
-                            $num = $nums[$ke]->material_num;
+                            $num = $item->material_num;
                         }
                     }
                 }
@@ -55,7 +55,7 @@ class MaterialslistController extends Controller
                 'num'=>$num);
             }
         }
-        $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,2]);
+        $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,3]);
         $brickmaterialist=DB::select('select * from hh_materials_material_name_view where cate_id=? and if_show=?',[2,1]);
         foreach($brickmaterialist as $key=>$value){
             $spec=DB::select('select spec_id,spec_name from hh_material_spec where material_id=?',[$value->material_id]);
@@ -69,7 +69,7 @@ class MaterialslistController extends Controller
                             $num = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
                             foreach ($num as $ke => $item) {
                                 if ($ids[0]->id == $item->material_name_id) {
-                                    $spec[$k]->num = $num[$ke]->material_num;
+                                    $spec[$k]->num = $item->material_num;
                                 }
                             }
                         }
@@ -82,9 +82,10 @@ class MaterialslistController extends Controller
                 $num = 0;
                 if ($material_ids) {
                     $nums = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
+                    //dd($nums);
                     foreach ($nums as $ke => $item) {
                         if ($ids[0]->id == $item->material_name_id) {
-                            $num = $num[$ke]->material_num;
+                            $num = $item->material_num;
                         }
                     }
                 }
@@ -93,7 +94,7 @@ class MaterialslistController extends Controller
                     'num'=>$num);
             }
         }
-        $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,3]);
+        $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,4]);
         $woodmaterialist=DB::select('select * from hh_materials_material_name_view where cate_id=? and if_show=?',[3,1]);
         foreach($woodmaterialist as $key=>$value){
             $spec=DB::select('select spec_id,spec_name from hh_material_spec where material_id=?',[$value->material_id]);
@@ -107,7 +108,7 @@ class MaterialslistController extends Controller
                             $num = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
                             foreach ($num as $ke => $item) {
                                 if ($ids[0]->id == $item->material_name_id) {
-                                    $spec[$k]->num = $num[$ke]->material_num;
+                                    $spec[$k]->num = $item->material_num;
                                 }
                             }
                         }
@@ -122,7 +123,7 @@ class MaterialslistController extends Controller
                     $nums = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
                     foreach ($nums as $ke => $item) {
                         if ($ids[0]->id == $item->material_name_id) {
-                            $num = $num[$ke]->material_num;
+                            $num = $item->material_num;
                         }
                     }
                 }
@@ -131,7 +132,7 @@ class MaterialslistController extends Controller
                     'num'=>$num);
             }
         }
-        $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,4]);
+        $material_ids=DB::select('select material_id from hh_order_material where order_id=? and material_type=?',[$order_id,5]);
         $paintmaterialist=DB::select('select * from hh_materials_material_name_view where cate_id=? and if_show=?',[4,1]);
         foreach($paintmaterialist as $key=>$value){
             $spec=DB::select('select spec_id,spec_name from hh_material_spec where material_id=?',[$value->material_id]);
@@ -145,7 +146,7 @@ class MaterialslistController extends Controller
                             $num = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
                             foreach ($num as $ke => $item) {
                                 if ($ids[0]->id == $item->material_name_id) {
-                                    $spec[$k]->num = $num[$ke]->material_num;
+                                    $spec[$k]->num = $item->material_num;
                                 }
                             }
                         }
@@ -160,7 +161,7 @@ class MaterialslistController extends Controller
                     $nums = DB::select('select material_num,material_name_id from hh_order_material_list where material_id=?', [$material_ids[0]->material_id]);
                     foreach ($nums as $ke => $item) {
                         if ($ids[0]->id == $item->material_name_id) {
-                            $num = $num[$ke]->material_num;
+                            $num = $item->material_num;
                         }
                     }
                 }
