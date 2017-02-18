@@ -38,11 +38,11 @@ class OrderDisplayController extends Controller
                 $select[$key]->material_pay_status = $material_pay_status[0]->order_material_status;
             }
             if ($val->order_step == 7) {
-                $material_pay_status = DB::select('select order_material_status from hh_order_material where order_id=? and material_type=?', [$order_id, 4]);
+                $material_pay_status = DB::select('select order_material_status from hh_order_material where order_id=? and material_type=?', [$order_id, 3]);
                 $select[$key]->material_pay_status = $material_pay_status[0]->order_material_status;
             }
             if ($val->order_step == 11) {
-                $material_pay_status = DB::select('select order_material_status from hh_order_material where order_id=? and material_type=?', [$order_id, 3]);
+                $material_pay_status = DB::select('select order_material_status from hh_order_material where order_id=? and material_type=?', [$order_id, 4]);
                 $select[$key]->material_pay_status = $material_pay_status[0]->order_material_status;
             }
             if ($val->order_step == 15) {
