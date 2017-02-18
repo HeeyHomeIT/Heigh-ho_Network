@@ -705,13 +705,17 @@ class OrderMaterialController extends Controller
                     [$material_arr_keys[$i], $material_id]);
                 if ($sel_material_echo_tbl) {
                     //更新单条数据
-                    DB::update('UPDATE hh_order_material_list SET material_name_id = ? , material_num = ? WHERE material_id = ?',
-                        [$material_arr_keys[$i], $material_arr_values[$i], $material_id]);
+                    if ($material_arr_values[$i] == 0) {
+                        DB::delete('DELETE FROM hh_order_material_list WHERE material_id = ? ', [$material_id]);
+                    } else if ($material_arr_values[$i] > 0) {
+                        DB::update('UPDATE hh_order_material_list SET material_name_id = ? , material_num = ? WHERE material_id = ?',
+                            [$material_arr_keys[$i], $material_arr_values[$i], $material_id]);
+                    }
                 } else {
                     $sel_isexist_material = DB::select('SELECT * FROM hh_materials WHERE id = ?',
                         [$material_arr_keys[$i]]);
                     //验证材料是否存在
-                    if ($sel_isexist_material) {
+                    if ($sel_isexist_material && ($material_arr_keys[$i] > 0)) {
                         //插入单条数据
                         DB::insert('INSERT INTO hh_order_material_list (material_id,material_name_id,material_num) VALUES (?,?,?)',
                             [$material_id, $material_arr_keys[$i], $material_arr_values[$i]]);
@@ -747,8 +751,10 @@ class OrderMaterialController extends Controller
                 [$order_id, $material_id, $material_type, $material_list, $pay_status, $order_material_status]);
             if ($ins_material_tbl) {
                 for ($i = 0; $i < $count; $i++) {
-                    DB::insert('INSERT INTO hh_order_material_list (material_id,material_name_id,material_num) VALUES (?,?,?)',
-                        [$material_id, $material_arr_keys[$i], $material_arr_values[$i]]);
+                    if ($material_arr_keys[$i] > 0) {
+                        DB::insert('INSERT INTO hh_order_material_list (material_id,material_name_id,material_num) VALUES (?,?,?)',
+                            [$material_id, $material_arr_keys[$i], $material_arr_values[$i]]);
+                    }
                 }
                 $material_type_chn = '';
                 $sel = DB::select('SELECT material_type FROM hh_order_material_type WHERE material_type_id = ?',
