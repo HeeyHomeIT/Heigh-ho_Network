@@ -1080,6 +1080,7 @@
                                 $('.order_process input').attr("disabled", "disabled");
                                 //可以查看预算单
                                 $('#order_edit').attr("disabled", false).addClass('new_edit');
+                                $('#order_edit ').val('查看' + $('#order_edit ').val().substr(2, 5));
                                 //提醒工长需要先添加风格
                                 if (houseStyle != null && houseStyle != '' && houseStyle != undefined) {
                                     $('.order_increase').eq(0).attr("disabled", false);
@@ -1392,32 +1393,7 @@
                 var orderId = sessionStorage.getItem("orderId");
                 var step;
                 var num = sessionStorage.getItem("num");
-                $.ajax({
-                    url: BASICINFOURL,
-                    type: "GET",
-                    async: true,
-                    dataType: 'jsonp',
-                    data: {
-                        shop_id: $.base64.decode($.cookie("userShopId")),
-                        order_id: orderId
-                    },
-                    success: function (data) {
-                        if (data && data.code == '000') {
-                            console.log(data.data);
-                            step = data.data.order_list[0].order_step;
 
-                            if (step == '18') {
-                                $('.sheet_right input').attr("disabled", "disabled");
-                                $('.after_submit').attr("disabled", "disabled");
-                            } else {
-                                /* 点击结算单只可以填写施工后的数据 */
-                                $('.sheet_left input').attr("disabled", "disabled");
-                                $('.before_submit').attr("disabled", "disabled");
-                                $('.foreman').attr("disabled", "disabled");
-                            }
-                        }
-                    }
-                });
                 /* input框如果输入的是负值 */
                 $(document).on('blur', 'input[type=number]', function (e) {
                     var val = $(e.target).val();
@@ -1459,7 +1435,33 @@
                                 } else if (v.category == '工长') {
                                     $('.foreman_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '" class="foreman"> </li>')
                                 }
-                            })
+                            });
+                            $.ajax({
+                                url: BASICINFOURL,
+                                type: "GET",
+                                async: true,
+                                dataType: 'jsonp',
+                                data: {
+                                    shop_id: $.base64.decode($.cookie("userShopId")),
+                                    order_id: orderId
+                                },
+                                success: function (data) {
+                                    if (data && data.code == '000') {
+                                        console.log(data.data);
+                                        step = data.data.order_list[0].order_step;
+
+                                        if (step == '18') {
+                                            $('.sheet_right input').attr("disabled", "disabled");
+                                            $('.after_submit').attr("disabled", "disabled");
+                                        } else {
+                                            /* 点击结算单只可以填写施工后的数据 */
+                                            $('.sheet_left input').attr("disabled", "disabled");
+                                            $('.before_submit').attr("disabled", "disabled");
+                                            $('.foreman').attr("disabled", "disabled");
+                                        }
+                                    }
+                                }
+                            });
                         }
                         /* 进场准备点击预算单只可以填写施工前的数据 */
                         /* 获取订单列表的订单步骤 */

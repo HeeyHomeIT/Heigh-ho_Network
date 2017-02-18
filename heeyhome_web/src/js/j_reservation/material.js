@@ -82,7 +82,6 @@
                         $this.parents("li").siblings().find("i").removeClass("rep_radiao_check");
                         $this.siblings("i").addClass("rep_radiao_check");
                     });
-
                 } else if (data.data.order_pay_type == 1) { // 待支付（材料不可选择，可以选择自行购买或平台支付）
                     self.initPaySumbitEvent(data.data.order_pay_type); // 支付
 //					$("#Jpayment").val("已支付").addClass("alreadyPaid");
@@ -177,6 +176,8 @@
                         btn: ['确定', '取消'] //按钮
                     }, function () {
                         location.reload();
+                        $('.listnumber span').remove();
+                        $('.listnumber').append('<p>已自行购买材料</p>');
                     });
                 });
             });
