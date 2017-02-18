@@ -2097,7 +2097,7 @@ a:focus {
     border-left: 1px solid #EEC988
 }
 
-.work_stage .stage_content .stage_pic .pic {
+.work_stage .stage_content .stage_pic img {
     width: 128px;
     height: 94px;
     float: left;

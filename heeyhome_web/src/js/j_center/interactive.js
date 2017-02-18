@@ -961,6 +961,12 @@
                         if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
                             $('.work_stage .stage_content').css('marginLeft', '0');
                         }
+
+                        layer.photos({
+                            photos: '.stage_pic',
+                            anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+                        });
+
                     } else {
                         layer.alert(data.msg)
                     }
@@ -1559,9 +1565,9 @@
                 vrStr += '<div class="stage_content">';
                 vrStr += '<div class="stage_pic clearfix">';
                 $.each(value.img, function (m, n) {
-                    vrStr += '<div class="pic">';
-                    vrStr += '<img src="' + n.img_url + '">';
-                    vrStr += '</div>';
+                    // vrStr += '<div class="pic">';
+                    vrStr += '<img src="' + n.img_url + '" alt="' + value.order_step + '">';
+                    // vrStr += '</div>';
                 });
                 vrStr += '</div>';
                 vrStr += '</div>';
@@ -1571,9 +1577,9 @@
                 vrStr += '<div class="stage_content">';
                 vrStr += '<div class="stage_pic clearfix">';
                 $.each(value.img, function (m, n) {
-                    vrStr += '<div class="pic">';
-                    vrStr += '<img src="' + n.img_url + '">';
-                    vrStr += '</div>';
+                    // vrStr += '<div class="pic">';
+                    vrStr += '<img src="' + n.img_url + '" alt="' + value.order_step + '">';
+                    // vrStr += '</div>';
                 });
                 vrStr += '</div>';
                 vrStr += '<p>' + value.img_content + '</p>';

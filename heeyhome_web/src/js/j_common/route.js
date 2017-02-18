@@ -247,7 +247,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     },
                     resolve: {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load('js/j_center/interactive.js')
+                            return $ocLazyLoad.load(["lib/layui/css/modules/layer/default/layer.css",'js/j_center/interactive.js'])
                         }]
                     }
                 })

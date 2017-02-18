@@ -1,25 +1,25 @@
-html,body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd,form,fieldset,legend,input,select,textarea,button,caption,th,td,blockquote,pre {
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, form, fieldset, legend, input, select, textarea, button, caption, th, td, blockquote, pre {
     margin: 0;
     padding: 0
 }
 
 body {
     color: #333;
-    font: normal normal normal 12px/20px Arial,sans-serif
+    font: normal normal normal 12px/20px Arial, sans-serif
 }
 
-input,select,textarea,button {
+input, select, textarea, button {
     vertical-align: middle;
     font-size: 100%;
     outline: 0;
-    font-family: 'Microsoft YaHei',Arial,sans-serif
+    font-family: 'Microsoft YaHei', Arial, sans-serif
 }
 
-h1,h2,h3,h4,h5,h6,strong,th,b {
+h1, h2, h3, h4, h5, h6, strong, th, b {
     font-weight: 400
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1, h2, h3, h4, h5, h6 {
     font-size: 14px;
     line-height: 24px
 }
@@ -32,23 +32,23 @@ table {
     border-spacing: 0
 }
 
-caption,th {
+caption, th {
     text-align: left
 }
 
-fieldset,img {
+fieldset, img {
     border: 0
 }
 
-address,cite,dfn,em,var,i {
+address, cite, dfn, em, var, i {
     font-style: normal
 }
 
-code,dfn,kbd,samp,tt,var,pre {
+code, dfn, kbd, samp, tt, var, pre {
     font-family: monospace
 }
 
-del,ins,s {
+del, ins, s {
     text-decoration: none
 }
 
@@ -91,7 +91,7 @@ a:hover {
     zoom: 1
 }
 
-.clearfix:after,.clearfix:before {
+.clearfix:after, .clearfix:before {
     display: table;
     content: ""
 }
@@ -105,85 +105,99 @@ a:hover {
 }
 
 .col_eec988 {
-	color: #EEC988 !important
+    color: #EEC988 !important
 }
 
 .col_686868 {
-	color: #686868
+    color: #686868
 }
 
 .bg_eec988 {
-	background-color: #EEC988 !important;
+    background-color: #EEC988 !important;
 }
 
 .border_eec988 {
-	border: 1px solid #EEC988 !important
+    border: 1px solid #EEC988 !important
 }
 
 .after_eec988:after {
-	border-top: 8px solid #EEC988 !important
+    border-top: 8px solid #EEC988 !important
 }
 
 .cursor {
-	cursor: pointer !important;
+    cursor: pointer !important;
 }
 
-label.error{
+label.error {
     position: absolute;
     padding: 0 8px;
     line-height: 30px;
     color: #ff5704;
     cursor: text;
- 	visibility: hidden; 
+    visibility: hidden;
     opacity: 0;
     font-size: 14px;
     -ms-filter: "alpha(Opacity=0)";
-    -webkit-transform: translate(20px,0);
-    -ms-transform: translate(20px,0);
-    transform: translate(20px,0);
+    -webkit-transform: translate(20px, 0);
+    -ms-transform: translate(20px, 0);
+    transform: translate(20px, 0);
     -webkit-transition: .4s ease-out;
     transition: .4s ease-out;
-    
+
 }
 
-label.error.whether{
+label.error.whether {
     visibility: visible;
     opacity: 1;
     -ms-filter: "alpha(Opacity=100)";
-    -webkit-transform: translate(0,0);
-    -ms-transform: translate(0,0);
-    transform: translate(0,0);
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
     /*animation: fadeOut 5s linear forwards;*/
 }
 
-label.error.roomerror{
+label.error.roomerror {
     visibility: visible;
     opacity: 1;
     -ms-filter: "alpha(Opacity=100)";
-    -webkit-transform: translate(0,0);
-    -ms-transform: translate(0,0);
-    transform: translate(0,0);
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
     animation: fadeOut 3s linear forwards;
 }
 
 @keyframes fadeOut {
-    0%  { opacity: 0; transform: translate(20px,0);}
-    10% { opacity: 1; transform: translate(0,0);}
-    90% { opacity: 1; transform: translate(0,0);}
-    99% { opacity: 0; transform: translate(20px,0);}
-    100% { opacity: 0; }
+    0% {
+        opacity: 0;
+        transform: translate(20px, 0);
+    }
+    10% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    90% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    99% {
+        opacity: 0;
+        transform: translate(20px, 0);
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 .fixed {
-	position: fixed !important;
+    position: fixed !important;
 }
 
 .sprite {
-	background: url(../img/sprite-icon.png) no-repeat;
+    background: url(../img/sprite-icon.png) no-repeat;
 }
 
 .sprite-image {
-	background: url(../img/sprite-img.png) no-repeat;
+    background: url(../img/sprite-img.png) no-repeat;
 }
 
 .loagbg {
@@ -191,19 +205,19 @@ label.error.roomerror{
     /*height: 148px*/
 }
 
-.commonhead,#Head1,#header,#footer {
-    font: normal normal normal 12px/20px 'Microsoft YaHei',Arial,sans-serif
+.commonhead, #Head1, #header, #footer {
+    font: normal normal normal 12px/20px 'Microsoft YaHei', Arial, sans-serif
 }
 
 #header {
     background: #fff
 }
 
-#topNavWrapper,#headerWrapper,#menuNavOuter {
+#topNavWrapper, #headerWrapper, #menuNavOuter {
     min-width: 1190px
 }
 
-#topNavPanel,#pageheader,#menuNavPanel {
+#topNavPanel, #pageheader, #menuNavPanel {
     width: 1190px
 }
 
@@ -231,7 +245,7 @@ label.error.roomerror{
     overflow: hidden
 }
 
-#topLogin a,#topLogin>span {
+#topLogin a, #topLogin > span {
     float: left;
     color: #999
 }
@@ -271,7 +285,7 @@ label.error.roomerror{
     box-shadow: 0 0 8px 0 #ccc
 }
 
-#topNav li>span {
+#topNav li > span {
     display: block;
     padding: 0 9px;
     position: relative;
@@ -279,7 +293,7 @@ label.error.roomerror{
     height: 28px
 }
 
-#topNav li>a {
+#topNav li > a {
     display: block;
     padding: 0 20px;
     position: relative;
@@ -288,11 +302,11 @@ label.error.roomerror{
     color: #eec988
 }
 
-#topNav li.open>a {
+#topNav li.open > a {
     background: #fff
 }
 
-#topNav li>div {
+#topNav li > div {
     position: absolute;
     top: 28px;
     height: 0px;
@@ -304,8 +318,8 @@ label.error.roomerror{
     transition: .2s height ease-in-out
 }
 
-#c_myhh>div {
-	left: -1px;
+#c_myhh > div {
+    left: -1px;
     line-height: 20px;
     background: #fff;
     z-index: 1;
@@ -315,17 +329,17 @@ label.error.roomerror{
     border-right: 1px solid #ddd
 }
 
-#c_myhh.open>div {
-	border-bottom: 1px solid #ddd;
- 	box-shadow: 0 0 8px 0 #ccc
+#c_myhh.open > div {
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 0 8px 0 #ccc
 }
 
-#topNav #c_myhh>a {
+#topNav #c_myhh > a {
     color: #737373
 }
 
-#topNav #c_myhh>a:after {
-	content: "";
+#topNav #c_myhh > a:after {
+    content: "";
     width: 0;
     height: 0;
     border-left: 3px solid transparent;
@@ -337,27 +351,27 @@ label.error.roomerror{
     position: absolute
 }
 
-#topNav #c_myhh>a:hover {
-	transition: all .3s;
-	color: #EEC988
+#topNav #c_myhh > a:hover {
+    transition: all .3s;
+    color: #EEC988
 }
 
-#topNav #c_myhh>a:hover:after {
-	border-top: 4px solid #eec988;
+#topNav #c_myhh > a:hover:after {
+    border-top: 4px solid #eec988;
     /*transform: rotate(180deg);
     transition: transform 0.3s*/
 }
 
 .userinfo {
-	padding: 15px 0 8px
+    padding: 15px 0 8px
 }
 
-.userinfo>div, .userinfo p {
+.userinfo > div, .userinfo p {
     float: left
 }
 
 .userinfo p {
-	margin-top: 8px
+    margin-top: 8px
 }
 
 .mypic {
@@ -384,37 +398,37 @@ label.error.roomerror{
 }
 
 .user_information {
-	margin-left: 10px;
-	max-width: 125px;
+    margin-left: 10px;
+    max-width: 125px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-	color: #333 !important
+    color: #333 !important
 }
 
-.user_information:hover,.uinfo>span:hover {
-	color: #E88226 !important
+.user_information:hover, .uinfo > span:hover {
+    color: #E88226 !important
 }
 
 .exit {
-	cursor: pointer;
-	color: #333 !important;
-	margin-left: 20px
+    cursor: pointer;
+    color: #333 !important;
+    margin-left: 20px
 }
 
 .exit:hover {
-	color: #E88226!important
+    color: #E88226 !important
 }
 
 .uinfo {
-	max-width: 125px;
+    max-width: 125px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis
 }
 
-.uinfo>span {
-	color: #666 !important
+.uinfo > span {
+    color: #666 !important
 }
 
 #topNavPanel #c_myhh p a:hover {
@@ -422,7 +436,7 @@ label.error.roomerror{
 }
 
 .myinfo {
-	position: relative
+    position: relative
 }
 
 .myinfo:before {
@@ -461,11 +475,12 @@ label.error.roomerror{
     line-height: 20px;
     display: block
 }
-#topNavPanel .myinfo span>a:hover {
+
+#topNavPanel .myinfo span > a:hover {
     color: #EEC988;
 }
 
-#c_news>a em.news {
+#c_news > a em.news {
     display: inline-block;
     width: 19px;
     height: 13px;
@@ -519,7 +534,7 @@ label.error.roomerror{
     float: left
 }
 
-#nowCity>div {
+#nowCity > div {
     font-size: 14px;
     color: #333;
     /*display: block;*/
@@ -528,8 +543,8 @@ label.error.roomerror{
     padding: 0 60px
 }
 
-#nowCity>div a:hover {
-	color: #eec988
+#nowCity > div a:hover {
+    color: #eec988
 }
 
 #pageheader .rightPicture {
@@ -537,13 +552,13 @@ label.error.roomerror{
     position: relative
 }
 
-#pageheader .rightPicture>a {
-	height: 103px;
+#pageheader .rightPicture > a {
+    height: 103px;
     cursor: default
 }
 
-#pageheader .rightPicture>a>span {
-	position: absolute;
+#pageheader .rightPicture > a > span {
+    position: absolute;
     font-size: 16px;
     bottom: 35px;
     left: 5px;
@@ -568,7 +583,7 @@ label.error.roomerror{
 }
 
 #menuNav {
-	height: 46px;
+    height: 46px;
     padding-left: 110px
 }
 
@@ -578,7 +593,7 @@ label.error.roomerror{
     position: relative
 }
 
-#menuNav li>a {
+#menuNav li > a {
     display: block;
     color: #4B4948;
     height: 30px;
@@ -586,11 +601,11 @@ label.error.roomerror{
     line-height: 30px;
     font-size: 18px;
     vertical-align: middle;
-    text-decoration:none;
+    text-decoration: none;
     position: relative
 }
 
-#menuNav li>a:hover {
+#menuNav li > a:hover {
     color: #eecf88
 }
 
@@ -599,17 +614,17 @@ label.error.roomerror{
 }
 
 .now_location {
-	width: 1190px;
-	height: 24px;
-	line-height: 24px;
-	color: #656565;
-	font-family: FZLTHJW;
-	font-size: 14px;
-	margin: 20px auto
+    width: 1190px;
+    height: 24px;
+    line-height: 24px;
+    color: #656565;
+    font-family: FZLTHJW;
+    font-size: 14px;
+    margin: 20px auto
 }
 
 .now_location em {
-	display: inline-block;
+    display: inline-block;
     width: 19px;
     height: 20px;
     vertical-align: middle;
@@ -621,17 +636,17 @@ label.error.roomerror{
     opacity: 0.9
 }
 
-#footer>ul {
+#footer > ul {
     width: 1190px;
     margin: 10px auto 0;
     padding: 135px 0 95px 0;
 }
 
-#footer>ul>li {
+#footer > ul > li {
     float: left
 }
 
-#footer li>a {
+#footer li > a {
     display: block;
     color: #EEC988;
     height: 30px;
@@ -642,25 +657,25 @@ label.error.roomerror{
     position: relative
 }
 
-#footer li>a>img {
+#footer li > a > img {
     margin-top: -75px
 }
 
-#footer>div {
-	padding-bottom: 35px;
-	position: relative
+#footer > div {
+    padding-bottom: 35px;
+    position: relative
 }
 
-#footer>div>ul {
+#footer > div > ul {
     width: 440px;
     margin: 10px auto 0
 }
 
-#footer>div>ul>li {
-    padding:8px
+#footer > div > ul > li {
+    padding: 8px
 }
 
-#footer>div>ul>li>em {
+#footer > div > ul > li > em {
     display: inline-block;
     width: 19px;
     height: 21px;
@@ -668,17 +683,17 @@ label.error.roomerror{
     vertical-align: middle
 }
 
-#footer>div>ul>li>em.icon-home {
+#footer > div > ul > li > em.icon-home {
     background-position: -102px -217px
 }
 
-#footer>div>ul>li>em.icon-iphone {
+#footer > div > ul > li > em.icon-iphone {
     background-position: -19px -216px
 }
 
-#footer>div>ul>li>span {
-	color:#EEC988;
-	font-size: 16px
+#footer > div > ul > li > span {
+    color: #EEC988;
+    font-size: 16px
 }
 
 .navigation {
@@ -702,15 +717,15 @@ label.error.roomerror{
 }
 
 .navigation li.onlineQA {
-   	background-position: 0px 0px;
+    background-position: 0px 0px;
 }
 
 .navigation li.onlineQA:hover {
-   background-position: 0px -70px;
+    background-position: 0px -70px;
 }
 
 .navigation li.qrCode {
-	background-position: -68px -4px;
+    background-position: -68px -4px;
 }
 
 .navigation li.qrCode:hover {
@@ -726,7 +741,7 @@ label.error.roomerror{
 }
 
 .navigation li.top:hover {
-    background-color:#e9e9e9;
+    background-color: #e9e9e9;
 }
 
 .navigation li span {
@@ -749,7 +764,7 @@ label.error.roomerror{
     border-radius: 3px
 }
 
-.navigation li span i{
+.navigation li span i {
     position: absolute;
     width: 0;
     height: 0;
@@ -757,8 +772,15 @@ label.error.roomerror{
     border-left: 5px solid #636363;
     border-bottom: 5px solid transparent;
     top: 50%;
-    right: -5px;
     margin-top: -5px
+}
+
+.navigation li .qr_con i {
+    left: 320px;
+}
+
+.navigation li .online_con i {
+    left: 86px;
 }
 
 .navigation li:hover span {
@@ -767,7 +789,7 @@ label.error.roomerror{
     visibility: visible
 }
 
- .navigation li span.qr_con {
+.navigation li span.qr_con {
     width: 320px;
     height: 150px;
     padding: 20px;
@@ -779,29 +801,29 @@ label.error.roomerror{
     border-radius: 3px
 }
 
- .navigation li span img {
+.navigation li span img {
     float: left;
     width: 110px;
     height: 110px
 }
 
- .navigation li span p {
+.navigation li span p {
     float: right
 }
 
- .navigation li span p em {
+.navigation li span p em {
     font-size: 16px;
     display: block;
     margin-bottom: 6px;
     color: #fff
 }
 
- .navigation li span p em.qr_title {
+.navigation li span p em.qr_title {
     font-size: 20px;
     font-weight: bold
 }
 
- .navigation li span.collect_text {
+.navigation li span.collect_text {
     width: 339px;
     padding: 5px;
     position: absolute;
