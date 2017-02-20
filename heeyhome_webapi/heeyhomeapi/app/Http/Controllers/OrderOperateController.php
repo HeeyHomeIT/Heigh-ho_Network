@@ -1928,6 +1928,10 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 }
                 $step = $order_step + 1;
                 $order_step = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?', [$step, $order_id]);
+                //完工状态也写入order_detail
+                if($step==5 || $step==9 || $step==13 || $step==17){
+                    DB::insert('insert into hh_order_detail(order_id,order_step,img_time) values(?,?,?)', [$order_id, $step, date('Y-m-d H:i:s', time())]);
+                }
                 $ifinsert = false;
                 foreach ($files as $key => $file) {
                     $clientName = $file->getClientOriginalName();//文件原名
