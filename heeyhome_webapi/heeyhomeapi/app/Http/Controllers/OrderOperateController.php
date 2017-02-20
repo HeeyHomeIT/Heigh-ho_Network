@@ -1514,8 +1514,6 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 $order_step_in_pay = 9;
             } else if ($order_step < 17) {
                 $order_step_in_pay = 13;
-            } else {
-                $order_step_in_pay = 17;
             }
             //当前付款阶段
             $pay_arr = array();
