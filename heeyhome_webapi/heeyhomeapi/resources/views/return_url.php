@@ -107,7 +107,7 @@ require_once("lib/alipay_notify.class.php");
                 }
                 if ($order_step == 17) {
                     $pay_step = "最终结转金额";
-                    $order_step = 1;
+                    $order_status = 6;
                 }
             } else {
                 $pay_step = "嘿吼网订单付款";
@@ -118,7 +118,7 @@ require_once("lib/alipay_notify.class.php");
             $url = 'http://www.heeyhome.com/success_pay.html#/?total=' . $total_fee . '&order_id=' . $order_id . '&pay_step=' . $pay_step . '&pay_time=' . $notify_time;
             echo "<meta http-equiv='Refresh' content='1; url=" . $url . "'/>";
             //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
-        }else {
+        } else {
             //若为材料单时支付成功逻辑
             $material_id = $out_trade_no;
             //1.更新pay status为3
@@ -126,21 +126,21 @@ require_once("lib/alipay_notify.class.php");
             //2.找到order id
             $order_id = \Illuminate\Support\Facades\DB::select('SELECT order_id FROM hh_order_material WHERE material_id = ?', [$material_id]);
             //3.找到地址id
-            $order_address = \Illuminate\Support\Facades\DB::select('SELECT order_address FROM hh_order WHERE order_id = ? ',[$order_id[0]->order_id]);
+            $order_address = \Illuminate\Support\Facades\DB::select('SELECT order_address FROM hh_order WHERE order_id = ? ', [$order_id[0]->order_id]);
             //4.匹配市
-            $address = \Illuminate\Support\Facades\DB::select('SELECT province,city,district FROM hh_driveaddress WHERE id =?',[$order_address[0]->order_address]);
+            $address = \Illuminate\Support\Facades\DB::select('SELECT province,city,district FROM hh_driveaddress WHERE id =?', [$order_address[0]->order_address]);
             if ($address) {
                 $city = $address[0]->order_address;
                 $e_city = explode('市', $city);
-                $material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area LIKE '%?%' ",[$e_city[0]]);
+                $material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area LIKE '%?%' ", [$e_city[0]]);
                 if ($material_supplier_id) {
                     //5.插入id
-                    $supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?',[$material_supplier_id[0]->material_supplier_id]);
+                    $supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?', [$material_supplier_id[0]->material_supplier_id]);
                 } else {
                     echo "未找到材料供应商，请联系客服！";
                 }
             } else {
-                    echo "未找到材料供应商，请联系客服！";
+                echo "未找到材料供应商，请联系客服！";
             }
         }
 
