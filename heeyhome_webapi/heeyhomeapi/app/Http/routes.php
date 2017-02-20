@@ -250,7 +250,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/user/getrefundinfo', 'OrderPayController@getRefundInfo');
     //提交用户退款信息
     Route::any('order/user/subrefundinfo', 'OrderPayController@subRefundInfo');
-
+    //订单评价
+    Route::any('order/order/evaluation', 'ShopScoreController@orderOverScore');
 
     //材料订单
     //获取材料订单列表
