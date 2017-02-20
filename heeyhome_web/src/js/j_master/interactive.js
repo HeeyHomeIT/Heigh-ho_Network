@@ -1085,7 +1085,9 @@
                                 if (houseStyle != null && houseStyle != '' && houseStyle != undefined) {
                                     $('.order_increase').eq(0).attr("disabled", false);
                                 } else {
-                                    layer.alert('您需要先选择装修风格哦~~');
+                                    $('.order_increase').eq(0).click(function () {
+                                        layer.msg('您需要先选择装修风格~~');
+                                    })
                                 }
                                 /* 点击选择风格 */
                                 $('#confirm_type').click(function () {
@@ -1132,10 +1134,19 @@
                                     if (budgetState == '0') {
                                         $('#order_edit').addClass('new_edit');
                                     }
-                                    if (statementStatus == '0') {
+                                    // if (statementStatus == '0') {
+                                    //     $('.order_edit ').eq(i + 1).addClass('new_edit');
+                                    // }
+                                    // $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                                    if (i < step - 1) {
                                         $('.order_edit ').eq(i + 1).addClass('new_edit');
+                                        $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                                    } else {
+                                        if (statementStatus == '0') {
+                                            $('.order_edit ').eq(i + 1).addClass('new_edit');
+                                            $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                                        }
                                     }
-                                    $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
                                 }
                                 for (var i = parseInt(step); i < 18; i++) {//判断后面的能不能点击
                                     $('.order_edit').eq(i).addClass('determine_process');
@@ -1156,10 +1167,20 @@
                                     if (budgetState == '0') {
                                         $('#order_edit').addClass('new_edit');
                                     }
-                                    if (statementStatus == '0') {
+                                    // if (statementStatus == '0') {
+                                    //     $('.order_edit ').eq(i + 1).addClass('new_edit');
+                                    // }
+                                    if (i < step - 1) {
                                         $('.order_edit ').eq(i + 1).addClass('new_edit');
+                                        $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                                    } else {
+                                        if (statementStatus == '0') {
+                                            $('.order_edit ').eq(i + 1).addClass('new_edit');
+                                            $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                                        }
                                     }
-                                    $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+
+                                    // $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
                                 }
                                 for (var i = parseInt(step) + 1; i < 18; i++) {//判断后面的能不能点击
                                     $('.order_edit').eq(i).addClass('determine_process');
@@ -1180,10 +1201,20 @@
                                     if (budgetState == '0') {
                                         $('#order_edit').addClass('new_edit');
                                     }
-                                    if (statementStatus == '0') {
+                                    // if (statementStatus == '0') {
+                                    //     $('.order_edit ').eq(i + 1).addClass('new_edit');
+                                    //     $('.order_edit ').eq(i + 1).val('查看' + $('.order_edit ').eq(i + 1).val().substr(2, 5));
+                                    // }
+                                    if (i < step - 1) {
                                         $('.order_edit ').eq(i + 1).addClass('new_edit');
                                         $('.order_edit ').eq(i + 1).val('查看' + $('.order_edit ').eq(i + 1).val().substr(2, 5));
+                                    } else {
+                                        if (statementStatus == '0') {
+                                            $('.order_edit ').eq(i + 1).addClass('new_edit');
+                                            $('.order_edit ').eq(i + 1).val('查看' + $('.order_edit ').eq(i + 1).val().substr(2, 5));
+                                        }
                                     }
+
                                     if (i != 0) {
                                         $('.order_edit ').eq(i - 1).val('查看' + $('.order_edit ').eq(i - 1).val().substr(2, 5));
                                     }
@@ -1227,6 +1258,7 @@
                     else {
                         //跳转
                         sessionStorage.setItem("num", '1');
+                        sessionStorage.setItem("typename", $(this).parent('.order_process').find('.process_title').attr('typename'));
                         window.location.href = 'editSheet.html#/budget_sheet';//跳转到预算单页面
                     }
                 });
@@ -1249,6 +1281,7 @@
                     } else {
                         /* 工种 */
                         sessionStorage.setItem("type", $(this).parent('.order_process').find('.process_title').attr('typename'));
+                        sessionStorage.setItem("isClick", '1');
                         window.location.href = 'material.html#/material/list';//跳转到材料单页面
                     }
                 });
@@ -1423,15 +1456,15 @@
                             //console.log(data.data);
                             $.each(data.data, function (i, v) {
                                 if (v.category == '杂工') {
-                                    $('.handyman_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '"> </li>')
+                                    $('.handyman_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '" typename="杂工"> </li>')
                                 } else if (v.category == '水电工') {
-                                    $('.plumber_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '"> </li>')
+                                    $('.plumber_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '" typename="水电"> </li>')
                                 } else if (v.category == '瓦工') {
-                                    $('.bricklayer_ul').prepend('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '"> </li>')
+                                    $('.bricklayer_ul').prepend('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '" typename="瓦工"> </li>')
                                 } else if (v.category == '木工') {
-                                    $('.wood_ul').prepend('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '"> </li>')
+                                    $('.wood_ul').prepend('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '" typename="木工"> </li>')
                                 } else if (v.category == '油漆工') {
-                                    $('.painter_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '"> </li>')
+                                    $('.painter_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '" typename="油漆"> </li>')
                                 } else if (v.category == '工长') {
                                     $('.foreman_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '" class="foreman"> </li>')
                                 }
@@ -1455,9 +1488,30 @@
                                             $('.after_submit').attr("disabled", "disabled");
                                         } else {
                                             /* 点击结算单只可以填写施工后的数据 */
-                                            $('.sheet_left input').attr("disabled", "disabled");
-                                            $('.before_submit').attr("disabled", "disabled");
-                                            $('.foreman').attr("disabled", "disabled");
+                                            if (num == '1') {
+                                                $('.construction_sheet input').attr("disabled", "disabled");
+                                                var typename = sessionStorage.getItem("typename");
+                                                if (typename == '木工') {
+                                                    $('.sheet_right input[typename="木工"]').attr("disabled", false);
+                                                    $('.after_submit').attr("disabled", false);
+                                                    $('#after_remark').attr("disabled", false);
+                                                } else if (typename == '水电') {
+                                                    $('.sheet_right input[typename="水电"]').attr("disabled", false);
+                                                    $('.after_submit').attr("disabled", false);
+                                                    $('#after_remark').attr("disabled", false);
+                                                } else if (typename == '瓦工') {
+                                                    $('.sheet_right input[typename="瓦工"]').attr("disabled", false);
+                                                    $('.after_submit').attr("disabled", false);
+                                                    $('#after_remark').attr("disabled", false);
+                                                } else if (typename == '油漆') {
+                                                    $('.sheet_right input[typename="油漆"]').attr("disabled", false);
+                                                    $('.after_submit').attr("disabled", false);
+                                                    $('#after_remark').attr("disabled", false);
+                                                }
+                                            }
+                                            // $('.sheet_left input').attr("disabled", "disabled");
+                                            // $('.before_submit').attr("disabled", "disabled");
+                                            // $('.foreman').attr("disabled", "disabled");
                                         }
                                     }
                                 }
@@ -1956,11 +2010,11 @@
                 var type = sessionStorage.getItem("type");
                 var material_type;
                 if (type == '木工') {
-                    material_type = 3;
+                    material_type = 4;
                 } else if (type == '水电') {
                     material_type = 1;
                 } else if (type == '瓦工') {
-                    material_type = 4;
+                    material_type = 3;
                 } else if (type == '油漆') {
                     material_type = 5;
                 }

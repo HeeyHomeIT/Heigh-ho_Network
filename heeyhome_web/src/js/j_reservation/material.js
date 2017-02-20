@@ -115,8 +115,6 @@
                     });
                     self.initTotalSumEvent(); // 求总价
                 }
-
-
             });
         },
         /**
@@ -175,9 +173,9 @@
                     layer.confirm('您确定自行购买吗？', {
                         btn: ['确定', '取消'] //按钮
                     }, function () {
-                        location.reload();
                         $('.listnumber span').remove();
-                        $('.listnumber').append('<p>已自行购买材料</p>');
+                        $('.listnumber').append('<b>已自行购买材料</b>');
+                        location.reload();
                     });
                 });
             });

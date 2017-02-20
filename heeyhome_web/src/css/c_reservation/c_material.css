@@ -227,7 +227,7 @@ body {
     line-height: 32px;
 }
 
-.materialList_wrap .materialList_cont .settlement span {
+.materialList_wrap .materialList_cont .settlement span,.materialList_wrap .materialList_cont .settlement b {
     display: inline-block;
     margin-right: 15px;
 }

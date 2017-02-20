@@ -527,11 +527,19 @@
                         if (status == 5) {
                             // 辅材类
                             if (step == 3 || step == 7 || step == 11 || step == 15) {
-                                $(".order_cnt_right .operation").attr("href", "reservation.html#/materiallist?pos=" + data.data.order_list[_new].order_id).html("辅材支付");
+                                if (data.data.order_list[0].order_material_is_exist == '1') {//工长已编辑过材料清单
+                                    $(".order_cnt_right .operation").attr("href", "reservation.html#/materiallist?pos=" + data.data.order_list[_new].order_id).html("辅材支付");
+                                } else {
+                                    $(".order_cnt_right .operation").css({'width':'0','height':'0','border':'none'});
+                                }
                             }
                             // 人工费
                             else if (step == 5 || step == 9 || step == 13 || step == 17) {
-                                $(".order_cnt_right .operation").attr("href", "reservation.html#/advancelist?pos=" + data.data.order_list[_new].order_id).html("人工支付");
+                                if (data.data.order_list[0].order_actual_isclick == '1') {//工长已编辑过结算单
+                                    $(".order_cnt_right .operation").attr("href", "reservation.html#/advancelist?pos=" + data.data.order_list[_new].order_id).html("人工支付");
+                                } else {
+                                    $(".order_cnt_right .operation").css({'width':'0','height':'0','border':'none'});
+                                }
                             } else {
                                 $(".order_cnt_right .operation").remove();
                                 $(".order_cnt_right .detail").addClass("one");
