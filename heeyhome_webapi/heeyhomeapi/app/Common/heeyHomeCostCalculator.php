@@ -30,6 +30,7 @@ function costCalculator_suzhou($calculator_arr)
     $tatami_num = 0;
     $room_wallpaper = array(0, 0, 0, 0);
     $wallpaper=0;
+    $cloakroom_wardrobe=0;
     if ($room_distribution['master'] != 0) {
         //房间内设计 TODO 例：array('ground'=>'smdb','wardrobe'=>'true','ceiling'=>'true','wallpaper'=>'false','window'=>'true')
         $master_distribution = $calculator_arr['master_distribution'];

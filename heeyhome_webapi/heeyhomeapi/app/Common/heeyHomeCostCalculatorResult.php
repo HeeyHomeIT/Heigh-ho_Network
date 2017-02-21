@@ -317,7 +317,7 @@ function mgrg($flag, $b1, $d1, $h1, $f1, $kitchen_cupboard, $wardrobe_num, $cloa
     //卧室衣柜
     $wardrobe_num = $wardrobe_num * 825;
     //衣帽间衣柜
-    $cloakroom_wardrobe = isset($cloakroom_wardrobe) ? 1 : 0;
+    $cloakroom_wardrobe = $cloakroom_wardrobe ? 1 : 0;
     //衣柜总
     $yg = $wardrobe_num + $cloakroom_wardrobe * 1548;
     //卧室1吊顶1

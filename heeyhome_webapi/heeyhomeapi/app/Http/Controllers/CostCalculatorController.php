@@ -21,7 +21,11 @@ class CostCalculatorController extends Controller
         $city = $calculator_arr['city'];
         switch ($city) {
             case "苏州市" :
-                $arr = costCalculator_suzhou($calculator_arr);
+                $arr = array(
+                    "code" => "000",
+                    "data" =>  costCalculator_suzhou($calculator_arr),
+                    "msg" => ""
+                );
                 return $callback . "(" . HHJson($arr) . ")";
             default :
                 $arr = array(
