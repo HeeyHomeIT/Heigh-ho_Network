@@ -68,6 +68,7 @@
                 }
             }).done(function (data) {
                 console.log(data);
+
                 if (data.data.order_pay_type == 0) { // 未支付 订单未产生需要支付环节（材料可以选择，可以选择自行购买或平台支付）
 
                     pc.spliceMaterialsDataEvent(data.data, false); // 初始值
@@ -82,6 +83,7 @@
                         $this.parents("li").siblings().find("i").removeClass("rep_radiao_check");
                         $this.siblings("i").addClass("rep_radiao_check");
                     });
+                    $('.Jnum').html($('.shows').length);
                 } else if (data.data.order_pay_type == 1) { // 待支付（材料不可选择，可以选择自行购买或平台支付）
                     self.initPaySumbitEvent(data.data.order_pay_type); // 支付
 //					$("#Jpayment").val("已支付").addClass("alreadyPaid");
@@ -99,7 +101,13 @@
                     });
                     layer.msg("材料不可选择，可以选择自行购买或平台支付");
                     self.initTotalSumEvent(); // 求总价
+                    $('.Jnum').html($('.shows').length);
                 } else if (data.data.order_pay_type == 3) { // 支付成功（材料不可选择，不可选择自行购买或平台支付）
+                    var buy = sessionStorage.getItem('data-buy');
+                    if (buy == '1') {
+                        $('.listnumber span').remove();
+                        $('.listnumber').append('<b>已自行购买材料</b>');
+                    }
                     $("#Jpayment").val("已支付").addClass("alreadyPaid");
                     $(".selfPurchase").addClass("ap");
                     $("#checkYt").prop("checked", true);
@@ -114,6 +122,7 @@
                         $this.siblings("i").addClass("rep_radiao_check");
                     });
                     self.initTotalSumEvent(); // 求总价
+                    $('.Jnum').html($('.shows').length);
                 }
             });
         },
@@ -168,14 +177,15 @@
                     }, error: function (data) {
                     }
                 }).done(function (data) {
-                    // console.log(data);
+                    console.log(data);
                     // layer.alert(data.msg)
                     layer.confirm('您确定自行购买吗？', {
                         btn: ['确定', '取消'] //按钮
                     }, function () {
-                        $('.listnumber span').remove();
-                        $('.listnumber').append('<b>已自行购买材料</b>');
                         location.reload();
+                        // $('.listnumber span').remove();
+                        // $('.listnumber').append('<b>已自行购买材料</b>');
+                        sessionStorage.setItem('data-buy', '1');
                     });
                 });
             });

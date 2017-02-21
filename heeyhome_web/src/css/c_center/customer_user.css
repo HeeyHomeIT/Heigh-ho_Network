@@ -2157,7 +2157,7 @@ a:focus {
 .step .balance {
     position: absolute;
     top: -8px;
-    left: 98px;
+    left: 150px;
     width: 94px;
     height: 35px;
     line-height: 35px;
@@ -2995,4 +2995,25 @@ a:focus {
 
 .loagbg {
     height: 202px;
+}
+
+.layui-layer-content input {
+    width: 80px;
+    height: 28px;
+    line-height: 28px;
+    background-color: #eec988;
+    border: none;
+    color: white;
+    border-radius: 3px;
+    margin-left: 163px;
+    margin-top: 20px;
+}
+
+.layui-layer-content i:hover {
+    color: #EEC988;
+    cursor: pointer;
+}
+
+.layui-layer-content .activei {
+    color: #EEC988;
 }

@@ -81,7 +81,7 @@
     var TOTAL; // 消息中心后台数据总数
     var ORDERTOTAL; // 我的订单后台数据总数
     var ORDERFILTERTOTAL; // 我的订单筛选后台数据总数
-    var HOUSESTYLE;//我的订单装修风格
+    // var HOUSESTYLE;//我的订单装修风格
     var ORDERID;//订单id
     var MAXROWS; //消息中心总页数
     var myfile = [];
@@ -885,7 +885,7 @@
                 var orderId = sessionStorage.getItem("orderId");
                 var budgetState;//定义预算单编辑状态
                 var statementStatus;//定义结算单编辑状态
-                var houseStyle;//定义装修风格
+                // var houseStyle;//定义装修风格
 
                 function change() {
                     $.ajax({
@@ -1082,13 +1082,33 @@
                                 $('#order_edit').attr("disabled", false).addClass('new_edit');
                                 $('#order_edit ').val('查看' + $('#order_edit ').val().substr(2, 5));
                                 //提醒工长需要先添加风格
-                                if (houseStyle != null && houseStyle != '' && houseStyle != undefined) {
-                                    $('.order_increase').eq(0).attr("disabled", false);
-                                } else {
-                                    $('.order_increase').eq(0).click(function () {
-                                        layer.msg('您需要先选择装修风格~~');
-                                    })
-                                }
+                                /* 获取装修风格 */
+                                $.ajax({
+                                    url: HOUSESTYLEURL,
+                                    type: "GET",
+                                    async: true,
+                                    dataType: 'jsonp',
+                                    data: {
+                                        order_id: orderId
+                                    },
+                                    success: function (data) {
+                                        if (data && data.code == '000') {
+                                            if (data.data['装修风格'] != null && data.data['装修风格'] != '' && data.data['装修风格'] != undefined) {
+                                                $('.order_increase').eq(0).attr("disabled", false);
+                                            }
+                                        }
+                                    },
+                                    error: function (data) {
+                                    }
+                                });
+                                // if (houseStyle != null && houseStyle != '' && houseStyle != undefined) {
+                                //     $('.order_increase').eq(0).attr("disabled", false);
+                                // }
+                                // } else {
+                                //     $('.order_increase').eq(0).click(function () {
+                                //         layer.msg('您需要先选择装修风格~~');
+                                //     })
+                                // }
                                 /* 点击选择风格 */
                                 $('#confirm_type').click(function () {
                                     var styleVal = $('#testSelect').val();//获取select的值
@@ -1139,12 +1159,12 @@
                                     // }
                                     // $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
                                     if (i < step - 1) {
-                                        $('.order_edit ').eq(i + 1).addClass('new_edit');
-                                        $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                                        $('.order_edit').eq(i).addClass('new_edit');
+                                        $('.order_edit').eq(i).val('查看' + $('.order_edit').eq(i).val().substr(2, 5));
                                     } else {
                                         if (statementStatus == '0') {
-                                            $('.order_edit ').eq(i + 1).addClass('new_edit');
-                                            $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                                            $('.order_edit').eq(i).addClass('new_edit');
+                                            $('.order_edit').eq(i).val('查看' + $('.order_edit').eq(i).val().substr(2, 5));
                                         }
                                     }
                                 }
@@ -1171,12 +1191,12 @@
                                     //     $('.order_edit ').eq(i + 1).addClass('new_edit');
                                     // }
                                     if (i < step - 1) {
-                                        $('.order_edit ').eq(i + 1).addClass('new_edit');
-                                        $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                                        $('.order_edit').eq(i).addClass('new_edit');
+                                        $('.order_edit').eq(i).val('查看' + $('.order_edit').eq(i).val().substr(2, 5));
                                     } else {
                                         if (statementStatus == '0') {
-                                            $('.order_edit ').eq(i + 1).addClass('new_edit');
-                                            $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                                            $('.order_edit').eq(i).addClass('new_edit');
+                                            $('.order_edit').eq(i).val('查看' + $('.order_edit').eq(i).val().substr(2, 5));
                                         }
                                     }
 
@@ -1199,24 +1219,24 @@
                                     $('.order_increase').eq(i).hide();
                                     $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
                                     if (budgetState == '0') {
-                                        $('#order_edit').addClass('new_edit');
+                                        $('#order_edit').addClass('new_edit').val('查看预算单');
                                     }
                                     // if (statementStatus == '0') {
                                     //     $('.order_edit ').eq(i + 1).addClass('new_edit');
                                     //     $('.order_edit ').eq(i + 1).val('查看' + $('.order_edit ').eq(i + 1).val().substr(2, 5));
                                     // }
                                     if (i < step - 1) {
-                                        $('.order_edit ').eq(i + 1).addClass('new_edit');
-                                        $('.order_edit ').eq(i + 1).val('查看' + $('.order_edit ').eq(i + 1).val().substr(2, 5));
+                                        $('.order_edit').eq(i).addClass('new_edit');
+                                        $('.order_edit').eq(i).val('查看' + $('.order_edit').eq(i).val().substr(2, 5));
                                     } else {
                                         if (statementStatus == '0') {
-                                            $('.order_edit ').eq(i + 1).addClass('new_edit');
-                                            $('.order_edit ').eq(i + 1).val('查看' + $('.order_edit ').eq(i + 1).val().substr(2, 5));
+                                            $('.order_edit').eq(i).addClass('new_edit');
+                                            $('.order_edit').eq(i).val('查看' + $('.order_edit').eq(i).val().substr(2, 5));
                                         }
                                     }
 
                                     if (i != 0) {
-                                        $('.order_edit ').eq(i - 1).val('查看' + $('.order_edit ').eq(i - 1).val().substr(2, 5));
+                                        $('.order_edit').eq(i - 1).val('查看' + $('.order_edit').eq(i - 1).val().substr(2, 5));
                                     }
 
                                 }
@@ -1235,14 +1255,15 @@
                             $('.process_center').eq(i).find('img').attr('src', 'image/order_success.png');
                             $('.order_increase').eq(i).hide();
                             $('.detail_a').eq(i).css('display', 'block').removeClass('hide');
-                            $('.order_edit ').eq(i).addClass('new_edit');
-                            $('.order_edit ').eq(i).val('查看' + $('.order_edit ').eq(i).val().substr(2, 5));
+                            $('.order_edit').eq(i).addClass('new_edit');
+                            $('.order_edit').eq(i).val('查看' + $('.order_edit').eq(i).val().substr(2, 5));
                         }
                         $('.order_wrap input').attr("disabled", false);
-                    } else {
-                        $('#order_edit').attr("disabled", false);
-                        $('#order_edit').val('查看' + $('#order_edit').val().substr(2, 5));
                     }
+                    // } else {
+                    //     $('#order_edit').attr("disabled", false);
+                    //     $('#order_edit').val('查看' + $('#order_edit').val().substr(2, 5));
+                    // }
 
                 }
 
@@ -1400,7 +1421,7 @@
                                 $('.process_style p').html(data.data['装修风格']);
                                 $('#confirm_type').hide();//隐藏按钮
                                 $('#testSelect').hide();//隐藏select框
-                                houseStyle = data.data['装修风格'];
+                                // houseStyle = data.data['装修风格'];
                                 orderStatus();
                                 if (step == 1) {
                                     $('#pre_add1').attr("disabled", false);// 恢复按钮点击

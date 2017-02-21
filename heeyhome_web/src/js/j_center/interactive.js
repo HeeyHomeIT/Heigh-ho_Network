@@ -35,6 +35,8 @@
     var CALRESULTURL = BASEURL + 'costcalculator/result/get'; // 获取收藏的成本计算器结果接口
     var CANCELORDERURL = BASEURL + 'order/client/destory';//用户取消订单
     var HOUSESTYLEURL = BASEURL + 'order/style/addhousestyle'; //订单装修风格
+    var BASICINFOURL = BASEURL + '/order/shop/orderbasicinfo';// 获取业主信息接口
+    var ORDEREVALURL = BASEURL + '/order/order/evaluation';// 用户订单评价
 
     var email;//获取用户邮箱
     var pic_total;//获取我的收藏全景图总数据
@@ -245,7 +247,57 @@
                             }
                         });
                     } else if ($(this).html() == "确认验货") {
-                        layer.alert("订单已完成");
+                        var order_id = sessionStorage.getItem('orderid');
+                        var str = '<p class="engineering_quality">工程质量：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
+                        str += '<p class="service_attitude">服务态度：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
+                        str += '<p class="overview">综合评价：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
+                        str += '<input class="evaButton" type="button" value="提交评价">';
+                        layer.open({
+                            type: 1,
+                            skin: 'layui-layer-rim', //加上边框
+                            area: ['420px', '270px'], //宽高
+                            content: str
+                        });
+                        $(document).off('click', '.evaButton').on('click', '.evaButton', function () {
+                            var projectquality = $('.engineering_quality .activei').length * 2;
+                            var serviceattitude = $('.service_attitude .activei').length * 2;
+                            var overallmerit = $('.overview .activei').length * 2;
+
+                            $.ajax({
+                                type: "get",
+                                url: ORDEREVALURL,
+                                async: true,
+                                dataType: "jsonp",
+                                data: {
+                                    order_id: order_id,
+                                    projectquality: projectquality,
+                                    serviceattitude: serviceattitude,
+                                    overallmerit: overallmerit
+                                },
+                                success: function (data) {
+                                    if (data && data.code == '000') {
+                                        $('.layui-layer-shade').remove();
+                                        $('.layui-layer').remove();
+                                        $('.all .bottom').remove();
+                                    } else {
+                                        layer.msg(data.msg);
+                                    }
+                                },
+                                error: function (data) {
+                                }
+                            });
+                        });
+                        function eval(div) {
+                            $(document).on('click', div, function () {
+                                for (var i = 0; i < $(this).index() + 1; i++) {
+                                    $(div).eq(i).addClass('activei');
+                                }
+                            })
+                        }
+
+                        eval('.engineering_quality i');
+                        eval('.service_attitude i');
+                        eval('.overview i');
                     }
                 });
             }]);
@@ -261,27 +313,26 @@
                 /* 获得订单顶部业主信息 */
                 $.ajax({
                     type: "get",
-                    url: ORDERURL,
+                    url: BASICINFOURL,
                     async: true,
                     dataType: "jsonp",
                     data: {
-                        shop_id: shop_id
+                        shop_id: shop_id,
+                        order_id: order_id
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
                             console.log(data.data);
-                            $.each(data.data.order_list, function (i, v) {
-                                if (v.order_id == order_id) {
-                                    $(".owner_picture img").attr("src", v.user_portrait);
-                                    $(".owner_summary h3").html(v.user_realname);
-                                    $(".owner_summary p span").html(v.user_phone);
-                                    $(".owner_left .area p span").html(v.area);
-                                    $(".owner_left .order p").html(order_id);
-                                    $(".owner_middle .type p").html(v.room + "室" + v.parlour + "厅" + v.toilet + "卫" + v.balcony + "阳台");
-                                    $(".owner_middle .time p").html(v.order_time);
-                                    $(".owner_right .address p").html(v.order_address);
-                                }
-                            });
+
+                            $(".owner_picture img").attr("src", data.data.order_list[0].user_portrait);
+                            $(".owner_summary h3").html(data.data.order_list[0].user_realname);
+                            $(".owner_summary p span").html(data.data.order_list[0].user_phone);
+                            $(".owner_left .area p span").html(data.data.order_list[0].area);
+                            $(".owner_left .order p").html(order_id);
+                            $(".owner_middle .type p").html(data.data.order_list[0].room + "室" + data.data.order_list[0].parlour + "厅" + data.data.order_list[0].toilet + "卫" + data.data.order_list[0].balcony + "阳台");
+                            $(".owner_middle .time p").html(data.data.order_list[0].order_time);
+                            $(".owner_right .address p").html(data.data.order_list[0].order_address);
+
                         } else {
                             layer.alert(data.msg);
                         }
@@ -530,7 +581,11 @@
                                 if (data.data.order_list[0].order_material_is_exist == '1') {//工长已编辑过材料清单
                                     $(".order_cnt_right .operation").attr("href", "reservation.html#/materiallist?pos=" + data.data.order_list[_new].order_id).html("辅材支付");
                                 } else {
-                                    $(".order_cnt_right .operation").css({'width':'0','height':'0','border':'none'});
+                                    $(".order_cnt_right .operation").css({
+                                        'width': '0',
+                                        'height': '0',
+                                        'border': 'none'
+                                    });
                                 }
                             }
                             // 人工费
@@ -538,7 +593,11 @@
                                 if (data.data.order_list[0].order_actual_isclick == '1') {//工长已编辑过结算单
                                     $(".order_cnt_right .operation").attr("href", "reservation.html#/advancelist?pos=" + data.data.order_list[_new].order_id).html("人工支付");
                                 } else {
-                                    $(".order_cnt_right .operation").css({'width':'0','height':'0','border':'none'});
+                                    $(".order_cnt_right .operation").css({
+                                        'width': '0',
+                                        'height': '0',
+                                        'border': 'none'
+                                    });
                                 }
                             } else {
                                 $(".order_cnt_right .operation").remove();
@@ -547,7 +606,57 @@
                         } else if (status == 6) {
                             $(".order_cnt_right .operation").html("确认验货");
                             $(".order_cnt_right .operation").on("click", function () {
-                                layer.alert("订单已完成");
+                                var order_id = sessionStorage.getItem('orderid');
+                                var str = '<p class="engineering_quality">工程质量：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
+                                str += '<p class="service_attitude">服务态度：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
+                                str += '<p class="overview">综合评价：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
+                                str += '<input class="evaButton" type="button" value="提交评价">';
+                                layer.open({
+                                    type: 1,
+                                    skin: 'layui-layer-rim', //加上边框
+                                    area: ['420px', '270px'], //宽高
+                                    content: str
+                                });
+                                $(document).off('click', '.evaButton').on('click', '.evaButton', function () {
+                                    var projectquality = $('.engineering_quality .activei').length * 2;
+                                    var serviceattitude = $('.service_attitude .activei').length * 2;
+                                    var overallmerit = $('.overview .activei').length * 2;
+
+                                    $.ajax({
+                                        type: "get",
+                                        url: ORDEREVALURL,
+                                        async: true,
+                                        dataType: "jsonp",
+                                        data: {
+                                            order_id: order_id,
+                                            projectquality: projectquality,
+                                            serviceattitude: serviceattitude,
+                                            overallmerit: overallmerit
+                                        },
+                                        success: function (data) {
+                                            if (data && data.code == '000') {
+                                                $('.layui-layer-shade').remove();
+                                                $('.layui-layer').remove();
+                                                $('.all .bottom').remove();
+                                            } else {
+                                                layer.msg(data.msg);
+                                            }
+                                        },
+                                        error: function (data) {
+                                        }
+                                    });
+                                });
+                                function eval(div) {
+                                    $(document).on('click', div, function () {
+                                        for (var i = 0; i < $(this).index() + 1; i++) {
+                                            $(div).eq(i).addClass('activei');
+                                        }
+                                    })
+                                }
+
+                                eval('.engineering_quality i');
+                                eval('.service_attitude i');
+                                eval('.overview i');
                             });
                         } else if (status == 4) {
                             $(".order_cnt_right .operation").attr("href", "reservation.html#/advancelist?pos=" + data.data.order_list[_new].order_id).html("人工支付");
@@ -943,15 +1052,26 @@
                                 work += '</div>';
                                 $(".axis_content").append(work);
                             }
+                            // if (data.data.now_order_step == 17) {
+                            //     stage += '<div class="work_stage complete_stage">';
+                            //     stage += '<div class="stage_title">';
+                            //     stage += '<i></i>';
+                            //     stage += '<b></b>';
+                            //     stage += '<span class="step">油漆工完工</span>';
+                            //     stage += '<a href="javascript:;" target="_blank" class="balance">结算清单</a>';
+                            //     stage += '</div>';
+                            //     stage += '<div class="stage_content">';
+                            //     stage += '</div></div>';
+                            // }
                             $(".axis_content").append(stage);
                             for (var i = 0; i < $(".work_stage .step .status").length; i++) {
                                 if ($(".work_stage .step .status").eq(i).html() == "(undefined)") {
                                     $(".work_stage .step .status").eq(i).empty();
                                 }
                             }
-                            $(".work_stage").eq(0).addClass("first_stage").find(".stage_title em").remove();
-                            $(".work_stage").eq(0).find(".stage_title b").before("<i></i>");
-                            $(".complete_stage").prev().children().find(".step").html("工长上传图片");
+                            // $(".work_stage").eq(0).addClass("first_stage").find(".stage_title em").remove();
+                            // $(".work_stage").eq(0).find(".stage_title b").before("<i></i>");
+                            // $(".complete_stage").prev().children().find(".step").html("工长上传图片");
                             if ($(".work_stage").length == 17) {
                                 var end = '<div class="axis_end">';
                                 end += '<i></i>';
@@ -1497,7 +1617,7 @@
                 e.stopPropagation();
                 var x = $(this).index();
                 var divTop;
-                if (x == 4) {
+                if (x == 5) {
                     divTop = items.eq(0).offset().top;
                 }
                 else {
@@ -1565,10 +1685,10 @@
                 if (value.order_step.indexOf("木工") != -1) {
                     type = 4;
                 }
-                if (value.order_step.indexOf("油漆工") != -1) {
+                if (value.order_step.indexOf("油漆") != -1) {
                     type = 5;
                 }
-                vrStr += '<span class="step">' + value.order_step + '<a href="reservation.html#/materiallist?pos=' + order_id + '&&material_type=' + type + '" target="_blank" class="balance">材料清单</a></span>';
+                vrStr += '<span class="step">' + value.order_step + '[' + value.material_pay_status + ']' + '<a href="reservation.html#/materiallist?pos=' + order_id + '&&material_type=' + type + '" target="_blank" class="balance">材料清单</a></span>';
                 vrStr += '</div>';
                 vrStr += '<div class="stage_content">';
                 vrStr += '<div class="stage_pic clearfix">';
@@ -1579,7 +1699,33 @@
                 });
                 vrStr += '</div>';
                 vrStr += '</div>';
-            } else {
+            } else if (value.order_step.indexOf("完成") > 0) {
+                // if (value.order_step.indexOf("完成") > 0) {
+                // vrStr += '<div class="work_stage complete_stage">';
+                // vrStr += '<div class="stage_title">';
+                // vrStr += '<i></i>';
+                // vrStr += '<b></b>';
+                // vrStr += '<span class="step">' + value.order_step + '</span>';
+                // vrStr += '<a href="javascript:;" target="_blank" class="balance">结算清单</a>';
+                // vrStr += '</div>';
+                // vrStr += '<div class="stage_content">';
+                // vrStr += '</div>';
+                // vrStr += '</div>';
+                // }
+                vrStr += '<span class="step">' + value.order_step + '<a href="reservation.html#/advancelist?pos=' + order_id + '&&order_step_type=' + type + '" target="_blank" class="balance">结算清单</a></span>';
+                vrStr += '</div>';
+                vrStr += '<div class="stage_content">';
+                vrStr += '<div class="stage_pic clearfix">';
+                $.each(value.img, function (m, n) {
+                    // vrStr += '<div class="pic">';
+                    vrStr += '<img src="' + n.img_url + '" alt="' + value.order_step + '">';
+                    // vrStr += '</div>';
+                });
+                vrStr += '</div>';
+                vrStr += '</div>';
+                vrStr += '</div>';
+            }
+            else {
                 vrStr += '<span class="step">' + value.order_step + '</span>';
                 vrStr += '</div>';
                 vrStr += '<div class="stage_content">';
@@ -1593,18 +1739,8 @@
                 vrStr += '<p>' + value.img_content + '</p>';
                 vrStr += '</div>';
             }
+
             vrStr += '</div>';
-            if (value.order_step.indexOf("完成") > 0) {
-                vrStr += '<div class="work_stage complete_stage">';
-                vrStr += '<div class="stage_title">';
-                vrStr += '<i></i>';
-                vrStr += '<b></b>';
-                vrStr += '<span class="step">' + value.order_step + '</span>';
-                vrStr += '<a href="javascript:;" target="_blank" class="balance">结算清单</a>';
-                vrStr += '</div>';
-                vrStr += '<div class="stage_content">';
-                vrStr += '</div></div>';
-            }
             return vrStr;
         }
     };
@@ -1776,7 +1912,59 @@
                                 }
                             });
                         } else if ($(this).html() == "确认验货") {
-                            layer.alert("订单已完成");
+                            var order_id = sessionStorage.getItem('orderid');
+                            var str = '<p class="engineering_quality">工程质量：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
+                            str += '<p class="service_attitude">服务态度：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
+                            str += '<p class="overview">综合评价：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
+                            str += '<input class="evaButton" type="button" value="提交评价">';
+                            layer.open({
+                                type: 1,
+                                skin: 'layui-layer-rim', //加上边框
+                                area: ['420px', '270px'], //宽高
+                                content: str
+                            });
+                            $(document).off('click', '.evaButton').on('click', '.evaButton', function () {
+                                var projectquality = $('.engineering_quality .activei').length * 2;
+                                var serviceattitude = $('.service_attitude .activei').length * 2;
+                                var overallmerit = $('.overview .activei').length * 2;
+
+                                $.ajax({
+                                    type: "get",
+                                    url: ORDEREVALURL,
+                                    async: true,
+                                    dataType: "jsonp",
+                                    data: {
+                                        order_id: order_id,
+                                        projectquality: projectquality,
+                                        serviceattitude: serviceattitude,
+                                        overallmerit: overallmerit
+                                    },
+                                    success: function (data) {
+                                        if (data && data.code == '000') {
+                                            $('.layui-layer-shade').remove();
+                                            $('.layui-layer').remove();
+                                            $('.all .bottom').remove();
+                                        } else {
+                                            layer.msg(data.msg);
+                                        }
+                                    },
+                                    error: function (data) {
+                                    }
+                                });
+                            });
+
+                            function eval(div) {
+                                $(document).on('click', div, function () {
+                                    for (var i = 0; i < $(this).index() + 1; i++) {
+                                        $(div).eq(i).addClass('activei');
+                                    }
+                                })
+                            }
+
+                            eval('.engineering_quality i');
+                            eval('.service_attitude i');
+                            eval('.overview i');
+
                         }
                     });
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
