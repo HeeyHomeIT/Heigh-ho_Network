@@ -2180,14 +2180,14 @@
 
 .material_introduce {
     padding: 20px 0 10px;
-    margin-left: 350px;
+    margin-left: 300px;
 }
 
 .material_introduce span {
     display: inline-block;
-    width: 50px;
+    width: 100px;
     text-align: center;
-    margin: 0 59px;
+    margin: 0 50px;
 }
 
 .material_content li {
@@ -2220,10 +2220,10 @@
 
 .material_content li .name {
     position: absolute;
-    left: 340px;
+    left: 302px;
     top: 50%;
     margin-top: -10px;
-    width: 150px;
+    width: 200px;
     height: 20px;
     text-align: center;
     float: left;
@@ -2244,7 +2244,7 @@
 }
 
 .material_content li .unit {
-    margin: 0 52px;
+    margin: 0 80px;
     text-align: center;
     float: left;
 }
@@ -2258,7 +2258,7 @@
 }
 
 .material_content li .number {
-    margin: 0 63px;
+    margin: 0 75px;
     float: left;
 }
 

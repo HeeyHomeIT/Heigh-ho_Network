@@ -210,6 +210,9 @@
                     $(t).addClass("shows")
                 }, 20 * e)
             });
+            if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
+                $('.lookit_default em').css('left', '160px');
+            }
         }
 
     };
