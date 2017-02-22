@@ -1250,8 +1250,18 @@ a:focus {
     border-radius: 2px;
 }
 
-.collection_detail：hover {
-    color: white;
+.collection_detail:visited {
+    color: white !important;
+}
+
+.collection_detail:hover {
+    color: white !important;
+    background-color: #E88226;
+    transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
 }
 
 .collection_shop_wrap {
@@ -3016,4 +3026,48 @@ a:focus {
 
 .layui-layer-content .activei {
     color: #EEC988;
+}
+
+.layui-layer-content .clickactivei {
+    color: #EEC988;
+}
+
+.layui-layer-content .describe {
+    width: 80px;
+    height: 20px;
+    line-height: 20px;
+    border: 1px solid #EEC988;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+    border-radius: 2px;
+    position: relative;
+    color: #EEC988;
+    padding-left: 8px;
+}
+
+.layui-layer-content .describe:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: 6px solid transparent;
+    border-right: 3px solid #eec988;
+    border-top: 6px solid transparent;
+    display: inline-block;
+    top: 3px;
+    right: 79px;
+    position: absolute;
+}
+
+.layui-layer-content .describe:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: 5px solid transparent;
+    border-right: 2px solid white;
+    border-top: 5px solid transparent;
+    display: inline-block;
+    top: 4px;
+    right: 78px;
+    position: absolute;
 }
