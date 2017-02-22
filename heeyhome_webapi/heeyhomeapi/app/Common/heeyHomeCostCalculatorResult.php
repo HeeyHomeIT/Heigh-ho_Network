@@ -691,7 +691,7 @@ function yqgrg($flag, $b1, $d1, $f1, $master_wallpaper, $second_wallpaper, $thir
 }
 
 //杂工人工
-function zgrg($flag, $b1, $d1, $h1, $f1)
+function zgrg($flag, $b1, $d1, $h1, $f1, $wall)
 {
     switch ($flag) {
         case 1:
@@ -700,7 +700,7 @@ function zgrg($flag, $b1, $d1, $h1, $f1)
             $F11 = 200;
             $H11 = 600;
             $J11 = $b1 * 4.5;
-            return $B11 + $D11 + $F11 + $H11 + $J11;
+            return ($B11 + $D11 + $F11) * $wall + $H11 + $J11;
         case 2:
             //基础
             $J1 = $b1 * 0.83;
@@ -720,7 +720,7 @@ function zgrg($flag, $b1, $d1, $h1, $f1)
             $H11 = 650;
             //杂工开荒保洁
             $J11 = $b1 * 4.5;
-            return $B11 + $D11 + $F11 + $H11 + $J11;
+            return ($B11 + $D11 + $F11) * $wall + $H11 + $J11;
         case 3:
             //基础
             $J1 = $b1 * 0.83;
@@ -740,7 +740,7 @@ function zgrg($flag, $b1, $d1, $h1, $f1)
             $H11 = 650;
             //杂工开荒保洁
             $J11 = $b1 * 4.5;
-            return $B11 + $D11 + $F11 + $H11 + $J11;
+            return ($B11 + $D11 + $F11) * $wall + $H11 + $J11;
         case 4:
             //基础
             $J1 = $b1 * 0.83;
@@ -761,7 +761,7 @@ function zgrg($flag, $b1, $d1, $h1, $f1)
             $H11 = 750;
             //杂工开荒保洁
             $J11 = $b1 * 4.5;
-            return $B11 + $D11 + $F11 + $H11 + $J11;
+            return ($B11 + $D11 + $F11) * $wall + $H11 + $J11;
         case 5:
             //基础
             $J1 = $b1 * 0.83;
@@ -782,7 +782,7 @@ function zgrg($flag, $b1, $d1, $h1, $f1)
             $H11 = 800;
             //杂工开荒保洁
             $J11 = $b1 * 4.5;
-            return $B11 + $D11 + $F11 + $H11 + $J11;
+            return ($B11 + $D11 + $F11) * $wall + $H11 + $J11;
         case 6:
             //基础
             $J1 = $b1 * 0.83;
@@ -803,7 +803,7 @@ function zgrg($flag, $b1, $d1, $h1, $f1)
             $H12 = 1000;
             //杂工开荒保洁
             $J12 = $b1 * 4.5;
-            return $B12 + $D12 + $F12 + $H12 + $J12;
+            return ($B12 + $D12 + $F12) * $wall + $H12 + $J12;
         case 7:
             //基础
             $J1 = $b1 * 0.83;
@@ -825,7 +825,7 @@ function zgrg($flag, $b1, $d1, $h1, $f1)
             $H12 = 1200;
             //杂工开荒保洁
             $J12 = $b1 * 4.5;
-            return $B12 + $D12 + $F12 + $H12 + $J12;
+            return ($B12 + $D12 + $F12) * $wall + $H12 + $J12;
     }
 }
 

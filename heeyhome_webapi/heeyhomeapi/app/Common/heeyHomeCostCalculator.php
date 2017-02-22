@@ -282,7 +282,7 @@ function costCalculator_suzhou($calculator_arr)
     $wgrg = wgrg($flag, $area, $room_num, $balcony_num, $bathroom_num, $parlor_ground, $balcony_ground, $kitchen_ground);
     $mgrg = mgrg($flag, $area, $room_num, $balcony_num, $bathroom_num, $kitchen_cupboard, $wardrobe_num, $cloakroom_wardrobe, $room_ceiling[0], $room_ceiling[1], $room_ceiling[2], $room_ceiling[3], $parlor_ceiling, $desk_num, $tatami_num, $parlor_shoebox, $parlor_wine_cabinet, $balcony_hanging_cabinet);
     $yqgrg = yqgrg($flag, $area, $room_num, $bathroom_num, $room_wallpaper[0], $room_wallpaper[1], $room_wallpaper[2], $room_wallpaper[3]);
-    $zgrg = zgrg($flag, $area, $room_num, $balcony_num, $bathroom_num);
+    $zgrg = zgrg($flag, $area, $room_num, $balcony_num, $bathroom_num, $wall);
     $rgzj = $gzrg + $sdrg + $wgrg + $mgrg + $yqgrg + $zgrg;
     //辅材费用
     $zdsdcl = zdsdcl($flag, $area);
