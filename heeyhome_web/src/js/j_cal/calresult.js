@@ -97,9 +97,6 @@
          * 右侧内容显示隐藏
          */
         initSlideEvent: function () {
-            if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
-                $('#slide_bar').css('width', '67px');
-            }
             /* 屏幕可视区高度小于735时调整相应的高度 */
             var height = $(window).height();
             console.log(height)
@@ -111,12 +108,12 @@
                 $('.wcontent_title').css('backgroundPosition', '15px ' + 90 * height / 735 + 'px');
                 if (height > 736) {
                     if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
-                        ('.wcontent_title span').css('fontSize', '12px');
+                        $('.wcontent_title span').addClass('span');
                     } else {
                         $('.wcontent_title span').css({'marginTop': '20px', 'position': 'absolute'});
                     }
                 } else {
-                    $('.wcontent_title span').css('fontSize', '12px');
+                    $('.wcontent_title span').css('fontSize', '14px');
                 }
             }
             /* 鼠标移入左边导航栏的效果 */

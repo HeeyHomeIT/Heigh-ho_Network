@@ -300,13 +300,16 @@
                 $("#menuNavOuter").remove();
                 $("#headerWrapper").remove();
                 var id;
+                var shopid;
                 var case_id = sessionStorage.getItem("case_id");
-                var isshopdetai = sessionStorage.getItem("isshopdetail");
+                var isshopdetail = sessionStorage.getItem("isshopdetail");
                 var userType = $.cookie('userType');
-                if ($.base64.decode(userType) == 2 && isshopdetai != '0') {
+                if ($.base64.decode(userType) == 2 && isshopdetail != '0') {
                     id = $.base64.decode($.cookie('userId'));
+                    shopid = $.base64.decode($.cookie('userShopId'));
                 } else {
                     id = $.base64.decode($.cookie("foremanId"));
+                    shopid = $.base64.decode($.cookie("shopid"));
                 }
                 $.ajax({
                     type: "get",
@@ -341,16 +344,16 @@
                     error: function (data) {
                     }
                 });
-
                 $.ajax({
                     url: SHOPCURL,
                     type: "GET",
                     async: true,
                     dataType: 'jsonp',
                     data: {
-                        shop_id: $.base64.decode($.cookie("userShopId"))
+                        shop_id: shopid
                     },
                     success: function (data) {
+                        console.log(data);
                         if (data && data.code == '000') {
                             if (data.data.shop_name != null && data.data.shop_name != '') {
                                 $("#success_case .now_location .shopname").html(data.data.shop_name);//获取店铺名字
@@ -4659,7 +4662,7 @@
             } else if (parseInt($syear.html()) == parseInt($eyear.html()) && parseInt($smonth.html()) > parseInt($emonth.html())) {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
-            } else if (parseInt($syear.html()) == parseInt($eyear.html()) && parseInt($smonth.html()) == parseInt($emonth.html()) && parseInt($sday.html()) > parseInt($eday.html())) {
+            } else if (parseInt($syear.html()) == parseInt($eyear.html()) && parseInt($smonth.html()) == parseInt($emonth.html()) && parseInt($sday.html()) >= parseInt($eday.html())) {
                 errorRemind.errorContent(MSG4, $(".new_schedule h3"));
                 flag = false;
             }

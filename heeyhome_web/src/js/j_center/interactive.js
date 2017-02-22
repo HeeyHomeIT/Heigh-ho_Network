@@ -248,15 +248,27 @@
                         });
                     } else if ($(this).html() == "确认验货") {
                         var order_id = sessionStorage.getItem('orderid');
-                        var str = '<p class="engineering_quality">工程质量：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
-                        str += '<p class="service_attitude">服务态度：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
-                        str += '<p class="overview">综合评价：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
-                        str += '<input class="evaButton" type="button" value="提交评价">';
+                        var gradeArray = ['2分 失望', '4分 不满', '6分 一般', '8分 满意', '10分 惊喜'];
+                        var $engineering_quality = $('<p class="engineering_quality">工程质量：</p>');
+                        var $service_attitude = $('<p class="service_attitude">服务态度：</p>');
+                        var $overview = $('<p class="overview">综合评价：</p>');
+                        var ihtml = '<i class="iconfont">&#xe64e;</i>';
+                        var span = '<span class="describe" style="display: none"></span>';
+                        var evaButton = '<input class="evaButton" type="button" value="提交评价">';
+                        $.each(gradeArray, function (i, val) {
+                            $engineering_quality.append(ihtml);
+                            $service_attitude.append(ihtml);
+                            $overview.append(ihtml);
+                        });
+                        $engineering_quality.append(span);
+                        $service_attitude.append(span);
+                        $overview.append(span);
+                        var content = $engineering_quality[0].outerHTML + $service_attitude[0].outerHTML + $overview[0].outerHTML + evaButton;
                         layer.open({
                             type: 1,
                             skin: 'layui-layer-rim', //加上边框
                             area: ['420px', '270px'], //宽高
-                            content: str
+                            content: content
                         });
                         $(document).off('click', '.evaButton').on('click', '.evaButton', function () {
                             var projectquality = $('.engineering_quality .activei').length * 2;
@@ -289,15 +301,47 @@
                         });
                         function eval(div) {
                             $(document).on('click', div, function () {
-                                for (var i = 0; i < $(this).index() + 1; i++) {
+                                $(div).removeClass('activei');
+                                var $t = $(this);
+                                var index = $t.index();
+                                $t.parent().find('.describe').data('grade', index);
+                                for (var i = 0; i < index + 1; i++) {
                                     $(div).eq(i).addClass('activei');
                                 }
                             })
                         }
 
+                        function hover(div) {
+                            $(div).hover(function () {
+                                var $t = $(this);
+                                var index = $t.index();
+                                $(div).removeClass('activei');
+                                for (var i = 0; i < index + 1; i++) {
+                                    $(div).eq(i).addClass('activei');
+                                }
+                                $t.parent().find('.describe').show().html(gradeArray[index]);
+                            }, function () {
+                                $(div).removeClass('activei');
+                                var describe = $(this).parent().find('.describe');
+                                var grade = describe.data('grade');
+                                if (grade == undefined) {
+                                    describe.hide();
+                                } else {
+                                    for (var i = 0; i < grade + 1; i++) {
+                                        $(div).eq(i).addClass('activei');
+                                    }
+                                    describe.show().html(gradeArray[grade]);
+                                }
+                            });
+                        }
+
                         eval('.engineering_quality i');
                         eval('.service_attitude i');
                         eval('.overview i');
+
+                        hover('.engineering_quality i');
+                        hover('.service_attitude i');
+                        hover('.overview i');
                     }
                 });
             }]);
@@ -607,15 +651,27 @@
                             $(".order_cnt_right .operation").html("确认验货");
                             $(".order_cnt_right .operation").on("click", function () {
                                 var order_id = sessionStorage.getItem('orderid');
-                                var str = '<p class="engineering_quality">工程质量：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
-                                str += '<p class="service_attitude">服务态度：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
-                                str += '<p class="overview">综合评价：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
-                                str += '<input class="evaButton" type="button" value="提交评价">';
+                                var gradeArray = ['2分 失望', '4分 不满', '6分 一般', '8分 满意', '10分 惊喜'];
+                                var $engineering_quality = $('<p class="engineering_quality">工程质量：</p>');
+                                var $service_attitude = $('<p class="service_attitude">服务态度：</p>');
+                                var $overview = $('<p class="overview">综合评价：</p>');
+                                var ihtml = '<i class="iconfont">&#xe64e;</i>';
+                                var span = '<span class="describe" style="display: none"></span>';
+                                var evaButton = '<input class="evaButton" type="button" value="提交评价">';
+                                $.each(gradeArray, function (i, val) {
+                                    $engineering_quality.append(ihtml);
+                                    $service_attitude.append(ihtml);
+                                    $overview.append(ihtml);
+                                });
+                                $engineering_quality.append(span);
+                                $service_attitude.append(span);
+                                $overview.append(span);
+                                var content = $engineering_quality[0].outerHTML + $service_attitude[0].outerHTML + $overview[0].outerHTML + evaButton;
                                 layer.open({
                                     type: 1,
                                     skin: 'layui-layer-rim', //加上边框
                                     area: ['420px', '270px'], //宽高
-                                    content: str
+                                    content: content
                                 });
                                 $(document).off('click', '.evaButton').on('click', '.evaButton', function () {
                                     var projectquality = $('.engineering_quality .activei').length * 2;
@@ -648,15 +704,47 @@
                                 });
                                 function eval(div) {
                                     $(document).on('click', div, function () {
-                                        for (var i = 0; i < $(this).index() + 1; i++) {
+                                        $(div).removeClass('activei');
+                                        var $t = $(this);
+                                        var index = $t.index();
+                                        $t.parent().find('.describe').data('grade', index);
+                                        for (var i = 0; i < index + 1; i++) {
                                             $(div).eq(i).addClass('activei');
                                         }
                                     })
                                 }
 
+                                function hover(div) {
+                                    $(div).hover(function () {
+                                        var $t = $(this);
+                                        var index = $t.index();
+                                        $(div).removeClass('activei');
+                                        for (var i = 0; i < index + 1; i++) {
+                                            $(div).eq(i).addClass('activei');
+                                        }
+                                        $t.parent().find('.describe').show().html(gradeArray[index]);
+                                    }, function () {
+                                        $(div).removeClass('activei');
+                                        var describe = $(this).parent().find('.describe');
+                                        var grade = describe.data('grade');
+                                        if (grade == undefined) {
+                                            describe.hide();
+                                        } else {
+                                            for (var i = 0; i < grade + 1; i++) {
+                                                $(div).eq(i).addClass('activei');
+                                            }
+                                            describe.show().html(gradeArray[grade]);
+                                        }
+                                    });
+                                }
+
                                 eval('.engineering_quality i');
                                 eval('.service_attitude i');
                                 eval('.overview i');
+
+                                hover('.engineering_quality i');
+                                hover('.service_attitude i');
+                                hover('.overview i');
                             });
                         } else if (status == 4) {
                             $(".order_cnt_right .operation").attr("href", "reservation.html#/advancelist?pos=" + data.data.order_list[_new].order_id).html("人工支付");
@@ -1088,6 +1176,12 @@
                         }
                         if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
                             $('.work_stage .stage_content').css('marginLeft', '0');
+                        }
+                        if (window.navigator.userAgent.indexOf("Firefox") != -1) {//火狐浏览器下特殊样式
+                            $('.work_stage .stage_content').css('marginLeft', '12px');
+                        }
+                        if (window.navigator.userAgent.indexOf("Chrome") && window.chrome) {//谷歌浏览器下特殊样式
+                            $('.work_stage .stage_content').css('marginLeft', '6px');
                         }
 
                         layer.photos({
@@ -1913,15 +2007,27 @@
                             });
                         } else if ($(this).html() == "确认验货") {
                             var order_id = sessionStorage.getItem('orderid');
-                            var str = '<p class="engineering_quality">工程质量：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
-                            str += '<p class="service_attitude">服务态度：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
-                            str += '<p class="overview">综合评价：<i class="iconfont" title="2分失望">&#xe64e;</i> <i class="iconfont" title="4分不满">&#xe64e;</i> <i class="iconfont" title="6分一般">&#xe64e;</i> <i class="iconfont" title="8分满意">&#xe64e;</i> <i class="iconfont" title="10分惊喜">&#xe64e;</i></p>';
-                            str += '<input class="evaButton" type="button" value="提交评价">';
+                            var gradeArray = ['2分 失望', '4分 不满', '6分 一般', '8分 满意', '10分 惊喜'];
+                            var $engineering_quality = $('<p class="engineering_quality">工程质量：</p>');
+                            var $service_attitude = $('<p class="service_attitude">服务态度：</p>');
+                            var $overview = $('<p class="overview">综合评价：</p>');
+                            var ihtml = '<i class="iconfont">&#xe64e;</i>';
+                            var span = '<span class="describe" style="display: none"></span>';
+                            var evaButton = '<input class="evaButton" type="button" value="提交评价">';
+                            $.each(gradeArray, function (i, val) {
+                                $engineering_quality.append(ihtml);
+                                $service_attitude.append(ihtml);
+                                $overview.append(ihtml);
+                            });
+                            $engineering_quality.append(span);
+                            $service_attitude.append(span);
+                            $overview.append(span);
+                            var content = $engineering_quality[0].outerHTML + $service_attitude[0].outerHTML + $overview[0].outerHTML + evaButton;
                             layer.open({
                                 type: 1,
                                 skin: 'layui-layer-rim', //加上边框
                                 area: ['420px', '270px'], //宽高
-                                content: str
+                                content: content
                             });
                             $(document).off('click', '.evaButton').on('click', '.evaButton', function () {
                                 var projectquality = $('.engineering_quality .activei').length * 2;
@@ -1952,19 +2058,49 @@
                                     }
                                 });
                             });
-
                             function eval(div) {
                                 $(document).on('click', div, function () {
-                                    for (var i = 0; i < $(this).index() + 1; i++) {
+                                    $(div).removeClass('activei');
+                                    var $t = $(this);
+                                    var index = $t.index();
+                                    $t.parent().find('.describe').data('grade', index);
+                                    for (var i = 0; i < index + 1; i++) {
                                         $(div).eq(i).addClass('activei');
                                     }
                                 })
+                            }
+
+                            function hover(div) {
+                                $(div).hover(function () {
+                                    var $t = $(this);
+                                    var index = $t.index();
+                                    $(div).removeClass('activei');
+                                    for (var i = 0; i < index + 1; i++) {
+                                        $(div).eq(i).addClass('activei');
+                                    }
+                                    $t.parent().find('.describe').show().html(gradeArray[index]);
+                                }, function () {
+                                    $(div).removeClass('activei');
+                                    var describe = $(this).parent().find('.describe');
+                                    var grade = describe.data('grade');
+                                    if (grade == undefined) {
+                                        describe.hide();
+                                    } else {
+                                        for (var i = 0; i < grade + 1; i++) {
+                                            $(div).eq(i).addClass('activei');
+                                        }
+                                        describe.show().html(gradeArray[grade]);
+                                    }
+                                });
                             }
 
                             eval('.engineering_quality i');
                             eval('.service_attitude i');
                             eval('.overview i');
 
+                            hover('.engineering_quality i');
+                            hover('.service_attitude i');
+                            hover('.overview i');
                         }
                     });
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据

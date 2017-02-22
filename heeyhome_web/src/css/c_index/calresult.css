@@ -337,6 +337,10 @@ body #crcontainer {
     margin-bottom: 7px;
 }
 
+.sl_wcontent .wcontent_title .span {
+    font-size: 14px;
+}
+
 .sl_wcontent div {
     width: 50px;
     height: 40px;
@@ -438,15 +442,15 @@ body #crcontainer {
 }
 
 .sl_wcontent .wcontent_detail9 {
-    background-position: -143px -156px;
+    background-position: -143px -158px;
 }
 
 .sl_wcontent .wcontent_detail10 {
-    background-position: -203px -3px;
+    background-position: -203px -5px;
 }
 
 .sl_wcontent .wcontent_detail11 {
-    background-position: -149px -50px;
+    background-position: -149px -54px;
 }
 
 .slide_content {
