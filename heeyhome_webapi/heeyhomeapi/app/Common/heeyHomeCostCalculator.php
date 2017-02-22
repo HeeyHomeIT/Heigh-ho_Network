@@ -188,6 +188,78 @@ function costCalculator_suzhou($calculator_arr)
         );
         return $arr;
     }
+    //面积和最大允许房间数、客餐厅、阳台数、卫生间数
+    if($area >= 70 && $area <= 80){
+        if(!(($room_num<=2)&&($parlor_num<=1)&&($bathroom_num<=1)&&($balcony_num<=2))){
+            $arr = array(
+                "code" => "200",
+                "msg" => "参数错误,所填面积最大支持2室1厅1卫2阳台",
+                "data" => ""
+            );
+            return $arr;
+        }
+    }else if($area >= 80 && $area <= 90){
+        if(!(($room_num<=2)&&($parlor_num<=1)&&($bathroom_num<=1)&&($balcony_num<=2))){
+                    $arr = array(
+                        "code" => "200",
+                        "msg" => "参数错误,所填面积最大支持2室1厅1卫2阳台",
+                        "data" => ""
+                    );
+                    return $arr;
+                }
+    }else if($area >= 90 && $area <= 100){
+        if(!(($room_num<=3)&&($parlor_num<=1)&&($bathroom_num<=2)&&($balcony_num<=3))){
+            $arr = array(
+                "code" => "200",
+                "msg" => "参数错误,所填面积最大支持3室1厅2卫3阳台",
+                "data" => ""
+            );
+            return $arr;
+        }
+    }else if($area >= 100 && $area <= 110){
+        if(!(($room_num<=3)&&($parlor_num<=1)&&($bathroom_num<=2)&&($balcony_num<=3))){
+            $arr = array(
+                "code" => "200",
+                "msg" => "参数错误,所填面积最大支持3室1厅2卫3阳台",
+                "data" => ""
+            );
+            return $arr;
+        }
+    }else if($area >= 110 && $area <= 120){
+        if(!(($room_num<=4)&&($parlor_num<=1)&&($bathroom_num<=2)&&($balcony_num<=3))){
+            $arr = array(
+                "code" => "200",
+                "msg" => "参数错误,所填面积最大支持4室1厅2卫3阳台",
+                "data" => ""
+            );
+            return $arr;
+        }
+    }else if($area >= 120 && $area <= 140){
+        if(!(($room_num<=4)&&($parlor_num<=1)&&($bathroom_num<=2)&&($balcony_num<=3))){
+            $arr = array(
+                "code" => "200",
+                "msg" => "参数错误,所填面积最大支持4室1厅2卫3阳台",
+                "data" => ""
+            );
+            return $arr;
+        }
+    }else if($area >= 140 && $area <= 160){
+        if(!(($room_num<=4)&&($parlor_num<=1)&&($bathroom_num<=3)&&($balcony_num<=3))){
+            $arr = array(
+                "code" => "200",
+                "msg" => "参数错误,所填面积最大支持4室1厅3卫3阳台",
+                "data" => ""
+            );
+            return $arr;
+        }
+    }else{
+        $arr = array(
+            "code" => "200",
+            "msg" => "参数错误，面积不在计算器计算范围",
+            "data" => ""
+        );
+        return $arr;
+    }
     $flag = 1;
     if ($area >= 70 && $area <= 80) {
         $flag = 1;
@@ -231,30 +303,35 @@ function costCalculator_suzhou($calculator_arr)
     $jcdd = 0;
     $cgsys = 0;
     $zxzj = $rgzj + $zdsdcl + $gdsdcl + $wgfc + $mgfc + $yqcl;
-    return array(
-        "gzrg" => $gzrg,
-        "sdrg" => $sdrg,
-        "wgrg" => $wgrg,
-        "mgrg" => $mgrg,
-        "yqgrg" => $yqgrg,
-        "zgrg" => $zgrg,
-        "rgzj" => $rgzj,
-        "zdsdcl" => $zdsdcl,
-        "gdsdcl" => $gdsdcl,
-        "wgfc" => $wgfc,
-        "mgfc" => $mgfc,
-        "yqcl" => $yqcl,
-        "czdd" => $czdd,
-        "czgd" => $czgd,
-        "bc" => $bc,
-        "dls" => $dls,
-        "db" => $db,
-        "mm" => $mm,
-        "cfym" => $cfym,
-        "lyfym" => $lyfym,
-        "ygym" => $ygym,
-        "jcdd" => $jcdd,
-        "cgsys" => $cgsys,
-        "zxzj" => $zxzj
+    $arr = array(
+        "code" => "000",
+        "msg" => "",
+        "data" => array(
+            "gzrg" => $gzrg,
+            "sdrg" => $sdrg,
+            "wgrg" => $wgrg,
+            "mgrg" => $mgrg,
+            "yqgrg" => $yqgrg,
+            "zgrg" => $zgrg,
+            "rgzj" => $rgzj,
+            "zdsdcl" => $zdsdcl,
+            "gdsdcl" => $gdsdcl,
+            "wgfc" => $wgfc,
+            "mgfc" => $mgfc,
+            "yqcl" => $yqcl,
+            "czdd" => $czdd,
+            "czgd" => $czgd,
+            "bc" => $bc,
+            "dls" => $dls,
+            "db" => $db,
+            "mm" => $mm,
+            "cfym" => $cfym,
+            "lyfym" => $lyfym,
+            "ygym" => $ygym,
+            "jcdd" => $jcdd,
+            "cgsys" => $cgsys,
+            "zxzj" => $zxzj
+        )
     );
+    return $arr;
 }
