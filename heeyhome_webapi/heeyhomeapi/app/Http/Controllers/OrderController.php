@@ -657,6 +657,10 @@ class OrderController extends Controller
         $sel_order_id = DB::select('SELECT * FROM hh_order_new_view WHERE shop_id = ? AND order_id = ? ',
             [$shop_id, $order_id]);
         if ($sel_order_id) {
+            foreach ($sel_order_id as $key => $val) {
+                $portrait = DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?', [$val->user_id]);
+                $sel_order_id[$key]->user_portrait = $portrait[0]->portrait_img;
+            }
             $arr = array("code" => "000",
                 "data" => array("order_list" => $sel_order_id
                 ),
