@@ -290,7 +290,8 @@
                                     if (data && data.code == '000') {
                                         $('.layui-layer-shade').remove();
                                         $('.layui-layer').remove();
-                                        $('.all .bottom').remove();
+                                        $('.confirm_inspection').parent('.all').find('.top').addClass('one');
+                                        $('.all .confirm_inspection').remove();
                                     } else {
                                         layer.msg(data.msg);
                                     }
@@ -648,104 +649,112 @@
                                 $(".order_cnt_right .detail").addClass("one");
                             }
                         } else if (status == 6) {
-                            $(".order_cnt_right .operation").html("确认验货");
-                            $(".order_cnt_right .operation").on("click", function () {
-                                var order_id = sessionStorage.getItem('orderid');
-                                var gradeArray = ['2分 失望', '4分 不满', '6分 一般', '8分 满意', '10分 惊喜'];
-                                var $engineering_quality = $('<p class="engineering_quality">工程质量：</p>');
-                                var $service_attitude = $('<p class="service_attitude">服务态度：</p>');
-                                var $overview = $('<p class="overview">综合评价：</p>');
-                                var ihtml = '<i class="iconfont">&#xe64e;</i>';
-                                var span = '<span class="describe" style="display: none"></span>';
-                                var evaButton = '<input class="evaButton" type="button" value="提交评价">';
-                                $.each(gradeArray, function (i, val) {
-                                    $engineering_quality.append(ihtml);
-                                    $service_attitude.append(ihtml);
-                                    $overview.append(ihtml);
-                                });
-                                $engineering_quality.append(span);
-                                $service_attitude.append(span);
-                                $overview.append(span);
-                                var content = $engineering_quality[0].outerHTML + $service_attitude[0].outerHTML + $overview[0].outerHTML + evaButton;
-                                layer.open({
-                                    type: 1,
-                                    skin: 'layui-layer-rim', //加上边框
-                                    area: ['420px', '270px'], //宽高
-                                    content: content
-                                });
-                                $(document).off('click', '.evaButton').on('click', '.evaButton', function () {
-                                    var projectquality = $('.engineering_quality .activei').length * 2;
-                                    var serviceattitude = $('.service_attitude .activei').length * 2;
-                                    var overallmerit = $('.overview .activei').length * 2;
-
-                                    $.ajax({
-                                        type: "get",
-                                        url: ORDEREVALURL,
-                                        async: true,
-                                        dataType: "jsonp",
-                                        data: {
-                                            order_id: order_id,
-                                            projectquality: projectquality,
-                                            serviceattitude: serviceattitude,
-                                            overallmerit: overallmerit
-                                        },
-                                        success: function (data) {
-                                            if (data && data.code == '000') {
-                                                $('.layui-layer-shade').remove();
-                                                $('.layui-layer').remove();
-                                                $('.all .bottom').remove();
-                                            } else {
-                                                layer.msg(data.msg);
-                                            }
-                                        },
-                                        error: function (data) {
-                                        }
+                            if (data.data.order_list[0].is_evaluation == '0') {//用户没有评价过订单
+                                $(".order_cnt_right .operation").html("确认验货");
+                                $('.all .bottom').addClass('confirm_inspection');
+                                $(".order_cnt_right .operation").on("click", function () {
+                                    var order_id = sessionStorage.getItem('orderid');
+                                    var gradeArray = ['2分 失望', '4分 不满', '6分 一般', '8分 满意', '10分 惊喜'];
+                                    var $engineering_quality = $('<p class="engineering_quality">工程质量：</p>');
+                                    var $service_attitude = $('<p class="service_attitude">服务态度：</p>');
+                                    var $overview = $('<p class="overview">综合评价：</p>');
+                                    var ihtml = '<i class="iconfont">&#xe64e;</i>';
+                                    var span = '<span class="describe" style="display: none"></span>';
+                                    var evaButton = '<input class="evaButton" type="button" value="提交评价">';
+                                    $.each(gradeArray, function (i, val) {
+                                        $engineering_quality.append(ihtml);
+                                        $service_attitude.append(ihtml);
+                                        $overview.append(ihtml);
                                     });
-                                });
-                                function eval(div) {
-                                    $(document).on('click', div, function () {
-                                        $(div).removeClass('activei');
-                                        var $t = $(this);
-                                        var index = $t.index();
-                                        $t.parent().find('.describe').data('grade', index);
-                                        for (var i = 0; i < index + 1; i++) {
-                                            $(div).eq(i).addClass('activei');
-                                        }
-                                    })
-                                }
+                                    $engineering_quality.append(span);
+                                    $service_attitude.append(span);
+                                    $overview.append(span);
+                                    var content = $engineering_quality[0].outerHTML + $service_attitude[0].outerHTML + $overview[0].outerHTML + evaButton;
+                                    layer.open({
+                                        type: 1,
+                                        skin: 'layui-layer-rim', //加上边框
+                                        area: ['420px', '270px'], //宽高
+                                        content: content
+                                    });
+                                    $(document).off('click', '.evaButton').on('click', '.evaButton', function () {
+                                        var projectquality = $('.engineering_quality .activei').length * 2;
+                                        var serviceattitude = $('.service_attitude .activei').length * 2;
+                                        var overallmerit = $('.overview .activei').length * 2;
 
-                                function hover(div) {
-                                    $(div).hover(function () {
-                                        var $t = $(this);
-                                        var index = $t.index();
-                                        $(div).removeClass('activei');
-                                        for (var i = 0; i < index + 1; i++) {
-                                            $(div).eq(i).addClass('activei');
-                                        }
-                                        $t.parent().find('.describe').show().html(gradeArray[index]);
-                                    }, function () {
-                                        $(div).removeClass('activei');
-                                        var describe = $(this).parent().find('.describe');
-                                        var grade = describe.data('grade');
-                                        if (grade == undefined) {
-                                            describe.hide();
-                                        } else {
-                                            for (var i = 0; i < grade + 1; i++) {
+                                        $.ajax({
+                                            type: "get",
+                                            url: ORDEREVALURL,
+                                            async: true,
+                                            dataType: "jsonp",
+                                            data: {
+                                                order_id: order_id,
+                                                projectquality: projectquality,
+                                                serviceattitude: serviceattitude,
+                                                overallmerit: overallmerit
+                                            },
+                                            success: function (data) {
+                                                if (data && data.code == '000') {
+                                                    $('.layui-layer-shade').remove();
+                                                    $('.layui-layer').remove();
+                                                    $('.confirm_inspection').parent('.order_cnt_right').find('.detail').addClass('one');
+                                                    $('.order_cnt_right .confirm_inspection').remove();
+                                                } else {
+                                                    layer.msg(data.msg);
+                                                }
+                                            },
+                                            error: function (data) {
+                                            }
+                                        });
+                                    });
+                                    function eval(div) {
+                                        $(document).on('click', div, function () {
+                                            $(div).removeClass('activei');
+                                            var $t = $(this);
+                                            var index = $t.index();
+                                            $t.parent().find('.describe').data('grade', index);
+                                            for (var i = 0; i < index + 1; i++) {
                                                 $(div).eq(i).addClass('activei');
                                             }
-                                            describe.show().html(gradeArray[grade]);
-                                        }
-                                    });
-                                }
+                                        })
+                                    }
 
-                                eval('.engineering_quality i');
-                                eval('.service_attitude i');
-                                eval('.overview i');
+                                    function hover(div) {
+                                        $(div).hover(function () {
+                                            var $t = $(this);
+                                            var index = $t.index();
+                                            $(div).removeClass('activei');
+                                            for (var i = 0; i < index + 1; i++) {
+                                                $(div).eq(i).addClass('activei');
+                                            }
+                                            $t.parent().find('.describe').show().html(gradeArray[index]);
+                                        }, function () {
+                                            $(div).removeClass('activei');
+                                            var describe = $(this).parent().find('.describe');
+                                            var grade = describe.data('grade');
+                                            if (grade == undefined) {
+                                                describe.hide();
+                                            } else {
+                                                for (var i = 0; i < grade + 1; i++) {
+                                                    $(div).eq(i).addClass('activei');
+                                                }
+                                                describe.show().html(gradeArray[grade]);
+                                            }
+                                        });
+                                    }
 
-                                hover('.engineering_quality i');
-                                hover('.service_attitude i');
-                                hover('.overview i');
-                            });
+                                    eval('.engineering_quality i');
+                                    eval('.service_attitude i');
+                                    eval('.overview i');
+
+                                    hover('.engineering_quality i');
+                                    hover('.service_attitude i');
+                                    hover('.overview i');
+                                });
+                            } else {
+                                $(".order_cnt_right .operation").remove();
+                                $(".order_cnt_right .detail").addClass("one");
+                            }
+
                         } else if (status == 4) {
                             $(".order_cnt_right .operation").attr("href", "reservation.html#/advancelist?pos=" + data.data.order_list[_new].order_id).html("人工支付");
                         } else if (status == 1) {
@@ -1907,7 +1916,9 @@
                 vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';
             }
             if (value.order_status == 6) {
-                vrStr += '<a href="javascript:;" class="bottom">确认验货</a>';
+                if (value.is_evaluation == '0') {
+                    vrStr += '<a href="javascript:;" class="bottom confirm_inspection">确认验货</a>';
+                }
             }
             if (value.order_status == 1) {
                 vrStr += '<a href="javascript:;" class="bottom">取消订单</a>';
@@ -2067,7 +2078,8 @@
                                         if (data && data.code == '000') {
                                             $('.layui-layer-shade').remove();
                                             $('.layui-layer').remove();
-                                            $('.all .bottom').remove();
+                                            $('.confirm_inspection').parent('.all').find('.top').addClass('one');
+                                            $('.all .confirm_inspection').remove();
                                         } else {
                                             layer.msg(data.msg);
                                         }

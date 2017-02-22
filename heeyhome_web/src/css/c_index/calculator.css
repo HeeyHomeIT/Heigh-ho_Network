@@ -469,8 +469,8 @@ body #calcontainer {
 #calcontent .cal5 > div.lastdiv .cal6 {
     position: relative;
     float: right;
-    padding: 60px 0 8px 120px;
-    width: 510px;
+    padding: 65px 0 8px 13px;
+    width: 480px;
 }
 
 #calcontent .cal5 > div.lastdiv .cal6 > input.nowcal {
@@ -484,8 +484,8 @@ body #calcontainer {
     border-radius: 3px;
     /*color: #636363;
     border: 1px solid #636363;*/
-    color: #EEC988;
-    border: 1px solid #EEC988;
+    color: #f60;
+    border: 1px solid #f60;
     background: transparent;
     letter-spacing: 5px;
 }
@@ -518,7 +518,6 @@ body #calcontainer {
 .savediv .saveBtn {
     display: inline-block;
     position: relative;
-    right: -3px;
     background-color: #EEC988;
     color: #fff;
     font-size: 16px;
@@ -528,7 +527,7 @@ body #calcontainer {
     padding: 0 26px;
     border: 0;
     cursor: pointer;
-    top: 5px;
+    margin: 15px 0 0 115px;
 }
 
 .none {
