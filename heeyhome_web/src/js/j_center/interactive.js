@@ -830,7 +830,8 @@
                                     if (status == 1) {
                                         $(".order_cnt_left .time .order_span_right").html("待工长确认" + time);
                                     } else {
-                                        $(".order_cnt_left .time .order_span_right").html(data.data.reservation_time);
+                                        var reservation_time = data.data.reservation_time.split(' ')[0];
+                                        $(".order_cnt_left .time .order_span_right").html(reservation_time);
                                     }
                                 } else {
                                     layer.alert(data.msg);
@@ -1698,7 +1699,7 @@
             $("#suspension_menu ul").append(li);
             if ($("#suspension_menu ul li").length >= 3) {
                 var top = '';
-                top += '<li>';
+                top += '<li class="litop">';
                 top += '<a href="javascript:void(0)" tab="&to_head">回到顶部</a>';
                 top += '</li>';
                 $("#suspension_menu ul").append(top);
@@ -1711,7 +1712,7 @@
                 e.stopPropagation();
                 var x = $(this).index();
                 var divTop;
-                if (x == 5) {
+                if ($(this).hasClass('litop')) {
                     divTop = items.eq(0).offset().top;
                 }
                 else {
@@ -1806,7 +1807,20 @@
                 // vrStr += '</div>';
                 // vrStr += '</div>';
                 // }
-                vrStr += '<span class="step">' + value.order_step + '<a href="reservation.html#/advancelist?pos=' + order_id + '&&order_step_type=' + type + '" target="_blank" class="balance">结算清单</a></span>';
+                var order_step_type = 0;
+                if (value.order_step.indexOf("水电") != -1) {
+                    order_step_type = 5;
+                }
+                if (value.order_step.indexOf("瓦工") != -1) {
+                    order_step_type = 9;
+                }
+                if (value.order_step.indexOf("木工") != -1) {
+                    order_step_type = 13;
+                }
+                if (value.order_step.indexOf("油漆") != -1) {
+                    order_step_type = 17;
+                }
+                vrStr += '<span class="step">' + value.order_step + '<a href="reservation.html#/advancelist?pos=' + order_id + '&&order_step_type=' + order_step_type + '" target="_blank" class="balance">结算清单</a></span>';
                 vrStr += '</div>';
                 vrStr += '<div class="stage_content">';
                 vrStr += '<div class="stage_pic clearfix">';
@@ -1872,7 +1886,11 @@
                 }
             }
             vrStr += '<div class="now_stage"><p>' + value.order_step_ch + '</p></div>';
-            vrStr += '<div class="money"><p>' + value.actual_finish_amount + '</p></div>';
+            if (value.actual_finish_amount == null) {
+                vrStr += '<div class="money"><p>0.00</p></div>';
+            } else {
+                vrStr += '<div class="money"><p>' + value.actual_finish_amount + '</p></div>';
+            }
             vrStr += '<div class="trade_stage"><p>' + value.order_status_ch + '</p></div>';
             // 未开工之前跳转到预约单页面
             if (value.order_step == 18 && (value.order_status == 1 || value.order_status == 2 || value.order_status == 3 || value.order_status == 4)) {

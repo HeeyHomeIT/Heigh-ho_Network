@@ -246,6 +246,7 @@
     -moz-transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
 }
+
 .order_back:hover {
     box-shadow: 2px 2px 4px #999;
     color: white;
@@ -428,6 +429,7 @@
     border: 1px solid #d3d3d3;
     margin-left: 60px;
     margin-top: 14px;
+    padding-left: 3px;
 }
 
 .complete {
@@ -481,6 +483,16 @@
 
 .see_details .complete {
     margin-top: 100px;
+}
+
+.complete:hover {
+    color: white !important;
+    background-color: #E88226;
+    transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
 }
 
 .order_process .detail_a {

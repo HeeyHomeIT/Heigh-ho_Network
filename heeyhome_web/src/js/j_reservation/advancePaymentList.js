@@ -100,6 +100,7 @@
          */
         getDataEvent: function () {
             var orderId = getUrlParamHandler.getUrlParam("pos");
+            var order_step_type = getUrlParamHandler.getUrlParam("order_step_type");
             var pc = splicePaymentContHandler;
             $.ajax({
                 url: SELDATAURL,
@@ -107,7 +108,8 @@
                 async: true,
                 dataType: 'jsonp',
                 data: {
-                    order_id: orderId
+                    order_id: orderId,
+                    order_step_type: order_step_type
                 }
             }).done(function (data) {
                 console.log(data);
@@ -122,6 +124,25 @@
                         $(".lookit_default").find("label").addClass("cursor");
                         $("#nocheck").addClass("yes_check");
                         FLAG = false;
+                    }
+
+                    var tli = $(".titlelist li");
+                    if (order_step_type == '5') {
+                        pc.splicePayDetailsDataEvent(data.data.data_list, '水电工');
+                        tli.removeClass("payment_on");
+                        tli.eq(2).addClass("payment_on");
+                    } else if (order_step_type == '9') {
+                        pc.splicePayDetailsDataEvent(data.data.data_list, '瓦工');
+                        tli.removeClass("payment_on");
+                        tli.eq(3).addClass("payment_on");
+                    } else if (order_step_type == '13') {
+                        pc.splicePayDetailsDataEvent(data.data.data_list, '木工');
+                        tli.removeClass("payment_on");
+                        tli.eq(4).addClass("payment_on");
+                    } else if (order_step_type == '17') {
+                        pc.splicePayDetailsDataEvent(data.data.data_list, '油漆工');
+                        tli.removeClass("payment_on");
+                        tli.eq(5).addClass("payment_on");
                     }
                     $(document).on("click", ".titlelist li", function () {
                         pc.splicePayDetailsDataEvent(data.data.data_list, $(this).find("a").text());

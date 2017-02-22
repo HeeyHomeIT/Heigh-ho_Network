@@ -600,14 +600,15 @@
 }
 
 #manager_information .decoration_history ul {
-    margin: 21px 0 0 95px;
+    margin: 21px 0 0 0;
     color: #4B4948;
     font-family: FZLTZHK;
     font-size: 14px
 }
 
 #manager_information .decoration_history ul li {
-    margin-bottom: 12px
+    margin-bottom: 12px;
+    text-align: center;
 }
 
 #manager_information .decoration_history ul li:last-child {
