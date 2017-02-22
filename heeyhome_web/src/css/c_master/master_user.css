@@ -2102,6 +2102,7 @@
 
 .owner_detail {
     margin-top: 20px;
+    margin-left: 40px;
 }
 
 .owner_detail > div {
@@ -4535,4 +4536,9 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.now_location a {
+    font-size: 14px;
+    color: #666;
 }

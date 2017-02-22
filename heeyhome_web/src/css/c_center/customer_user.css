@@ -1982,7 +1982,7 @@ a:focus {
 
 #time_axis .axis_content {
     position: absolute;
-    left: 49%;
+    left: 46%;
     top: 100px
 }
 
@@ -2413,6 +2413,7 @@ a:focus {
 
 .owner_detail {
     margin-top: 20px;
+    margin-left: 40px;
 }
 
 .owner_detail > div {

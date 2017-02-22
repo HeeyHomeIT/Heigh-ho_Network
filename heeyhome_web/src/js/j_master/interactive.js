@@ -665,6 +665,7 @@
                             $(".owner_middle .type p").html(type);
                             $(".owner_middle .time p").html(time);
                             $(".owner_right .address p").html(address);
+                            $(".owner_picture img").attr("src", src);
                         } else {
                             layer.msg(data.msg)
                         }
@@ -1372,6 +1373,7 @@
                             $(".owner_middle .type p").html(type);
                             $(".owner_middle .time p").html(time);
                             $(".owner_right .address p").html(address);
+                            $(".owner_picture img").attr("src", src);
                         } else {
                             layer.msg(data.msg)
                         }
