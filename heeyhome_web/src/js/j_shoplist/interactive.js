@@ -198,6 +198,9 @@
             $(document).on('click', '.enter_shop', function () {
                 sessionStorage.setItem('iscollected', $(this).attr('iscollected'));
                 sessionStorage.setItem('wObj', '{}');
+                var shopid = $(this).parents('.shop_box').attr('data-shopid');
+                console.log(shopid);
+                $.cookie("shopid", $.base64.encode(shopid));
             })
         }
     };

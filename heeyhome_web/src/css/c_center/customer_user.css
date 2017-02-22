@@ -1250,8 +1250,18 @@ a:focus {
     border-radius: 2px;
 }
 
-.collection_detail：hover {
-    color: white;
+.collection_detail:visited {
+    color: white !important;
+}
+
+.collection_detail:hover {
+    color: white !important;
+    background-color: #E88226;
+    transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
 }
 
 .collection_shop_wrap {
