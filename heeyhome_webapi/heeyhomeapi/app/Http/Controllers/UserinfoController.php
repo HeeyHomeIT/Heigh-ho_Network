@@ -100,4 +100,24 @@ class UserinfoController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
     }
+
+    public function userCollectionNumber () 
+    {
+        $callback=rq('callback');
+        $user_id=rq('user_id');
+        if(!$user_id){
+            $arr = array("code" => "112",
+                "msg" => "用户id不能为空"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+        $vr = DB::select('select count(id) as vrCount from hh_collection where collect_userid=? and collect_type=?',[$user_id,'panorama']);
+        $shop = DB::select('select count(id) as shopCount from hh_collection where collect_userid=? and collect_type=?',[$user_id,'shop']);
+        $cost = DB::select('SELECT COUNT(id) AS costCount FROM hh_calculator_results WHERE user_id = ?',[$user_id]);
+
+        $arr = array("code" => "000",
+                "data" => array("vr"=>$vr[0]->vrCount,"cost"=>$cost[0]->costCount,"shop"=>$shop[0]->shopCount)
+            );
+        return $callback . "(" . HHJson($arr) . ")";
+    }
 }

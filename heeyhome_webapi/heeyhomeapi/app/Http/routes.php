@@ -277,6 +277,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/progress/material/produce', 'OrderMaterialController@progressOrderMaterial');
     //进度提交金额表  
     Route::any('order/progress/AddOrEditbalance', 'OrderOperateController@AddOrEditbalance');
+
+    //用户端
+    Route::any('my/collectionInfo', 'UserinfoController@userCollectionNumber');
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web','admin.login']], function()
