@@ -402,7 +402,9 @@ var heeyhomeCal = {
             var kSw = $(".Jkct").attr('data-sw');//客餐厅
             var ySw = $(".Jyt").attr('data-sw');//阳台
             var cSw = $(".Jcf").attr('data-sw');//厨房
-            if (jSw == '0') {
+            if ($('#c_area').val() == '') {
+                layer.msg('建筑面积还没有填哦~~');
+            } else if (jSw == '0') {
                 layer.msg('主卧还没有保存工艺哦~~');
             } else if (kSw == '0') {
                 layer.msg('客餐厅还没有保存工艺哦~~');
