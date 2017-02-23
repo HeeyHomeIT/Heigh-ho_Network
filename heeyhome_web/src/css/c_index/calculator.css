@@ -1,12 +1,11 @@
 body #calcontainer {
     /*background-color: rgba(231,231,231,0.5)*/
-    background-color: rgba(242, 242, 242, 0.83)
 }
 
 #calcontent {
     color: #636363;
     width: 1190px;
-    padding: 0 35px;
+    /*padding: 0 35px;*/
     margin: 0 auto
 }
 
@@ -28,11 +27,39 @@ body #calcontainer {
 #calcontent .cal1 p, #calcontent .cal2 p, #calcontent .cal3 p, #calcontent .cal4 p {
     font-size: 14px;
     /*padding-left: 65px;*/
-    height: 32px;
-    line-height: 32px;
+    height: 42px;
+    line-height: 42px;
     position: relative;
     /*color: #f60;*/
     font-weight: 700;
+    border-left: 3px solid #EEC988;
+    background-color: rgba(242, 242, 242, 0.83)
+}
+
+#calcontent .cal1 p {
+    background-color: white;
+    border-left: none;
+}
+
+#calcontent .cal3 p span {
+    margin-left: 10px;
+    padding-left: 25px;
+}
+
+#calcontent .cal3 p .can_choose {
+    background-image: url(../img/sprite_cal.png);
+    background-position: -372px -483px;
+}
+
+#calcontent .cal3 p .not_choose {
+    background-image: url(../img/sprite_cal.png);
+    background-position: -372px -307px;
+}
+
+#calcontent .cal3 p .al_choose {
+    background-image: url(../img/sprite_cal.png);
+    background-position: -372px -123px;
+    margin-right: 10px;
 }
 
 #calcontent .cal1 .roomDefinition {
@@ -52,7 +79,7 @@ body #calcontainer {
     position: relative;
     color: #666;
     margin-bottom: 17px;
-    margin-right: 35px;
+    margin-right: 60px;
 }
 
 .c_area {
@@ -135,7 +162,7 @@ body #calcontainer {
 }
 
 #calcontent .cal1 em.icon, #calcontent .cal2 em.icon, #calcontent .cal3 em.icon, #calcontent .cal4 em.icon {
-    background: url(../img/icon-cal.png) no-repeat;
+    /*background: url(../img/icon-cal.png) no-repeat;*/
     width: 30px;
     height: 8px;
     display: inline-block;
@@ -179,22 +206,28 @@ body #calcontainer {
 }
 
 #calcontent .cal2 .roomsdiv > div .sub-btn {
-    background: url(../img/icon-sub.png) center center no-repeat;
+    background-image: url(../img/sprite_cal.png);
+    background-position: -81px -504px;
     display: inline-block;
 }
 
 #calcontent .cal2 .roomsdiv > div .sub-btn.off {
-    background-image: url(../img/i-sub.png);
+    background-image: url(../img/sprite_cal.png);
+    background-position: -81px -96px;
 }
 
 #calcontent .cal2 .roomsdiv > div .add-btn {
-    background: url(../img/icon-add.png) center center no-repeat;
+    /*background: url(../img/icon-add.png) center center no-repeat;*/
+    background-image: url(../img/sprite_cal.png);
+    background-position: -82px -368px;
     display: inline-block;
     float: right;
 }
 
 #calcontent .cal2 .roomsdiv > div .add-btn.off {
-    background-image: url(../img/i-add.png);
+    /*background-image: url(../img/i-add.png);*/
+    background-image: url(../img/sprite_cal.png);
+    background-position: -81px -232px;
 }
 
 .clear_float {
@@ -225,7 +258,7 @@ body #calcontainer {
 #calcontent .cal3 .mainareadiv .craft_left {
     position: relative;
     float: left;
-    width: 510px;
+    width: 570px;
     height: 460px;
     padding: 10px 0;
 }
@@ -244,7 +277,7 @@ body #calcontainer {
     height: 261px;
     background-position: -505px -0px;
     top: 85px;
-    right: 0;
+    right: 25px;
 }
 
 #calcontent .cal3 .mainareadiv .craft_left .list_con, #calcontent .cal4 .othersdiv .craft_left .list_con, #calcontent .cal5 .lastdiv .craft_left .list_con {
@@ -257,7 +290,7 @@ body #calcontainer {
     height: 160px;
     color: #333;
     display: inline;
-    margin-right: 35px;
+    margin-right: 55px;
 }
 
 #calcontent .cal5 .lastdiv .craft_left .list_con li {
@@ -272,8 +305,8 @@ body #calcontainer {
 }
 
 #calcontent .cal3 .mainareadiv .craft_left .list_con li label s, #calcontent .cal4 .othersdiv .craft_left .list_con li label s, #calcontent .cal5 .lastdiv .craft_left .list_con li label s {
-    background: url(../img/sprite-select.png) no-repeat;
-    background-position: -61px -63px;
+    background-image: url(../img/sprite_cal.png);
+    background-position: -372px -482px;
     width: 20px;
     height: 20px;
     display: inline-block;
@@ -287,11 +320,11 @@ body #calcontainer {
 }
 
 #calcontent .cal3 .mainareadiv .craft_left .list_con li label .rep_craft_check, #calcontent .cal4 .othersdiv .craft_left .list_con li label .rep_craft_check, #calcontent .cal5 .lastdiv .craft_left .list_con li label .rep_craft_check {
-    background-position: -61px -16px;
+    background-position: -372px -123px;
 }
 
 #calcontent .cal3 .mainareadiv .craft_left .list_con li label .can_not_check, #calcontent .cal4 .othersdiv .craft_left .list_con li label .can_not_check, #calcontent .cal5 .lastdiv .craft_left .list_con li label .can_not_check {
-    background-position: -61px -112px;
+    background-position: -372px -307px;
 }
 
 #calcontent .cal3 .mainareadiv .craft_left .list_con li label div, #calcontent .cal4 .othersdiv .craft_left .list_con li label div, #calcontent .cal5 .lastdiv .craft_left .list_con li label div {
@@ -391,7 +424,7 @@ body #calcontainer {
 #calcontent .cal3 > div.mainareadiv .filter_nav {
     position: relative;
     float: left;
-    padding: 8px 0 8px 90px;
+    padding: 8px 0 8px 70px;
     width: 510px;
 }
 
@@ -403,7 +436,7 @@ body #calcontainer {
 }
 
 .filter_nav .filter_item {
-    width: 495px;
+    width: 450px;
     border-top: 1px dashed #ddd;
     line-height: 44px
 }
@@ -507,7 +540,7 @@ body #calcontainer {
     overflow: hidden;
     border: 0;
     color: #636363;
-    background-color: rgba(242, 242, 242, 0.83);
+    /*background-color: rgba(242, 242, 242, 0.83);*/
     text-align: center;
 }
 
