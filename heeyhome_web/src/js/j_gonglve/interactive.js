@@ -37,8 +37,7 @@
         initNavHeadeEvent: function () {
             HHIT_NEWAPP.controller('myGonglve', ['$scope', '$http', function ($scope, $http) {
                 var $rH = $('.right_title h2'); // 家装百科总标题
-                /* 右边文章列表默认出现 */
-                navHeadeClickHendler.myArticleEvent(1, $scope, $http);
+
                 /* 获取家装百科分类接口 */
                 $http({
                     method: "JSONP",
@@ -46,6 +45,10 @@
                 }).success(function (data, status) {
                     /* 如果成功执行 */
                     if (data.code === '000') {
+                        console.log(data.data);
+                        console.log(data.data[0].id);
+                        /* 右边文章列表默认出现 */
+                        navHeadeClickHendler.myArticleEvent(data.data[0].id, $scope, $http);
                         $scope.names = data.data;
                         /* 右边标题默认出现 */
                         $rH.html(data.data[0].cate_describe);
@@ -120,7 +123,7 @@
             }).success(function (data, status) {
                 /* 如果成功执行 */
                 if (data.code === '000') {
-                    //console.log(data);
+                    console.log(data);
                     gonglve_total = data.data[0].total;//获取总数据
                     var vrStr = "";
                     $.each(data.data, function (i, v) {
@@ -172,6 +175,7 @@
      */
     pageHandler = {
         pageContentEvent: function (id) {
+            console.log(gonglve_total);
             $(".page_number>div").append($(".page_div3").empty().paging({
                 total: Math.ceil(gonglve_total / 2), //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
@@ -214,6 +218,7 @@
                         vrStr += splicePicHandler.spliceStrEvent(v);
                     });
                     $(".right_wrap").html(vrStr);
+                    viewPlus.addView();
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
             }));
         }

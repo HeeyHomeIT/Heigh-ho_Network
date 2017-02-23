@@ -226,7 +226,7 @@ a:focus {
 }
 
 #decoration_pedia .pedia_content .right_content .right_detail .detail_content .detail_des #detail_p {
-    margin-top: 20px;
+    margin-top: 15px;
     font-size: 14px !important;
     color: #2e2e2e;
     overflow: hidden;
@@ -237,6 +237,7 @@ a:focus {
 }
 
 #decoration_pedia .pedia_content .right_content .right_detail .detail_content .detail_des #detail_p p {
+    line-height: 30px!important;
     font-size: 14px !important;
     color: #2e2e2e !important;
 }
@@ -247,7 +248,7 @@ a:focus {
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 0 20px 1px 45px;
+    padding: 0 20px 9px 45px;
     background: url(http://css88.b0.upaiyun.com/css88/2014/09/ellipsis_bg.png) repeat-y;
 }
 
@@ -257,7 +258,7 @@ a:focus {
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 0 20px 1px 45px;
+    padding: 0 20px 9px 45px;
     background: url(http://css88.b0.upaiyun.com/css88/2014/09/ellipsis_bg.png) repeat-y;
 }
 

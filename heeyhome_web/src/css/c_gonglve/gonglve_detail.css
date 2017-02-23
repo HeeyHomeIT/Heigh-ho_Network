@@ -28,3 +28,11 @@
     margin-bottom: 50px;
     line-height: 30px;
 }
+
+.gonglve_content strong{
+    font-weight: bold;
+}
+
+.gonglve_content p{
+    line-height: 30px!important;
+}
