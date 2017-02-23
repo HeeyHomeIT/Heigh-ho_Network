@@ -274,7 +274,12 @@
                                         if (item2 != 0) {
                                             vrStr += '<tr class="shows">';
                                         }
-                                        vrStr += '<td class="Jselect" data-select="' + val2.id + '" data-subtotal="' + parseFloat(val2.price) * parseFloat(val2.num) + '">' + val2.spec_name + '</td><td>' + val2.unit + '</td><td>' + val2.price + '</td><td>' + val2.num + '</td><td>' + parseFloat(val2.price) * parseFloat(val2.num) + '</td>';
+                                        if (val2.spec_name == null) {
+                                            vrStr += '<td class="Jselect" data-select="' + val2.id + '" data-subtotal="' + parseFloat(val2.price) * parseFloat(val2.num) + '">无</td><td>' + val2.unit + '</td><td>' + val2.price + '</td><td>' + val2.num + '</td><td>' + parseFloat(val2.price) * parseFloat(val2.num) + '</td>';
+                                        } else {
+                                            vrStr += '<td class="Jselect" data-select="' + val2.id + '" data-subtotal="' + parseFloat(val2.price) * parseFloat(val2.num) + '">' + val2.spec_name + '</td><td>' + val2.unit + '</td><td>' + val2.price + '</td><td>' + val2.num + '</td><td>' + parseFloat(val2.price) * parseFloat(val2.num) + '</td>';
+                                        }
+
                                         vrStr += '<td>';
                                         if (flag) {
                                             vrStr += '<label class="set_default cursor"><input name="subBox" checked="' + (val2.choose_flag == 1 ? 'checked' : '') + '" type="checkbox" /><em class="' + (val2.choose_flag == 1 ? 'rep_radiao_check' : '') + '"></em></label></td>'
@@ -309,7 +314,12 @@
                                         if (item2 != 0) {
                                             vrStr += '<tr class="shows">';
                                         }
-                                        vrStr += '<td class="Jselect" data-select="' + val2.id + '" data-subtotal="' + parseFloat(val2.price) * parseFloat(val2.num) + '" >' + val2.spec_name + '</td><td>' + val2.unit + '</td><td>' + val2.price + '</td><td>' + val2.num + '</td><td>' + parseFloat(val2.price) * parseFloat(val2.num) + '</td>';
+                                        if (val2.spec_name == null) {
+                                            vrStr += '<td class="Jselect" data-select="' + val2.id + '" data-subtotal="' + parseFloat(val2.price) * parseFloat(val2.num) + '" >无</td><td>' + val2.unit + '</td><td>' + val2.price + '</td><td>' + val2.num + '</td><td>' + parseFloat(val2.price) * parseFloat(val2.num) + '</td>';
+                                        } else {
+                                            vrStr += '<td class="Jselect" data-select="' + val2.id + '" data-subtotal="' + parseFloat(val2.price) * parseFloat(val2.num) + '" >' + val2.spec_name + '</td><td>' + val2.unit + '</td><td>' + val2.price + '</td><td>' + val2.num + '</td><td>' + parseFloat(val2.price) * parseFloat(val2.num) + '</td>';
+                                        }
+
                                         vrStr += '<td>';
                                         if (flag) {
                                             vrStr += '<label class="set_default cursor"><input name="subBox" type="checkbox" checked="' + (val2.choose_flag == 1 ? 'checked' : '') + '" /><em class="' + (val2.choose_flag == 1 ? 'rep_radiao_check' : '') + '"></em></label></td>'
