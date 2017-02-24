@@ -30,18 +30,32 @@ define(['app'], function (app) {
                     dataType: 'jsonp',
                     success: function (data) {
                         if (data != null && data.code == '000') {
+                            var len = data.data.length;
                             var carouselPic = '<ul class="car-inner">';
+                            var imgArr = [];
                             $.each(data.data, function (i, n) {
                                 if (i == 0) {
                                     carouselPic += '<li class="item active"><a href="' + n.img_path + '" target="_blank"><img src="' + n.img + '"></a></li>';
                                 } else {
                                     carouselPic += '<li class="item"><a href="' + n.img_path + '" target="_blank"><img src="' + n.img + '"></a></li>';
                                 }
+                                imgArr.push(n.img);
+                                $('.number_control ul').append('<li>0' + (i + 1) + '</li>');
                             });
                             carouselPic += '</ul>';
                             $("#myCarousel").append(carouselPic);
                             superSlide.slidePic();
-                            onchangeNumber.change();
+                            onchangeNumber.change(len);
+                            function preloadimages(arr) {
+                                var newimages = [];
+                                var arr = (typeof arr != "object") ? [arr] : arr; //确保参数总是数组
+                                for (var i = 0; i < arr.length; i++) {
+                                    newimages[i] = new Image();
+                                    newimages[i].src = arr[i];
+                                }
+                            }
+
+                            preloadimages(imgArr);
                         }
                     },
                     error: function (data) {
@@ -67,14 +81,7 @@ define(['app'], function (app) {
                                 panorama += '<div class="pic_title"><h3>' + data.data[i].panorama_area + '㎡</h3></div>';
                                 panorama += ' <div class="pic_name">' + data.data[i].panorama_style + '</div></div></a></div>';
                             }
-//							var sixPic = data.data.slice(0,6);
-//							$.each(sixPic, function(i,n) {
-//								panorama += '<div class="box_picture clearfix"><a href="'+n.panorama_url+'">';
-//								panorama += '<img src="http://www.heeyhome.com/'+n.panorama_img+'"><div class="pic_content">';
-//								panorama += '<div class="pic_icon"><img src="css/img/icon-tovr.png"></div>';
-//								panorama += '<div class="pic_title"><h3>'+n.panorama_area+'㎡</h3></div>';
-//								panorama += ' <div class="pic_name">'+n.panorama_style+'</div></div></a></div>';
-//							});
+
                             panorama += '</div>';
                             $(".virtual_content").append(panorama);
                             boxPicture.cssSetting();
@@ -105,12 +112,12 @@ define(['app'], function (app) {
          * 轮播图右侧数字随之改变
          */
         onchangeNumber = {
-            change: function () {
+            change: function (len) {
                 var _focus = $(".hd li");
                 var _number = $(".number_control li");
                 var i = 0;
                 setInterval(function () {
-                    for (i = 0; i < 5; i++) {
+                    for (i = 0; i < len; i++) {
                         if ($(_focus).eq(i).attr("class") == "on") {
                             $(_number).eq(i).addClass("active");
                             $(_number).eq(i).siblings().removeClass("active");

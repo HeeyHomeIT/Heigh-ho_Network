@@ -15,11 +15,11 @@
     height: 20px;
     text-align: center;
     z-index: 20;
-    left: 40%;
+    left: 45%;
 }
 
 #myCarousel .hd li {
-    opacity: 100%;
+    opacity: 1;
     display: inline-block;
     cursor: pointer;
     border: 0;
@@ -64,7 +64,7 @@
 .number_control .line {
     width: 1px;
     border-left: 1px solid #FFFFFF;
-    margin: 0 0 20px 6px;
+    margin: 0 0 20px 8px;
     height: 66px
 }
 
