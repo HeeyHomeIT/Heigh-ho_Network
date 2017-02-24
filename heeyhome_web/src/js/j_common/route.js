@@ -86,7 +86,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
                     },
                     resolve: {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['js/j_gonglve/interactive.js'])
+                            return $ocLazyLoad.load(['js/j_gonglve/detail.js'])
                         }]
                     }
                 })

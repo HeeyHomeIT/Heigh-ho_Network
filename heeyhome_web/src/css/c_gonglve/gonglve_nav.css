@@ -171,6 +171,10 @@ a:focus {
     border-bottom: 1px solid #e4e4e4;
 }
 
+/*#decoration_pedia .pedia_content .right_content .show {*/
+    /*opacity: 1;*/
+/*}*/
+
 #decoration_pedia .pedia_content .right_content .right_detail .right_img {
     width: 194px;
     height: 139px;
@@ -237,7 +241,7 @@ a:focus {
 }
 
 #decoration_pedia .pedia_content .right_content .right_detail .detail_content .detail_des #detail_p p {
-    line-height: 30px!important;
+    line-height: 30px !important;
     font-size: 14px !important;
     color: #2e2e2e !important;
 }
@@ -299,4 +303,18 @@ a:focus {
 
 #decoration_pedia .pedia_content .right_content .right_detail a li:hover {
     color: #449D44
+}
+
+.loading {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    position: absolute;
+    top: 35%;
+    left: 45%;
+}
+
+.loading img {
+    width: 100%;
+    height: 100%;
 }
