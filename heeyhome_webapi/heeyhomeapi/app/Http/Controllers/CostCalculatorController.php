@@ -152,10 +152,10 @@ class CostCalculatorController extends Controller
             }
         } else {
             //返还全部数据
-            $sel_calculator_results_tbl = DB::select('SELECT a.*,b.* FROM hh_calculator_results a LEFT JOIN hh_housetype b ON a.housetype_id = b.id WHERE a.user_id = ? ORDER BY a.id LIMIT ?,?',
-                [$user_id, $page_start, $limit]);
-            $sel_calculator_results_count = DB::select('SELECT COUNT(id) AS cal_count FROM hh_calculator_results WHERE user_id = ?',
-                [$user_id]);
+            $sel_calculator_results_tbl = DB::select('SELECT a.*,b.* FROM hh_calculator_results a LEFT JOIN hh_housetype b ON a.housetype_id = b.id WHERE a.user_id = ? AND a.isdel=? ORDER BY a.id LIMIT ?,?',
+                [$user_id,0,$page_start, $limit]);
+            $sel_calculator_results_count = DB::select('SELECT COUNT(id) AS cal_count FROM hh_calculator_results WHERE user_id = ? AND isdel=?',
+                [$user_id,0]);
             if ($sel_calculator_results_count) {
                 $calculator_count = $sel_calculator_results_count[0]->cal_count;
             }
@@ -186,8 +186,8 @@ class CostCalculatorController extends Controller
         $calculator_results_id = rq('calculator_results_id');
         $user_id = rq('user_id');
         $callback = rq('callback');
-        $del_cost_calculator_result = DB::delete('DELETE FROM hh_calculator_results WHERE calculator_results_id = ? AND user_id = ?',
-            [$calculator_results_id, $user_id]);
+        $del_cost_calculator_result = DB::update('update hh_calculator_results set isdel=? WHERE calculator_results_id = ? AND user_id = ?',
+            [1,$calculator_results_id, $user_id]);
         if ($del_cost_calculator_result) {
             $arr = array(
                 "code" => "000",
