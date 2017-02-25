@@ -173,7 +173,7 @@
                     } else {
                         layer.msg("亲，收藏前请先登录哦~");
                         function login() {
-                            window.location.href = "register.html#/dl";
+                            window.location.href = "register.html?#dl";
                         }
 
                         setTimeout(function () {
@@ -672,6 +672,13 @@
                     }
                 } else {
                     layer.msg('一键预约前请先登录哦~');
+                    function login() {
+                        window.location.href = "register.html?#dl";
+                    }
+
+                    setTimeout(function () {
+                        login();
+                    }, 1500);
                 }
             });
             $(document).on("click", ".settlement-btncon", function () {
@@ -725,6 +732,13 @@
                     }
                 } else {
                     layer.msg('请先登录哦~');
+                    function login() {
+                        window.location.href = "register.html?#dl";
+                    }
+
+                    setTimeout(function () {
+                        login();
+                    }, 1500);
                 }
             });
         },

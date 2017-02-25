@@ -70,7 +70,7 @@
                 if (UID == '') {
                     layer.msg("亲，收藏前请先登录哦~");
                     function login() {
-                        window.location.href = "register.html#/dl";
+                        window.location.href = "register.html?#dl";
                     }
 
                     setTimeout(function () {
