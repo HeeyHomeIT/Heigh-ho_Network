@@ -1771,6 +1771,8 @@
                 value.material_pay_status = "配送中";
             } else if (value.material_pay_status == 3) {
                 value.material_pay_status = "配送完成";
+            } else if (value.material_pay_status == 4) {
+                value.material_pay_status = "自行购买";
             }
             var vrStr = '<div class="work_stage">';
             vrStr += '<div class="stage_title">';
@@ -1937,7 +1939,20 @@
                 // 辅材类
                 if (value.order_step == 3 || value.order_step == 7 || value.order_step == 11 || value.order_step == 15) {
                     if (value.order_material_is_exist == '1') {//工长已编辑过材料清单
-                        vrStr += '<a href="reservation.html#/materiallist?pos=' + value.order_id + '" class="bottom">辅材支付</a>';
+                        var type = 0;
+                        if (value.order_step_ch.indexOf("水电") != -1) {
+                            type = 1;
+                        }
+                        if (value.order_step_ch.indexOf("瓦工") != -1) {
+                            type = 3;
+                        }
+                        if (value.order_step_ch.indexOf("木工") != -1) {
+                            type = 4;
+                        }
+                        if (value.order_step_ch.indexOf("油漆") != -1) {
+                            type = 5;
+                        }
+                        vrStr += '<a href="reservation.html#/materiallist?pos=' + value.order_id + '&&material_type=' + type + '" class="bottom">辅材支付</a>';
                     }
                 }
                 // 人工费

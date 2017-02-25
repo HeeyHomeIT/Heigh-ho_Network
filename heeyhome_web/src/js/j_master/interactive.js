@@ -1771,47 +1771,53 @@
                         data.append("myfile[]", $("#file" + i)[0].files[0]);
                     }
                 }
-                $.ajax({
-                    url: STARTWORKURL,
-                    type: 'POST',
-                    data: data,
-                    dataType: 'jsonp',
-                    jsonp: 'callback',
-                    cache: false,
-                    processData: false,
-                    contentType: false,
-                    success: function (result) {
-                        if (result.code === '000') {
-                            layer.msg(result.msg);
-                            $('.upload').hide();
-                            $('.add_technology').hide();
-                            $('.detail_upload').removeClass('hide').show();
-                            var orderId = sessionStorage.getItem("orderId");
-                            $.ajax({
-                                url: BASICINFOURL,
-                                type: "GET",
-                                async: true,
-                                dataType: 'jsonp',
-                                data: {
-                                    shop_id: $.base64.decode($.cookie("userShopId")),
-                                    order_id: orderId
-                                },
-                                success: function (data) {
-                                    if (data && data.code == '000') {
-                                        sessionStorage.setItem("step", data.data.order_list[0].order_step);
+                if ($syear.html() == "-年份-" || $smonth.html() == "-月份-" || $sday.html() == "-日期-") {
+                    layer.msg('请填写完整的开工时间~');
+                    $('.wrap').show();
+                } else {
+                    $.ajax({
+                        url: STARTWORKURL,
+                        type: 'POST',
+                        data: data,
+                        dataType: 'jsonp',
+                        jsonp: 'callback',
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function (result) {
+                            if (result.code === '000') {
+                                layer.msg(result.msg);
+                                $('.upload').hide();
+                                $('.add_technology').hide();
+                                $('.detail_upload').removeClass('hide').show();
+                                var orderId = sessionStorage.getItem("orderId");
+                                $.ajax({
+                                    url: BASICINFOURL,
+                                    type: "GET",
+                                    async: true,
+                                    dataType: 'jsonp',
+                                    data: {
+                                        shop_id: $.base64.decode($.cookie("userShopId")),
+                                        order_id: orderId
+                                    },
+                                    success: function (data) {
+                                        if (data && data.code == '000') {
+                                            sessionStorage.setItem("step", data.data.order_list[0].order_step);
+                                        }
                                     }
-                                }
-                            });
-                            location.reload();
-                        } else {
-                            layer.msg(result.msg);
-                            $('.add_technology').hide();
+                                });
+                                location.reload();
+                            } else {
+                                layer.msg(result.msg);
+                                $('.add_technology').hide();
+                            }
+                        },
+                        error: function (e, a, v) {
+                            alert("错误！！");
                         }
-                    },
-                    error: function (e, a, v) {
-                        alert("错误！！");
-                    }
-                });
+                    });
+                }
+
             });
         }
     };
