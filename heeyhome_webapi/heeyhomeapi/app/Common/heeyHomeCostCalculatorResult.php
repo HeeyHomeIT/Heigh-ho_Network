@@ -60,7 +60,7 @@ function wgrg($flag, $b1, $d1, $h1, $f1, $parlor_ground, $balcony_ground, $kitch
             //卫生间瓦工人工费
             $B21 = (($J5 / 1.8 + 1.8) * 4.8 + $J5) * 40;
             //卫生间瓦工做防水
-            $D21 = ((4.5 + ((2 - $d1) * 9.5) / 9.5 * 1.5) + 9) * 15;
+            $D21 = ($J5 + 9) * 15;
             //卫生间落水管封砌人工
             $F21 = 150;
             //客餐厅瓦工人工费
@@ -76,9 +76,9 @@ function wgrg($flag, $b1, $d1, $h1, $f1, $parlor_ground, $balcony_ground, $kitch
             //阳台瓦工做防水
             $F37 = 150;
             //第二个阳台
-            $B40 = abs(1 - $h1) * (($F6 / 2 * 2 + 4) * 2.7 + $F6 - 5) * 40;
-            $D40 = (abs(1 - $h1)) * 150;
-            $F40 = (abs(1 - $h1)) * 100;
+            $B40 = abs(1 - $h1) * (($F6 / 2 * 2 + 4) * 2.7 + $F6 - 5) * 40 * $yt;
+            $D40 = abs(1 - $h1) * 150;
+            $F40 = abs(1 - $h1) * 100;
             return $D18 + $F18 + $H18 + $B21 + $D21 + $F21 + $B33 + $D33 + $F33 + $B37 + $D37 + $F37 + ($B40 + $D40 + $F40);
         case 2:
             //基础
@@ -144,6 +144,7 @@ function wgrg($flag, $b1, $d1, $h1, $f1, $parlor_ground, $balcony_ground, $kitch
             //客餐厅
             $B39 = ($J6 * 40) * $kt;
             $D39 = 250;
+            $F39 = 10 * 50;
             //阳台1
             $B43 = (($D6 / 3.2 + 3.2) * 2 * 2.7 - 4.8 - 4 + $D6) * 40 * $yt;
             $D43 = 150;
@@ -155,7 +156,7 @@ function wgrg($flag, $b1, $d1, $h1, $f1, $parlor_ground, $balcony_ground, $kitch
             //阳台3
             $B49 = (((($H6 + 1) * 5.4 - 4 + $H6) * 40) < 100 ? 0 : (($H6 + 1) * 5.4 - 4 + $H6) * 40) * $yt;
             $D49 = (($h1 - 2) * 150) < 0 ? 0 : ($h1 - 2) * 150;
-            return $D18 + $F18 + $H18 + $B21 + $D21 + $F21 + $B25 + $D25 + $F25 + $B39 + $D39 + $B43 + $D43 + $F43 + $B46 + $D46 + $F46 + $B49 + $D49;
+            return $D18 + $F18 + $H18 + $B21 + $D21 + $F21 + $B25 + $D25 + $F25 + $B39 + $D39 + $F39 + $B43 + $D43 + $F43 + $B46 + $D46 + $F46 + $B49 + $D49;
         case 4:
             //基础
             $J1 = $b1 * 0.83;
@@ -185,6 +186,7 @@ function wgrg($flag, $b1, $d1, $h1, $f1, $parlor_ground, $balcony_ground, $kitch
             //客餐厅
             $B39 = $J6 * 40 * $kt;
             $D39 = 250;
+            $F39 = 600;
             //阳台1
             $B43 = (($D6 / 3.2 + 3.2) * 2 * 2.7 - 4.8 - 4 + $D6) * 40 * $yt;
             $D43 = 150;
@@ -196,7 +198,7 @@ function wgrg($flag, $b1, $d1, $h1, $f1, $parlor_ground, $balcony_ground, $kitch
             //阳台3
             $B49 = ((((($H6 + 1) * 5.4 - 4 + $H6) * 40) < 100) ? 0 : (($H6 + 1) * 5.4 - 4 + $H6) * 40) * $yt;
             $D49 = ((($h1 - 2) * 150) < 0) ? 0 : ($h1 - 2) * 150;
-            return $D18 + $F18 + $H18 + $B21 + $D21 + $F21 + $B25 + $D25 + $F25 + $B39 + $D39 + $B43 + $D43 + $F43 + $B46 + $D46 + $F46 + $B49 + $D49;
+            return $D18 + $F18 + $H18 + $B21 + $D21 + $F21 + $B25 + $D25 + $F25 + $B39 + $D39 + $F39 + $B43 + $D43 + $F43 + $B46 + $D46 + $F46 + $B49 + $D49;
         case 5:
             //基础
             $J1 = $b1 * 0.83;
@@ -228,7 +230,19 @@ function wgrg($flag, $b1, $d1, $h1, $f1, $parlor_ground, $balcony_ground, $kitch
             //客餐厅
             $B43 = $J6 * 40 * $kt;
             $D43 = 300;
-            return $D18 + $F18 + $H18 + $B21 + $D21 + $F21 + $H22 + $B25 + $D25 + $F25 + $H26 + $B43 + $D43;
+            $F43 = 600;
+            //阳台1
+            $B47 = (($D6 / 3.2 + 3.2) * 2 * 2.7 - 4.8 - 4 + $D6) * 40 * $yt;
+            $D47 = 150;
+            $F47 = 150;
+            //阳台2
+            $B50 = (($F6 / 2 + 2) * 2 * 2.7 - 5 + $F6) * 40 * $F6 / 3.6 * $yt;
+            $D50 = (abs(1 - $h1) * 150 > 150) ? 150 : abs(1 - $h1) * 150;
+            $F50 = (abs(1 - $h1) * $F6 * 15 > 45) ? 150 : abs(1 - $h1) * $F6 * 15;
+            //阳台3
+            $B53 = (((($H6 + 1) * 5.4 - 4 + $H6) * 40 < 100) ? 0 : (($H6 + 1) * 5.4 - 4 + $H6) * 40) * $yt;
+            $D53 = (($h1 - 2) * 150 < 0) ? 0 : ($h1 - 2) * 150;
+            return $D18 + $F18 + $H18 + $B21 + $D21 + $F21 + $H22 + $B25 + $D25 + $F25 + $H26 + $B43 + $D43 + $F43 + $B47 + $D47 + $F47 + $B50 + $D50 + $F50 + $B53 + $D53;
         case 6:
             //基础
             $J1 = $b1 * 0.83;
@@ -266,7 +280,10 @@ function wgrg($flag, $b1, $d1, $h1, $f1, $parlor_ground, $balcony_ground, $kitch
             $B50 = (($F6 / 2 + 2) * 2 * 2.7 - 5 + $F6) * 40 * $F6 / 3.6 * $yt;
             $D50 = ((abs(1 - $h1) * 150) > 150) ? 150 : abs(1 - $h1) * 150;
             $F50 = ((abs(1 - $h1) * $F6 * 15) > 45) ? 150 : abs(1 - $h1) * $F6 * 15;
-            return $D19 + $F19 + $B22 + $D22 + $F22 + $B26 + $D26 + $F26 + $B43 + $D43 + $B47 + $D47 + $F47 + $B50 + $D50 + $F50;
+            //阳台3
+            $B53 = (((($H6 + 1) * 5.4 - 4 + $H6) * 40 < 100) ? 0 : (($H6 + 1) * 5.4 - 4 + $H6) * 40) * $yt;
+            $D53 = (($h1 - 2) * 150 < 0) ? 0 : ($h1 - 2) * 150;
+            return $D19 + $F19 + $B22 + $D22 + $F22 + $B26 + $D26 + $F26 + $B43 + $D43 + $B47 + $D47 + $F47 + $B50 + $D50 + $F50 + $B53 + $D53;
         case 7:
             //基础
             $J1 = $b1 * 0.83;
@@ -305,7 +322,15 @@ function wgrg($flag, $b1, $d1, $h1, $f1, $parlor_ground, $balcony_ground, $kitch
             $B51 = (($D6 / 3.2 + 3.2) * 2 * 2.7 - 4.8 - 4 + $D6) * 40 * $yt;
             $D51 = 150;
             $F51 = 150;
-            return $D19 + $F19 + $B22 + $D22 + $F22 + $B26 + $D26 + $B26 + $F26 + $B30 + $D30 + $F30 + $B47 + $D47 + $B51 + $D51 + $F51;
+            //阳台2
+            $B54 = ((($F6 / 2 + 2) * 2 * 2.7 - 5 + $F6) * 40 * $F6 / 4) * $yt;
+            $D54 = (abs(1 - $h1) * 150 > 150) ? 150 : abs(1 - $h1) * 150;
+            $F54 = 150;
+            //阳台3
+            $B57 = (($H6 / 2 + 2) * 2 * 2.7 - 5 + $H6) * 40 * $H6 / 3 * $yt;
+            $D57 = ((1 - $h1) * 150 > 150) ? 150 : abs(1 - $h1) * 150;
+            $F57 = 100;
+            return $D19 + $F19 + $B22 + $D22 + $F22 + $B26 + $D26 + $B26 + $F26 + $B30 + $D30 + $F30 + $B47 + $D47 + $B51 + $D51 + $F51 + $B54 + $D54 + $F54 + $B57 + $D57 + $F57;
     }
 }
 
@@ -590,11 +615,9 @@ function yqgrg($flag, $b1, $d1, $f1, $master_wallpaper, $second_wallpaper, $thir
             $J5 = 4.5 + $L1 / 9.5 * 1.5;
             $B5 = 18 + $L1 / 7.8;
             $D5 = 12.9 + $L1 / 7.8;
-            //墙纸
-            $wallpaper = ($B5 * 3 / 4.6 * 120) * $master_wallpaper + ($D5 * 3 / 4.6 * 120) * $second_wallpaper;
 
             $B43 = ($J1 - $H5 - $J5) * 3 * 23;
-            return $B43 + $wallpaper;
+            return $B43;
         case 2:
             //基础
             $J1 = $b1 * 0.83;
@@ -604,11 +627,9 @@ function yqgrg($flag, $b1, $d1, $f1, $master_wallpaper, $second_wallpaper, $thir
             $B5 = 14 + $L1 / 7.5 * 1.5;
             $D5 = 9 + $L1 / 7.5;
             $F5 = ($d1 - 2) * 7.5;
-            //墙纸
-            $wallpaper = ($B5 * 3 / 4.6 * 120) * $master_wallpaper + ($D5 * 3 / 4.6 * 120) * $second_wallpaper + ($F5 * 3 / 4.6 * 120) * $third_wallpaper;
 
             $B48 = ($J1 - $J5 - $H5) * 3 * 23;
-            return $B48 + $wallpaper;
+            return $B48;
         case 3:
             //基础
             $J1 = $b1 * 0.83;
@@ -619,11 +640,9 @@ function yqgrg($flag, $b1, $d1, $f1, $master_wallpaper, $second_wallpaper, $thir
             $B5 = 14 + $L1 / 7.5 * 1.5;
             $D5 = 9.5 + $L1 / 7.5;
             $F5 = ($d1 - 2) * 7.5;
-            //墙纸
-            $wallpaper = ($B5 * 3 / 4.6 * 120) * $master_wallpaper + ($D5 * 3 / 4.6 * 120) * $second_wallpaper + ($F5 * 3 / 4.6 * 120) * $third_wallpaper;
 
             $B52 = ($J1 - $H5 - $J5 - $B6) * 3 * 23;
-            return $B52 + $wallpaper;
+            return $B52;
         case 4:
             //基础
             $J1 = $b1 * 0.83;
@@ -634,11 +653,9 @@ function yqgrg($flag, $b1, $d1, $f1, $master_wallpaper, $second_wallpaper, $thir
             $B5 = 14.5 + $L1 / 7.5 * 1.5;
             $D5 = 10.5 + $L1 / 7.5;
             $F5 = ($d1 - 2) * 7.5;
-            //墙纸
-            $wallpaper = ($B5 * 3 / 4.6 * 120) * $master_wallpaper + ($D5 * 3 / 4.6 * 120) * $second_wallpaper + ($F5 * 3 / 4.6 * 120) * $third_wallpaper;
 
             $B52 = ($J1 - $H5 - $J5 - $B6) * 3 * 23;
-            return $B52 + $wallpaper;
+            return $B52;
         case 5:
             //基础
             $J1 = $b1 * 0.83;
@@ -649,11 +666,9 @@ function yqgrg($flag, $b1, $d1, $f1, $master_wallpaper, $second_wallpaper, $thir
             $B5 = 15.5 + $L1 / 8.5 * 1.5;
             $D5 = 11 + $L1 / 8.5 * 1;
             $F5 = ($d1 - 2) * 8.5;
-            //墙纸
-            $wallpaper = ($B5 * 3 / 4.6 * 120) * $master_wallpaper + ($D5 * 3 / 4.6 * 120) * $second_wallpaper + ($F5 * 3 / 4.6 * 120) * $third_wallpaper;
 
             $B56 = ($J1 - $H5 - $J5 - $B6) * 3.06 * 23;
-            return $B56 + $wallpaper;
+            return $B56;
         case 6:
             //基础
             $J1 = $b1 * 0.83;
@@ -665,11 +680,9 @@ function yqgrg($flag, $b1, $d1, $f1, $master_wallpaper, $second_wallpaper, $thir
             $D5 = 12 + $L1 / 7.8;
             $F5 = 9.8;
             $B7 = ((($d1 - 3) * 7.8) < 0) ? 0 : ($d1 - 3) * 7.8;
-            //墙纸
-            $wallpaper = ($B5 * 3 / 4.6 * 120) * $master_wallpaper + ($D5 * 3 / 4.6 * 120) * $second_wallpaper + ($F5 * 3 / 4.6 * 120) * $third_wallpaper + ($B7 * 3 / 4.6 * 120) * $fourth_wallpaper;
 
             $B56 = ($J1 - $H5 - $J5 - $B6) * 3.06 * 23;
-            return $B56 + $wallpaper;
+            return $B56;
         case 7:
             //基础
             $J1 = $b1 * 0.83;
@@ -682,11 +695,9 @@ function yqgrg($flag, $b1, $d1, $f1, $master_wallpaper, $second_wallpaper, $thir
             $D5 = 12.9 + $L1 / 7.8;
             $F5 = 10.5;
             $B7 = ((($d1 - 3) * 8.5) < 0) ? 0 : ($d1 - 3) * 8.5;
-            //墙纸
-            $wallpaper = ($B5 * 3 / 4.6 * 120) * $master_wallpaper + ($D5 * 3 / 4.6 * 120) * $second_wallpaper + ($F5 * 3 / 4.6 * 120) * $third_wallpaper + ($B7 * 3 / 4.6 * 120) * $fourth_wallpaper;
 
             $B60 = ($J1 - $H5 - $J5 - $B6 - $D7) * 3.1 * 23;
-            return $B60 + $wallpaper;
+            return $B60;
     }
 }
 
