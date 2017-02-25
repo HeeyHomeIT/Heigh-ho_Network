@@ -300,7 +300,7 @@ define(['app'], function(app) {
 						'<div class="item_mod"><a class="' + (optionObj == null || optionObj == undefined || optionObj["cupboard"] == true ? 'cit' : '') + '" rel="nofollow" data-val="true" >需要</a> ' +
 						'<a class="' + (optionObj != null && optionObj != undefined && optionObj["cupboard"] == false ? 'cit' : '') + '" rel="nofollow" data-val="false" >不需要</a></div></div> ';
 				}
-				strLi += '</div><div class="savediv"><input type="button" class="saveBtn J_btnR" value="保存"></div> ';
+				strLi += '</div><div class="savediv"><input type="button" class="saveBtn J_btnR" value="保存工艺"></div> ';
 				$(".mainareadiv .filter_nav ").html(strLi);
 			},
 			/**
@@ -410,6 +410,15 @@ define(['app'], function(app) {
                     var kSw = $(".Jkct").attr('data-sw');//客餐厅
                     var ySw = $(".Jyt").attr('data-sw');//阳台
                     var cSw = $(".Jcf").attr('data-sw');//厨房
+                    var flag = true;
+                    $.each(roomPlanObj, function (i, v) {
+                        if (v.count != '0') {
+                            if ($(".I" + i).attr("data-sw") == '0') {
+                                flag = false;
+                            }
+                        }
+                    });
+
                     if ($('#c_area').val() == '') {
                         layer.msg('建筑面积还没有填哦~~');
                     } else if (jSw == '0') {
@@ -420,7 +429,7 @@ define(['app'], function(app) {
                         layer.msg('阳台还没有保存工艺哦~~');
                     } else if (cSw == '0') {
                         layer.msg('厨房还没有保存工艺哦~~');
-                    } else {
+                    } else if (flag) {
                         $.ajax({
                             url: COUNTURL,
                             type: "GET",
@@ -473,6 +482,8 @@ define(['app'], function(app) {
                             }, error: function (data) {
                             }
                         });
+                    } else {
+                        layer.msg('您还有房内工艺尚未选择哦~~');
                     }
 				});
 			},

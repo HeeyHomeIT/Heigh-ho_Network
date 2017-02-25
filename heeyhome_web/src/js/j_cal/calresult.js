@@ -12,12 +12,6 @@
 
     var COLLECTIONURL = "http://www.heeyhome.com/api/public/costcalculator/result/collect"; // 收藏成本计算器结果接口
 
-    var UID = $.cookie("userId"); // 得到userid
-    if (UID != null && UID != "" && UID != undefined) {
-        UID = $.base64.decode(UID);
-    } else {
-        UID = "";
-    }
 
     var payObj = {};
     /* 获取我的收藏成本预算查看详情内容 */
@@ -67,30 +61,52 @@
          */
         initClickCollectionEvent: function () {
             $(document).on("click", ".cr_collection", function () {
-                var collectionObj = {};
-                collectionObj = payObj;
-                collectionObj.city = cs; // 城市
-                collectionObj.area = mj;
-                collectionObj.room_num = fj;
-                collectionObj.parlor_num = kt;
-                collectionObj.bathroom_num = wsj;
-                collectionObj.balcony_num = yt;
-                console.log(collectionObj);
-                $.ajax({
-                    url: COLLECTIONURL,
-                    type: "GET",
-                    async: true,
-                    dataType: 'jsonp',
-                    data: {
-                        user_id: UID,
-                        calculator_result_json: JSON.stringify(collectionObj)
-                    },
-                    success: function (data) {
-                        layer.alert(data.msg);
-                    },
-                    error: function (data) {
+                var UID = $.cookie("userId"); // 得到userid
+                if (UID != null && UID != "" && UID != undefined) {
+                    UID = $.base64.decode(UID);
+                } else {
+                    UID = "";
+                }
+                if (UID == '') {
+                    layer.msg("亲，收藏前请先登录哦~");
+                    function login() {
+                        window.location.href = "register.html#/dl";
                     }
-                });
+
+                    setTimeout(function () {
+                        login();
+                    }, 1500);
+                } else {
+                    var userType = $.cookie('userType');
+                    if ($.base64.decode(userType) == 1) {
+                        var collectionObj = {};
+                        collectionObj = payObj;
+                        collectionObj.city = cs; // 城市
+                        collectionObj.area = mj;
+                        collectionObj.room_num = fj;
+                        collectionObj.parlor_num = kt;
+                        collectionObj.bathroom_num = wsj;
+                        collectionObj.balcony_num = yt;
+                        console.log(collectionObj);
+                        $.ajax({
+                            url: COLLECTIONURL,
+                            type: "GET",
+                            async: true,
+                            dataType: 'jsonp',
+                            data: {
+                                user_id: UID,
+                                calculator_result_json: JSON.stringify(collectionObj)
+                            },
+                            success: function (data) {
+                                layer.alert(data.msg);
+                            },
+                            error: function (data) {
+                            }
+                        });
+                    } else {
+                        layer.msg("此功能暂时只对用户开放");
+                    }
+                }
             });
         },
         /**

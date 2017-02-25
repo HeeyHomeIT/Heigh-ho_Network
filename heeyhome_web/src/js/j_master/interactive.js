@@ -2256,10 +2256,10 @@
         getInfoEvent: function () {
             var $personal_edit = $(".personal_area_list .area_edit");
             var area_arr = [];
-            var experience = '<div class="fl reduce"><input class="input_all" type="text" title=""><a class="experience new_circle hide" href="javascript:;">删除</a></div> ';
+            var experience = '<div class="fl reduce"><input class="input_all" type="text" title=""><a class="experience new_circle" style="display:none;" href="javascript:;">删除</a></div> ';
             var experience1 = '<a id="area_circle" class="personal_circle new_circle" href="javascript:;">添加</a>';
             var experience2 = '<a id="experience_circle" class="personal_circle new_circle" href="javascript:;">添加</a><a id="experience_edit" class="personal_circle new_circle" href="javascript:;">编辑</a>';
-            var area = '<div class="fl reduce"><input class="personal_user_community" type="text" title=""> <a class="experience1 new_circle hide" href="javascript:;">删除</a></div> ';
+            var area = '<div class="fl reduce"><input class="personal_user_community" type="text" title=""> <a class="experience1 new_circle"  style="display:none;" href="javascript:;">删除</a></div> ';
             var area1 = '<a id="area_circle" class="personal_circle new_circle" href="javascript:;">添加</a><a id="area_edit" class="personal_circle new_circle" href="javascript:;">编辑</a>';
             /* 获取工长信息 */
             //HHIT_CENTERAPP.controller('personal', ['$scope', '$http', function ($scope, $http) {
@@ -2300,7 +2300,7 @@
                             $('.personal_form_area').append('<a id="experience_circle" class="personal_circle new_circle" href="javascript:;">添加</a>');
                         } else {
                             for (var i = 0; i < eLen; i++) {
-                                $('.personal_form_area').append('<div class="fl"> <input type="text" title="" class="input_all" value="' + data.data.experience[i] + '"><a class="experience new_circle hide" href="javascript:;">删除</a></div>');
+                                $('.personal_form_area').append('<div class="fl"> <input type="text" title="" class="input_all" value="' + data.data.experience[i] + '"><a class="experience new_circle" style="display:none;" href="javascript:;">删除</a></div>');
                             }
                             $('.input_all').eq(0).addClass('first');
                             $('.personal_form_area .experience').eq(0).before(experience2);
@@ -2320,7 +2320,7 @@
                             $('.renovation_area').append(experience1);
                         } else {
                             for (var i = 0; i < dLen; i++) {
-                                $('.renovation_area').append('<div class="fl"> <input type="text" title="" class="personal_user_community" value="' + data.data.decoratedareas[i] + '"><a class="experience1 new_circle hide" href="javascript:;">删除</a></div>');
+                                $('.renovation_area').append('<div class="fl"> <input type="text" title="" class="personal_user_community" value="' + data.data.decoratedareas[i] + '"><a class="experience1 new_circle" style="display: none" href="javascript:;">删除</a></div>');
                             }
                             $('.renovation_area .experience1').eq(0).before(area1);
                         }
@@ -2402,11 +2402,11 @@
 
             /* 点击编辑从业经历删除按钮出现 */
             $(document).off('click', '#experience_edit').on('click', '#experience_edit', function () {
-                $(this).parents('.personal_form_area ').find('.experience').show().removeClass('hide').css('display', 'inline-block');
+                $(this).parents('.personal_form_area ').find('.experience').show();
             });
             /* 点击编辑装修小区删除按钮出现 */
             $(document).off('click', '#area_edit').on('click', '#area_edit', function () {
-                $(this).parents('.renovation_area ').find('.experience1').show().removeClass('hide').css('display', 'inline-block');
+                $(this).parents('.renovation_area ').find('.experience1').show();
             });
             /* 点击删除从业经历 */
             $(document).off('click', '.experience').on('click', '.experience', function () {
