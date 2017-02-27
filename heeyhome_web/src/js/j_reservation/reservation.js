@@ -28,7 +28,7 @@
     var MSG4 = "邮政编码不能为空";
     var MSG5 = "详细地址不能为空";
     var MSG6 = "预约时间不能为空";
-    var MSG7 = "最多只能预约四条上门时间";
+    var MSG7 = "最多只能预约两条上门时间";
 
     var ONEKEY = "onekey";
     var CHOOSE = "choose";
@@ -279,14 +279,14 @@
                 var homeTime = $("#JHomeTime").val();
                 var num = $(".appointment_time_wrap").children("div").length;
                 if (homeTime != null && homeTime != "") {
-                    if (num < 4) {
+                    if (num < 2) {
                         var time = {};
                         time.year = homeTime.split("年")[0]; // 年
                         time.month = homeTime.split("年")[1].split("月")[0]; // 月
                         time.day = homeTime.split("年")[1].split("月")[1].split("日")[0]; // 日
                         $(".appointment_time_wrap").append(rc.spliceHomeTimeDataEvent(time));
                         $(".Jspan1").text(parseInt(num) + 1);
-                        $(".Jspan2").text(3 - parseInt(num));
+                        $(".Jspan2").text(1 - parseInt(num));
                     } else {
                         infoVerificationHandler.errorContent(MSG7, $("#JHomeTime"));
                     }
@@ -305,7 +305,7 @@
                 $(this).parent(".appointment_time").remove();
                 var num = $(".appointment_time_wrap").children("div").length;
                 $(".Jspan1").text(parseInt(num));
-                $(".Jspan2").text(4 - parseInt(num));
+                $(".Jspan2").text(2 - parseInt(num));
             });
         },
         /**
