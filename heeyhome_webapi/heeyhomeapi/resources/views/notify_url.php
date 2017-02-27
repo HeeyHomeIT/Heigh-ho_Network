@@ -172,16 +172,16 @@ if ($verify_result) {//验证成功
             $deposit_flag_fee = 0;
             if ($foreman_wallet[0]->deposit < 8000) {
                 if (abs($foreman_wallet[0]->deposit - 8000) >= 1000) {
-                    if ($total_fee >= 1000) {
+                    if ($total_fee > 1000) {
                         $deposit_flag_fee = 1000;
                     } else {
-                        $deposit_flag_fee = $total_fee;
+                        $deposit_flag_fee = $deposit_flag_fee;
                     }
                 } else {
                     if ($total_fee >= (8000 - $foreman_wallet[0]->deposit)) {
                         $deposit_flag_fee = 8000 - $foreman_wallet[0]->deposit;
                     } else {
-                        $deposit_flag_fee = $total_fee;
+                        $deposit_flag_fee = $deposit_flag_fee;
                     }
                 }
             }
