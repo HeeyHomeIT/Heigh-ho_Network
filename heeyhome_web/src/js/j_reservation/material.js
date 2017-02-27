@@ -282,7 +282,7 @@
 
                                         vrStr += '<td>';
                                         if (flag) {
-                                            vrStr += '<label class="set_default cursor"><input name="subBox" checked="' + (val2.choose_flag == 1 ? 'checked' : '') + '" type="checkbox" /><em class="' + (val2.choose_flag == 1 ? 'rep_radiao_check' : '') + '"></em></label></td>'
+                                            vrStr += '<label class="set_default cursor"><input name="subBox" checked="' + (val2.choose_flag == 1 ? 'checked' : '') + '" type="checkbox" /><em class="' + (val2.choose_flag == 1 ? 'defalut_ico' : '') + '"></em></label></td>'
                                         } else {
                                             vrStr += '<label class="set_default"><input name="subBox" type="checkbox" /><em class="defalut_ico"></em></label></td>'
                                         }
@@ -322,7 +322,7 @@
 
                                         vrStr += '<td>';
                                         if (flag) {
-                                            vrStr += '<label class="set_default cursor"><input name="subBox" type="checkbox" checked="' + (val2.choose_flag == 1 ? 'checked' : '') + '" /><em class="' + (val2.choose_flag == 1 ? 'rep_radiao_check' : '') + '"></em></label></td>'
+                                            vrStr += '<label class="set_default cursor"><input name="subBox" type="checkbox" checked="' + (val2.choose_flag == 1 ? 'checked' : '') + '" /><em class="' + (val2.choose_flag == 1 ? 'defalut_ico' : '') + '"></em></label></td>'
                                         } else {
                                             vrStr += '<label class="set_default"><input name="subBox" type="checkbox" /><em class="defalut_ico"></em></label></td>'
                                         }
@@ -365,7 +365,7 @@
                                 vrStr += '<td class="Jselect" data-select="' + val2.id + '" data-subtotal="' + parseFloat(val2.price) * parseFloat(val2.num) + '" >' + val2.spec_name + '</td><td>' + val2.unit + '</td><td>' + val2.price + '</td><td>' + val2.num + '</td><td>' + parseFloat(val2.price) * parseFloat(val2.num) + '</td>';
                                 vrStr += '<td>';
                                 if (flag) {
-                                    vrStr += '<label class="set_default cursor"><input name="subBox" type="checkbox" checked="' + (val2.choose_flag == 1 ? 'checked' : '') + '" /><em class="' + (val2.choose_flag == 1 ? 'rep_radiao_check' : '') + '"></em></label></td>'
+                                    vrStr += '<label class="set_default cursor"><input name="subBox" type="checkbox" checked="' + (val2.choose_flag == 1 ? 'checked' : '') + '" /><em class="' + (val2.choose_flag == 1 ? 'defalut_ico' : '') + '"></em></label></td>'
                                 } else {
                                     vrStr += '<label class="set_default"><input name="subBox" type="checkbox" /><em class="defalut_ico"></em></label></td>'
                                 }
@@ -418,7 +418,7 @@
                                     vrStr += '<td data-select="' + val2.id + '">' + val2.spec_name + '</td><td>' + val2.unit + '</td><td>' + val2.price + '</td><td>' + val2.num + '</td><td>' + parseFloat(val2.price) * parseFloat(val2.num) + '</td>';
                                     vrStr += '<td>';
                                     if (flag) {
-                                        vrStr += '<label class="set_default cursor"><input name="subBox" type="checkbox" checked="' + (val2.choose_flag == 1 ? 'checked' : '') + '" /><em class="' + (val2.choose_flag == 1 ? 'rep_radiao_check' : '') + '"></em></label></td>'
+                                        vrStr += '<label class="set_default cursor"><input name="subBox" type="checkbox" checked="' + (val2.choose_flag == 1 ? 'checked' : '') + '" /><em class="' + (val2.choose_flag == 1 ? 'defalut_ico' : '') + '"></em></label></td>'
                                     } else {
                                         vrStr += '<label class="set_default"><input name="subBox" type="checkbox" /><em class="defalut_ico"></em></label></td>'
                                     }
