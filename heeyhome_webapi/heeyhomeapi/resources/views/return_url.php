@@ -129,10 +129,36 @@ require_once("lib/alipay_notify.class.php");
             }
             //TODO 工长钱包收入
             if ($foreman_flga) {
-                $sel_order_pay_each = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ? AND order_pay_step = ?',
+                $sel_order_pay_each = \Illuminate\Support\Facades\DB::select('SELECT order_id,pay_amount FROM hh_order_pay_each WHERE pay_id = ? AND order_pay_step = ?',
                     [$out_trade_no, 1]);
+                $foreman_shopid = \Illuminate\Support\Facades\DB::select('SELECT shop_id FROM hh_order WHERE order_id = ?',
+                    [$sel_order_pay_each[0]->order_id]);
+                $foreman_ids = \Illuminate\Support\Facades\DB::select('SELECT shopper_id FROM hh_shop WHERE shop_id = ?',
+                    [$foreman_shopid[0]->shop_id]);
+                $foreman_id = $foreman_ids[0]->shopper_id;//工长id
                 $foreman_fee = $sel_order_pay_each[0]->pay_amount;//工长收入
-
+                //TODO 抽点
+                //$foreman_fee = $foreman_fee * 0.05;
+                $foreman_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,deposit,available_total FROM hh_wallet_balance WHERE user_id=?',
+                    [$foreman_id]);
+                $total =  $foreman_wallet[0]->total + $foreman_fee;
+                $available_total =  $foreman_wallet[0]->available_total;
+                $deposit =  $foreman_wallet[0]->deposit;
+                if ( $foreman_wallet[0]->desposit < 8000) {
+                    $available_total = $total - 1000;
+                    $deposit = $deposit + 1000;
+                }
+                $upd_wallet = \Illuminate\Support\Facades\DB::update('UPDATE hh_wallet_balance SET total = ?,available_total = ?,deposit=? WHERE user_id = ?', [$total, $available_total, $deposit, $foreman_id]);
+                if ($upd_wallet) {
+                    //向钱包明细加入数据
+                    $confirm_time=date('Y-m-d H:i:s', time());
+                    $insert=\Illuminate\Support\Facades\DB::insert('insert into hh_wallet_detail(user_id,money,content,time) values(?,?,?,?)',[$foreman_id,'+'.$foreman_fee,'收入-预付款',$confirm_time]);
+                    if($insert) {
+                        //发送消息
+                        $message = new \App\Http\Controllers\MessageController();
+                        $message->send('嘿吼网', '系统消息', '进账提醒' . '用户支付工长预付款', $foreman_id);
+                    }
+                }
             }
             //跟新订单进度
             $upd_order = \Illuminate\Support\Facades\DB::update('UPDATE hh_order SET order_status = ?,order_step = ? WHERE order_id = ?', [$order_status, $order_step, $order_id]);
@@ -181,9 +207,27 @@ require_once("lib/alipay_notify.class.php");
                     }
                 }
                 //TODO 材料商钱包收入
-                $total_fee;//材料商收入金额
-                $material_id;//材料单id
-                
+                $supplier_fee = $total_fee;
+                //TODO 抽点
+                //$supplier_fee = $supplier_fee * 0.05;
+                $material_supplier_ids = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_order_material WHERE material_id = ? ", $material_id);
+                $supplier_id = $material_supplier_ids[0]->material_supplier_id;//材料商id
+                $supplier_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,deposit,available_total FROM hh_wallet_balance WHERE user_id=?',
+                    [$supplier_id]);
+                $total = $supplier_wallet[0]->total + $supplier_fee;
+                $available_total = $supplier_wallet[0]->available_total;
+                $deposit = $supplier_wallet[0]->deposit;
+                $upd_wallet = \Illuminate\Support\Facades\DB::update('UPDATE hh_wallet_balance SET total = ?,available_total = ?,deposit=? WHERE user_id = ?', [$total, $available_total, $deposit, $supplier_id]);
+                if ($upd_wallet) {
+                    //向钱包明细加入数据
+                    $confirm_time=date('Y-m-d H:i:s', time());
+                    $insert=\Illuminate\Support\Facades\DB::insert('insert into hh_wallet_detail(user_id,money,content,time) values(?,?,?,?)',[$supplier_id,'+'.$supplier_fee,'收入-材料费用',$confirm_time]);
+                    if($insert) {
+                        //发送消息
+                        $message = new \App\Http\Controllers\MessageController();
+                        $message->send('嘿吼网', '系统消息', '进账提醒' . '用户支付材料费', $supplier_id);
+                    }
+                }
             }
             $url = 'http://www.heeyhome.com/success_pay.html#/?total=' . $total_fee . '&order_id=' . $order_id . '&pay_step=' . $pay_step . '&pay_time=' . $notify_time . '&order_pay_step_id=' . $order_pay_step_id;
             echo "<meta http-equiv='Refresh' content='1; url=" . $url . "'/>";
