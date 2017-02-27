@@ -2503,7 +2503,7 @@
         }
     };
 
-    /* 获取当前总额 提现金额接口 、保证金写死 */
+    /* 获取当前总额 提现金额 保证金接口 */
     getWalletData = {
         getMoney: function () {
             $.ajax({
@@ -2523,6 +2523,7 @@
                         sessionStorage.setItem('money', data.data.money);
                         sessionStorage.setItem('bank', data.data.bank);
                         $(".wallet_content_top li .total span").html(data.data.total);
+                        $(".wallet_content_top li .margin span").html(data.data.deposit);
                     } else {
                         layer.alert(data.msg);
                     }
