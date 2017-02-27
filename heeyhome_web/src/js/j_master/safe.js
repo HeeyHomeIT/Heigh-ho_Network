@@ -223,22 +223,22 @@
                                 $('.bind_phonecnt').remove();
                                 $('#new_info').append('<div id="face" class="showImg fl"><img src=""> </div><!--showImg--><div id="back" class="showImg fl"><img src=""></div><!--showImg--><div class="deal_wrap clearfix fl"> <div class="deal_left fl"> <i class="iconfont">&#xe67c;</i> </div><!--deal_left--> <div class="deal_right fl"> <p class="process">身份正在验证中...</p> <p class="wait">请耐心等待</p> </div><!--deal_left--> </div><!--deal_wrap-->');
                                 $('.content_wrap').css('height', '898px');
-                                $('#face img').attr('src', 'http://www.heeyhome.com/' + data.data.facephoto);
-                                $('#back img').attr('src', 'http://www.heeyhome.com/' + data.data.backphoto);
+                                $('#face img').attr('src', '' + data.data.facephoto);
+                                $('#back img').attr('src', '' + data.data.backphoto);
                             } else if (data.code == '131') {//审核未通过
                                 $('.revise_process').hide();
                                 $('.bind_phonecnt').hide();
                                 $('#new_info').append('<div id="wrap"><div id="face" class="showImg fl"><img src=""> </div><!--showImg--><div id="back" class="showImg fl"><img src=""></div><!--showImg--><div class="deal_wrap clearfix fl"> <div class="deal_left fl"> <i class="iconfont">&#xe625;</i> </div><!--deal_left--> <div class="deal_right fl"> <p class="process">您的审核尚未通过！</p> <p class="wait">请点击<a id="new_upload" href="javascript:;">重新上传信息~~</a></p> </div><!--deal_left--> </div><!--deal_wrap--></div>');
                                 $('.content_wrap').css('height', '898px');
-                                $('#face img').attr('src', 'http://www.heeyhome.com/' + data.data.facephoto);
-                                $('#back img').attr('src', 'http://www.heeyhome.com/' + data.data.backphoto);
+                                $('#face img').attr('src', '' + data.data.facephoto);
+                                $('#back img').attr('src', '' + data.data.backphoto);
                             } else if (data.code == '000') {//审核通过
                                 $('.revise_process').remove();
                                 $('.bind_phonecnt').remove();
                                 $('#new_info').append('<div id="face" class="showImg fl"><img src=""> </div><!--showImg--><div id="back" class="showImg fl"><img src=""></div><!--showImg--><div class="deal_wrap clearfix fl"> <div class="deal_left fl"> <i class="iconfont">&#xe615;</i> </div><!--deal_left--> <div class="deal_right fl"> <p class="process complete_process">您的审核已通过！</p></div><!--deal_left--> </div><!--deal_wrap-->');
                                 $('.content_wrap').css('height', '898px');
-                                $('#face img').attr('src', 'http://www.heeyhome.com/' + data.data.facephoto);
-                                $('#back img').attr('src', 'http://www.heeyhome.com/' + data.data.backphoto);
+                                $('#face img').attr('src', '' + data.data.facephoto);
+                                $('#back img').attr('src', '' + data.data.backphoto);
                             } else {
                                 $('#form').show().removeClass('hide');
                             }

@@ -346,7 +346,7 @@
                 jumpHoverBorder: "1px solid #eec988",
                 submitType: "get", //注明是通过get方式访问还是post方式访问
                 idParameter: "page",               //传到后台的当前页的id的参数名，这个传值会自动添加在href或ajax的url末尾
-                url: "http://www.heeyhome.com/api/public/panorama", //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
+                url: VRCONTENTURL, //需要提交的目标控制器，如"/Home/List/"或"/Home/List?name='张三'&password='123456'"
                 ajaxData: {
                     area: filterObj.area,
                     housetype: filterObj.housetype,
