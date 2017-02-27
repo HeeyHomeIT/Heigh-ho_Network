@@ -139,7 +139,7 @@ require_once("lib/alipay_notify.class.php");
                 $foreman_fee = $sel_order_pay_each[0]->pay_amount;//工长收入
                 //TODO 抽点
                 //$foreman_fee = $foreman_fee * 0.05;
-                $foreman_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,deposit,$available_total FROM hh_wallet_balance WHERE user_id=?',
+                $foreman_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,deposit,available_total FROM hh_wallet_balance WHERE user_id=?',
                     [$foreman_id]);
                 $total =  $foreman_wallet[0]->total + $foreman_fee;
                 $available_total =  $foreman_wallet[0]->available_total;
@@ -212,7 +212,7 @@ require_once("lib/alipay_notify.class.php");
                 //$supplier_fee = $supplier_fee * 0.05;
                 $material_supplier_ids = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_order_material WHERE material_id = ? ", $material_id);
                 $supplier_id = $material_supplier_ids[0]->material_supplier_id;//材料商id
-                $supplier_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,deposit,$available_total FROM hh_wallet_balance WHERE user_id=?',
+                $supplier_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,deposit,available_total FROM hh_wallet_balance WHERE user_id=?',
                     [$supplier_id]);
                 $total = $supplier_wallet[0]->total + $supplier_fee;
                 $available_total = $supplier_wallet[0]->available_total;
