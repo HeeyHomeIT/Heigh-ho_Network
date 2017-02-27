@@ -626,7 +626,7 @@
          * @param {Object} uinfo 工人信息
          */
         spliceWdataEvent: function (ucateid, uid, uinfo) {
-            var str = '<div class="Jworker" data-nid="' + uid + '" data-ntype="' + ucateid + '"><div class="needpic"><img src="http://www.heeyhome.com/' + uinfo.img + '"></div><div class="needname">';
+            var str = '<div class="Jworker" data-nid="' + uid + '" data-ntype="' + ucateid + '"><div class="needpic"><img src="' + uinfo.img + '"></div><div class="needname">';
             str += '<span>' + uinfo.name + '</span><span>' + uinfo.city + '</span></div><div class="needmoney">' + uinfo.cp + '元/平方米</div><a class="sprite needclose"></a></div>'
             return str;
         },
@@ -809,7 +809,7 @@
         spliceHdPictureEvent: function (value) {
             var vrStr = '';
             $.each(value.shop_imgs, function (i, v) {
-                vrStr += '<li><img src="http://www.heeyhome.com/' + v.shop_img + '" /></li>';
+                vrStr += '<li><img src="' + v.shop_img + '" /></li>';
             });
             return vrStr;
         },
@@ -820,7 +820,7 @@
         spliceBdPictureEvent: function (value) {
             var vrStr = '';
             $.each(value.shop_imgs, function (i, v) {
-                vrStr += '<li><div class="pic"><img src="http://www.heeyhome.com/' + v.shop_img + '" /></div></li>';
+                vrStr += '<li><div class="pic"><img src="' + v.shop_img + '" /></div></li>';
             });
             return vrStr;
         },
@@ -832,7 +832,7 @@
             var vrStr = '<div class="shop_name"><h2>' + ((value.shop_name != null && value.shop_name != "") ? value.shop_name : '无') + '</h2>';
             $.each(value.authentication, function (i, v) {
                 if (v != null && v != '') {
-                    vrStr += '<img src="http://www.heeyhome.com/' + v + '">';
+                    vrStr += '<img src="' + v + '">';
                 }
             });
             vrStr += '</div><div class="signature"><h3>' + ((value.shop_describe != null && value.shop_describe != "") ? value.shop_describe : '无') + '</h3></div>';
@@ -871,7 +871,7 @@
          * @param {Object} value 对象
          */
         spliceManagerInfoEvent: function (value) {
-            var vrStr = '<div class="icon_head"><img src="http://www.heeyhome.com/' + value.shopper_info.portrait_img + '"></div>';
+            var vrStr = '<div class="icon_head"><img src="' + value.shopper_info.portrait_img + '"></div>';
             vrStr += '<div class="manager_detail"><div><span>姓名</span><span>' + value.shopper_info.foremaninfo_realname + '</span></div><div><span>籍贯</span><span>';
             if (value.shopper_info.home_province != null && value.shopper_info.home_province != "") {
                 vrStr += value.shopper_info.home_province;
@@ -937,7 +937,7 @@
             var shopId = getUrlParamHandler.getUrlParam('pos');
             $.each(value, function (i, v) {
                 if (v.technics_img.length != 0) {
-                    vrStr += '<div class="process_box"><a rel="nofollow" href="album.html?ams=' + shopId + '&voe=' + v.technics_id + '" target="_blank" ><img src="http://www.heeyhome.com/' + v.technics_img[0].technics_img + '"><div class="btntc"><i class="sprite"></i><p title=' + v.technics_text + '><em>' + v.technics_text + '</em></p></div></a></div>';
+                    vrStr += '<div class="process_box"><a rel="nofollow" href="album.html?ams=' + shopId + '&voe=' + v.technics_id + '" target="_blank" ><img src="' + v.technics_img[0].technics_img + '"><div class="btntc"><i class="sprite"></i><p title=' + v.technics_text + '><em>' + v.technics_text + '</em></p></div></a></div>';
                 }
 
             });
@@ -952,7 +952,7 @@
             $.each(value, function (i, v) {
                 if (i < 7) {
                     if (v.img.length != 0) {
-                        vrStr += '<li class="sd_hexli" data-type="' + v.type + '" data-id="' + v.case_id + '"><a><div><img src="http://www.heeyhome.com/' + v.img[0].case_img + '"><div class="sd_title"><span class="sd_area">' + v.area + '㎡</span></div>';
+                        vrStr += '<li class="sd_hexli" data-type="' + v.type + '" data-id="' + v.case_id + '"><a><div><img src="' + v.img[0].case_img + '"><div class="sd_title"><span class="sd_area">' + v.area + '㎡</span></div>';
                         vrStr += '<div class="sd_stips"><span>' + v.housetype + '&middot;' + v.style + '</span>';
                         vrStr += '</div></div></a></li>';
                     }
@@ -968,7 +968,7 @@
         spliceGrInfoEvent: function (value) {
             var vrStr = '';
             $.each(value, function (i, v) {
-                vrStr += '<li><div class="sliderworker_item"><p class="masklayer btnCart" data-uid="' + v.userid + '" >添加</p><div class="workertext"><em class="workerimg"><img src="http://www.heeyhome.com/' + v.portrait_img + '"></em>';
+                vrStr += '<li><div class="sliderworker_item"><p class="masklayer btnCart" data-uid="' + v.userid + '" >添加</p><div class="workertext"><em class="workerimg"><img src="' + v.portrait_img + '"></em>';
                 vrStr += '<p class="workername"><span>' + v.name + '</span></p><p class="workerinfo"><span>' + (v.sex == 1 ? "男" : "女") + '</span><span>' + v.age + '岁</span><span>' + v.birthplace + '</span>';
                 vrStr += '<p class="workermoney"><em>200</em>元<span>&nbsp;/&nbsp;天</span></p><p class="workerother"><span>从业时间&nbsp;&nbsp;<em>' + v.worktime + '</em>年</span><span>订单数&nbsp;&nbsp;<em>' + v.ordernum + '</em></span>';
                 vrStr += '</p></div></div></li>';
@@ -983,7 +983,7 @@
             var vrStr = '';
             $.each(value, function (i, v) {
                 var obj = {"img": v.portrait_img, "name": v.name, "city": v.birthplace, "cp": 300, "shopId": v.shopid};
-                vrStr += '<div id="flyItem' + v.userid + '" class="fly_item" data-cate="' + v.cate_id + '" data-info=' + JSON.stringify(obj) + '  ><img src="http://www.heeyhome.com/' + v.portrait_img + '" width="40" height="40"></div>';
+                vrStr += '<div id="flyItem' + v.userid + '" class="fly_item" data-cate="' + v.cate_id + '" data-info=' + JSON.stringify(obj) + '  ><img src="' + v.portrait_img + '" width="40" height="40"></div>';
             });
             return vrStr;
         }
