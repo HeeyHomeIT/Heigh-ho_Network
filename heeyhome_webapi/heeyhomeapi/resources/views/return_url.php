@@ -40,7 +40,7 @@ require_once("lib/alipay_notify.class.php");
         $trade_no = $_GET['trade_no'];
         $notify_time = $_GET['notify_time'];
         $total_fee = $_GET['total_fee'];
-
+        $foreman_flga = false;
         //交易状态
         $trade_status = $_GET['trade_status'];
         $flag = false;
@@ -78,6 +78,7 @@ require_once("lib/alipay_notify.class.php");
                 $order_status = 5;
                 $order_step = 1;
                 $order_pay_step_id = 2;
+                $foreman_flga = true;
             } else if ($order_status == 5) {
                 if ($order_step == 3) {
                     $pay_step = "水电辅材付款";
@@ -126,6 +127,13 @@ require_once("lib/alipay_notify.class.php");
             } else {
                 $pay_step = "嘿吼网订单付款";
             }
+            //TODO 工长钱包收入
+            if ($foreman_flga) {
+                $sel_order_pay_each = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ? AND order_pay_step = ?',
+                    [$out_trade_no, 1]);
+                $foreman_fee = $sel_order_pay_each[0]->pay_amount;//工长收入
+
+            }
             //跟新订单进度
             $upd_order = \Illuminate\Support\Facades\DB::update('UPDATE hh_order SET order_status = ?,order_step = ? WHERE order_id = ?', [$order_status, $order_step, $order_id]);
             //查询店铺id
@@ -137,7 +145,7 @@ require_once("lib/alipay_notify.class.php");
             $shop_volume++;
             //增加店铺接单数
             $upd_shop_volume = \Illuminate\Support\Facades\DB::update('UPDATE hh_shop SET shop_volume = ? WHERE shop_id = ?', [$shop_volume, $shop_id]);
-            //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+            //判断是否为材料单
             if ($flag) {
                 //若为材料单时支付成功逻辑
                 $material_id = $out_trade_no;
@@ -154,10 +162,9 @@ require_once("lib/alipay_notify.class.php");
                     $district = $address[0]->district;
                     $e_city = explode('市', $city);
                     $e_dis = explode('区', $district);
-
                     $isHave = false;
-                    for ($i=0; $i < count($e_dis); $i++) { 
-                        $sel_area_id = \Illuminate\Support\Facades\DB::select("SELECT distribution_area_id FROM hh_material_distribution_area WHERE distribution_area_name LIKE '%?%' AND distribution_area_name LIKE '%?%'",[$e_city[0]],[$e_dis[$i]]);
+                    for ($i = 0; $i < count($e_dis); $i++) {
+                        $sel_area_id = \Illuminate\Support\Facades\DB::select("SELECT distribution_area_id FROM hh_material_distribution_area WHERE distribution_area_name LIKE '%?%' AND distribution_area_name LIKE '%?%'", [$e_city[0]], [$e_dis[$i]]);
                         if ($sel_area_id) {
                             $sel_material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area = ? ", $sel_area_id[0]->distribution_area_id);
                             if ($sel_material_supplier_id) {
@@ -170,9 +177,13 @@ require_once("lib/alipay_notify.class.php");
                     }
 
                     if (!$isHave) {
-                         echo "未找到材料供应商，请联系客服！";
+                        echo "未找到材料供应商，请联系客服！";
                     }
                 }
+                //TODO 材料商钱包收入
+                $total_fee;//材料商收入金额
+                $material_id;//材料单id
+                
             }
             $url = 'http://www.heeyhome.com/success_pay.html#/?total=' . $total_fee . '&order_id=' . $order_id . '&pay_step=' . $pay_step . '&pay_time=' . $notify_time . '&order_pay_step_id=' . $order_pay_step_id;
             echo "<meta http-equiv='Refresh' content='1; url=" . $url . "'/>";
