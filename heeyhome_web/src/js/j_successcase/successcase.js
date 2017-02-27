@@ -164,7 +164,7 @@
             $.each(value, function (i, v) {
                 if (v.img.length != 0) {
                     if (v.type == arr[0] || v.type == arr[1]) {
-                        vrStr += '<li><div class="image" data-type="' + v.type + '" data-id="' + v.case_id + '"><a href="javascript:void(0)"><img src="http://www.heeyhome.com/' + v.img[0].case_img + '"></a>';
+                        vrStr += '<li><div class="image" data-type="' + v.type + '" data-id="' + v.case_id + '"><a href="javascript:void(0)"><img src="' + v.img[0].case_img + '"></a>';
                         vrStr += '<div class="image_title"><div class="roomtype">' + v.housetype + '</div><div class="roomicon"><em class="sprite-image sc_icon_love"></em><span>' + v.like_num + '</span></div>';
                         vrStr += '<div class="roomicon"><em class="sprite-image sc_icon_look"></em><span>' + v.scan_num + '</span></div></div></div>';
                         vrStr += '<div class="introduce"><strong>' + v.style + '&nbsp;' + v.area + 'm<sup>2</sup></strong>';
