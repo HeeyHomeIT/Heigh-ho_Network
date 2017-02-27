@@ -172,16 +172,16 @@ if ($verify_result) {//验证成功
             $deposit_flag_fee = 0;
             if ($foreman_wallet[0]->deposit < 8000) {
                 if (abs($foreman_wallet[0]->deposit - 8000) >= 1000) {
-                    if ($total_fee > 1000) {
+                    if ($foreman_fee > 1000) {
                         $deposit_flag_fee = 1000;
                     } else {
-                        $deposit_flag_fee = $deposit_flag_fee;
+                        $deposit_flag_fee = $foreman_fee;
                     }
                 } else {
-                    if ($total_fee >= (8000 - $foreman_wallet[0]->deposit)) {
+                    if ($foreman_fee >= (8000 - $foreman_wallet[0]->deposit)) {
                         $deposit_flag_fee = 8000 - $foreman_wallet[0]->deposit;
                     } else {
-                        $deposit_flag_fee = $deposit_flag_fee;
+                        $deposit_flag_fee = $foreman_fee;
                     }
                 }
             }
@@ -238,12 +238,11 @@ if ($verify_result) {//验证成功
             //$supplier_fee = $supplier_fee * 0.05;
             $material_supplier_ids = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_order_material WHERE material_id = ? ", $material_id);
             $supplier_id = $material_supplier_ids[0]->material_supplier_id;//材料商id
-            $supplier_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,deposit,available_total FROM hh_wallet_balance WHERE user_id=?',
+            $supplier_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,available_total FROM hh_wallet_balance WHERE user_id=?',
                 [$supplier_id]);
             $total = $supplier_wallet[0]->total + $supplier_fee;
-            $available_total = $supplier_wallet[0]->available_total;
-            $deposit = $supplier_wallet[0]->deposit;
-            $upd_wallet = \Illuminate\Support\Facades\DB::update('UPDATE hh_wallet_balance SET total = ?,available_total = ?,deposit=? WHERE user_id = ?', [$total, $available_total, $deposit, $supplier_id]);
+            $available_total = $supplier_wallet[0]->available_total+ $supplier_fee;
+            $upd_wallet = \Illuminate\Support\Facades\DB::update('UPDATE hh_wallet_balance SET total = ?,available_total = ? WHERE user_id = ?', [$total, $available_total, $supplier_id]);
             if ($upd_wallet) {
                 //向钱包明细加入数据
                 $confirm_time = date('Y-m-d H:i:s', time());
