@@ -1510,9 +1510,10 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             } else {
                 //根据当前状态判断付款订单状态
                 //TODO 18:工长、杂工、水电工预支付
-                //TODO 5:上阶段预付款与瓦工预支付
-                //TODO 9:上阶段预付款与木工预支付
-                //TODO 13:上阶段预付款与油漆工预支付
+                //TODO 5:上阶段结转金额与瓦工预支付
+                //TODO 9:上阶段结转金额与木工预支付
+                //TODO 13:上阶段结转金额与油漆工预支付
+                //TODO 17:上阶段结转金额
                 $order_step_in_pay = $order_step;
                 if ($order_step < 5) {
                     $order_step_in_pay = 18;

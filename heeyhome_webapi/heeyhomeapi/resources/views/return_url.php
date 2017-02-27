@@ -43,8 +43,8 @@ require_once("lib/alipay_notify.class.php");
 
         //交易状态
         $trade_status = $_GET['trade_status'];
-
-
+        $flag = false;
+        $order_pay_step_id = 12;
         if ($_GET['trade_status'] == 'TRADE_FINISHED' || $_GET['trade_status'] == 'TRADE_SUCCESS') {
             //判断该笔订单是否在商户网站中已经做过处理
             //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
@@ -52,7 +52,8 @@ require_once("lib/alipay_notify.class.php");
         } else {
             echo "trade_status=" . $_GET['trade_status'];
         }
-        $sel_order_pay_each_istrue = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ?', [$out_trade_no]);
+
+        $sel_order_pay_each_istrue = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ? ', [$out_trade_no]);
         if ($sel_order_pay_each_istrue) {
             //更新订单为已支付状态
             $upd_order_pay_each = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_pay_each SET pay_status = 3 WHERE pay_id = ?', [$out_trade_no]);
@@ -76,72 +77,96 @@ require_once("lib/alipay_notify.class.php");
                 $pay_step = "工长、杂工、水电工预付款";
                 $order_status = 5;
                 $order_step = 1;
+                $order_pay_step_id = 2;
             } else if ($order_status == 5) {
                 if ($order_step == 3) {
                     $pay_step = "水电辅材付款";
                     $order_step = 4;
+                    $flag = true;
+                    $order_pay_step_id = 6;
                 }
                 if ($order_step == 5) {
                     $pay_step = "瓦工预付款及上阶段结转金额";
                     $order_step = 6;
+                    $order_pay_step_id = 3;
                 }
                 if ($order_step == 7) {
                     $pay_step = "瓦工辅材付款";
                     $order_step = 8;
+                    $flag = true;
+                    $order_pay_step_id = 7;
                 }
                 if ($order_step == 9) {
                     $pay_step = "木工预付款及上阶段结转金额";
                     $order_step = 10;
+                    $order_pay_step_id = 4;
                 }
                 if ($order_step == 11) {
                     $pay_step = "木工辅材付款";
                     $order_step = 12;
+                    $flag = true;
+                    $order_pay_step_id = 8;
                 }
                 if ($order_step == 13) {
                     $pay_step = "油漆工预付款及上阶段结转金额";
                     $order_step = 14;
+                    $order_pay_step_id = 5;
                 }
                 if ($order_step == 15) {
                     $pay_step = "油漆工辅材付款";
                     $order_step = 16;
+                    $flag = true;
+                    $order_pay_step_id = 9;
                 }
                 if ($order_step == 17) {
                     $pay_step = "最终结转金额";
                     $order_status = 6;
+                    $order_pay_step_id = 10;
                 }
             } else {
                 $pay_step = "嘿吼网订单付款";
             }
             //跟新订单进度
             $upd_order = \Illuminate\Support\Facades\DB::update('UPDATE hh_order SET order_status = ?,order_step = ? WHERE order_id = ?', [$order_status, $order_step, $order_id]);
-//        echo "验证成功<br />";
-            $url = 'http://www.heeyhome.com/success_pay.html#/?total=' . $total_fee . '&order_id=' . $order_id . '&pay_step=' . $pay_step . '&pay_time=' . $notify_time;
-            echo "<meta http-equiv='Refresh' content='1; url=" . $url . "'/>";
+            //查询店铺id
+            $sel_shop_id = \Illuminate\Support\Facades\DB::select('SELECT shop_id FROM hh_order WHERE order_id = ?', [$order_id]);
+            $shop_id = $sel_shop_id[0]->shop_id;
+            //查询店铺接单数
+            $sel_shop_volume = \Illuminate\Support\Facades\DB::select('SELECT shop_volume FROM hh_shop WHERE shop_id = ?', [$shop_id]);
+            $shop_volume = $sel_shop_volume[0]->shop_volume;
+            $shop_volume++;
+            //增加店铺接单数
+            $upd_shop_volume = \Illuminate\Support\Facades\DB::update('UPDATE hh_shop SET shop_volume = ? WHERE shop_id = ?', [$shop_volume, $shop_id]);
             //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
-        } else {
-            //若为材料单时支付成功逻辑
-            $material_id = $out_trade_no;
-            //1.更新pay status为3
-            $pay_status = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET pay_status = 3 WHERE material_id = ?', [$material_id]);
-            //2.找到order id
-            $order_id = \Illuminate\Support\Facades\DB::select('SELECT order_id FROM hh_order_material WHERE material_id = ?', [$material_id]);
-            //3.找到地址id
-            $order_address = \Illuminate\Support\Facades\DB::select('SELECT order_address FROM hh_order WHERE order_id = ? ', [$order_id[0]->order_id]);
-            //4.匹配市
-            $address = \Illuminate\Support\Facades\DB::select('SELECT province,city,district FROM hh_driveaddress WHERE id =?', [$order_address[0]->order_address]);
-            if ($address) {
-                $city = $address[0]->order_address;
-                $e_city = explode('市', $city);
-                $material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area LIKE '%?%' ", [$e_city[0]]);
-                if ($material_supplier_id) {
-                    //5.插入id
-                    $supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?', [$material_supplier_id[0]->material_supplier_id]);
+            if ($flag) {
+                //若为材料单时支付成功逻辑
+                $material_id = $out_trade_no;
+                //1.更新pay status为3
+                $pay_status = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET pay_status = 3 WHERE material_id = ?', [$material_id]);
+                //2.找到order id
+                $order_id = \Illuminate\Support\Facades\DB::select('SELECT order_id FROM hh_order_material WHERE material_id = ?', [$material_id]);
+                //3.找到地址id
+                $order_address = \Illuminate\Support\Facades\DB::select('SELECT order_address FROM hh_order WHERE order_id = ? ', [$order_id[0]->order_id]);
+                //4.匹配市
+                $address = \Illuminate\Support\Facades\DB::select('SELECT province,city,district FROM hh_driveaddress WHERE id =?', [$order_address[0]->order_address]);
+                if ($address) {
+                    $city = $address[0]->city;
+                    $e_city = explode('市', $city);
+                    $material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area LIKE '%?%' ", [$e_city[0]]);
+                    if ($material_supplier_id) {
+                        //5.插入id
+                        $supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?', [$material_supplier_id[0]->material_supplier_id]);
+                    } else {
+                        echo "未找到材料供应商，请联系客服！";
+                    }
                 } else {
                     echo "未找到材料供应商，请联系客服！";
                 }
-            } else {
-                echo "未找到材料供应商，请联系客服！";
             }
+            $url = 'http://www.heeyhome.com/success_pay.html#/?total=' . $total_fee . '&order_id=' . $order_id . '&pay_step=' . $pay_step . '&pay_time=' . $notify_time . '&order_pay_step_id=' . $order_pay_step_id;
+            echo "<meta http-equiv='Refresh' content='1; url=" . $url . "'/>";
+        } else {
+            echo "验证失败";
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

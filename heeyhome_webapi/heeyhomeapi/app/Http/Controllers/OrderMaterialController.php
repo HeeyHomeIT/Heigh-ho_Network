@@ -714,7 +714,7 @@ class OrderMaterialController extends Controller
         } else {
             $arr = array(
                 "code" => "200",
-                "msg" => "订单不存在",
+                "msg" => "当前状态下，材料单不存在",
                 "data" => ""
             );
             return $callback . "(" . HHJson($arr) . ")";
@@ -732,8 +732,8 @@ class OrderMaterialController extends Controller
         if ($sel_material_tbl) {
             $material_id = $sel_material_tbl[0]->material_id;
             //修改材料表信息
-            $upd_material_tbl = DB::update('UPDATE hh_order_material SET pay_status = ?,material_price=? WHERE material_id = ?',
-                [3, 0, $material_id]);
+            $upd_material_tbl = DB::update('UPDATE hh_order_material SET pay_status = ?,material_price=?,order_material_status=? WHERE material_id = ?',
+                [3, 0, 4, $material_id]);
             //查询订单进度
             $sel_order_step = DB::select('SELECT order_step FROM hh_order WHERE order_id = ?', [$order_id]);
             $order_step = $sel_order_step[0]->order_step;
