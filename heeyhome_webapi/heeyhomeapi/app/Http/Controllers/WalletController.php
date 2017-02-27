@@ -16,7 +16,7 @@ class WalletController extends Controller
     public function index(){
         $callback = rq('callback');
         $user_id = rq('user_id');
-        $money = DB::select('select total,available_total from hh_wallet_balance where user_id =?',[$user_id]);
+        $money = DB::select('select total,available_total,deposit from hh_wallet_balance where user_id =?',[$user_id]);
         $isapply=DB::select('select payment,money,process_type from hh_withdrawapply where apply_userid=? order by apply_id desc',[$user_id]);
         if($isapply) {
             if($isapply[0]->process_type){
@@ -159,7 +159,7 @@ class WalletController extends Controller
         }else{
             $todaytotal=0;
         }
-        $money = DB::select('select total,available_total from hh_wallet_balance where user_id =?',[$user_id]);
+        $money = DB::select('select total,available_total,deposit from hh_wallet_balance where user_id =?',[$user_id]);
         if ($money) {
             $total=$money[0]->total;
             $available_total=$money[0]->available_total;
@@ -178,6 +178,7 @@ class WalletController extends Controller
                 "data" => array("total"=>$total,
                     "todaytotal"=>floatval($todaytotal),
                     "available_total"=>$available_total,
+                    "deposit"=>$money[0]->deposit,
                 "process_type"=>$process_type),
             );
             return $callback . "(" . HHJson($arr) . ")";
@@ -185,7 +186,8 @@ class WalletController extends Controller
             $arr = array("code" => "000",
                 "data" => array("total"=>0.00,
                     "todaytotal"=> 0.00,
-                    "available_total"=>0.00
+                    "available_total"=>0.00,
+                    "deposit"=>0.00,
                     ),
             );
             return $callback . "(" . HHJson($arr) . ")";
