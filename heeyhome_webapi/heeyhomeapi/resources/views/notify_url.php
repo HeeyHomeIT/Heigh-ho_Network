@@ -169,35 +169,31 @@ if ($verify_result) {//验证成功
         }
         //判断是否为材料单
         $material_id = $out_trade_no;
-        $sel_order_material = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_material WHERE order_id = ?,material_id=?', [$order_id, $material_id]);
+        $sel_order_material = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_material WHERE order_id = ? AND material_id=?', [$order_id, $material_id]);
         if ($sel_order_material) {
             //若为材料单时支付成功逻辑
             //1.更新pay status为3
             $pay_status = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET pay_status = 3 WHERE material_id = ?', [$material_id]);
-            //2.找到order id
-            $sel_order_id = \Illuminate\Support\Facades\DB::select('SELECT order_id FROM hh_order_material WHERE material_id = ?', [$material_id]);
-            //3.找到地址id
-            $sel_order_address_id = \Illuminate\Support\Facades\DB::select('SELECT order_address FROM hh_order WHERE order_id = ? ', [$sel_order_id[0]->order_id]);
-            //4.匹配市
+            //2.找到地址id
+            $sel_order_address_id = \Illuminate\Support\Facades\DB::select('SELECT order_address FROM hh_order WHERE order_id = ? ', [$order_id]);
+            //3.匹配市
             $sel_address = \Illuminate\Support\Facades\DB::select('SELECT province,city,district FROM hh_driveaddress WHERE id =?', [$sel_order_address_id[0]->order_address]);
             if ($sel_address) {
                 $city = $sel_address[0]->city;
                 $dis = $sel_address[0]->district;
                 $isHave = false;
-                for ($i = 0; $i < count($e_dis); $i++) {
-                    $sel_area_id = \Illuminate\Support\Facades\DB::select("SELECT distribution_area_id FROM hh_material_distribution_area WHERE distribution_area_name LIKE '%?%' AND distribution_area_name LIKE '%?%'", [$city, $dis]);
-                    if ($sel_area_id) {
-                        $sel_material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area = ? ", $sel_area_id[0]->distribution_area_id);
-                        if ($sel_material_supplier_id) {
-                            //5.插入id
-                            $upd_supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?', [$sel_material_supplier_id[0]->material_supplier_id]);
-                            $isHave = true;
-                            break;
-                        }
+                $sel_area_id = \Illuminate\Support\Facades\DB::select("SELECT distribution_area_id FROM hh_material_distribution_area WHERE distribution_area_name LIKE '%".$city."%' AND distribution_area_name LIKE '%".$dis."%'",
+                    []);
+                if ($sel_area_id) {
+                    $sel_material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area = ? ", [$sel_area_id[0]->distribution_area_id]);
+                    if ($sel_material_supplier_id) {
+                        //5.插入id
+                        $upd_supplier_id = \Illuminate\Support\Facades\DB::update("UPDATE hh_order_material SET material_supplier_id = '" . $sel_material_supplier_id[0]->material_supplier_id . "' WHERE order_id = ? AND material_id=?", [$order_id, $material_id]);
+                        $isHave = true;
                     }
                 }
                 if (!$isHave) {
-                    //未找到材料供应商，请联系客服！;
+                    echo "false";
                 }
             }
             //TODO 材料商钱包收入
