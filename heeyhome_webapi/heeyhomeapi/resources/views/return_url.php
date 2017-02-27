@@ -144,9 +144,9 @@ require_once("lib/alipay_notify.class.php");
                 //1.更新pay status为3
                 $pay_status = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET pay_status = 3 WHERE material_id = ?', [$material_id]);
                 //2.找到order id
-                $order_id = \Illuminate\Support\Facades\DB::select('SELECT order_id FROM hh_order_material WHERE material_id = ?', [$material_id]);
+                $sel_order_id = \Illuminate\Support\Facades\DB::select('SELECT order_id FROM hh_order_material WHERE material_id = ?', [$material_id]);
                 //3.找到地址id
-                $order_address = \Illuminate\Support\Facades\DB::select('SELECT order_address FROM hh_order WHERE order_id = ? ', [$order_id[0]->order_id]);
+                $order_address = \Illuminate\Support\Facades\DB::select('SELECT order_address FROM hh_order WHERE order_id = ? ', [$sel_order_id[0]->order_id]);
                 //4.匹配市
                 $address = \Illuminate\Support\Facades\DB::select('SELECT province,city,district FROM hh_driveaddress WHERE id =?', [$order_address[0]->order_address]);
                 if ($address) {
@@ -157,12 +157,12 @@ require_once("lib/alipay_notify.class.php");
 
                     $isHave = false;
                     for ($i=0; $i < count($e_dis); $i++) { 
-                        $area_id = \Illuminate\Support\Facades\DB::select("SELECT distribution_area_id FROM hh_material_distribution_area WHERE distribution_area_name LIKE '%?%' OR distribution_area_name LIKE '%?%'",[$e_city[0]],[$e_dis[$i]]);
-                        if ($area_id) {
-                            $material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area = ? ", $area_id[0]->distribution_area_id);
-                            if ($material_supplier_id) {
+                        $sel_area_id = \Illuminate\Support\Facades\DB::select("SELECT distribution_area_id FROM hh_material_distribution_area WHERE distribution_area_name LIKE '%?%' AND distribution_area_name LIKE '%?%'",[$e_city[0]],[$e_dis[$i]]);
+                        if ($sel_area_id) {
+                            $sel_material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area = ? ", $sel_area_id[0]->distribution_area_id);
+                            if ($sel_material_supplier_id) {
                                 //5.插入id
-                                $supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?', [$material_supplier_id[0]->material_supplier_id]);
+                                $upd_supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?', [$sel_material_supplier_id[0]->material_supplier_id]);
                                 $isHave = true;
                                 break;
                             }
