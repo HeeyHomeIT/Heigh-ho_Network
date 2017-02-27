@@ -38,11 +38,13 @@ if ($verify_result) {//验证成功
     //支付宝交易号
 
     $trade_no = $_POST['trade_no'];
-
+    $notify_time = $_REQUEST['notify_time'];
+    $total_fee = $_REQUEST['total_fee'];
+    $foreman_flga = false;
     //交易状态
     $trade_status = $_POST['trade_status'];
-
-
+    $flag = false;
+    $order_pay_step_id = 12;
     if ($_POST['trade_status'] == 'TRADE_FINISHED') {
         //判断该笔订单是否在商户网站中已经做过处理
         //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
@@ -67,7 +69,7 @@ if ($verify_result) {//验证成功
         //logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
     }
 
-    $sel_order_pay_each_istrue = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ? AND pay_status = ?', [$out_trade_no, 1]);
+    $sel_order_pay_each_istrue = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ? ', [$out_trade_no]);
     if ($sel_order_pay_each_istrue) {
         //更新订单为已支付状态
         $upd_order_pay_each = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_pay_each SET pay_status = 3 WHERE pay_id = ?', [$out_trade_no]);
@@ -91,45 +93,88 @@ if ($verify_result) {//验证成功
             $pay_step = "工长、杂工、水电工预付款";
             $order_status = 5;
             $order_step = 1;
+            $order_pay_step_id = 2;
+            $foreman_flga = true;
         } else if ($order_status == 5) {
             if ($order_step == 3) {
                 $pay_step = "水电辅材付款";
                 $order_step = 4;
                 $flag = true;
+                $order_pay_step_id = 6;
             }
             if ($order_step == 5) {
                 $pay_step = "瓦工预付款及上阶段结转金额";
                 $order_step = 6;
+                $order_pay_step_id = 3;
             }
             if ($order_step == 7) {
                 $pay_step = "瓦工辅材付款";
                 $order_step = 8;
                 $flag = true;
+                $order_pay_step_id = 7;
             }
             if ($order_step == 9) {
                 $pay_step = "木工预付款及上阶段结转金额";
                 $order_step = 10;
+                $order_pay_step_id = 4;
             }
             if ($order_step == 11) {
                 $pay_step = "木工辅材付款";
                 $order_step = 12;
                 $flag = true;
+                $order_pay_step_id = 8;
             }
             if ($order_step == 13) {
                 $pay_step = "油漆工预付款及上阶段结转金额";
                 $order_step = 14;
+                $order_pay_step_id = 5;
             }
             if ($order_step == 15) {
                 $pay_step = "油漆工辅材付款";
                 $order_step = 16;
                 $flag = true;
+                $order_pay_step_id = 9;
             }
             if ($order_step == 17) {
                 $pay_step = "最终结转金额";
                 $order_status = 6;
+                $order_pay_step_id = 10;
             }
         } else {
             $pay_step = "嘿吼网订单付款";
+        }
+        //TODO 工长钱包收入
+        if ($foreman_flga) {
+            $sel_order_pay_each = \Illuminate\Support\Facades\DB::select('SELECT order_id,pay_amount FROM hh_order_pay_each WHERE pay_id = ? AND order_pay_step = ?',
+                [$out_trade_no, 1]);
+            $foreman_shopid = \Illuminate\Support\Facades\DB::select('SELECT shop_id FROM hh_order WHERE order_id = ?',
+                [$sel_order_pay_each[0]->order_id]);
+            $foreman_ids = \Illuminate\Support\Facades\DB::select('SELECT shopper_id FROM hh_shop WHERE shop_id = ?',
+                [$foreman_shopid[0]->shop_id]);
+            $foreman_id = $foreman_ids[0]->shopper_id;//工长id
+            $foreman_fee = $sel_order_pay_each[0]->pay_amount;//工长收入
+            //TODO 抽点
+            //$foreman_fee = $foreman_fee * 0.05;
+            $foreman_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,deposit,available_total FROM hh_wallet_balance WHERE user_id=?',
+                [$foreman_id]);
+            $total = $foreman_wallet[0]->total + $foreman_fee;
+            $available_total = $foreman_wallet[0]->available_total;
+            $deposit = $foreman_wallet[0]->deposit;
+            if ($foreman_wallet[0]->desposit < 8000) {
+                $available_total = $total - 1000;
+                $deposit = $deposit + 1000;
+            }
+            $upd_wallet = \Illuminate\Support\Facades\DB::update('UPDATE hh_wallet_balance SET total = ?,available_total = ?,deposit=? WHERE user_id = ?', [$total, $available_total, $deposit, $foreman_id]);
+            if ($upd_wallet) {
+                //向钱包明细加入数据
+                $confirm_time = date('Y-m-d H:i:s', time());
+                $insert = \Illuminate\Support\Facades\DB::insert('insert into hh_wallet_detail(user_id,money,content,time) values(?,?,?,?)', [$foreman_id, '+' . $foreman_fee, '收入-预付款', $confirm_time]);
+                if ($insert) {
+                    //发送消息
+                    $message = new \App\Http\Controllers\MessageController();
+                    $message->send('嘿吼网', '系统消息', '进账提醒' . '用户支付工长预付款', $foreman_id);
+                }
+            }
         }
         //跟新订单进度
         $upd_order = \Illuminate\Support\Facades\DB::update('UPDATE hh_order SET order_status = ?,order_step = ? WHERE order_id = ?', [$order_status, $order_step, $order_id]);
@@ -142,35 +187,64 @@ if ($verify_result) {//验证成功
         $shop_volume++;
         //增加店铺接单数
         $upd_shop_volume = \Illuminate\Support\Facades\DB::update('UPDATE hh_shop SET shop_volume = ? WHERE shop_id = ?', [$shop_volume, $shop_id]);
-        //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+        //判断是否为材料单
         if ($flag) {
             //若为材料单时支付成功逻辑
             $material_id = $out_trade_no;
             //1.更新pay status为3
             $pay_status = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET pay_status = 3 WHERE material_id = ?', [$material_id]);
             //2.找到order id
-            $order_id = \Illuminate\Support\Facades\DB::select('SELECT order_id FROM hh_order_material WHERE material_id = ?', [$material_id]);
+            $sel_order_id = \Illuminate\Support\Facades\DB::select('SELECT order_id FROM hh_order_material WHERE material_id = ?', [$material_id]);
             //3.找到地址id
-            $order_address = \Illuminate\Support\Facades\DB::select('SELECT order_address FROM hh_order WHERE order_id = ? ', [$order_id[0]->order_id]);
+            $order_address = \Illuminate\Support\Facades\DB::select('SELECT order_address FROM hh_order WHERE order_id = ? ', [$sel_order_id[0]->order_id]);
             //4.匹配市
             $address = \Illuminate\Support\Facades\DB::select('SELECT province,city,district FROM hh_driveaddress WHERE id =?', [$order_address[0]->order_address]);
             if ($address) {
-                $city = $address[0]->order_address;
+                $city = $address[0]->city;
+                $district = $address[0]->district;
                 $e_city = explode('市', $city);
-                $material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area LIKE '%?%' ", [$e_city[0]]);
-                if ($material_supplier_id) {
-                    //5.插入id
-                    $supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?', [$material_supplier_id[0]->material_supplier_id]);
-                } else {
-                    echo "fail";
+                $e_dis = explode('区', $district);
+                $isHave = false;
+                for ($i = 0; $i < count($e_dis); $i++) {
+                    $sel_area_id = \Illuminate\Support\Facades\DB::select("SELECT distribution_area_id FROM hh_material_distribution_area WHERE distribution_area_name LIKE '%?%' AND distribution_area_name LIKE '%?%'", [$e_city[0]], [$e_dis[$i]]);
+                    if ($sel_area_id) {
+                        $sel_material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area = ? ", $sel_area_id[0]->distribution_area_id);
+                        if ($sel_material_supplier_id) {
+                            //5.插入id
+                            $upd_supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?', [$sel_material_supplier_id[0]->material_supplier_id]);
+                            $isHave = true;
+                            break;
+                        }
+                    }
                 }
-            } else {
-                echo "fail";
+
+                if (!$isHave) {
+                    echo "未找到材料供应商，请联系客服！";
+                }
+            }
+            //TODO 材料商钱包收入
+            $supplier_fee = $total_fee;
+            //TODO 抽点
+            //$supplier_fee = $supplier_fee * 0.05;
+            $material_supplier_ids = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_order_material WHERE material_id = ? ", $material_id);
+            $supplier_id = $material_supplier_ids[0]->material_supplier_id;//材料商id
+            $supplier_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,deposit,available_total FROM hh_wallet_balance WHERE user_id=?',
+                [$supplier_id]);
+            $total = $supplier_wallet[0]->total + $supplier_fee;
+            $available_total = $supplier_wallet[0]->available_total;
+            $deposit = $supplier_wallet[0]->deposit;
+            $upd_wallet = \Illuminate\Support\Facades\DB::update('UPDATE hh_wallet_balance SET total = ?,available_total = ?,deposit=? WHERE user_id = ?', [$total, $available_total, $deposit, $supplier_id]);
+            if ($upd_wallet) {
+                //向钱包明细加入数据
+                $confirm_time = date('Y-m-d H:i:s', time());
+                $insert = \Illuminate\Support\Facades\DB::insert('insert into hh_wallet_detail(user_id,money,content,time) values(?,?,?,?)', [$supplier_id, '+' . $supplier_fee, '收入-材料费用', $confirm_time]);
+                if ($insert) {
+                    //发送消息
+                    $message = new \App\Http\Controllers\MessageController();
+                    $message->send('嘿吼网', '系统消息', '进账提醒' . '用户支付材料费', $supplier_id);
+                }
             }
         }
-        $order_pay_step = $sel_order_pay_each_istrue[0]->order_pay_step;
-        $sel_order_pay_step_id = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_step WHERE order_pay_step = ?', [$order_pay_step]);
-        $order_pay_step_id = $sel_order_pay_step_id[0]->order_pay_step_id;
         echo "success";        //请不要修改或删除
     } else {
         echo "success";        //请不要修改或删除
