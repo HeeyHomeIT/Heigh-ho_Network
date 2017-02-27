@@ -213,10 +213,8 @@ if ($verify_result) {//验证成功
             //4.匹配市
             $address = \Illuminate\Support\Facades\DB::select('SELECT province,city,district FROM hh_driveaddress WHERE id =?', [$order_address[0]->order_address]);
             if ($address) {
-                $city = $address[0]->city;
-                $district = $address[0]->district;
-                $e_city = explode('市', $city);
-                $e_dis = explode('区', $district);
+                $e_city = $address[0]->city;
+                $e_dis = $address[0]->district;
                 $isHave = false;
                 for ($i = 0; $i < count($e_dis); $i++) {
                     $sel_area_id = \Illuminate\Support\Facades\DB::select("SELECT distribution_area_id FROM hh_material_distribution_area WHERE distribution_area_name LIKE '%?%' AND distribution_area_name LIKE '%?%'", [$e_city[0]], [$e_dis[$i]]);
