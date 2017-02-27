@@ -64,7 +64,6 @@ require_once("lib/alipay_notify.class.php");
                 $order_step = 1;
                 $order_pay_step_id = 2;
             }
-            $pay_step = "嘿吼网订单付款";
             if ($order_step == 3) {
                 $pay_step = "水电辅材付款";
                 $order_step = 4;

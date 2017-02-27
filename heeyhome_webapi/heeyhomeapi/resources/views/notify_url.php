@@ -166,15 +166,28 @@ if ($verify_result) {//验证成功
             $foreman_fee = $sel_order_pay_each[0]->pay_amount;//工长收入
             //TODO 抽点
             //$foreman_fee = $foreman_fee * 0.05;
-            $foreman_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,deposit,available_total FROM hh_wallet_balance WHERE user_id=?',
+            //总额:total,保证金:deposit,可提现:available_total
+            $foreman_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,deposit FROM hh_wallet_balance WHERE user_id=?',
                 [$foreman_id]);
-            $total = $foreman_wallet[0]->total + $foreman_fee;
-            $available_total = $foreman_wallet[0]->available_total;
-            $deposit = $foreman_wallet[0]->deposit;
+            $deposit_flag_fee = 0;
             if ($foreman_wallet[0]->deposit < 8000) {
-                $available_total = $total - 1000;
-                $deposit = $deposit + 1000;
+                if (abs($foreman_wallet[0]->deposit - 8000) >= 1000) {
+                    if ($total_fee >= 1000) {
+                        $deposit_flag_fee = 1000;
+                    } else {
+                        $deposit_flag_fee = $total_fee;
+                    }
+                } else {
+                    if ($total_fee >= (8000 - $foreman_wallet[0]->deposit)) {
+                        $deposit_flag_fee = 8000 - $foreman_wallet[0]->deposit;
+                    } else {
+                        $deposit_flag_fee = $total_fee;
+                    }
+                }
             }
+            $total = $foreman_wallet[0]->total + $foreman_fee;
+            $deposit = $foreman_wallet[0]->deposit + $deposit_flag_fee;
+            $available_total = $total - $deposit;
             $upd_wallet = \Illuminate\Support\Facades\DB::update('UPDATE hh_wallet_balance SET total = ?,available_total = ?,deposit=? WHERE user_id = ?', [$total, $available_total, $deposit, $foreman_id]);
             if ($upd_wallet) {
                 //向钱包明细加入数据
