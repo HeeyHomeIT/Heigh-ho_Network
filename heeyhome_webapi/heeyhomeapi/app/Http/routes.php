@@ -366,6 +366,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     Route::any('addsupplier', function(){
         return view('addsupplier');
     });
+    Route::any('editsupplier', function(){
+        return view('editsupplier');
+    });
+    Route::any('supplier/edit', 'SupplierController@edit');
     Route::any('supplier/add', 'SupplierController@add');
     /*装修订单*/
     Route::any('orderlist', 'OrderController@index');
