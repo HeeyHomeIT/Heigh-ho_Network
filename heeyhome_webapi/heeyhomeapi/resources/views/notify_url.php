@@ -143,6 +143,17 @@ if ($verify_result) {//验证成功
         } else {
             $pay_step = "嘿吼网订单付款";
         }
+        //跟新订单进度
+        $upd_order = \Illuminate\Support\Facades\DB::update('UPDATE hh_order SET order_status = ?,order_step = ? WHERE order_id = ?', [$order_status, $order_step, $order_id]);
+        //查询店铺id
+        $sel_shop_id = \Illuminate\Support\Facades\DB::select('SELECT shop_id FROM hh_order WHERE order_id = ?', [$order_id]);
+        $shop_id = $sel_shop_id[0]->shop_id;
+        //查询店铺接单数
+        $sel_shop_volume = \Illuminate\Support\Facades\DB::select('SELECT shop_volume FROM hh_shop WHERE shop_id = ?', [$shop_id]);
+        $shop_volume = $sel_shop_volume[0]->shop_volume;
+        $shop_volume++;
+        //增加店铺接单数
+        $upd_shop_volume = \Illuminate\Support\Facades\DB::update('UPDATE hh_shop SET shop_volume = ? WHERE shop_id = ?', [$shop_volume, $shop_id]);
         //TODO 工长钱包收入
         if ($foreman_flga) {
             $sel_order_pay_each = \Illuminate\Support\Facades\DB::select('SELECT order_id,pay_amount FROM hh_order_pay_each WHERE pay_id = ? AND order_pay_step = ?',
@@ -160,7 +171,7 @@ if ($verify_result) {//验证成功
             $total = $foreman_wallet[0]->total + $foreman_fee;
             $available_total = $foreman_wallet[0]->available_total;
             $deposit = $foreman_wallet[0]->deposit;
-            if ($foreman_wallet[0]->desposit < 8000) {
+            if ($foreman_wallet[0]->deposit < 8000) {
                 $available_total = $total - 1000;
                 $deposit = $deposit + 1000;
             }
@@ -176,17 +187,6 @@ if ($verify_result) {//验证成功
                 }
             }
         }
-        //跟新订单进度
-        $upd_order = \Illuminate\Support\Facades\DB::update('UPDATE hh_order SET order_status = ?,order_step = ? WHERE order_id = ?', [$order_status, $order_step, $order_id]);
-        //查询店铺id
-        $sel_shop_id = \Illuminate\Support\Facades\DB::select('SELECT shop_id FROM hh_order WHERE order_id = ?', [$order_id]);
-        $shop_id = $sel_shop_id[0]->shop_id;
-        //查询店铺接单数
-        $sel_shop_volume = \Illuminate\Support\Facades\DB::select('SELECT shop_volume FROM hh_shop WHERE shop_id = ?', [$shop_id]);
-        $shop_volume = $sel_shop_volume[0]->shop_volume;
-        $shop_volume++;
-        //增加店铺接单数
-        $upd_shop_volume = \Illuminate\Support\Facades\DB::update('UPDATE hh_shop SET shop_volume = ? WHERE shop_id = ?', [$shop_volume, $shop_id]);
         //判断是否为材料单
         if ($flag) {
             //若为材料单时支付成功逻辑

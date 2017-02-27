@@ -35,10 +35,8 @@ require_once("lib/alipay_notify.class.php");
         $trade_no = $_GET['trade_no'];
         $notify_time = $_GET['notify_time'];
         $total_fee = $_GET['total_fee'];
-        $foreman_flga = false;
         //交易状态
         $trade_status = $_GET['trade_status'];
-        $flag = false;
         $order_pay_step_id = 12;
         if ($_GET['trade_status'] == 'TRADE_FINISHED' || $_GET['trade_status'] == 'TRADE_SUCCESS') {
             //判断该笔订单是否在商户网站中已经做过处理
@@ -59,12 +57,17 @@ require_once("lib/alipay_notify.class.php");
             $order_status = 5;
             $order_step = 1;
             $order_pay_step_id = 2;
-            $foreman_flga = true;
         } else if ($order_status == 5) {
+            if ($order_step == 1 || $order_step == 2) {
+                $pay_step = "工长、杂工、水电工预付款";
+                $order_step = 5;
+                $order_step = 1;
+                $order_pay_step_id = 2;
+            }
+            $pay_step = "嘿吼网订单付款";
             if ($order_step == 3) {
                 $pay_step = "水电辅材付款";
                 $order_step = 4;
-                $flag = true;
                 $order_pay_step_id = 6;
             }
             if ($order_step == 5) {
@@ -75,7 +78,6 @@ require_once("lib/alipay_notify.class.php");
             if ($order_step == 7) {
                 $pay_step = "瓦工辅材付款";
                 $order_step = 8;
-                $flag = true;
                 $order_pay_step_id = 7;
             }
             if ($order_step == 9) {
@@ -86,7 +88,6 @@ require_once("lib/alipay_notify.class.php");
             if ($order_step == 11) {
                 $pay_step = "木工辅材付款";
                 $order_step = 12;
-                $flag = true;
                 $order_pay_step_id = 8;
             }
             if ($order_step == 13) {
@@ -97,7 +98,6 @@ require_once("lib/alipay_notify.class.php");
             if ($order_step == 15) {
                 $pay_step = "油漆工辅材付款";
                 $order_step = 16;
-                $flag = true;
                 $order_pay_step_id = 9;
             }
             if ($order_step == 17) {
