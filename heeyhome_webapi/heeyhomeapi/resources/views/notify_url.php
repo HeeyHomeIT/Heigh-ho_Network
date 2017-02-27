@@ -43,8 +43,6 @@ if ($verify_result) {//验证成功
     $foreman_flga = false;
     //交易状态
     $trade_status = $_POST['trade_status'];
-    $flag = false;
-    $order_pay_step_id = 12;
     if ($_POST['trade_status'] == 'TRADE_FINISHED') {
         //判断该笔订单是否在商户网站中已经做过处理
         //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
@@ -90,58 +88,27 @@ if ($verify_result) {//验证成功
         $upd_order_pay = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_pay SET actual_finish_amount = ?, actual_next_amount= ?, order_pay_step = ? WHERE order_id = ?',
             [$actual_finish_amount, $actual_next_amount, $order_pay_step, $order_id]);
         if ($order_status == 4) {
-            $pay_step = "工长、杂工、水电工预付款";
             $order_status = 5;
             $order_step = 1;
-            $order_pay_step_id = 2;
             $foreman_flga = true;
         } else if ($order_status == 5) {
             if ($order_step == 3) {
-                $pay_step = "水电辅材付款";
                 $order_step = 4;
-                $flag = true;
-                $order_pay_step_id = 6;
-            }
-            if ($order_step == 5) {
-                $pay_step = "瓦工预付款及上阶段结转金额";
+            } else if ($order_step == 5) {
                 $order_step = 6;
-                $order_pay_step_id = 3;
-            }
-            if ($order_step == 7) {
-                $pay_step = "瓦工辅材付款";
+            } else if ($order_step == 7) {
                 $order_step = 8;
-                $flag = true;
-                $order_pay_step_id = 7;
-            }
-            if ($order_step == 9) {
-                $pay_step = "木工预付款及上阶段结转金额";
+            } else if ($order_step == 9) {
                 $order_step = 10;
-                $order_pay_step_id = 4;
-            }
-            if ($order_step == 11) {
-                $pay_step = "木工辅材付款";
+            } else if ($order_step == 11) {
                 $order_step = 12;
-                $flag = true;
-                $order_pay_step_id = 8;
-            }
-            if ($order_step == 13) {
-                $pay_step = "油漆工预付款及上阶段结转金额";
+            } else if ($order_step == 13) {
                 $order_step = 14;
-                $order_pay_step_id = 5;
-            }
-            if ($order_step == 15) {
-                $pay_step = "油漆工辅材付款";
+            } else if ($order_step == 15) {
                 $order_step = 16;
-                $flag = true;
-                $order_pay_step_id = 9;
-            }
-            if ($order_step == 17) {
-                $pay_step = "最终结转金额";
+            } else if ($order_step == 17) {
                 $order_status = 6;
-                $order_pay_step_id = 10;
             }
-        } else {
-            $pay_step = "嘿吼网订单付款";
         }
         //跟新订单进度
         $upd_order = \Illuminate\Support\Facades\DB::update('UPDATE hh_order SET order_status = ?,order_step = ? WHERE order_id = ?', [$order_status, $order_step, $order_id]);
@@ -201,9 +168,10 @@ if ($verify_result) {//验证成功
             }
         }
         //判断是否为材料单
-        if ($flag) {
+        $material_id = $out_trade_no;
+        $sel_order_material = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_material WHERE order_id = ?,material_id=?', [$order_id, $material_id]);
+        if ($sel_order_material) {
             //若为材料单时支付成功逻辑
-            $material_id = $out_trade_no;
             //1.更新pay status为3
             $pay_status = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET pay_status = 3 WHERE material_id = ?', [$material_id]);
             //2.找到order id
@@ -241,7 +209,7 @@ if ($verify_result) {//验证成功
             $supplier_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,available_total FROM hh_wallet_balance WHERE user_id=?',
                 [$supplier_id]);
             $total = $supplier_wallet[0]->total + $supplier_fee;
-            $available_total = $supplier_wallet[0]->available_total+ $supplier_fee;
+            $available_total = $supplier_wallet[0]->available_total + $supplier_fee;
             $upd_wallet = \Illuminate\Support\Facades\DB::update('UPDATE hh_wallet_balance SET total = ?,available_total = ? WHERE user_id = ?', [$total, $available_total, $supplier_id]);
             if ($upd_wallet) {
                 //向钱包明细加入数据

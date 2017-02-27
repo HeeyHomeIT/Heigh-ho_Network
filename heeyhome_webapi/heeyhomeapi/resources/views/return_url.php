@@ -67,7 +67,7 @@ require_once("lib/alipay_notify.class.php");
                 $pay_step = "水电辅材付款";
                 $order_step = 4;
                 $order_pay_step_id = 6;
-            } else if ($order_step == 6) {
+            } else if ($order_step == 5 || $order_step == 6) {
                 $pay_step = "瓦工预付款及上阶段结转金额";
                 $order_step = 6;
                 $order_pay_step_id = 3;
@@ -75,7 +75,7 @@ require_once("lib/alipay_notify.class.php");
                 $pay_step = "瓦工辅材付款";
                 $order_step = 8;
                 $order_pay_step_id = 7;
-            } else if ($order_step == 10) {
+            } else if ($order_step == 9 || $order_step == 10) {
                 $pay_step = "木工预付款及上阶段结转金额";
                 $order_step = 10;
                 $order_pay_step_id = 4;
@@ -83,7 +83,7 @@ require_once("lib/alipay_notify.class.php");
                 $pay_step = "木工辅材付款";
                 $order_step = 12;
                 $order_pay_step_id = 8;
-            } else if ($order_step == 14) {
+            } else if ($order_step == 13 || $order_step == 14) {
                 $pay_step = "油漆工预付款及上阶段结转金额";
                 $order_step = 14;
                 $order_pay_step_id = 5;
