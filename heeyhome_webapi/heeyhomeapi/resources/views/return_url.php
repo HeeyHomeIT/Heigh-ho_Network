@@ -151,16 +151,27 @@ require_once("lib/alipay_notify.class.php");
                 $address = \Illuminate\Support\Facades\DB::select('SELECT province,city,district FROM hh_driveaddress WHERE id =?', [$order_address[0]->order_address]);
                 if ($address) {
                     $city = $address[0]->city;
+                    $district = $address[0]->district;
                     $e_city = explode('市', $city);
-                    $material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area LIKE '%?%' ", [$e_city[0]]);
-                    if ($material_supplier_id) {
-                        //5.插入id
-                        $supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?', [$material_supplier_id[0]->material_supplier_id]);
-                    } else {
-                        echo "未找到材料供应商，请联系客服！";
+                    $e_dis = explode('区', $district);
+
+                    $isHave = false;
+                    for ($i=0; $i < count($e_dis); $i++) { 
+                        $area_id = \Illuminate\Support\Facades\DB::select("SELECT distribution_area_id FROM hh_material_distribution_area WHERE distribution_area_name LIKE '%?%' OR distribution_area_name LIKE '%?%'",[$e_city[0]],[$e_dis[$i]]);
+                        if ($area_id) {
+                            $material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area = ? ", $area_id[0]->distribution_area_id);
+                            if ($material_supplier_id) {
+                                //5.插入id
+                                $supplier_id = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET material_supplier_id = ?', [$material_supplier_id[0]->material_supplier_id]);
+                                $isHave = true;
+                                break;
+                            }
+                        }
                     }
-                } else {
-                    echo "未找到材料供应商，请联系客服！";
+
+                    if (!$isHave) {
+                         echo "未找到材料供应商，请联系客服！";
+                    }
                 }
             }
             $url = 'http://www.heeyhome.com/success_pay.html#/?total=' . $total_fee . '&order_id=' . $order_id . '&pay_step=' . $pay_step . '&pay_time=' . $notify_time . '&order_pay_step_id=' . $order_pay_step_id;
