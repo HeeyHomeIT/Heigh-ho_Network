@@ -320,6 +320,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     Route::any('homeencyclopedia', 'HomeEncyclopediaController@index');
     Route::any('addhomeencyclopediacate', 'HomeEncyclopediaController@cate');
     Route::any('homeencyclopediacate/changeorder', 'HomeEncyclopediaController@changeorder');
+    Route::any('homeencyclopediacate/changearticleorder', 'HomeEncyclopediaController@changearticleorder');
     Route::any('homeencyclopediacate/del', 'HomeEncyclopediaController@catedel');
     Route::any('addhomeencyclopediaarticle', 'HomeEncyclopediaController@createarticle');
     Route::any('homeencyclopedia/addcate', 'HomeEncyclopediaController@addcate');

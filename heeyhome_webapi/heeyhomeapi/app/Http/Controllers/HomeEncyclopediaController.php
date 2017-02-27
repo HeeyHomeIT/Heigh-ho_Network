@@ -39,7 +39,7 @@ class HomeEncyclopediaController extends Controller
         $newpage=new PageController();
         $offset=$newpage->page($total);
         //dd($offset);
-        $articles = DB::select('select id,article_title,article_content,img,add_time,scan from hh_jzbkarticle where cate_id=? order by id desc limit ?,?',[$cate_id,$offset[0],$offset[1]]);
+        $articles = DB::select('select id,article_title,article_content,img,add_time,scan from hh_jzbkarticle where cate_id=? order by sort asc limit ?,?',[$cate_id,$offset[0],$offset[1]]);
         $articles[0]->total=$total;
         //print_r($articles);
         if($articles){

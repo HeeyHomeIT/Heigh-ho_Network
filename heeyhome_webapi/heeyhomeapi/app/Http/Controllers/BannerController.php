@@ -15,7 +15,7 @@ class BannerController extends Controller
 {
     public function index(){
         $callback=rq('callback');
-        $banners=DB::select('select * from hh_banner order by sort asc limit ?,?',[0,5]);
+        $banners=DB::select('select banner_id,img from hh_banner order by sort asc limit ?,?',[0,3]);
         if($banners){
             $arr=array("code"=>"000",
                 "data"=>$banners
