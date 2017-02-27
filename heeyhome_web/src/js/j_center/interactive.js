@@ -1911,7 +1911,7 @@
                 // oInfoObj.user_id = value.user_id;
                 // oInfoObj.order_id = value.order_id;
                 // $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
-                vrStr += '<div class="all" data-sss="' + value.user_id + '" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="javascript:;" target="_blank" class="top look_new">查看详情</a>';
+                vrStr += '<div class="all" data-sss="' + value.user_id + '" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="javascript:;" class="top look_new">查看详情</a>';
             } else if (value.order_status == 7) {
                 vrStr += '<div class="all"><span>--</span>';
             } else {

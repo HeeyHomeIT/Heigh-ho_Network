@@ -1523,6 +1523,7 @@
                                                     $('#after_remark').attr("disabled", false);
                                                 } else if (typename == '水电') {
                                                     $('.sheet_right input[typename="水电"]').attr("disabled", false);
+                                                    $('.sheet_right input[typename="杂工"]').attr("disabled", false);
                                                     $('.after_submit').attr("disabled", false);
                                                     $('#after_remark').attr("disabled", false);
                                                 } else if (typename == '瓦工') {
@@ -1631,52 +1632,55 @@
                     $.each($number, function (i, v) {
                         budObj[parseInt($(v).attr('bid') - 1)] = $(v).val();
                         if ($(v).val() < 0) {
-                            layer.msg('数字不能小于0哦~~');
                             isInteger = false;
                         }
 
                     });
 
                     /* 生成预算单结算单 */
-                    isInteger && $.ajax({
-                        url: GENERATEURL,
-                        type: "GET",
-                        async: true,
-                        dataType: 'jsonp',
-                        data: {
-                            order_id: orderId
-                        },
-                        success: function (data) {
-                            console.log($('#before_remark').val());
-                            console.log(JSON.stringify(budObj))
-                            /* 添加预算单数据 */
-                            $.ajax({
-                                url: ADDDATEURL,
-                                type: "GET",
-                                async: true,
-                                dataType: 'jsonp',
-                                data: {
-                                    order_id: orderId,
-                                    list_data_json: JSON.stringify(budObj),
-                                    remark: $('#before_remark').val()
-                                },
-                                success: function (data) {
-                                    console.log(data);
-                                    if (data && data.code == '000') {
-                                        layer.msg(data.msg);
-                                        window.location.href = 'order.html#/order/home';
-                                    } else {
-                                        layer.msg(data.msg);
+                    if (isInteger) {
+                        $.ajax({
+                            url: GENERATEURL,
+                            type: "GET",
+                            async: true,
+                            dataType: 'jsonp',
+                            data: {
+                                order_id: orderId
+                            },
+                            success: function (data) {
+                                console.log($('#before_remark').val());
+                                console.log(JSON.stringify(budObj))
+                                /* 添加预算单数据 */
+                                $.ajax({
+                                    url: ADDDATEURL,
+                                    type: "GET",
+                                    async: true,
+                                    dataType: 'jsonp',
+                                    data: {
+                                        order_id: orderId,
+                                        list_data_json: JSON.stringify(budObj),
+                                        remark: $('#before_remark').val()
+                                    },
+                                    success: function (data) {
+                                        console.log(data);
+                                        if (data && data.code == '000') {
+                                            layer.msg(data.msg);
+                                            window.location.href = 'order.html#/order/home';
+                                        } else {
+                                            layer.msg(data.msg);
+                                        }
+                                    },
+                                    error: function (data) {
+                                        console.log(data)
                                     }
-                                },
-                                error: function (data) {
-                                    console.log(data)
-                                }
-                            });
-                        },
-                        error: function (data) {
-                        }
-                    });
+                                });
+                            },
+                            error: function (data) {
+                            }
+                        });
+                    } else {
+                        layer.msg('数字不能小于0哦~~');
+                    }
 
 
                 });
@@ -1690,31 +1694,33 @@
                     $.each($right, function (i, v) {
                         billObj[parseInt($(v).attr('bid') - 1)] = $(v).val();
                         if ($(v).val() < 0) {
-                            layer.msg('数字不能小于0哦~~');
                             isGreater = false;
                         }
                     });
-                    isGreater && $.ajax({
-                        url: UPDATEURL,
-                        type: "GET",
-                        async: true,
-                        dataType: 'jsonp',
-                        data: {
-                            order_id: orderId,
-                            list_data_json: JSON.stringify(billObj),
-                            remark: $('#after_remark').val()
-                        },
-                        success: function (data) {
-                            layer.msg(data.msg);
-                            if (data && data.code == '000') {
-                                window.location.href = 'order.html#/order/home';
-                                //sessionStorage.setItem("step", '7');//假设赋值
+                    if (isGreater) {
+                        $.ajax({
+                            url: UPDATEURL,
+                            type: "GET",
+                            async: true,
+                            dataType: 'jsonp',
+                            data: {
+                                order_id: orderId,
+                                list_data_json: JSON.stringify(billObj),
+                                remark: $('#after_remark').val()
+                            },
+                            success: function (data) {
+                                layer.msg(data.msg);
+                                if (data && data.code == '000') {
+                                    window.location.href = 'order.html#/order/home';
+                                    //sessionStorage.setItem("step", '7');//假设赋值
+                                }
+                            },
+                            error: function (data) {
                             }
-                        },
-                        error: function (data) {
-                        }
-                    });
-
+                        });
+                    } else {
+                        layer.msg('数字不能小于0哦~~');
+                    }
                 });
             }]);
         }
@@ -1789,6 +1795,7 @@
                                 layer.msg(result.msg);
                                 $('.upload').hide();
                                 $('.add_technology').hide();
+                                $('.wrap').hide();
                                 $('.detail_upload').removeClass('hide').show();
                                 var orderId = sessionStorage.getItem("orderId");
                                 $.ajax({
@@ -1809,7 +1816,6 @@
                                 location.reload();
                             } else {
                                 layer.msg(result.msg);
-                                $('.add_technology').hide();
                             }
                         },
                         error: function (e, a, v) {
@@ -2588,10 +2594,11 @@
         getInfoEvent: function () {
             var str;
             var time;
-            $(".bottom_title_left a").eq(0).addClass("active");
-            str = $(".bottom_title_left a").eq(0).html().substring(0, 4) + $(".bottom_title_left a").eq(0).html().substring(7, 9);
-            $(".wallet_month").html($(".bottom_title_left a").eq(0).html());
-            $(".bottom_title_left a").on("click", function () {
+            var $bottom = $(".bottom_title_left a");
+            $bottom.eq(0).addClass("active");
+            str = $bottom.eq(0).html().substring(0, 4) + $bottom.eq(0).html().substring(7, 9);
+            $(".wallet_month").html($bottom.eq(0).html());
+            $bottom.on("click", function () {
                 $(this).addClass("active").siblings().removeClass("active");
                 $(".wallet_month").html($(this).html());
                 time = $(this).html().substring(0, 4) + $(this).html().substring(7, 9);
@@ -2761,7 +2768,6 @@
                     $http({
                         method: "JSONP",
                         url: BANKINFOURL,
-                        /* 传参 */
                         params: {
                             user_id: USERID
                         }
@@ -2792,7 +2798,6 @@
                     $http({
                         method: "JSONP",
                         url: BANKINFOURL,
-                        /* 传参 */
                         params: {
                             user_id: USERID
                         }
@@ -2808,7 +2813,6 @@
                         }
                         /* 如果失败执行 */
                         else {
-                            //layer.alert(data.msg);
                             $("#choose_bank").append('<div class="not_bank fl"> <span>您还没有绑定银行卡哦~~ 点击去</span><a href="bank.html#/bank/home"> 绑定 </a> </div><!--not_bank-->');
 
                         }
@@ -2857,7 +2861,7 @@
                                 }
                             },
                             error: function (data) {
-                                layer.alert(data.msg);
+                                layer.msg(data.msg);
                             }
                         });
                     }
@@ -2875,7 +2879,6 @@
                 $http({
                     method: "JSONP",
                     url: BANKINFOURL,
-                    /* 传参 */
                     params: {
                         user_id: USERID
                     }
@@ -2891,7 +2894,6 @@
                     }
                     /* 如果失败执行 */
                     else {
-                        //alert(data.msg);
                         layer.msg(data.msg);
                     }
                 }).error(function (data, status) {
@@ -4122,7 +4124,9 @@
                 // var img_count = 0;
                 /* 点击本店工艺更改弹出弹层 */
                 $(document).on('click', '.renderings_show_a', function () {
+                    var NUM = $(this).parents(".right_content_wrap").next('.add_technology');
                     $('.add_technology').show().removeClass('hide').addClass("edit");
+                    $('.add_technology').css('top', ($(window).height() - NUM.outerHeight()) / 2 + $(document).scrollTop());
                     $('.wrap').show().removeClass('hide');
 
                     var infos = $scope.infos;
