@@ -67,7 +67,7 @@ require_once("lib/alipay_notify.class.php");
                 $pay_step = "水电辅材付款";
                 $order_step = 4;
                 $order_pay_step_id = 6;
-            } else if ($order_step == 5) {
+            } else if ($order_step == 6) {
                 $pay_step = "瓦工预付款及上阶段结转金额";
                 $order_step = 6;
                 $order_pay_step_id = 3;
@@ -75,7 +75,7 @@ require_once("lib/alipay_notify.class.php");
                 $pay_step = "瓦工辅材付款";
                 $order_step = 8;
                 $order_pay_step_id = 7;
-            } else if ($order_step == 9) {
+            } else if ($order_step == 10) {
                 $pay_step = "木工预付款及上阶段结转金额";
                 $order_step = 10;
                 $order_pay_step_id = 4;
@@ -83,7 +83,7 @@ require_once("lib/alipay_notify.class.php");
                 $pay_step = "木工辅材付款";
                 $order_step = 12;
                 $order_pay_step_id = 8;
-            } else if ($order_step == 13) {
+            } else if ($order_step == 14) {
                 $pay_step = "油漆工预付款及上阶段结转金额";
                 $order_step = 14;
                 $order_pay_step_id = 5;
@@ -98,8 +98,10 @@ require_once("lib/alipay_notify.class.php");
             } else {
                 $pay_step = "嘿吼网订单付款";
             }
-        } else {
-            $pay_step = "嘿吼网订单付款";
+        } else if ($order_status == 6) {
+            $pay_step = "最终结转金额";
+            $order_status = 6;
+            $order_pay_step_id = 10;
         }
         $url = 'http://www.heeyhome.com/success_pay.html#/?total=' . $total_fee . '&order_id=' . $order_id . '&pay_step=' . $pay_step . '&pay_time=' . $notify_time . '&order_pay_step_id=' . $order_pay_step_id;
         echo "<meta http-equiv='Refresh' content='1; url=" . $url . "'/>";

@@ -220,6 +220,7 @@ if ($pay_type == 'order') {
         \Illuminate\Support\Facades\DB::update('UPDATE hh_order_material SET pay_status = ?,material_price=? WHERE order_id = ? AND material_type = ?',
             [1, $sum, $order_id, $material_type]);
         $actual_next_amount = $sum;
+        \Illuminate\Support\Facades\DB::update('UPDATE hh_order_pay SET actual_next_amount =?,order_pay_step = ? WHERE order_id = ?', [$actual_next_amount, 12, $order_id]);
     } else {
         $material_id = $sel_material_tbl[0]->material_id;
         $sum = $sel_material_tbl[0]->material_price;
