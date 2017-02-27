@@ -45,13 +45,13 @@ require_once("lib/alipay_notify.class.php");
         } else {
             echo "trade_status=" . $_GET['trade_status'];
         }
-
         $sel_order_pay_each = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ?', [$out_trade_no]);
         $order_id = $sel_order_pay_each[0]->order_id;
         //获取订单进度
         $sel_order = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order WHERE order_id = ?', [$order_id]);
         $order_step = $sel_order[0]->order_step;
         $order_status = $sel_order[0]->order_status;
+        $pay_step = "嘿吼网订单付款";
         if ($order_status == 4) {
             $pay_step = "工长、杂工、水电工预付款";
             $order_status = 5;
@@ -63,46 +63,40 @@ require_once("lib/alipay_notify.class.php");
                 $order_step = 5;
                 $order_step = 1;
                 $order_pay_step_id = 2;
-            }
-            if ($order_step == 3) {
+            } else if ($order_step == 3 || $order_step == 4) {
                 $pay_step = "水电辅材付款";
                 $order_step = 4;
                 $order_pay_step_id = 6;
-            }
-            if ($order_step == 5) {
+            } else if ($order_step == 5) {
                 $pay_step = "瓦工预付款及上阶段结转金额";
                 $order_step = 6;
                 $order_pay_step_id = 3;
-            }
-            if ($order_step == 7) {
+            } else if ($order_step == 7 || $order_step == 8) {
                 $pay_step = "瓦工辅材付款";
                 $order_step = 8;
                 $order_pay_step_id = 7;
-            }
-            if ($order_step == 9) {
+            } else if ($order_step == 9) {
                 $pay_step = "木工预付款及上阶段结转金额";
                 $order_step = 10;
                 $order_pay_step_id = 4;
-            }
-            if ($order_step == 11) {
+            } else if ($order_step == 11 || $order_step == 12) {
                 $pay_step = "木工辅材付款";
                 $order_step = 12;
                 $order_pay_step_id = 8;
-            }
-            if ($order_step == 13) {
+            } else if ($order_step == 13) {
                 $pay_step = "油漆工预付款及上阶段结转金额";
                 $order_step = 14;
                 $order_pay_step_id = 5;
-            }
-            if ($order_step == 15) {
+            } else if ($order_step == 15 || $order_step == 16) {
                 $pay_step = "油漆工辅材付款";
                 $order_step = 16;
                 $order_pay_step_id = 9;
-            }
-            if ($order_step == 17) {
+            } else if ($order_step == 17) {
                 $pay_step = "最终结转金额";
                 $order_status = 6;
                 $order_pay_step_id = 10;
+            } else {
+                $pay_step = "嘿吼网订单付款";
             }
         } else {
             $pay_step = "嘿吼网订单付款";
