@@ -2095,12 +2095,12 @@ a:focus {
     font-size: 14px;
 }
 
-.work_stage .stage_title .step span:hover {
+.work_stage .stage_title .step .distribution:hover {
     cursor: pointer;
 
 }
 
-.work_stage .stage_title .step span {
+.work_stage .stage_title .step .c_eec988 {
     color: #EEC988;
     text-decoration: underline;
 }
@@ -2193,19 +2193,23 @@ a:focus {
 
 .step .balance {
     position: absolute;
-    top: -8px;
+    top: -12px;
     left: 150px;
-    width: 94px;
-    height: 35px;
-    line-height: 35px;
+    width: 85px;
+    height: 32px;
+    line-height: 32px;
     text-align: center;
     background-color: #525252;
     cursor: pointer;
     border-radius: 4px;
     border: 0;
     font-family: FZLTHJW;
-    font-size: 16px;
+    font-size: 14px;
     color: #FFFFFF;
+}
+
+.step .prepayment {
+    left: 75px;
 }
 
 .complete_stage .stage_title .balance:hover, .step .balance:hover {
@@ -2661,7 +2665,7 @@ a:focus {
     margin-left: 5px
 }
 
-.order_content .order_box .ordercnt_title span:nth-child(5):before {
+.order_content .order_box .ordercnt_title a:before {
     position: absolute;
     content: '';
     background: url(../img/sprite-details.png) -522px -21px no-repeat;
@@ -2672,9 +2676,17 @@ a:focus {
     display: block
 }
 
-.order_content .order_box .ordercnt_title span:nth-child(5) {
+.order_content .order_box .ordercnt_title a {
     position: relative;
     margin-left: 65px;
+    display: block;
+    float: left;
+    color: white
+}
+
+.order_content .order_box .ordercnt_title a:hover {
+    cursor: pointer;
+    color: #EEC988;
 }
 
 .order_box .ordercnt_content .block {

@@ -24,6 +24,7 @@ define(['app'], function (app) {
                 var payStep = getUrlParamHandler.getUrlParam("pay_step"); // 支付类型
                 var payTime = getUrlParamHandler.getUrlParam("pay_time"); // 支付时间
                 var orderPayStepId = getUrlParamHandler.getUrlParam("order_pay_step_id");
+                var order_step_type = 0;
                 $("#Jpay").html(total);
                 $("#JorderId").html(orderId);
                 $("#JpayStep").html(payStep);
@@ -46,7 +47,24 @@ define(['app'], function (app) {
                     }
                     $("#Jview").attr("href", "reservation.html#/materiallist?pos=" + orderId + "&material_type=" + material_type);
                 } else {
-                    $("#Jview").attr("href", "reservation.html#/advancelist?pos=" + orderId);
+                    switch (parseInt(orderPayStepId)) {
+                        case 2:
+                            order_step_type = 18;
+                            break;
+                        case 3:
+                            order_step_type = 5;
+                            break;
+                        case 4:
+                            order_step_type = 9;
+                            break;
+                        case 5:
+                            order_step_type = 13;
+                            break;
+                        case 10:
+                            order_step_type = 17;
+                            break;
+                    }
+                    $("#Jview").attr("href", "reservation.html#/advancelist?pos=" + orderId + "&order_step_type=" + order_step_type);
                 }
             }
         };

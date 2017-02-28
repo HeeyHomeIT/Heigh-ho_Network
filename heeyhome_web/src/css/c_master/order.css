@@ -223,7 +223,7 @@
 }
 
 .order_back {
-    display: inline-block;
+    display: block;
     width: 101px;
     height: 38px;
     line-height: 38px;
@@ -232,9 +232,9 @@
     color: white;
     font-size: 16px;
     border-radius: 2px;
+    margin: 0 auto;
     margin-bottom: 180px;
     margin-top: 60px;
-    margin-left: 50px;
 }
 
 .order_submit:hover {
