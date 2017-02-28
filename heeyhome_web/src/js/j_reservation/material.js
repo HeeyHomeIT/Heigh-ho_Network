@@ -153,15 +153,18 @@
                         }
                     });
                     console.log(JSON.stringify(selectedArr));
-                    var orderType = $("#Jpayment").data("submit");
-                    console.log(orderType);
-                    PAYURL = PAYURL + "?pay_type=" + orderType + "&order_id=" + orderId + "&material_list=" + JSON.stringify(selectedArr);
-                    $("#meterialFrom").attr("action", PAYURL);
-                    $("#meterialFrom").submit();
+                    if (selectedArr.length != 0) {
+                        var orderType = $("#Jpayment").data("submit");
+                        console.log(orderType);
+                        PAYURL = PAYURL + "?pay_type=" + orderType + "&order_id=" + orderId + "&material_list=" + JSON.stringify(selectedArr);
+                        $("#meterialFrom").attr("action", PAYURL);
+                        $("#meterialFrom").submit();
+                    } else {
+                        layer.msg('请先勾选您需要的材料');
+                    }
                 } else {
                     layer.msg("请先仔细阅读合同条款并勾选确认");
                 }
-
             });
             // 自行购买
             $(document).on("click", "#JSelfPurchase", function () {

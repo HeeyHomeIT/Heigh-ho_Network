@@ -1440,7 +1440,11 @@
                     var num = $(".left_ul li i").html();
                     if (num != 0) {
                         num--;
-                        $(".left_ul li i").html(num);
+                        if (num == 0) {
+                            $(".left_ul li i").remove();
+                        } else {
+                            $(".left_ul li i").html(num);
+                        }
                     } else {
                         $(".left_ul li i").remove();
                     }

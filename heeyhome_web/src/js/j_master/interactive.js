@@ -2632,6 +2632,7 @@
                         } else {
                             $(".wallet_dl").nextAll().remove();
                             $(".page_number").css('opacity', '0');
+                            $(".wallet_bottom_content").css('min-height', '0');
                             // layer.alert(data.msg);
                             //$('.wallet').remove();
                             $('.not_information').show().removeClass('hide');
@@ -2668,6 +2669,7 @@
                     } else {
                         $(".wallet_dl").nextAll().remove();
                         $(".page_number").css('opacity', '0');
+                        $(".wallet_bottom_content").css('min-height', '0');
                         // layer.alert(data.msg);
                         //$('.wallet').remove();
                         $('.not_information').show().removeClass('hide');
@@ -4798,7 +4800,11 @@
                     var num = $(".left_ul li i").html();
                     if (num != 0) {
                         num--;
-                        $(".left_ul li i").html(num);
+                        if (num == 0) {
+                            $(".left_ul li i").remove();
+                        } else {
+                            $(".left_ul li i").html(num);
+                        }
                     } else {
                         $(".left_ul li i").remove();
                     }

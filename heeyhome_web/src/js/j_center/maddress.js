@@ -16,7 +16,7 @@
     var SETDEFAULTURL = 'http://www.heeyhome.com/api/public/personal/drive_address/setdefault'; // 设置默认收货地址接口
 
     var ADDTEXT = "添加";
-    var EDITORTEXT = "编辑";
+    var EDITORTEXT = "保存";
 
     var PHONEREG = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/; // 验证手机号正则表达式
 
@@ -202,8 +202,8 @@
             vrStr += '<span class="detailed_address">详细地址</span>';
             vrStr += '<span class="address_code">邮编</span>';
             vrStr += '<span class="address_tel">电话/手机</span>';
-            vrStr += '<div class="editor_del"><a class="address_editor" href="javascript:;">';
-            vrStr += '<em class="sprite_order"></em></a><a class="address_del" href="javascript:;">';
+            vrStr += '<div class="editor_del"><a class="address_editor" href="javascript:;" title="编辑">';
+            vrStr += '<em class="sprite_order"></em></a><a class="address_del" href="javascript:;" title="删除">';
             vrStr += '<em class="sprite_order"></em></a></div></div>';
             vrStr += '<div class="address_list_content" >';
             vrStr += '<span class="recipient">' + value.receiver + '</span>';
