@@ -1139,6 +1139,15 @@
                             var work = '<div class="work_worker">';
                             $.each(data.data.detail, function (i, v) {
                                 stage += spliceStageHandler.spliceStrEvent(v);
+                                if (v.material_pay_status == '配送中') {
+                                    $(document).on('click', '.step', function (e) {
+                                        layer.tips('您需要进入材料清单确认收货~~', $(e.target), {
+                                            tips: [1, 'red'],
+                                            tipsMore: true,
+                                            time: 1000
+                                        });
+                                    });
+                                }
                             });
                             if (data.data.now_order_step != 1) {
                                 $.each(data.data.worker, function (i, v) {
@@ -1198,6 +1207,7 @@
                             photos: '.stage_pic',
                             anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
                         });
+
 
                     } else {
                         layer.alert(data.msg)
@@ -1769,6 +1779,7 @@
      */
     spliceStageHandler = {
         spliceStrEvent: function (value) {
+            value.material_pay_status = 2;
             if (value.material_pay_status == 1) {
                 value.material_pay_status = "未配送";
             } else if (value.material_pay_status == 2) {
@@ -1809,6 +1820,7 @@
                 });
                 vrStr += '</div>';
                 vrStr += '</div>';
+
             } else if (value.order_step.indexOf("完成") > 0) {
                 // if (value.order_step.indexOf("完成") > 0) {
                 // vrStr += '<div class="work_stage complete_stage">';
