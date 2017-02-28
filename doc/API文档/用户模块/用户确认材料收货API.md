@@ -18,7 +18,8 @@
 ```
 data
 
-material_id            材料订单id
+order_id               订单id
+material_type          材料订单类型
 callback                
 ```
 

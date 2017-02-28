@@ -902,17 +902,18 @@ class OrderMaterialController extends Controller
     //用户确认材料收货
     public function finishOrderMaterial()
     {
-        $material_id = rq('material_id');
+        $order_id = rq('order_id');
+        $material_type = rq('material_type');
         $callback = rq('callback');
         //判断材料订单状态
-        $sel_order_material_type = DB::select('SELECT order_material_status FROM hh_order_material WHERE material_id = ?',
-            [$material_id]);
+        $sel_order_material_type = DB::select('SELECT order_material_status FROM hh_order_material WHERE order_id = ? AND material_type =?',
+            [$order_id, $material_type]);
         if ($sel_order_material_type) {
             $order_material_status = $sel_order_material_type[0]->order_material_status;
             if ($order_material_status == 2) {
                 //修改材料订单状态
-                $upd_order_material = DB::update('UPDATE hh_order_material SET order_material_status =? WHERE material_id = ?',
-                    [3, $material_id]);
+                $upd_order_material = DB::update('UPDATE hh_order_material SET order_material_status =? WHERE order_id = ? AND material_type =?',
+                    [3, $order_id, $material_type]);
                 $arr = array(
                     "code" => "000",
                     "msg" => "确认成功",
