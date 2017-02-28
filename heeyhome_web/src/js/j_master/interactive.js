@@ -2629,6 +2629,7 @@
                             $('.not_information').hide();
                             $('.not_information_text').html();
                             $(".page_number").css('opacity', '1');
+                            $(".wallet_bottom_content").css('min-height', '220px');
                         } else {
                             $(".wallet_dl").nextAll().remove();
                             $(".page_number").css('opacity', '0');
@@ -2666,6 +2667,7 @@
                         $(".wallet_bottom_content").append(bill);
                         BillDelete.deleteRecord();
                         BillPageHandler.pageContentEvent(total, str);
+                        $(".wallet_bottom_content").css('min-height', '220px');
                     } else {
                         $(".wallet_dl").nextAll().remove();
                         $(".page_number").css('opacity', '0');

@@ -2095,6 +2095,33 @@ a:focus {
     font-size: 14px;
 }
 
+.work_stage .stage_title .step span:hover {
+    cursor: pointer;
+
+}
+
+.work_stage .stage_title .step span {
+    color: #EEC988;
+    text-decoration: underline;
+}
+
+.work_stage .stage_title .step .distribution:after {
+    content: "您需要进入材料清单确认收货~~";
+    width: 140px;
+    left: 122px;
+    top: -24px;
+    position: absolute;
+    line-height: 1.5;
+    padding: 15px;
+    font-size: 12px;
+    border-radius: 3px;
+    background: #666;
+    z-index: 100;
+    color: #fff;
+    text-align: left;
+    letter-spacing: 1.5px;
+}
+
 .work_stage .stage_title .step .status {
     color: #E88226;
     font-size: 16px;

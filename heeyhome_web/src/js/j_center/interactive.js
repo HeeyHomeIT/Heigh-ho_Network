@@ -1140,12 +1140,11 @@
                             $.each(data.data.detail, function (i, v) {
                                 stage += spliceStageHandler.spliceStrEvent(v);
                                 if (v.material_pay_status == '配送中') {
-                                    $(document).on('click', '.step', function (e) {
-                                        layer.tips('您需要进入材料清单确认收货~~', $(e.target), {
-                                            tips: [1, 'red'],
-                                            tipsMore: true,
-                                            time: 1000
-                                        });
+                                    $(document).on('mouseover','.step span',function () {
+                                        $('.step span').addClass('distribution');
+                                    });
+                                    $(document).on('mouseout','.step',function () {
+                                        $('.step span').removeClass('distribution');
                                     });
                                 }
                             });
@@ -1159,26 +1158,12 @@
                                 work += '</div>';
                                 $(".axis_content").append(work);
                             }
-                            // if (data.data.now_order_step == 17) {
-                            //     stage += '<div class="work_stage complete_stage">';
-                            //     stage += '<div class="stage_title">';
-                            //     stage += '<i></i>';
-                            //     stage += '<b></b>';
-                            //     stage += '<span class="step">油漆工完工</span>';
-                            //     stage += '<a href="javascript:;" target="_blank" class="balance">结算清单</a>';
-                            //     stage += '</div>';
-                            //     stage += '<div class="stage_content">';
-                            //     stage += '</div></div>';
-                            // }
                             $(".axis_content").append(stage);
                             for (var i = 0; i < $(".work_stage .step .status").length; i++) {
                                 if ($(".work_stage .step .status").eq(i).html() == "(undefined)") {
                                     $(".work_stage .step .status").eq(i).empty();
                                 }
                             }
-                            // $(".work_stage").eq(0).addClass("first_stage").find(".stage_title em").remove();
-                            // $(".work_stage").eq(0).find(".stage_title b").before("<i></i>");
-                            // $(".complete_stage").prev().children().find(".step").html("工长上传图片");
                             if ($(".work_stage").length == 17) {
                                 var end = '<div class="axis_end">';
                                 end += '<i></i>';
@@ -1809,7 +1794,7 @@
                 if (value.order_step.indexOf("油漆") != -1) {
                     type = 5;
                 }
-                vrStr += '<span class="step">' + value.order_step + '[' + value.material_pay_status + ']' + '<a href="reservation.html#/materiallist?pos=' + order_id + '&&material_type=' + type + '" target="_blank" class="balance">材料清单</a></span>';
+                vrStr += '<span class="step">' + value.order_step + '&nbsp;&nbsp;[&nbsp;&nbsp;<span>' + value.material_pay_status + '</span>&nbsp;&nbsp;]' + '<a href="reservation.html#/materiallist?pos=' + order_id + '&&material_type=' + type + '" target="_blank" class="balance">材料清单</a></span>';
                 vrStr += '</div>';
                 vrStr += '<div class="stage_content">';
                 vrStr += '<div class="stage_pic clearfix">';
