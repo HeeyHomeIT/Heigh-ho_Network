@@ -200,7 +200,7 @@ if ($verify_result) {//验证成功
             $supplier_fee = $total_fee;
             //TODO 抽点
             //$supplier_fee = $supplier_fee * 0.05;
-            $material_supplier_ids = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_order_material WHERE material_id = ? ", $material_id);
+            $material_supplier_ids = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_order_material WHERE material_id = ? ",[$material_id]);
             $supplier_id = $material_supplier_ids[0]->material_supplier_id;//材料商id
             $supplier_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,available_total FROM hh_wallet_balance WHERE user_id=?',
                 [$supplier_id]);

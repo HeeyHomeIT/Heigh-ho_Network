@@ -16,9 +16,10 @@ class OrderDisplayController extends Controller
     {
         $callback = rq('callback');
         $order_id = rq('order_id');
-        $sel_order_step = DB::select('select order_step from hh_order where order_id=?', [$order_id]);
+        $sel_order_step = DB::select('select order_step,order_status from hh_order where order_id=?', [$order_id]);
         if ($sel_order_step) {
             $order_step = $sel_order_step[0]->order_step;
+            $order_status = $sel_order_step[0]->order_status;
         } else {
             $arr = array("code" => "200",
                 "data" => "",
@@ -27,6 +28,7 @@ class OrderDisplayController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
         $noworder_step = $order_step;
+        $noworder_status = $order_status;
         $woker_who = array();
         $worker_info = array();
         $select = DB::select('select * from hh_order_detail where order_id=?', [$order_id]);
@@ -122,6 +124,7 @@ class OrderDisplayController extends Controller
         if ($select) {
             $arr = array("code" => "000",
                 "data" => array('now_order_step' => $noworder_step,
+                    "noworder_status"=>$noworder_status,
                     "detail" => $select,
                     "worker" => $worker_info
                 )
@@ -130,6 +133,7 @@ class OrderDisplayController extends Controller
         } else {
             $arr = array("code" => "000",
                 "data" => array('now_order_step' => $noworder_step,
+                    "noworder_status"=>$noworder_status,
                     "detail" => $select,
                     "worker" => $worker_info
                 )
