@@ -239,6 +239,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('order/material/userget', 'OrderMaterialController@getMaterialListData');
     //用户确认材料单线下购买
     Route::get('order/material/outMaterialByUser', 'OrderMaterialController@outMaterialByUser');
+    //用户确认材料收货
+    Route::get('order/material/finish', 'OrderMaterialController@finishOrderMaterial');
     //订单详情
     Route::any('order/detail', 'OrderDisplayController@orderDetailsToShow');
     //获取上门预约时间

@@ -699,12 +699,14 @@ class OrderMaterialController extends Controller
             }
             //查询材料订单是否进入支付阶段 默认为未进入
             $pay_status = 0;
-            $sel_material_tbl = DB::select('SELECT pay_status FROM hh_order_material WHERE material_id =?',
+            $sel_material_tbl = DB::select('SELECT pay_status,order_material_status FROM hh_order_material WHERE material_id =?',
                 [$material_id]);
             if ($sel_material_tbl) {
                 $pay_status = $sel_material_tbl[0]->pay_status;
+                $order_material_status = $sel_material_tbl[0]->order_material_status;
             }
-            $pay_status_arr = array("order_pay_type" => $pay_status);
+            $pay_status_arr = array("order_pay_type" => $pay_status,
+                "order_material_status" => $order_material_status);
             $arr = array(
                 "code" => "000",
                 "msg" => "材料单数据",
@@ -894,6 +896,44 @@ class OrderMaterialController extends Controller
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
+        }
+    }
+
+    //用户确认材料收货
+    public function finishOrderMaterial()
+    {
+        $material_id = rq('material_id');
+        $callback = rq('callback');
+        //判断材料订单状态
+        $sel_order_material_type = DB::select('SELECT order_material_status FROM hh_order_material WHERE material_id = ?',
+            [$material_id]);
+        if ($sel_order_material_type) {
+            $order_material_status = $sel_order_material_type[0]->order_material_status;
+            if ($order_material_status == 2) {
+                //修改材料订单状态
+                $upd_order_material = DB::update('UPDATE hh_order_material SET order_material_status =? WHERE material_id = ?',
+                    [3, $material_id]);
+                $arr = array(
+                    "code" => "000",
+                    "msg" => "确认成功",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            } else {
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "材料订单当前状态不支持确认收货",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        } else {
+            $arr = array(
+                "code" => "200",
+                "msg" => "材料订单不存在",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
         }
     }
 
