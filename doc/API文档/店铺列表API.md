@@ -86,14 +86,14 @@ msg           失败
 ```
 data
 可选参数
-user_id             user_id
-servicearea         servicearea 服务区域筛选条件数组的key   
-workernum           workernum 工人数量筛选条件数组的key
-servicetag          servicetag 风格标签筛选条件数组的key
-shopage             shopage 店铺年限筛选条件数组的key
-order               order 排序 0 1 2
-page                page  第几页
-limit               limit 每页显示几条数据
+user_id             用户id
+servicearea         服务区域筛选条件数组的key   
+workernum           工人数量筛选条件数组的key
+servicetag          风格标签筛选条件数组的key
+shopage             店铺年限筛选条件数组的key
+order               排序 0 1 2
+page                第几页
+limit               每页显示几条数据
 
 callback            callback
 ```
@@ -109,7 +109,8 @@ data         {
                    shop_id            shop_id
                    shopper_id         shopper_id                                //店长工人id
                    shop_name          shop_name
-                   authentication     authentication 数组                       //认证
+                   authentication     authentication 数组                       //认证 1平台实名认证 2保证金 3团队保险 4两年质保维修
+
                    opentime           opentime
                    servicetag         servicetag 数组                     
                    servicearea        servicearea 数组                          //服务区域

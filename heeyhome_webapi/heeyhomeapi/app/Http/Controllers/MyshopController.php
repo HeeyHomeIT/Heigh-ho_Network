@@ -51,20 +51,6 @@ class MyshopController extends Controller
             $select[0]->servicetag=explode(',',$select[0]->servicetag);
             $select[0]->servicearea=explode(',',$select[0]->servicearea);
             $authentication=explode(',',$select[0]->authentication);
-            foreach($authentication as $k=>$v){
-                switch ($v){
-                    case 1: $authentication[$k]='api/public/smrz.png';
-                        break;
-                    case 2: $authentication[$k]='api/public/bzj.png';
-                        break;
-                    case 3: $authentication[$k]='api/public/tdbx.png';
-                        break;
-                    case 4: $authentication[$k]='api/public/bx.png';
-                        break;
-                    default: $authentication[$k]='';
-                        break;
-                }
-            }
             $select[0]->authentication=$authentication;
             $score=DB::select('select projectquality,serviceattitude,overallmerit from hh_score where shop_id=?',[$shop_id]);
             if($score){

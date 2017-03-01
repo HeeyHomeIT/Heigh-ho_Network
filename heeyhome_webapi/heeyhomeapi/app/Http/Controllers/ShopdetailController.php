@@ -23,20 +23,6 @@ class ShopdetailController extends Controller
         $servicetag=explode(',',$shop_info[0]->servicetag);
         $servicearea=explode(',',$shop_info[0]->servicearea);
         //dd($authentication);
-        foreach($authentication as $k=>$v){
-            switch ($v){
-                case 1: $authentication[$k]='api/public/smrz.png';
-                    break;
-                case 2: $authentication[$k]='api/public/bzj.png';
-                    break;
-                case 3: $authentication[$k]='api/public/tdbx.png';
-                    break;
-                case 4: $authentication[$k]='api/public/bx.png';
-                    break;
-                default: $authentication[$k]='';
-                    break;
-            }
-        }
         $shop_info[0]->authentication=$authentication;
         $shop_info[0]->servicetag=$servicetag;
         $shop_info[0]->servicearea=$servicearea;
