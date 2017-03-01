@@ -18,8 +18,6 @@ define(['app'], function(app) {
 			 * 初始化404页面
 			 */
 			initErrorEvent:function(){
-				/* 去掉头部多余的部分 */
-				$("#menuNavOuter").remove();
 				/* 返回上一页 */
 				$(".error_detail .error_button .back").on("click",function() {
 					history.back();

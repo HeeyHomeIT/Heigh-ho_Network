@@ -3111,3 +3111,7 @@ a:focus {
     right: 78px;
     position: absolute;
 }
+
+.main_contentWrap {
+    min-height: 220px;
+}

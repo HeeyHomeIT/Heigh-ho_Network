@@ -129,14 +129,16 @@
 }
 
 #selfshop_top .shop_information .shop_name img {
-    height: 18px
+    height: 18px;
+    margin-right: 5px
 }
 
 #selfshop_top .shop_information .signature {
     color: #A5A5A5;
     font-family: FZLTHJW;
     font-size: 14px;
-    margin-bottom: 13px
+    margin-bottom: 13px;
+    width: 342px
 }
 
 #selfshop_top .shop_information .signature h3 {
@@ -146,7 +148,12 @@
     margin: 0
 }
 
+.scontent {
+    height: 335px;
+}
+
 #selfshop_top .shop_information .shop_introduce {
+    width: 342px;
     padding: 10px 0
 }
 
@@ -244,7 +251,7 @@
 #selfshop_top .shop_information .shop_button {
     position: relative;
     padding-top: 7px;
-    margin-left: -20px
+    margin-left: -2px
 }
 
 #selfshop_top .shop_information .shop_order input {
@@ -286,6 +293,10 @@
     border: 0;
     cursor: pointer;
     border-radius: 4px
+}
+
+#selfshop_top .shop_information .shop_like #JReservation {
+    margin-left: 10px;
 }
 
 #selfshop_top .shop_information .shop_like .collect_shop:hover {

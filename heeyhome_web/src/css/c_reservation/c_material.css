@@ -197,7 +197,7 @@ body {
     background-color: #fff;
     position: absolute;
     top: 11.5px;
-    left: 20px;
+    left: 21px;
 }
 
 .materialList_wrap .materialList_cont .material_cardtable table .set_default em.defalut_ico  {
@@ -205,7 +205,7 @@ body {
 }
 
 .materialList_wrap .materialList_cont .material_cardtable table tbody .set_default em {
-    top: 15.5px;
+    top: 17px;
 }
 
 .materialList_wrap .materialList_cont .settlement {
