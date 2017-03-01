@@ -67,7 +67,7 @@ if ($verify_result) {//验证成功
         //logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
     }
 
-    $sel_order_pay_each_istrue = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ? ', [$out_trade_no]);
+    $sel_order_pay_each_istrue = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ? AND pay_status = ?', [$out_trade_no,1]);
     if ($sel_order_pay_each_istrue) {
         //更新订单为已支付状态
         $upd_order_pay_each = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_pay_each SET pay_status = 3 WHERE pay_id = ?', [$out_trade_no]);
