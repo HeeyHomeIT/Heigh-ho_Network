@@ -12,11 +12,11 @@
      */
     var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-    var TAGSURL = 'http://www.heeyhome.com/api/public/panorama/gettags'; // 筛选条件标签显示
-    var VRCONTENTURL = 'http://www.heeyhome.com/api/public/panorama'; // 虚拟现实
-    var VRVIEWURL = 'http://www.heeyhome.com/api/public/panorama/scan'; // 虚拟现实浏览量
-    var VRLIKEURL = 'http://www.heeyhome.com/api/public/panorama/like'; // 虚拟现实点赞量
-    var VRCOLLECTURL = 'http://www.heeyhome.com/api/public/panorama/collect'; // 虚拟现实收藏
+    var TAGSURL = '/api/public/panorama/gettags'; // 筛选条件标签显示
+    var VRCONTENTURL = '/api/public/panorama'; // 虚拟现实
+    var VRVIEWURL = '/api/public/panorama/scan'; // 虚拟现实浏览量
+    var VRLIKEURL = '/api/public/panorama/like'; // 虚拟现实点赞量
+    var VRCOLLECTURL = '/api/public/panorama/collect'; // 虚拟现实收藏
 
     var TOTAL; // 后台数据总数
     var MAXROWS; //总页数

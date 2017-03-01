@@ -1,7 +1,7 @@
 define(['app'], function (app) {
 
-    var BANNERURL = 'http://www.heeyhome.com/api/public/banner'; // banner显示
-    var VRURL = 'http://www.heeyhome.com/api/public/panorama'; // 虚拟现实显示
+    var BANNERURL = '/api/public/banner'; // banner显示
+    var VRURL = '/api/public/panorama'; // 虚拟现实显示
 
     (function () {
         /*定义一个类*/
