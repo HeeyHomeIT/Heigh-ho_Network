@@ -98,6 +98,14 @@
     var MSG5 = "详细地址不能为空";
     var MSG6 = "施工图片不能为空";
 
+    // 店铺认证提示文字
+    var certification = {
+        '1': "平台实名认证",
+        '2': "保证金",
+        '3': "团队保险",
+        '4': "两年质保维修"
+    };
+
     var USERID = $.cookie("userId"); // 得到userid
     if (USERID != null && USERID != "" && USERID != undefined) {
         USERID = $.base64.decode($.cookie("userId"));
@@ -2107,7 +2115,9 @@
                             $('#shop_name').html('无');
                         }
                         $.each(data.data.authentication, function (i, v) {
-                            $(".store_name").append('<img src="' + data.data.authentication[i] + '">')
+                            // $(".store_name").append('<img src="' + data.data.authentication[i] + '">')
+                            $('.store_name').append('<span title=' + certification[v] + '></span>');
+                            $('.store_name span').eq(i).css('background-position', '-' + 20 * (v - 1) + 'px 0');
                         });
                         $('#team_person').html(data.data.shop_workernum);//获取我的团队总人数
                         $('#shop_scan').html(data.data.shop_scan);//获取浏览量
@@ -3842,7 +3852,8 @@
                         //获取店铺资料的店铺认证
                         var hLen = data.data.authentication.length;
                         for (var i = 0; i < hLen; i++) {
-                            $('#shop_head').append('<img class="fl" src=' + data.data.authentication[i] + '>');
+                            $('#shop_head').append('<span title=' + certification[data.data.authentication[i]] + '></span>');
+                            $('#shop_head span').eq(i).css('background-position', '-' + 20 * (data.data.authentication[i] - 1) + 'px 0');
                         }
                         //获取店铺资料的本店工艺(最多只显示五张)
                         if (data.data.shop_technics.length >= 5) {

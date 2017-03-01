@@ -35,7 +35,13 @@
     } else {
         USERTYPE = "";
     }
-
+    // 店铺认证提示文字
+    var certification = {
+        '1': "平台实名认证",
+        '2': "保证金",
+        '3': "团队保险",
+        '4': "两年质保维修"
+    };
     /*定义一个类*/
     var shopDetailWrap = {
         /**
@@ -832,7 +838,7 @@
             var vrStr = '<div class="shop_name"><h2>' + ((value.shop_name != null && value.shop_name != "") ? value.shop_name : '无') + '</h2>';
             $.each(value.authentication, function (i, v) {
                 if (v != null && v != '') {
-                    vrStr += '<img src="' + v + '">';
+                    vrStr += '<span style="background-position:' + (-20) * (v - 1) + 'px 0" title=' + certification[v] + '></span>';
                 }
             });
             vrStr += '</div><div class="signature"><h3>' + ((value.shop_describe != null && value.shop_describe != "") ? value.shop_describe : '无') + '</h3></div>';

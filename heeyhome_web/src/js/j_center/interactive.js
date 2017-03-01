@@ -54,6 +54,13 @@
     } else {
         USERID = "";
     }
+    // 店铺认证提示文字
+    var certification = {
+        '1': "平台实名认证",
+        '2': "保证金",
+        '3': "团队保险",
+        '4': "两年质保维修"
+    };
     /*定义一个类*/
     var centerWrap = {
         /**
@@ -1862,7 +1869,7 @@
                 vrStr += '</div>';
                 vrStr += '</div>';
             } else if (value.order_step.indexOf("剪裁") != -1) {
-                vrStr += '<span class="step">' + value.order_step + '<a href="reservation.html#/advancelist?pos=1488271901598655&order_step_type=18" target="_blank" class="balance prepayment">预支付单</a></span>';
+                vrStr += '<span class="step">' + value.order_step + '<a href="reservation.html#/advancelist?pos=' + value.order_id + '&order_step_type=18" target="_blank" class="balance prepayment">预支付单</a></span>';
                 vrStr += '</div>';
                 vrStr += '<div class="stage_content">';
                 vrStr += '<div class="stage_pic clearfix">';
@@ -2420,11 +2427,11 @@
             }
             vrStr += '		</div><!--left_img-->';
             vrStr += '		<div class="left_detail fl">';
-            vrStr += '	<p class="manager_shop">' + ((value.shop_name != null && value.shop_name != "") ? value.shop_name : '无') + '<i class="iconfont first_i">';
+            vrStr += '	<p class="manager_shop">' + ((value.shop_name != null && value.shop_name != "") ? value.shop_name : '无') + '';
             $.each(value.authentication, function (s, r) {
-                vrStr += '<img src="' + r + '">';
+                vrStr += '		<span style="background-position:' + (-20) * (r - 1) + 'px 0" title=' + certification[r] + '></span>';
             });
-            vrStr += '	</i></p>';
+            vrStr += '	</p>';
             vrStr += '	<p>常驻地址：<span>' + ((value.shop_address != null && value.shop_address != "") ? value.shop_address : '无') + '</span></p>';
             vrStr += '<p>服务范围：';
             $.each(value.servicearea, function (m, n) {

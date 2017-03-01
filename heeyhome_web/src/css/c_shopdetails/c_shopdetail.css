@@ -133,6 +133,18 @@
     margin-right: 5px
 }
 
+#selfshop_top .shop_information .shop_name span {
+    width: 20px;
+    height: 22px;
+    display: inline-block;
+    background: url("../img/certification.png") no-repeat;
+    margin-right: 10px;
+}
+
+#selfshop_top .shop_information .shop_name span:hover {
+    cursor: pointer;
+}
+
 #selfshop_top .shop_information .signature {
     color: #A5A5A5;
     font-family: FZLTHJW;

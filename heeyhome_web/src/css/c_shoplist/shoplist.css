@@ -152,6 +152,18 @@
     height: 18px
 }
 
+#foreman_shop .shop_content .shop_box .right_summary .shop_name span {
+    width: 20px;
+    height: 22px;
+    display: inline-block;
+    background: url("../img/certification.png") no-repeat;
+    margin-left: 5px;
+}
+
+#foreman_shop .shop_content .shop_box .right_summary .shop_name span:hover {
+    cursor: pointer;
+}
+
 #foreman_shop .shop_content .shop_box .right_summary .shop_introduce {
     position: relative;
     margin-bottom: 25px
@@ -187,7 +199,7 @@
 }
 
 #foreman_shop .shop_content .shop_box .shop_icon div em {
- 	display: inline-block;
+    display: inline-block;
     width: 29px;
     height: 29px;
     vertical-align: middle;
@@ -295,12 +307,12 @@
 }
 
 .nullpage i {
-	position: relative;
-   	background: url(../img/noinfo.png) no-repeat;
+    position: relative;
+    background: url(../img/noinfo.png) no-repeat;
     width: 86px;
     height: 85px;
     display: inline-block;
-    
+
 }
 
 .nullpage span {
