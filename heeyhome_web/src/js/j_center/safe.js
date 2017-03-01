@@ -9,7 +9,7 @@
      */
     var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-    var BASEURL = 'http://www.heeyhome.com/api/public/';
+    var BASEURL = '/api/public/';
 
     var USERDATAURL = BASEURL + 'personal/userinfo'; // 用户个人资料
     var SAFELEVELURL = BASEURL + 'personal/safe'; // 安全等级

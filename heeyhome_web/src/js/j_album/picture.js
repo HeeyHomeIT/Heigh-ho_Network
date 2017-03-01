@@ -8,7 +8,7 @@ var picList = [];
 (function () {
 
 
-    var TECHNICSURL = "http://www.heeyhome.com/api/public/personal/myshop/technics"; // 显示店铺工艺列表信息接口
+    var TECHNICSURL = "/api/public/personal/myshop/technics"; // 显示店铺工艺列表信息接口
 
     /*定义一个类*/
     var pictureWrap = {

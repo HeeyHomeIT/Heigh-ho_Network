@@ -9,11 +9,11 @@
      */
     var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-    var READURL = 'http://www.heeyhome.com/api/public/personal/drive_address'; // 读取收货地址信息接口
-    var ADDURL = 'http://www.heeyhome.com/api/public/personal/drive_address/add'; // 添加收货地址接口
-    var DELETEURL = 'http://www.heeyhome.com/api/public/personal/drive_address/del'; // 删除收货地址信息接口
-    var EDITORURL = 'http://www.heeyhome.com/api/public/personal/drive_address/change'; // 编辑收货地址信息接口
-    var SETDEFAULTURL = 'http://www.heeyhome.com/api/public/personal/drive_address/setdefault'; // 设置默认收货地址接口
+    var READURL = '/api/public/personal/drive_address'; // 读取收货地址信息接口
+    var ADDURL = '/api/public/personal/drive_address/add'; // 添加收货地址接口
+    var DELETEURL = '/api/public/personal/drive_address/del'; // 删除收货地址信息接口
+    var EDITORURL = '/api/public/personal/drive_address/change'; // 编辑收货地址信息接口
+    var SETDEFAULTURL = '/api/public/personal/drive_address/setdefault'; // 设置默认收货地址接口
 
     var ADDTEXT = "添加";
     var EDITORTEXT = "保存";

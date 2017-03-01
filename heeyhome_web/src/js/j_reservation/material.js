@@ -10,10 +10,10 @@
      */
     var HHIT_MATERIALAPP = angular.module('heeyhomeApp');
 
-    var USERGETURL = "http://www.heeyhome.com/api/public/order/material/userget"; // 用户材料订单数据获取API
-    var PAYURL = "http://www.heeyhome.com/api/public/alipay/pay"; // 支付宝支付
-    var OUTURL = "http://www.heeyhome.com/api/public/order/material/outMaterialByUser"; // 用户确认材料单线下购买
-    var FINISHURL = "http://www.heeyhome.com/api/public//order/material/finish"; // 用户确认材料收货
+    var USERGETURL = "/api/public/order/material/userget"; // 用户材料订单数据获取API
+    var PAYURL = "/api/public/alipay/pay"; // 支付宝支付
+    var OUTURL = "/api/public/order/material/outMaterialByUser"; // 用户确认材料单线下购买
+    var FINISHURL = "/api/public//order/material/finish"; // 用户确认材料收货
 
     /*定义一个类*/
     var materialListWrap = {

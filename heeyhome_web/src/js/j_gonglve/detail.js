@@ -11,7 +11,7 @@
     var dHash = window.location.hash;//这里用search获取不到值，因为？前面有#号，所以用字符串截取hash的办法
     var idHash = dHash.substring(12, dHash.length);//截取字符串?后面的值
 
-    var DETAILURL = "http://www.heeyhome.com/api/public/jzbk/info?callback=JSON_CALLBACK"; // 获取文章详情接口
+    var DETAILURL = "/api/public/jzbk/info?callback=JSON_CALLBACK"; // 获取文章详情接口
 
     /*定义一个类*/
     var wikipedia = {

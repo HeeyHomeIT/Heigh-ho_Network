@@ -10,8 +10,8 @@
      */
     var HHIT_ADVANCEAPP = angular.module('heeyhomeApp');
 
-    var SELDATAURL = "http://www.heeyhome.com/api/public/order/aeckonandactual/seldata"; // 预约订单接口
-    var PAYURL = "http://www.heeyhome.com/api/public/alipay/pay"; // 支付宝支付
+    var SELDATAURL = "/api/public/order/aeckonandactual/seldata"; // 预约订单接口
+    var PAYURL = "/api/public/alipay/pay"; // 支付宝支付
     var FLAG = true;
 
     /*定义一个类*/
