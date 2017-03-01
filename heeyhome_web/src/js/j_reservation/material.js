@@ -13,6 +13,7 @@
     var USERGETURL = "http://www.heeyhome.com/api/public/order/material/userget"; // 用户材料订单数据获取API
     var PAYURL = "http://www.heeyhome.com/api/public/alipay/pay"; // 支付宝支付
     var OUTURL = "http://www.heeyhome.com/api/public/order/material/outMaterialByUser"; // 用户确认材料单线下购买
+    var FINISHURL = "http://www.heeyhome.com/api/public//order/material/finish"; // 用户确认材料收货
 
     /*定义一个类*/
     var materialListWrap = {
@@ -108,21 +109,32 @@
                         $('.listnumber span').remove();
                         $('.listnumber').append('<b>已自行购买材料</b>');
                     }
-                    $("#Jpayment").val("已支付").addClass("alreadyPaid");
-                    $(".selfPurchase").addClass("ap");
-                    $("#checkYt").prop("checked", true);
-                    $(".explain").find("em").addClass("defalut_ico");
-                    $(".explain").find("label").addClass("cursor");
-                    $("#nocheck").addClass("yes_check");
-                    pc.spliceMaterialsDataEvent(data.data, true); // 初始值
+                    if (data.data.order_material_status == 2) {//配送中
+                        $("#Jpayment").val("确认收货");
+                        $("#Jpayment").click(function () {
+                            getDataForAjaxHandler.initConfirmMaterialEvent();
+                        });
+
+                    } else if (data.data.order_material_status == 3) {//确认配送了
+                        $("#Jpayment").val("已收货").addClass("alreadyPaid");
+                    } else {
+                        $("#Jpayment").val("已支付").addClass("alreadyPaid");
+                    }
                     $(document).on("click", ".titlelist input", function () {
                         var $this = $(this);
                         pc.spliceRelevantMaterialsEvent(data.data, $this.data("brand"), $this, true);
                         $this.parents("li").siblings().find("i").removeClass("rep_radiao_check");
                         $this.siblings("i").addClass("rep_radiao_check");
                     });
+                    pc.spliceMaterialsDataEvent(data.data, true); // 初始值
+                    $("#checkYt").prop("checked", true);
                     self.initTotalSumEvent(); // 求总价
                     $('.Jnum').html($('.shows').length);
+                    $(".explain").find("em").addClass("defalut_ico");
+                    $(".explain").find("label").addClass("cursor");
+                    $("#nocheck").addClass("yes_check");
+                    $(".selfPurchase").addClass("ap");
+
                 }
             });
         },
@@ -234,6 +246,29 @@
 
             });
             $(".Jtotal").html(total);
+        },
+        /**
+         * 确认材料收货
+         */
+        initConfirmMaterialEvent: function () {
+            var orderId = getUrlParamHandler.getUrlParam("pos");
+            var type = getUrlParamHandler.getUrlParam("material_type");
+            $.ajax({
+                type: "get",
+                url: FINISHURL,
+                async: true,
+                dataType: "jsonp",
+                data: {
+                    order_id: orderId,
+                    material_type: type
+                },
+                success: function (data) {
+                    layer.msg(data.msg);
+                    location.reload();
+                },
+                error: function (data) {
+                }
+            });
         }
 
     };
@@ -250,7 +285,7 @@
             var vrStr = '';
 
             $.each(value, function (i, v) {
-                if (i != "order_pay_type") {
+                if (i != "order_pay_type" && i != "order_material_status") {
                     var key, counter = 0;
                     for (key in v) {
                         counter++;
@@ -398,7 +433,7 @@
         spliceRelevantMaterialsEvent: function (value, brandId, element, flag) {
             var vrStr = '';
             $.each(value, function (i, v) {
-                if (i != "order_pay_type") {
+                if (i != "order_pay_type" && i != "order_material_status") {
                     $.each(v, function (item, val) {
                         if (val[0].data[0].brand_id == brandId) {
                             console.log(val);
