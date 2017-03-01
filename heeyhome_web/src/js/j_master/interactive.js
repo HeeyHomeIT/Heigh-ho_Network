@@ -12,7 +12,7 @@
      */
     var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-    var BASEURL = 'http://www.heeyhome.com/api/public/';
+    var BASEURL = '/api/public/';
 
     var MASTERDATAURL = BASEURL + 'personal/foremaninfo?callback=JSON_CALLBACK'; // 工长个人资料
     var USERIMGURL = BASEURL + 'personal/portrait'; // 用户头像
@@ -297,8 +297,7 @@
         initSuccessCase: function () {
             HHIT_CENTERAPP.controller('success_caseCtrl', ['$scope', '$http', function ($scope, $http) {
                 /* 去掉头部多余的部分 */
-                $("#menuNavOuter").remove();
-                $("#headerWrapper").remove();
+                // $("#headerWrapper").remove();
                 var id;
                 var shopid;
                 var case_id = sessionStorage.getItem("case_id");
@@ -486,6 +485,7 @@
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
+                            console.log(data.data);
                             $(".staff_bg img").attr("src", "" + data.data.portrait_img + "");
                             $(".staff_top_info .wname .span_val").html(data.data.name);
                             $(".staff_top_info .wage .span_val").html(data.data.age);
@@ -635,7 +635,6 @@
                 var type;
                 var area;
                 var src;
-                $("#menuNavOuter").remove();
                 var orderId = sessionStorage.getItem("orderId");
                 $.ajax({
                     type: "get",
@@ -813,7 +812,7 @@
                 data: {
                     shop_id: $.base64.decode($.cookie("userShopId")),
                     page: 1,
-                    limit: 3
+                    limit: 4
                 },
                 success: function (data) {
                     if (data && data.code == '000') {
@@ -847,7 +846,7 @@
                         OrderPageHandler.pageContentEvent(ORDERTOTAL, ORDERURL, {
                             shop_id: $.base64.decode($.cookie("userShopId")),
                             page: 1,
-                            limit: 3
+                            limit: 4
                         });
                         /* 我的订单点击小三角事件 */
                         arrowClick.getEvent();
@@ -880,7 +879,6 @@
     getOrderProcessHandler = {
         getInfoEvent: function () {
             HHIT_CENTERAPP.controller('order', ['$scope', '$http', function ($scope, $http) {
-                $('#menuNavOuter').remove();
                 /* 年月日三级联动 */
                 new YMDselect('year1', 'month1', 'day1');
 
@@ -1448,7 +1446,6 @@
     getOrderBudgetHandler = {
         getInfoEvent: function () {
             HHIT_CENTERAPP.controller('edit_sheetCtrl', ['$scope', '$http', function ($scope, $http) {
-                $('#menuNavOuter').remove();
                 var orderId = sessionStorage.getItem("orderId");
                 var step;
                 var num = sessionStorage.getItem("num");
@@ -3662,7 +3659,12 @@
                             'backgroundSize': '100% 100%'
                         });
                         $(".staff_name .name").val(data.data.name); //工人姓名
-                        $(".staff_name .sex option:selected").val(data.data.sex); //工人性别   1：男生 2：女生
+                        if (data.data.sex == 1) {
+                            $('#man').attr('selected', 'selected');
+                        } else {
+                            $('#women').attr('selected', 'selected');
+                        }
+
                         $(".staff_name .age").val(data.data.age); //工人年龄
                         $(".staff_home .place").val(data.data.birthplace); //工人籍贯
                         $(".staff_date input").val(data.data.worktime); //工人从业年限
@@ -3889,7 +3891,7 @@
                     dataType: "jsonp",
                     success: function (data) {
                         if (data != null && data.code == '000') {
-                            var tag = '<div class="tag_content">';
+                            var tag = '<div class="tag_content clearfix">';
                             $.each(data.data, function (i, v) {
                                 tag += '<span>' + v.stylename + '</span>';
                             });
@@ -5062,7 +5064,7 @@
     OrderPageHandler = {
         pageContentEvent: function (total, url, data) {
             $(".page_div3").empty().paging({
-                total: Math.ceil(total / 3), //全部页数
+                total: Math.ceil(total / 4), //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
                 centerBgColor: "#fff",
                 centerFontColor: "#000",
