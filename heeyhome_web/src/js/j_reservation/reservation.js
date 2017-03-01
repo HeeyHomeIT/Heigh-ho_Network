@@ -10,14 +10,14 @@
      */
     var HHIT_RESERVATIONAPP = angular.module('heeyhomeApp');
 
-    var FOREMANINFOURL = "http://www.heeyhome.com/api/public/personal/foremaninfo"; // 工长信息接口
-    var PORTRAITURL = "http://www.heeyhome.com/api/public/personal/portrait"; // 读取用户头像接口
-    var READURL = 'http://www.heeyhome.com/api/public/personal/drive_address'; // 读取收货地址信息接口
-    var ADDURL = 'http://www.heeyhome.com/api/public/personal/drive_address/add'; // 添加收货地址接口
-    var CALRESULTURL = 'http://www.heeyhome.com/api/public/costcalculator/result/get'; // 获取收藏的成本计算器结果接口
-    var PRODUCEURL = 'http://www.heeyhome.com/api/public/order/client/produce'; // 预约订单接口
-    var WORKERURL = 'http://www.heeyhome.com/api/public/myworkers/workerinfo'; // 工人详细信息接口
-    var ORDERURL = 'http://www.heeyhome.com/api/public/order/shop/list'; // 我的订单
+    var FOREMANINFOURL = "/api/public/personal/foremaninfo"; // 工长信息接口
+    var PORTRAITURL = "/api/public/personal/portrait"; // 读取用户头像接口
+    var READURL = '/api/public/personal/drive_address'; // 读取收货地址信息接口
+    var ADDURL = '/api/public/personal/drive_address/add'; // 添加收货地址接口
+    var CALRESULTURL = '/api/public/costcalculator/result/get'; // 获取收藏的成本计算器结果接口
+    var PRODUCEURL = '/api/public/order/client/produce'; // 预约订单接口
+    var WORKERURL = '/api/public/myworkers/workerinfo'; // 工人详细信息接口
+    var ORDERURL = '/api/public/order/shop/list'; // 我的订单
 
     var PHONEREG = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/; // 验证手机号正则表达式
 

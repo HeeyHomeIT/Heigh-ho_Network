@@ -12,13 +12,13 @@
 	 */
 	var HHIT_CENTERAPP = angular.module('heeyhomeApp');
 
-	var CONFIRM = 'http://www.heeyhome.com/api/public/verification/confirm'; // 确认账号
-	var INFORMATION = 'http://www.heeyhome.com/api/public/personal/userinfo'; // 用户信息
-	var RESET = 'http://www.heeyhome.com/api/public/resetpassword'; // 重置密码
-	var PHONE = 'http://www.heeyhome.com/api/public/verification/phoneverify'; // 手机验证
-	var EMAIL = 'http://www.heeyhome.com/api/public/verification/emailverify'; // 邮箱验证
-	var PHCODE = 'http://www.heeyhome.com/api/public/sendsms'; // 手机验证码
-	var EMCODE = 'http://www.heeyhome.com/api/public/sendmail'; // 邮箱验证码
+	var CONFIRM = '/api/public/verification/confirm'; // 确认账号
+	var INFORMATION = '/api/public/personal/userinfo'; // 用户信息
+	var RESET = '/api/public/resetpassword'; // 重置密码
+	var PHONE = '/api/public/verification/phoneverify'; // 手机验证
+	var EMAIL = '/api/public/verification/emailverify'; // 邮箱验证
+	var PHCODE = '/api/public/sendsms'; // 手机验证码
+	var EMCODE = '/api/public/sendmail'; // 邮箱验证码
 	/**
 	* 移动号码归属地支持号段:134 135 136 137 138 139 147 150 151 152 157 158 159 178  182 183 184 187 188
 	* 联通号码归属地支持号段:130 131 132  145 155 156 176  186 
@@ -61,7 +61,6 @@
 		sureAccount : function() {
 			HHIT_CENTERAPP.controller('processOneCtrl', ['$scope', '$http', '$state',function ($scope, $http,$state) {
 				$("#headerWrapper").remove();
-				$("#menuNavOuter").remove();
                 /* details */
                 $(".guide span").eq(0).addClass("active").siblings().removeClass("active");//第一页的active
 				$(".process_1 li input").on("click",function() { //选择验证方式
@@ -77,7 +76,6 @@
 		quickReset : function() {
 			HHIT_CENTERAPP.controller('processTwoCtrl', ['$scope', '$http', '$state',function ($scope, $http,$state) {
 				$("#headerWrapper").remove();
-				$("#menuNavOuter").remove();
 				$(".guide span").eq(1).addClass("active").siblings().removeClass("active");//第二页的active
 				var style = sessionStorage.getItem("style");			
 				if(style == "phone") {
@@ -101,7 +99,6 @@
 		newPassword : function() {
 			HHIT_CENTERAPP.controller('processThreeCtrl', ['$scope', '$http', '$state',function ($scope, $http,$state) {
 				$("#headerWrapper").remove();
-				$("#menuNavOuter").remove();
 				$(".guide span").eq(2).addClass("active").siblings().removeClass("active");//第三页的active
 				/* 确定按钮的点击 */				
 				complete.backLogin();

@@ -4,7 +4,7 @@ define(['app'], function(app) {
 		var roomPlanObj = {};
 		var Msg1 = "未保存工艺";
 		var Msg2 = "已保存工艺";
-		var COUNTURL = 'http://www.heeyhome.com/api/public/costcalculator/count'; // 成本计算器接口
+		var COUNTURL = '/api/public/costcalculator/count'; // 成本计算器接口
 
 		var indexCalWrap = {
 			init: function() {

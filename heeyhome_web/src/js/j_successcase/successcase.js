@@ -10,7 +10,7 @@
      */
     var HHIT_SUCCESSCASEAPP = angular.module('heeyhomeApp');
 
-    var SUCCESSURL = "http://www.heeyhome.com/api/public/myworkcase"; // 显示工长添加的案例列表信息接口
+    var SUCCESSURL = "/api/public/myworkcase"; // 显示工长添加的案例列表信息接口
 
     /*定义一个类*/
     var successCaseWrap = {

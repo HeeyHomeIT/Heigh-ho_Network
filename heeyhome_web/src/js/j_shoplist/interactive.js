@@ -12,8 +12,8 @@
      */
     var HHIT_SHOPLISTAPP = angular.module('heeyhomeApp');
 
-    var TAGSURL = "http://www.heeyhome.com/api/public/shoplist/gettags"; // 获取工长店铺筛选接口
-    var SHOPLISTURL = "http://www.heeyhome.com/api/public/shoplist"; // 获取工长店铺列表信息接口
+    var TAGSURL = "/api/public/shoplist/gettags"; // 获取工长店铺筛选接口
+    var SHOPLISTURL = "/api/public/shoplist"; // 获取工长店铺列表信息接口
 
     var TOTAL; // 后台数据总数
     var MAXROWS; //总页数

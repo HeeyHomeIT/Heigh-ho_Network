@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 	
-	var USERINFOURL = "http://www.heeyhome.com/api/public/personal/userinfo"; // 读取用户信息接口
+	var USERINFOURL = "/api/public/personal/userinfo"; // 读取用户信息接口
 	var UID = $.cookie("userId"); // 得到userid
     if(UID!=null && UID !="" && UID !=undefined){
     	UID = $.base64.decode(UID);

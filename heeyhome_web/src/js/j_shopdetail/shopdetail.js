@@ -10,15 +10,15 @@
      */
     var HHIT_SHOPDETAILAPP = angular.module('heeyhomeApp');
 
-    var SHOPDATAURL = "http://www.heeyhome.com/api/public/shopinfo"; // 店铺详情信息接口
-    var TECHNICSURL = "http://www.heeyhome.com/api/public/personal/myshop/technics"; // 显示店铺工艺列表信息接口
-    var SUCCESSURL = "http://www.heeyhome.com/api/public/myworkcase"; // 显示工长添加的案例列表信息接口
-    var WORKSURL = "http://www.heeyhome.com/api/public/myworkers"; // 工人列表信息接口
-    var WORKINFOURL = "http://www.heeyhome.com/api/public/myworkers/workerinfo"; // 工人详细信息接口
-    var SHOPCOLURL = "http://www.heeyhome.com/api/public/shop/collect"; // 获取工长店铺收藏店铺接口
-    var SHOPWAGEURL = "http://www.heeyhome.com/api/public/shopwages"; // 店铺工价接口
-    var USERINFOURL = "http://www.heeyhome.com/api/public/personal/userinfo"; // 读取用户信息接口
-    var AUTHURL = 'http://www.heeyhome.com/api/public/personal/safe/auth'; // 获取身份验证状态
+    var SHOPDATAURL = "/api/public/shopinfo"; // 店铺详情信息接口
+    var TECHNICSURL = "/api/public/personal/myshop/technics"; // 显示店铺工艺列表信息接口
+    var SUCCESSURL = "/api/public/myworkcase"; // 显示工长添加的案例列表信息接口
+    var WORKSURL = "/api/public/myworkers"; // 工人列表信息接口
+    var WORKINFOURL = "/api/public/myworkers/workerinfo"; // 工人详细信息接口
+    var SHOPCOLURL = "/api/public/shop/collect"; // 获取工长店铺收藏店铺接口
+    var SHOPWAGEURL = "/api/public/shopwages"; // 店铺工价接口
+    var USERINFOURL = "/api/public/personal/userinfo"; // 读取用户信息接口
+    var AUTHURL = '/api/public/personal/safe/auth'; // 获取身份验证状态
 
 
     var worksObj = {};
@@ -845,7 +845,7 @@
                         vrStr += '<span>--</span>';
                     }
                 });
-                vrStr += '<input type="button" value="查看地图">';
+                // vrStr += '<input type="button" value="查看地图">';
             } else {
                 vrStr += '<span>无</span>';
             }
