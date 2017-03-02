@@ -32,8 +32,9 @@
         initEvent: function () {
             var self = this;
             self.initRemoveHeadEvent();
-            self.initJudgementEvent();
             self.initGetInfoEvent();
+            self.initJudgementEvent();
+
 
         },
         /**
@@ -81,43 +82,46 @@
          * 获取用户退款信息
          */
         initGetInfoEvent: function () {
-            var order_id = sessionStorage.getItem("orderid");
-            $.ajax({
-                url: GETREFUNDINFOURL,
-                type: "GET",
-                async: true,
-                dataType: 'jsonp',
-                data: {
-                    order_id: order_id
-                },
-                success: function (data) {
-                    if (data != null && data.code == '000') {
-                        console.log(data.data);
-                        $('#order_number').html(data.data.order_id);//获取订单编号
-                        if (data.data.order_step == '17') {
-                            $('#order_step').html('油漆工完工阶段');//获取订单步骤
+            HHIT_SHOPLISTAPP.controller('refund1', ['$scope', '$state','$timeout',function ($scope, $state,$timeout) {
+                var order_id = sessionStorage.getItem("orderid");
+                $.ajax({
+                    url: GETREFUNDINFOURL,
+                    type: "GET",
+                    async: true,
+                    dataType: 'jsonp',
+                    data: {
+                        order_id: order_id
+                    },
+                    success: function (data) {
+                        if (data != null && data.code == '000') {
+                            console.log(data.data);
+                            $('#order_number').html(data.data.order_id);//获取订单编号
+                            if (data.data.order_step == '17') {
+                                $('#order_step').html('油漆工完工阶段');//获取订单步骤
+                            }
+                            $('#order_time').html(data.data.order_time);//获取订单时间
+                            $('#order_money').html(-data.data.pay_amount);//获取退款金额
+                            if (data.data.refund_status == '0') {//未提交退款信息
+                                window.location.href = 'refund.html#/refund/home/refund_step_1';
+                            } else if (data.data.refund_status == '1') {//等待退款
+                                window.location.href = 'refund.html#/refund/home/refund_step_2';
+                                $('.title_detail').eq(0).removeClass('active');
+                                $('.title_detail').eq(1).addClass('active');
+                            } else {//退款成功
+                                window.location.href = 'refund.html#/refund/home/refund_step_3';
+                                $('.title_detail').eq(0).removeClass('active');
+                                $('.title_detail').eq(2).addClass('active');
+                                $('#wait span').html(data.data.refund_account);//退款成功获取用户的支付宝账户显示在页面中
+                            }
+                        } else {
+                            layer.msg(data.msg);
                         }
-                        $('#order_time').html(data.data.order_time);//获取订单时间
-                        $('#order_money').html(-data.data.pay_amount);//获取退款金额
-                        if (data.data.refund_status == '0') {//未提交退款信息
-                            window.location.href = 'refund.html#/refund/home/refund_step_1';
-                        } else if (data.data.refund_status == '1') {//等待退款
-                            window.location.href = 'refund.html#/refund/home/refund_step_2';
-                            $('.title_detail').eq(0).removeClass('active');
-                            $('.title_detail').eq(1).addClass('active');
-                        } else {//退款成功
-                            window.location.href = 'refund.html#/refund/home/refund_step_3';
-                            $('.title_detail').eq(0).removeClass('active');
-                            $('.title_detail').eq(2).addClass('active');
-                            $('#wait span').html(data.data.refund_account);//退款成功获取用户的支付宝账户显示在页面中
-                        }
-                    } else {
-                        layer.msg(data.msg);
+                    },
+                    error: function (data) {
                     }
-                },
-                error: function (data) {
-                }
-            });
+                });
+
+            }]);
         }
     };
 
