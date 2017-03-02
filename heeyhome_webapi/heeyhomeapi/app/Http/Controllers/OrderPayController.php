@@ -77,7 +77,7 @@ class OrderPayController extends Controller
     public function subRefundInfo()
     {
         $order_id = rq('order_id');
-        $alipay_account = ('alipay_account');
+        $alipay_account = rq('alipay_account');
         //默认退款账户类型为支付宝
         $account_type = 1;
         $callback = rq('callback');
