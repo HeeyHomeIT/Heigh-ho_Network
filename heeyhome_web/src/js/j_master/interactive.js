@@ -4853,7 +4853,7 @@
                 data: {
                     user_id: USERID,
                     page: 1,
-                    limit: 4
+                    limit: 10
                 },
                 success: function (data) {
                     //console.log(data);
@@ -4900,7 +4900,7 @@
     /* 消息中心分页 */
     pageHandler = {
         pageContentEvent: function () {
-            MAXROWS = Math.ceil(TOTAL / 4); // 页数
+            MAXROWS = Math.ceil(TOTAL / 10); // 页数
             $(".page_div3").empty().paging({
                 total: MAXROWS, //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
@@ -4935,7 +4935,7 @@
                 ajaxData: {
                     user_id: USERID,
                     page: 1,
-                    limit: 4
+                    limit: 10
                 },   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
                 dataOperate: function oprate(data) {
                     $(".main_contentWrap").empty();
