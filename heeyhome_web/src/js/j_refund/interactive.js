@@ -16,7 +16,7 @@
     var HHIT_SHOPLISTAPP = angular.module('heeyhomeApp');
 
     var GETREFUNDINFOURL = "/api/public/order/user/getrefundinfo"; // 用户退款信息获取
-    var SUBREFUNDINFOURL = "/api/public/order/user/subrefundinfo"; // 用户退款信息获取
+    var SUBREFUNDINFOURL = "/api/public/order/user/subrefundinfo"; // 提交退款申请
 
     var PHONEREG = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/; // 验证手机号正则表达式
     var EMAILREG = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;//验证邮箱的正则表达式

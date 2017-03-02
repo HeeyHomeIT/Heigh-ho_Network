@@ -206,7 +206,7 @@
          * @param {Object} value 对象
          */
         splicePayMoneyDataEvent: function (value) {
-            var order_step = sessionStorage.getItem("orderstep");
+            var order_step = getUrlParamHandler.getUrlParam("order_step_type");
             //order_step = 17;
             var vrStr = '';
             $.each(value, function (i, v) {
