@@ -621,7 +621,7 @@
                     cateName = "油漆工";
                     break;
             }
-            var str = '<div id="cata' + ucateid + '" class="needcont"><div class="needheader"><div class="needtitle"><em><img src="css/img/icon-sdg.png"></em>';
+            var str = '<div id="cata' + ucateid + '" class="needcont"><div class="needheader"><div class="needtitle">';
             str += '<span title="' + shopName + '">' + shopName + "-" + cateName + '</span></div></div><div class="needclist"></div></div>';
             return str;
         },

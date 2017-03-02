@@ -9,7 +9,7 @@ body {
 }
 
 .materialList_wrap .materialList_cont {
-    border: 1px solid #eee;
+    /*border: 1px solid #eee;*/
     background-color: #fff;
     min-height: 880px;
     padding: 20px 18px;
@@ -21,7 +21,7 @@ body {
 
 .materialList_wrap .materialList_cont .materialPaylist {
     position: relative;
-    padding-top: 35px;
+    /*padding-top: 35px;*/
 }
 
 .materialList_wrap .materialList_cont .materialPaylist  h5 {
@@ -29,8 +29,8 @@ body {
     text-align: center;
     font-size: 16px;
     color: #4b4948;
-    margin-top: 15px;
-    margin-bottom: 30px;
+    /*margin-top: 15px;*/
+    margin-bottom: 65px;
 }
 
 .materialList_wrap .materialList_cont .materialPaylist  h5>i {
@@ -51,13 +51,15 @@ body {
 }
 
 .materialList_wrap .materialList_cont .titlelist {
-    margin-top: 12px;
-        padding: 0 90px;
+    margin-top: 22px;
+        /*padding: 0 90px;*/
     /*border: 1px solid #f8e5bb;*/
-   	border: 1px solid #EEC988;
-    background-color: #fefdee;
+   	/*border: 1px solid #EEC988;*/
+    /*background-color: #fefdee;*/
     color: #999;
     font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 .materialList_wrap .materialList_cont .titlelist dl {
@@ -67,8 +69,9 @@ body {
 .materialList_wrap .materialList_cont .titlelist dl dt {
 	float: left;
 	font-weight: 100;
-  	margin: 0 15px 0px 0;
+  	margin: 0 15px 0 10px;
     line-height: 40px;
+    color: #4b4948;
 }
 
 .materialList_wrap .materialList_cont .titlelist dl dd {
@@ -94,18 +97,18 @@ body {
 }
 
 .airplane_rad li label i {
-	background: url(../img/tc-search.png) no-repeat;
-    background-position: -1px -193px;
+	background: url(../img/sprite_cal.png) no-repeat;
+    background-position: -428px -0px;
     width: 20px;
     height: 20px;
     display: inline-block;
     position: absolute;
-    top: 9px;
+    top: 13px;
     left: 0;
 }
 
 .airplane_rad li label .rep_radiao_check {
-    background-position: 0 -151px;
+    background-position: -389px -0px;
 }
 
 .airplane_rad li label span {
@@ -129,6 +132,7 @@ body {
 .materialList_wrap .materialList_cont .material_cardtable table thead {
     cursor: default;
     border-bottom: 1px solid #e8e8e8;
+    border-top: 1px solid #e8e8e8;
 }
 
 .materialList_wrap .materialList_cont .material_cardtable table thead tr {
@@ -159,6 +163,7 @@ body {
     -o-box-shadow: 0 0 6px #999;
     -webkit-box-shadow: 0 0 6px #999;
     box-shadow: 0 0 9px #999;
+    margin: 10px 0;
 }
 
 .border_eee {
@@ -190,8 +195,8 @@ body {
 
 .materialList_wrap .materialList_cont .material_cardtable table .set_default em {
 	background: url(../img/tc-search.png) no-repeat;
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     display: inline-block;
     background-position: -121px 0;
     background-color: #fff;

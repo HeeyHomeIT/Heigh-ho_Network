@@ -1611,7 +1611,7 @@
 }
 
 #J_SelectedItems .selectItemList {
-    border: 1px solid #f40;
+    /*border: 1px solid #f40;*/
     background: #fff
 }
 
@@ -1657,7 +1657,7 @@
 }
 
 #J_SelectedItems .selectItemList .needcont .needheader .needtitle span {
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     line-height: 20px
 }
 

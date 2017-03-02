@@ -66,6 +66,7 @@
                             if (data != null && data.code == '000') {
                                 layer.msg(data.msg);
                                 window.location.href = 'refund.html#/refund/home/refund_step_2';
+                                location.reload();
                             } else {
                                 layer.msg(data.msg);
                             }
