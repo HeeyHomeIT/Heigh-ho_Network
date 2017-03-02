@@ -73,16 +73,18 @@ define(['app'], function (app) {
                     dataType: 'jsonp',
                     success: function (data) {
                         if (data != null && data.code == '000') {
-                            var panorama = '<div class="vr_picture">';
-                            for (var i = 0; i < data.data.length; i++) {
-                                panorama += '<div class="box_picture clearfix"><a href="' + data.data[i].panorama_url + '" target="_blank">';
-                                panorama += '<img src="' + data.data[i].panorama_img + '"><div class="pic_content">';
-                                panorama += '<div class="sprite-image pic_icon"></div>';
-                                panorama += '<div class="pic_title"><h3>' + data.data[i].panorama_area + '㎡</h3></div>';
-                                panorama += ' <div class="pic_name">' + data.data[i].panorama_style + '</div></div></a></div>';
+                            var panorama = '<div class="vr_picture"><ul>';
+                            for (var i = 0; i < 3; i++) {
+                                panorama += '<li> <a href="' + data.data[i].panorama_url + '" target="_blank"> <div class="panoramaImg">';
+                                panorama += '<img src="' + data.data[i].panorama_img + '"></div>';
+                                panorama += '<figcaption>';
+                                panorama += '<i class="sprite-image pic_hover"></i>';
+                                panorama += ' <b>' + data.data[i].panorama_style + '</b>';
+                                panorama += ' <span>' + data.data[i].panorama_area + 'm²</span>';
+                                panorama += ' </figcaption></a> </li>';
                             }
+                            panorama += '</ul></div>';
 
-                            panorama += '</div>';
                             $(".virtual_content").append(panorama);
                             boxPicture.cssSetting();
                         }
