@@ -53,9 +53,8 @@ class WorkerpricelistController extends Controller
             //dd($des);
             foreach ($des as $k => $v) {
                 $des[$k]->id = 'service' . $v->id;
-                foreach ($cost[0] as $ke => $va) {
-                    $des[$k]->cost = $va;
-                }
+                $id=$v->id;
+                    $des[$k]->cost = $cost[0]->$id;
             }
             $sel[$key]->service = $des;
         }

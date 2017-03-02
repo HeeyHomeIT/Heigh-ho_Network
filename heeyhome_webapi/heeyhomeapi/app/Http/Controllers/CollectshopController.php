@@ -58,20 +58,6 @@ class CollectshopController extends Controller
             }
             $select[$key]->servicearea=explode(',',$val->servicearea);
             $authentication=explode(',',$val->authentication);
-            foreach( $authentication as $k=>$v){
-                switch ($v){
-                    case 1: $authentication[$k]='api/public/smrz.png';
-                        break;
-                    case 2: $authentication[$k]='api/public/bzj.png';
-                        break;
-                    case 3: $authentication[$k]='api/public/tdbx.png';
-                        break;
-                    case 4: $authentication[$k]='api/public/bx.png';
-                        break;
-                    default: $authentication[$k]='';
-                        break;
-                }
-            }
             $select[$key]->authentication=$authentication;
             $select[$key]->total=$total;
             $score=DB::select('select projectquality,serviceattitude,overallmerit from hh_score where shop_id=?',[$val->shop_id]);
