@@ -837,6 +837,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
         $order_id = rq('order_id');
         $order_step_type = rq('order_step_type');
         $callback = rq('callback');
+        $total_amount = 0;
         //查看订单是否存在
         $sel_order_tbl = DB::select('SELECT * FROM hh_order WHERE order_id = ?',
             [$order_id]);
@@ -1507,6 +1508,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 "结转金额/元" => $actual_sum - $reckon_sum);
             if ($order_step_type) {
                 $order_step_in_pay = $order_step_type;
+                $order_step_in_pay_flag = false;
             } else {
                 //根据当前状态判断付款订单状态
                 //TODO 18:工长、杂工、水电工预支付
@@ -1514,6 +1516,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 //TODO 9:上阶段结转金额与木工预支付
                 //TODO 13:上阶段结转金额与油漆工预支付
                 //TODO 17:上阶段结转金额
+                $order_step_in_pay_flag = true;
                 $order_step_in_pay = $order_step;
                 if ($order_step < 5) {
                     $order_step_in_pay = 18;
@@ -1527,11 +1530,25 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
             }
             //当前付款阶段
             $pay_arr = array();
-            $sle_order_pay_each = DB::select('SELECT * FROM hh_order_pay_each_view WHERE order_id = ? AND order_step = ?',
-                [$order_id, $order_step_in_pay]);
-            $sle_order_pay_each_count = DB::select('SELECT count(id) AS count_id FROM hh_order_pay_each_view WHERE order_id = ? AND order_step = ?',
-                [$order_id, $order_step_in_pay]);
+            if ($order_step_in_pay_flag) {
+                $sle_order_pay_each = DB::select('SELECT * FROM hh_order_pay_each_view WHERE order_id = ? AND pay_status = ?',
+                    [$order_id, 1]);
+                $sle_order_pay_each_count = DB::select('SELECT count(id) AS count_id FROM hh_order_pay_each_view WHERE order_id = ? AND pay_status = ?',
+                    [$order_id, 1]);
+                if (!$sle_order_pay_each) {
+                    $sle_order_pay_each = DB::select('SELECT * FROM hh_order_pay_each_view WHERE order_id = ? AND order_step = ?',
+                        [$order_id, $order_step_in_pay]);
+                    $sle_order_pay_each_count = DB::select('SELECT count(id) AS count_id FROM hh_order_pay_each_view WHERE order_id = ? AND order_step = ?',
+                        [$order_id, $order_step_in_pay]);
+                }
+            } else {
+                $sle_order_pay_each = DB::select('SELECT * FROM hh_order_pay_each_view WHERE order_id = ? AND order_step = ?',
+                    [$order_id, $order_step_in_pay]);
+                $sle_order_pay_each_count = DB::select('SELECT count(id) AS count_id FROM hh_order_pay_each_view WHERE order_id = ? AND order_step = ?',
+                    [$order_id, $order_step_in_pay]);
+            }
             $pay_type = 0;
+            $i = 0;
             if ($sle_order_pay_each) {
                 $num = $sle_order_pay_each_count[0]->count_id;
                 $i = 0;
@@ -1542,20 +1559,40 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                         $pay_type = 1;
                         $pay_name = "待付款";
                     }
+                    $order_step_count = "";
+                    if ($sle_order_pay_each[$i]->order_pay_step == "结转金额") {
+                        switch ($sle_order_pay_each[$i]->order_step) {
+                            case 5:
+                                $order_step_count = "杂工、水电工";
+                                break;
+                            case 9:
+                                $order_step_count = "瓦工";
+                                break;
+                            case 13:
+                                $order_step_count = "木工";
+                                break;
+                            case 17:
+                                $order_step_count = "油漆工";
+                                break;
+                        }
+                    }
                     $pay_arr[$i] = array(
-                        "付款项目" => $sle_order_pay_each[$i]->order_pay_step,
+                        "付款项目" => $order_step_count . $sle_order_pay_each[$i]->order_pay_step,
                         "工费/元" => $sle_order_pay_each[$i]->pay_amount,
                         "状态" => $pay_name
                     );
+                    $total_amount += $sle_order_pay_each[$i]->pay_amount;
                     $i++;
                 }
             } else {
-                $pay_arr[0] = array(
+                $pay_arr[$i] = array(
                     "付款项目" => "当前无项目",
                     "工费/元" => "0",
                     "状态" => ""
                 );
+                $i++;
             }
+            $pay_arr["总计/元"] = $total_amount;
             //数据
             $arr_list = array(
                 "工长" => $gz,
@@ -1930,7 +1967,7 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                 $step = $order_step + 1;
                 $order_step = DB::update('UPDATE hh_order SET order_step = ? WHERE order_id = ?', [$step, $order_id]);
                 //完工状态也写入order_detail
-                if($step==5 || $step==9 || $step==13 || $step==17){
+                if ($step == 5 || $step == 9 || $step == 13 || $step == 17) {
                     DB::insert('insert into hh_order_detail(order_id,order_step,img_time) values(?,?,?)', [$order_id, $step, date('Y-m-d H:i:s', time())]);
                 }
                 $ifinsert = false;

@@ -44,7 +44,7 @@ class OrderPayController extends Controller
                     [$order_id]);
                 if ($sel_refund_info) {
                     $refund_status = $sel_refund_info[0]->refund_status;
-                    $refund_account = $sel_refund_info[0]->refund_account;
+                    $refund_amount = $sel_refund_info[0]->refund_amount;
                 } else {
                     $refund_status = 0;
                 }
@@ -57,7 +57,7 @@ class OrderPayController extends Controller
                         "order_time" => $sel_order_tbl[0]->order_time,
                         "pay_amount" => $sel_pay_each_cj[0]->pay_amount,
                         "refund_status" => $refund_status,
-                        "refund_account" => $refund_account
+                        "refund_amount" => $refund_amount
                     )
                 );
                 return $callback . "(" . HHJson($arr) . ")";
