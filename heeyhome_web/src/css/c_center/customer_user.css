@@ -213,7 +213,8 @@ a:focus {
 }
 
 .left_img .edit_avatar {
-    background: url(../../css/img/userImg_bg1.png) no-repeat;
+    background: url(../../css/img/sprite_extra.png) no-repeat;
+    background-position: -331px -82px;
     position: absolute;
     bottom: -19px;
     left: 1px;

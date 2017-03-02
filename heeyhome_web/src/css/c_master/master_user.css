@@ -253,7 +253,8 @@
 }
 
 .head .edit_avatar {
-    background: url(../../css/img/userImg_bg.png) no-repeat;
+    background: url(../../css/img/sprite_extra.png) no-repeat;
+    background-position: -331px -255px;
     position: absolute;
     bottom: -19px;
     left: 2px;

@@ -583,7 +583,8 @@ body #calcontainer {
 
 .prompt i {
     position: relative;
-    background: url(../img/icon-aa.png) no-repeat;
+    background: url(../../css/img/sprite_extra.png) no-repeat;
+    background-position: -9px -298px;
     width: 104px;
     height: 104px;
     display: inline-block;
