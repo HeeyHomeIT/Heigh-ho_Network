@@ -502,7 +502,7 @@ body #calcontainer {
 #calcontent .cal5 > div.lastdiv .cal6 {
     position: relative;
     float: right;
-    padding: 65px 0 8px 13px;
+        padding: 60px 0 8px 270px;
     width: 480px;
 }
 
@@ -515,12 +515,15 @@ body #calcontainer {
     overflow: visible;
     outline: 0;
     border-radius: 3px;
-    /*color: #636363;
-    border: 1px solid #636363;*/
-    color: #f60;
-    border: 1px solid #f60;
+    color: #ffffff;
+    border: 1px solid #636363;
     background: transparent;
     letter-spacing: 5px;
+    background-color: #636363;
+}
+
+#calcontent .cal5 > div.lastdiv .cal6 > input.nowcal:hover {
+    background-color: #4b4948;
 }
 
 .item_hover_0:after {

@@ -270,40 +270,35 @@
 
 .appointment_content {
     width: 1190px;
-    padding-bottom: 230px;
+    padding-bottom: 100px;
     margin: 0 auto
 }
 
 .appointment_decoration .button_decoration {
-    margin: 124px 392px 88px 392px
+    position: relative;
+        padding: 145px 0 50px 0;
 }
 
 .appointment_decoration .button_decoration .btn_decoration {
     display: block;
     text-align: center;
-    width: 405px;
-    height: 132px;
-    line-height: 131px;
+    width: 310px;
+    height: 100px;
+    line-height: 100px;
     background-color: #EEC988;
-    border-radius: 4px;
-    -webkit-box-shadow: 3px 5px 20px #939393;
-    -moz-box-shadow: 3px 5px 20px #939393;
-    box-shadow: 3px 5px 20px #939393;
-    text-shadow: #666 4px 4px 5px;
-    font-family: FZLTZHK;
-    font-size: 40px;
+    border-radius: 60px;
+    font-size: 30px;
     color: #FFFFFF;
-    border: 0;
-    outline: 0;
-    cursor: pointer
+    cursor: pointer;
+    font-family: 'Microsoft YaHei';
+    margin: 0 auto;
 }
 
 .appointment_decoration .button_decoration .btn_decoration:hover {
     transition: all 0.3s;
-    text-shadow: #000 4px 4px 5px;
     -webkit-box-shadow: 3px 5px 20px #666;
     -moz-box-shadow: 3px 5px 20px #666;
-    box-shadow: 3px 5px 20px #666
+    box-shadow: 0px 5px 40px #eec988;
 
 }
 
@@ -335,7 +330,7 @@
     font-family: FZLTHJW;
     position: relative;
     text-align: center;
-    font-size: 28px
+    font-size: 24px
 }
 
 .appointment_decoration .right_bar {

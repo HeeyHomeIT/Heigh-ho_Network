@@ -4,7 +4,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
             $httpProvider.interceptors.push('interceptors');//数据没出来之前加载loading
             $stateProvider
                 .state("home", { // 首页页面
-                    url: "/",
+                    url: "",
                     views: {
                         'content': {
                             templateUrl: 'view/v_index/index_wrap.html'
@@ -1302,7 +1302,7 @@ define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
 //                  }
 //              });
 
-            $urlRouterProvider.when('', '/')
+            $urlRouterProvider.when('', '')
                 .when('/center', '/center/mhome')
                 .when('/master', '/master/mhome')
                 .when('/success', '/success/success_case')
