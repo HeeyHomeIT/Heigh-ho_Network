@@ -36,7 +36,7 @@ data          {{
     "code":"000",
     "msg":"查询成功",
     "data":{
-        "基础信息":[
+        "basic_info":[
             {
                 "order_id",                 材料订单所属订单id（材料商无用）
                 "order_material_id",        材料订单id
@@ -56,7 +56,7 @@ data          {{
                 "order_address"             用户地址
             }
         ],
-        "材料信息":[
+        "material_info":[
             {
                 "id",                       材料id
                 "material_list_id",         材料列表id
