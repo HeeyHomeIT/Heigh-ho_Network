@@ -2283,6 +2283,11 @@
             /* 获取工长信息 */
             //HHIT_CENTERAPP.controller('personal', ['$scope', '$http', function ($scope, $http) {
 
+            $('.sex').click(function () {
+                $('.sex em').removeClass('checked');
+                $(this).find('em').addClass('checked');
+            });
+
             $.ajax({
                 url: MASTERDATAURL,
                 type: "GET",
@@ -2310,8 +2315,10 @@
                         //判断工长的性别
                         if (data.data.foremaninfo_sex == 1) {
                             $('#man').attr('checked', 'checked');
+                            $('.sman em').addClass('checked');
                         } else {
                             $('#women').attr('checked', 'checked');
+                            $('.swomen em').addClass('checked');
                         }
                         //获取工长的从业经历
                         var eLen = data.data.experience.length;
@@ -5314,8 +5321,15 @@
     /* 消息中心全选标记已读 */
     markRead = {
         checkAll: function () {
+            $(document).on("click", ".set_default input", function () {
+                if ($(this).is(':checked')) { //是否默认地址 1:默认地址 2:非默认地址
+                    $(this).siblings("em").removeClass("checked");
+                } else {
+                    $(this).siblings("em").addClass("checked");
+                }
+            });
             $(".information_choose a").on("click", function () {
-                if ($(".information_choose input").is(":checked")) {
+                if ($(".information_choose .set_default em").hasClass("checked")) {
                     $.ajax({
                         type: "get",
                         url: ALLREADURL,

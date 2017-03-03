@@ -1007,6 +1007,10 @@
     /* 获取用户信息 */
     getUserInfoHandler = {
         getInfoEvent: function () {
+            $('.sex').click(function () {
+                $('.sex em').removeClass('checked');
+                $(this).find('em').addClass('checked');
+            });
             var account_name;
             $.ajax({
                 url: USERDATAURL,
@@ -1029,8 +1033,10 @@
                         $('.personal_user_nickname').val(data.data.userinfo_nickname); //获取用户的昵称
                         if (data.data.userinfo_sex == 1) { //判断用户的性别
                             $('#man').attr('checked', 'checked');
+                            $('.sman em').addClass('checked');
                         } else {
                             $('#women').attr('checked', 'checked');
+                            $('.swomen em').addClass('checked');
                         }
                         if (data.data.userinfo_email != null && data.data.userinfo_email != '') {
                             var email = data.data.userinfo_email;
@@ -1648,8 +1654,15 @@
      */
     markRead = {
         checkAll: function () {
+            $(document).on("click", ".set_default input", function () {
+                if ($(this).is(':checked')) { //是否默认地址 1:默认地址 2:非默认地址
+                    $(this).siblings("em").removeClass("checked");
+                } else {
+                    $(this).siblings("em").addClass("checked");
+                }
+            });
             $(".information_choose a").on("click", function () {
-                if ($(".information_choose input").is(":checked")) {
+                if ($(".information_choose .set_default em").hasClass("checked")) {
                     $.ajax({
                         type: "get",
                         url: ALLREADURL,
