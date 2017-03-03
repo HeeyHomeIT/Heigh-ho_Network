@@ -23,7 +23,7 @@ define(['app', 'base64', 'cookie'], function (app) {
                 var $Jheader = $("#header").parents("div");
                 var JdivId = $Jheader.attr("id");
                 if (JdivId != "index_header") {
-                    $("#" + JdivId).find("#menuNav").remove();
+                    $("#" + JdivId).find("#menuNavPanel").remove();
                 }
             },
             /**

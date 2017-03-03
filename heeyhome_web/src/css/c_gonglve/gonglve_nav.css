@@ -26,7 +26,7 @@ a:focus {
 }
 
 #decoration_pedia {
-    margin-top: 62px;
+    margin-top: 35px;
     position: relative
 }
 
@@ -140,7 +140,7 @@ a:focus {
 }
 
 #decoration_pedia .pedia_content .bar_content a:first-child {
-    margin-top: 18px
+    /*margin-top: 18px*/
 }
 
 #decoration_pedia .pedia_content .bar_content a:last-child div {
