@@ -636,9 +636,10 @@ a:focus {
     vertical-align: middle;
 }
 
-.personal_form_list label {
+.personal_form_list .sex {
     margin-left: 5px;
     font-weight: normal;
+    position: relative;
 }
 
 .personal_form_list .personal_user_age {
@@ -784,6 +785,22 @@ a:focus {
 
 .personal_content {
     margin-top: 80px;
+}
+
+.personal_form_list .sex em {
+    background: url(../img/sprite_extra.png) no-repeat;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    background-position: -574px -96px;
+    background-color: #fff;
+    position: absolute;
+    top: 19px;
+    left: 6px;
+}
+
+.personal_form_list .sex .checked {
+    background-position: -574px -276px;
 }
 
 /* 头像照片 */
@@ -1385,6 +1402,27 @@ a:focus {
 
 .information_choose {
     margin-top: 20px;
+}
+
+.information_choose .set_default {
+    position: relative;
+    font-weight: normal;
+}
+
+.information_choose .set_default em {
+    background: url(../img/tc-search.png) no-repeat;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-position: -121px 0;
+    background-color: #fff;
+    position: absolute;
+    top: 2px;
+    left: 0;
+}
+
+.information_choose .set_default .checked {
+    background-position: -121px -35px;;
 }
 
 .information_choose input {
