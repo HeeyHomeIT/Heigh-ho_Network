@@ -23,8 +23,8 @@
 }
 
 .vrloagbg {
-	background: url(../../image/icon-loading.gif) center no-repeat;
-	background-position-y: 115px;
+    background: url(../../image/icon-loading.gif) center no-repeat;
+    background-position-y: 115px;
     height: 404px;
 }
 
@@ -35,7 +35,12 @@
     left: 0;
     top: 0;
     opacity: 0;
-    background: rgb(0, 0, 0)
+    background: rgb(0, 0, 0);
+    transition: all .3s linear;
+    -ms-transition:  all .3s linear;
+    -o-transition:  all .3s linear;
+    -webkit-transition:  all .3s linear;
+    -moz-transition:  all .3s linear;
 }
 
 #virtual_reality .vr_pic:hover .bg_mongolia {
@@ -220,12 +225,12 @@
 }
 
 .nullpage i {
-	position: relative;
-   	background: url(../img/noinfo.png) no-repeat;
+    position: relative;
+    background: url(../img/noinfo.png) no-repeat;
     width: 86px;
     height: 85px;
     display: inline-block;
-    
+
 }
 
 .nullpage span {
