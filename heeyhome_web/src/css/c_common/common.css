@@ -639,7 +639,7 @@ label.error.roomerror {
 
 #footer > ul {
     width: 1190px;
-        margin: 0 auto;
+    margin: 0 auto;
     padding: 135px 0 95px 0;
 }
 
@@ -833,4 +833,8 @@ label.error.roomerror {
     color: #fff;
     text-align: center;
     border-radius: 3px
+}
+
+.userImg {
+    border-radius: 50%;
 }

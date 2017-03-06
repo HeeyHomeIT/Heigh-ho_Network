@@ -1,5 +1,8 @@
 define(['app', 'base64', 'cookie'], function (app) {
     (function () {
+
+        var BASEURL = '/api/public/';
+        var USERIMGURL = BASEURL + 'personal/portrait'; // 用户头像
         /* 定义一个类 */
         var headWrap = {
             /* 入口方法 */
@@ -69,24 +72,27 @@ define(['app', 'base64', 'cookie'], function (app) {
             getUserDataEvent: function () {
                 var userName = $.cookie('userName');
                 var userType = $.cookie('userType');
+                var userId = $.base64.decode($.cookie('userId'));
                 var cloneLoginStr = $("#topLogin").html(); // 克隆未登录前页面模块
                 var cloneLgStr = $(".userinfo p").html();
                 if (userName != null && userName != "") {
                     /* 判断是工长登录还是用户登录 */
                     if ($.base64.decode(userType) == 1) {
                         var loginStr = '<a class="user_information" rel="nofollow" href="center.html#/center" >' + unescape($.base64.decode(userName)) + '</a><span>，您好 </span><span class="exit">退出</span>';
-                    	var lgStr = '<a class="uinfo" href="center.html#/center"><span>' + unescape($.base64.decode(userName)) + '</span></a>';
-                    	var myinfoStr = '<span><a rel="nofollow" href="center.html#/center/morder">我的订单</a><a rel="nofollow" href="center.html#/center/mcollection">我的收藏</a></span><span><a rel="nofollow" href="center.html#/center/mdata">我的信息</a><a rel="nofollow" href="center.html#/center/setting">安全中心</a></span>'
-                    	$("#c_news a").attr("href","center.html#/center/msgcenter");
+                        var lgStr = '<a class="uinfo" href="center.html#/center"><span>' + unescape($.base64.decode(userName)) + '</span></a>';
+                        var myinfoStr = '<span><a rel="nofollow" href="center.html#/center/morder">我的订单</a><a rel="nofollow" href="center.html#/center/mcollection">我的收藏</a></span><span><a rel="nofollow" href="center.html#/center/mdata">我的信息</a><a rel="nofollow" href="center.html#/center/setting">安全中心</a></span>'
+                        $("#c_news a").attr("href", "center.html#/center/msgcenter");
+                        getAvatarEvent.userImg(userId);
                     } else if ($.base64.decode(userType) == 2) {
                         var loginStr = '<a class="user_information" rel="nofollow" href="master.html#/master" >' + unescape($.base64.decode(userName)) + '</a><span>，您好 </span><span class="exit">退出</span>';
-                    	var lgStr = '<a class="uinfo" href="master.html#/master"><span>' + unescape($.base64.decode(userName)) + '</span></a>';
-                    	var myinfoStr = '<span><a rel="nofollow" href="master.html#/master/morder">我的订单</a><a rel="nofollow" href="master.html#/master/mteam">我的团队</a></span><span><a rel="nofollow" href="master.html#/master/mdata">我的信息</a><a rel="nofollow" href="master.html#/master/mwallet">我的钱包</a></span>'
-                    	$("#c_news a").attr("href","master.html#/master/msginfo");
+                        var lgStr = '<a class="uinfo" href="master.html#/master"><span>' + unescape($.base64.decode(userName)) + '</span></a>';
+                        var myinfoStr = '<span><a rel="nofollow" href="master.html#/master/morder">我的订单</a><a rel="nofollow" href="master.html#/master/mteam">我的团队</a></span><span><a rel="nofollow" href="master.html#/master/mdata">我的信息</a><a rel="nofollow" href="master.html#/master/mwallet">我的钱包</a></span>'
+                        $("#c_news a").attr("href", "master.html#/master/msginfo");
+                        getAvatarEvent.userImg(userId);
                     }
 
-                    
-                    cloneHtmlHendler.loginClone(loginStr, lgStr,myinfoStr);
+
+                    cloneHtmlHendler.loginClone(loginStr, lgStr, myinfoStr);
                     $(".exit").on("click", function () { // 点击退出的事件
                         cloneHtmlHendler.loginClone(cloneLoginStr, cloneLgStr);
                         $.cookie("userId", null, {
@@ -111,10 +117,34 @@ define(['app', 'base64', 'cookie'], function (app) {
          * 删除追加代码
          */
         cloneHtmlHendler = {
-            loginClone: function (str1, str2,str3) {
+            loginClone: function (str1, str2, str3) {
                 $("#topLogin").empty().append(str1);
                 $(".userinfo p").empty().append(str2);
                 $(".myinfo").html(str3);
+            }
+        };
+        /**
+         * 登陆后获取登录者的头像
+         */
+        getAvatarEvent = {
+            userImg: function (userId) {
+                $.ajax({
+                    type: "get",
+                    url: USERIMGURL,
+                    async: true,
+                    dataType: "jsonp",
+                    data: {
+                        user_id: userId
+                    },
+                    success: function (data) {
+                        if (data && data.code == '000') {
+                            $('.userImg').css('background', 'url(' + data.data.user_img + ') no-repeat');
+                            $('.userImg').css('background-size', '100% 100%');
+                        }
+                    },
+                    error: function (data) {
+                    }
+                });
             }
         };
         // 入口方法调用
