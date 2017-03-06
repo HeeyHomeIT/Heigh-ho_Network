@@ -88,7 +88,7 @@
                 data: {
                     cate_id: id,
                     page: 1,
-                    limit: 2
+                    limit: 3
                 },
                 beforeSend: function () {
                     $(".right_wrap").append(load);
@@ -151,7 +151,7 @@
         pageContentEvent: function (id) {
             console.log(gonglve_total);
             $(".page_number>div").append($(".page_div3").empty().paging({
-                total: Math.ceil(gonglve_total / 2), //全部页数
+                total: Math.ceil(gonglve_total / 3), //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false
                 centerBgColor: "#fff",
                 centerFontColor: "#000",
@@ -184,7 +184,7 @@
                 ajaxData: {
                     cate_id: id,
                     page: 1,
-                    limit: 2
+                    limit: 3
                 },   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
                 dataOperate: function oprate(data) {
                     splicePicHandler.spliceStrEvent(data.data);

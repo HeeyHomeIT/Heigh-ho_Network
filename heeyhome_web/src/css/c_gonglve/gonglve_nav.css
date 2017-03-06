@@ -26,7 +26,7 @@ a:focus {
 }
 
 #decoration_pedia {
-    margin-top: 35px;
+    /*margin-top: 35px;*/
     position: relative
 }
 
@@ -156,7 +156,7 @@ a:focus {
 
 #decoration_pedia .pedia_content .right_content .right_title {
     text-align: center;
-    margin-bottom: 71px
+    margin-bottom: 20px
 }
 
 #decoration_pedia .pedia_content .right_content .right_title h2 {
@@ -167,7 +167,7 @@ a:focus {
 
 #decoration_pedia .pedia_content .right_content .right_detail {
     display: block;
-    height: 212px;
+    height: 200px;
     border-bottom: 1px solid #e4e4e4;
 }
 
@@ -180,12 +180,13 @@ a:focus {
     height: 139px;
     position: relative;
     margin-left: 10px;
-    margin-top: 35px;
+    margin-top: 25px;
     float: left;
 }
 
 .right_wrap {
-    height: 424px;
+    /*height: 424px;*/
+   height: 620px;
 }
 
 #decoration_pedia .pedia_content .right_content .right_detail .right_img img {
@@ -217,7 +218,7 @@ a:focus {
     width: 570px;
     float: left;
     margin-left: 40px;
-    margin-top: 45px;
+    margin-top: 30px;
 }
 
 #decoration_pedia .pedia_content .right_content .right_detail .detail_content .detail_title {

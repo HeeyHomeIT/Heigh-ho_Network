@@ -180,28 +180,28 @@
             });
 
             /* 点击店铺收藏 */
-            $(document).off('click', '.collect_shop').on('click', '.collect_shop', function () {
-                if (USERTYPE == null || USERTYPE == "" || USERTYPE == undefined) {
-                    layer.msg("亲，收藏前请先登录哦~");
-                    function login() {
-                        window.location.href = "register.html#/dl";
-                    }
-
-                    setTimeout(function () {
-                        login();
-                    }, 1500);
-                } else if ($.base64.decode(USERTYPE) == 1) {
-                    if ($(this).val() == '已收藏') {
-                        layer.msg('已收藏过~~');
-                    } else {
-                        layer.alert('您需要进入店铺后才能收藏哦~~');
-                    }
-                } else if ($.base64.decode(USERTYPE) == 2) {
-                    layer.alert('工长暂时还不能收藏店铺哦~~');
-                }
-            });
+//          $(document).off('click', '.collect_shop').on('click', '.collect_shop', function () {
+//              if (USERTYPE == null || USERTYPE == "" || USERTYPE == undefined) {
+//                  layer.msg("亲，收藏前请先登录哦~");
+//                  function login() {
+//                      window.location.href = "register.html#/dl";
+//                  }
+//
+//                  setTimeout(function () {
+//                      login();
+//                  }, 1500);
+//              } else if ($.base64.decode(USERTYPE) == 1) {
+//                  if ($(this).val() == '已收藏') {
+//                      layer.msg('已收藏过~~');
+//                  } else {
+//                      layer.alert('您需要进入店铺后才能收藏哦~~');
+//                  }
+//              } else if ($.base64.decode(USERTYPE) == 2) {
+//                  layer.alert('工长暂时还不能收藏店铺哦~~');
+//              }
+//          });
             /* 点击进入店铺 */
-            $(document).on('click', '.enter_shop', function () {
+            $(document).on('click', '.enter_shop,.Jshop', function () {
                 sessionStorage.setItem('iscollected', $(this).attr('iscollected'));
                 sessionStorage.setItem('wObj', '{}');
                 var shopid = $(this).parents('.shop_box').attr('data-shopid');
@@ -235,7 +235,7 @@
                 vrStr += '<div class="shop_box" data-shopid="' + v.shop_id + '" data-shopperid="' + v.shopper_id + '">';
                 vrStr += '	<div class="left_image">';
                 if (v.shop_img != null && v.shop_img != '') {
-                    vrStr += '		<a href="#nogo"><img src="' + v.shop_img + '"></a>';
+                    vrStr += '		<a class="Jshop" rel="nofollow" href="view_shop.html#/shopdetails?pos=' + v.shop_id + '" iscollected="' + v.iscollected + '"><img src="' + v.shop_img + '"></a>';
                 }
                 vrStr += '		<div class="image-background_1"></div>';
                 vrStr += '		<div class="image-background_2"></div>';
@@ -274,12 +274,12 @@
                 vrStr += '			<p>开店时间：<span>' + openTime + '</span></p>';
                 vrStr += '		</div>';
                 vrStr += '		<div class="shop_icon clearfix">';
-                vrStr += '			<div>';
-                vrStr += '				<em class="sprite icon_pnumber"></em>';
+                vrStr += '			<div title ="浏览数">';
+                vrStr += '				<em class="sprite icon_pnumber" ></em>';
                 vrStr += '				<span>' + v.shop_scan + '</span>';
                 vrStr += '			</div>';
-                vrStr += '			<div>';
-                vrStr += '				<em class="sprite icon_turnover"></em>';
+                vrStr += '			<div title ="成交量">';
+                vrStr += '				<em class="sprite icon_turnover" ></em>';
                 vrStr += '				<span>' + v.shop_volume + '</span>';
                 vrStr += '			</div>';
                 vrStr += '		</div>';
@@ -289,7 +289,8 @@
                 vrStr += '			<p>综合评价<span>' + v.shop_score.overallmerit + '</span>分</p>';
                 vrStr += '		</div>';
                 vrStr += '		<div class="shop_button">';
-                vrStr += '			<input type="button" class="collect_shop" value="' + (v.iscollected == '1' && $.base64.decode(USERTYPE) == 1 ? '已收藏' : '收藏') + '">';
+//              vrStr += '			<input type="button" class="collect_shop" value="' + (v.iscollected == '1' && $.base64.decode(USERTYPE) == 1 ? '已收藏' : '收藏') + '">';
+                vrStr += ' <span class="collect_shop">'+ (v.iscollected == '1' && $.base64.decode(USERTYPE) == 1 ? '已收藏' : '未收藏') +'</span>'
                 vrStr += '			<a class="enter_shop" rel="nofollow" href="view_shop.html#/shopdetails?pos=' + v.shop_id + '" iscollected="' + v.iscollected + '">进入店铺</a>';
                 vrStr += '		</div>';
                 vrStr += '	</div>';

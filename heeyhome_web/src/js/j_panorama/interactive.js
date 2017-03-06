@@ -36,7 +36,7 @@
         servicetag: 1,
         orderKey: 0,
         pageVal: 1,
-        limitVal: 4
+        limitVal: 8
     };
 
     /*定义一个类*/
@@ -58,7 +58,7 @@
                 servicetag: 1,
                 orderKey: 0,
                 pageVal: 1,
-                limitVal: 4
+                limitVal: 8
             };
             vrContentHandler.vrContentEvent(filterObj);
         },
@@ -152,8 +152,11 @@
                     $(".content_pic").removeClass("vrloagbg");
                 }
             }).done(function (data) {
+            	console.log(data)
+            	console.log(data.data[0].total)
                 if (data && data.code == '000') {
                     TOTAL = data.data[0].total; // 总数
+                    console.log(data.data[0].total)
                     $(".content_pic").html(spliceVrContentHandler.spliceStrEvent(data.data));
                     pageHandler.pageContentEvent();
                     viewPlus.addView();
@@ -302,9 +305,9 @@
                 vrStr += '<div class="pic_style clearfix"><h2>' + v.panorama_style + '</h2></div>';
                 vrStr += '<div class="sprite pic_badge" title="点击收藏"></div>';
                 vrStr += '<div class="pic_detail"><p>建筑面积：<em>' + v.panorama_area + '</em>㎡</p><p>' + v.panorama_housetype + '</p></div>';
-                vrStr += '<div class="pic_icon"><div class="pic_view">';
+                vrStr += '<div class="pic_icon"><div class="pic_view" title="观看数" >';
                 vrStr += '<i class="iconfont">&#xe620;</i><span class="pic_view_span">' + v.scan_num + '</span></div>';
-                vrStr += '<div class="pic_praise"><i class="iconfont">&#xe611;</i><span>' + v.like_num + '</span></div></div></div></div>';
+                vrStr += '<div class="pic_praise" title="点赞数"><i class="iconfont">&#xe611;</i><span>' + v.like_num + '</span></div></div></div></div>';
             });
 
             return vrStr;
@@ -315,7 +318,7 @@
      */
     pageHandler = {
         pageContentEvent: function () {
-            MAXROWS = Math.ceil(TOTAL / 4); // 页数
+            MAXROWS = Math.ceil(TOTAL / 8); // 页数
             $(".page_number>div").append($(".page_div3").empty().paging({
                 total: MAXROWS, //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false

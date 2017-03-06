@@ -51,7 +51,7 @@
 
 #foreman_shop .shop_content .content_title .active, .number {
     font-weight: bold;
-    color: #E88226 !important
+    color: #eec988 !important
 }
 
 #foreman_shop .shop_content .content_title .count {
@@ -138,7 +138,7 @@
     font-family: FZLTZHK;
     margin-bottom: 16px;
     font-size: 18px;
-    color: #E88226;
+    color: #eec988;
     height: 30px
 }
 
@@ -193,7 +193,6 @@
     width: 70px;
     float: left;
     font-family: FZLTHJW;
-    cursor: pointer;
     font-size: 14px;
     color: #656565;
     margin-right: 43px
@@ -216,6 +215,7 @@
 
 #foreman_shop .shop_content .shop_box .shop_icon span {
     position: absolute;
+    cursor: default;
     top: 5px;
     left: 40px
 }
@@ -236,7 +236,7 @@
     text-align: right;
     margin: 0 8px 0 17px;
     font-family: HelveticaNeueLTPro HvIt;
-    color: #E88226;
+    color: #EEC988;
     font-size: 18px
 }
 
@@ -248,25 +248,24 @@
 }
 
 #foreman_shop .shop_content .shop_box .shop_button .collect_shop {
+    display: block;
     border: 0;
     text-align: center;
-    cursor: pointer;
-    border-radius: 4px;
-    color: #FFFFFF;
-    font-family: FZLTHJW;
     font-size: 18px;
-    background-color: #525252;
+    outline: #EAE5E1 solid 1px;
+    border: 1px solid #fff;
+    background-color: #F7F5F5;
+    color: #595959;
     width: 118px;
     height: 42px;
-    float: left
+    line-height: 42px;
+    float: left;
 }
 
 #foreman_shop .shop_content .shop_box .shop_button .enter_shop {
-    border: 1px solid #D7D7D7;
-    border-radius: 4px;
-    background-color: #FFFFFF;
-    color: #262626;
-    font-family: FZLTHJW;
+    border: 1px solid #EEA236;
+    background-color: #eec988;
+    color: #fff;
     font-size: 18px;
     margin-left: 27px;
     float: left;
@@ -278,22 +277,7 @@
 }
 
 #foreman_shop .shop_content .shop_box .shop_button .enter_shop:hover {
-    color: #EEC988;
-    background-color: #363636;
-    transition: all .3s linear;
-    -ms-transition: all .3s linear;
-    -o-transition: all .3s linear;
-    -webkit-transition: all .3s linear;
-    -moz-transition: all .3s linear
-}
-
-#foreman_shop .shop_content .shop_box .shop_button .collect_shop:hover {
-    transition: all .3s linear;
-    -ms-transition: all .3s linear;
-    -o-transition: all .3s linear;
-    -webkit-transition: all .3s linear;
-    -moz-transition: all .3s linear;
-    background-color: #363636
+    background-color: #f7cf89;
 }
 
 .nullpage {
