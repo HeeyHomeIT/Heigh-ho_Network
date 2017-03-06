@@ -49,7 +49,7 @@
 
                         //往详情页里面塞内容
                         $(".gonglve_detail .now_location .stage").html(cate_name);
-                        $(".gonglve_detail .now_location .attention").html(cate_describe);
+                        $(".gonglve_detail .now_location .attention").html(data.data.article_title);
                         $('.gonglve_title').html(data.data.article_title);
                         $('.gonglve_content').html(data.data.article_content);
                     } else {  /* 如果失败执行 */

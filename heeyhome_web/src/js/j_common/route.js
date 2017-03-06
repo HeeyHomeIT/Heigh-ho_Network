@@ -1,6 +1,9 @@
 define(['app', 'angular-ui-router', 'oclazyLoad'], function (app) {
     app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
         function ($stateProvider, $urlRouterProvider, $httpProvider) {
+            if(window.location.hash == '#/'){
+                window.location = 'http://www.heeyhome.com';
+            }
             $httpProvider.interceptors.push('interceptors');//数据没出来之前加载loading
             $stateProvider
                 .state("home", { // 首页页面
