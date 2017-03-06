@@ -69,7 +69,7 @@ a:focus {
     width: 1190px;
     height: auto;
     margin: 0 auto;
-    margin-bottom: 145px;
+    margin-bottom: 20px;
 }
 
 .user_left {
@@ -156,7 +156,7 @@ a:focus {
 
 .user_right {
     width: 872px;
-    height: 898px;
+    height: 750px;
 }
 
 /* 右边头部 */
@@ -175,7 +175,7 @@ a:focus {
 
 /* 右边边框 */
 .right_content_wrap {
-    height: 845px;
+    height: 630px;
     border: 1px solid #cdcdcd;
     border-top: 1px solid white;
     position: relative;
@@ -766,7 +766,7 @@ a:focus {
     color: white;
     display: block;
     font-size: 14px;
-    margin-top: 100px;
+    margin-top: 45px;
 }
 
 .personal_submit:hover {
@@ -784,7 +784,7 @@ a:focus {
 }
 
 .personal_content {
-    margin-top: 80px;
+    margin-top: 20px;
 }
 
 .personal_form_list .sex em {
@@ -993,7 +993,7 @@ a:focus {
     line-height: 41px;
     margin: 0 auto;
     position: relative;
-    margin-top: 50px;
+    margin-top: 25px;
 }
 
 .title_complete, .title_pending {
@@ -1023,7 +1023,7 @@ a:focus {
 
 /* 我的收藏样式 */
 .fix_height {
-    height: 635px;
+    height: 450px;
 }
 
 .collection_content .works_content_title {
@@ -1453,7 +1453,7 @@ a:focus {
 /* 消息中心 */
 .information_content {
     width: 754px;
-    height: 665px;
+    height: 620px;
     margin: 0 auto;
     border: 1px solid white;
 }
@@ -1466,7 +1466,7 @@ a:focus {
     height: 35px;
     line-height: 35px;
     background-color: #efefef;
-    margin-top: 48px;
+    margin-top: 25px;
 }
 
 .content_title .name, .content_title .time, .content_title .content {
@@ -1588,12 +1588,12 @@ a:focus {
 }
 
 .content_wrap {
-    height: 898px;
+    height: 683px;
     margin-right: 50px
 }
 
 .safe_right, .safe_right_content {
-    padding: 50px 0 50px 83px;
+    padding: 35px 0 50px 83px;
     border-top: none;
     position: relative;
 }
@@ -1985,7 +1985,7 @@ a:focus {
 }
 
 .auto_address {
-    min-height: 845px;
+    min-height: 630px;
     height: auto;
 }
 
@@ -2584,9 +2584,9 @@ a:focus {
 }
 
 .order_content .right_content {
-    padding: 50px 20px;
+    padding: 25px 20px;
     margin: 0;
-    height: 745px;
+    height: 720px;
     border: 1px solid #cdcdcd;
     border-top: none;
     position: relative;
@@ -2896,7 +2896,7 @@ a:focus {
     width: 754px;
     height: auto;
     margin: 0 auto;
-    padding-top: 31px;
+    padding-top: 10px;
 }
 
 .address_list {
@@ -3160,5 +3160,5 @@ a:focus {
 }
 
 .main_contentWrap {
-    min-height: 550px;
+    min-height: 340px;
 }

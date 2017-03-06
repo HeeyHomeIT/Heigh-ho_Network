@@ -159,7 +159,7 @@
 					vrStr1 += '<li class="detail_active"><em></em><p><span id="Jday1" class="date">'+value.order_time.split(" ")[0]+'</span><span id="Jtime1" class="time">'+value.order_time.split(" ")[1]+'</span><span class="detail_text">您的需求已提交给店小二</span>';
 					vrStr1 += '</p></li><li class="'+(value.order_status_id != 1?'detail_active':'')+'"><em></em><p><span id="Jday2" class="date">'+value.order_time.split(" ")[0]+'</span><span id="Jtime2" class="time">'+value.order_time.split(" ")[1]+'</span><span class="detail_text">店小二正在确认您的预约需求并会联系您，请您耐心等待</span></p>';
 					vrStr1 += '<div><span class="detail_text">预计&nbsp;<i>'+newTime+'</i>&nbsp;前会确定您的预定信息,当前预定信息会在<a href="center.html#/center/morder" target="_blank" >我的订单</a>中呈现;</span>';
-					vrStr1 += '你可以去浏览下我们的虚拟现实来为您的新家做些参考;<a href="index.html#/panorama" target="_blank">去看看</a></div></li>';
+					vrStr1 += '你可以去浏览下我们的虚拟现实来为您的新家做些参考;<a href="../#/panorama" target="_blank">去看看</a></div></li>';
 			}
 			if(value.order_status_id == 1){
 				vrStr = vrStr1;

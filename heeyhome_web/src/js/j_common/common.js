@@ -101,7 +101,7 @@ define(['app', 'base64', 'cookie'], function (app) {
                             expires: -1,
                             path: '/'
                         });
-                        window.location.href = 'index.html';
+                        window.location.href = 'http://www.heeyhome.com/';
                     });
                 }
 

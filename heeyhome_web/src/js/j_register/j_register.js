@@ -315,7 +315,7 @@
 			                $.cookie("userShopId", $.base64.encode(data.data.shop_id), {expires: 7, path: '/'});
 			                $.cookie("userNickName", $.base64.encode(escape(data.data.nickname)), {expires: 7, path: '/'});
 			                //alert('登录成功');
-			                window.location.href = "index.html"; // 进行跳转
+			                window.location.href = "http://www.heeyhome.com/"; // 进行跳转
 			            }else if(data != null && data.code != '000') { // 错误
 			            	//errorMsgHendler.remindBox(data.msg);
 							layer.alert(data.msg);

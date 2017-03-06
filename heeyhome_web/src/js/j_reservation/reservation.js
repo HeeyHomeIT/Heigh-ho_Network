@@ -211,7 +211,7 @@
                         $("#Jzxzj").prepend(parseFloat(data.data.calculator_data[0].zxzj).toFixed(2));
                         $("#c").val(data.data.calculator_data[0].calculator_results_id);
                     } else {
-                        $(".Jcal").html('<div class="nullpage"><i>&nbsp;</i><span>你还没收藏计算结果哦，快<a target="_blank" href="index.html#/cal">去看看</a>你家装修需要多少钱吧！~</span></div>');
+                        $(".Jcal").html('<div class="nullpage"><i>&nbsp;</i><span>你还没收藏计算结果哦，快<a target="_blank" href="../#/cal">去看看</a>你家装修需要多少钱吧！~</span></div>');
                         $("#Jarea").prepend("-");
                         $("#Jroom").prepend("-");
                         $("#Jparlour").prepend("-");
