@@ -869,8 +869,12 @@
                             },
                             success: function (data) {
                                 if (data && data.code == '000') {
+                                    console.log(data.data);
                                     $.each(data.data.reservation_time_user, function (i, v) {
-                                        time += v + '   ';
+                                        if (v != null && v != '') {
+                                            var v1 = v.split(' ')[0];
+                                            time += v1 + '   ';
+                                        }
                                     });
                                     time += ')';
                                     if (status == 1) {
