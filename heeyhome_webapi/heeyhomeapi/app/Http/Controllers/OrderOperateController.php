@@ -101,6 +101,17 @@ service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
             }
         }
         //结算
+        //查看结算单是否存在
+        $sel_reckon_list = DB::select('SELECT id FROM hh_order_actual_list WHERE order_id = ?',
+            [$order_id]);
+        if ($sel_reckon_list) {
+            $arr = array(
+                "code" => "200",
+                "msg" => "预算单生成成功，结算单已存在",
+                "data" => ""
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
         if ($list_data_exist) {
             $reckon_list_tbl = DB::insert('INSERT INTO hh_order_actual_list(order_id,order_personnel,foreman_price,service1,service2,service3,service4,service5,service6,service7,service8,
 service9,service10,service11,service12,service13,service14,service15,service16,service17,service18,service19,service20,service21,service22,service23,service24,service25,service26,
