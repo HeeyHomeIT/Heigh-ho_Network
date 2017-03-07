@@ -1071,9 +1071,11 @@
                                     $("#Ju").val(data.data.user_id);
                                     $(".whetherOrders_style p ").html("您的上门时间为");
                                     if (data.data.confirm_time == 1) {
-                                        var vrstr = '<span class="reservation_time">' + data.data.reservation_time1 + '</span>';
+                                        var reservation_time1 = data.data.reservation_time1.split(' ')[0];
+                                        var vrstr = '<span class="reservation_time">' + reservation_time1 + '</span>';
                                     } else if (data.data.confirm_time == 2) {
-                                        var vrstr = '<span class="reservation_time">' + data.data.reservation_time2 + '</span>';
+                                        var reservation_time2 = data.data.reservation_time2.split(' ')[0];
+                                        var vrstr = '<span class="reservation_time">' + reservation_time2 + '</span>';
                                     }
                                     $(".whetherOrders_style span").remove();
                                     $(".whetherOrders_style").append(vrstr);
