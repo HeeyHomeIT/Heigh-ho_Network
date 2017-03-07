@@ -31,7 +31,7 @@ a:focus {
 }
 
 #decoration_pedia .pediacnt {
-    width: 1205px;
+    width: 1190px;
     margin: 0 auto
 }
 
@@ -151,7 +151,7 @@ a:focus {
     float: left;
     width: 823px;
     height: auto;
-    margin-left: 100px;
+    margin-left: 80px;
 }
 
 #decoration_pedia .pedia_content .right_content .right_title {
@@ -236,8 +236,9 @@ a:focus {
     color: #2e2e2e;
     overflow: hidden;
     height: 60px;
-    line-height: 20px;
+    line-height: 28px;
     position: relative;
+    text-indent: 2em;
     /* 3 times the line-height to show 3 lines */
 }
 

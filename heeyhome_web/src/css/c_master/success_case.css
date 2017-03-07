@@ -49,8 +49,8 @@
 
 .content_wrap {
     width: 731px;
-    margin-left: 27%;
-    margin-top: 7%;
+    margin:0 auto;
+    margin-top: 8%;
     position: relative;
     height: 488px;
     background-color: #FFFFFF;

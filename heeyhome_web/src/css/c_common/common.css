@@ -634,7 +634,8 @@ label.error.roomerror {
 
 #footer {
     background: #000;
-    opacity: 0.9
+    opacity: 0.9;
+    min-width: 1190px;
 }
 
 #footer > ul {

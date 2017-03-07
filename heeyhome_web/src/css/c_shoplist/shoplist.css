@@ -16,7 +16,7 @@
     -webkit-box-shadow: 0px 0px 8px #939393;
     border: 1px solid #FFFFFF;
     margin: 0 auto;
-    width: 1320px;
+    width: 1190px;
     margin-bottom: 30px;
     box-shadow: 0px 0px 8px #939393
 }
@@ -28,7 +28,7 @@
 
 #foreman_shop .shop_content {
     position: relative;
-    width: 1190px;
+    width: 1140px;
     margin: 0 auto
 }
 
@@ -75,7 +75,7 @@
 
 #foreman_shop .shop_content .shop_summary .shop_box {
     position: relative;
-    width: 950px;
+    width: 900px;
     height: 290px;
     padding-top: 42px;
     border-bottom: 1px solid #eee
@@ -99,8 +99,8 @@
 
 #foreman_shop .shop_content .shop_box .left_image {
     position: relative;
-    width: 270px;
-    height: 221px;
+    width: 250px;
+    height: 201px;
     margin-left: 20px;
     float: left
 }
@@ -116,7 +116,7 @@
     height: 8px;
     background-color: #EEC988;
     top: -8px;
-    left: 78px
+    left: 58px
 }
 
 #foreman_shop .shop_content .shop_box .left_image .image-background_2 {
@@ -130,7 +130,7 @@
 
 #foreman_shop .shop_content .shop_box .right_summary {
     float: left;
-    margin-left: 76px;
+    margin-left: 35px;
     position: relative
 }
 
