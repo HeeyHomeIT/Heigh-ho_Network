@@ -29,8 +29,16 @@ class OrderPayController extends Controller
                 );
                 return $callback . "(" . HHJson($arr) . ")";
             }
-            $sel_pay_each_cj = DB::select('SELECT pay_amount ,pay_id FROM hh_order_pay_each WHERE order_id = ? AND pay_status = ? AND order_pay_step = ?',
-                [$order_id, 1, 10]);
+            $sel_pay_each_cj = DB::select('SELECT pay_amount ,pay_id FROM hh_order_pay_each WHERE order_id = ? AND order_pay_step = ?',
+                [$order_id, 10]);
+            if(!$sel_pay_each_cj){
+                $arr = array(
+                    "code" => "200",
+                    "msg" => "查询不到退款信息",
+                    "data" => ""
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
             if ($sel_pay_each_cj[0]->pay_amount >= 0) {
                 $arr = array(
                     "code" => "200",
