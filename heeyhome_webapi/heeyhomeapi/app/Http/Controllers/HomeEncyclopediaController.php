@@ -40,6 +40,9 @@ class HomeEncyclopediaController extends Controller
         $offset=$newpage->page($total);
         //dd($offset);
         $articles = DB::select('select id,article_title,article_content,img,add_time,scan from hh_jzbkarticle where cate_id=? order by sort asc limit ?,?',[$cate_id,$offset[0],$offset[1]]);
+        foreach ($articles as $key=>$val){
+            $articles[$key]->article_content= mb_substr(preg_replace("/<[^>]+>/", '', $val->article_content),0,100,'UTF-8');
+        }
         $articles[0]->total=$total;
         //print_r($articles);
         if($articles){

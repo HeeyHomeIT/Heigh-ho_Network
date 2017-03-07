@@ -65,6 +65,7 @@ class MyshopController extends Controller
             $select[0]->collectnum=$collect[0]->collectnum;
             $gz_img=DB::select('select portrait_img from hh_portrait where portrait_userid=?',[$select[0]->shopper_id]);
             $select[0]->foremanimg=$gz_img[0]->portrait_img;
+            if($select[0]->shop_describe==null || $select[0]->shop_describe=='') $select[0]->shop_describe='说点什么吧...';
             $arr = array("code" => "000",
                 "data" => $select[0]
             );
