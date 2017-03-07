@@ -152,7 +152,7 @@
 				case "3":
 					vrStr3 += '<li class="'+(value.order_status_id != 3?'detail_active':'')+'"><em></em><p><span id="Jday4" class="date">'+value.order_status_time[3].split(" ")[0]+'</span>';
 					vrStr3 += ' <span id="Jtime4" class="time">'+value.order_status_time[3].split(" ")[1]+'</span>';
-					vrStr3 += ' <span class="detail_text">店铺接受您的预约需求，预约上门时间为 '+value.reservation_time+'</span></p>';
+					vrStr3 += ' <span class="detail_text">店铺接受您的预约需求，预约上门时间为 '+value.reservation_time.split(" ")[0]+'</span></p>';
 					vrStr3 += '<div>请等待工长上门量房</div></li> ';
 				case "1":
 					var newTime = getTimeHandler.getTimeEvent(value.order_time,8);

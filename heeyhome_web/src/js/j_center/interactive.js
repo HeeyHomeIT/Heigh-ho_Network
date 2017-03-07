@@ -1873,7 +1873,10 @@
                 if (value.order_step.indexOf("油漆") != -1) {
                     order_step_type = 17;
                 }
-                vrStr += '<span class="step">' + value.order_step + '<a href="reservation.html#/advancelist?pos=' + order_id + '&&order_step_type=' + order_step_type + '" target="_blank" class="balance">结算清单</a></span>';
+                vrStr += '<span class="step">' + value.order_step + '</span>';
+                if (value.order_actual_isclick == '1') {
+                    vrStr += '<a href="reservation.html#/advancelist?pos=' + order_id + '&&order_step_type=' + order_step_type + '" target="_blank" class="settlement">结算清单</a>';
+                }
                 vrStr += '</div>';
                 vrStr += '<div class="stage_content">';
                 vrStr += '<div class="stage_pic clearfix">';

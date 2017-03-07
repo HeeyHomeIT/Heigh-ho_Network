@@ -51,6 +51,22 @@ class OrderDisplayController extends Controller
                 $material_pay_status = DB::select('select order_material_status from hh_order_material where order_id=? and material_type=?', [$order_id, 5]);
                 $select[$key]->material_pay_status = $material_pay_status[0]->order_material_status;
             }
+            if($val->order_step == 5){
+                $isclick=DB::SELECT('select stage1 from hh_order_actual_isclick where order_id=?',[$order_id]);
+                $select[$key]->order_actual_isclick=$isclick[0]->stage1;
+            }
+            if($val->order_step == 9){
+                $isclick=DB::SELECT('select stage2 from hh_order_actual_isclick where order_id=?',[$order_id]);
+                $select[$key]->order_actual_isclick=$isclick[0]->stage2;
+            }
+            if($val->order_step == 13){
+                $isclick=DB::SELECT('select stage3 from hh_order_actual_isclick where order_id=?',[$order_id]);
+                $select[$key]->order_actual_isclick=$isclick[0]->stage3;
+            }
+            if($val->order_step == 17){
+                $isclick=DB::SELECT('select stage4 from hh_order_actual_isclick where order_id=?',[$order_id]);
+                $select[$key]->order_actual_isclick=$isclick[0]->stage4;
+            }
             $order_steps = DB::select('select order_step from hh_order_step where step_id=?', [$val->order_step]);
             $select[$key]->order_step = $order_steps[0]->order_step;
         }
@@ -85,13 +101,13 @@ class OrderDisplayController extends Controller
             }
         }
         //dd($woker_who);
-        if ($noworder_step >= 2 && $noworder_step < 6) {
+        if ($noworder_step > 2 && $noworder_step <= 6) {
             foreach ($woker_who as $key => $val) {
                 if ($val['type'] == 2)
                     $worker_info[0] = $val;
             }
         }
-        if ($noworder_step >= 6 && $noworder_step < 10) {
+        if ($noworder_step > 6 && $noworder_step <= 10) {
             foreach ($woker_who as $key => $val) {
                 if ($val['type'] == 2)
                     $worker_info[0] = $val;
@@ -99,7 +115,7 @@ class OrderDisplayController extends Controller
                     $worker_info[1] = $val;
             }
         }
-        if ($noworder_step >= 10 && $noworder_step < 14) {
+        if ($noworder_step > 10 && $noworder_step <= 14) {
             foreach ($woker_who as $key => $val) {
                 if ($val['type'] == 2)
                     $worker_info[0] = $val;
@@ -109,7 +125,7 @@ class OrderDisplayController extends Controller
                     $worker_info[2] = $val;
             }
         }
-        if ($noworder_step >= 14) {
+        if ($noworder_step > 14) {
             foreach ($woker_who as $key => $val) {
                 if ($val['type'] == 2)
                     $worker_info[0] = $val;
