@@ -113,69 +113,70 @@
          * 右侧内容显示隐藏
          */
         initSlideEvent: function () {
-            /* 屏幕可视区高度小于735时调整相应的高度 */
-            var height = $(window).height();
-            console.log(height)
-            if (height != 736) {
-                var $div = $('#slide_bar div');
-                $.each($div, function () {
-                    $(this).css('height', parseFloat($(this).css('height')) * height / 735);
-                });
-                $('.wcontent_title').css('backgroundPosition', '15px ' + 90 * height / 735 + 'px');
-                if (height > 736) {
-                    if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
-                        $('.wcontent_title span').addClass('span');
-                    } else {
-                        $('.wcontent_title span').css({'marginTop': '20px', 'position': 'absolute'});
-                    }
-                } else {
-                    $('.wcontent_title span').css('fontSize', '14px');
+            $('#slide_bar').css('top', ($(window).height() - $('#slide_bar').outerHeight()) / 2 + $(document).scrollTop());
+            /* 头部标题点击切换 */
+            var $dtDiv = $("#works_content_title1 div");
+            var iSpeed = 0;
+            var left = 0;
+            var oBg = document.getElementById("title_active");
+            for (var i = 0; i < $dtDiv.length - 1; i++) {
+                $dtDiv[i].onclick = function () {
+                    startMoveHandler.startMoveEvent(oBg, this.offsetLeft, iSpeed, left);
+                    $(".work_content").hide();
+                    $(".material_content").hide();
+                    $(".slide_content >div:eq(" + ($(this).index() + 1) + ")").show().removeClass('hide');
                 }
             }
-            /* 鼠标移入左边导航栏的效果 */
-            $('.sl_wcontent').hover(function () {
-                var $a = $(this).find('a');
-                var r = -102;
-                $a.show().css({"left": (r - 20) + 'px'}).stop().animate({left: r}, 500);
-            }, function () {
-                $(this).find('a').hide();
-            }).click(function (e) {
-                var $slideBar = $(this).parents('#slide_bar');
-                if ($(this).hasClass('sl_wcontentActive')) {
-                    $(this).removeClass('sl_wcontentActive');
-                    $slideBar.next(".slide_content").stop().animate({right: "-300px"}, 500);
-                    $slideBar.stop().animate({right: "0"}, 500);
-                    $slideBar.parents('#slide_bar').next(".slide_content").children('.slide_contentWrap').hide();
+            var flag = true;
+            $('#slide_bar').click(function () {
+                if (flag) {
+                    $("#slide_bar").stop().animate({right: "-200px"}, 500, function () {
+                        $("#slide_bar").stop().animate({right: "349px"}, 500).addClass('bar');
+                    });
+                    $(".slide_content").stop().animate({right: "-550px"}, 500, function () {
+                        $(".slide_content").stop().animate({right: "0"}, 500);
+                    });
+                    flag = false;
+
                 } else {
-                    $(this).addClass('sl_wcontentActive').siblings().removeClass('sl_wcontentActive');
-                    $slideBar.next(".slide_content").stop().animate({right: "0"}, 500);
-                    $slideBar.stop().animate({right: "300px"}, 500);
-                    $slideBar.next(".slide_content").children('.slide_contentWrap').hide().eq($(this).index()).fadeIn(1500).removeClass('hide');
+                    $("#slide_bar").stop().animate({right: "-200px"}, 500, function () {
+                        $("#slide_bar").stop().animate({right: "0"}, 500).removeClass('bar');
+                    });
+                    $(".slide_content").stop().animate({right: "-550px"}, 500, function () {
+                        $(".slide_content").stop().animate({right: "-350px"}, 500);
+                    });
+                    flag = true;
                 }
-                e.stopPropagation();//阻止冒泡事件
             });
-            /* 点击页面中的a链接 */
-            $('.content_materials').click(function (e) {
-                var i = $('.content_materials').index($(this));
-                var $nslideBar = $(this).parents('#crcontainer').next("#slide_bar");
-                var $sl_wcontent = $nslideBar.find('.sl_wcontent');
-                $sl_wcontent.removeClass('sl_wcontentActive');
-                $sl_wcontent.eq(i).addClass('sl_wcontentActive');
-                $nslideBar.next(".slide_content").stop().animate({right: "0"}, 500);
-                $nslideBar.stop().animate({right: "300px"}, 500);
-                $nslideBar.next(".slide_content").children('.slide_contentWrap').hide().eq(i).fadeIn(1500).removeClass('hide');
-                e.stopPropagation();//阻止冒泡事件
-            });
+
+
             /* 点击网页中的任一页面使右边内容消失 */
-            $('body').click(function () {
-                $(".slide_content").stop().animate({right: "-300px"}, 500);
-                $('#slide_bar').stop().animate({right: "0"}, 500);
-                $('.sl_wcontent').removeClass('sl_wcontentActive');
-            });
+            // $('body').click(function () {
+            //     $(".slide_content").stop().animate({right: "-300px"}, 500);
+            //     $('#slide_bar').stop().animate({right: "0"}, 500);
+            //     $('.sl_wcontent').removeClass('sl_wcontentActive');
+            // });
             /* 阻止右边内容的冒泡事件 */
-            $(".slide_content").click(function (e) {
-                e.stopPropagation();
-            })
+            // $(".slide_content").click(function (e) {
+            //     e.stopPropagation();
+            // })
+        }
+    };
+    /* div移动撞击事件 */
+    startMoveHandler = {
+        startMoveEvent: function (obj, iTarget, iSpeed, left) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                iSpeed += (iTarget - obj.offsetLeft) / 10;
+                iSpeed *= 0.7;
+                left += iSpeed; //防止小数误差问题
+                if (Math.abs(iSpeed) < 1 && Math.abs(left - iTarget) < 1) { //距离足够近与速度足够小
+                    clearInterval(obj.timer);
+                    obj.style.left = iTarget + "px";
+                } else {
+                    obj.style.left = left + "px";
+                }
+            }, 30);
         }
     };
 

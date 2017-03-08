@@ -278,11 +278,21 @@ body #crcontainer {
 #slide_bar {
     position: fixed;
     z-index: 100000020;
-    width: 50px;
+    width: 103px;
+    height: 94px;
     right: 0;
     top: 0;
     bottom: 0;
-    background-color: black;
+    background: url("../img/sprite-img.png") no-repeat;
+    background-position: -455px -170px;
+}
+
+#calresultdiv .bar {
+    background-position: -455px -22px;
+}
+
+#slide_bar:hover {
+    cursor: pointer;
 }
 
 #slide_bar ul {
@@ -456,12 +466,12 @@ body #crcontainer {
 .slide_content {
     position: fixed;
     z-index: 100000020;
-    width: 300px;
-    right: -300px;
+    width: 350px;
+    right: -350px;
     top: 0;
     bottom: 0;
-    background-color: #1c1c1c;
-    padding: 25px 23px 0 23px;
+    background: #e5e5e5;
+    padding: 0 40px 0 40px;
     overflow: auto;
 }
 
@@ -469,18 +479,17 @@ body #crcontainer {
     width: 244px;
     height: 25px;
     line-height: 25px;
-    color: #EEC988;
-    border-bottom: 1px solid #EEC988;
+    color: #4b4948;
     font-size: 14px;
 }
 
 .slideContent_content ul {
-    margin-top: 25px;
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
 .slideContent_content ul li {
-    color: #767676;
+    color: #4b4948;
     font-size: 14px;
     line-height: 25px;
 }
@@ -499,4 +508,31 @@ body #crcontainer {
 
 .sprite-calresult {
     background: url("../../css/img/sprite-calresult.png") no-repeat;
+}
+
+.works_content_title {
+    line-height: 41px;
+    margin: 50px auto;
+    position: relative;
+}
+
+.title_complete, .title_pending {
+    width: 125px;
+    text-align: center;
+    font-size: 16px;
+    color: #4b4948;
+    cursor: pointer;
+}
+
+.title_active {
+    width: 125px;
+    height: 1px;
+    background-color: #E88226;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.fl {
+    float: left;
 }
