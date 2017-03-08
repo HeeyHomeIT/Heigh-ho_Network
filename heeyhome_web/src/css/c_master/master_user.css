@@ -4564,8 +4564,8 @@ div.clear:after, div.clear:before {
 }
 
 .loading {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     margin: 20px auto;
     position: absolute;
     top: 35%;

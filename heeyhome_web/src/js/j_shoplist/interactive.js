@@ -162,7 +162,7 @@
                     limit: shopListFilterObj.limitVal
                 },
                 complete: function () {
-                    $(".shop_summary").removeClass("vrloagbg");
+                    $(".shop_summary").removeClass("slloagbg");
                 }
             }).done(function (data) {
                 if (data && data.code == '000') {
