@@ -81,10 +81,11 @@
     border: 1px solid #cdcdcd;
     border-top: none
 }
+
 /*#user_right .content_wrap {*/
-    /*height: 845px;*/
+/*height: 845px;*/
 /*}*/
-    /*.right_content {*/
+/*.right_content {*/
 /*padding: 100px 50px*/
 /*}*/
 
@@ -189,11 +190,11 @@
 }
 
 .bind_phone .phone_number input {
-    border: 0;
     margin-left: 10px;
-    width: 106px;
+    width: 200px;
     height: 30px;
-    border-bottom: 1px solid #000000
+    border: 1px solid #ddd;
+    padding-left: 6px;
 }
 
 .bind_phone .phone_number span:last-child {
@@ -210,20 +211,21 @@
     width: 106px;
     height: 30px;
     margin-left: 10px;
-    border: 0;
-    border-bottom: 1px solid #000000
+    border: 1px solid #ddd;
+    padding-left: 6px;
 }
 
 .bind_phone .confirm_code input:last-child {
-    width: 120px;
-    height: 38px;
+    width: 100px;
+    height: 30px;
     border-radius: 4px;
     border: 1px solid #EEC988;
     color: #EEC988;
     background-color: #FFFFFF;
     text-align: center;
     cursor: pointer;
-    margin-left: 11px
+    margin-left: 11px;
+    padding-left: 0;
 }
 
 .next_section {
@@ -266,11 +268,11 @@
 }
 
 .new_phone .newphone_num input {
-    border: 0;
     margin-left: 10px;
     width: 156px;
     height: 30px;
-    border-bottom: 1px solid #000000
+    border: 1px solid #ddd;
+    padding-left: 6px;
 }
 
 .new_phone .newphone_code {
@@ -280,23 +282,24 @@
 }
 
 .new_phone .newphone_code input {
-    border: 0;
     margin-left: 10px;
     width: 156px;
     height: 30px;
-    border-bottom: 1px solid #000000
+    border: 1px solid #ddd;
+    padding-left: 6px;
 }
 
 .new_phone .newphone_code input:last-child {
-    width: 120px;
-    height: 38px;
+    width: 100px;
+    height: 30px;
     border-radius: 4px;
     border: 1px solid #EEC988;
     color: #EEC988;
     background-color: #FFFFFF;
     text-align: center;
     cursor: pointer;
-    margin-left: 27px
+    margin-left: 27px;
+    padding-left: 0;
 }
 
 .new_phone p {
@@ -575,7 +578,7 @@
     height: 134px;
     border: 1px solid #dbdbdb;
     border-radius: 4px;
-    margin-top: 90px;
+    margin-top: 10px;
 }
 
 .message {
@@ -654,8 +657,7 @@
     width: 150px;
     height: 30px;
     margin-left: 10px;
-    border: 0;
-    border-bottom: 1px solid #000000;
+    border: 1px solid #ddd;
     border-radius: 0;
     color: #4b4948;
     text-align: inherit;
@@ -681,4 +683,10 @@
 .safe_right_content .showImg img {
     width: 270px;
     height: 190px;
+}
+
+.info {
+    color: #f60;
+    font-size: 14px;
+    margin-top: 30px;
 }

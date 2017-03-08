@@ -644,15 +644,15 @@
 /* 右边内容结束 */
 /* 个人资料 */
 .personal_form_list .input_all {
-    margin-left: 75px;
+    margin-left: 93px;
 }
 
 .personal_form_list .first {
-    margin-left: 15px;
+    margin-left: 8px;
 }
 
 .personal_form {
-    width: 680px;
+    width: 780px;
     height: auto;
     margin: 0 auto;
 }
@@ -664,12 +664,13 @@
 }
 
 .personal_form_list span {
-    width: 58px;
+    width: 85px;
     display: inline-block;
-    text-align: right;
+    text-align: left;
     font-size: 14px;
     color: #4b4948;
     vertical-align: middle;
+    letter-spacing: 3px;
 }
 
 .personal_form_list #email_p span {
@@ -678,12 +679,11 @@
 }
 
 .personal_form_list input {
-    margin-left: 15px;
-    border: none;
-    border-bottom: 1px solid #3d3d3d;
-    height: 25px;
-    line-height: 25px;
-    padding-left: 4px;
+    margin-left: 5px;
+    border: 1px solid #ddd;
+    height: 32px;
+    line-height: 32px;
+    padding-left: 10px;
     box-sizing: border-box;
     font-size: 14px;
     margin-top: 0;
@@ -695,7 +695,7 @@
 }
 
 .personal_form_list .personal_user_name, .personal_form_list .personal_user_nickname {
-    width: 126px;
+    width: 230px;
 }
 
 .personal_form_list .personal_user_name:disabled {
@@ -736,6 +736,8 @@
 .year_i {
     color: #4b4948;
     font-size: 14px;
+    margin-left: 10px;
+    vertical-align: middle;
 }
 
 .personal_form_list p a {
@@ -852,11 +854,30 @@
 
 .personal_form_list .personal_user_community {
     width: 338px;
-    margin-left: 75px;
+    margin-left: 93px;
+}
+
+.detail_address span {
+    vertical-align: top;
+    margin-top: -10px;
+}
+
+.detail_address {
+    height: 150px;
+}
+
+.detail_address textarea {
+    height: 145px;
+    resize: none;
+    border: 1px solid #ddd;
+    margin-left: 5px;
+    line-height: 30px;
+    font-size: 14px;
+    padding-left: 10px;
 }
 
 .personal_form_list .personal_user_first {
-    margin-left: 15px;
+    margin-left: 8px;
 }
 
 .personal_form_list .personal_area_detail {
@@ -864,7 +885,7 @@
 }
 
 .personal_form_list select {
-    margin-left: 15px;
+    margin-left: 8px;
     height: 30px;
     font-size: 14px;
 }
@@ -874,7 +895,7 @@
 }
 
 .personal_form_list .form-group {
-    margin-left: 10px;
+    margin-right: 13px;
 }
 
 .personal_form_list em {
@@ -925,7 +946,7 @@
     background-color: #fff;
     position: absolute;
     top: 19px;
-    left: 6px;
+    left: -5px;
 }
 
 .personal_form_list .sex .checked {
@@ -1153,7 +1174,7 @@
 
 /* 店铺资料 */
 .shop_content {
-    width: 700px;
+    width: 780px;
     height: auto;
     margin: 0 auto;
     padding-top: 40px;
@@ -1166,12 +1187,13 @@
 }
 
 .shop_detail span {
-    width: 77px;
+    width: 85px;
     display: inline-block;
-    text-align: right;
+    text-align: left;
     font-size: 14px;
     color: #4b4948;
     vertical-align: middle;
+    letter-spacing: 3px;
 }
 
 #shop_certification {
@@ -1183,11 +1205,10 @@
 }
 
 .shop_detail input {
-    margin-left: 15px;
-    border: none;
-    border-bottom: 1px solid #3d3d3d;
-    height: 25px;
-    line-height: 25px;
+    margin-left: 5px;
+    border: 1px solid #ddd;
+    height: 32px;
+    line-height: 32px;
     padding-left: 4px;
     box-sizing: border-box;
     font-size: 14px;
@@ -1195,6 +1216,10 @@
 
 .shop_detail .shop_name {
     width: 255px;
+}
+
+.shop_detail #shop_ad, .shop_detail #shop_describe {
+    width: 500px;
 }
 
 .shop_detail .shop_age {
@@ -1226,7 +1251,7 @@
     height: 22px;
     display: inline-block;
     background: url("../img/certification.png") no-repeat;
-    margin-left: 14px;
+    margin-left: 5px;
 }
 
 .shop_detail .shop_add {
@@ -1275,12 +1300,12 @@
     height: 88px;
     border: 1px solid #d7d7d7;
     box-shadow: 0 0 5px #7a7a7a;
-    margin-left: 12px;
+    /*margin-left: 12px;*/
     position: relative;
 }
 
 .first_renderings_show {
-    margin-left: 8px;
+    margin-right: 20px;
 }
 
 .renderings_show img {
@@ -1372,7 +1397,7 @@
     text-align: center;
     display: inline-block;
     border: 1px solid #c7c7c7;
-    margin-left: 11px;
+    /*margin-left: 11px;*/
     font-size: 80px;
     color: #eee;
 }
@@ -1427,7 +1452,7 @@
     border-radius: 2px;
     color: #3d3d3d;
     text-align: center;
-    margin-left: 15px;
+    margin-left: 5px;
     vertical-align: middle;
 }
 
