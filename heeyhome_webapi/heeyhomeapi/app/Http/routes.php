@@ -34,11 +34,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('panorama', 'PanoramaController@index');
     Route::any('panorama/like', 'PanoramaController@like');
     Route::any('panorama/scan', 'PanoramaController@scan');
+    Route::any('panorama/recommand', 'PanoramaController@recommand');
     /*家装百科*/
     Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
     Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
     Route::any('jzbk/info', 'HomeEncyclopediaController@info');
     Route::any('jzbk/scan', 'HomeEncyclopediaController@scan');
+    Route::any('jzbk/recommand', 'HomeEncyclopediaController@recommand');
     /*登录*/
     Route::any('login/login', 'LoginController@login');
     /*qq第三方登录*/

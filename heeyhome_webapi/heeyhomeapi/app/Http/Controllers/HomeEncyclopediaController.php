@@ -84,4 +84,25 @@ class HomeEncyclopediaController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+
+    //移动端首页推荐
+    public function recommand() {
+        $callback=rq('callback');
+        $sel_cateId = DB::select('select id from hh_jzbkcate order by sort asc ');
+        $dataArr = array();
+        for ($i=0; $i < count($sel_cateId); $i++) { 
+            $cateId = $sel_cateId[$i]->id;
+            $sel_articles = DB::select('select id,article_title,article_content,img,add_time,scan from hh_jzbkarticle where cate_id=? order by sort asc limit 1',[$cateId]);
+            if ($sel_articles) {
+                array_push($dataArr, $sel_articles[0]);
+            }
+
+        }
+        if($dataArr){
+            $arr = array("code" => "000",
+                "data" => $dataArr
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
 }

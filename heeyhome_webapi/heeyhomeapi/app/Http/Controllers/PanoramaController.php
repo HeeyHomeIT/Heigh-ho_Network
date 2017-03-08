@@ -150,4 +150,23 @@ class PanoramaController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
+
+    public function recommand() {
+        $callback=rq('callback');
+        $vrArr = array();
+
+        $select= DB::select('select * from hh_panorama where panorama_status= 1 and panorama_area< 100 order by collect_num desc limit 2 ');
+        array_push($vrArr, $select[0]);
+
+        $select2=DB::select('select * from hh_panorama where panorama_status= 1 and panorama_area<=120 and panorama_area>=100 order by collect_num desc limit 2');
+        array_push($vrArr, $select2[0]);
+
+        $select3=DB::select('select * from hh_panorama where panorama_status= 1 and panorama_area<=150 and panorama_area>=120 order by collect_num desc limit 2');
+        array_push($vrArr, $select3[0]);
+
+        $arr = array("code" => "000",
+                "data" => $vrArr
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+    }
 }
