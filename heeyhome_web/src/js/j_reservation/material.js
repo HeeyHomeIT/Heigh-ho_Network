@@ -330,10 +330,13 @@
                                 vrStr += '</tbody></table></div></div>';
                             });
                         } else {
-
+                            var vals = Object.keys(v).map(function(key) {
+                                return v[key];
+                            });
+                            console.log(vals);
                             vrStr += '<div class="itemlist">';
                             vrStr += '<div class="titlelist"><dl><dt>请选择一个品牌</dt><dd><ul class="airplane_rad clearfix"><li>';
-                            vrStr += '<label for="airplaneRadio' + i + '" id="repAirRadio' + i + '"><input type="radio" checked="checked" data-brand="' + Object.values(v)[0][0].data[0].brand_id + '" id="airplaneRadio' + i + '" class="display" />';
+                            vrStr += '<label for="airplaneRadio' + i + '" id="repAirRadio' + i + '"><input type="radio" checked="checked" data-brand="' + vals[0][0].data[0].brand_id + '" id="airplaneRadio' + i + '" class="display" />';
                             vrStr += '<i class="rep_radiao_check"></i><span>' + Object.keys(v) + '</span></label></li></ul></dd></dl></div>';
                             vrStr += '<div class="material_cardtable "><table cellspacing="0" cellpadding="0"><thead><tr><td align="center" width="200px">参考图</td>';
                             vrStr += '<td align="center" width="185px">名称</td><td align="center" width="100px">规格</td><td align="center" width="100px">单位</td><td align="center" width="100px">单价/元</td><td align="center" width="100px">数量</td>';
@@ -373,7 +376,10 @@
                     } else {
                         var brandId = [];
                         $.each(v, function (a, b) {
-                            brandId.push(Object.values(b)[0].data[0].brand_id);
+                            var vals = Object.keys(b).map(function(key) {
+                                return b[key];
+                            });
+                            brandId.push(vals[0].data[0].brand_id);
                         });
                         vrStr += '<div class="itemlist">';
                         vrStr += '<div class="titlelist"><dl><dt>请选择一个品牌</dt><dd><ul class="airplane_rad clearfix">';
@@ -392,7 +398,10 @@
                         } else {
                             vrStr += '<label class="set_default"><input class="JcheckGcd" id="checkGcd" type="checkbox" /><em class="defalut_ico"></em></label></td></tr></thead><tbody>'
                         }
-                        $.each(Object.values(v)[0], function (item, val) {
+                        var vals = Object.keys(v).map(function(key) {
+                            return v[key];
+                        });
+                        $.each(vals[0], function (item, val) {
                             vrStr += '<tr class="shows">';
                             vrStr += '<td rowspan="' + val.data.length + '" class="border_eee"><img src="' + val.img + '"></td>';
                             vrStr += '<td rowspan="' + val.data.length + '" class="border_eee">' + val.name + '</td>';

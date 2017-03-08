@@ -40,19 +40,20 @@ code         000
 data         {
                     now_order_step        now_order_step
                     detail                {
-                                                  order_step           order_step
-                                                  img_time             img_time
-                                                  img_content          img_content
+                                                  order_step           订单步骤
+                                                  img_time             开工时间
+                                                  img_content          内容文字
                                                   img                  {
-                                                                           img_url    img_url
+                                                                           img_url    图片地址
                                                                         }
-                                                  material_pay_status   material_pay_status
+                                                  material_pay_status   材料支付状态
+                                                  order_actual_isclick  结算单是否编辑完
                                           }
                     worker                {
-                                                  name         name
-                                                  portrait     portrait
-                                                  type         type
-                                                  typename     typename
+                                                  name         姓名
+                                                  portrait     头像
+                                                  type         工种
+                                                  typename     工种
                                           }
              }
 msg          ""
