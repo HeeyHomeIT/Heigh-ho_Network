@@ -129,7 +129,7 @@
     height: 35px;
     line-height: 35px;
     width: 35px;
-    opacity: 0.3;
+    opacity: 0.8;
     margin-bottom: 10px;
     border-radius: 50%
 }
@@ -472,20 +472,19 @@
 }
 
 .remind_p {
-    margin-top: 84px;
+    margin-top: 30px;
 }
 
 .next_auth {
-    margin-top: 84px;
+    margin-top: 35px;
     color: white;
 }
 
 .auth_photo {
-    margin-top: 55px;
+    margin-top: 30px;
     display: block;
     font-size: 14px;
     color: #939393;
-    margin-left: 50px;
     margin-bottom: 50px;
 }
 
@@ -535,9 +534,9 @@
 }
 
 .showImg {
-    width: 271px;
-    height: 191px;
-    margin-left: 45px;
+    width: 272px;
+    height: 192px;
+    margin-right: 45px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: relative;
@@ -575,7 +574,7 @@
 /* 修改密码 */
 .message_wrap {
     width: 670px;
-    height: 134px;
+    height: 100px;
     border: 1px solid #dbdbdb;
     border-radius: 4px;
     margin-top: 10px;
@@ -585,7 +584,7 @@
     width: 560px;
     height: 37px;
     line-height: 37px;
-    margin: 45px auto;
+    margin: 30px auto;
 }
 
 .message_fl img {
@@ -676,7 +675,7 @@
     background: url(../img/sprite_remain.png) no-repeat;
 }
 
-.safe_right_content .showImg {
+.safe_right_content .showFace {
     border: 1px solid #ddd;
 }
 
