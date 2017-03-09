@@ -127,7 +127,7 @@
                     $(".slide_content >div:eq(" + ($(this).index() + 1) + ")").show().removeClass('hide');
                 }
             }
-            var flag = true;
+            var flag = false;
             $('#slide_bar').click(function () {
                 if (flag) {
                     $("#slide_bar").stop().animate({right: "-200px"}, 500, function () {
@@ -149,6 +149,12 @@
                 }
             });
 
+            $("#slide_bar").stop().animate({right: "-200px"}, 500, function () {
+                $("#slide_bar").stop().animate({right: "349px"}, 500).addClass('bar');
+            });
+            $(".slide_content").stop().animate({right: "-550px"}, 500, function () {
+                $(".slide_content").stop().animate({right: "0"}, 500);
+            });
 
             /* 点击网页中的任一页面使右边内容消失 */
             // $('body').click(function () {

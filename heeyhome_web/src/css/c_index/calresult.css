@@ -87,10 +87,14 @@ body #crcontainer {
 
 #crcontent .cr_condiv > div.cr_content > div.cr_con {
     float: left;
-    width: 900px;
+    /*width: 900px;*/
     font-size: 16px;
     margin-bottom: 20px;
     position: relative
+}
+
+#JLaborCost {
+    margin-left: 170px;
 }
 
 #crcontent .cr_condiv > div.cr_content > div.cr_con .plan_one {
@@ -228,7 +232,7 @@ body #crcontainer {
 
 .cr_btn_left, .cr_btn_right {
     float: left;
-    width: 200px;
+    width: 120px;
 }
 
 #crcontent .cr_condiv > div.cr_btn span.total {
@@ -238,20 +242,22 @@ body #crcontainer {
 }
 
 #crcontent .cr_condiv > div.cr_btn span.total em {
-    font-size: 20px;
+    font-size: 24px;
+    color: #EEC988;
 }
 
 #crcontent .cr_condiv > div.cr_btn span.cr_collection {
-    width: 214px;
-    height: 79px;
-    line-height: 79px;
+    width: 120px;
+    height: 44px;
+    line-height: 44px;
     border: 1px solid #d2af77;
     border-radius: 2px;
-    margin-left: 20px;
+    margin-left: 100px;
     cursor: pointer;
     color: #fff;
     background-color: #EEC988;
-    font-size: 28px;
+    font-size: 18px;
+    margin-top: 5px;
 }
 
 #crcontent .cr_condiv > div.cr_btn span.cr_collection i {
@@ -277,7 +283,7 @@ body #crcontainer {
 
 #slide_bar {
     position: fixed;
-    z-index: 100000020;
+    z-index: 999;
     width: 103px;
     height: 94px;
     right: 0;
@@ -465,7 +471,7 @@ body #crcontainer {
 
 .slide_content {
     position: fixed;
-    z-index: 100000020;
+    z-index: 1000000;
     width: 350px;
     right: -350px;
     top: 0;
