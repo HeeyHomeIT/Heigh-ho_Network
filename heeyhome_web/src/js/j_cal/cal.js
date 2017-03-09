@@ -342,7 +342,9 @@ var heeyhomeCal = {
             $(".J" + roomName).attr("data-option", JSON.stringify(resObj));
             $(".J" + roomName).attr("data-sw", 1);
             $(".J" + roomName).closest("li").children("span").removeClass("none").html(Msg2);
-            layer.msg('保存成功');
+            layer.msg('保存成功', {
+                time: 500   //1秒关闭(如果不配置,默认是3秒)
+            });
         });
     },
     lastdivClickEvent: function () {
