@@ -1759,13 +1759,13 @@
                 li += '</li>';
             }
             $("#suspension_menu ul").append(li);
-            if ($("#suspension_menu ul li").length >= 3) {
-                var top = '';
-                top += '<li class="litop">';
-                top += '<a href="javascript:void(0)" tab="&to_head">回到顶部</a>';
-                top += '</li>';
-                $("#suspension_menu ul").append(top);
-            }
+            // if ($("#suspension_menu ul li").length >= 3) {
+            //     var top = '';
+            //     // top += '<li class="litop">';
+            //     // top += '<a href="javascript:void(0)" tab="&to_head">回到顶部</a>';
+            //     // top += '</li>';
+            //     $("#suspension_menu ul").append(top);
+            // }
             var _head = $(".commonhead");
             $(_head).addClass("to_head bar");
             var items = $(".bar");

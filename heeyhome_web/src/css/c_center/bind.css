@@ -117,7 +117,8 @@
 }
 
 .revise_process a:hover {
-    text-decoration: none
+    text-decoration: none;
+    cursor: default !important;
 }
 
 .revise_process span {
