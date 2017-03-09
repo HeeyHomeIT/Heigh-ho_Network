@@ -7,7 +7,7 @@
     margin: 0 auto;
     background-color: #f7f7f7;
     font-size: 14px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     color: #4B4948;
     padding: 30px 0 110px;
 }
@@ -55,7 +55,7 @@
 
 .spay_title .spay_tips p {
     font-weight: 800;
-        font-size: 24px;
+    font-size: 24px;
 }
 
 .spay_title .spay_money {

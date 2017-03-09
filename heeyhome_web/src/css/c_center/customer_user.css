@@ -55,7 +55,7 @@ a:focus {
     width: 1190px;
     height: 17px;
     color: #656565;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     margin: 20px auto
 }
@@ -367,7 +367,7 @@ a:focus {
     padding: 10px 20px;
     color: #4b4948;
     font-size: 14px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     border: 1px solid #D9D9D9;
 }
 
@@ -2068,13 +2068,13 @@ a:focus {
 }
 
 #time_axis .axis_start h2 {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 20px;
     color: #4B4948
 }
 
 #time_axis .axis_start h3 {
-    font-family: HelveticaNeueLTPro Roman;
+    /*font-family: HelveticaNeueLTPro Roman;*/
     font-size: 16px;
     color: #4B4948
 }
@@ -2082,7 +2082,7 @@ a:focus {
 #time_axis .date {
     float: left;
     margin: 0 17px 0 73px;
-    font-family: HelveticaNeueLTPro Roman;
+    /*font-family: HelveticaNeueLTPro Roman;*/
     font-size: 14px;
     color: #303030
 }
@@ -2115,7 +2115,7 @@ a:focus {
 }
 
 #time_axis p {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     padding-top: 15px;
     clear: both;
     border-bottom: 1px solid #D0D0D0;
@@ -2126,7 +2126,7 @@ a:focus {
 
 #time_axis .strong {
     color: #E88226;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 16px
 }
 
@@ -2163,7 +2163,7 @@ a:focus {
     position: absolute;
     top: 0px;
     left: 260px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     color: #4B4948;
     font-size: 14px;
 }
@@ -2259,7 +2259,7 @@ a:focus {
     cursor: pointer;
     border-radius: 4px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 16px;
     color: #FFFFFF;
 }
@@ -2276,7 +2276,7 @@ a:focus {
     cursor: pointer;
     border-radius: 4px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #FFFFFF;
 }
@@ -2293,7 +2293,7 @@ a:focus {
     cursor: pointer;
     border-radius: 4px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #FFFFFF;
 }
@@ -2345,7 +2345,7 @@ a:focus {
     text-align: center;
     font-size: 14px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     color: #4B4948;
 }
 
@@ -2366,13 +2366,13 @@ a:focus {
 }
 
 .axis_end h2 {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 20px;
     color: #4B4948
 }
 
 .axis_end h3 {
-    font-family: HelveticaNeueLTPro roman;
+    /*font-family: HelveticaNeueLTPro roman;*/
     font-size: 16px;
     color: #4B4948
 }
@@ -2385,7 +2385,7 @@ a:focus {
     background-color: #525252;
     color: #FFFFFF;
     text-align: center;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 18px;
     border-radius: 4px;
     margin-top: 89px
@@ -2427,7 +2427,7 @@ a:focus {
     height: 40px;
     line-height: 40px;
     text-align: center;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #4B4948
 }
@@ -2445,7 +2445,7 @@ a:focus {
 
 #owner_information {
     margin: 20px 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #EEC988;
     background: url(../img/bj-header.png) 0 -500px;
@@ -3129,7 +3129,7 @@ a:focus {
 .layui-layer-content p {
     color: #4B4948;
     font-size: 14px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     padding: 15px;
 }
 

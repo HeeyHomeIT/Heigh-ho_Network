@@ -44,7 +44,7 @@ a:hover {
     position: relative;
     font-size: 16px;
     width: 100%;
-    font-family: "Microsoft YaHei"
+    /*font-family: "Microsoft YaHei"*/
 }
 
 .picHeard-title font {
@@ -56,7 +56,7 @@ a:hover {
     color: #666;
     position: absolute;
     top: 0;
-    font-family: 'simsun';
+    /*font-family: 'simsun';*/
     font-size: 12px
 }
 
@@ -582,7 +582,7 @@ a:hover {
     _background: #000;
     display: inline-block;
     float: left;
-    font-family: arial;
+    /*font-family: arial;*/
     height: 20px;
     line-height: 20px;
     padding: 0 10px 0 10px;

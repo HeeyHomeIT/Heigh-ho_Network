@@ -34,7 +34,7 @@
 
 #foreman_shop .shop_content .content_title {
     position: relative;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #656565
 }
@@ -135,7 +135,7 @@
 }
 
 #foreman_shop .shop_content .shop_box .right_summary .shop_name {
-    font-family: FZLTZHK;
+    /*font-family: FZLTZHK;*/
     margin-bottom: 16px;
     font-size: 18px;
     color: #eec988;
@@ -173,7 +173,7 @@
 #foreman_shop .shop_content .shop_box .right_summary .shop_introduce p {
     color: #656565;
     margin-bottom: 14px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px
 }
 
@@ -192,7 +192,7 @@
     position: relative;
     width: 70px;
     float: left;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #656565;
     margin-right: 43px
@@ -225,7 +225,7 @@
     top: 35px;
     left: 440px;
     width: 125px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #656565
 }
@@ -235,7 +235,7 @@
     width: 30px;
     text-align: right;
     margin: 0 8px 0 17px;
-    font-family: HelveticaNeueLTPro HvIt;
+    /*font-family: HelveticaNeueLTPro HvIt;*/
     color: #EEC988;
     font-size: 18px
 }

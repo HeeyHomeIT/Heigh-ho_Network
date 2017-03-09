@@ -62,7 +62,7 @@
 }
 
 #virtual_reality .virtual_content .content_title {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #656565;
     position: relative;
@@ -159,7 +159,7 @@
     float: left;
     padding-bottom: 10px;
     border-bottom: 1px dashed #939393;
-    font-family: FZLTZHK;
+    /*font-family: FZLTZHK;*/
     font-weight: bold;
     color: #4B4948
 }
@@ -176,7 +176,7 @@
 
 #virtual_reality .virtual_content .pic_box .pic_detail {
     display: inline-block;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #656565;
     margin-left: 24px;

@@ -4,7 +4,7 @@
 }
 
 .fliter span {
-	font-family: FZLTHJW;
+	/*font-family: FZLTHJW;*/
 	float: left;
 	width: 56px;
 	font-size: 14px;
@@ -40,14 +40,14 @@
 }
 
 .fliter div li a {
-	font-family: FZLTHJW;
+	/*font-family: FZLTHJW;*/
 	font-size: 14px;
 	cursor: pointer;
 	color: #4B4948
 }
 
 .fliter div li a:hover {
-	font-family: FZLTHJW;
+	/*font-family: FZLTHJW;*/
 	font-size: 14px;
 	color: #EEC988
 }

@@ -1,5 +1,5 @@
 body {
-    font-family: "微软雅黑";
+    /*font-family: "微软雅黑";*/
 }
 
 /* 公共样式 */
@@ -533,7 +533,7 @@ body {
 .appointment_time .appointment_timetitle span {
     height: 45px;
     color: #606060;
-    font: normal normal normal 12px/20px Arial, sans-serif;
+    /*font: normal normal normal 12px/20px Arial, sans-serif;*/
     line-height: 40px;
     font-weight: 500;
     font-size: 30px;

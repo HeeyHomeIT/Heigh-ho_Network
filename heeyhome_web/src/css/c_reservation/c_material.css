@@ -1,5 +1,5 @@
 body {
-    font-family: "微软雅黑";
+    /*font-family: "微软雅黑";*/
 }
 .materialList_wrap {
     width: 1190px;
@@ -320,7 +320,7 @@ body {
 }
 
 .materialList_wrap .materialList_cont .orderInfo dl dd .contract_info .contract_txt_title {
-    font: 700 20px/32px simsun;
+    /*font: 700 20px/32px simsun;*/
     text-align: center
 }
 

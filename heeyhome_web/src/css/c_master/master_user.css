@@ -65,7 +65,7 @@
     width: 1190px;
     height: 17px;
     color: #656565;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     margin: 20px auto;
     padding-top: 0
@@ -594,7 +594,7 @@
 .bottom_team .team_name {
     text-align: center;
     font-size: 14px;
-    font-family: Verdana;
+    /*font-family: Verdana;*/
     margin-top: 7px;
 }
 
@@ -1493,7 +1493,6 @@
     border-radius: 4px;
     margin-top: 25px;
     border: 0;
-    margin-left: 20px;
 }
 
 .shop_save:hover {
@@ -1721,7 +1720,7 @@
     width: 93px;
     height: 34px;
     color: #FFFFFF;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 16px;
     background-color: #EEC988;
     border: 0;
@@ -2086,7 +2085,7 @@
 
 #owner_information {
     margin: 20px 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #EEC988;
     background: url(../img/bj-header.png) 0 -500px;
@@ -2198,7 +2197,7 @@
 .plumber_material {
     width: 1190px;
     padding: 20px 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #4B4948;
     margin: 0 auto;
@@ -2743,7 +2742,7 @@
 .new_work_content {
     width: 800px;
     margin: 0 auto;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #4B4948;
     padding: 40px 0;
@@ -3162,7 +3161,7 @@
     border: 1px solid #cdcdcd;
     border-top: none;
     color: #4b4948;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 12px;
 }
 
@@ -3669,7 +3668,7 @@ div.clear:after, div.clear:before {
     color: #E88226;
     font-size: 20px;
     font-weight: bold;
-    font-family: FZLTDHK
+    /*font-family: FZLTDHK*/
 }
 
 .security_top .security_score .star {
@@ -4591,7 +4590,7 @@ div.clear:after, div.clear:before {
 .layui-layer-content p {
     color: #4B4948;
     font-size: 14px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     padding: 15px;
 }
 
