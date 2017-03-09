@@ -690,6 +690,10 @@
     color: #666;
 }
 
+#man, #women {
+    opacity: 0;
+}
+
 .personal_form_area input {
     width: 338px;
 }
@@ -4013,6 +4017,7 @@ div.clear:after, div.clear:before {
 
 .information_choose input {
     margin-top: 0;
+    opacity: 0;
 }
 
 .information_choose span {

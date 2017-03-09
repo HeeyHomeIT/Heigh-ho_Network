@@ -98,7 +98,7 @@
     margin: 0 6px 8px 0;
     position: relative;
     width: 291px;
-    height: 404px
+    height: 400px
 }
 
 #virtual_reality .virtual_content .pic_box:hover {
@@ -169,16 +169,18 @@
     cursor: pointer;
     width: 50px;
     height: 50px;
-    top: 285px;
-    left: 180px;
+    top: 275px;
+    left: 200px;
     background-position: -19px -87px
 }
 
 #virtual_reality .virtual_content .pic_box .pic_detail {
+    display: inline-block;
     font-family: FZLTHJW;
     font-size: 14px;
     color: #656565;
-    margin-left: 24px
+    margin-left: 24px;
+    margin-top: 15px;
 }
 
 #virtual_reality .virtual_content .pic_box .pic_detail p:first-child {
@@ -186,8 +188,8 @@
 }
 
 #virtual_reality .virtual_content .pic_box .pic_icon {
-    cursor: default;
-    margin: 10px 0 0 150px;
+    display: inline-block;
+    margin: 10px 0 0 35px;
     height: 15px
 }
 
@@ -197,6 +199,7 @@
 }
 
 #virtual_reality .virtual_content .pic_box .pic_icon .pic_view {
+    cursor: default;
     float: left;
     margin-right: 30px
 }
@@ -206,6 +209,7 @@
 }
 
 #virtual_reality .virtual_content .pic_box .pic_icon .pic_praise {
+    cursor: default;
     float: left;
 }
 

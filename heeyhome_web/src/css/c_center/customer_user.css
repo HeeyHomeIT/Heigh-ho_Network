@@ -625,6 +625,10 @@ a:focus {
     margin-top: 0;
 }
 
+#man, #women {
+    opacity: 0;
+}
+
 .detail_address {
     height: 150px;
 }
@@ -1448,6 +1452,7 @@ a:focus {
 
 .information_choose input {
     margin-top: 0;
+    opacity: 0;
 }
 
 .information_choose span {
@@ -1614,7 +1619,7 @@ a:focus {
 }
 
 .safe_right, .safe_right_content {
-    padding: 35px 0 50px 83px;
+    padding: 35px 0 50px 45px;
     border-top: none;
     position: relative;
 }
@@ -1644,7 +1649,7 @@ a:focus {
     color: #E88226;
     font-size: 20px;
     font-weight: bold;
-    font-family: FZLTDHK
+    /*font-family: FZLTDHK*/
 }
 
 .security_top .security_score .star {

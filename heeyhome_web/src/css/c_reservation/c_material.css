@@ -191,6 +191,7 @@ body {
 .materialList_wrap .materialList_cont .material_cardtable table .set_default input {
 	margin: 0;
 	padding: 0;
+    opacity: 0;
 }
 
 .materialList_wrap .materialList_cont .material_cardtable table .set_default em {
