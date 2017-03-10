@@ -157,9 +157,11 @@ class OrderDisplayController extends Controller
             return $callback . "(" . HHJson($arr) . ")";
         }
     }
-
+    
     //获取每个阶段是否已经付款了
-    public function getPhasePayStatus() {
+    public function getPhasePayStatus() 
+    {
+        
         $order_id = rq('order_id');
         $order_step = rq('order_step');
         $order_pay_step = rq('order_pay_step');
@@ -178,7 +180,7 @@ class OrderDisplayController extends Controller
         if ($sel_payStatus) {
             $arr = array(
                 "code" => "000",
-                "data" => $sel_payStatus[0]->pay_status;
+                "data" => $sel_payStatus[0]->pay_status
             );
             return $callback . "(" . HHJson($arr) . ")";
         } else {
@@ -190,5 +192,7 @@ class OrderDisplayController extends Controller
             );
             return $callback . "(" . HHJson($arr) . ")";
         }
+
     }
+
 }
