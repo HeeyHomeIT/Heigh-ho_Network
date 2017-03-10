@@ -256,6 +256,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/user/subrefundinfo', 'OrderPayController@subRefundInfo');
     //订单评价
     Route::any('order/order/evaluation', 'ShopScoreController@orderOverScore');
+    //付款信息获取
+    Route::any('order/getpayinfo', 'OrderPayController@getpayinfo');
+    //确认已付款
+    Route::any('order/payconfirm', 'OrderPayController@payconfirm');
 
     //材料订单
     //获取材料订单列表
@@ -375,6 +379,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     Route::any('supplier/add', 'SupplierController@add');
     /*装修订单*/
     Route::any('orderlist', 'OrderController@index');
+    Route::any('orderdetail/{id}', 'OrderController@detail');
     /*退款申请*/
     Route::any('refundlist', 'RefundController@index');
     Route::any('refund/info/{id}', 'RefundController@info');
@@ -395,6 +400,8 @@ Route::any('/alipay/return_url', function () {
 Route::any('/alipay/notify_url', function () {
     return view('notify_url');
 });
+
+
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => 'web'], function()
 {
