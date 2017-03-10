@@ -161,7 +161,7 @@
                     pageHandler.pageContentEvent();
                     viewPlus.addView();
                     addCollect.collectVr();
-                    countPraise.praiseVr();
+                    // countPraise.praiseVr();
                     orderModuleHandler.orderClickEvent();
                 } else {
                     $(".content_pic").html('<div class="nullpage"><i>&nbsp;</i><span>暂时还没有,设计师正在加班加点的制作中...</span></div>');
@@ -361,7 +361,7 @@
                     $(".content_pic").html(spliceVrContentHandler.spliceStrEvent(data.data));
                     viewPlus.addView();
                     addCollect.collectVr();
-                    countPraise.praiseVr();
+                    // countPraise.praiseVr();
                 } //用于ajax返回的数据的操作,回调函数,data为服务器返回数据
             }));
 

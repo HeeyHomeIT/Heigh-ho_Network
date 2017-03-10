@@ -55,7 +55,7 @@ a:focus {
     width: 1190px;
     height: 17px;
     color: #656565;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     margin: 20px auto
 }
@@ -367,7 +367,7 @@ a:focus {
     padding: 10px 20px;
     color: #4b4948;
     font-size: 14px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     border: 1px solid #D9D9D9;
 }
 
@@ -588,7 +588,7 @@ a:focus {
 
 /* 个人资料样式 */
 .personal_form {
-    width: 680px;
+    width: 780px;
     height: auto;
     margin: 0 auto;
 }
@@ -600,33 +600,61 @@ a:focus {
 }
 
 .personal_form_list span {
-    width: 58px;
+    width: 85px;
     display: inline-block;
-    text-align: right;
+    text-align: left;
     font-size: 14px;
     color: #4b4948;
     vertical-align: middle;
+    letter-spacing: 3px;
+}
+
+.detail_address span {
+    vertical-align: top;
+    margin-top: -10px;
 }
 
 .personal_form_list input {
-    margin-left: 15px;
-    border: none;
-    border-bottom: 1px solid #3d3d3d;
-    height: 25px;
-    line-height: 25px;
-    padding: 0 4px;
+    margin-left: 5px;
+    border: 1px solid #ddd;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 10px;
     box-sizing: border-box;
     font-size: 14px;
     margin-top: 0;
 }
 
+#man, #women {
+    opacity: 0;
+}
+
+.detail_address {
+    height: 150px;
+}
+
+.detail_address textarea {
+    height: 145px;
+    resize: none;
+    border: 1px solid #ddd;
+    margin-left: 5px;
+    line-height: 30px;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
 .personal_form_list .personal_user_name, .personal_form_list .personal_user_nickname {
-    width: 150px;
+    width: 230px;
 }
 
 .personal_form_list .personal_user_name:disabled {
     background-color: white;
     cursor: not-allowed;
+}
+
+.personal_form_list .form-group {
+    margin-left: -3px;
+    margin-right: 13px;
 }
 
 .personal_form_list b {
@@ -645,6 +673,7 @@ a:focus {
 .personal_form_list .personal_user_age {
     width: 67px;
     text-align: center;
+    padding-left: 0;
 }
 
 .personal_form_list p {
@@ -745,10 +774,6 @@ a:focus {
     padding: 4px 12px;
 }
 
-.personal_form_list .form-group {
-    margin-left: 10px;
-}
-
 .personal_form_list em {
     font-size: 14px;
     vertical-align: middle;
@@ -796,7 +821,7 @@ a:focus {
     background-color: #fff;
     position: absolute;
     top: 19px;
-    left: 6px;
+    left: -5px;
 }
 
 .personal_form_list .sex .checked {
@@ -1427,6 +1452,7 @@ a:focus {
 
 .information_choose input {
     margin-top: 0;
+    opacity: 0;
 }
 
 .information_choose span {
@@ -1593,7 +1619,7 @@ a:focus {
 }
 
 .safe_right, .safe_right_content {
-    padding: 35px 0 50px 83px;
+    padding: 35px 0 50px 45px;
     border-top: none;
     position: relative;
 }
@@ -1623,7 +1649,7 @@ a:focus {
     color: #E88226;
     font-size: 20px;
     font-weight: bold;
-    font-family: FZLTDHK
+    /*font-family: FZLTDHK*/
 }
 
 .security_top .security_score .star {
@@ -2042,13 +2068,13 @@ a:focus {
 }
 
 #time_axis .axis_start h2 {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 20px;
     color: #4B4948
 }
 
 #time_axis .axis_start h3 {
-    font-family: HelveticaNeueLTPro Roman;
+    /*font-family: HelveticaNeueLTPro Roman;*/
     font-size: 16px;
     color: #4B4948
 }
@@ -2056,7 +2082,7 @@ a:focus {
 #time_axis .date {
     float: left;
     margin: 0 17px 0 73px;
-    font-family: HelveticaNeueLTPro Roman;
+    /*font-family: HelveticaNeueLTPro Roman;*/
     font-size: 14px;
     color: #303030
 }
@@ -2089,7 +2115,7 @@ a:focus {
 }
 
 #time_axis p {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     padding-top: 15px;
     clear: both;
     border-bottom: 1px solid #D0D0D0;
@@ -2100,7 +2126,7 @@ a:focus {
 
 #time_axis .strong {
     color: #E88226;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 16px
 }
 
@@ -2137,7 +2163,7 @@ a:focus {
     position: absolute;
     top: 0px;
     left: 260px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     color: #4B4948;
     font-size: 14px;
 }
@@ -2233,7 +2259,7 @@ a:focus {
     cursor: pointer;
     border-radius: 4px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 16px;
     color: #FFFFFF;
 }
@@ -2250,7 +2276,7 @@ a:focus {
     cursor: pointer;
     border-radius: 4px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #FFFFFF;
 }
@@ -2267,7 +2293,7 @@ a:focus {
     cursor: pointer;
     border-radius: 4px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #FFFFFF;
 }
@@ -2319,7 +2345,7 @@ a:focus {
     text-align: center;
     font-size: 14px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     color: #4B4948;
 }
 
@@ -2340,13 +2366,13 @@ a:focus {
 }
 
 .axis_end h2 {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 20px;
     color: #4B4948
 }
 
 .axis_end h3 {
-    font-family: HelveticaNeueLTPro roman;
+    /*font-family: HelveticaNeueLTPro roman;*/
     font-size: 16px;
     color: #4B4948
 }
@@ -2359,7 +2385,7 @@ a:focus {
     background-color: #525252;
     color: #FFFFFF;
     text-align: center;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 18px;
     border-radius: 4px;
     margin-top: 89px
@@ -2401,7 +2427,7 @@ a:focus {
     height: 40px;
     line-height: 40px;
     text-align: center;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #4B4948
 }
@@ -2419,7 +2445,7 @@ a:focus {
 
 #owner_information {
     margin: 20px 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #EEC988;
     background: url(../img/bj-header.png) 0 -500px;
@@ -3075,8 +3101,8 @@ a:focus {
 }
 
 .loading {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     margin: 20px auto;
     position: absolute;
     top: 35%;
@@ -3103,7 +3129,7 @@ a:focus {
 .layui-layer-content p {
     color: #4B4948;
     font-size: 14px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     padding: 15px;
 }
 

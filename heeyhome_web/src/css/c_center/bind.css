@@ -81,10 +81,11 @@
     border: 1px solid #cdcdcd;
     border-top: none
 }
+
 /*#user_right .content_wrap {*/
-    /*height: 845px;*/
+/*height: 845px;*/
 /*}*/
-    /*.right_content {*/
+/*.right_content {*/
 /*padding: 100px 50px*/
 /*}*/
 
@@ -116,7 +117,8 @@
 }
 
 .revise_process a:hover {
-    text-decoration: none
+    text-decoration: none;
+    cursor: default !important;
 }
 
 .revise_process span {
@@ -128,7 +130,7 @@
     height: 35px;
     line-height: 35px;
     width: 35px;
-    opacity: 0.3;
+    opacity: 0.8;
     margin-bottom: 10px;
     border-radius: 50%
 }
@@ -189,11 +191,11 @@
 }
 
 .bind_phone .phone_number input {
-    border: 0;
     margin-left: 10px;
-    width: 106px;
+    width: 200px;
     height: 30px;
-    border-bottom: 1px solid #000000
+    border: 1px solid #ddd;
+    padding-left: 6px;
 }
 
 .bind_phone .phone_number span:last-child {
@@ -210,25 +212,26 @@
     width: 106px;
     height: 30px;
     margin-left: 10px;
-    border: 0;
-    border-bottom: 1px solid #000000
+    border: 1px solid #ddd;
+    padding-left: 6px;
 }
 
 .bind_phone .confirm_code input:last-child {
-    width: 120px;
-    height: 38px;
+    width: 100px;
+    height: 30px;
     border-radius: 4px;
     border: 1px solid #EEC988;
     color: #EEC988;
     background-color: #FFFFFF;
     text-align: center;
     cursor: pointer;
-    margin-left: 11px
+    margin-left: 11px;
+    padding-left: 0;
 }
 
 .next_section {
     display: inline-block;
-    width: 200px;
+    width: 84px;
     height: 34px;
     line-height: 34px;
     margin-top: 50px;
@@ -244,9 +247,7 @@
 
 .next_section:hover {
     color: #FFFFFF;
-    -webkit-box-shadow: 3px 3px 5px #939393;
-    -moz-box-shadow: 3px 3px 5px #939393;
-    box-shadow: 3px 3px 5px #939393
+    background-color: #f7cf88;
 }
 
 .new_phone {
@@ -266,11 +267,11 @@
 }
 
 .new_phone .newphone_num input {
-    border: 0;
     margin-left: 10px;
     width: 156px;
     height: 30px;
-    border-bottom: 1px solid #000000
+    border: 1px solid #ddd;
+    padding-left: 6px;
 }
 
 .new_phone .newphone_code {
@@ -280,23 +281,24 @@
 }
 
 .new_phone .newphone_code input {
-    border: 0;
     margin-left: 10px;
     width: 156px;
     height: 30px;
-    border-bottom: 1px solid #000000
+    border: 1px solid #ddd;
+    padding-left: 6px;
 }
 
 .new_phone .newphone_code input:last-child {
-    width: 120px;
-    height: 38px;
+    width: 100px;
+    height: 30px;
     border-radius: 4px;
     border: 1px solid #EEC988;
     color: #EEC988;
     background-color: #FFFFFF;
     text-align: center;
     cursor: pointer;
-    margin-left: 27px
+    margin-left: 27px;
+    padding-left: 0;
 }
 
 .new_phone p {
@@ -306,7 +308,7 @@
 
 .sure {
     display: block;
-    width: 200px;
+    width: 84px;
     height: 34px;
     line-height: 34px;
     margin-top: 50px;
@@ -322,9 +324,7 @@
 
 .sure:hover {
     color: #FFFFFF;
-    -webkit-box-shadow: 3px 3px 5px #939393;
-    -moz-box-shadow: 3px 3px 5px #939393;
-    box-shadow: 3px 3px 5px #939393
+    background-color: #f7cf88;
 }
 
 .success {
@@ -469,20 +469,19 @@
 }
 
 .remind_p {
-    margin-top: 84px;
+    margin-top: 30px;
 }
 
 .next_auth {
-    margin-top: 84px;
+    margin-top: 35px;
     color: white;
 }
 
 .auth_photo {
-    margin-top: 55px;
+    margin-top: 30px;
     display: block;
     font-size: 14px;
     color: #939393;
-    margin-left: 50px;
     margin-bottom: 50px;
 }
 
@@ -532,9 +531,9 @@
 }
 
 .showImg {
-    width: 271px;
-    height: 191px;
-    margin-left: 45px;
+    width: 272px;
+    height: 192px;
+    margin-right: 45px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: relative;
@@ -572,17 +571,17 @@
 /* 修改密码 */
 .message_wrap {
     width: 670px;
-    height: 134px;
+    height: 100px;
     border: 1px solid #dbdbdb;
     border-radius: 4px;
-    margin-top: 90px;
+    margin-top: 10px;
 }
 
 .message {
     width: 560px;
     height: 37px;
     line-height: 37px;
-    margin: 45px auto;
+    margin: 30px auto;
 }
 
 .message_fl img {
@@ -654,8 +653,7 @@
     width: 150px;
     height: 30px;
     margin-left: 10px;
-    border: 0;
-    border-bottom: 1px solid #000000;
+    border: 1px solid #ddd;
     border-radius: 0;
     color: #4b4948;
     text-align: inherit;
@@ -674,11 +672,17 @@
     background: url(../img/sprite_remain.png) no-repeat;
 }
 
-.safe_right_content .showImg {
+.safe_right_content .showFace {
     border: 1px solid #ddd;
 }
 
 .safe_right_content .showImg img {
     width: 270px;
     height: 190px;
+}
+
+.info {
+    color: #f60;
+    font-size: 14px;
+    margin-top: 30px;
 }

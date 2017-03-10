@@ -59,7 +59,7 @@ a:focus {
     height: 26px;
     background-color: #525252;
     border-radius: 4px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 12px;
     border: 0;
     cursor: pointer;
@@ -103,7 +103,7 @@ a:focus {
     height: 62px;
     line-height: 63px;
     color: #656565;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 18px;
     margin-left: 43px;
 }
@@ -160,7 +160,7 @@ a:focus {
 }
 
 #decoration_pedia .pedia_content .right_content .right_title h2 {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 22px;
     color: #4B4948
 }
@@ -299,7 +299,7 @@ a:focus {
 #decoration_pedia .pedia_content .right_content .right_detail a li {
     margin-left: 113px;
     color: #2E2E2E;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 16px
 }
 
@@ -308,8 +308,8 @@ a:focus {
 }
 
 .loading {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     margin: 20px auto;
     position: absolute;
     top: 35%;

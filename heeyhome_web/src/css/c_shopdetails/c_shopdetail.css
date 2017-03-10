@@ -113,7 +113,7 @@
 }
 
 #selfshop_top .shop_information .shop_name {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     color: #E88226;
     font-size: 22px;
     height: 23px;
@@ -147,7 +147,7 @@
 
 #selfshop_top .shop_information .signature {
     color: #A5A5A5;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     margin-bottom: 13px;
     width: 342px
@@ -180,7 +180,7 @@
 
 #selfshop_top .shop_information .shop_introduce p {
     color: #656565;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     margin: 0 0 0 !important;
 }
@@ -193,7 +193,7 @@
     border: 0;
     cursor: pointer;
     border-radius: 2px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 12px;
     color: #FFFFFF;
     background-color: #525252;
@@ -216,7 +216,7 @@
 #selfshop_top .shop_information .shop_introduce .good_style {
     position: relative;
     color: #656565;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     margin-right: 13px;
     float: left
@@ -224,7 +224,7 @@
 
 #selfshop_top .shop_information .shop_introduce span {
     color: #656565;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px
 }
 
@@ -236,7 +236,7 @@
     float: left;
     padding: 0 32px 0 32px;
     color: #656565;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     border-right: 1px solid #656565
 }
@@ -254,7 +254,7 @@
 }
 
 #selfshop_top .shop_information .shop_assess div span {
-    font-family: FZLTDHK;
+    /*font-family: FZLTDHK;*/
     font-size: 18px;
     color: #E88226;
     padding: 0 2px 0 3px
@@ -275,7 +275,7 @@
     border: 0;
     cursor: pointer;
     text-align: center;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 18px
 }
 
@@ -297,7 +297,7 @@
     float: left;
     background-color: #525252;
     color: #FFFFFF;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 16px;
     width: 162px;
     height: 37px;
@@ -333,7 +333,7 @@
     float: left;
     background-color: #FFFFFF;
     color: #4B4948;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 16px;
     width: 162px;
     height: 37px;
@@ -481,7 +481,7 @@
     font-size: 20px;
     color: #4B4948;
     line-height: 22px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
     margin-bottom: 49px;
     margin-top: 20px
 }
@@ -529,7 +529,7 @@
 #manager_information .manager_introduce .manager_detail {
     margin: 21px 0 0 120px;
     color: #4B4948;
-    font-family: FZLTZHK;
+    /*font-family: FZLTZHK;*/
     font-size: 14px
 }
 
@@ -569,7 +569,7 @@
     width: 200px;
     text-align: center;
     color: #4B4948;
-    font-family: FZLTZHK;
+    /*font-family: FZLTZHK;*/
     font-size: 14px
 }
 
@@ -595,7 +595,7 @@
 
 #manager_information .work_experience .icon_experience span {
     color: #FFFFFF;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     position: absolute;
     top: 45px;
     left: 15px;
@@ -615,7 +615,7 @@
 
 #manager_information .decoration_history .icon_decoration span {
     color: #FFFFFF;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     position: absolute;
     top: 48px;
     left: 16px;
@@ -625,7 +625,7 @@
 #manager_information .decoration_history ul {
     margin: 21px 0 0 0;
     color: #4B4948;
-    font-family: FZLTZHK;
+    /*font-family: FZLTZHK;*/
     font-size: 14px
 }
 
@@ -681,7 +681,7 @@
     box-shadow: 0 -1px 1px #ddd;
     line-height: 23px;
     font-size: 16px;
-    font-family: arial, tahoma, 'Microsoft Yahei', '\5b8b\4f53', sans-serif;
+    /*font-family: arial, tahoma, 'Microsoft Yahei', '\5b8b\4f53', sans-serif;*/
     color: #333;
     text-decoration: none;
 }
@@ -729,7 +729,7 @@
     font-size: 20px;
     color: #4B4948;
     line-height: 22px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
     margin-bottom: 16px
 }
 
@@ -802,7 +802,7 @@
     width: 90%;
     margin: 0 auto;
     padding: 0.866% 0;
-    font-family: Arial;
+    /*font-family: Arial;*/
     font-size: 15px
 }
 
@@ -822,7 +822,7 @@
     outline: 1px solid transparent;
     /*width: 19.2%;*/
     width: 21.2%;
-    font-family: initial;
+    /*font-family: initial;*/
     /*padding-bottom: 22.170%;*/
     padding-bottom: 25.17%;
     margin-right: 10px;
@@ -992,7 +992,7 @@
     font-size: 20px;
     color: #4B4948;
     line-height: 22px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
     margin-top: 16px;
     margin-bottom: 16px
 }
@@ -1317,7 +1317,7 @@
     font-size: 20px;
     color: #4B4948;
     line-height: 22px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
     margin-bottom: 16px;
 }
 

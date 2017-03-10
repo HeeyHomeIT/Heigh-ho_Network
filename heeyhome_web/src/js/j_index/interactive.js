@@ -35,9 +35,9 @@ define(['app'], function (app) {
                             var imgArr = [];
                             $.each(data.data, function (i, n) {
                                 if (i == 0) {
-                                    carouselPic += '<li class="item active"><a href="' + n.img_path + '" target="_blank"><img src="' + n.img + '"></a></li>';
+                                    carouselPic += '<li class="item active"><a href="javascript:;" target="_blank"><img src="' + n.img + '"></a></li>';
                                 } else {
-                                    carouselPic += '<li class="item"><a href="' + n.img_path + '" target="_blank"><img src="' + n.img + '"></a></li>';
+                                    carouselPic += '<li class="item"><a href="javascript:;" target="_blank"><img src="' + n.img + '"></a></li>';
                                 }
                                 imgArr.push(n.img);
                                 $('.number_control ul').append('<li>0' + (i + 1) + '</li>');

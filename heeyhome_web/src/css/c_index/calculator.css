@@ -15,7 +15,7 @@ body #calcontainer {
     height: 42px;
     line-height: 42px;
     text-align: center;
-    font-weight: 600;
+    /*font-weight: 600;*/
     position: relative
 }
 
@@ -99,7 +99,7 @@ body #calcontainer {
 
 .tender_sup {
     position: absolute;
-    right: 140px;
+    right: 145px;
     color: #333;
     top: 0px;
     margin: 0;

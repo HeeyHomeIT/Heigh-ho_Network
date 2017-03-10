@@ -71,7 +71,7 @@
 #myCarousel .number_control li {
     list-style: none;
     position: relative;
-    font-family: HelveticaNeueLTPro Md;
+    /*font-family: HelveticaNeueLTPro Md;*/
     font-size: 14px;
     color: #FFFFFF;
     margin-bottom: 15px
@@ -101,7 +101,7 @@
     font-size: 20px;
     color: #4B4948;
     line-height: 22px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
     margin-bottom: 16px
 }
 
@@ -134,7 +134,7 @@
     font-size: 20px;
     color: #4B4948;
     line-height: 22px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
     margin-bottom: 16px
 }
 
@@ -151,7 +151,7 @@
 }
 
 .virtual_reality h3 > span.s_more a {
-    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    /*font-family: 'Microsoft YaHei', Arial, sans-serif;*/
     display: block;
     float: right;
     color: #666;
@@ -160,7 +160,7 @@
 }
 
 .virtual_reality h3 > span.s_more em {
-    font-family: sans-serif;
+    /*font-family: sans-serif;*/
     margin: 1px 0 0 1px;
     float: right;
 }
@@ -217,7 +217,7 @@
 }
 
 .vr_picture ul li figcaption {
-    font-family: "Microsoft Yahei";
+    /*font-family: "Microsoft Yahei";*/
     position: absolute;
     left: 0;
     bottom: 0;
@@ -290,7 +290,7 @@
     font-size: 30px;
     color: #FFFFFF;
     cursor: pointer;
-    font-family: 'Microsoft YaHei';
+    /*font-family: 'Microsoft YaHei';*/
     margin: 0 auto;
 }
 
@@ -327,7 +327,7 @@
 
 .appointment_decoration .title .title_text h2 {
     color: #E88226;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     position: relative;
     text-align: center;
     font-size: 24px
