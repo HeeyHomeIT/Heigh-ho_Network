@@ -124,4 +124,40 @@ class OrderPayController extends Controller
         }
     }
 
+    //获取每个阶段是否已经付款了
+    public function getPhasePayStatus() {
+        $order_id = rq('order_id');
+        $order_step = rq('order_step');
+        $order_pay_step = rq('order_pay_step');
+        $callback = rq('callback');
+
+        if (!$order_pay_step || !$order_step || !$order_id) {
+            $arr = array(
+                "code" => "200",
+                "msg" => "参数错误"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+
+        $sel_payStatus = DB::SELECT('SELECT pay_status FROM hh_order_pay_each WHERE order_id = ? AND order_step = ? AND order_pay_step = ? ',[$order_id,$order_step,$order_pay_step]);
+
+        if ($sel_payStatus) {
+            $arr = array(
+                "code" => "000",
+                "data" => $sel_payStatus[0]->pay_status;
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $code = 1;
+            $arr = array(
+                "code" => "000",
+                "msg" => "数据库没有数据，默认没有付款",
+                "data" => $code
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+
+
+
+    }
 }

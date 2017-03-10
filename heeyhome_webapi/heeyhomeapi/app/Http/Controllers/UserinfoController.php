@@ -113,7 +113,7 @@ class UserinfoController extends Controller
         }
         $vr = DB::select('select count(id) as vrCount from hh_collection where collect_userid=? and collect_type=?',[$user_id,'panorama']);
         $shop = DB::select('select count(id) as shopCount from hh_collection where collect_userid=? and collect_type=?',[$user_id,'shop']);
-        $cost = DB::select('SELECT COUNT(id) AS costCount FROM hh_calculator_results WHERE user_id = ?',[$user_id]);
+        $cost = DB::select('SELECT COUNT(id) AS costCount FROM hh_calculator_results WHERE user_id = ? AND isdel=?',[$user_id,0]);
 
         $arr = array("code" => "000",
                 "data" => array("vr"=>$vr[0]->vrCount,"cost"=>$cost[0]->costCount,"shop"=>$shop[0]->shopCount)
