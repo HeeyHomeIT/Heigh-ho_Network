@@ -91,10 +91,10 @@
 
 #foreman_shop .shop_content .shop_summary .shop_box:hover {
     transition: all 0.3s;
-    -moz-box-shadow: 0 0 6px #999;
-    -o-box-shadow: 0 0 6px #999;
-    -webkit-box-shadow: 0 0 6px #999;
-    box-shadow: 0 0 6px #999
+    -moz-box-shadow: 0 0 16px 2px rgba(0,0,0,.2);
+    -o-box-shadow: 0 0 16px 2px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 0 16px 2px rgba(0,0,0,.2);
+    box-shadow: 0 0 16px 2px rgba(0,0,0,.2)
 }
 
 #foreman_shop .shop_content .shop_box .left_image {

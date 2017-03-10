@@ -866,7 +866,7 @@
     margin-top: -10px;
 }
 
-.detail_address {
+.personal_form .detail_address {
     height: 150px;
 }
 
@@ -1531,7 +1531,7 @@
 
 .shop_detail_style .edit span, .shop_detail_area .area_edit span, .personal_area_list .area_edit span {
     display: inline-block;
-    width: 85px;
+    width: 90px;
     float: left;
     cursor: pointer;
     height: 30px;
@@ -2757,6 +2757,14 @@
     border-left: 3px solid #EEC988;
 }
 
+.new_work_content .new_style h3 {
+    margin-bottom: 0;
+}
+
+.new_style span {
+    margin-top: 15px;
+}
+
 .new_work_content > div {
     position: relative;
     margin-bottom: 23px;
@@ -2812,6 +2820,10 @@
     -o-transition: all 0.3s linear;
     -moz-transition: all 0.3s linear;
     -webkit-transition: all 0.3s linear;
+}
+
+.new_typecnt .room {
+    margin-left: 0;
 }
 
 .new_typecnt > div:after {
@@ -2997,7 +3009,7 @@
     color: #FFFFFF;
     background-color: #EEC988;
     font-size: 16px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .new_work_content .submit:hover {

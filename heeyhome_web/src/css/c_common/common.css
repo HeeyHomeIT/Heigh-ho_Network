@@ -5,7 +5,8 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, form, fieldset, legend, i
 
 body {
     color: #333;
-    font: normal normal normal 12px/20px Arial, sans-serif
+    font: normal normal normal 12px/20px Arial, sans-serif;
+    font-family: 'Microsoft YaHei', Arial, sans-serif
 }
 
 input, select, textarea, button {
