@@ -1225,15 +1225,15 @@
                         } else {
                             layer.alert("还未开工哦，亲~~");
                         }
-                        if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
-                            $('.work_stage .stage_content').css('marginLeft', '0');
-                        }
-                        if (window.navigator.userAgent.indexOf("Firefox") != -1) {//火狐浏览器下特殊样式
-                            $('.work_stage .stage_content').css('marginLeft', '12px');
-                        }
-                        if (window.navigator.userAgent.indexOf("Chrome") && window.chrome) {//谷歌浏览器下特殊样式
-                            $('.work_stage .stage_content').css('marginLeft', '6px');
-                        }
+                        // if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
+                        //     $('.work_stage .stage_content').css('marginLeft', '0');
+                        // }
+                        // if (window.navigator.userAgent.indexOf("Firefox") != -1) {//火狐浏览器下特殊样式
+                        //     $('.work_stage .stage_content').css('marginLeft', '12px');
+                        // }
+                        // if (window.navigator.userAgent.indexOf("Chrome") && window.chrome) {//谷歌浏览器下特殊样式
+                        //     $('.work_stage .stage_content').css('marginLeft', '12px');
+                        // }
 
                         layer.photos({
                             photos: '.stage_pic',
@@ -1263,7 +1263,7 @@
                     data: {
                         user_id: USERID,
                         page: 1,
-                        limit: 4
+                        limit: 3
                     },
                     success: function (data) {
                         //console.log(data.data);
@@ -2334,7 +2334,7 @@
                 ajaxData: {
                     user_id: USERID,
                     page: 1,
-                    limit: 4
+                    limit: 3
                 },   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
                 dataOperate: function oprate(data) {
                     var vrStr = '';
