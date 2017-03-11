@@ -78,7 +78,7 @@ class ShoplistController extends Controller
                     $para[]=7;
                     break;
                 case '5':
-                    $where=' and shop_workernum>?';
+                    $where.=' and shop_workernum>?';
                     $para[]=10;
                     break;
                 default:

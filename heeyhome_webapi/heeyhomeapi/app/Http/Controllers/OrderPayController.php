@@ -599,6 +599,11 @@ class OrderPayController extends Controller
                     }
                 }
             }
+            $arr = array(
+                "code" => "000",
+                "msg" => "成功"
+            );
+            return $callback . "(" . HHJson($arr) . ")";
         }else{
             $arr = array(
                 "code" => "111",
