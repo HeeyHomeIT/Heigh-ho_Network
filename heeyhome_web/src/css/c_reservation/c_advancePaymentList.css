@@ -202,6 +202,7 @@ body {
 .paymentList_wrap .paylist .paylist_cardtable table .submit:hover {
     background-color: #eb734b;
     border-color: #dc5528;
+    cursor: pointer;
 }
 
 .paymentList_wrap .paylist .paylist_cardtable table .lookit_default {
