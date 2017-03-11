@@ -314,7 +314,7 @@ define(['app'], function (app) {
                     rnid = $(".JroomName").data("rn");
                 if (cnid != null && cnid != undefined && rnid != null && rnid != undefined) {
                     if (cnid == rnid) {
-                        strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择右边的房间</span></div>';
+                        strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择左边的房间</span></div>';
                         $(".mainareadiv .filter_nav ").html(strLi);
                     }
                 }
@@ -326,7 +326,7 @@ define(['app'], function (app) {
             initcontentStrEvent: function () {
                 var self = this;
                 var strLi;
-                strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择右边的房间</span></div>';
+                strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择左边的房间</span></div>';
                 $(".mainareadiv .filter_nav ").html(strLi);
             },
             /**
@@ -351,7 +351,7 @@ define(['app'], function (app) {
                     $(".J" + roomName).attr("data-sw", 1);
                     $(".J" + roomName).closest("li").children("span").removeClass("none").html(Msg2);
                     layer.msg('保存成功', {
-                        time: 500   //1秒关闭(如果不配置,默认是3秒)
+                        time: 800   //1秒关闭(如果不配置,默认是3秒)
                     });
                 });
             },

@@ -174,6 +174,10 @@
     background-position: -19px -87px
 }
 
+#virtual_reality .virtual_content .pic_box .collect_badge {
+    background-position: -670px -23px
+}
+
 #virtual_reality .virtual_content .pic_box .pic_detail {
     display: inline-block;
     /*font-family: FZLTHJW;*/

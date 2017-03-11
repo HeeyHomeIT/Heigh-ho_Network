@@ -11,6 +11,7 @@
     var HHIT_SUCCESSCASEAPP = angular.module('heeyhomeApp');
 
     var SUCCESSURL = "/api/public/myworkcase"; // 显示工长添加的案例列表信息接口
+    var VRVIEWURL = '/api/public/myworkcase/scan'; // 工长案例浏览量
 
     /*定义一个类*/
     var successCaseWrap = {
@@ -83,6 +84,7 @@
                         }
                     });
                     successInfo.caseDetail();
+                    viewPlus.addView();
                 } else {
                     $(".main_content").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也~</span></div>');
                 }
@@ -132,6 +134,35 @@
             });
         }
     };
+    /**
+     * 浏览量计数
+     */
+    viewPlus = {
+        addView: function () {
+            $(".product-3 .image").on("click", function () {
+                var case_id = $(this).attr("data-id");
+                $.ajax({
+                    type: "get",
+                    url: VRVIEWURL,
+                    async: true,
+                    dataType: "jsonp",
+                    data: {
+                        case_id: case_id
+                    },
+                    success: function (data) {
+                        if (data && data.code == '000') {
+                            $('.scan_num').html(data.data.scan_num++);
+                            //location.reload();
+                        } else {
+                            layer.alert(data.msg);
+                        }
+                    },
+                    error: function (data) {
+                    }
+                });
+            });
+        }
+    };
     /* div移动撞击事件 */
     startMoveHandler = {
         startMoveEvent: function (obj, iTarget, iSpeed, left) {
@@ -166,7 +197,7 @@
                     if (v.type == arr[0] || v.type == arr[1]) {
                         vrStr += '<li><div class="image" data-type="' + v.type + '" data-id="' + v.case_id + '"><a href="javascript:void(0)"><img src="' + v.img[0].case_img + '"></a>';
                         vrStr += '<div class="image_title"><div class="roomtype">' + v.housetype + '</div><div class="roomicon"><em class="sprite-image sc_icon_love"></em><span>' + v.like_num + '</span></div>';
-                        vrStr += '<div class="roomicon"><em class="sprite-image sc_icon_look"></em><span>' + v.scan_num + '</span></div></div></div>';
+                        vrStr += '<div class="roomicon"><em class="sprite-image sc_icon_look"></em><span class="scan_num">' + v.scan_num + '</span></div></div></div>';
                         vrStr += '<div class="introduce"><strong>' + v.style + '&nbsp;' + v.area + 'm<sup>2</sup></strong>';
                         vrStr += '<div class="introduce-icon"><em class="sprite-image sc_icon_address"></em><span>' + v.address + '</span></div>';
                         vrStr += '<div class="introduce-icon"><em class="sprite-image sc_icon_time"></em><span>' + v.timelong + '</span></div></div></li>';

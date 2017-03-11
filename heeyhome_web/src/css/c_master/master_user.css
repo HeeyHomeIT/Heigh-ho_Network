@@ -338,7 +338,7 @@
 }
 
 .title_right {
-    width: 450px;
+    width: 465px;
     margin: 0 auto;
 }
 
@@ -390,7 +390,7 @@
 }
 
 .title_email {
-    width: 240px;
+    width: 265px;
     height: 44px;
 }
 
@@ -799,7 +799,7 @@
 .personal_form_list .personal_circle {
     width: 31px;
     height: 31px;
-    line-height: 31px;
+    line-height: 27px;
     text-align: center;
     border: 1px solid #d0d0d0;
     border-radius: 50%;
@@ -913,7 +913,7 @@
     width: 93px;
     height: 36px;
     line-height: 36px;
-    background-color: #3d3d3d;
+    background-color: #EEC988;
     border-radius: 4px;
     text-align: center;
     color: white;
@@ -925,12 +925,7 @@
 
 .personal_submit:hover {
     color: white;
-    background-color: black;
-    transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
+    background-color: #f7cf88;
 }
 
 .personal_content_title {
@@ -1397,7 +1392,7 @@
 .renderings_add {
     width: 86px;
     height: 86px;
-    line-height: 86px;
+    line-height: 72px;
     text-align: center;
     display: inline-block;
     border: 1px solid #c7c7c7;
@@ -1415,7 +1410,7 @@
     color: #e4e4e4;
     text-decoration: none;
     text-indent: 0;
-    line-height: 86px;
+    line-height: 72px;
     width: 86px;
     height: 86px;
     border-radius: 0;
@@ -1436,7 +1431,6 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: relative;
-    margin-left: 11px;
 }
 
 .shop_detail_style {
@@ -1488,7 +1482,7 @@
     text-align: center;
     font-size: 14px;
     display: block;
-    background-color: #3d3d3d;
+    background-color: #EEC988;
     color: white;
     border-radius: 4px;
     margin-top: 25px;
@@ -1497,12 +1491,7 @@
 
 .shop_save:hover {
     color: white;
-    background-color: black;
-    transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
+    background-color: #f7cf88;
 }
 
 .shop_detail_style .edit, .shop_detail_area .area_edit, .personal_area_list .area_edit {

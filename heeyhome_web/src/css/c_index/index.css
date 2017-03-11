@@ -3,6 +3,8 @@
  */
 #myCarousel {
     position: relative;
+    width: 100%;
+    overflow: hidden;
     min-width: 1190px;
     margin: 0 auto;
     text-align: center;
@@ -44,6 +46,7 @@
 
 #myCarousel .item {
     width: 100%;
+    min-width: 1190px;
     float: left;
     display: inline-block;
     height: 100%
@@ -58,6 +61,7 @@
     position: absolute;
     z-index: 50;
     right: 269px;
+    height: 190px;
     top: 179px
 }
 
@@ -74,7 +78,8 @@
     /*font-family: HelveticaNeueLTPro Md;*/
     font-size: 14px;
     color: #FFFFFF;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    height: 40px;
 }
 
 #myCarousel .number_control li.active {

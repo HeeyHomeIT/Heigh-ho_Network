@@ -2093,8 +2093,8 @@
                     });
                     $(document).off("click", ".ordercnt_content .all .bottom").on("click", ".ordercnt_content .all .bottom", function () {
                         var shopid = $(this).parent().attr("data-shopid");
-                        var orderid = $(this).parent().parent().attr("data-orderid");
-                        var orderstep = $(this).attr("data-orderstep");
+                        var orderid = $(this).parent().attr("data-orderid");
+                        var orderstep = $(this).parent().attr("data-orderstep");
                         sessionStorage.setItem("shopid", shopid);
                         sessionStorage.setItem("orderid", orderid);
                         sessionStorage.setItem("orderstep", orderstep);

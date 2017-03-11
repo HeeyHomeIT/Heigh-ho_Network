@@ -64,9 +64,18 @@
     width: 216px;
     position: absolute;
     min-height: 452px;
-    background-color: #939393;
     top: 0;
     right: 0
+}
+
+#foreman_shop .shop_content .right_recommend a {
+    display: inline-block;
+    width: 216px;
+    position: absolute;
+    min-height: 452px;
+    top: 0;
+    right: 0;
+    background: url("../img/right_recommend.jpg") no-repeat;
 }
 
 #foreman_shop .shop_content .shop_summary {
@@ -286,7 +295,7 @@
     overflow: hidden;
     text-align: center;
     padding: 145px 0 140px 0;
-    width: 950px;
+    width: 900px;
     margin-top: 20px;
     border: 1px solid #D7D7D7
 }
