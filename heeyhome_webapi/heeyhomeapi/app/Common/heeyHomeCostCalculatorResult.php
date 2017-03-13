@@ -338,11 +338,11 @@ function wgrg($flag, $b1, $d1, $h1, $f1, $parlor_ground, $balcony_ground, $kitch
 function mgrg($flag, $b1, $d1, $h1, $f1, $kitchen_cupboard, $wardrobe_num, $cloakroom_wardrobe, $master_ceiling, $second_ceiling, $third_ceiling, $fourth_ceiling, $parlor_ceiling, $desk_num, $tatami_num, $parlor_shoebox, $parlor_wine_cabinet, $balcony_hanging_cabinet)
 {
     //橱柜
-    $cg = isset($kitchen_cupboard) ? 1 : 0;
+    $cg = ($kitchen_cupboard ? 1 : 0);
     //卧室衣柜
     $wardrobe_num = $wardrobe_num * 825;
     //衣帽间衣柜
-    $cloakroom_wardrobe = $cloakroom_wardrobe ? 1 : 0;
+    $cloakroom_wardrobe =( $cloakroom_wardrobe ? 1 : 0);
     //衣柜总
     $yg = $wardrobe_num + $cloakroom_wardrobe * 1548;
     //卧室1吊顶1
@@ -358,11 +358,11 @@ function mgrg($flag, $b1, $d1, $h1, $f1, $kitchen_cupboard, $wardrobe_num, $cloa
     //背景基层
     $bj = 1;
     //鞋柜
-    $xg = isset($parlor_shoebox) ? 1 : 0;
+    $xg = ($parlor_shoebox ? 1 : 0);
     //酒柜
-    $jg = isset($parlor_wine_cabinet) ? 1 : 0;
+    $jg = ($parlor_wine_cabinet ? 1 : 0);
     //阳台吊柜
-    $dg = isset($balcony_hanging_cabinet) ? 1 : 0;
+    $dg = ($balcony_hanging_cabinet ? 1 : 0);
     //书柜书桌书架
     $desk = $desk_num * (600 + 350);
     //榻榻米

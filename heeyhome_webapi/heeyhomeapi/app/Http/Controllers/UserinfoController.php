@@ -162,7 +162,7 @@ class UserinfoController extends Controller
         if($isvalid) {
             $case = DB::insert('insert into hh_suggestions(user_id,text) values(?,?)', [$user_id, $content]);
             if ($case) {
-                $case_sel = DB::select('select id from hh_suggestion where user_id=? and text=?', [$user_id, $content]);
+                $case_sel = DB::select('select id from hh_suggestions where user_id=? and text=?', [$user_id, $content]);
                 $ifinsert = false;
                 foreach ($files as $key => $file) {
                     $clientName = $file->getClientOriginalName();//文件原名
