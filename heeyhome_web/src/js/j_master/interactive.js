@@ -4666,7 +4666,7 @@
             var $address = $(".detail_address input"); //详细地址
             var count = 0;
             var flag = true; // 判断能不能提交 true：能提交  false： 不能提交
-            var housetype = $room.val() + "室" + $hall.val() + "厅" + $toilet.val() + "卫" + $balcony.val() + "阳台";
+            var housetype = $room.val() + "室" + $hall.val() + "厅" + $toilet.val() + "卫" + $balcony.val() + "阳";
             var timelong = $syear.val() + "." + $smonth.val() + "." + $sday.val() + "-" + $eyear.val() + "." + $emonth.val() + "." + $eday.val();
             var data = new FormData();
             data.append("foreman_id", USERID);
@@ -5229,11 +5229,11 @@
         spliceStrEvent: function (value) {
             var vrStr = '<div class="works_detail fl complete_img" step ="' + value.order_step + '" orderId ="' + value.case_id + '">';
             vrStr += '<div class="detail_img">';
-            vrStr += '<img src="css/img/my_work1.jpg">';
+            vrStr += '<img src="' + value.img + '">';
             vrStr += '</div><!--detail_img-->';
             vrStr += '<div class="pending_font undone clearfix">';
-            vrStr += '<em class="address_em sprite_team fl"></em><p class="pending_address fl">' + value.address + '</p>';
-            vrStr += '<p class="pending_name fl"><em class="sprite_team"></em>' + value.area + '</p>';
+            vrStr += '<p class="pending_address fl"><em class="address_em sprite_team"></em>' + value.address + '</p>';
+            vrStr += '<p class="pending_name fl"><em class="sprite_team"></em>' + value.area + ' m<sup>2</sup></p>';
             vrStr += '<p class="pending_tel fl"><em class="sprite_team"></em>' + value.housetype + '</p>';
             vrStr += '</div><!--pending_font-->';
             vrStr += '<div class="bg undone"></div>';

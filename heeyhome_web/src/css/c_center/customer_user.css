@@ -2282,6 +2282,16 @@ a:focus {
     color: #FFFFFF;
 }
 
+.settlement:hover {
+    color: white;
+    transition: all 0.3s ease-in-out;
+    background-color: #000000;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+}
+
 .step .prepayment {
     left: 75px;
 }
