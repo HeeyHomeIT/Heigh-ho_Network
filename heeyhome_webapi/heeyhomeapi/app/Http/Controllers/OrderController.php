@@ -275,6 +275,10 @@ class OrderController extends Controller
             $order_tbl_list[$key]->user_portrait = $portrait[0]->portrait_img;
             $house_style = DB::SELECT('SELECT house_style FROM hh_order WHERE order_id =  ?',[$val->order_id]);
             $order_tbl_list[$key]->house_style = $house_style[0]->house_style;
+            $reckon_amount = DB::SELECT('SELECT reckon_amount FROM hh_order_pay WHERE order_id = ?',[$val->order_id]);
+            if ($reckon_amount) {
+                $order_tbl_list[$key]->reckon_amount = $reckon_amount[0]->reckon_amount;
+            }
             //根据当前进度查询是否存在材料单
             $order_material_type = 0;
             switch ($val->order_step) {
