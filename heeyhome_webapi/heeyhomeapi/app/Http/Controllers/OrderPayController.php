@@ -493,15 +493,24 @@ class OrderPayController extends Controller
             }
             //跟新订单进度
             $upd_order = DB::update('UPDATE hh_order SET order_status = ?,order_step = ? WHERE order_id = ?', [$order_status, $order_step, $order_id]);
-            //查询店铺id
-            $sel_shop_id = DB::select('SELECT shop_id FROM hh_order WHERE order_id = ?', [$order_id]);
-            $shop_id = $sel_shop_id[0]->shop_id;
-            //查询店铺接单数
-            $sel_shop_volume = DB::select('SELECT shop_volume FROM hh_shop WHERE shop_id = ?', [$shop_id]);
-            $shop_volume = $sel_shop_volume[0]->shop_volume;
-            $shop_volume++;
-            //增加店铺接单数
-            $upd_shop_volume = DB::update('UPDATE hh_shop SET shop_volume = ? WHERE shop_id = ?', [$shop_volume, $shop_id]);
+            //TODO 工长案例 未完成案例更新为已完成
+            if ($order_status == 6) {
+                $order_start = \Illuminate\Support\Facades\DB::select('SELECT img_time FROM hh_order_detail WHERE order_id = ? and order_step=?', [$order_id, 1]);
+                $order_end = \Illuminate\Support\Facades\DB::select('SELECT img_time FROM hh_order_detail WHERE order_id = ? and order_step=?', [$order_id, 17]);
+                $order_timelong = substr($order_start[0]->img_time, 0, 10) . '～' . substr($order_end[0]->img_time, 0, 10);
+                $upd_workcase = \Illuminate\Support\Facades\DB::update('UPDATE hh_workcase SET type = ?,timelong=? WHERE case_id = ?', [2, $order_timelong, $order_id]);
+            }
+            if ($foreman_flga) {
+                //查询店铺id
+                $sel_shop_id = \Illuminate\Support\Facades\DB::select('SELECT shop_id FROM hh_order WHERE order_id = ?', [$order_id]);
+                $shop_id = $sel_shop_id[0]->shop_id;
+                //查询店铺接单数
+                $sel_shop_volume = \Illuminate\Support\Facades\DB::select('SELECT shop_volume FROM hh_shop WHERE shop_id = ?', [$shop_id]);
+                $shop_volume = $sel_shop_volume[0]->shop_volume;
+                $shop_volume++;
+                //增加店铺接单数
+                $upd_shop_volume = \Illuminate\Support\Facades\DB::update('UPDATE hh_shop SET shop_volume = ? WHERE shop_id = ?', [$shop_volume, $shop_id]);
+            }
             //TODO 工长钱包收入
             if ($foreman_flga) {
                 $sel_order_pay_each = DB::select('SELECT order_id,pay_amount FROM hh_order_pay_each WHERE pay_id = ? AND order_pay_step = ?',

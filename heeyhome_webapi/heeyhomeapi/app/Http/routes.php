@@ -260,6 +260,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/getpayinfo', 'OrderPayController@getpayinfo');
     //确认已付款
     Route::any('order/payconfirm', 'OrderPayController@payconfirm');
+    //意见反馈
+    Route::any('suggestions', 'UserinfoController@suggest');
 
     //材料订单
     //获取材料订单列表
