@@ -1970,6 +1970,16 @@ service60 = ? ,service61 = ? ,service62 = ? ,service63 = ? ,remark = ? ,update_t
                     );
                     return $callback . "(" . HHJson($arr) . ")";
                 }
+                //写进案例表 待完成案例
+                if($order_step==1){
+                    $order=DB::select('select area,house_style,order_address,shop_id,room,parlour,toilet,balcony from hh_order_new_view where order_id=?',[$order_id]);
+                    if($order){
+                        $foreman=DB::select('select shopper_id from hh_shop where shop_id=?',[$order[0]->shop_id]);
+                        $foreman_id=$foreman[0]->shopper_id;
+                        $housetype=$order[0]->room.'室'.$order[0]->parlour.'厅'.$order[0]->toilet.'卫'.$order[0]->balcony.'阳';
+                        $workcase=DB::insert('insert into hh_workcase(case_id,foreman_id,area,housetype,style,timelong,address,type) values(?,?,?,?,?,?,?,?)', [$order_id,$foreman_id,$order[0]->area,$housetype,$order[0]->house_style,$time,$order[0]->order_address,3]);
+                    }
+                }
                 //需要修改一个availlabel字段
                 // $step = $order_step;
                 if ($order_step == 4 || $order_step == 8 || $order_step == 12 || $order_step == 16) {
