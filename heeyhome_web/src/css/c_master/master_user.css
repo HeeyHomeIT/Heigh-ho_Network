@@ -186,6 +186,10 @@
     margin-left: 29px;
 }
 
+.right_title i {
+    font-family: Helvetica;
+}
+
 /* 右边边框 */
 .right_content_wrap {
     height: 845px;
@@ -1787,12 +1791,6 @@
 }
 
 /* 我的订单 */
-.right_title span {
-    font-size: 16px;
-    color: white;
-    margin-left: 29px
-}
-
 #master_right .master_safe .content_wrap {
     width: 870px;
     height: 898px
@@ -3626,12 +3624,6 @@ div.clear:after, div.clear:before {
 /* 安全设置 */
 #user_right {
     float: right
-}
-
-.right_title span {
-    font-size: 16px;
-    color: white;
-    margin-left: 29px
 }
 
 #master_right #user_right .content_wrap {

@@ -173,6 +173,10 @@ a:focus {
     margin-left: 29px;
 }
 
+.right_title i {
+    font-family: Helvetica;
+}
+
 /* 右边边框 */
 .right_content_wrap {
     height: 630px;
@@ -1597,12 +1601,6 @@ a:focus {
     float: right
 }
 
-.right_title span {
-    font-size: 16px;
-    color: white;
-    margin-left: 29px
-}
-
 .content_wrap {
     height: 683px;
     margin-right: 50px
@@ -2602,12 +2600,6 @@ a:focus {
 /* 我的订单样式 */
 #user_right {
     float: right
-}
-
-.right_title span {
-    font-size: 16px;
-    color: #FFFFFF;
-    margin-left: 29px
 }
 
 .order_content_wrap {
