@@ -215,7 +215,7 @@ define(['app'], function(app) {
 				$(".roomsdiv a.sub-btn").addClass("off").removeClass("Jcursor");
 				$(".scc").removeClass("can_not_check rep_craft_check");
 				$(".scb").removeClass("rep_craft_check").addClass("can_not_check");
-				$(".mainareadiv li").find("span").addClass("none").empty();
+				$(".mainareadiv li").find("span").addClass("none").removeClass("Jcol").empty();
 				$(".mainareadiv li").find("input").attr("data-sw", 0);
 				$(".mainareadiv li").find("input").attr("data-option", "");
 				$(".mainareadiv li").find("input").attr("checked", false);
@@ -382,10 +382,10 @@ define(['app'], function(app) {
 					resObj[roomName] = dataObj;
 					$(".J" + roomName).attr("data-option", JSON.stringify(resObj));
 					$(".J" + roomName).attr("data-sw", 1);
-					$(".J" + roomName).closest("li").children("span").removeClass("none").html(Msg2);
-					layer.msg('保存成功', {
-						time: 800 //1秒关闭(如果不配置,默认是3秒)
-					});
+					$(".J" + roomName).closest("li").children("span").addClass("Jcol").removeClass("none").html(Msg2);
+//					layer.msg('保存成功', {
+//						time: 800 //1秒关闭(如果不配置,默认是3秒)
+//					});
 				});
 			},
 			lastdivClickEvent: function() {
@@ -411,6 +411,7 @@ define(['app'], function(app) {
 					var floorObj = {};
 					var jsum = 0;
 					var difference = 0;
+					var msgStr = '';
 					calObj.city = $("#Jcity").text() + '市'; // 城市
 					calObj.area = $("#c_area").val(); // 面积
 					calObj.room_num = $(".room span").text(); // 房间数
@@ -524,7 +525,15 @@ define(['app'], function(app) {
 							error: function(data) {}
 						});
 					} else {
-						layer.msg('您还有房内工艺尚未选择哦~~');
+						$.each(roomPlanObj, function(i, v) {
+							if(v.count != '0') {
+								if($(".I" + i).attr("data-sw") == '0') {
+									msgStr += v.cname + ",";
+								}
+							}
+						});
+						msgStr = msgStr.substring(0, msgStr.lastIndexOf(','));
+						layer.msg(msgStr + "还没有保存工艺");
 					}
 				});
 			},
