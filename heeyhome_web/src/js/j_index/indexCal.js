@@ -77,7 +77,7 @@ define(['app'], function(app) {
 						if(num == -1) {
 							return;
 						}
-						self.roomsPlanStatusEvent($this.parent().attr("id"), num,$this.siblings("span").attr("data-en"),$this.siblings("span").attr("data-nj"),$this.siblings("span").attr("data-tag"));
+						self.roomsPlanStatusEvent($this.parent().attr("id"), num, $this.siblings("span").attr("data-en"), $this.siblings("span").attr("data-nj"), $this.siblings("span").attr("data-tag"));
 						$this.siblings("a").removeClass("off");
 						$(".add-btn").removeClass("off").addClass("Jcursor");
 						$(this).siblings("span").find("input").val(num);
@@ -93,7 +93,7 @@ define(['app'], function(app) {
 						if(num == roomNumber + 1 || n == roomNumber) {
 							return;
 						}
-						self.roomsPlanStatusEvent($this.parent().attr("id"), num,$this.siblings("span").attr("data-en"),$this.siblings("span").attr("data-nj"),$this.siblings("span").attr("data-tag"));
+						self.roomsPlanStatusEvent($this.parent().attr("id"), num, $this.siblings("span").attr("data-en"), $this.siblings("span").attr("data-nj"), $this.siblings("span").attr("data-tag"));
 						$this.siblings("a").removeClass("off").addClass("Jcursor");
 						$(this).siblings("span").find("input").val(num);
 						$.each(roomPlanObj, function(i, v) {
@@ -409,6 +409,8 @@ define(['app'], function(app) {
 					var calObj = {};
 					var room_distribution = {};
 					var floorObj = {};
+					var jsum = 0;
+					var difference = 0;
 					calObj.city = $("#Jcity").text() + '市'; // 城市
 					calObj.area = $("#c_area").val(); // 面积
 					calObj.room_num = $(".room span").text(); // 房间数
@@ -446,16 +448,20 @@ define(['app'], function(app) {
 					var ySw = $(".Jyt").attr('data-sw'); //阳台
 					var cSw = $(".Jcf").attr('data-sw'); //厨房
 					var flag = true;
+					console.log(roomPlanObj)
 					$.each(roomPlanObj, function(i, v) {
 						if(v.count != '0') {
 							if($(".I" + i).attr("data-sw") == '0') {
 								flag = false;
 							}
 						}
+						jsum += v.count;
 					});
-
+					difference = (parseInt($(".room").find("span").text()) - 1) - jsum;
 					if($('#c_area').val() == '') {
 						layer.msg('建筑面积还没有填哦~~');
+					} else if(difference > 0) {
+						layer.msg('您还有' + difference + '间房间没有安排');
 					} else if(jSw == '0') {
 						layer.msg('主卧还没有保存工艺哦~~');
 					} else if(kSw == '0') {

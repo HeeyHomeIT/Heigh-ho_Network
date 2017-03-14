@@ -416,6 +416,8 @@ var heeyhomeCal = {
             var calObj = {};
             var room_distribution = {};
             var floorObj = {};
+            var jsum = 0;
+            var difference = 0;
             calObj.city = $("#Jcity").text() + '市'; // 城市
             calObj.area = $("#c_area").val(); // 面积
             calObj.room_num = $(".room span").text(); // 房间数
@@ -453,16 +455,22 @@ var heeyhomeCal = {
             var ySw = $(".Jyt").attr('data-sw');//阳台
             var cSw = $(".Jcf").attr('data-sw');//厨房
             var flag = true;
+            console.log(roomPlanObj)
             $.each(roomPlanObj, function (i, v) {
                 if (v.count != '0') {
                     if ($(".I" + i).attr("data-sw") == '0') {
                         flag = false;
                     }
                 }
+                jsum += v.count;
             });
-
+			difference = (parseInt($(".room").find("span").text())-1)-jsum;
+			console.log(jsum)
+			console.log(difference)
             if ($('#c_area').val() == '') {
                 layer.msg('建筑面积还没有填哦~~');
+            } else if (difference>0) {
+                layer.msg('您还有'+difference+'间房间没有安排');
             } else if (jSw == '0') {
                 layer.msg('主卧还没有保存工艺哦~~');
             } else if (kSw == '0') {
