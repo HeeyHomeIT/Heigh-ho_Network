@@ -386,7 +386,7 @@ label.error.roomerror {
 }
 
 #c_myhh p a {
-    color: #0185c6
+    color: #EEC988
 }
 
 .please_login {
@@ -433,7 +433,7 @@ label.error.roomerror {
 }
 
 #topNavPanel #c_myhh p a:hover {
-    color: #EEC988
+    color: #E88226
 }
 
 .myinfo {
@@ -630,6 +630,10 @@ label.error.roomerror {
     height: 20px;
     vertical-align: middle;
     background: url(../img/sprite_remain.png) no-repeat -442px -161px;
+}
+
+.now_location a {
+    color: #656565 ;
 }
 
 #footer {
