@@ -73,7 +73,7 @@ var heeyhomeCal = {
                 if (num == -1) {
                     return;
                 }
-                self.roomsPlanStatusEvent($this.parent().attr("id"), num);
+                self.roomsPlanStatusEvent($this.parent().attr("id"), num,$this.siblings("span").attr("data-en"),$this.siblings("span").attr("data-nj"),$this.siblings("span").attr("data-tag"));
                 $this.siblings("a").removeClass("off");
                 $(".add-btn").removeClass("off").addClass("Jcursor");
                 $(this).siblings("span").find("input").val(num);
@@ -89,7 +89,7 @@ var heeyhomeCal = {
                 if (num == roomNumber + 1 || n == roomNumber) {
                     return;
                 }
-                self.roomsPlanStatusEvent($this.parent().attr("id"), num);
+                self.roomsPlanStatusEvent($this.parent().attr("id"), num,$this.siblings("span").attr("data-en"),$this.siblings("span").attr("data-nj"),$this.siblings("span").attr("data-tag"));
                 $this.siblings("a").removeClass("off").addClass("Jcursor");
                 $(this).siblings("span").find("input").val(num);
                 $.each(roomPlanObj, function (i, v) {
@@ -108,12 +108,21 @@ var heeyhomeCal = {
      * 房间安排状态
      * @param {Object} roomId 房间的id名
      * @param {Object} count 房间数量
+     *  @param {Object} name 英文名字
+     *  @param {Object} cname 中文名字
+     *  @param {Object} tag 图标
      */
-    roomsPlanStatusEvent: function (roomId, count) {
+    roomsPlanStatusEvent: function (roomId, count,name,cname,tag) {
         var _roomId = roomId;
         var _count = count;
+        var _name = name;
+        var _cname = cname;
+        var _tag = tag;
         roomPlanObj[_roomId] = {
-            count: _count
+            count: _count,
+            name:_name,
+            cname:_cname,
+            tag:_tag
         }
     },
 
@@ -122,26 +131,63 @@ var heeyhomeCal = {
      */
     roomOperationEvent: function () {
         var self = this;
+        console.log("-------------")
+        console.log(roomPlanObj);
+        var strLi;
         $.each(roomPlanObj, function (i, v) {
-            var $Jid = $(".J" + i), $Iid = $(".I" + i);
-            if (parseInt(v.count) != 0) {
-                $Iid.attr("disabled", false);
-                $Iid.attr("checked", false);
-                $Iid.parent("label").addClass("Jcursor");
-                if ($Iid.attr("data-sw") == 0) {
-                    $Jid.removeClass("can_not_check");
-                }
-            } else {
-                $Iid.attr("checked", false);
-                $Iid.attr("disabled", "disabled");
-                $Iid.attr("data-sw", 0);
-                $Iid.attr("data-option", "");
-                $Iid.parent("label").removeClass("Jcursor");
-                $Jid.removeClass("rep_craft_check");
-                $Iid.closest("li").children("span").addClass("none").empty();
-                $Jid.addClass("can_not_check");
-            }
+        	console.log(v.tag);
+        	if($(".mainarea_list li").hasClass("house"+v.tag)){ //判断ul里面是不是有存在的房间
+        		if(parseInt(v.count) == 0){ // 如果有存在的房间，那么在判断当前对象里面此房间数是不是为0
+        			$(".mainarea_list li.house"+v.tag).remove(); // 如果对象里房间数为0那么删掉
+        		}
+        	}else{
+        		if(parseInt(v.count) != 0){
+					strLi = '<li class="house'+v.tag+' scd">'
+					+ '	<label for="'+v.name+'Radio" id="Checkbox'+v.tag+'" class="Jcursor">'
+					+ '	<input type="checkbox" class="I'+i+' J'+v.name+' sccc display" data-sw="0" data-type="'+v.name+'" data-name="'+v.cname+'"  id="'+v.name+'Radio">'
+					+ '	<s class="J'+i+' scb"></s> '
+					+ '	<div class="room'+v.tag+'"> '
+					+ '	<em></em> <dl>'+v.cname+'</dl> '
+					+ '	</div></label><span class="already_choose none"></span></li> '
+					$(".mainarea_list").append(strLi);
+				}
+        	}
+			
         });
+//      $.each(roomPlanObj, function (i, v) {
+//      	$(".mainarea_list li.house"+v.tag).remove();
+//			if(parseInt(v.count) != 0){
+//				strLi = '<li class="house'+v.tag+' scd">'
+//				+ '	<label for="'+v.name+'Radio" id="Checkbox'+v.tag+'" class="Jcursor">'
+//				+ '	<input type="checkbox" class="I'+i+' J'+v.name+' sccc display" data-sw="0" data-type="'+v.name+'" data-name="'+v.cname+'"  id="'+v.name+'Radio">'
+//				+ '	<s class="J'+i+' scb"></s> '
+//				+ '	<div class="room'+v.tag+'"> '
+//				+ '	<em></em> <dl>'+v.cname+'</dl> '
+//				+ '	</div></label><span class="already_choose none"></span></li> '
+//				$(".mainarea_list").append(strLi);
+//			}
+//			
+//      });
+//      $.each(roomPlanObj, function (i, v) {
+//          var $Jid = $(".J" + i), $Iid = $(".I" + i);
+//          if (parseInt(v.count) != 0) {
+//              $Iid.attr("disabled", false);
+//              $Iid.attr("checked", false);
+//              $Iid.parent("label").addClass("Jcursor");
+//              if ($Iid.attr("data-sw") == 0) {
+//                  $Jid.removeClass("can_not_check");
+//              }
+//          } else {
+//              $Iid.attr("checked", false);
+//              $Iid.attr("disabled", "disabled");
+//              $Iid.attr("data-sw", 0);
+//              $Iid.attr("data-option", "");
+//              $Iid.parent("label").removeClass("Jcursor");
+//              $Jid.removeClass("rep_craft_check");
+//              $Iid.closest("li").children("span").addClass("none").empty();
+//              $Jid.addClass("can_not_check");
+//          }
+//      });
     },
     /**
      * 房间工艺选择
@@ -184,6 +230,7 @@ var heeyhomeCal = {
         $(".mainareadiv li").find("input").attr("checked", false);
         $(".mainareadiv li").find("input.sccc").attr("disabled", "disabled");
         $(".mainareadiv li").find("input.sccc").parent("label").removeClass("Jcursor");
+        $(".mainareadiv li.scd").remove();
         self.initcontentStrEvent();
         // 全局变量清空
         roomPlanObj = {};
@@ -488,10 +535,13 @@ var heeyhomeCal = {
         var sw = element.attr("data-sw");
         var optionObj;
         var type = element.data("type");
-        if (parseInt(sw) != 0) {
-            optionObj = JSON.parse(element.attr("data-option"));
-            dataObj = optionObj[type];
+        if(sw!=null && sw!=undefined){
+        	if (parseInt(sw) != 0) {
+	            optionObj = JSON.parse(element.attr("data-option"));
+	            dataObj = optionObj[type];
+	        }
         }
+        
         return dataObj;
     },
     initGetFloorDataEvent: function (element) {
