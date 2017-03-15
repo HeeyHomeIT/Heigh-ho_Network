@@ -52,7 +52,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('wxlogin', 'WxLoginController@wxlogin');
     Route::any('wxcallback', 'WxLoginController@wxcallback');
     Route::any('bindingWX', 'WxLoginController@bindingWXLogin');
-    Route::any('wxphonecallback', 'QqLoginController@wxcallbackphone');
+    Route::any('wxphonecallback', 'WxLoginController@wxcallbackphone');
     /*用户注册*/
     Route::any('register/user_register', 'RegisterController@user_register');
     /*发送短信*/
