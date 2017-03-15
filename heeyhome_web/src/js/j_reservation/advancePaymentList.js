@@ -180,7 +180,7 @@
                     }
                     vrStr += '</tr>';
                 } else if (i == "结转金额/元") {
-                    vrStr += '<tr><td colspan="4" class="border_eee">' + i + '</td><td colspan="2">' + v + '</td></tr>';
+                    vrStr += '<tr><td colspan="4" class="border_eee"><span class="con carryoverTxt" ><em class="compare">' + i + '</em></span></td><td colspan="2">' + v + '</td></tr>';
                 } else {
                     vrStr += '<tr><td rowspan="' + counter + '" class="border_eee">' + i + '</td>';
                     for (var i1 in v) {
