@@ -75,11 +75,11 @@
 #myCarousel .number_control li {
     list-style: none;
     position: relative;
-    /*font-family: HelveticaNeueLTPro Md;*/
     font-size: 14px;
     color: #FFFFFF;
     margin-bottom: 15px;
     height: 40px;
+    font-family: Helvetica;
 }
 
 #myCarousel .number_control li.active {

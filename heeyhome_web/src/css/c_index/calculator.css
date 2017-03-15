@@ -417,9 +417,12 @@ body #calcontainer {
     /*width: 55px;*/
     width: 74px;
     margin: 0 auto;
-    color: #fff;
-    background: #636363;
+    /*color: #fff;
+    background: #636363;*/
     border-radius: 3px;
+    background-color: #ededed;
+    color: #636363;
+    margin-left: 30px;
 }
 
 #calcontent .cal3 > div.mainareadiv .filter_nav {
@@ -603,4 +606,9 @@ body #calcontainer {
 
 .Jcursor {
     cursor: pointer !important;
+}
+
+.Jcol {
+ 	color: #fff !important;
+    background: #636363 !important;
 }

@@ -296,6 +296,7 @@
 #selfshop_top .shop_information .shop_like .collect_shop {
     float: left;
     background-color: #525252;
+    text-align: center;
     color: #FFFFFF;
     /*font-family: FZLTHJW;*/
     font-size: 16px;
@@ -490,7 +491,8 @@
 #our_process > h3 > span {
     font-size: 14px;
     display: inline-block;
-    margin-left: 5px
+    margin-left: 5px;
+    font-family: Helvetica
 }
 
 #manager_information .manager_content > div {
@@ -736,12 +738,14 @@
 #sdcontent h3 > span {
     font-size: 14px;
     display: inline-block;
-    margin-left: 5px
+    margin-left: 5px;
+    font-family: Helvetica
 }
 
 #sdcontent h3 > span.s_more {
     float: right;
-    margin-right: 10px
+    margin-right: 10px;
+    font-family: 'Microsoft YaHei', Arial, sans-serif
 }
 
 #sdcontent h3 > span.s_more a {
@@ -1000,7 +1004,8 @@
 #teamcontainer h3 > span {
     font-size: 14px;
     display: inline-block;
-    margin-left: 5px
+    margin-left: 5px;
+    font-family: Helvetica
 }
 
 #teamcontainer .teamtitle {
@@ -1325,6 +1330,7 @@
     font-size: 14px;
     display: inline-block;
     margin-left: 5px;
+    font-family: Helvetica
 }
 
 #shop_price .con_price li {

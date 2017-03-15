@@ -2288,7 +2288,7 @@
             vrStr += '	<img src="' + value.panorama_img + '">';
             vrStr += '	</div><!--detail_img-->';
             vrStr += '		<a href="' + value.panorama_url + '" class="complete_bg"></a><!--complete_bg-->';
-            vrStr += '			<span>' + value.panorama_style + '</span>';
+            vrStr += '			<a href="' + value.panorama_url + '" class="panorama_style">' + value.panorama_style + '</a>';
             vrStr += '			<a href="' + value.panorama_url + '" class="bg"></a>';
             vrStr += '			</div><!--works_detail-->';
             return vrStr;

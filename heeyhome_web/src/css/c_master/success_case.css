@@ -19,10 +19,10 @@
 .success_detail {
     position: relative;
     min-width: 1190px;
-    height: 693px;
+    height: 695px;
     padding: 1px 0;
     z-index: 10;
-    margin-bottom: 200px
+    margin-bottom: 90px
 }
 
 .hd .btn_left {
@@ -107,7 +107,7 @@
     overflow: hidden;
     position: absolute;
     width: 100%;
-    height: 693px;
+    height: 750px;
     top: 52px;
     left: 0
 }
@@ -116,7 +116,7 @@
     float: left;
     display: block;
     width: 100%;
-    height: 693px;
+    height: 750px;
 }
 
 .bg_picture img {

@@ -71,12 +71,6 @@
     border-radius: 5px
 }
 
-.right_title span {
-    font-size: 16px;
-    color: #FFFFFF;
-    margin-left: 29px
-}
-
 .content_wrap {
     border: 1px solid #cdcdcd;
     border-top: none
