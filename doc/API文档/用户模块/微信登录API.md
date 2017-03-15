@@ -143,3 +143,66 @@ msg           绑定失败
 
 ```
 ```
+# WxLoginController #
+# wxcallbackphone()
+## 手机登录接口
+
+### 接口地址
+
+```
+.../wxphonecallback
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET      POST
+```
+
+```
+.../wxphonecallback
+```
+
+###### Json数据格式
+```
+data
+openid           
+nickname          昵称
+portrait          头像
+
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                    user_id                  user_id                //ID
+                    userinfo_nickname        userinfo_nickname      //昵称
+             }
+msg          登录成功
+)
+```
+
+```
+失败
+callback(
+code          111
+data          {
+                    wx_id              wx_id             //qq openid
+                    user_nickname      user_nickname     //qq昵称
+                    user_head          user_head         //qq头像
+              }
+msg           登录失败，需要绑定手机号
+)
+```
+
+###### Code值含义
+
+```
+```

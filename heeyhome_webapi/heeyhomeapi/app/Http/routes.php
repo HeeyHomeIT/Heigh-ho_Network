@@ -47,10 +47,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('qqlogin', 'QqLoginController@qqlogin');
     Route::any('qqcallback', 'QqLoginController@qqcallback');
     Route::any('bindingQQ', 'QqLoginController@bindingQQLogin');
+    Route::any('qqphonecallback', 'QqLoginController@qqcallbackphone');
     /*wechat第三方登录*/
     Route::any('wxlogin', 'WxLoginController@wxlogin');
     Route::any('wxcallback', 'WxLoginController@wxcallback');
     Route::any('bindingWX', 'WxLoginController@bindingWXLogin');
+    Route::any('wxphonecallback', 'QqLoginController@wxcallbackphone');
     /*用户注册*/
     Route::any('register/user_register', 'RegisterController@user_register');
     /*发送短信*/
