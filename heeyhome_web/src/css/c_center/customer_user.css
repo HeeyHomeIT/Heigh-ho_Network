@@ -1122,7 +1122,7 @@ a:focus {
     display: block;
 }
 
-.complete_img span {
+.complete_img .panorama_style {
     color: white;
     font-size: 14px;
     position: absolute;
