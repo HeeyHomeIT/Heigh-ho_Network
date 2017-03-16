@@ -5229,7 +5229,7 @@
         spliceStrEvent: function (value) {
             var vrStr = '<div class="works_detail fl complete_img" step ="' + value.order_step + '" orderId ="' + value.case_id + '">';
             vrStr += '<div class="detail_img">';
-            vrStr += '<img src="' + value.img + '">';
+            vrStr += '<img src="' + value.img[0].case_img + '">';
             vrStr += '</div><!--detail_img-->';
             vrStr += '<div class="pending_font undone clearfix">';
             vrStr += '<p class="pending_address fl"><em class="address_em sprite_team"></em>' + value.address + '</p>';

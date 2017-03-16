@@ -45,6 +45,7 @@
             var sc = spliceSuccessContHandler;
             var shopperId = $("#Jgz").val();
             var $dtDiv = $(".sc_title .titlename");
+            /* 获取已完成数据 */
             $.ajax({
                 url: SUCCESSURL,
                 type: "GET",
@@ -61,6 +62,7 @@
                 }
             }).done(function (data) {
                 if (data.code == "000") {
+                    console.log(data.data);
                     var iSpeed = 0;
                     var left = 0;
                     var oBg = document.getElementById("title_active");
@@ -74,7 +76,41 @@
                             } else {
                                 $(".sc_contents ul").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也~</span></div>');
                             }
-                        } else {
+                        }
+                    });
+                    successInfo.caseDetail();
+                    viewPlus.addView();
+                } else {
+                    $(".main_content").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也~</span></div>');
+                }
+
+            });
+            /* 获取未完成数据 */
+            $.ajax({
+                url: SUCCESSURL,
+                type: "GET",
+                async: true,
+                dataType: 'jsonp',
+                data: {
+                    foreman_id: shopperId,
+                    type: 3
+                },
+                beforeSend: function () {
+                    $(".sc_contents").addClass("loagbg");
+                },
+                complete: function () {
+                    $(".sc_contents").removeClass("loagbg");
+                }
+            }).done(function (data) {
+                if (data.code == "000") {
+                    console.log(data.data);
+                    var iSpeed = 0;
+                    var left = 0;
+                    var oBg = document.getElementById("title_active");
+                    $(".sc_contents ul").html(sc.spliceCgInfoEvent(data.data, [3, 3]));
+                    $(document).on("click", ".sc_title .titlename", function () {
+                        startMoveHandler.startMoveEvent(oBg, this.offsetLeft, iSpeed, left);
+                        if ($(this).index() != 0) {
                             var str = sc.spliceCgInfoEvent(data.data, [3, 3]);
                             if (str != null && str != "") {
                                 $(".sc_contents ul").html(str);
