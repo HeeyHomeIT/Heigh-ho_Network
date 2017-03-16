@@ -172,6 +172,7 @@ openid
 nickname          昵称
 portrait          头像
 
+callback          回调
 ```
 
 ### 回调

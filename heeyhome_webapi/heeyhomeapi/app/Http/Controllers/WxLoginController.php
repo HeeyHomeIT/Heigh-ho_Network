@@ -207,6 +207,7 @@ class WxLoginController extends Controller
         $wx_id = rq('openid');
         $user_nickname = rq('nickname');
         $user_head = rq('portrait');
+        $callback=rq('callback');
         $sql = DB::select('select a.user_id,b.userinfo_nickname from hh_user_third a LEFT OUTER JOIN hh_userinfo b ON a.user_id = b.userinfo_userid where wechat_id=? ', [$wx_id]);
         if($sql){
             $pwd=DB::select('select * from hh_user where user_id=?',[$sql[0]->user_id]);
@@ -233,19 +234,22 @@ class WxLoginController extends Controller
                 $nickname=DB::select('select material_supplier_name from hh_material_supplier_info where material_supplier_id=?',[$pwd[0]->user_id]);
                 $pwd[0]->nickname=$nickname[0]->material_supplier_name;
             }
-            setcookie("userEmail", $pwd[0]->user_email, time()+604800,"/");
-            setcookie("userId", $pwd[0]->user_id, time()+604800,"/");
-            setcookie("userName", $pwd[0]->user_name, time()+604800,"/");
-            setcookie("userNickName", $pwd[0]->nickname, time()+604800,"/");
-            setcookie("userPhone", $pwd[0]->user_phone, time()+604800,"/");
-            setcookie("userType", $pwd[0]->user_type, time()+604800,"/");
-            if ($pwd[0]->user_type == 2) {
-                setcookie("userShopId", $pwd[0]->shop_id, time()+604800,"/");
-            }
-            header('Location:'.'http://www.heeyhome.com');
+             $arr = array("code" => "000",
+                 "msg" => "登录成功",
+                 "data" => array("user_id" => $sql[0]->user_id,
+                     "userinfo_nickname" => $sql[0]->userinfo_nickname
+                 )
+             );
+             return $callback . "(" . HHJson($arr) . ")";
         } else {
-            setcookie("wxid", $wx_id, time()+604800,"/");
-            header('Location:'.'http://www.heeyhome.com/register.html?#zc');
+             $arr = array("code" => "111",
+                 "msg" => "登录失败，需要绑定手机号",
+                 "data" => array("wx_id" => $wx_id,
+                     "user_nickname" => $user_nickname,
+                     "user_head" => $user_head
+                 )
+             );
+             return $callback . "(" . HHJson($arr) . ")";
         }
     }
 }
