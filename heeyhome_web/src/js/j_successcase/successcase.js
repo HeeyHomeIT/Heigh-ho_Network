@@ -11,6 +11,7 @@
     var HHIT_SUCCESSCASEAPP = angular.module('heeyhomeApp');
 
     var SUCCESSURL = "/api/public/myworkcase"; // 显示工长添加的案例列表信息接口
+    var VRVIEWURL = '/api/public/myworkcase/scan'; // 工长案例浏览量
 
     /*定义一个类*/
     var successCaseWrap = {
@@ -44,6 +45,7 @@
             var sc = spliceSuccessContHandler;
             var shopperId = $("#Jgz").val();
             var $dtDiv = $(".sc_title .titlename");
+            /* 获取已完成数据 */
             $.ajax({
                 url: SUCCESSURL,
                 type: "GET",
@@ -60,6 +62,7 @@
                 }
             }).done(function (data) {
                 if (data.code == "000") {
+                    console.log(data.data);
                     var iSpeed = 0;
                     var left = 0;
                     var oBg = document.getElementById("title_active");
@@ -73,7 +76,41 @@
                             } else {
                                 $(".sc_contents ul").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也~</span></div>');
                             }
-                        } else {
+                        }
+                    });
+                    successInfo.caseDetail();
+                    viewPlus.addView();
+                } else {
+                    $(".main_content").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也~</span></div>');
+                }
+
+            });
+            /* 获取未完成数据 */
+            $.ajax({
+                url: SUCCESSURL,
+                type: "GET",
+                async: true,
+                dataType: 'jsonp',
+                data: {
+                    foreman_id: shopperId,
+                    type: 3
+                },
+                beforeSend: function () {
+                    $(".sc_contents").addClass("loagbg");
+                },
+                complete: function () {
+                    $(".sc_contents").removeClass("loagbg");
+                }
+            }).done(function (data) {
+                if (data.code == "000") {
+                    console.log(data.data);
+                    var iSpeed = 0;
+                    var left = 0;
+                    var oBg = document.getElementById("title_active");
+                    $(".sc_contents ul").html(sc.spliceCgInfoEvent(data.data, [3, 3]));
+                    $(document).on("click", ".sc_title .titlename", function () {
+                        startMoveHandler.startMoveEvent(oBg, this.offsetLeft, iSpeed, left);
+                        if ($(this).index() != 0) {
                             var str = sc.spliceCgInfoEvent(data.data, [3, 3]);
                             if (str != null && str != "") {
                                 $(".sc_contents ul").html(str);
@@ -83,6 +120,7 @@
                         }
                     });
                     successInfo.caseDetail();
+                    viewPlus.addView();
                 } else {
                     $(".main_content").html('<div class="nullpage"><i>&nbsp;</i><span>空空如也~</span></div>');
                 }
@@ -132,6 +170,35 @@
             });
         }
     };
+    /**
+     * 浏览量计数
+     */
+    viewPlus = {
+        addView: function () {
+            $(".product-3 .image").on("click", function () {
+                var case_id = $(this).attr("data-id");
+                $.ajax({
+                    type: "get",
+                    url: VRVIEWURL,
+                    async: true,
+                    dataType: "jsonp",
+                    data: {
+                        case_id: case_id
+                    },
+                    success: function (data) {
+                        if (data && data.code == '000') {
+                            $('.scan_num').html(data.data.scan_num++);
+                            //location.reload();
+                        } else {
+                            layer.alert(data.msg);
+                        }
+                    },
+                    error: function (data) {
+                    }
+                });
+            });
+        }
+    };
     /* div移动撞击事件 */
     startMoveHandler = {
         startMoveEvent: function (obj, iTarget, iSpeed, left) {
@@ -166,7 +233,7 @@
                     if (v.type == arr[0] || v.type == arr[1]) {
                         vrStr += '<li><div class="image" data-type="' + v.type + '" data-id="' + v.case_id + '"><a href="javascript:void(0)"><img src="' + v.img[0].case_img + '"></a>';
                         vrStr += '<div class="image_title"><div class="roomtype">' + v.housetype + '</div><div class="roomicon"><em class="sprite-image sc_icon_love"></em><span>' + v.like_num + '</span></div>';
-                        vrStr += '<div class="roomicon"><em class="sprite-image sc_icon_look"></em><span>' + v.scan_num + '</span></div></div></div>';
+                        vrStr += '<div class="roomicon"><em class="sprite-image sc_icon_look"></em><span class="scan_num">' + v.scan_num + '</span></div></div></div>';
                         vrStr += '<div class="introduce"><strong>' + v.style + '&nbsp;' + v.area + 'm<sup>2</sup></strong>';
                         vrStr += '<div class="introduce-icon"><em class="sprite-image sc_icon_address"></em><span>' + v.address + '</span></div>';
                         vrStr += '<div class="introduce-icon"><em class="sprite-image sc_icon_time"></em><span>' + v.timelong + '</span></div></div></li>';

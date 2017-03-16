@@ -103,7 +103,7 @@
                         console.log(data);
                         gonglve_total = data.data[0].total;//获取总数据
                         splicePicHandler.spliceStrEvent(data.data);
-                        pageHandler.pageContentEvent(id);
+                        gonglvePageHandler.pageContentEvent(id);
                         viewPlus.addView();
                     }
                 },
@@ -147,7 +147,7 @@
     /**
      * 分页
      */
-    pageHandler = {
+    gonglvePageHandler = {
         pageContentEvent: function (id) {
             console.log(gonglve_total);
             $(".page_number>div").append($(".page_div3").empty().paging({

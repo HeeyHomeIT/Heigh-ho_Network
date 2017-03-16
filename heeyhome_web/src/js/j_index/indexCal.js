@@ -77,7 +77,7 @@ define(['app'], function(app) {
 						if(num == -1) {
 							return;
 						}
-						self.roomsPlanStatusEvent($this.parent().attr("id"), num);
+						self.roomsPlanStatusEvent($this.parent().attr("id"), num, $this.siblings("span").attr("data-en"), $this.siblings("span").attr("data-nj"), $this.siblings("span").attr("data-tag"));
 						$this.siblings("a").removeClass("off");
 						$(".add-btn").removeClass("off").addClass("Jcursor");
 						$(this).siblings("span").find("input").val(num);
@@ -93,7 +93,7 @@ define(['app'], function(app) {
 						if(num == roomNumber + 1 || n == roomNumber) {
 							return;
 						}
-						self.roomsPlanStatusEvent($this.parent().attr("id"), num);
+						self.roomsPlanStatusEvent($this.parent().attr("id"), num, $this.siblings("span").attr("data-en"), $this.siblings("span").attr("data-nj"), $this.siblings("span").attr("data-tag"));
 						$this.siblings("a").removeClass("off").addClass("Jcursor");
 						$(this).siblings("span").find("input").val(num);
 						$.each(roomPlanObj, function(i, v) {
@@ -112,12 +112,21 @@ define(['app'], function(app) {
 			 * 房间安排状态
 			 * @param {Object} roomId 房间的id名
 			 * @param {Object} count 房间数量
+			 *  @param {Object} name 英文名字
+			 *  @param {Object} cname 中文名字
+			 *  @param {Object} tag 图标
 			 */
-			roomsPlanStatusEvent: function(roomId, count) {
+			roomsPlanStatusEvent: function(roomId, count, name, cname, tag) {
 				var _roomId = roomId;
 				var _count = count;
+				var _name = name;
+				var _cname = cname;
+				var _tag = tag;
 				roomPlanObj[_roomId] = {
-					count: _count
+					count: _count,
+					name: _name,
+					cname: _cname,
+					tag: _tag
 				}
 			},
 
@@ -126,27 +135,50 @@ define(['app'], function(app) {
 			 */
 			roomOperationEvent: function() {
 				var self = this;
+				console.log("-------------")
+				console.log(roomPlanObj);
+				var strLi;
 				$.each(roomPlanObj, function(i, v) {
-					var $Jid = $(".J" + i),
-						$Iid = $(".I" + i);
-					if(parseInt(v.count) != 0) {
-						$Iid.attr("disabled", false);
-						$Iid.attr("checked", false);
-						$Iid.parent("label").addClass("Jcursor");
-						if($Iid.attr("data-sw") == 0) {
-							$Jid.removeClass("can_not_check");
+					console.log(v.tag);
+					if($(".mainarea_list li").hasClass("house" + v.tag)) { //判断ul里面是不是有存在的房间
+						if(parseInt(v.count) == 0) { // 如果有存在的房间，那么在判断当前对象里面此房间数是不是为0
+							$(".mainarea_list li.house" + v.tag).remove(); // 如果对象里房间数为0那么删掉
 						}
 					} else {
-						$Iid.attr("checked", false);
-						$Iid.attr("disabled", "disabled");
-						$Iid.attr("data-sw", 0);
-						$Iid.attr("data-option", "");
-						$Iid.parent("label").removeClass("Jcursor");
-						$Jid.removeClass("rep_craft_check");
-						$Iid.closest("li").children("span").addClass("none").empty();
-						$Jid.addClass("can_not_check");
+						if(parseInt(v.count) != 0) {
+							strLi = '<li class="house' + v.tag + ' scd">' +
+								'	<label for="' + v.name + 'Radio" id="Checkbox' + v.tag + '" class="Jcursor">' +
+								'	<input type="checkbox" class="I' + i + ' J' + v.name + ' sccc display" data-sw="0" data-type="' + v.name + '" data-name="' + v.cname + '"  id="' + v.name + 'Radio">' +
+								'	<s class="J' + i + ' scb"></s> ' +
+								'	<div class="room' + v.tag + '"> ' +
+								'	<em></em> <dl>' + v.cname + '</dl> ' +
+								'	</div></label><span class="already_choose none"></span></li> '
+							$(".mainarea_list").append(strLi);
+						}
 					}
+
 				});
+				//				$.each(roomPlanObj, function(i, v) {
+				//					var $Jid = $(".J" + i),
+				//						$Iid = $(".I" + i);
+				//					if(parseInt(v.count) != 0) {
+				//						$Iid.attr("disabled", false);
+				//						$Iid.attr("checked", false);
+				//						$Iid.parent("label").addClass("Jcursor");
+				//						if($Iid.attr("data-sw") == 0) {
+				//							$Jid.removeClass("can_not_check");
+				//						}
+				//					} else {
+				//						$Iid.attr("checked", false);
+				//						$Iid.attr("disabled", "disabled");
+				//						$Iid.attr("data-sw", 0);
+				//						$Iid.attr("data-option", "");
+				//						$Iid.parent("label").removeClass("Jcursor");
+				//						$Jid.removeClass("rep_craft_check");
+				//						$Iid.closest("li").children("span").addClass("none").empty();
+				//						$Jid.addClass("can_not_check");
+				//					}
+				//				});
 			},
 			/**
 			 * 房间工艺选择
@@ -183,12 +215,13 @@ define(['app'], function(app) {
 				$(".roomsdiv a.sub-btn").addClass("off").removeClass("Jcursor");
 				$(".scc").removeClass("can_not_check rep_craft_check");
 				$(".scb").removeClass("rep_craft_check").addClass("can_not_check");
-				$(".mainareadiv li").find("span").addClass("none").empty();
+				$(".mainareadiv li").find("span").addClass("none").removeClass("Jcol").empty();
 				$(".mainareadiv li").find("input").attr("data-sw", 0);
 				$(".mainareadiv li").find("input").attr("data-option", "");
 				$(".mainareadiv li").find("input").attr("checked", false);
 				$(".mainareadiv li").find("input.sccc").attr("disabled", "disabled");
 				$(".mainareadiv li").find("input.sccc").parent("label").removeClass("Jcursor");
+				$(".mainareadiv li.scd").remove();
 				self.initcontentStrEvent();
 				// 全局变量清空
 				roomPlanObj = {};
@@ -314,7 +347,7 @@ define(['app'], function(app) {
 					rnid = $(".JroomName").data("rn");
 				if(cnid != null && cnid != undefined && rnid != null && rnid != undefined) {
 					if(cnid == rnid) {
-						strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择右边的房间</span></div>';
+						strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择左边的房间</span></div>';
 						$(".mainareadiv .filter_nav ").html(strLi);
 					}
 				}
@@ -326,7 +359,7 @@ define(['app'], function(app) {
 			initcontentStrEvent: function() {
 				var self = this;
 				var strLi;
-				strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择右边的房间</span></div>';
+				strLi = '<div class="prompt"><i>&nbsp;</i><span>请先选择左边的房间</span></div>';
 				$(".mainareadiv .filter_nav ").html(strLi);
 			},
 			/**
@@ -349,8 +382,10 @@ define(['app'], function(app) {
 					resObj[roomName] = dataObj;
 					$(".J" + roomName).attr("data-option", JSON.stringify(resObj));
 					$(".J" + roomName).attr("data-sw", 1);
-					$(".J" + roomName).closest("li").children("span").removeClass("none").html(Msg2);
-					layer.msg('保存成功');
+					$(".J" + roomName).closest("li").children("span").addClass("Jcol").removeClass("none").html(Msg2);
+//					layer.msg('保存成功', {
+//						time: 800 //1秒关闭(如果不配置,默认是3秒)
+//					});
 				});
 			},
 			lastdivClickEvent: function() {
@@ -374,6 +409,9 @@ define(['app'], function(app) {
 					var calObj = {};
 					var room_distribution = {};
 					var floorObj = {};
+					var jsum = 0;
+					var difference = 0;
+					var msgStr = '';
 					calObj.city = $("#Jcity").text() + '市'; // 城市
 					calObj.area = $("#c_area").val(); // 面积
 					calObj.room_num = $(".room span").text(); // 房间数
@@ -406,85 +444,97 @@ define(['app'], function(app) {
 					calObj.wall = $("#qtccgcRadio").attr("data-select"); // 墙体改造
 					calObj.ground_sank = $("#wsjdmxcRadio").attr("data-select"); // 卫生间地面下沉
 					console.log(calObj);
-                    var jSw = $(".Jzw").attr('data-sw');//主卧
-                    var kSw = $(".Jkct").attr('data-sw');//客餐厅
-                    var ySw = $(".Jyt").attr('data-sw');//阳台
-                    var cSw = $(".Jcf").attr('data-sw');//厨房
-                    var flag = true;
-                    $.each(roomPlanObj, function (i, v) {
-                        if (v.count != '0') {
-                            if ($(".I" + i).attr("data-sw") == '0') {
-                                flag = false;
-                            }
-                        }
-                    });
+					var jSw = $(".Jzw").attr('data-sw'); //主卧
+					var kSw = $(".Jkct").attr('data-sw'); //客餐厅
+					var ySw = $(".Jyt").attr('data-sw'); //阳台
+					var cSw = $(".Jcf").attr('data-sw'); //厨房
+					var flag = true;
+					console.log(roomPlanObj)
+					$.each(roomPlanObj, function(i, v) {
+						if(v.count != '0') {
+							if($(".I" + i).attr("data-sw") == '0') {
+								flag = false;
+							}
+						}
+						jsum += v.count;
+					});
+					difference = (parseInt($(".room").find("span").text()) - 1) - jsum;
+					if($('#c_area').val() == '') {
+						layer.msg('建筑面积还没有填哦~~');
+					} else if(difference > 0) {
+						layer.msg('您还有' + difference + '间房间没有安排');
+					} else if(jSw == '0') {
+						layer.msg('主卧还没有保存工艺哦~~');
+					} else if(kSw == '0') {
+						layer.msg('客餐厅还没有保存工艺哦~~');
+					} else if(ySw == '0') {
+						layer.msg('阳台还没有保存工艺哦~~');
+					} else if(cSw == '0') {
+						layer.msg('厨房还没有保存工艺哦~~');
+					} else if(flag) {
+						$.ajax({
+							url: COUNTURL,
+							type: "GET",
+							async: true,
+							dataType: 'jsonp',
+							data: {
+								calculator_json: JSON.stringify(calObj)
+							},
+							beforeSend: function() {
+								$("#loading").removeClass("display");
+							},
+							success: function(data) {
+								console.log(data);
+								if(data.code == '000') {
+									var costObj = {};
+									costObj.gzrg = data.data.gzrg; // 工长人工费用
+									costObj.sdrg = data.data.sdrg; // 水电人工费用
+									costObj.wgrg = data.data.wgrg; // 瓦工人工费用
+									costObj.mgrg = data.data.mgrg; // 木工人工费用
+									costObj.yqgrg = data.data.yqgrg; // 油漆工人工费用
+									costObj.zgrg = data.data.zgrg; // 杂工人工费用
+									costObj.rgzj = data.data.rgzj; // 人工总价费用
+									costObj.zdsdcl = data.data.zdsdcl; // 中端水电材料费用
+									costObj.gdsdcl = data.data.gdsdcl; // 高端水电材料费用
+									costObj.wgfc = data.data.wgfc; // 瓦工辅材费用
+									costObj.mgfc = data.data.mgfc; // 木工辅材费用
+									costObj.yqcl = data.data.yqcl; // 油漆材料费用
+									costObj.czdd = data.data.czdd; // 瓷砖低端费用
+									costObj.czgd = data.data.czgd; // 瓷砖高端费用
+									costObj.bc = data.data.bc; // 板材费用
+									costObj.dls = data.data.dls; // 大理石费用
+									costObj.db = data.data.db; // 地板费用
+									costObj.mm = data.data.mm; // 木门费用
+									costObj.cfym = data.data.cfym; // 厨房移门费用
+									costObj.lyfym = data.data.lyfym; // 淋浴移门费用
+									costObj.ygym = data.data.ygym; // 衣柜移门费用
+									costObj.jcdd = data.data.jcdd; // 集成吊顶费用
+									costObj.cgsys = data.data.cgsys; // 橱柜石英石费用
+									costObj.zxzj = data.data.zxzj; // 装修总价
+									sessionStorage.payJson = JSON.stringify(costObj);
+									var url = "calresult.html#/calresult";
+									window.location.href = url + "?cs=" + calObj.city + "&mj=" + calObj.area + "&fj=" + calObj.room_num + "&kt=" + calObj.parlor_num + "&wsj=" + calObj.bathroom_num + "&yt=" + calObj.balcony_num;
+								} else if(data.code == 200) {
+									layer.alert(data.msg);
+								}
 
-                    if ($('#c_area').val() == '') {
-                        layer.msg('建筑面积还没有填哦~~');
-                    } else if (jSw == '0') {
-                        layer.msg('主卧还没有保存工艺哦~~');
-                    } else if (kSw == '0') {
-                        layer.msg('客餐厅还没有保存工艺哦~~');
-                    } else if (ySw == '0') {
-                        layer.msg('阳台还没有保存工艺哦~~');
-                    } else if (cSw == '0') {
-                        layer.msg('厨房还没有保存工艺哦~~');
-                    } else if (flag) {
-                        $.ajax({
-                            url: COUNTURL,
-                            type: "GET",
-                            async: true,
-                            dataType: 'jsonp',
-                            data: {
-                                calculator_json: JSON.stringify(calObj)
-                            },
-                            beforeSend: function () {
-                                $("#loading").removeClass("display");
-                            },
-                            success: function (data) {
-                                console.log(data);
-                                if (data.code == '000') {
-                                    var costObj = {};
-                                    costObj.gzrg = data.data.gzrg; // 工长人工费用
-                                    costObj.sdrg = data.data.sdrg; // 水电人工费用
-                                    costObj.wgrg = data.data.wgrg; // 瓦工人工费用
-                                    costObj.mgrg = data.data.mgrg; // 木工人工费用
-                                    costObj.yqgrg = data.data.yqgrg; // 油漆工人工费用
-                                    costObj.zgrg = data.data.zgrg; // 杂工人工费用
-                                    costObj.rgzj = data.data.rgzj; // 人工总价费用
-                                    costObj.zdsdcl = data.data.zdsdcl; // 中端水电材料费用
-                                    costObj.gdsdcl = data.data.gdsdcl; // 高端水电材料费用
-                                    costObj.wgfc = data.data.wgfc; // 瓦工辅材费用
-                                    costObj.mgfc = data.data.mgfc; // 木工辅材费用
-                                    costObj.yqcl = data.data.yqcl; // 油漆材料费用
-                                    costObj.czdd = data.data.czdd; // 瓷砖低端费用
-                                    costObj.czgd = data.data.czgd; // 瓷砖高端费用
-                                    costObj.bc = data.data.bc; // 板材费用
-                                    costObj.dls = data.data.dls; // 大理石费用
-                                    costObj.db = data.data.db; // 地板费用
-                                    costObj.mm = data.data.mm; // 木门费用
-                                    costObj.cfym = data.data.cfym; // 厨房移门费用
-                                    costObj.lyfym = data.data.lyfym; // 淋浴移门费用
-                                    costObj.ygym = data.data.ygym; // 衣柜移门费用
-                                    costObj.jcdd = data.data.jcdd; // 集成吊顶费用
-                                    costObj.cgsys = data.data.cgsys; // 橱柜石英石费用
-                                    costObj.zxzj = data.data.zxzj; // 装修总价
-                                    sessionStorage.payJson = JSON.stringify(costObj);
-                                    var url = "calresult.html#/calresult";
-                                    window.location.href = url + "?cs=" + calObj.city + "&mj=" + calObj.area + "&fj=" + calObj.room_num + "&kt=" + calObj.parlor_num + "&wsj=" + calObj.bathroom_num + "&yt=" + calObj.balcony_num;
-                                } else if (data.code == 200) {
-                                    layer.alert(data.msg);
-                                }
-
-
-                            }, complete: function () {
-                                $("#loading").addClass("display");
-                            }, error: function (data) {
-                            }
-                        });
-                    } else {
-                        layer.msg('您还有房内工艺尚未选择哦~~');
-                    }
+							},
+							complete: function() {
+								$("#loading").addClass("display");
+							},
+							error: function(data) {}
+						});
+					} else {
+						$.each(roomPlanObj, function(i, v) {
+							if(v.count != '0') {
+								if($(".I" + i).attr("data-sw") == '0') {
+									msgStr += v.cname + ",";
+								}
+							}
+						});
+						msgStr = msgStr.substring(0, msgStr.lastIndexOf(','));
+						layer.msg(msgStr + "还没有保存工艺");
+					}
 				});
 			},
 			initGetCalDataEvent: function(element) {
@@ -492,9 +542,11 @@ define(['app'], function(app) {
 				var sw = element.attr("data-sw");
 				var optionObj;
 				var type = element.data("type");
-				if(parseInt(sw) != 0) {
-					optionObj = JSON.parse(element.attr("data-option"));
-					dataObj = optionObj[type];
+				if(sw != null && sw != undefined) {
+					if(parseInt(sw) != 0) {
+						optionObj = JSON.parse(element.attr("data-option"));
+						dataObj = optionObj[type];
+					}
 				}
 				return dataObj;
 			},
@@ -506,7 +558,7 @@ define(['app'], function(app) {
 				return dataObj;
 			}
 		}
-			//入口方法调用 代码只能从这里执行
+		//入口方法调用 代码只能从这里执行
 		app.indexCalWrapHandler = function() {
 			indexCalWrap.init();
 		}

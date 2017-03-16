@@ -15,7 +15,7 @@ body #calcontainer {
     height: 42px;
     line-height: 42px;
     text-align: center;
-    font-weight: 600;
+    /*font-weight: 600;*/
     position: relative
 }
 
@@ -49,17 +49,17 @@ body #calcontainer {
 
 #calcontent .cal3 p .can_choose {
     background-image: url(../img/sprite_cal.png);
-    background-position: -372px -483px;
+    background-position: -372px -481px;
 }
 
 #calcontent .cal3 p .not_choose {
     background-image: url(../img/sprite_cal.png);
-    background-position: -372px -307px;
+    background-position: -372px -306px;
 }
 
 #calcontent .cal3 p .al_choose {
     background-image: url(../img/sprite_cal.png);
-    background-position: -372px -123px;
+    background-position: -372px -122px;
     margin-right: 10px;
 }
 
@@ -99,7 +99,7 @@ body #calcontainer {
 
 .tender_sup {
     position: absolute;
-    right: 140px;
+    right: 145px;
     color: #333;
     top: 0px;
     margin: 0;
@@ -417,9 +417,12 @@ body #calcontainer {
     /*width: 55px;*/
     width: 74px;
     margin: 0 auto;
-    color: #fff;
-    background: #636363;
+    /*color: #fff;
+    background: #636363;*/
     border-radius: 3px;
+    background-color: #ededed;
+    color: #636363;
+    margin-left: 30px;
 }
 
 #calcontent .cal3 > div.mainareadiv .filter_nav {
@@ -495,15 +498,15 @@ body #calcontainer {
 #calcontent .cal5 .lastdiv .craft_left {
     position: relative;
     float: left;
-    width: 545px;
+    width: 525px;
     height: 145px;
     padding: 10px 0;
 }
 
 #calcontent .cal5 > div.lastdiv .cal6 {
     position: relative;
-    float: right;
-        padding: 60px 0 8px 270px;
+    float: left;
+    padding: 60px 0 8px 0;
     width: 480px;
 }
 
@@ -603,4 +606,9 @@ body #calcontainer {
 
 .Jcursor {
     cursor: pointer !important;
+}
+
+.Jcol {
+ 	color: #fff !important;
+    background: #636363 !important;
 }

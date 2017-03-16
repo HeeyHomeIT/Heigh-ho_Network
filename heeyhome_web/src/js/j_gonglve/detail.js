@@ -51,7 +51,7 @@
                         $(".gonglve_detail .now_location .stage").html(cate_name);
                         $(".gonglve_detail .now_location .attention").html(data.data.article_title);
                         $('.gonglve_title').html(data.data.article_title);
-                        $('.gonglve_content').html(data.data.article_content);
+                        $('.gonglve_content .daybox_cont .cont-item').html(data.data.article_content);
                     } else {  /* 如果失败执行 */
                         layer.alert(data.msg);
                     }

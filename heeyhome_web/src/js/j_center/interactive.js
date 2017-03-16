@@ -1225,15 +1225,15 @@
                         } else {
                             layer.alert("还未开工哦，亲~~");
                         }
-                        if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
-                            $('.work_stage .stage_content').css('marginLeft', '0');
-                        }
-                        if (window.navigator.userAgent.indexOf("Firefox") != -1) {//火狐浏览器下特殊样式
-                            $('.work_stage .stage_content').css('marginLeft', '12px');
-                        }
-                        if (window.navigator.userAgent.indexOf("Chrome") && window.chrome) {//谷歌浏览器下特殊样式
-                            $('.work_stage .stage_content').css('marginLeft', '6px');
-                        }
+                        // if (!!window.ActiveXObject || "ActiveXObject" in window) {//IE浏览器下特殊样式
+                        //     $('.work_stage .stage_content').css('marginLeft', '0');
+                        // }
+                        // if (window.navigator.userAgent.indexOf("Firefox") != -1) {//火狐浏览器下特殊样式
+                        //     $('.work_stage .stage_content').css('marginLeft', '12px');
+                        // }
+                        // if (window.navigator.userAgent.indexOf("Chrome") && window.chrome) {//谷歌浏览器下特殊样式
+                        //     $('.work_stage .stage_content').css('marginLeft', '12px');
+                        // }
 
                         layer.photos({
                             photos: '.stage_pic',
@@ -1263,7 +1263,7 @@
                     data: {
                         user_id: USERID,
                         page: 1,
-                        limit: 4
+                        limit: 3
                     },
                     success: function (data) {
                         //console.log(data.data);
@@ -1759,13 +1759,13 @@
                 li += '</li>';
             }
             $("#suspension_menu ul").append(li);
-            if ($("#suspension_menu ul li").length >= 3) {
-                var top = '';
-                top += '<li class="litop">';
-                top += '<a href="javascript:void(0)" tab="&to_head">回到顶部</a>';
-                top += '</li>';
-                $("#suspension_menu ul").append(top);
-            }
+            // if ($("#suspension_menu ul li").length >= 3) {
+            //     var top = '';
+            //     // top += '<li class="litop">';
+            //     // top += '<a href="javascript:void(0)" tab="&to_head">回到顶部</a>';
+            //     // top += '</li>';
+            //     $("#suspension_menu ul").append(top);
+            // }
             var _head = $(".commonhead");
             $(_head).addClass("to_head bar");
             var items = $(".bar");
@@ -2093,8 +2093,8 @@
                     });
                     $(document).off("click", ".ordercnt_content .all .bottom").on("click", ".ordercnt_content .all .bottom", function () {
                         var shopid = $(this).parent().attr("data-shopid");
-                        var orderid = $(this).parent().parent().attr("data-orderid");
-                        var orderstep = $(this).attr("data-orderstep");
+                        var orderid = $(this).parent().attr("data-orderid");
+                        var orderstep = $(this).parent().attr("data-orderstep");
                         sessionStorage.setItem("shopid", shopid);
                         sessionStorage.setItem("orderid", orderid);
                         sessionStorage.setItem("orderstep", orderstep);
@@ -2288,7 +2288,7 @@
             vrStr += '	<img src="' + value.panorama_img + '">';
             vrStr += '	</div><!--detail_img-->';
             vrStr += '		<a href="' + value.panorama_url + '" class="complete_bg"></a><!--complete_bg-->';
-            vrStr += '			<span>' + value.panorama_style + '</span>';
+            vrStr += '			<a href="' + value.panorama_url + '" class="panorama_style">' + value.panorama_style + '</a>';
             vrStr += '			<a href="' + value.panorama_url + '" class="bg"></a>';
             vrStr += '			</div><!--works_detail-->';
             return vrStr;
@@ -2334,7 +2334,7 @@
                 ajaxData: {
                     user_id: USERID,
                     page: 1,
-                    limit: 4
+                    limit: 3
                 },   //ajax方式传值时的附加传值,要传的参数放在这里面,页面参数只要指定idParamemeter就好，会自动添加
                 dataOperate: function oprate(data) {
                     var vrStr = '';

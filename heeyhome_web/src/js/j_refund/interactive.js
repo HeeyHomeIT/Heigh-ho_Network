@@ -94,21 +94,29 @@
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
-                            console.log(data.data);
-                            $('#order_number').html(data.data.order_id);//获取订单编号
-                            if (data.data.order_step == '17') {
-                                $('#order_step').html('油漆工完工阶段');//获取订单步骤
-                            }
-                            $('#order_time').html(data.data.order_time);//获取订单时间
-                            $('#order_money').html(-data.data.pay_amount);//获取退款金额
                             if (data.data.refund_status == '0') {//未提交退款信息
                                 window.location.href = 'refund.html#/refund/home/refund_step_1';
+                                $('.stepOne_wrap').show();
+                                console.log(data.data);
+                                $('.stepOne_wrap').show();
+                                $('.title_detail').eq(0).addClass('active');
+                                $('#order_number').html(data.data.order_id);//获取订单编号
+                                if (data.data.order_step == '17') {
+                                    $('#order_step').html('油漆工完工阶段');//获取订单步骤
+                                }
+                                $('#order_time').html(data.data.order_time);//获取订单时间
+                                $('#order_money').html(-data.data.pay_amount);//获取退款金额
                             } else if (data.data.refund_status == '1') {//等待退款
                                 window.location.href = 'refund.html#/refund/home/refund_step_2';
+                                $('.stepOne_wrap').hide();
+                                $('.deal_wrap').show();
                                 $('.title_detail').eq(0).removeClass('active');
                                 $('.title_detail').eq(1).addClass('active');
                             } else {//退款成功
                                 window.location.href = 'refund.html#/refund/home/refund_step_3';
+                                $('.stepOne_wrap').hide();
+                                $('.deal_wrap').hide();
+                                $('.successfully').show();
                                 $('.title_detail').eq(0).removeClass('active');
                                 $('.title_detail').eq(2).addClass('active');
                                 $('#wait span').html(data.data.refund_account);//退款成功获取用户的支付宝账户显示在页面中

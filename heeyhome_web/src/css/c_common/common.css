@@ -5,7 +5,8 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, form, fieldset, legend, i
 
 body {
     color: #333;
-    font: normal normal normal 12px/20px Arial, sans-serif
+    font: normal normal normal 12px/20px Arial, sans-serif;
+    font-family: 'Microsoft YaHei', Arial, sans-serif
 }
 
 input, select, textarea, button {
@@ -385,7 +386,7 @@ label.error.roomerror {
 }
 
 #c_myhh p a {
-    color: #0185c6
+    color: #EEC988
 }
 
 .please_login {
@@ -432,7 +433,7 @@ label.error.roomerror {
 }
 
 #topNavPanel #c_myhh p a:hover {
-    color: #EEC988
+    color: #E88226
 }
 
 .myinfo {
@@ -619,7 +620,6 @@ label.error.roomerror {
     height: 24px;
     line-height: 24px;
     color: #656565;
-    font-family: FZLTHJW;
     font-size: 14px;
     margin: 20px auto
 }
@@ -630,6 +630,10 @@ label.error.roomerror {
     height: 20px;
     vertical-align: middle;
     background: url(../img/sprite_remain.png) no-repeat -442px -161px;
+}
+
+.now_location a {
+    color: #656565 ;
 }
 
 #footer {

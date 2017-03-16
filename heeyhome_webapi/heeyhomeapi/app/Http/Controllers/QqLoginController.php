@@ -154,4 +154,53 @@ class QqLoginController extends Controller
             }
         }
     }
+    public function qqcallbackphone(){
+        $qq_id = rq('openid');
+        $user_nickname = rq('nickname');
+        $user_head = rq('portrait');
+        $callback=rq('callback');
+        $sql = DB::select('select a.user_id,b.userinfo_nickname from hh_user_third a LEFT OUTER JOIN hh_userinfo b ON a.user_id = b.userinfo_userid where qq_id=? ', [$qq_id]);
+        if ($sql) {
+            $pwd=DB::select('select * from hh_user where user_id=?',[$sql[0]->user_id]);
+            /*登录成功返回用户信息*/
+            if($pwd[0]->user_type==1){
+                $nickname=DB::select('select userinfo_nickname from hh_userinfo where userinfo_userid=?',[$pwd[0]->user_id]);
+                if($nickname){
+                    $pwd[0]->nickname=$nickname[0]->userinfo_nickname;
+                }else{
+                    $pwd[0]->nickname = null;
+                }
+            }
+            if($pwd[0]->user_type==2){
+                $shop_id=DB::select('select shop_id from hh_shop where shopper_id=?',[$pwd[0]->user_id]);
+                $pwd[0]->shop_id=$shop_id[0]->shop_id;
+                $nickname=DB::select('select foremaninfo_nickname from hh_foremaninfo where foremaninfo_userid=?',[$pwd[0]->user_id]);
+                if($nickname){
+                    $pwd[0]->nickname=$nickname[0]->foremaninfo_nickname;
+                }else {
+                    $pwd[0]->nickname = null;
+                }
+            }
+            if($pwd[0]->user_type==3){
+                $nickname=DB::select('select material_supplier_name from hh_material_supplier_info where material_supplier_id=?',[$pwd[0]->user_id]);
+                $pwd[0]->nickname=$nickname[0]->material_supplier_name;
+            }
+            $arr = array("code" => "000",
+                "msg" => "登录成功",
+                "data" => array("user_id" => $sql[0]->user_id,
+                    "userinfo_nickname" => $sql[0]->userinfo_nickname
+                )
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        } else {
+            $arr = array("code" => "111",
+                "msg" => "登录失败，需要绑定手机号",
+                "data" => array("qq_id" => $qq_id,
+                    "user_nickname" => $user_nickname,
+                    "user_head" => $user_head
+                )
+            );
+            return $callback . "(" . HHJson($arr) . ")";
+        }
+    }
 }

@@ -34,21 +34,25 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('panorama', 'PanoramaController@index');
     Route::any('panorama/like', 'PanoramaController@like');
     Route::any('panorama/scan', 'PanoramaController@scan');
+    Route::any('panorama/recommand', 'PanoramaController@recommand');
     /*家装百科*/
     Route::any('jzbk/cate', 'HomeEncyclopediaController@showcate');
     Route::any('jzbk/article', 'HomeEncyclopediaController@showarticle');
     Route::any('jzbk/info', 'HomeEncyclopediaController@info');
     Route::any('jzbk/scan', 'HomeEncyclopediaController@scan');
+    Route::any('jzbk/recommand', 'HomeEncyclopediaController@recommand');
     /*登录*/
     Route::any('login/login', 'LoginController@login');
     /*qq第三方登录*/
     Route::any('qqlogin', 'QqLoginController@qqlogin');
     Route::any('qqcallback', 'QqLoginController@qqcallback');
     Route::any('bindingQQ', 'QqLoginController@bindingQQLogin');
+    Route::any('qqphonecallback', 'QqLoginController@qqcallbackphone');
     /*wechat第三方登录*/
     Route::any('wxlogin', 'WxLoginController@wxlogin');
     Route::any('wxcallback', 'WxLoginController@wxcallback');
     Route::any('bindingWX', 'WxLoginController@bindingWXLogin');
+    Route::any('wxphonecallback', 'WxLoginController@wxcallbackphone');
     /*用户注册*/
     Route::any('register/user_register', 'RegisterController@user_register');
     /*发送短信*/
@@ -254,6 +258,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('order/user/subrefundinfo', 'OrderPayController@subRefundInfo');
     //订单评价
     Route::any('order/order/evaluation', 'ShopScoreController@orderOverScore');
+    //付款信息获取
+    Route::any('order/getpayinfo', 'OrderPayController@getpayinfo');
+    //确认已付款
+    Route::any('order/payconfirm', 'OrderPayController@payconfirm');
+    //意见反馈
+    Route::any('suggestions', 'UserinfoController@suggest');
 
     //材料订单
     //获取材料订单列表
@@ -282,6 +292,9 @@ Route::group(['middleware' => ['web']], function () {
 
     //用户端
     Route::any('my/collectionInfo', 'UserinfoController@userCollectionNumber');
+    //获取订单每个阶段材料或者施工完成是否已经付款了
+    Route::any('order/getPhasePayStatus', 'OrderDisplayController@getPhasePayStatus');
+    
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web','admin.login']], function()
@@ -373,6 +386,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     Route::any('supplier/add', 'SupplierController@add');
     /*装修订单*/
     Route::any('orderlist', 'OrderController@index');
+    Route::any('orderdetail/{id}', 'OrderController@detail');
     /*退款申请*/
     Route::any('refundlist', 'RefundController@index');
     Route::any('refund/info/{id}', 'RefundController@info');
@@ -393,6 +407,8 @@ Route::any('/alipay/return_url', function () {
 Route::any('/alipay/notify_url', function () {
     return view('notify_url');
 });
+
+
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => 'web'], function()
 {

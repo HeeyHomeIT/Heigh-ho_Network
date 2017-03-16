@@ -113,11 +113,102 @@ class UserinfoController extends Controller
         }
         $vr = DB::select('select count(id) as vrCount from hh_collection where collect_userid=? and collect_type=?',[$user_id,'panorama']);
         $shop = DB::select('select count(id) as shopCount from hh_collection where collect_userid=? and collect_type=?',[$user_id,'shop']);
-        $cost = DB::select('SELECT COUNT(id) AS costCount FROM hh_calculator_results WHERE user_id = ?',[$user_id]);
+        $cost = DB::select('SELECT COUNT(id) AS costCount FROM hh_calculator_results WHERE user_id = ? AND isdel=?',[$user_id,0]);
 
         $arr = array("code" => "000",
                 "data" => array("vr"=>$vr[0]->vrCount,"cost"=>$cost[0]->costCount,"shop"=>$shop[0]->shopCount)
             );
         return $callback . "(" . HHJson($arr) . ")";
+    }
+    public function suggest(){
+        $callback=rq('callback');
+        $user_id=rq('user_id');
+        $content=rq('content');
+        $count = rq('count');
+        $files = array();
+        if ($count) {
+            for ($i=0; $i < $count; $i++) {
+                $fileName = "myfile".$i;
+                if(!Request::hasFile($fileName)){
+                    $arr = array("code" => "121",
+                        "msg" => "没有图片被上传"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+                $files[$i] = Request::file($fileName);
+            }
+        } else {
+            $myfile=Request::file('myfile');
+
+            if(!Request::hasFile('myfile')){
+                $arr = array("code" => "121",
+                    "msg" => "没有图片被上传"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+
+            if (! is_array($myfile)) {
+                $files = [$myfile];
+            } else {
+                $files = $myfile;
+            }
+        }
+        $isvalid=true;
+        foreach($files as $file){
+            if(!$file->isValid()){
+                $isvalid=false;
+            }
+        }
+        if($isvalid) {
+            $case = DB::insert('insert into hh_suggestions(user_id,text) values(?,?)', [$user_id, $content]);
+            if ($case) {
+                $case_sel = DB::select('select id from hh_suggestions where user_id=? and text=?', [$user_id, $content]);
+                $ifinsert = false;
+                foreach ($files as $key => $file) {
+                    $clientName = $file->getClientOriginalName();//文件原名
+                    $entension = $file->getClientOriginalExtension();//扩展名
+                    $realPath = $file->getRealPath();   //临时文件的绝对路径
+                    $type = $file->getClientMimeType();
+                    $size = $file->getClientSize();
+                    $filename = date('Ymd') . md5(rand(999, 10000)) . '.' . $entension;
+                    $is = $file->move(public_path() . '/uploads/' . substr($filename, 0, 4) . '-' . substr($filename, 4, 2) . '-' . substr($filename, 6, 2), $filename);
+                    if ($is) {
+                        $path = 'api/public/uploads/' . substr($filename, 0, 4) . '-' . substr($filename, 4, 2) . '-' . substr($filename, 6, 2) . '/' . $filename;
+                        $insert = DB::insert('insert into hh_suggestions_img(suggestions_id,img) values (?,?)', [$case_sel[0]->id, $path]);
+                        if ($insert) {
+                            $ifinsert = true;
+                        } else {
+                            $ifinsert = false;
+                        }
+                    } else {
+                        $arr = array("code" => "131",
+                            "msg" => "上传失败"
+                        );
+                        return $callback . "(" . HHJson($arr) . ")";
+                    }
+                }
+                if ($ifinsert) {
+                    $arr = array("code" => "000",
+                        "msg" => "提交成功"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                } else {
+                    $arr = array("code" => "111",
+                        "msg" => "提交失败，请稍后重试"
+                    );
+                    return $callback . "(" . HHJson($arr) . ")";
+                }
+            }else {
+                $arr = array("code" => "111",
+                    "msg" => "提交失败，请稍后重试"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
+        }else {
+                $arr = array("code" => "132",
+                    "msg" => "上传的文件无效"
+                );
+                return $callback . "(" . HHJson($arr) . ")";
+            }
     }
 }

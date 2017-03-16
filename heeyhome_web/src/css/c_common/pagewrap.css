@@ -16,7 +16,7 @@
     height: 38px;
     line-height: 38px;
     color: #FFFFFF;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 17px;
     cursor: pointer;
     background-color: #525252;
@@ -37,7 +37,7 @@
     line-height: 34px;
     cursor: pointer;
     border-radius: 17px;
-    font-family: HelveticaNeueLTPro Roman;
+    /*font-family: HelveticaNeueLTPro Roman;*/
     color: #FFFFFF;
     font-size: 16px;
     margin-right: 13px;
@@ -54,7 +54,7 @@
 }
 
 .page_number .number .point {
-    font-family: HelveticaNeueLTPro BdIt;
+    /*font-family: HelveticaNeueLTPro BdIt;*/
     color: #A2A2A2;
     font-size: 14px;
     margin: 0 11px 0 8px

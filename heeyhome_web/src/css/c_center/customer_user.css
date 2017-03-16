@@ -55,7 +55,7 @@ a:focus {
     width: 1190px;
     height: 17px;
     color: #656565;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     margin: 20px auto
 }
@@ -171,6 +171,10 @@ a:focus {
     font-size: 16px;
     color: white;
     margin-left: 29px;
+}
+
+.right_title i {
+    font-family: Helvetica;
 }
 
 /* 右边边框 */
@@ -367,7 +371,7 @@ a:focus {
     padding: 10px 20px;
     color: #4b4948;
     font-size: 14px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     border: 1px solid #D9D9D9;
 }
 
@@ -444,12 +448,7 @@ a:focus {
 }
 
 .order_content_cnt .order_cnt_right .detail:hover {
-    background-color: #E88226;
-    transition: all 0.3s ease-in;
-    -o-transition: all 0.3s ease-in;
-    -ms-transition: all 0.3s ease-in;
-    -moz-transition: all 0.3s ease-in;
-    -webkit-transition: all 0.3s ease-in;
+    background-color: #f7cf88;
 }
 
 .order_content_cnt .order_cnt_right .operation {
@@ -466,7 +465,7 @@ a:focus {
 
 .order_content_cnt .order_cnt_right .operation:hover {
     background-color: #EEC988;
-    color: #939393;
+    color: white;
     transition: all 0.3s ease-in;
     -o-transition: all 0.3s ease-in;
     -ms-transition: all 0.3s ease-in;
@@ -588,7 +587,7 @@ a:focus {
 
 /* 个人资料样式 */
 .personal_form {
-    width: 680px;
+    width: 780px;
     height: auto;
     margin: 0 auto;
 }
@@ -600,33 +599,61 @@ a:focus {
 }
 
 .personal_form_list span {
-    width: 58px;
+    width: 85px;
     display: inline-block;
-    text-align: right;
+    text-align: left;
     font-size: 14px;
     color: #4b4948;
     vertical-align: middle;
+    letter-spacing: 3px;
+}
+
+.detail_address span {
+    vertical-align: top;
+    margin-top: -10px;
 }
 
 .personal_form_list input {
-    margin-left: 15px;
-    border: none;
-    border-bottom: 1px solid #3d3d3d;
-    height: 25px;
-    line-height: 25px;
-    padding: 0 4px;
+    margin-left: 5px;
+    border: 1px solid #ddd;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 10px;
     box-sizing: border-box;
     font-size: 14px;
     margin-top: 0;
 }
 
+#man, #women {
+    opacity: 0;
+}
+
+.detail_address {
+    height: 150px;
+}
+
+.detail_address textarea {
+    height: 145px;
+    resize: none;
+    border: 1px solid #ddd;
+    margin-left: 5px;
+    line-height: 30px;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
 .personal_form_list .personal_user_name, .personal_form_list .personal_user_nickname {
-    width: 150px;
+    width: 230px;
 }
 
 .personal_form_list .personal_user_name:disabled {
     background-color: white;
     cursor: not-allowed;
+}
+
+.personal_form_list .form-group {
+    margin-left: -3px;
+    margin-right: 13px;
 }
 
 .personal_form_list b {
@@ -645,6 +672,7 @@ a:focus {
 .personal_form_list .personal_user_age {
     width: 67px;
     text-align: center;
+    padding-left: 0;
 }
 
 .personal_form_list p {
@@ -745,10 +773,6 @@ a:focus {
     padding: 4px 12px;
 }
 
-.personal_form_list .form-group {
-    margin-left: 10px;
-}
-
 .personal_form_list em {
     font-size: 14px;
     vertical-align: middle;
@@ -760,7 +784,7 @@ a:focus {
     width: 93px;
     height: 36px;
     line-height: 36px;
-    background-color: #3d3d3d;
+    background-color: #EEC988;
     border-radius: 4px;
     text-align: center;
     color: white;
@@ -771,12 +795,7 @@ a:focus {
 
 .personal_submit:hover {
     color: white;
-    background-color: black;
-    transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
+    background-color: #f7cf88;
 }
 
 .personal_content_title {
@@ -796,7 +815,7 @@ a:focus {
     background-color: #fff;
     position: absolute;
     top: 19px;
-    left: 6px;
+    left: -5px;
 }
 
 .personal_form_list .sex .checked {
@@ -1103,7 +1122,7 @@ a:focus {
     display: block;
 }
 
-.complete_img span {
+.complete_img .panorama_style {
     color: white;
     font-size: 14px;
     position: absolute;
@@ -1427,6 +1446,7 @@ a:focus {
 
 .information_choose input {
     margin-top: 0;
+    opacity: 0;
 }
 
 .information_choose span {
@@ -1581,19 +1601,13 @@ a:focus {
     float: right
 }
 
-.right_title span {
-    font-size: 16px;
-    color: white;
-    margin-left: 29px
-}
-
 .content_wrap {
     height: 683px;
     margin-right: 50px
 }
 
 .safe_right, .safe_right_content {
-    padding: 35px 0 50px 83px;
+    padding: 35px 0 50px 45px;
     border-top: none;
     position: relative;
 }
@@ -1623,7 +1637,7 @@ a:focus {
     color: #E88226;
     font-size: 20px;
     font-weight: bold;
-    font-family: FZLTDHK
+    /*font-family: FZLTDHK*/
 }
 
 .security_top .security_score .star {
@@ -1946,7 +1960,7 @@ a:focus {
 }
 
 .address_list_content {
-    width: 752px;
+    /*width: 752px;*/
     height: 83px;
     border: 1px solid #d3d3d3;
     border-top: none;
@@ -1955,7 +1969,7 @@ a:focus {
 .default_address {
     width: 83px;
     height: 30px;
-    line-height: 32px;
+    line-height: 29px;
     text-align: center;
     display: inline-block;
     border: 1px solid #eec988;
@@ -1968,7 +1982,7 @@ a:focus {
 .address_list_content .defaulted {
     width: 83px;
     height: 30px;
-    line-height: 32px;
+    line-height: 29px;
     text-align: center;
     display: inline-block;
     border: 1px solid #eec988;
@@ -2006,18 +2020,12 @@ a:focus {
     margin-left: 8px;
     display: inline-block;
     width: 24px;
-    height: 18px;
+    height: 19px;
     background-position: -486px -65px
 }
 
 .address_add a:hover {
-    transition: all .5s ease 0s;
-    -webkit-transition: all .5s ease 0s;
-    -moz-transition: all .5s ease 0s;
-    -ms-transition: all .5s ease 0s;
-    -webkit-box-shadow: 3px 3px 5px #939393;
-    -moz-box-shadow: 3px 3px 5px #939393;
-    box-shadow: 3px 3px 5px #939393;
+    background-color: #f7cf88;
 }
 
 #time_axis {
@@ -2042,13 +2050,13 @@ a:focus {
 }
 
 #time_axis .axis_start h2 {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 20px;
     color: #4B4948
 }
 
 #time_axis .axis_start h3 {
-    font-family: HelveticaNeueLTPro Roman;
+    /*font-family: HelveticaNeueLTPro Roman;*/
     font-size: 16px;
     color: #4B4948
 }
@@ -2056,7 +2064,7 @@ a:focus {
 #time_axis .date {
     float: left;
     margin: 0 17px 0 73px;
-    font-family: HelveticaNeueLTPro Roman;
+    /*font-family: HelveticaNeueLTPro Roman;*/
     font-size: 14px;
     color: #303030
 }
@@ -2089,7 +2097,7 @@ a:focus {
 }
 
 #time_axis p {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     padding-top: 15px;
     clear: both;
     border-bottom: 1px solid #D0D0D0;
@@ -2100,7 +2108,7 @@ a:focus {
 
 #time_axis .strong {
     color: #E88226;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 16px
 }
 
@@ -2137,7 +2145,7 @@ a:focus {
     position: absolute;
     top: 0px;
     left: 260px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     color: #4B4948;
     font-size: 14px;
 }
@@ -2176,7 +2184,7 @@ a:focus {
 
 .work_stage .stage_content {
     padding: 20px 0 40px 85px;
-    margin-left: 10px;
+    margin-left: 12px;
     min-height: 55px;
     border-left: 1px solid #EEC988
 }
@@ -2233,7 +2241,7 @@ a:focus {
     cursor: pointer;
     border-radius: 4px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 16px;
     color: #FFFFFF;
 }
@@ -2250,7 +2258,7 @@ a:focus {
     cursor: pointer;
     border-radius: 4px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #FFFFFF;
 }
@@ -2267,9 +2275,19 @@ a:focus {
     cursor: pointer;
     border-radius: 4px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #FFFFFF;
+}
+
+.settlement:hover {
+    color: white;
+    transition: all 0.3s ease-in-out;
+    background-color: #000000;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
 }
 
 .step .prepayment {
@@ -2319,7 +2337,7 @@ a:focus {
     text-align: center;
     font-size: 14px;
     border: 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     color: #4B4948;
 }
 
@@ -2340,13 +2358,13 @@ a:focus {
 }
 
 .axis_end h2 {
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 20px;
     color: #4B4948
 }
 
 .axis_end h3 {
-    font-family: HelveticaNeueLTPro roman;
+    /*font-family: HelveticaNeueLTPro roman;*/
     font-size: 16px;
     color: #4B4948
 }
@@ -2359,7 +2377,7 @@ a:focus {
     background-color: #525252;
     color: #FFFFFF;
     text-align: center;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 18px;
     border-radius: 4px;
     margin-top: 89px
@@ -2401,7 +2419,7 @@ a:focus {
     height: 40px;
     line-height: 40px;
     text-align: center;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #4B4948
 }
@@ -2419,7 +2437,7 @@ a:focus {
 
 #owner_information {
     margin: 20px 0;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #EEC988;
     background: url(../img/bj-header.png) 0 -500px;
@@ -2552,12 +2570,7 @@ a:focus {
 }
 
 .order_box .ordercnt_content .block .all .top:hover {
-    transition: all .3s linear;
-    -ms-transition: all .3s linear;
-    -o-transition: all .3s linear;
-    -webkit-transition: all .3s linear;
-    -moz-transition: all .3s linear;
-    background-color: #E88226
+    background-color: #f7cf88
 }
 
 .order_box .ordercnt_content .block .all .bottom {
@@ -2575,7 +2588,7 @@ a:focus {
 }
 
 .order_box .ordercnt_content .block .all .bottom:hover {
-    color: #363636;
+    color: white;
     background-color: #EEC988;
     transition: all .3s linear;
     -ms-transition: all .3s linear;
@@ -2587,12 +2600,6 @@ a:focus {
 /* 我的订单样式 */
 #user_right {
     float: right
-}
-
-.right_title span {
-    font-size: 16px;
-    color: #FFFFFF;
-    margin-left: 29px
 }
 
 .order_content_wrap {
@@ -2699,7 +2706,7 @@ a:focus {
 }
 
 .order_content .order_box .ordercnt_title {
-    width: 830px;
+    width: 829px;
     height: 34px;
     line-height: 34px;
     background-color: #979797;
@@ -3075,8 +3082,8 @@ a:focus {
 }
 
 .loading {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     margin: 20px auto;
     position: absolute;
     top: 35%;
@@ -3103,7 +3110,7 @@ a:focus {
 .layui-layer-content p {
     color: #4B4948;
     font-size: 14px;
-    font-family: FZLTHJW;
+    /*font-family: FZLTHJW;*/
     padding: 15px;
 }
 

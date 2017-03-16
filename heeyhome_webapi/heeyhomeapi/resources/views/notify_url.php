@@ -67,7 +67,7 @@ if ($verify_result) {//验证成功
         //logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
     }
 
-    $sel_order_pay_each_istrue = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ? AND pay_status = ?', [$out_trade_no,1]);
+    $sel_order_pay_each_istrue = \Illuminate\Support\Facades\DB::select('SELECT * FROM hh_order_pay_each WHERE pay_id = ? AND pay_status = ?', [$out_trade_no, 1]);
     if ($sel_order_pay_each_istrue) {
         //更新订单为已支付状态
         $upd_order_pay_each = \Illuminate\Support\Facades\DB::update('UPDATE hh_order_pay_each SET pay_status = 3 WHERE pay_id = ?', [$out_trade_no]);
@@ -112,15 +112,24 @@ if ($verify_result) {//验证成功
         }
         //跟新订单进度
         $upd_order = \Illuminate\Support\Facades\DB::update('UPDATE hh_order SET order_status = ?,order_step = ? WHERE order_id = ?', [$order_status, $order_step, $order_id]);
-        //查询店铺id
-        $sel_shop_id = \Illuminate\Support\Facades\DB::select('SELECT shop_id FROM hh_order WHERE order_id = ?', [$order_id]);
-        $shop_id = $sel_shop_id[0]->shop_id;
-        //查询店铺接单数
-        $sel_shop_volume = \Illuminate\Support\Facades\DB::select('SELECT shop_volume FROM hh_shop WHERE shop_id = ?', [$shop_id]);
-        $shop_volume = $sel_shop_volume[0]->shop_volume;
-        $shop_volume++;
-        //增加店铺接单数
-        $upd_shop_volume = \Illuminate\Support\Facades\DB::update('UPDATE hh_shop SET shop_volume = ? WHERE shop_id = ?', [$shop_volume, $shop_id]);
+        //TODO 工长案例 未完成案例更新为已完成
+        if ($order_status == 6) {
+            $order_start = \Illuminate\Support\Facades\DB::select('SELECT img_time FROM hh_order_detail WHERE order_id = ? and order_step=?', [$order_id, 1]);
+            $order_end = \Illuminate\Support\Facades\DB::select('SELECT img_time FROM hh_order_detail WHERE order_id = ? and order_step=?', [$order_id, 17]);
+            $order_timelong = substr($order_start[0]->img_time, 0, 10) . '～' . substr($order_end[0]->img_time, 0, 10);
+            $upd_workcase = \Illuminate\Support\Facades\DB::update('UPDATE hh_workcase SET type = ?,timelong=? WHERE case_id = ?', [2, $order_timelong, $order_id]);
+        }
+        if ($foreman_flga) {
+            //查询店铺id
+            $sel_shop_id = \Illuminate\Support\Facades\DB::select('SELECT shop_id FROM hh_order WHERE order_id = ?', [$order_id]);
+            $shop_id = $sel_shop_id[0]->shop_id;
+            //查询店铺接单数
+            $sel_shop_volume = \Illuminate\Support\Facades\DB::select('SELECT shop_volume FROM hh_shop WHERE shop_id = ?', [$shop_id]);
+            $shop_volume = $sel_shop_volume[0]->shop_volume;
+            $shop_volume++;
+            //增加店铺接单数
+            $upd_shop_volume = \Illuminate\Support\Facades\DB::update('UPDATE hh_shop SET shop_volume = ? WHERE shop_id = ?', [$shop_volume, $shop_id]);
+        }
         //TODO 工长钱包收入
         if ($foreman_flga) {
             $sel_order_pay_each = \Illuminate\Support\Facades\DB::select('SELECT order_id,pay_amount FROM hh_order_pay_each WHERE pay_id = ? AND order_pay_step = ?',
@@ -182,7 +191,7 @@ if ($verify_result) {//验证成功
                 $city = $sel_address[0]->city;
                 $dis = $sel_address[0]->district;
                 $isHave = false;
-                $sel_area_id = \Illuminate\Support\Facades\DB::select("SELECT distribution_area_id FROM hh_material_distribution_area WHERE distribution_area_name LIKE '%".$city."%' AND distribution_area_name LIKE '%".$dis."%'",
+                $sel_area_id = \Illuminate\Support\Facades\DB::select("SELECT distribution_area_id FROM hh_material_distribution_area WHERE distribution_area_name LIKE '%" . $city . "%' AND distribution_area_name LIKE '%" . $dis . "%'",
                     []);
                 if ($sel_area_id) {
                     $sel_material_supplier_id = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_material_supplier_info WHERE distribution_area = ? ", [$sel_area_id[0]->distribution_area_id]);
@@ -200,7 +209,7 @@ if ($verify_result) {//验证成功
             $supplier_fee = $total_fee;
             //TODO 抽点
             //$supplier_fee = $supplier_fee * 0.05;
-            $material_supplier_ids = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_order_material WHERE material_id = ? ",[$material_id]);
+            $material_supplier_ids = \Illuminate\Support\Facades\DB::select("SELECT material_supplier_id FROM hh_order_material WHERE material_id = ? ", [$material_id]);
             $supplier_id = $material_supplier_ids[0]->material_supplier_id;//材料商id
             $supplier_wallet = \Illuminate\Support\Facades\DB::select('SELECT total,available_total FROM hh_wallet_balance WHERE user_id=?',
                 [$supplier_id]);
