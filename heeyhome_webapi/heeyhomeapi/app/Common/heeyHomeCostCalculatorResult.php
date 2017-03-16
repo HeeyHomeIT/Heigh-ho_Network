@@ -367,7 +367,6 @@ function mgrg($flag, $b1, $d1, $h1, $f1, $kitchen_cupboard, $wardrobe_num, $cloa
     $desk = $desk_num * (600 + 350);
     //榻榻米
     $tatami = $tatami_num * 900;
-
     switch ($flag) {
         case 1:
             //基础

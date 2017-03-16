@@ -476,7 +476,7 @@ class OrderController extends Controller
             [$order_id]);
         if ($sql_order_status) {
             $order_status_id = $sql_order_status[0]->order_status_id;
-            if ($sql_order_status[0]->confirm_time == 1) {
+            if ($sql_order_status[0]->confirm_time == 1 || $sql_order_status[0]->confirm_time == 0) {
                 $reservation_time = $sql_order_status[0]->reservation_time1;
             } else if ($sql_order_status[0]->confirm_time == 2) {
                 $reservation_time = $sql_order_status[0]->reservation_time2;

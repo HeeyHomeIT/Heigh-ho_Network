@@ -29,8 +29,8 @@ function costCalculator_suzhou($calculator_arr)
     $desk_num = 0;
     $tatami_num = 0;
     $room_wallpaper = array(0, 0, 0, 0);
-    $wallpaper=0;
-    $cloakroom_wardrobe=0;
+    $wallpaper = 0;
+    $cloakroom_wardrobe = 0;
     if ($room_distribution['master'] != 0) {
         //房间内设计 TODO 例：array('ground'=>'smdb','wardrobe'=>'true','ceiling'=>'true','wallpaper'=>'false','window'=>'true')
         $master_distribution = $calculator_arr['master_distribution'];
@@ -189,8 +189,8 @@ function costCalculator_suzhou($calculator_arr)
         return $arr;
     }
     //面积和最大允许房间数、客餐厅、阳台数、卫生间数
-    if($area >= 70 && $area <= 80){
-        if(!(($room_num<=2)&&($parlor_num<=1)&&($bathroom_num<=1)&&($balcony_num<=2))){
+    if ($area >= 70 && $area <= 80) {
+        if (!(($room_num <= 2) && ($parlor_num <= 1) && ($bathroom_num <= 1) && ($balcony_num <= 2))) {
             $arr = array(
                 "code" => "200",
                 "msg" => "参数错误,所填面积最大支持2室1厅1卫2阳台",
@@ -198,17 +198,17 @@ function costCalculator_suzhou($calculator_arr)
             );
             return $arr;
         }
-    }else if($area >= 80 && $area <= 90){
-        if(!(($room_num<=2)&&($parlor_num<=1)&&($bathroom_num<=1)&&($balcony_num<=2))){
-                    $arr = array(
-                        "code" => "200",
-                        "msg" => "参数错误,所填面积最大支持2室1厅1卫2阳台",
-                        "data" => ""
-                    );
-                    return $arr;
-                }
-    }else if($area >= 90 && $area <= 100){
-        if(!(($room_num<=3)&&($parlor_num<=1)&&($bathroom_num<=2)&&($balcony_num<=3))){
+    } else if ($area >= 80 && $area <= 90) {
+        if (!(($room_num <= 2) && ($parlor_num <= 1) && ($bathroom_num <= 1) && ($balcony_num <= 2))) {
+            $arr = array(
+                "code" => "200",
+                "msg" => "参数错误,所填面积最大支持2室1厅1卫2阳台",
+                "data" => ""
+            );
+            return $arr;
+        }
+    } else if ($area >= 90 && $area <= 100) {
+        if (!(($room_num <= 3) && ($parlor_num <= 1) && ($bathroom_num <= 2) && ($balcony_num <= 3))) {
             $arr = array(
                 "code" => "200",
                 "msg" => "参数错误,所填面积最大支持3室1厅2卫3阳台",
@@ -216,8 +216,8 @@ function costCalculator_suzhou($calculator_arr)
             );
             return $arr;
         }
-    }else if($area >= 100 && $area <= 110){
-        if(!(($room_num<=3)&&($parlor_num<=1)&&($bathroom_num<=2)&&($balcony_num<=3))){
+    } else if ($area >= 100 && $area <= 110) {
+        if (!(($room_num <= 3) && ($parlor_num <= 1) && ($bathroom_num <= 2) && ($balcony_num <= 3))) {
             $arr = array(
                 "code" => "200",
                 "msg" => "参数错误,所填面积最大支持3室1厅2卫3阳台",
@@ -225,8 +225,8 @@ function costCalculator_suzhou($calculator_arr)
             );
             return $arr;
         }
-    }else if($area >= 110 && $area <= 120){
-        if(!(($room_num<=4)&&($parlor_num<=1)&&($bathroom_num<=2)&&($balcony_num<=3))){
+    } else if ($area >= 110 && $area <= 120) {
+        if (!(($room_num <= 4) && ($parlor_num <= 1) && ($bathroom_num <= 2) && ($balcony_num <= 3))) {
             $arr = array(
                 "code" => "200",
                 "msg" => "参数错误,所填面积最大支持4室1厅2卫3阳台",
@@ -234,8 +234,8 @@ function costCalculator_suzhou($calculator_arr)
             );
             return $arr;
         }
-    }else if($area >= 120 && $area <= 140){
-        if(!(($room_num<=4)&&($parlor_num<=1)&&($bathroom_num<=2)&&($balcony_num<=3))){
+    } else if ($area >= 120 && $area <= 140) {
+        if (!(($room_num <= 4) && ($parlor_num <= 1) && ($bathroom_num <= 2) && ($balcony_num <= 3))) {
             $arr = array(
                 "code" => "200",
                 "msg" => "参数错误,所填面积最大支持4室1厅2卫3阳台",
@@ -243,8 +243,8 @@ function costCalculator_suzhou($calculator_arr)
             );
             return $arr;
         }
-    }else if($area >= 140 && $area <= 160){
-        if(!(($room_num<=4)&&($parlor_num<=1)&&($bathroom_num<=3)&&($balcony_num<=3))){
+    } else if ($area >= 140 && $area <= 160) {
+        if (!(($room_num <= 4) && ($parlor_num <= 1) && ($bathroom_num <= 3) && ($balcony_num <= 3))) {
             $arr = array(
                 "code" => "200",
                 "msg" => "参数错误,所填面积最大支持4室1厅3卫3阳台",
@@ -252,7 +252,7 @@ function costCalculator_suzhou($calculator_arr)
             );
             return $arr;
         }
-    }else{
+    } else {
         $arr = array(
             "code" => "200",
             "msg" => "参数错误，面积不在计算器计算范围",
@@ -291,18 +291,19 @@ function costCalculator_suzhou($calculator_arr)
     $mgfc = mgfc($flag, $area, $room_num, $balcony_num, $bathroom_num);
     $yqcl = yqcl($flag, $area, $room_num, $balcony_num, $bathroom_num);
     //主材费用
-    $czdd = 0;
-    $czgd = 0;
-    $bc = 0;
-    $dls = 0;
-    $db = 0;
-    $mm = 0;
-    $cfym = 0;
-    $lyfym = 0;
-    $ygym = 0;
-    $jcdd = 0;
-    $cgsys = 0;
-    $zxzj = $rgzj + $zdsdcl + $gdsdcl + $wgfc + $mgfc + $yqcl;
+    $czdd = czdd($flag, $area, $room_num, $balcony_num);
+    $czgd = czgd();
+    $bc = bc();
+    $dls = dls();
+    $db = db();
+    $mm = mm();
+    $cfym = cfym();
+    $lyfym = lyfym();
+    $ygym = ygym();
+    $jcdd = jcdd();
+    $cgsys = cgsys();
+    $qz = qz();
+    $zxzj = $rgzj + $zdsdcl + $wgfc + $mgfc + $yqcl;
     $arr = array(
         "code" => "000",
         "msg" => "",
