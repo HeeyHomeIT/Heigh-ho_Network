@@ -41,14 +41,13 @@ class MyworkcaseController extends Controller
             $select[$key]->img=$imgs;
             $select[$key]->total=$total;
             if($val->type==2){
-                $order=DB::select('select area,house_style,room,parlour from hh_order where order_id=?',[$val->case_id]);
-                $order_img=DB::select('select a.img_url,a.order_detail_id,b.id,b.order_id from hh_order_detail_img a LEFT OUTER JOIN hh_order_detail b ON a.order_detail_id = b.id where b.order_id=? order by a.id desc', [$val->case_id]);
-                $select[$key]->img=$order_img[0]->img_url;
+                $order_img=DB::select('select a.id,a.img_url,a.order_detail_id,b.id,b.order_id from hh_order_detail_img a LEFT OUTER JOIN hh_order_detail b ON a.order_detail_id = b.id where b.order_id=? order by a.id desc', [$val->case_id]);
+                $select[$key]->img[0]=array('img_id'=>$order_img[0]->id,'case_img'=>$order_img[0]->img_url);
             }
             if($val->type==3){
                 $order=DB::select('select order_step from hh_order where order_id=?',[$val->case_id]);
-                $order_img=DB::select('select a.img_url,a.order_detail_id,b.id,b.order_id from hh_order_detail_img a LEFT OUTER JOIN hh_order_detail b ON a.order_detail_id = b.id where b.order_id=? order by a.id desc', [$val->case_id]);
-                $select[$key]->img=$order_img[0]->img_url;
+                $order_img=DB::select('select a.id,a.img_url,a.order_detail_id,b.id,b.order_id from hh_order_detail_img a LEFT OUTER JOIN hh_order_detail b ON a.order_detail_id = b.id where b.order_id=? order by a.id desc', [$val->case_id]);
+                $select[$key]->img[0]=array('img_id'=>$order_img[0]->id,'case_img'=>$order_img[0]->img_url);
                 $select[$key]->order_step=$order[0]->order_step;
             }
         }
