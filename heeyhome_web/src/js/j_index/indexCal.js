@@ -23,8 +23,43 @@ define(['app'], function(app) {
 				var roomNumber; // 房间数
 				var titleStr; // 房间安排DIV标题
 				var num; // 数量
+				var areaNumber; // 面积数
+				var roomLiStr,bathroomLiStr,balconyLiStr;
 				$(".housediv div").on("click", function(e) {
 					e.stopPropagation();
+					areaNumber = $("#c_area").val();
+					if(areaNumber == null || areaNumber == undefined || $.trim(areaNumber) == ""){
+						layer.msg('请先输入建筑面积');
+						return;
+					}else {
+						if(areaNumber >= 70 && areaNumber < 80){
+							roomLiStr = '<li>1</li><li>2</li>'; //卧室
+							bathroomLiStr = '<li>1</li>'; //卫
+							balconyLiStr = '<li>1</li><li>2</li>'; // 阳台
+						}else if(areaNumber >= 80 && areaNumber < 90){
+							roomLiStr = '<li>1</li><li>2</li><li>3</li>'; //卧室
+							bathroomLiStr = '<li>1</li>'; //卫
+							balconyLiStr = '<li>1</li><li>2</li>'; // 阳台
+						}else if(areaNumber >= 90 && areaNumber < 120){
+							roomLiStr = '<li>1</li><li>2</li><li>3</li>'; //卧室
+							bathroomLiStr = '<li>1</li><li>2</li>'; //卫
+							balconyLiStr = '<li>1</li><li>2</li><li>3</li>'; // 阳台
+						}else if(areaNumber >= 120 && areaNumber < 140){
+							roomLiStr = '<li>1</li><li>2</li><li>3</li><li>4</li>'; //卧室
+							bathroomLiStr = '<li>1</li><li>2</li>'; //卫
+							balconyLiStr = '<li>1</li><li>2</li><li>3</li>'; // 阳台
+						}else if(areaNumber >= 140 && areaNumber <= 160){
+							roomLiStr = '<li>1</li><li>2</li><li>3</li><li>4</li>'; //卧室
+							bathroomLiStr = '<li>1</li><li>2</li><li>3</li>'; //卫
+							balconyLiStr = '<li>1</li><li>2</li><li>3</li>'; // 阳台
+						}else{
+							layer.msg('暂支持70m²~160m²户型');
+							return;
+						}
+						$(".room ul").html(roomLiStr);
+						$(".bathroom ul").html(bathroomLiStr);
+						$(".balcony ul").html(balconyLiStr);
+					}
 					// 户型选择的选择框旁边小三角切换、选择文本显示和隐藏
 					if($(this).hasClass("item_hover_180")) {
 						$(this).removeClass("item_hover_180");
