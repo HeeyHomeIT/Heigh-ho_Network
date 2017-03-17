@@ -615,7 +615,7 @@
                             sessionStorage.setItem("orderid", data.data.order_list[_new].order_id);
                         });
                         // 未开工之前跳转到预约单页面
-                        if (step == 18 && (status == 1 || status == 2 || status == 3 || status == 4)) {
+                        if (step == 18 && (status == 1 || status == 2 || status == 3 || status == 4 || status == 7)) {
                             console.log(data);
                             var oInfoObj = {};
                             oInfoObj.shop_id = data.data.order_list[0].shop_id;
@@ -1961,7 +1961,7 @@
             }
             vrStr += '<div class="trade_stage"><p>' + value.order_status_ch + '</p></div>';
             // 未开工之前跳转到预约单页面
-            if (value.order_step == 18 && (value.order_status == 1 || value.order_status == 2 || value.order_status == 3 || value.order_status == 4)) {
+            if (value.order_step == 18 && (value.order_status == 1 || value.order_status == 2 || value.order_status == 3 || value.order_status == 4 || value.order_status == 7)) {
                 // console.log(value);
                 // var oInfoObj = {};
                 // oInfoObj.shop_id = value.shop_id;
@@ -1969,8 +1969,6 @@
                 // oInfoObj.order_id = value.order_id;
                 // $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
                 vrStr += '<div class="all" data-sss="' + value.user_id + '" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="javascript:;" class="top look_new">查看详情</a>';
-            } else if (value.order_status == 7) {
-                vrStr += '<div class="all"><span>--</span>';
             } else {
                 vrStr += '<div class="all" data-shopid="' + value.shop_id + '" data-orderid="' + value.order_id + '"  data-orderstep="' + value.order_step + '"><a href="order_detail.html#/morder_wrap/morder_detail" target="_blank" class="top">查看详情</a>';
             }
