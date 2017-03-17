@@ -1402,7 +1402,11 @@
     border: 1px solid #c7c7c7;
     /*margin-left: 11px;*/
     font-size: 80px;
-    color: #eee;
+    color: #e4e4e4;
+}
+
+.renderings_add:hover {
+    color: #e4e4e4;
 }
 
 .renderings_show_wrap .renderings_img {
@@ -1449,13 +1453,14 @@
     display: inline-block;
     width: 80px;
     height: 31px;
-    line-height: 33px;
-    border: 1px solid #3d3d3d;
+    line-height: 31px;
+    border: 1px solid #ddd;
     border-radius: 2px;
     color: #3d3d3d;
     text-align: center;
     margin-left: 5px;
     vertical-align: middle;
+    font-size: 14px;
 }
 
 .shop_detail .personal_area:hover, .shop_detail .personal_style:hover, .personal_area_list .personal_area:hover {
@@ -1892,7 +1897,7 @@
 }
 
 .order_content .order_box .ordercnt_title {
-    width: 828px;
+    width: 829px;
     height: 34px;
     line-height: 34px;
     background-color: #979797;
@@ -4149,7 +4154,7 @@ div.clear:after, div.clear:before {
 
 .bottom_title_left a {
     display: inline-block;
-    width: 57px;
+    width: 65px;
     height: 26px;
     line-height: 26px;
     text-align: center;
