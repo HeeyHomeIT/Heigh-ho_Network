@@ -34,7 +34,7 @@
          */
         initNavHeadeEvent: function () {
             HHIT_NEWAPP.controller('myGonglve', ['$scope', '$http', function ($scope, $http) {
-                var $rH = $('.right_title h2'); // 家装百科总标题
+//              var $rH = $('.right_title h2'); // 家装百科总标题
 
                 /* 获取家装百科分类接口 */
                 $http({
@@ -48,7 +48,7 @@
                         navHeadeClickHendler.myArticleEvent(data.data[0].id);
                         $scope.names = data.data;
                         /* 右边标题默认出现 */
-                        $rH.html(data.data[0].cate_describe);
+//                      $rH.html(data.data[0].cate_describe);
                         sessionStorage.setItem("describe", data.data[0].cate_describe);
                         sessionStorage.setItem("name", data.data[0].cate_name);
                     } else {  /* 如果失败执行 */
@@ -64,7 +64,7 @@
                     sessionStorage.setItem("describe", describe);
                     sessionStorage.setItem("name", name);
                     /* 获取右边文章标题 */
-                    $rH.html(describe);
+//                  $rH.html(describe);
                     /* 获取右边文章列表 */
                     navHeadeClickHendler.myArticleEvent(id);
                     /* 左边导航栏点击效果 */

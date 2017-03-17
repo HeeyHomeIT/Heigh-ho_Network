@@ -114,7 +114,7 @@
 
 #selfshop_top .shop_information .shop_name {
     /*font-family: FZLTHJW;*/
-    color: #E88226;
+    color: #E2bf81;
     font-size: 22px;
     height: 23px;
     margin-bottom: 16px
@@ -256,7 +256,7 @@
 #selfshop_top .shop_information .shop_assess div span {
     /*font-family: FZLTDHK;*/
     font-size: 18px;
-    color: #E88226;
+    color: #E2bf81;
     padding: 0 2px 0 3px
 }
 
@@ -289,36 +289,56 @@
 }
 
 #selfshop_top .shop_information .shop_like {
-    margin-top: 15px;
+    margin-top: 5px;
     position: relative
 }
 
 #selfshop_top .shop_information .shop_like .collect_shop {
     float: left;
-    background-color: #525252;
+    /*background-color: #525252;*/
     text-align: center;
-    color: #FFFFFF;
+    /*color: #FFFFFF;*/
     /*font-family: FZLTHJW;*/
-    font-size: 16px;
+    font-size: 18px;
     width: 162px;
-    height: 37px;
-    line-height: 37px;
+        height: 46px;
+    line-height: 45px;
     border: 0;
     cursor: pointer;
-    border-radius: 4px
+    border-radius: 4px;
+    color: #b4a078;
+    border: 1px solid #b4a078;
+    background-color: #f5f3ef;
+    letter-spacing: 3px;
+}
+
+#selfshop_top .shop_information .shop_like input.collect_shop {
+    color: #fff;
+    border: 0px solid #b4a078;
+    background-color: #E2bf81;
 }
 
 #selfshop_top .shop_information .shop_like #JReservation {
     margin-left: 10px;
 }
 
-#selfshop_top .shop_information .shop_like .collect_shop:hover {
+#selfshop_top .shop_information .shop_like a.collect_shop:hover {
     transition: all .3s linear;
     -ms-transition: all .3s linear;
     -o-transition: all .3s linear;
     -webkit-transition: all .3s linear;
     -moz-transition: all .3s linear;
-    background-color: #363636
+    background-color: #fff;
+}
+
+#selfshop_top .shop_information .shop_like input.collect_shop:hover {
+    transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+        color: #fff;
+    background-color: #eec988;
 }
 
 #selfshop_top .shop_information .shop_like .collect_shop span {
@@ -1011,7 +1031,7 @@
 #teamcontainer .teamtitle {
     position: relative;
     padding-top: 20px;
-    border-bottom: 1px solid #e5e5e5
+    /*border-bottom: 1px solid #e5e5e5*/
 }
 
 #teamcontainer .teamtitle > h4 {
@@ -1075,8 +1095,9 @@
 
 #teamcontainer .team_con {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.83);
-    margin: 0 auto 20px
+    /*background-color: rgba(0, 0, 0, 0.83);*/
+    margin: 0 auto 20px;
+    background-color: #dad5cd;
 }
 
 #teamcontainer .team_con .wrapper {
@@ -1175,7 +1196,8 @@
     display: block;
     margin: auto;
     margin-top: -50px;
-    background-color: rgba(0, 0, 0, 0.83);
+    /*background-color: rgba(0, 0, 0, 0.83);*/
+       background-color: #dad5cd;
     z-index: 99;
     padding: 5px;
     border-radius: 50%
@@ -1272,7 +1294,11 @@
     overflow: hidden
 }
 
-.sliderworker_item p.masklayer {
+.sliderworker_item .workertext p.workerBook  {
+    margin-top: 10px;
+}
+
+/*.sliderworker_item p.masklayer {
     width: 230px;
     height: 325px;
     padding: 5%;
@@ -1306,6 +1332,30 @@
     height: 70px;
     display: block;
     margin: auto;
+}*/
+
+.sliderworker_item a.masklayer {
+	-webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+   	padding: 0;
+    letter-spacing: normal;
+    line-height: 26px;
+    font-size: 12px;
+    text-align: center;
+    color: #b4a078;
+    border: 1px solid #b4a078;
+    background-color: #f5f3ef;
+    height: 32px;
+    line-height: 31px;
+    font-size: 16px;
+    display: inline-block;
+    cursor: pointer;
+    width: 120px;
+}
+
+.sliderworker_item a.masklayer:hover {
+    background-color: #fff;
 }
 
 #shop_price {
@@ -1347,11 +1397,11 @@
     position: relative;
     padding: 10px 15px;
     line-height: 23px;
-    background: #666;
+    background: #dad5cd;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
     color: #fff;
 }
 
@@ -1368,7 +1418,7 @@
 #shop_price .con_price li .sdg_price_warp .sdg_price_con .project_title {
     height: 46px;
     line-height: 46px;
-    background-color: #f2f2f2;
+    background-color: #f5f5f5;
 }
 
 #shop_price .con_price li .sdg_price_warp .sdg_price_con .project_title span {
@@ -1398,7 +1448,7 @@
 }
 
 #shop_price .con_price li .sdg_price_warp .sdg_price_con .price_list p:hover {
-    background-color: #f3f3f3;
+    background-color: #f5f5f5;
 }
 
 #shop_price .con_price li .sdg_price_warp .sdg_price_con .price_list p span {

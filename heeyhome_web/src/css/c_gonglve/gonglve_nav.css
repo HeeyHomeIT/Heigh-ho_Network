@@ -72,13 +72,16 @@ a:focus {
 }
 
 #decoration_pedia .pedia_content .left_bar {
-    float: left
+    float: left;
+    background-color: #EFEFEF
 }
 
 #decoration_pedia .pedia_content .bar_content {
     width: 264px;
-    height: 625px;
-    background-color: #EFEFEF
+    height: 635px;
+    /* background-color: #EFEFEF; */
+    margin-top: 65px;
+    
 }
 
 #decoration_pedia .pedia_content .bar_content a {

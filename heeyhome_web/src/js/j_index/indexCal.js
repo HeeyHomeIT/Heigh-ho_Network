@@ -53,7 +53,7 @@ define(['app'], function(app) {
 							bathroomLiStr = '<li>1</li><li>2</li><li>3</li>'; //卫
 							balconyLiStr = '<li>1</li><li>2</li><li>3</li>'; // 阳台
 						}else{
-							layer.msg('暂支持70m²~160m²户型');
+							layer.msg('暂支持70m²~160m²户型，其他户型请咨询客服');
 							return;
 						}
 						$(".room ul").html(roomLiStr);

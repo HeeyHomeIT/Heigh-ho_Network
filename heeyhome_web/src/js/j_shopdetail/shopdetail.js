@@ -974,10 +974,10 @@
         spliceGrInfoEvent: function (value) {
             var vrStr = '';
             $.each(value, function (i, v) {
-                vrStr += '<li><div class="sliderworker_item"><p class="masklayer btnCart" data-uid="' + v.userid + '" >添加</p><div class="workertext"><em class="workerimg"><img src="' + v.portrait_img + '"></em>';
+                vrStr += '<li><div class="sliderworker_item"><div class="workertext"><em class="workerimg"><img src="' + v.portrait_img + '"></em>';
                 vrStr += '<p class="workername"><span>' + v.name + '</span></p><p class="workerinfo"><span>' + (v.sex == 1 ? "男" : "女") + '</span><span>' + v.age + '岁</span><span>' + v.birthplace + '</span>';
                 vrStr += '<p class="workermoney"><em>200</em>元<span>&nbsp;/&nbsp;天</span></p><p class="workerother"><span>从业时间&nbsp;&nbsp;<em>' + v.worktime + '</em>年</span><span>订单数&nbsp;&nbsp;<em>' + v.ordernum + '</em></span>';
-                vrStr += '</p></div></div></li>';
+                vrStr += '</p><p class="workerBook"><a class="masklayer btnCart" data-uid="' + v.userid + '" >预约</a></p></div></div></li>';
             });
             return vrStr;
         },
