@@ -9,7 +9,7 @@
     </div><!--logo_style-->
     <div class="logo_withdraw">
         <p class="wChina">提现</p>
-        <p>WITHDRAW</p>
+        <p style="font-family: Helvetica">WITHDRAW</p>
     </div><!--logo_withdraw-->
 </div><!--pageheader-->
 <div class="withdraw_contentWrap">
@@ -21,7 +21,7 @@
         <div id="choose_bank" class="choose_bank clearfix">
             <span class="choose_span fl">选择银行卡</span>
             <div class="bankWrap fl">
-                <div class="bank clearfix" ng-repeat="wbank in wbanks">
+                <div class="bank clearfix" ng-repeat="wbank in wbanks" repeat-finish="renderFinish()">
                     <div class="bank_fl fl">
                         <input class="radio_money" title="" type="radio" name="money">
                         <img ng-src="{{wbank.banklogo}}">
@@ -30,7 +30,7 @@
                         <span>{{wbank.bankcardnoDim}}</span>
                     </div><!--bank_fl-->
                     <div class="bank_fr fr">
-                        <a href="/Pc.Heigh-ho.Renovation/heeyhome_web/src/bank.html#/bank/home">管理<em class="sprite_order"></em></a>
+                        <a href="bank.html#/bank/home">管理<em class="sprite_order"></em></a>
                     </div><!--bank_fr-->
                 </div><!--bank-->
             </div><!--bankWrap-->
@@ -44,11 +44,11 @@
             <span class="time">到账时间</span>
             <span class="detail">两小时</span>
         </div><!--cash_time-->
-        <a href="javascript:;" id="cash_confirm">确认提现</a>
+        <input type="button" id="cash_confirm" value="确认提现">
     </div><!--withdraw_content-->
 </div><!--withdraw_contentWrap-->
 <div class="withdraw_complete hide">
     <p class="success"><em class="sprite_order"></em>申请提现成功！</p>
     <p class="process">我们正在处理您的申请，<span>2</span>个小时内提现金额将会到达您指定的银行卡账户</p>
-    <a href="/Pc.Heigh-ho.Renovation/heeyhome_web/src/master.html#/master/mwallet" id="cash_back">返回</a>
+    <a href="master.html#/master/mwallet" id="cash_back">返回</a>
 </div><!--withdraw_complete-->

@@ -1,6 +1,6 @@
 <div class="user_right fr">
     <div class="right_title">
-        <span>我的作品 &nbsp;&nbsp;&nbsp;MY CREATION</span>
+        <span>我的作品 &nbsp;&nbsp;&nbsp;<i>MY CREATION</i></span>
     </div><!--right_title-->
     <div class="right_content_wrap" ng-controller="work">
         <div class="works_content my_work">
@@ -33,16 +33,15 @@
                     <div class="before_title">
                         <span>入驻嗨吼之前的项目</span>
                     </div><!--before_title-->
-                    <div class="works_detail fl complete_img" ng-repeat="work in works">
-                        <a class="bg" href="success_case.html#/success" target="_blank"
-                           ng-click="session(work.case_id)">
+                    <div class="works_detail fl complete_img" ng-repeat="work in works" caseid="{{work.case_id}}">
+                        <a class="bg" href="success_case.html#/success" target="_blank"><!--ng-click="session(work.case_id)"-->
                             <a class="complete_del" href="javascript:;" caseid="{{work.case_id}}">
                                 <em class="sprite-details"></em>
                             </a>
                             <div class="detail_img">
                                 <img ng-src="{{work.img[0].case_img}}">
                             </div><!--detail_img-->
-                            <a class="complete_bg" href="success_case.html#/success" ng-click="session(work.case_id)"
+                            <a class="complete_bg" href="success_case.html#/success"
                                target="_blank"></a><!--complete_bg-->
                             <a href="success_case.html#/success" class="works_style" target="_blank">{{work.style}}</a>
                         </a>
