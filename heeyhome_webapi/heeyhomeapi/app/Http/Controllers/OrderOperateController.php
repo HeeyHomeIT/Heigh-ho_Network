@@ -233,13 +233,13 @@ service63,is_available) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
             $pay_id = $str;
             //添加预支付订单
             $ins_order_pay = DB::insert('INSERT INTO hh_order_pay(order_id,reckon_amount,actual_finish_amount,actual_next_amount,order_pay_step) VALUES (?,?,?,?,?)',
-                $order_id, $sum, 0, $sum_next, 1);
+                [$order_id, $sum, 0, $sum_next, 1]);
             $ins_order_pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',
-                $order_id, $pay_id, 1, 18, $gz, 1);
+                [$order_id, $pay_id, 1, 18, $gz, 1]);
             $ins_order_pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',
-                $order_id, $pay_id, 11, 18, $zg, 1);
+                [$order_id, $pay_id, 11, 18, $zg, 1]);
             $ins_order_pay_each = DB::insert('INSERT INTO hh_order_pay_each(order_id,pay_id,order_pay_step,order_step,pay_amount,pay_status) VALUES (?,?,?,?,?,?)',
-                $order_id, $pay_id, 2, 18, $sdg, 1);
+                [$order_id, $pay_id, 2, 18, $sdg, 1]);
         }
         $arr = array(
             "code" => "000",
