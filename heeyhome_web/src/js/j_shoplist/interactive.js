@@ -235,7 +235,7 @@
                 vrStr += '<div class="shop_box" data-shopid="' + v.shop_id + '" data-shopperid="' + v.shopper_id + '">';
                 vrStr += '	<div class="left_image">';
                 if (v.shop_img != null && v.shop_img != '') {
-                    vrStr += '		<a class="Jshop" rel="nofollow" href="view_shop.html#/shopdetails?pos=' + v.shop_id + '" iscollected="' + v.iscollected + '"><img src="' + v.shop_img + '"></a>';
+                    vrStr += '		<a class="Jshop" rel="nofollow" href="view_shop.html#/shopdetails?pos=' + v.shop_id + '" iscollected="' + v.iscollected + '" target="_blank" ><img src="' + v.shop_img + '"></a>';
                 }
                 vrStr += '		<div class="image-background_1"></div>';
                 vrStr += '		<div class="image-background_2"></div>';
@@ -291,7 +291,7 @@
                 vrStr += '		<div class="shop_button">';
 //              vrStr += '			<input type="button" class="collect_shop" value="' + (v.iscollected == '1' && $.base64.decode(USERTYPE) == 1 ? '已收藏' : '收藏') + '">';
                 vrStr += ' <span class="collect_shop">'+ (v.iscollected == '1' && $.base64.decode(USERTYPE) == 1 ? '已收藏' : '未收藏') +'</span>'
-                vrStr += '			<a class="enter_shop" rel="nofollow" href="view_shop.html#/shopdetails?pos=' + v.shop_id + '" iscollected="' + v.iscollected + '">进入店铺</a>';
+                vrStr += '			<a class="enter_shop" rel="nofollow" href="view_shop.html#/shopdetails?pos=' + v.shop_id + '" iscollected="' + v.iscollected + '" target="_blank" >进入店铺</a>';
                 vrStr += '		</div>';
                 vrStr += '	</div>';
                 vrStr += '</div>';
