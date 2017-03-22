@@ -85,7 +85,6 @@
         initReservePersonInfoEvent: function () {
             var rc = spliceReservationContHandler;
             var imgUrl = ""; // 用户头像
-            console.log(rtList);
             if (rtList.mark == ONEKEY && TYPE == "1") {
                 $.ajax({
                     url: PORTRAITURL,
@@ -180,7 +179,6 @@
                 } else {
                     addAddressObj.is_default = "2";
                 }
-                console.log(addAddressObj);
                 //相关验证
                 if (infoVerificationHandler.verificationEvent(addAddressObj)) {
                     CRUDInfoHandler.insertInfoEvent(addAddressObj);
@@ -368,7 +366,6 @@
                     success: function (data) {
                         var isSubmit = true;
                         if (data && data.code == '000') {
-                            console.log(data.data);
                             $.each(data.data.order_list, function (i, v) {
                                 if (addressId == v.order_address_id) {
                                     layer.msg('该地址已有过订单哦~');
@@ -390,7 +387,6 @@
                                 worker: JSON.stringify(wObj)
                             },
                             success: function (data) {
-                                console.log(data);
                                 var oInfoObj = {};
                                 oInfoObj = data.data;
                                 $.cookie("dd", JSON.stringify(oInfoObj), {expires: 1, path: '/'});
@@ -603,8 +599,6 @@
                     user_id: UID
                 },
                 success: function (data) {
-                    console.log("用户收藏的地址");
-                    console.log(data);
                     if (data.code == "000") {
                         $(".Jaddress").html(rc.spliceAddressDataEvent(data.data));
                         initInputDataHandler.inputDataEvent(); // input框初始化
@@ -640,7 +634,6 @@
                     is_default: obj.is_default
                 },
                 success: function (data) {
-                    console.log(data);
                     if (data != null && data.code == '000') {
                         layer.alert(data.msg);
                         self.queryInfoEvent();

@@ -145,7 +145,6 @@
          */
         listContentEvent: function (shopListFilterObj) {
 
-            console.log(shopListFilterObj);
             $.ajax({
                 url: SHOPLISTURL,
                 type: "GET",
@@ -166,7 +165,6 @@
                 }
             }).done(function (data) {
                 if (data && data.code == '000') {
-                    //console.log(data);
                     TOTAL = data.data[0].total; // 总数
                     $(".number").text(TOTAL);
                     $(".shop_summary").html(spliceShopListContHandler.spliceStrEvent(data.data));
@@ -205,7 +203,6 @@
                 sessionStorage.setItem('iscollected', $(this).attr('iscollected'));
                 sessionStorage.setItem('wObj', '{}');
                 var shopid = $(this).parents('.shop_box').attr('data-shopid');
-                console.log(shopid);
                 $.cookie("shopid", $.base64.encode(shopid));
             })
         }
@@ -231,7 +228,6 @@
         spliceStrEvent: function (value) {
             var vrStr = '';
             $.each(value, function (i, v) {
-                console.log(v);
                 vrStr += '<div class="shop_box" data-shopid="' + v.shop_id + '" data-shopperid="' + v.shopper_id + '">';
                 vrStr += '	<div class="left_image">';
                 if (v.shop_img != null && v.shop_img != '') {

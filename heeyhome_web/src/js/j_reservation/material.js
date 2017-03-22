@@ -49,7 +49,6 @@
             var self = this;
             var orderId = getUrlParamHandler.getUrlParam("pos");
             var type = getUrlParamHandler.getUrlParam("material_type");
-            console.log(orderId);
             var pc = spliceMaterialContHandler;
 
             $.ajax({
@@ -68,7 +67,6 @@
                     $("#itemlists").removeClass("loagbg");
                 }
             }).done(function (data) {
-                console.log(data);
 
                 if (data.data.order_pay_type == 0) { // 未支付 订单未产生需要支付环节（材料可以选择，可以选择自行购买或平台支付）
 
@@ -164,10 +162,8 @@
                             selectedArr.push($(v).find(".Jselect").data("select"));
                         }
                     });
-                    console.log(JSON.stringify(selectedArr));
                     if (selectedArr.length != 0) {
                         var orderType = $("#Jpayment").data("submit");
-                        console.log(orderType);
                         PAYURL = PAYURL + "?pay_type=" + orderType + "&order_id=" + orderId + "&material_list=" + JSON.stringify(selectedArr);
                         $("#meterialFrom").attr("action", PAYURL);
                         $("#meterialFrom").submit();
@@ -192,7 +188,6 @@
                     }, error: function (data) {
                     }
                 }).done(function (data) {
-                    console.log(data);
                     // layer.alert(data.msg)
                     layer.confirm('您确定自行购买吗？', {
                         btn: ['确定', '取消'] //按钮
@@ -241,7 +236,6 @@
             $.each($("#itemlists .itemlist .material_cardtable tbody tr"), function (i, v) {
                 if ($(v).find("em").hasClass("defalut_ico")) {
                     total += parseInt($(v).find(".Jselect").data("subtotal"));
-                    console.log(total)
                 }
 
             });
@@ -333,7 +327,6 @@
                             var vals = Object.keys(v).map(function(key) {
                                 return v[key];
                             });
-                            console.log(vals);
                             vrStr += '<div class="itemlist">';
                             vrStr += '<div class="titlelist"><dl><dt>请选择一个品牌</dt><dd><ul class="airplane_rad clearfix"><li>';
                             vrStr += '<label for="airplaneRadio' + i + '" id="repAirRadio' + i + '"><input type="radio" checked="checked" data-brand="' + vals[0][0].data[0].brand_id + '" id="airplaneRadio' + i + '" class="display" />';
@@ -445,7 +438,6 @@
                 if (i != "order_pay_type" && i != "order_material_status") {
                     $.each(v, function (item, val) {
                         if (val[0].data[0].brand_id == brandId) {
-                            console.log(val);
                             vrStr += '<div class="material_cardtable "><table cellspacing="0" cellpadding="0"><thead><tr><td align="center" width="200px">参考图</td>';
                             vrStr += '<td align="center" width="185px">名称</td><td align="center" width="100px">规格</td><td align="center" width="100px">单位</td><td align="center" width="100px">单价/元</td><td align="center" width="100px">数量</td>';
                             vrStr += '<td align="center" width="100px">小计/元</td><td align="center" width="50px">';

@@ -44,7 +44,6 @@ var picList = [];
                     $(".back").attr("href", "view_shop.html#/shopdetails?pos=" + shopId);
                     $.each(data.data, function (i, v) {
                         if (v.technics_id == picId) {
-                            console.log(v);
                             $("#cname").text(v.technics_text);
                             $(".ctitle").text(v.technics_text + "的图集相册");
 
@@ -179,7 +178,6 @@ var picList = [];
          * @param {Object} value 对象
          */
         spliceBigPicEvent: function (value, pn) {
-            console.log(value);
             var vrStr = '<img id="mainPic" src="' + value.technics_img[pn - 1].technics_img + '" />';
             return vrStr;
         },

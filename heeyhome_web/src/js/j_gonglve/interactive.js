@@ -43,7 +43,6 @@
                 }).success(function (data, status) {
                     /* 如果成功执行 */
                     if (data.code === '000') {
-                        console.log(data.data);
                         /* 右边文章列表默认出现 */
                         navHeadeClickHendler.myArticleEvent(data.data[0].id);
                         $scope.names = data.data;
@@ -100,7 +99,6 @@
                 },
                 success: function (data) {
                     if (data && data.code == '000') {
-                        console.log(data);
                         gonglve_total = data.data[0].total;//获取总数据
                         splicePicHandler.spliceStrEvent(data.data);
                         gonglvePageHandler.pageContentEvent(id);
@@ -149,7 +147,6 @@
      */
     gonglvePageHandler = {
         pageContentEvent: function (id) {
-            console.log(gonglve_total);
             $(".page_number>div").append($(".page_div3").empty().paging({
                 total: Math.ceil(gonglve_total / 3), //全部页数
                 animation: false, //是否是滚动动画方式呈现  false为精简方式呈现   页数大于limit时无论怎么设置自动默认为false

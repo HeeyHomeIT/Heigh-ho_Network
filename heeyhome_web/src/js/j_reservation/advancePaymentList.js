@@ -112,7 +112,6 @@
                     order_step_type: order_step_type
                 }
             }).done(function (data) {
-                console.log(data);
                 if (data.code == "000") {
                     pc.splicePayDetailsDataEvent(data.data.data_list, "工长");
                     pc.splicePayMoneyDataEvent(data.data.data_list["需付款"]);
@@ -170,8 +169,6 @@
                 for (key in v) {
                     counter++;
                 }
-                console.log(i);
-                console.log(v);
                 if (i == "小计/元") {
                     vrStr += '<tr><td colspan="4" class="border_eee">' + i + '</td>';
                     for (var i1 in v) {

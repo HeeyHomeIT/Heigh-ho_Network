@@ -360,7 +360,6 @@
                         shop_id: shopid
                     },
                     success: function (data) {
-                        console.log(data);
                         if (data && data.code == '000') {
                             if (data.data.shop_name != null && data.data.shop_name != '') {
                                 $("#success_case .now_location .shopname").html(data.data.shop_name);//获取店铺名字
@@ -493,7 +492,6 @@
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
-                            console.log(data.data);
                             $(".staff_bg img").attr("src", "" + data.data.portrait_img + "");
                             $(".staff_top_info .wname .span_val").html(data.data.name);
                             $(".staff_top_info .wage .span_val").html(data.data.age);
@@ -757,7 +755,6 @@
                 } else if ($(this).html() == '已完成') {
                     orderStatus = 6;
                 }
-                console.log(orderStatus);
                 $.ajax({
                     url: ORDERFILTERURL,
                     type: "GET",
@@ -811,7 +808,6 @@
     /* 获取我的订单列表 */
     orderList = {
         getInfoEvent: function () {
-            console.log($.base64.decode($.cookie("userShopId")))
             $.ajax({
                 url: ORDERURL,
                 type: "GET",
@@ -824,7 +820,6 @@
                 },
                 success: function (data) {
                     if (data && data.code == '000') {
-                        console.log(data.data);
                         ORDERTOTAL = data.data.order_count;
                         $(".order_wrap").empty();
                         var vrStr = "";
@@ -909,7 +904,6 @@
                         },
                         success: function (data) {
                             if (data && data.code == '000') {
-                                console.log(data.data);
 
                                 step = data.data.order_list[0].order_step;
                                 status = data.data.order_list[0].order_status;
@@ -941,7 +935,6 @@
                                 order_id: orderId
                             },
                             success: function (data) {
-                                console.log(data);
                                 if (data.code == "000") {
                                     $("#Ju").val(data.data.user_id);
                                     var vrstr = '';
@@ -974,7 +967,6 @@
                             var flag = false;
                             var confirmTime = [];
                             $.each($(".whetherOrders_style span"), function (i, v) {
-                                console.log(v);
                                 if ($(v).hasClass("on")) {
                                     flag = true;
                                     confirmTime.push($(v).index())
@@ -982,7 +974,6 @@
                             });
                             if (flag) {
                                 // 可以接单MONTHLYREPORTURL
-                                console.log(confirmTime);
                                 $.ajax({
                                     url: CONFIRMURL,
                                     type: "GET",
@@ -994,7 +985,6 @@
                                         confirm_time: confirmTime[0]
                                     },
                                     success: function (data) {
-                                        console.log(data);
                                         if (data.code == "000") {
                                             layer.msg("接单成功");
                                             window.location.href = 'master.html#/master/morder';
@@ -1018,7 +1008,6 @@
                                     user_id: Ju
                                 },
                                 success: function (data) {
-                                    console.log(data);
                                     if (data.code == "000") {
                                         layer.msg(data.msg);
                                         window.close();
@@ -1036,7 +1025,6 @@
                                 order_id: orderId
                             },
                             success: function (data) {
-                                console.log(data);
                                 if (data.code == "000") {
                                     $("#Ju").val(data.data.user_id);
                                     $(".whetherOrders_style p ").html("您的上门时间为");
@@ -1066,7 +1054,6 @@
                                 order_id: orderId
                             },
                             success: function (data) {
-                                console.log(data);
                                 if (data.code == "000") {
                                     $("#Ju").val(data.data.user_id);
                                     $(".whetherOrders_style p ").html("您的上门时间为");
@@ -1088,7 +1075,6 @@
                         $('#order_edit').attr("disabled", false).addClass("border_eec988").addClass("col_eec988").addClass("new_edit");
                         $('#order_edit').val('查看' + $('#order_edit').val().substr(2, 5));
                     } else if (status == '5') {//订单进行中
-                        console.log(step);
                         $('.whetherOrders').hide();
                         switch (step) {
                             case "1":
@@ -1368,7 +1354,6 @@
                         order_id: orderId
                     },
                     success: function (data) {
-                        console.log(data);
                         if (data != null && data.code == '000') {
                             time = data.data.order_list[0].order_time;
                             name = data.data.order_list[0].user_realname;
@@ -1404,9 +1389,7 @@
                         order_id: orderId
                     },
                     success: function (data) {
-                        console.log(data);
                         if (data && data.code == '000') {
-                            console.log(data.data);
                             /* 预算单状态 */
                             budgetState = data.data['预算单编辑状态'];
                             // sessionStorage.setItem("budgetState", data.data['预算单编辑状态']);
@@ -1433,7 +1416,6 @@
                     },
                     success: function (data) {
                         if (data && data.code == '000') {
-                            console.log(data.data);
                             if (data.data['装修风格'] != null) {
                                 $('.process_style p').html(data.data['装修风格']);
                                 $('#confirm_type').hide();//隐藏按钮
@@ -1490,7 +1472,6 @@
                     },
                     success: function (data) {
                         if (data && data.code == '000') {
-                            //console.log(data.data);
                             $.each(data.data, function (i, v) {
                                 if (v.category == '杂工') {
                                     $('.handyman_ul').append('<li> <span class="servicename">' + v.servicename + '</span> <span class="unit"><b>' + v.cost + '</b>元/<i>' + v.unit + '</i></span> <input type="number" bid="' + v.id + '" typename="杂工"> </li>')
@@ -1517,7 +1498,6 @@
                                 },
                                 success: function (data) {
                                     if (data && data.code == '000') {
-                                        console.log(data.data);
                                         step = data.data.order_list[0].order_step;
 
                                         if (step == '18') {
@@ -1570,9 +1550,7 @@
                                 order_id: orderId
                             },
                             success: function (data) {
-                                console.log(data)
                                 if (data && data.code == '000') {
-                                    console.log(data.data);
                                     $('#before_remark').val(data.data['预算单数据'][0].remark);
                                     $('#after_remark').val(data.data['结算单数据'][0].remark);
                                     var $list = data.data['预算单数据'][0];
@@ -1618,7 +1596,6 @@
                         //     //             remark: $('#after_remark').val()
                         //     //         },
                         //     //         success: function (data) {
-                        //     //             console.log(data.msg);
                         //     //             if (data && data.code == '000') {
                         //     //                 //window.location.href = 'order.html#/order/home';
                         //     //                 //sessionStorage.setItem("step", '7');//假设赋值
@@ -1659,8 +1636,6 @@
                                 order_id: orderId
                             },
                             success: function (data) {
-                                console.log($('#before_remark').val());
-                                console.log(JSON.stringify(budObj))
                                 /* 添加预算单数据 */
                                 $.ajax({
                                     url: ADDDATEURL,
@@ -1673,7 +1648,6 @@
                                         remark: $('#before_remark').val()
                                     },
                                     success: function (data) {
-                                        console.log(data);
                                         if (data && data.code == '000') {
                                             layer.msg(data.msg);
                                             window.location.href = 'order.html#/order/home';
@@ -1682,7 +1656,6 @@
                                         }
                                     },
                                     error: function (data) {
-                                        console.log(data)
                                     }
                                 });
                             },
@@ -1857,7 +1830,6 @@
                     if (data && data.code == '000') {
                         var time = data.data.time.substring(0, 10);
                         var newTime = time.split("-");
-                        console.log(data.data);
                         $('.start_year').html(newTime[0]);
                         $('.start_month').html(newTime[1]);
                         $('.start_day').html(newTime[2]);
@@ -1920,7 +1892,6 @@
                 } else if (type == '油漆') {
                     type = "paint";
                 }
-                console.log(orderId);
                 $.ajax({
                     type: "get",
                     url: MATERIALLISTURL,
@@ -1930,7 +1901,6 @@
                         order_id: orderId
                     },
                     success: function (data) {
-                        console.log(data);
                         if (data != null && data.code == '000') {
                             var list = '<ul>';
                             switch (type) {
@@ -2003,7 +1973,6 @@
                         }
                     },
                     error: function (data) {
-                        console.log(data)
                     }
                 });
             }]);
@@ -2067,7 +2036,6 @@
                 } else if (type == '油漆') {
                     material_type = 5;
                 }
-                console.log(material_string);
                 $.ajax({
                     type: "get",
                     url: MATERIALORDERURL,
@@ -2093,7 +2061,6 @@
                         $(".sure_send").attr("disabled", false);
                     },
                     error: function (data) {
-                        console.log(data)
                     }
                 });
             });
@@ -2114,7 +2081,6 @@
                 },
                 success: function (data) {
                     if (data && data.code == '000') {
-                        console.log(data.data);
                         if (data.data.shop_name != null && data.data.shop_name != '') {
                             $('#shop_name').html(data.data.shop_name);//获取店铺名字
                         } else {
@@ -2225,7 +2191,6 @@
                 },
                 success: function (data) {
                     if (data && data.code == '000') {
-                        //console.log(data.data);
                         $(".head").html('<img src="' + data.data.user_img + '"><a class="edit_avatar" href="javascript:;">修改头像<input type="file" name="" id="avatar_file"></a> ');//获取头像
                     }
                 },
@@ -2304,7 +2269,6 @@
                 },
                 success: function (data) {
                     if (data && data.code == '000') {
-                        console.log(data);
                         var abb_phone = data.data.foremaninfo_phone.substr(0, 3) + "****" + data.data.foremaninfo_phone.substr(7, 11);//手机号中间四位变成*号
                         $('.personal_tel').html(abb_phone); //获取工长的电话号码
                         $('.personal_user_age').val(data.data.foremaninfo_age); //获取工长的年龄
@@ -2485,9 +2449,6 @@
                 for (var i = 0; i < $('.personal_area').length; i++) {
                     arry_area.push($('.personal_area').eq(i).html());
                 }
-                console.log(USERID);
-                console.log('name:' + $('.personal_user_name').val());
-                console.log('experience:' + array);
                 $.ajax({
                     url: EDITPERURL,
                     type: "GET",
@@ -2536,7 +2497,6 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
-                        console.log(data.data);
                         $(".wallet_content_top li .withdraw span").html(data.data.available_total);
                         sessionStorage.setItem('availableTotal', data.data.available_total);
                         sessionStorage.setItem('processType', data.data.process_type);
@@ -2636,7 +2596,6 @@
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
-                            //console.log(data);
                             var bill = "";
                             var total = data.data[0].total;
                             $.each(data.data, function (i, v) {
@@ -2677,7 +2636,6 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
-                        console.log(data);
                         var bill = "";
                         var total = data.data[0].total;
                         $.each(data.data, function (i, v) {
@@ -2799,7 +2757,6 @@
                     }).success(function (data, status) {
                         /* 如果成功执行 */
                         if (data.code === '000') {
-                            console.log(data);
                             $.each(data.data, function (i, v) {
                                 if (v.bankname == bank) {
                                     var cardno = v.bankcardno;
@@ -2829,7 +2786,6 @@
                     }).success(function (data, status) {
                         /* 如果成功执行 */
                         if (data.code === '000') {
-                            console.log(data);
                             for (var i = 0; i < data.data.length; i++) {
                                 var cardno = data.data[i].bankcardno;
                                 data.data[i].bankcardnoDim = cardno.substr(cardno.length - 4);//获取银行卡后四位
@@ -2910,7 +2866,6 @@
                 }).success(function (data, status) {
                     /* 如果成功执行 */
                     if (data.code === '000') {
-                        console.log(data);
                         for (var i = 0; i < data.data.length; i++) {
                             var cardno = data.data[i].bankcardno;
                             data.data[i].bankcardno = cardno.substr(cardno.length - 4);//获取银行卡后四位
@@ -2943,7 +2898,6 @@
                         user_id: USERID
                     },
                     success: function (data) {
-                        console.log(data);
                         if (data && data.code == '000') {
                             realname = data.data.realname;//获取真实姓名
                             idcardno = data.data.idcardno;//获取身份证号
@@ -2993,7 +2947,6 @@
                         bankcardno: bankcardno
                     },
                     success: function (data) {
-                        console.log(data);
                         if (data && data.code == '000') {
                             $("#card_type").attr('placeholder', data.data.bankname);//获取银行卡的名字
                             $('#process2_next').click(function () {
@@ -3089,7 +3042,6 @@
                                 banklogo: banklogo
                             },
                             success: function (data) {
-                                console.log(data);
                                 if (data.code == '000') {
                                     window.location.href = '#bank/add_process4';
                                 } else {
@@ -3122,7 +3074,6 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
-                        console.log(data)
                         sessionStorage.setItem("eleworker_num", data.data.eleworker.length);
                         sessionStorage.setItem("woodworker_num", data.data.woodworker.length);
                         sessionStorage.setItem("brickworker_num", data.data.brickworker.length);
@@ -3841,7 +3792,6 @@
                 }).success(function (data, status) {
                     /* 如果成功执行 */
                     if (data.code === '000') {
-                        console.log(data);
                         var openTime = data.data.opentime;
                         openTime = openTime.substring(0, 10);
                         $('#shop_name').val(data.data.shop_name);//获取店名
@@ -4052,7 +4002,6 @@
                                 }).success(function (data, status) {
                                     /* 如果成功执行 */
                                     if (data.code === '000') {
-                                        //console.log(data);
                                         //获取店铺资料的本店工艺(最多只显示五张)
                                         if (data.data.shop_technics.length >= 5) {
                                             $scope.infos = data.data.shop_technics.slice(0, 5);
@@ -4109,7 +4058,6 @@
                                 }).success(function (data, status) {
                                     /* 如果成功执行 */
                                     if (data.code === '000') {
-                                        //console.log(data);
                                         //获取店铺资料的效果图展示(最多只显示四张)
                                         if (data.data.shop_imgs.length >= 4) {
                                             $scope.imgs = data.data.shop_imgs.slice(0, 4);
@@ -4280,7 +4228,6 @@
                                     }).success(function (data, status) {
                                         /* 如果成功执行 */
                                         if (data.code === '000') {
-                                            //console.log(data);
                                             //获取店铺资料的效果图展示(最多只显示四张)
                                             if (data.data.shop_imgs.length >= 4) {
                                                 $scope.imgs = data.data.shop_imgs.slice(0, 4);
@@ -4359,7 +4306,6 @@
                                     }).success(function (data, status) {
                                         /* 如果成功执行 */
                                         if (data.code === '000') {
-                                            //console.log(data);
                                             //获取店铺资料的本店工艺(最多只显示五张)
                                             if (data.data.shop_technics.length >= 5) {
                                                 $scope.infos = data.data.shop_technics.slice(0, 5);
@@ -4426,7 +4372,6 @@
                                     }).success(function (data, status) {
                                         /* 如果成功执行 */
                                         if (data.code === '000') {
-                                            //console.log(data);
                                             //获取店铺资料的本店工艺(最多只显示五张)
                                             if (data.data.shop_technics.length >= 5) {
                                                 $scope.infos = data.data.shop_technics.slice(0, 5);
@@ -4492,7 +4437,6 @@
                     }).success(function (data, status) {
                         /* 如果成功执行 */
                         if (data && data.code === '000') {
-                            console.log(data.data);
                             if (data.data.length >= 4) {
                                 $scope.works = data.data.slice(0, 4);
                                 $('.new_album').hide();
@@ -4556,7 +4500,6 @@
                         limit: 8
                     },
                     success: function (data) {
-                        //console.log(data.data);
 
                         if (data && data.code === '000') {
                             len2 = data.data[0].total;//获取已完成的总数据
@@ -4592,7 +4535,6 @@
                         limit: 8
                     },
                     success: function (data) {
-                        //console.log(data.data);
                         if (data && data.code === '000') {
                             len3 = data.data[0].total;//获取已完成的总数据
                             var vrStr = '';
@@ -4869,7 +4811,6 @@
                     limit: 10
                 },
                 success: function (data) {
-                    //console.log(data);
                     if (data != null && data.code == '000') {
                         $(".main_contentWrap").empty();
                         TOTAL = data.data[0].total; // 总数

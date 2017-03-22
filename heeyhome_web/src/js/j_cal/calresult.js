@@ -87,7 +87,6 @@
                         collectionObj.parlor_num = kt;
                         collectionObj.bathroom_num = wsj;
                         collectionObj.balcony_num = yt;
-                        console.log(collectionObj);
                         $.ajax({
                             url: COLLECTIONURL,
                             type: "GET",

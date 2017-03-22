@@ -374,7 +374,6 @@
                     },
                     success: function (data) {
                         if (data != null && data.code == '000') {
-                            console.log(data.data);
 
                             $(".owner_picture img").attr("src", data.data.order_list[0].user_portrait);
                             $(".owner_summary h3").html(data.data.order_list[0].user_realname);
@@ -404,7 +403,6 @@
                     },
                     success: function (data) {
                         if (data && data.code == '000') {
-                            console.log(data.data);
                             if (data.data['装修风格'] != null) {
                                 $('.housetype p').html(data.data['装修风格']);
                             } else {
@@ -557,7 +555,6 @@
                 },
                 success: function (data) {
                     if (data && data.code == '000') {
-                        //console.log(data.data);
                         $(".left_img").html('<img src="' + data.data.user_img + '"><a class="edit_avatar" href="javascript:;">修改头像<input type="file" name="" id="renderings_file"></a> ');
                     }
                 },
@@ -581,11 +578,8 @@
                     $(".order_content_cnt ").addClass("display");
                 },
                 success: function (data) {
-                    //data.code = 117;
-                    console.log(data)
                     if (data && data.code == '000') {
                         var _new = 0;
-                        console.log(data.data.order_list[_new])
                         var orderid = data.data.order_list[_new].order_id;
                         var shopid = data.data.order_list[_new].shop_id;
                         /* 获取店铺图片 */
@@ -616,7 +610,6 @@
                         });
                         // 未开工之前跳转到预约单页面
                         if (step == 18 && (status == 1 || status == 2 || status == 3 || status == 4 || status == 7)) {
-                            console.log(data);
                             var oInfoObj = {};
                             oInfoObj.shop_id = data.data.order_list[0].shop_id;
                             oInfoObj.user_id = data.data.order_list[0].user_id;
@@ -869,7 +862,6 @@
                             },
                             success: function (data) {
                                 if (data && data.code == '000') {
-                                    console.log(data.data);
                                     $.each(data.data.reservation_time_user, function (i, v) {
                                         if (v != null && v != '') {
                                             var v1 = v.split(' ')[0];
@@ -963,7 +955,6 @@
                     limit: 2
                 },
                 success: function (data) {
-                    //console.log(data.data);
                     if (data != null && data.code == '000') {
                         $('#bill_total').html(data.data.calculator_count);
                     } else {
@@ -1026,7 +1017,6 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
-                        console.log(data.data);
                         if (data.data.isedit == '2') {
                             $(".personal_user_name").attr("disabled", true);
                         }
@@ -1177,7 +1167,6 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
-                        console.log(data.data);
                         if (data.data.now_order_step != 18) {
                             var stage = '<div class="axis_start">';
                             stage += '<h2>进场准备</h2>';
@@ -1266,8 +1255,6 @@
                         limit: 3
                     },
                     success: function (data) {
-                        //console.log(data.data);
-                        //data.code = 200;
                         if (data != null && data.code == '000') {
                             bill_total = data.data.calculator_count;
                             var vrStr = "";
@@ -1333,8 +1320,6 @@
                         limit: 4
                     },
                     success: function (data) {
-                        console.log(data.data);
-                        //data.code = 117;
                         if (data != null && data.code == '000') {
                             shop_total = data.data[0].total;
 
@@ -1375,7 +1360,6 @@
                         shop_id: shopId
                     },
                     success: function (data) {
-                        // console.log(shopId);
                         layer.msg(data.msg);
                         ajax();
                         //shopPageHandler.pageContentEvent();
@@ -1404,7 +1388,6 @@
                     },
                     success: function (data) {
                         if (data && data.code === '000') {
-                            //console.log(data.data);
                             pic_total = data.data[0].total;//获取总数据
                             var vrStr = "";
                             $.each(data.data, function (i, v) {
@@ -1926,7 +1909,6 @@
      */
     spliceOrderHandler = {
         spliceOrderList: function (value) {
-            console.log(value);
             var vrStr = '<div class="order_box">';
             vrStr += '<div class="ordercnt_title clearfix">';
             vrStr += '<span class="type">' + value.room + '室 ' + value.parlour + '厅' + value.toilet + '卫' + value.balcony + '阳台</span>';
@@ -1962,7 +1944,6 @@
             vrStr += '<div class="trade_stage"><p>' + value.order_status_ch + '</p></div>';
             // 未开工之前跳转到预约单页面
             if (value.order_step == 18 && (value.order_status == 1 || value.order_status == 2 || value.order_status == 3 || value.order_status == 4 || value.order_status == 7)) {
-                // console.log(value);
                 // var oInfoObj = {};
                 // oInfoObj.shop_id = value.shop_id;
                 // oInfoObj.user_id = value.user_id;

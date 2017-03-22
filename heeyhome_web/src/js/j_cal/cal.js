@@ -166,11 +166,8 @@ var heeyhomeCal = {
 	 */
 	roomOperationEvent: function() {
 		var self = this;
-		console.log("-------------")
-		console.log(roomPlanObj);
 		var strLi;
 		$.each(roomPlanObj, function(i, v) {
-			console.log(v.tag);
 			if($(".mainarea_list li").hasClass("house" + v.tag)) { //判断ul里面是不是有存在的房间
 				if(parseInt(v.count) == 0) { // 如果有存在的房间，那么在判断当前对象里面此房间数是不是为0
 					$(".mainarea_list li.house" + v.tag).remove(); // 如果对象里房间数为0那么删掉
@@ -488,13 +485,11 @@ var heeyhomeCal = {
 			}
 			calObj.wall = $("#qtccgcRadio").attr("data-select"); // 墙体改造
 			calObj.ground_sank = $("#wsjdmxcRadio").attr("data-select"); // 卫生间地面下沉
-			console.log(calObj);
 			var jSw = $(".Jzw").attr('data-sw'); //主卧
 			var kSw = $(".Jkct").attr('data-sw'); //客餐厅
 			var ySw = $(".Jyt").attr('data-sw'); //阳台
 			var cSw = $(".Jcf").attr('data-sw'); //厨房
 			var flag = true;
-			console.log(roomPlanObj)
 			$.each(roomPlanObj, function(i, v) {
 				if(v.count != '0') {
 					if($(".I" + i).attr("data-sw") == '0') {
@@ -504,8 +499,6 @@ var heeyhomeCal = {
 				jsum += v.count;
 			});
 			difference = (parseInt($(".room").find("span").text()) - 1) - jsum;
-			console.log(jsum)
-			console.log(difference)
 			if($('#c_area').val() == '') {
 				layer.msg('建筑面积还没有填哦~~');
 			} else if(difference > 0) {
@@ -531,7 +524,6 @@ var heeyhomeCal = {
 						$("#loading").removeClass("display");
 					},
 					success: function(data) {
-						console.log(data);
 						if(data.code == '000') {
 							var costObj = {};
 							costObj.gzrg = data.data.gzrg; // 工长人工费用

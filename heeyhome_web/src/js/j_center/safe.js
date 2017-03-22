@@ -194,7 +194,6 @@
                     // onload是异步操作
                     else {
                         reader.onload = function (e) {
-                            console.log(e);
                             inputImg.parent().addClass('opacity');//图片预览时input file 添加opacity样式，设置完全透明
                             inputImg.parent().parent().css('background-image', 'url("' + e.target.result + '")');//图片设置为$('.showImg')背景图
                             inputImg.parent().parent().find('.close').show();
@@ -220,7 +219,6 @@
                             user_id: $.base64.decode($.cookie("userId"))
                         },
                         success: function (data) {
-                            console.log(data);
                             if (data.code == '130') {//正在审核中
                                 $('.revise_process').remove();
                                 $('.bind_phonecnt').remove();
@@ -355,9 +353,7 @@
                                 },
                                 success: function (data) {
                                     if (data.code == '000') {
-                                        //console.log(data);
                                         phone_flag = data.data.flag;
-                                        //console.log(flag);
                                         window.location.href = '#/center/setting/bind/bind_phone_2';
                                     } else {
                                         layer.alert(data.msg);
@@ -396,7 +392,6 @@
                         },
                         success: function (data) {
                             if (data.code == '000') {
-                                //console.log(data);
                                 window.location.href = '#/center/setting/bind/bind_phone_3';
                             } else {
                                 layer.alert(data.msg);
@@ -450,9 +445,7 @@
                                 },
                                 success: function (data) {
                                     if (data.code == '000') {
-                                        //console.log(data);
                                         email_flag = data.data.flag;
-                                        //console.log(flag);
                                         window.location.href = '#/center/setting/email/email_2';
                                     } else {
                                         layer.alert(data.msg);
@@ -492,7 +485,6 @@
                         },
                         success: function (data) {
                             if (data.code == '000') {
-                                //console.log(data);
                                 window.location.href = '#/center/setting/email/email_3';
                             } else {
                                 layer.alert(data.msg);
@@ -552,7 +544,6 @@
                                 success: function (data) {
                                     if (data.code == '000') {
                                         new_flag = data.data.flag;
-                                        //console.log(password_flag);
                                         window.location.href = '#/center/setting/reset/reset_6';
                                     } else {
                                         layer.alert(data.msg);
@@ -727,7 +718,6 @@
                     },
                     success: function (data) {
                         if (data && data.code == '000') {
-                            //console.log(data.data);
                             if (parseInt(data.data.score) == 2) {
                                 for (var i = 0; i < 1; i++) {
                                     $('.star i').eq(i).addClass('active_i');
@@ -795,7 +785,6 @@
                 // });
                 /* 判断用户有没有绑定邮箱 */
                 var have_email = $.base64.decode($.cookie("userEmail"));
-                console.log(have_email);
                 if (have_email != "null") {
                     $('#email').html('立即修改');
                 }

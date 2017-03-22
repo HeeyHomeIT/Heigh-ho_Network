@@ -217,7 +217,6 @@
                             user_id: $.base64.decode($.cookie("userId"))
                         },
                         success: function (data) {
-                            console.log(data);
                             if (data.code == '130') {//正在审核中
                                 $('.revise_process').remove();
                                 $('.bind_phonecnt').remove();
@@ -352,9 +351,7 @@
                                 },
                                 success: function (data) {
                                     if (data.code == '000') {
-                                        //console.log(data);
                                         phone_flag = data.data.flag;
-                                        //console.log(flag);
                                         window.location.href = '#/master/setting/bind/bind_phone_2';
                                     } else {
                                         layer.alert(data.msg);
@@ -393,7 +390,6 @@
                         },
                         success: function (data) {
                             if (data.code == '000') {
-                                //console.log(data);
                                 window.location.href = '#/master/setting/bind/bind_phone_3';
                             } else {
                                 layer.alert(data.msg);
@@ -447,9 +443,7 @@
                                 },
                                 success: function (data) {
                                     if (data.code == '000') {
-                                        //console.log(data);
                                         email_flag = data.data.flag;
-                                        //console.log(flag);
                                         window.location.href = '#/master/setting/email/email_2';
                                     } else {
                                         layer.alert(data.msg);
@@ -489,7 +483,6 @@
                         },
                         success: function (data) {
                             if (data.code == '000') {
-                                //console.log(data);
                                 window.location.href = '#/master/setting/email/email_3';
                             } else {
                                 layer.alert(data.msg);
@@ -549,7 +542,6 @@
                                 success: function (data) {
                                     if (data.code == '000') {
                                         new_flag = data.data.flag;
-                                        //console.log(password_flag);
                                         window.location.href = '#/master/setting/reset/reset_6';
                                     } else {
                                         layer.alert(data.msg);
@@ -758,7 +750,6 @@
                 //         user_id: $.base64.decode($.cookie("userId"))
                 //     }
                 // }).success(function (data, status) {
-                //     console.log(data);
                 //     /* 如果成功执行 */
                 //     if (data.code === '000') {
                 //         /* 获取显示在页面中的数据 */
@@ -790,7 +781,6 @@
                 // });
                 /* 判断用户有没有绑定邮箱 */
                 var have_email = $.base64.decode($.cookie("userEmail"));
-                console.log(have_email);
                 if (have_email != "null") {
                     $('#email').html('立即修改');
                 }

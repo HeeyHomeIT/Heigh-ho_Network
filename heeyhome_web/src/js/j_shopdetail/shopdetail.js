@@ -371,7 +371,6 @@
                 },
                 success: function (data) {
                     if (data.code == "000") {
-                        console.log(data.data);
                         $("#sd_hexgrid").append(sc.spliceCgInfoEvent(data.data));
                         $.cookie('foremanId', $.base64.encode(data.data[0].foreman_id));
                         sessionStorage.setItem("isshopdetail", '0');
@@ -405,7 +404,6 @@
         initWorksDataEvent: function () {
             var self = this;
             var shopId = $("#JdpId").val();
-            //console.log(shopId)
             var sc = spliceShopDetailContHandler;
             $.ajax({
                 url: WORKSURL,
@@ -417,7 +415,6 @@
                 },
                 success: function (data) {
                     if (data.code == "000") {
-                        console.log(data.data);
                         if (data.data.eleworker.length != 0) {
                             $("#water_electrician .wrapper_ul ul").append(sc.spliceGrInfoEvent(data.data.eleworker)); //水电工
                             $("#water_electrician ").append(sc.spliceHidePicEvent(data.data.eleworker)); //水电工隐藏图片
@@ -538,7 +535,6 @@
 
 
 //				var x = sessionStorage.wObj;
-//				console.log(JSON.parse(x))
             }
         },
         /**
@@ -565,7 +561,6 @@
                 var _wObj = JSON.parse(sessionStorage.getItem("wObj"));
                 var id = $(this).parent().data("nid");
                 delete _wObj[id];//删除属性
-                //console.log(_wObj)
                 var jslength = 0;
                 for (var js2 in _wObj) {
                     jslength++;
@@ -655,14 +650,12 @@
                                 user_id: $.base64.decode($.cookie("userId"))
                             },
                             success: function (data) {
-                                console.log(data);
                                 if (data.code == '000') {//审核通过
                                     var gzId = $("#JgzId").val(); // 工长ID
                                     var reservationObj = {};
                                     reservationObj["dp"] = dpId;
                                     reservationObj["gz"] = gzId;
                                     reservationObj["mark"] = "onekey";
-                                    //console.log(reservationObj);
                                     sessionStorage.setItem("rt_list", JSON.stringify(reservationObj));
                                     var url = "reservation.html#/reservation";
                                     window.location.href = url + "?type=1";
@@ -701,7 +694,6 @@
                                 user_id: $.base64.decode($.cookie("userId"))
                             },
                             success: function (data) {
-                                console.log(data);
                                 if (data.code == '000') {//审核通过
                                     var length = $(".h-bd").text();
                                     if (parseInt(length) != 0) {
@@ -718,7 +710,6 @@
                                             attributeObj["ntype"] = $(v).find(".Jworker").data("ntype"); // 工人类型
                                             reservationObj.worker.push(attributeObj);
                                         });
-                                        //console.log(reservationObj);
                                         sessionStorage.setItem("rt_list", JSON.stringify(reservationObj));
                                         var url = "reservation.html#/reservation";
                                         window.location.href = url + "?type=2";
@@ -762,7 +753,6 @@
                     shop_id: shopId
                 },
                 success: function (data) {
-                    console.log(data);
                     if (data.code == "000") {
                         $.each($(".con_price ul li"), function (item, val) {
                             $.each($(val).find("p"), function (i, v) {

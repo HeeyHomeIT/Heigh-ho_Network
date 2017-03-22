@@ -119,7 +119,6 @@
                 $("#zipcode").val(editorJSON.zipcode); //邮政编码
                 $("#mobile").val(editorJSON.mobile); //联系电话
                 if (editorJSON.is_default == "1") { //是否默认地址 1:默认地址 2:非默认地址
-                    console.log(1)
                     $(".i-chk").prop("checked", true)
                 } else if (editorJSON.is_default == "2") {
                     $(".i-chk").prop("checked", false);
@@ -161,7 +160,6 @@
                 } else {
                     addAddressObj.is_default = "2";
                 }
-                console.log(addAddressObj);
                 // 保存事件
                 if ($saveaddBtn.val() == ADDTEXT && flag == 1) {
                     addAddressObj.userId = USERID; // 用户id
@@ -235,7 +233,6 @@
                 },
                 success: function (data) {
                     if (data != null && data.code == '000') {
-                        console.log(data.data);
                         $(".addressListWrap").empty();
                         $.each(data.data, function (i, v) {
                             var fliterStr = spliceContentHandler.spliceStrEvent(v);
@@ -276,7 +273,6 @@
                     is_default: obj.is_default
                 },
                 success: function (data) {
-                    console.log(data);
                     if (data != null && data.code == '000') {
                         layer.msg(data.msg);
                         CRUDInfoHandler.queryInfoEvent();
@@ -321,7 +317,6 @@
          * 编辑信息
          */
         editorInfoEvent: function (obj) {
-            console.log(obj.addressId);
             $.ajax({
                 url: EDITORURL,
                 type: "GET",
@@ -340,7 +335,6 @@
                     is_default: obj.is_default
                 },
                 success: function (data) {
-                    console.log(data);
                     if (data != null && data.code == '000') {
                         layer.msg(data.msg);
                         CRUDInfoHandler.queryInfoEvent();

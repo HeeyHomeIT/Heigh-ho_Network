@@ -97,7 +97,6 @@
                             if (data.data.refund_status == '0') {//未提交退款信息
                                 window.location.href = 'refund.html#/refund/home/refund_step_1';
                                 $('.stepOne_wrap').show();
-                                console.log(data.data);
                                 $('.stepOne_wrap').show();
                                 $('.title_detail').eq(0).addClass('active');
                                 $('#order_number').html(data.data.order_id);//获取订单编号

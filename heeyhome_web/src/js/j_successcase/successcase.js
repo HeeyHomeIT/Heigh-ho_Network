@@ -62,7 +62,6 @@
                 }
             }).done(function (data) {
                 if (data.code == "000") {
-                    console.log(data.data);
                     var iSpeed = 0;
                     var left = 0;
                     var oBg = document.getElementById("title_active");
@@ -95,7 +94,6 @@
                                 }
                             }).done(function (data) {
                                 if (data.code == "000") {
-                                    console.log(data.data);
                                     $(".sc_contents ul").html(sc.spliceCgInfoEvent(data.data, [3, 3]));
                                 }
                                 else {
@@ -124,7 +122,6 @@
         getUrlParam: function (name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
             var r = window.location.hash.split("?")[1].match(reg); //匹配目标参数
-            console.log(r[2]);
             if (r != null) return unescape(r[2]);
             return null; //返回参数值
         },
@@ -135,7 +132,6 @@
         getUrlCnParam: function (name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
             var r = window.location.hash.split("?")[1].match(reg); //匹配目标参数
-            console.log(r[2]);
             if (r != null) return decodeURI(r[2]);
             return null; //返回参数值
         }
@@ -211,7 +207,6 @@
          */
         spliceCgInfoEvent: function (value, arr) {
             var vrStr = '';
-            console.log(value);
             $.each(value, function (i, v) {
                 if (v.img.length != 0) {
                     if (v.type == arr[0] || v.type == arr[1]) {

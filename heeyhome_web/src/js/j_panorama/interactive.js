@@ -154,10 +154,8 @@
                     $(".content_pic").removeClass("vrloagbg");
                 }
             }).done(function (data) {
-                console.log(data)
                 if (data && data.code == '000') {
                     TOTAL = data.data[0].total; // 总数
-                    console.log(data.data[0].total)
                     $(".content_pic").html(spliceVrContentHandler.spliceStrEvent(data.data));
                     pageHandler.pageContentEvent(USERID);
                     viewPlus.addView();
