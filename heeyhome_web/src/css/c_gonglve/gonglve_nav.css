@@ -275,6 +275,7 @@ a:focus {
     margin-top: 19px;
     font-size: 14px;
     color: #808080;
+    text-align: right;
 }
 
 #decoration_pedia .pedia_content .right_content .right_detail .detail_content .detail_des .detail_bro i {
