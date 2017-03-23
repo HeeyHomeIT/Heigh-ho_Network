@@ -525,7 +525,7 @@
     /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #EEC988;
-    background: url(../img/bj-header.jpg) 0 -500px;
+    background: url(../img/bj-header.jpg);
     margin-bottom: 50px;
 }
 

@@ -2440,7 +2440,7 @@ a:focus {
     /*font-family: FZLTHJW;*/
     font-size: 14px;
     color: #EEC988;
-    background: url(../img/bj-header.jpg) 0 -500px;
+    background: url(../img/bj-header.jpg);
 }
 
 .owner_information {
@@ -2519,7 +2519,8 @@ a:focus {
 
 .owner_summary p span {
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-top: 2px;
     font-size: 14px;
     height: 18px;
 }
@@ -2547,6 +2548,10 @@ a:focus {
 
 .owner_detail .area, .owner_detail .type, .owner_detail .address {
     margin-bottom: 10px;
+}
+
+.owner_detail .address {
+    width: 220px;
 }
 
 .order_box .ordercnt_content .block .all {
