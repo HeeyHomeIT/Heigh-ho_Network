@@ -216,29 +216,38 @@
     height: auto;
 }
 
+.topWrap {
+    width: 800px;
+    height: 104px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
 .right_top {
     height: 300px;
     border: 1px solid white;
 }
 
 .top_head {
-    height: 114px;
-    width: 113px;
+    height: 90px;
+    width: 90px;
     margin: 0 auto;
     border-radius: 50%;
-    border: 1px dashed #eec988;
+    /*border: 1px dashed #eec988;*/
     position: relative;
     margin-top: 14px;
+    margin-left: 40px;
+    margin-right: 20px;
 }
 
 .top_head_border {
-    width: 103px;
-    height: 103px;
-    background-color: #eec988;
+    width: 90px;
+    height: 90px;
+    /*background-color: #eec988;*/
     border-radius: 50%;
-    position: absolute;
-    top: -1px;
-    left: 5px;
+    /*position: absolute;*/
+    /*top: -1px;*/
+    /*left: 5px;*/
 }
 
 .head {
@@ -246,8 +255,8 @@
     height: 90px;
     border-radius: 50%;
     position: absolute;
-    top: -1px;
-    left: 6px;
+    /*top: -1px;*/
+    /*left: 6px;*/
 }
 
 .head img {
@@ -282,13 +291,15 @@
 
 .store_name {
     text-align: center;
-    margin-top: 13px;
+    margin-top: 20px;
 }
 
 .store_name b {
     font-size: 16px;
     color: #4b4948;
     vertical-align: top;
+    /*display: block;*/
+    margin-bottom: 20px;
 }
 
 .store_name img {
@@ -302,7 +313,7 @@
     height: 22px;
     display: inline-block;
     background: url("../img/certification.png") no-repeat;
-    margin-left: 14px;
+    margin-left: 10px;
 }
 
 .store_name .real_name, .store_name .safe_name {
@@ -322,7 +333,8 @@
 }
 
 .enter_storeWrap {
-    margin-top: 16px;
+    margin-top: 60px;
+    margin-left: -104px;
 }
 
 .enter_storeWrap .enter_store {
@@ -342,16 +354,28 @@
 }
 
 .title_right {
-    width: 465px;
+    width: 872px;
     margin: 0 auto;
+    /*position: absolute;*/
+    /*right: 0;*/
 }
 
 .title_right {
-    margin-top: 28px;
+    margin-top: 70px;
 }
 
 .title_email {
     border-right: 1px solid #d9d9d9;
+}
+
+.emailWrap {
+    width: 249px;
+    margin: 0 auto;
+}
+
+.telWrap {
+    width: 150px;
+    margin-left: 60px;
 }
 
 .title_right em {
@@ -394,17 +418,17 @@
 }
 
 .title_email {
-    width: 249px;
+    width: 47%;
     height: 44px;
 }
 
 .title_tel {
-    width: 150px;
+    width: 47%;
     height: 44px;
 }
 
 .fr_safe {
-    margin-top: -120px;
+    margin-top: 30px;
 }
 
 .level_p {
