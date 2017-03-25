@@ -115,5 +115,20 @@ class SmsController extends Controller
         curl_close($ch);
         return $ret;
     }
+    public function phoneisregister(){
+        $phone=rq('phone');
+        $callback=rq('callback');
+        $sel_user_phone = DB::select('SELECT id FROM hh_user WHERE user_phone = ?',[$phone]);
+        if($sel_user_phone){
+            $is=true;
+        }else{
+            $is=false;
+        }
+        $arr = array("code" => "000",
+            "data" => array("is" => $is
+            )
+        );
+        return $callback . "(" . HHJson($arr) . ")";
+    }
 
 }

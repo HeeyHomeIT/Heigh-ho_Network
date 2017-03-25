@@ -294,6 +294,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('my/collectionInfo', 'UserinfoController@userCollectionNumber');
     //获取订单每个阶段材料或者施工完成是否已经付款了
     Route::any('order/getPhasePayStatus', 'OrderDisplayController@getPhasePayStatus');
+
+    Route::any('phoneisregister', 'SmsController@phoneisregister');
     
 });
 

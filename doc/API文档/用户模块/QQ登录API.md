@@ -207,3 +207,51 @@ msg           登录失败，需要绑定手机号
 
 ```
 ```
+# QqLoginController #
+# phoneisregister()
+## 手机号是否被注册
+
+### 接口地址
+
+```
+.../phoneisregister
+```
+
+### 接口格式
+
+### 调用
+
+```
+接收方式        GET      POST
+```
+
+```
+.../phoneisregister
+```
+
+###### Json数据格式
+```
+data
+phone             手机号
+
+callbcak          回调
+```
+
+### 回调
+###### Json数据格式
+
+```
+成功
+callback(
+code         000
+data         {
+                   is     是否被注册 true：被注册过 false：未注册过
+             }  
+msg          ""
+)
+```
+
+###### Code值含义
+
+```
+```
