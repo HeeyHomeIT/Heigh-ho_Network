@@ -334,7 +334,7 @@ body {
     -moz-transition: all .3s linear
 }
 
-.container .main .third_login {
+/*.container .main .third_login {
     text-align: center;
     margin-top: 41px;
     height: 52px;
@@ -381,7 +381,7 @@ body {
     -o-transform: rotateZ(360deg);
     -ms-transform: rotateZ(360deg);
     transform: rotateZ(360deg)
-}
+}*/
 
 .container .footer {
     font-size: 12px;

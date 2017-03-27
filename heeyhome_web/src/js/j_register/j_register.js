@@ -7,8 +7,8 @@
 	var REGISTERURL = "/api/public/register/user_register"; // 获取注册接口
 	var LOGINURL = "/api/public/login/login"; // 获取登录接口
 	var CODEURL = "/api/public/sendsms"; // 获取验证码接口
-	var QQLOGINURL = "/api/public/qqlogin"; // QQ登录接口
-	var WXLOGINURL = "/api/public/wxlogin"; // 微信登录接口
+//	var QQLOGINURL = "/api/public/qqlogin"; // QQ登录接口
+//	var WXLOGINURL = "/api/public/wxlogin"; // 微信登录接口
 	/**
 	* 移动号码归属地支持号段:134 135 136 137 138 139 147 150 151 152 157 158 159 178  182 183 184 187 188
 	* 联通号码归属地支持号段:130 131 132  145 155 156 176  186 
@@ -44,7 +44,7 @@
         	self.clickLoginEvent(); // 点击立即注册/登录
         	self.pswSaveEvent(); // 记住密码
         	self.getConfirmCodeEvent(); // 点击获取验证码内容
-        	self.thirdLoginEvent(); // 第三方登录
+//      	self.thirdLoginEvent(); // 第三方登录
         },
         initLoginEvent: function() {
         	// 如果井号后面的属性值为空或者为NULL，则默认显示登录界面
@@ -147,14 +147,14 @@
 		/*
 		 * 第三方登录内容
 		 */
-		thirdLoginEvent: function () {
-	        $('.qq').on('click', function () {
-	            window.location.href = QQLOGINURL;
-	        });
-	        $('.wechat').on('click', function () {
-	            window.location.href = WXLOGINURL;
-	        });
-	    }
+//		thirdLoginEvent: function () {
+//	        $('.qq').on('click', function () {
+//	            window.location.href = QQLOGINURL;
+//	        });
+//	        $('.wechat').on('click', function () {
+//	            window.location.href = WXLOGINURL;
+//	        });
+//	    }
 	};
 	/**
 	 * 切换注册登录DIV面板
@@ -165,7 +165,7 @@
 	        var $tab = $(".container .tab"); // 标签
 	        var $main = $(".container .main"); // 内容
 	        if(flag) {
-				$main.find(".login,.third_login").removeClass("display"); // 登录内容和第三方登录内容显示
+				$main.find(".login").removeClass("display"); // 登录内容显示
 				$main.find(".register").addClass("display"); // 注册内容隐藏
 				$tab.find(".tab_click_login").addClass("active").siblings(".tab_click_register").removeClass("active"); // 登录标签添加样式,注册标签删掉样式
 				$main.children(".logo_title").find("img").attr("src","image/login.png"); // 内容标签图标修改
@@ -173,7 +173,7 @@
 				window.location.hash = "#dl"; // 设置 href属性中在井号'#'后面的分段为dl
 			}else {
 				$main.find(".register").removeClass("display"); // 注册内容显示
-				$main.find(".login,.third_login").addClass("display"); // 登录内容和第三方登录内容隐藏
+				$main.find(".login").addClass("display"); // 登录内容隐藏
 				$tab.find(".tab_click_register").addClass("active").siblings(".tab_click_login").removeClass("active"); // 注册标签添加样式,登录标签删掉样式
 				$main.children(".logo_title").find("img").attr("src","image/register.png"); // 内容标签图标修改
 				$main.find(".promptly_do").removeClass("margin_top_2").addClass("margin_top_1").attr("value","立即注册"); // 立即注册按钮改变
