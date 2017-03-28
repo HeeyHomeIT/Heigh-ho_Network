@@ -318,6 +318,7 @@
                     $(".work_experience ul").append(sc.spliceBeInfoEvent(data.data));
                     $(".decoration_history ul").append(sc.spliceDhInfoEvent(data.data));
                     self.initSuccessCaseDataEvent(data.data.shopper_id);
+                    self.lazyload();
                     self.initPictureScrollEvent();
                 },
                 complete: function () {
@@ -329,6 +330,38 @@
                 error: function (data) {
                 }
             });
+        },
+        
+        lazyload :function(){
+        	var self = this;
+        	var images = document.getElementById('demo1').getElementsByTagName('img');
+			var len = images.length;
+			var n = 0; //存储图片加载到的位置，避免每次都从第一张图片开始遍历	
+			for(var i = n; i < len; i++) {
+				var img = new Image();
+				img.src = images[i].getAttribute('data-src');
+				if(img.complete) {  // 如果图片已经存在于浏览器缓存，直接调用回调函数
+			        self.throttle();
+			        return; // 直接返回，不用再处理onload事件
+			    }
+				img.onload = function () { 
+					img.onload = null;
+					self.throttle();
+					
+				} 
+			}
+        },
+        throttle :function(){
+        	var images = document.getElementById('demo1').getElementsByTagName('img');
+			var len = images.length;
+			var n = 0; //存储图片加载到的位置，避免每次都从第一张图片开始遍历	
+			for(var i = n; i < len; i++) {
+				if(images[i].getAttribute('src') === '') {
+					images[i].src = images[i].getAttribute('data-src');
+					images[i].style.background = images[i].getAttribute('data-original-background');
+				}
+				n = n + 1;
+			}
         },
         /**
          * 页面店铺工艺初始化数据
@@ -805,7 +838,8 @@
         spliceHdPictureEvent: function (value) {
             var vrStr = '';
             $.each(value.shop_imgs, function (i, v) {
-                vrStr += '<li><img src="' + v.shop_img + '" /></li>';
+//              vrStr += '<li><img src="' + v.shop_img + '" /></li>';
+				vrStr += '<li><img src="" data-original-background="none" data-src="' + v.shop_img + '" /></li>';
             });
             return vrStr;
         },
@@ -816,7 +850,8 @@
         spliceBdPictureEvent: function (value) {
             var vrStr = '';
             $.each(value.shop_imgs, function (i, v) {
-                vrStr += '<li><div class="pic"><img src="' + v.shop_img + '" /></div></li>';
+//              vrStr += '<li><div class="pic"><img src="' + v.shop_img + '" /></div></li>';
+				vrStr += '<li><div class="pic"><img src="" data-original-background="none" data-src="' + v.shop_img + '" /></div></li>';
             });
             return vrStr;
         },
