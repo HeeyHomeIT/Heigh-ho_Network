@@ -181,7 +181,8 @@ body #crcontainer {
     display: inline-block;
     font-size: 14px;
     margin-left: 15px;
-    color: #4b4948;
+    color: #F69000;
+    font-weight: 600;
     line-height: 25px
 }
 
