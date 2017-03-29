@@ -225,6 +225,9 @@ class OrderController extends Controller
                 $order_tbl = DB::update('UPDATE hh_order SET order_status = ? WHERE order_id = ? AND user_id = ?',
                     [7, $order_id, $user_id]);
                 if ($order_tbl) {
+                    //插入取消时间
+                    $cancel_time = date('Y-m-d H:i:s', time());
+                    $int_order_status_time = DB::insert('INSERT INTO hh_order_status_time (order_id,order_status,status_time) VALUES (?,?,?)', [$order_id, 7, $cancel_time]);
                     $arr = array(
                         "code" => "000",
                         "msg" => "订单已取消",
@@ -273,9 +276,9 @@ class OrderController extends Controller
             $order_tbl_list[$key]->order_status_ch = $order_status_ch[0]->order_status;
             $portrait = DB::SELECT('select portrait_img from hh_portrait where portrait_userid=?', [$val->user_id]);
             $order_tbl_list[$key]->user_portrait = $portrait[0]->portrait_img;
-            $house_style = DB::SELECT('SELECT house_style FROM hh_order WHERE order_id =  ?',[$val->order_id]);
+            $house_style = DB::SELECT('SELECT house_style FROM hh_order WHERE order_id =  ?', [$val->order_id]);
             $order_tbl_list[$key]->house_style = $house_style[0]->house_style;
-            $reckon_amount = DB::SELECT('SELECT reckon_amount FROM hh_order_pay WHERE order_id = ?',[$val->order_id]);
+            $reckon_amount = DB::SELECT('SELECT reckon_amount FROM hh_order_pay WHERE order_id = ?', [$val->order_id]);
             if ($reckon_amount) {
                 $order_tbl_list[$key]->reckon_amount = $reckon_amount[0]->reckon_amount;
             }
