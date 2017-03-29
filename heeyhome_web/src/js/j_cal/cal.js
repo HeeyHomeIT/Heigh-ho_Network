@@ -549,6 +549,7 @@ var heeyhomeCal = {
 							costObj.ygym = data.data.ygym; // 衣柜移门费用
 							costObj.jcdd = data.data.jcdd; // 集成吊顶费用
 							costObj.cgsys = data.data.cgsys; // 橱柜石英石费用
+                            costObj.qz = data.data.qz; // 墙纸费用
 							costObj.zxzj = data.data.zxzj; // 装修总价
 							sessionStorage.payJson = JSON.stringify(costObj);
 							var url = "calresult.html#/calresult";
