@@ -422,13 +422,13 @@ function costCalculator_suzhou($calculator_arr)
     $czgd = sz_czgd($flag, $area, $room_num, $bathroom_num, $balcony_num, $ground_way_cz[0], $ground_way_cz[1], $ground_way_cz[2], $ground_way_cz[3], $cz_kt);
     $bc = sz_bc($cg, ($wardrobe_num - 1), $desk_num, $desk_num, $desk_num, $cloakroom_wardrobe, 1, $jg, $xg, $dg);
     $dls = sz_dls($room_num, $pc);
-    $db = sz_db($sm_kt, $ground_way_sm[0], $ground_way_sm[1], $ground_way_sm[2], $ground_way_sm[3], $fh_kt, $ground_way_fh[0], $ground_way_fh[1], $ground_way_fh[2], $ground_way_fh[3]);
+    $db = sz_db($flag, $area, $room_num, $balcony_num, $bathroom_num, $sm_kt, $ground_way_sm[0], $ground_way_sm[1], $ground_way_sm[2], $ground_way_sm[3], $fh_kt, $ground_way_fh[0], $ground_way_fh[1], $ground_way_fh[2], $ground_way_fh[3]);
     $mm = sz_mm($room_num, $bathroom_num);
     $cfym = sz_cfym();
     $lyfym = sz_lyfym();
     $ygym = sz_ygym($ymjyg);
     $jcdd = sz_jcdd($flag, $room_num, $bathroom_num);
-    $cgsys = sz_cgsys();
+    $cgsys = sz_cgsys($flag);
     $qz = sz_qz($flag, $area, $room_num, $bathroom_num, $balcony_num, $room_wallpaper[0], $room_wallpaper[1], $room_wallpaper[2], $room_wallpaper[3], $kt_qz);
     $zxzj = $rgzj + $zdsdcl + $wgfc + $mgfc + $yqcl;
     $arr = array(
