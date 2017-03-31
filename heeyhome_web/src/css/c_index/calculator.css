@@ -570,6 +570,10 @@ body #calcontainer {
     margin: 15px 0 0 115px;
 }
 
+.savediv .saveBtn:hover {
+    background-color: #f7cf89;
+}
+
 .none {
     display: none !important;
 }
