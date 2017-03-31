@@ -406,17 +406,17 @@ function costCalculator_suzhou($calculator_arr)
     //人工费用
     $gzrg = $area * 50;
     $sdrg = sz_sdrg($area);
-    $wgrg = sz_wgrg($flag, $area, $room_num, $balcony_num, $bathroom_num, $parlor_ground, $balcony_ground, $kitchen_ground);
+    $wgrg = sz_wgrg($flag, $area, $room_num, $balcony_num, $bathroom_num, $parlor_ground, $balcony_ground, $kitchen_ground,$ground_way_fh[0],$ground_way_fh[1],$ground_way_fh[2],$ground_way_fh[3],$fh_kt);
     $mgrg = sz_mgrg($flag, $area, $room_num, $balcony_num, $bathroom_num, $kitchen_cupboard, $wardrobe_num, $cloakroom_wardrobe, $room_ceiling[0], $room_ceiling[1], $room_ceiling[2], $room_ceiling[3], $parlor_ceiling, $desk_num, $tatami_num, $parlor_shoebox, $parlor_wine_cabinet, $balcony_hanging_cabinet);
-    $yqgrg = sz_yqgrg($flag, $area, $room_num, $bathroom_num, $room_wallpaper[0], $room_wallpaper[1], $room_wallpaper[2], $room_wallpaper[3]);
+    $yqgrg = sz_yqgrg($flag, $area, $room_num, $bathroom_num);
     $zgrg = sz_zgrg($flag, $area, $room_num, $balcony_num, $bathroom_num, $wall);
     $rgzj = $gzrg + $sdrg + $wgrg + $mgrg + $yqgrg + $zgrg;
     //辅材费用
     $zdsdcl = sz_zdsdcl($flag, $area);
     $gdsdcl = sz_gdsdcl($flag, $area);
-    $wgfc = sz_wgfc($flag, $area, $room_num, $bathroom_num, $balcony_num, $ground_sank);
+    $wgfc = sz_wgfc($flag, $area, $room_num, $bathroom_num, $balcony_num, $ground_sank,$ground_way_fh[0],$ground_way_fh[1],$ground_way_fh[2],$ground_way_fh[3]);
     $mgfc = sz_mgfc($flag, $area, $room_num, $balcony_num, $bathroom_num);
-    $yqcl = sz_yqcl($flag, $area, $room_num, $balcony_num, $bathroom_num);
+    $yqcl = sz_yqcl($flag, $area, $room_num, $bathroom_num);
     //主材费用
     $czdd = sz_czdd($flag, $area, $room_num, $bathroom_num, $balcony_num, $ground_way_cz[0], $ground_way_cz[1], $ground_way_cz[2], $ground_way_cz[3], $cz_kt);
     $czgd = sz_czgd($flag, $area, $room_num, $bathroom_num, $balcony_num, $ground_way_cz[0], $ground_way_cz[1], $ground_way_cz[2], $ground_way_cz[3], $cz_kt);
